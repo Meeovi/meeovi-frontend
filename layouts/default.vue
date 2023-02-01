@@ -8,10 +8,10 @@
       </template>
       
       <v-app-bar-title><a class="logobrand" href="/">
-          <v-icon start icon="fas fa-hurricane"></v-icon>Logo
+          <v-icon start icon="fas fa-shopping-cart"></v-icon>Meeovi
         </a></v-app-bar-title>
 
-      <v-text-field density="compact" variant="solo" label="Search" append-inner-icon="fas fa-search" single-line
+      <v-text-field density="compact" variant="solo" label="Search Meeovi" append-inner-icon="fas fa-search" single-line
         hide-details @click:append-inner="onClick"></v-text-field>
       <v-spacer></v-spacer>
 
@@ -46,6 +46,11 @@
               <v-list-item title="Logout" value="logout" href="/logout"></v-list-item>
             </v-list>
           </v-menu>
+        </v-col>
+        <v-col>
+          <v-btn variant="flat" href="/commerce/cart">
+                <v-icon start icon="fas fa-shopping-cart"></v-icon>
+              </v-btn>
         </v-col>
       </div>
     </v-app-bar>
@@ -85,22 +90,27 @@
           </v-navigation-drawer>
           <v-main id="sidebarNav"></v-main>
           <main id="mainSection">
+            <catbar />
+            <live />
             <slot />
           </main>
         </v-layout>
       </v-card>
       <FooterNav />
+      <BottomFooter />
     </v-main>
   </v-app>
 </template>
 
 <script>
 import search from '../components/Search/search.vue'
+import catbar from '../components/Catbar/categories.vue'
+import live from '../components/Catbar/live.vue'
 
   export default {
     data() {
       return {
-        components: { search },
+        components: { search, catbar, live },
         drawer: null,
         location: 'bottom',
         items: [{

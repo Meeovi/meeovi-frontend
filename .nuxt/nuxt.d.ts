@@ -4,6 +4,7 @@
 /// <reference types="@nuxtjs/i18n" />
 /// <reference types="nuxt-security" />
 /// <reference types="nuxt-vue3-google-signin" />
+/// <reference types="nuxt-meilisearch" />
 /// <reference types="@nuxt/telemetry" />
 /// <reference types="nuxt" />
 /// <reference path="types/plugins.d.ts" />

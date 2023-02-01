@@ -6,6 +6,7 @@ declare module '@nuxt/schema' {
     ["i18n"]?: typeof import("@nuxtjs/i18n").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
     ["security"]?: typeof import("nuxt-security").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
     ["googleSignIn"]?: typeof import("nuxt-vue3-google-signin").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
+    ["meilisearch"]?: typeof import("nuxt-meilisearch").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
     ["telemetry"]?: typeof import("@nuxt/telemetry").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
   }
   interface RuntimeConfig {
@@ -304,6 +305,32 @@ declare module '@nuxt/schema' {
 
       enabled: boolean,
    },
+
+   serverMeilisearchClient: {
+      hostUrl: string,
+
+      searchApiKey: string,
+
+      adminApiKey: string,
+
+      serverSideUsage: boolean,
+
+      instantSearch: {
+         theme: string,
+      },
+
+      clientOptions: {
+         placeholderSearch: boolean,
+
+         paginationTotalHits: number,
+
+         finitePagination: boolean,
+
+         primaryKey: any,
+
+         keepZeroFacets: boolean,
+      },
+   },
   }
   interface PublicRuntimeConfig {
    content: {
@@ -396,6 +423,30 @@ declare module '@nuxt/schema' {
 
    googleSignIn: {
       clientId: string,
+   },
+
+   meilisearchClient: {
+      hostUrl: string,
+
+      searchApiKey: string,
+
+      serverSideUsage: boolean,
+
+      instantSearch: {
+         theme: string,
+      },
+
+      clientOptions: {
+         placeholderSearch: boolean,
+
+         paginationTotalHits: number,
+
+         finitePagination: boolean,
+
+         primaryKey: any,
+
+         keepZeroFacets: boolean,
+      },
    },
   }
 }
