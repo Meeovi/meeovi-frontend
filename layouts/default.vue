@@ -8,7 +8,7 @@
       </template>
       
       <v-app-bar-title><a class="logobrand" href="/">
-          <v-icon start icon="fas fa-shopping-cart"></v-icon>Meeovi
+          <v-icon start><v-img src="/images/logo.png"></v-img></v-icon>Meeovi
         </a></v-app-bar-title>
 
       <v-text-field density="compact" variant="solo" label="Search Meeovi" append-inner-icon="fas fa-search" single-line
@@ -35,17 +35,7 @@
           </v-menu>
         </v-col>
         <v-col>
-          <v-menu :location="location" transition="slide-y-transition">
-            <template v-slot:activator="{ props }">
-              <v-btn variant="flat" v-bind="props">
-                <v-icon start icon="fas fa-user-circle"></v-icon>
-              </v-btn>
-            </template>
-            <v-list>
-              <v-list-item title="My Account" value="my account" href="/admin/user/"></v-list-item>
-              <v-list-item title="Logout" value="logout" href="/logout"></v-list-item>
-            </v-list>
-          </v-menu>
+          <accountmenu />
         </v-col>
         <v-col>
           <v-btn variant="flat" href="/commerce/cart">
@@ -91,26 +81,26 @@
           <v-main id="sidebarNav"></v-main>
           <main id="mainSection">
             <catbar />
-            <live />
+            
             <slot />
           </main>
         </v-layout>
       </v-card>
       <FooterNav />
-      <BottomFooter />
     </v-main>
   </v-app>
 </template>
 
 <script>
 import search from '../components/Search/search.vue'
+import accountmenu from '../components/Menus/accountmenu.vue'
 import catbar from '../components/Catbar/categories.vue'
 import live from '../components/Catbar/live.vue'
 
   export default {
     data() {
       return {
-        components: { search, catbar, live },
+        components: { search, accountmenu, catbar, live },
         drawer: null,
         location: 'bottom',
         items: [{
