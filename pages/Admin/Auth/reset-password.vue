@@ -28,31 +28,31 @@
 </template>
 
 <script>
-    /* eslint-disable camelcase */
+    /* 
     import gql from "graphql-tag";
     import findManyUsers from "~/graphql/query/findManyUsers";
     // import  tax from '~/graphql/query/findManyTax'
 
     const ADD_USER = gql `
-    mutation ($password: String!){
-    createOneUsers(data: {password: $password}) {
-        password
+    mutation ($email: String!){
+    createOneUsers(data: {email: $email}) {
+        email
   }
-}`;
+}`;*/
 
     export default {
-        data() {
+  /*      data() {
             return {
-                password: " ",
+                email: " ",
             }
         },
         methods: {
             async addUser() {
-                const password = this.password;
+                const email = this.email;
                 await this.$apollo.mutate({
                     mutation: ADD_USER,
                     variables: {
-                        password
+                        email
                     },
                     update: (cache, {
                         data: {
@@ -75,7 +75,7 @@
                         path: '../../system/staff-members'
                     })
                 }).catch(err => console.log(err));
-                this.password = ' ';
+                this.email = ' ';
             },
         },
         /* apollo: {

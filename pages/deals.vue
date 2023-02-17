@@ -31,7 +31,7 @@
         <div class="item features-image сol-12 col-md-6 col-lg-4">
             <div class="item-wrapper">
                 <div class="item-img">
-                    <img src="assets/images/features1.jpg">
+                    <img src="../assets/images/features1.jpg">
                 </div>
                 <div class="item-content">
                     <h5 class="item-title mbr-fonts-style display-7"><strong>No Coding</strong></h5>
@@ -48,7 +48,7 @@
         <div class="item features-image сol-12 col-md-6 col-lg-4">
             <div class="item-wrapper">
                 <div class="item-img">
-                    <img src="assets/images/features2.jpg">
+                    <img src="../assets/images/features2.jpg">
                 </div>
                 <div class="item-content">
                     <h5 class="item-title mbr-fonts-style display-7"><strong>Mobile Friendly</strong></h5>
@@ -65,7 +65,7 @@
         <div class="item features-image сol-12 col-md-6 col-lg-4">
             <div class="item-wrapper">
                 <div class="item-img">
-                    <img src="assets/images/features3.jpg">
+                    <img src="../assets/images/features3.jpg">
                 </div>
                 <div class="item-content">
                     <h5 class="item-title mbr-fonts-style display-7"><strong>Unique Styles</strong></h5>

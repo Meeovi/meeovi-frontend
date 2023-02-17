@@ -384,12 +384,15 @@
         </div>
     </div>
 </section>
+<relatedcategories />
     </div>
 </template>
 
 <script>
+import relatedcategories from '../../components/Related/relatedcategoriess.vue'
+
 export default {
-    
+    components: { relatedcategories },
 }
 </script>
 

@@ -45,6 +45,6 @@
 
 <script setup>
     useHead({
-        title: 'Login to AlternateCMS',
+        title: 'Login to Meeovi',
     });
 </script>

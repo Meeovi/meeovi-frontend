@@ -103,13 +103,18 @@
         </div>
     </div>
 </section>
+<relatedgallery />
     </div>
 </template>
 
 <script>
-export default {
-    
-}
+    import relatedgallery from '../../components/Related/relatedgallery.vue'
+
+    export default {
+        components: {
+            relatedgallery
+        },
+    }
 </script>
 
 <script setup>

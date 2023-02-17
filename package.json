@@ -16,24 +16,22 @@
    "scripts": {
       "alternate-commit": "git add . && git commit -m \"ready for update\"",
       "alternate-update": "git pull \"https://github.com/Meeovi/AlternateCMS-Starter-Template\"",
-      "build": "nuxt build && mesh build",
+      "build": "nuxt build",
       "dev": "nuxt dev --port 3011",
       "ts-node": "ts-node -r tsconfig-paths/register --compiler-options '{\"module\":\"CommonJS\"}'",
       "generate": "nuxt generate",
       "preview": "nuxt preview",
       "postinstall": "nuxt prepare",
-      "all": "npm-run-all --parallel dev",
-      "start": "ts-node src/index.ts"
+      "all": "npm-run-all --parallel dev"
    },
    "devDependencies": {
       "@nuxt/content": "^2.3.0",
       "@nuxtjs/apollo": "^5.0.0-alpha.5",
-      "@nuxtjs/i18n": "^8.0.0-beta.8",
       "@sidebase/nuxt-auth": "^0.3.3",
       "@types/node": "^16.11.10",
       "graphql": "^15.8.0",
       "npm-run-all": "^4.1.5",
-      "nuxt": "3.0.0",
+      "nuxt": "3.2.0",
       "nuxt-meilisearch": "^0.1.7",
       "typescript": "4.5.2"
    },
@@ -53,7 +51,6 @@
       "instantsearch.css": "^8.0.0",
       "jquery": "^3.6.3",
       "nuxt-security": "^0.10.1",
-      "nuxt-vue3-google-signin": "^0.0.8",
       "sass": "^1.57.0",
       "ts-node": "^10.9.1",
       "vue-chartjs": "^5.2.0",

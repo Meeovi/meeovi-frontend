@@ -22,7 +22,7 @@
 </template>
 
 <script>
-    /* eslint-disable camelcase */
+    /* 
     import gql from "graphql-tag";
     import findManyUsers from "~/graphql/query/findManyUsers";
     // import  tax from '~/graphql/query/findManyTax'
@@ -32,10 +32,10 @@
     createOneUsers(data: {email: $email}) {
         email
   }
-}`;
+}`;*/
 
     export default {
-        data() {
+  /*      data() {
             return {
                 email: " ",
             }

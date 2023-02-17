@@ -67,13 +67,18 @@
     </div>
 </div>
 </section>
+<relatedstation />
     </div>
 </template>
 
 <script>
-export default {
-    
-}
+    import relatedstation from '../../components/Related/relatedstation.vue'
+
+    export default {
+        components: {
+            relatedstation
+        },
+    }
 </script>
 
 <script setup>

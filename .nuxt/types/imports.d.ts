@@ -11,7 +11,6 @@ declare global {
   const defineAppConfig: typeof import('../../node_modules/nuxt/dist/app')['defineAppConfig']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
   const defineComponent: typeof import('vue')['defineComponent']
-  const defineI18nRoute: typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['defineI18nRoute']
   const defineNuxtComponent: typeof import('../../node_modules/nuxt/dist/app')['defineNuxtComponent']
   const defineNuxtLink: typeof import('../../node_modules/nuxt/dist/app')['defineNuxtLink']
   const defineNuxtPlugin: typeof import('../../node_modules/nuxt/dist/app')['defineNuxtPlugin']
@@ -47,6 +46,7 @@ declare global {
   const onDeactivated: typeof import('vue')['onDeactivated']
   const onErrorCaptured: typeof import('vue')['onErrorCaptured']
   const onMounted: typeof import('vue')['onMounted']
+  const onNuxtReady: typeof import('../../node_modules/nuxt/dist/app')['onNuxtReady']
   const onRenderTracked: typeof import('vue')['onRenderTracked']
   const onRenderTriggered: typeof import('vue')['onRenderTriggered']
   const onScopeDispose: typeof import('vue')['onScopeDispose']
@@ -83,14 +83,11 @@ declare global {
   const useAsyncData: typeof import('../../node_modules/nuxt/dist/app')['useAsyncData']
   const useAsyncQuery: typeof import('../../node_modules/@nuxtjs/apollo/dist/runtime/composables')['useAsyncQuery']
   const useAttrs: typeof import('vue')['useAttrs']
-  const useBrowserLocale: typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['useBrowserLocale']
-  const useCodeClient: typeof import('vue3-google-signin')['useCodeClient']
   const useContent: typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/utils')['useContentDisabled']
   const useContentHead: typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/head')['useContentHead']
   const useContentHelpers: typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/helpers')['useContentHelpers']
   const useContentState: typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/utils')['useContentDisabled']
   const useCookie: typeof import('../../node_modules/nuxt/dist/app')['useCookie']
-  const useCookieLocale: typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['useCookieLocale']
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
   const useError: typeof import('../../node_modules/nuxt/dist/app')['useError']
@@ -98,36 +95,31 @@ declare global {
   const useGlobalMutationLoading: typeof import('@vue/apollo-composable')['useGlobalMutationLoading']
   const useGlobalQueryLoading: typeof import('@vue/apollo-composable')['useGlobalQueryLoading']
   const useGlobalSubscriptionLoading: typeof import('@vue/apollo-composable')['useGlobalSubscriptionLoading']
-  const useGsiScript: typeof import('vue3-google-signin')['useGsiScript']
-  const useHead: typeof import('../../node_modules/nuxt/dist/head/runtime')['useHead']
-  const useI18n: typeof import('../../node_modules/@nuxtjs/i18n/node_modules/vue-i18n/dist/vue-i18n')['useI18n']
+  const useHead: typeof import('../../node_modules/nuxt/dist/app')['useHead']
   const useLazyAsyncData: typeof import('../../node_modules/nuxt/dist/app')['useLazyAsyncData']
   const useLazyAsyncQuery: typeof import('../../node_modules/@nuxtjs/apollo/dist/runtime/composables')['useLazyAsyncQuery']
   const useLazyFetch: typeof import('../../node_modules/nuxt/dist/app')['useLazyFetch']
   const useLazyQuery: typeof import('@vue/apollo-composable')['useLazyQuery']
   const useLink: typeof import('vue-router')['useLink']
-  const useLocaleHead: typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['useLocaleHead']
-  const useLocalePath: typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['useLocalePath']
-  const useLocaleRoute: typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['useLocaleRoute']
   const useMeilisearchClient: typeof import('../../node_modules/nuxt-meilisearch/dist/runtime/composables/useMeilisearchClient')['useMeilisearchClient']
   const useMutation: typeof import('@vue/apollo-composable')['useMutation']
   const useMutationLoading: typeof import('@vue/apollo-composable')['useMutationLoading']
   const useNuxtApp: typeof import('../../node_modules/nuxt/dist/app')['useNuxtApp']
-  const useOneTap: typeof import('vue3-google-signin')['useOneTap']
+  const useNuxtData: typeof import('../../node_modules/nuxt/dist/app')['useNuxtData']
   const useQuery: typeof import('@vue/apollo-composable')['useQuery']
   const useQueryLoading: typeof import('@vue/apollo-composable')['useQueryLoading']
   const useRequestEvent: typeof import('../../node_modules/nuxt/dist/app')['useRequestEvent']
+  const useRequestFetch: typeof import('../../node_modules/nuxt/dist/app')['useRequestFetch']
   const useRequestHeaders: typeof import('../../node_modules/nuxt/dist/app')['useRequestHeaders']
   const useRoute: typeof import('../../node_modules/nuxt/dist/app')['useRoute']
-  const useRouteBaseName: typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['useRouteBaseName']
   const useRouter: typeof import('../../node_modules/nuxt/dist/app')['useRouter']
   const useRuntimeConfig: typeof import('../../node_modules/nuxt/dist/app')['useRuntimeConfig']
+  const useSeoMeta: typeof import('../../node_modules/nuxt/dist/app')['useSeoMeta']
+  const useServerSeoMeta: typeof import('../../node_modules/nuxt/dist/app')['useServerSeoMeta']
   const useSlots: typeof import('vue')['useSlots']
   const useState: typeof import('../../node_modules/nuxt/dist/app')['useState']
   const useSubscription: typeof import('@vue/apollo-composable')['useSubscription']
   const useSubscriptionLoading: typeof import('@vue/apollo-composable')['useSubscriptionLoading']
-  const useSwitchLocalePath: typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['useSwitchLocalePath']
-  const useTokenClient: typeof import('vue3-google-signin')['useTokenClient']
   const useTransitionState: typeof import('vue')['useTransitionState']
   const useUnwrap: typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/utils')['useUnwrap']
   const watch: typeof import('vue')['watch']
@@ -139,6 +131,11 @@ declare global {
   const withMemo: typeof import('vue')['withMemo']
   const withModifiers: typeof import('vue')['withModifiers']
   const withScopeId: typeof import('vue')['withScopeId']
+}
+// for type re-export
+declare global {
+  // @ts-ignore
+  export type { Component,ComponentPublicInstance,ComputedRef,InjectionKey,PropType,Ref,VNode } from 'vue'
 }
 // for vue template auto import
 import { UnwrapRef } from 'vue'
@@ -154,7 +151,6 @@ declare module 'vue' {
     readonly defineAppConfig: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['defineAppConfig']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
-    readonly defineI18nRoute: UnwrapRef<typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['defineI18nRoute']>
     readonly defineNuxtComponent: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['defineNuxtComponent']>
     readonly defineNuxtLink: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['defineNuxtLink']>
     readonly defineNuxtPlugin: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['defineNuxtPlugin']>
@@ -190,6 +186,7 @@ declare module 'vue' {
     readonly onDeactivated: UnwrapRef<typeof import('vue')['onDeactivated']>
     readonly onErrorCaptured: UnwrapRef<typeof import('vue')['onErrorCaptured']>
     readonly onMounted: UnwrapRef<typeof import('vue')['onMounted']>
+    readonly onNuxtReady: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['onNuxtReady']>
     readonly onRenderTracked: UnwrapRef<typeof import('vue')['onRenderTracked']>
     readonly onRenderTriggered: UnwrapRef<typeof import('vue')['onRenderTriggered']>
     readonly onScopeDispose: UnwrapRef<typeof import('vue')['onScopeDispose']>
@@ -226,14 +223,11 @@ declare module 'vue' {
     readonly useAsyncData: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useAsyncData']>
     readonly useAsyncQuery: UnwrapRef<typeof import('../../node_modules/@nuxtjs/apollo/dist/runtime/composables')['useAsyncQuery']>
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
-    readonly useBrowserLocale: UnwrapRef<typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['useBrowserLocale']>
-    readonly useCodeClient: UnwrapRef<typeof import('vue3-google-signin')['useCodeClient']>
     readonly useContent: UnwrapRef<typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/utils')['useContentDisabled']>
     readonly useContentHead: UnwrapRef<typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/head')['useContentHead']>
     readonly useContentHelpers: UnwrapRef<typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/helpers')['useContentHelpers']>
     readonly useContentState: UnwrapRef<typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/utils')['useContentDisabled']>
     readonly useCookie: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useCookie']>
-    readonly useCookieLocale: UnwrapRef<typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['useCookieLocale']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
     readonly useError: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useError']>
@@ -241,36 +235,31 @@ declare module 'vue' {
     readonly useGlobalMutationLoading: UnwrapRef<typeof import('@vue/apollo-composable')['useGlobalMutationLoading']>
     readonly useGlobalQueryLoading: UnwrapRef<typeof import('@vue/apollo-composable')['useGlobalQueryLoading']>
     readonly useGlobalSubscriptionLoading: UnwrapRef<typeof import('@vue/apollo-composable')['useGlobalSubscriptionLoading']>
-    readonly useGsiScript: UnwrapRef<typeof import('vue3-google-signin')['useGsiScript']>
-    readonly useHead: UnwrapRef<typeof import('../../node_modules/nuxt/dist/head/runtime')['useHead']>
-    readonly useI18n: UnwrapRef<typeof import('../../node_modules/@nuxtjs/i18n/node_modules/vue-i18n/dist/vue-i18n')['useI18n']>
+    readonly useHead: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useHead']>
     readonly useLazyAsyncData: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useLazyAsyncData']>
     readonly useLazyAsyncQuery: UnwrapRef<typeof import('../../node_modules/@nuxtjs/apollo/dist/runtime/composables')['useLazyAsyncQuery']>
     readonly useLazyFetch: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useLazyFetch']>
     readonly useLazyQuery: UnwrapRef<typeof import('@vue/apollo-composable')['useLazyQuery']>
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
-    readonly useLocaleHead: UnwrapRef<typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['useLocaleHead']>
-    readonly useLocalePath: UnwrapRef<typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['useLocalePath']>
-    readonly useLocaleRoute: UnwrapRef<typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['useLocaleRoute']>
     readonly useMeilisearchClient: UnwrapRef<typeof import('../../node_modules/nuxt-meilisearch/dist/runtime/composables/useMeilisearchClient')['useMeilisearchClient']>
     readonly useMutation: UnwrapRef<typeof import('@vue/apollo-composable')['useMutation']>
     readonly useMutationLoading: UnwrapRef<typeof import('@vue/apollo-composable')['useMutationLoading']>
     readonly useNuxtApp: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useNuxtApp']>
-    readonly useOneTap: UnwrapRef<typeof import('vue3-google-signin')['useOneTap']>
+    readonly useNuxtData: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useNuxtData']>
     readonly useQuery: UnwrapRef<typeof import('@vue/apollo-composable')['useQuery']>
     readonly useQueryLoading: UnwrapRef<typeof import('@vue/apollo-composable')['useQueryLoading']>
     readonly useRequestEvent: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useRequestEvent']>
+    readonly useRequestFetch: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useRequestFetch']>
     readonly useRequestHeaders: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useRequestHeaders']>
     readonly useRoute: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useRoute']>
-    readonly useRouteBaseName: UnwrapRef<typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['useRouteBaseName']>
     readonly useRouter: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useRouter']>
     readonly useRuntimeConfig: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useRuntimeConfig']>
+    readonly useSeoMeta: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useSeoMeta']>
+    readonly useServerSeoMeta: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useServerSeoMeta']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
     readonly useState: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useState']>
     readonly useSubscription: UnwrapRef<typeof import('@vue/apollo-composable')['useSubscription']>
     readonly useSubscriptionLoading: UnwrapRef<typeof import('@vue/apollo-composable')['useSubscriptionLoading']>
-    readonly useSwitchLocalePath: UnwrapRef<typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['useSwitchLocalePath']>
-    readonly useTokenClient: UnwrapRef<typeof import('vue3-google-signin')['useTokenClient']>
     readonly useTransitionState: UnwrapRef<typeof import('vue')['useTransitionState']>
     readonly useUnwrap: UnwrapRef<typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/utils')['useUnwrap']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>

@@ -35,8 +35,24 @@
           </v-menu>
         </v-col>
         <v-col>
-          <accountmenu />
+          <ecosystemmenu />
         </v-col>
+
+        <v-col>
+          <v-menu :location="location" transition="slide-y-transition">
+            <template v-slot:activator="{ props }">
+              <v-btn variant="flat" v-bind="props">
+                <v-icon start icon="fas fa-user-circle"></v-icon>
+              </v-btn>
+            </template>
+            <v-list>
+              <v-list-item title="Profile" value="profile" href="/user/my-account"></v-list-item>
+              <v-divider></v-divider>
+              <v-list-item title="Logout" value="Logout" href="/logout"></v-list-item>
+            </v-list>
+          </v-menu>
+        </v-col>
+
         <v-col>
           <v-btn variant="flat" href="/commerce/cart">
                 <v-icon start icon="fas fa-shopping-cart"></v-icon>
@@ -93,29 +109,16 @@
 
 <script>
 import search from '../components/Search/search.vue'
-import accountmenu from '../components/Menus/accountmenu.vue'
+import ecosystemmenu from '../components/Menus/ecosystemmenu.vue'
 import catbar from '../components/Catbar/categories.vue'
 import live from '../components/Catbar/live.vue'
 
   export default {
     data() {
       return {
-        components: { search, accountmenu, catbar, live },
+        components: { search, ecosystemmenu, catbar, live },
         drawer: null,
         location: 'bottom',
-        items: [{
-            title: 'Home',
-            icon: 'fas fa-home'
-          },
-          {
-            title: 'Content Manager',
-            icon: 'fas fa-feather-pointed'
-          },
-          {
-            title: 'Settings',
-            icon: 'fas fa-gear'
-          },
-        ],
         rail: true,
         loaded: false,
         loading: false,

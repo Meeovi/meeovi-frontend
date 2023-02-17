@@ -204,12 +204,15 @@
         </div>
     </div>
 </section>
+<relatedvideo />
     </div>
 </template>
 
 <script>
+import relatedvideo from '../../components/Related/relatedvideos.vue'
+
 export default {
-    
+    components: { relatedvideo },
 }
 </script>
 

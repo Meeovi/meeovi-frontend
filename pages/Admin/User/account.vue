@@ -46,47 +46,31 @@
 </template>
 
 <script>
-    /* eslint-disable camelcase */
+    /* 
     import gql from "graphql-tag";
-    import findManyUsers from "../../../graphql/query/findManyUsers.gql";
+    import findManyUsers from "~/graphql/query/findManyUsers";
     // import  tax from '~/graphql/query/findManyTax'
 
     const ADD_USER = gql `
-    mutation ($first_name:String!,$last_name:String!,$username:String!,$email:String!, $password: String!){
-    createOneUsers(data: {first_name: $first_name, last_name: $last_name, email: $email, username: $username, password: $password}) {
+    mutation ($email: String!){
+    createOneUsers(data: {email: $email}) {
         email
-        first_name
-        last_name
-        username
-        password
   }
-}`;
+}`;*/
 
     export default {
-        data() {
+  /*      data() {
             return {
                 email: " ",
-                first_name: " ",
-                last_name: " ",
-                username: " ",
-                password: " ",
             }
         },
         methods: {
             async addUser() {
-                const first_name = this.first_name;
-                const last_name = this.last_name;
                 const email = this.email;
-                const username = this.username;
-                const password = this.password;
                 await this.$apollo.mutate({
                     mutation: ADD_USER,
                     variables: {
-                        first_name,
-                        last_name,
-                        email,
-                        username,
-                        password
+                        email
                     },
                     update: (cache, {
                         data: {
@@ -109,11 +93,7 @@
                         path: '../../system/staff-members'
                     })
                 }).catch(err => console.log(err));
-                this.first_name = ' ';
-                this.last_name = ' ';
                 this.email = ' ';
-                this.username = ' ';
-                this.password = ' ';
             },
         },
         /* apollo: {
