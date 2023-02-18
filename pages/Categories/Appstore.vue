@@ -1,504 +1,62 @@
 <template>
     <div>
-        <section class="features13 cid-so8xycJiw2" id="features14-26">
-    
+        <section data-bs-version="5.1" class="carousel slide cid-twaKnOKGFC" data-interval="false" data-bs-interval="false" id="slider1-4e" data-sortbtn="btn-primary">
 
     
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h3 class="mbr-section-title align-center mb-4 mbr-fonts-style display-2"><strong>Where to get our apps</strong></h3>
-            </div>
-            <div class="card col-12 col-md-4 col-lg-2 p-3">
-                <div class="card-wrapper">
-                    <div class="card-box align-center">
-                        <span class="mbr-iconfont mobi-mbri-apple mobi-mbri"></span>
-                        <h4 class="card-title align-center mbr-black mbr-fonts-style display-7">
-                            <strong>iOS</strong></h4>
-                    </div>
-                </div>
-            </div>
-            <div class="card p-3 col-12 col-md-4 col-lg-2">
-                <div class="card-wrapper">
-                    <div class="card-box align-center">
-                        <span class="mbr-iconfont mobi-mbri-android mobi-mbri"></span>
-                        <h4 class="card-title align-center mbr-black mbr-fonts-style display-7">
-                            <strong>Android</strong></h4>
-                    </div>
-                </div>
-            </div>
-            <div class="card p-3 col-12 col-md-4 col-lg-2">
-                <div class="card-wrapper">
-                    <div class="card-box align-center">
-                        <span class="mbr-iconfont mobi-mbri-extension mobi-mbri"></span>
-                        <h4 class="card-title align-center mbr-black mbr-fonts-style display-7">
-                            <strong>Kai OS</strong></h4>
-                    </div>
-                </div>
-            </div>
-            <div class="card p-3 col-12 col-md-4 col-lg-2">
-                <div class="card-wrapper">
-                    <div class="card-box align-center">
-                        <span class="mbr-iconfont mobi-mbri-home mobi-mbri"></span>
-                        <h4 class="card-title align-center mbr-black mbr-fonts-style display-7">
-                            <strong>Tizen</strong></h4>
-                    </div>
-                </div>
-            </div>
-            <div class="card p-3 col-12 col-md-4 col-lg-2">
-                <div class="card-wrapper">
-                    <div class="card-box align-center">
-                        <span class="mbr-iconfont mobi-mbri-sun mobi-mbri"></span>
-                        <h4 class="card-title align-center mbr-black mbr-fonts-style display-7">
-                            <strong>Fire OS</strong></h4>
-                    </div>
-                </div>
-            </div>
-            <div class="card p-3 col-12 col-md-4 col-lg-2">
-                <div class="card-wrapper">
-                    <div class="card-box align-center">
-                        <span class="mbr-iconfont mobi-mbri-rocket mobi-mbri"></span>
-                        <h4 class="card-title align-center mbr-black mbr-fonts-style display-7">
-                            <strong>Sailfish OS</strong></h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+<div class="full-screen"><div class="mbr-slider slide carousel" data-keyboard="false" data-bs-keyboard="false" data-ride="false" data-bs-ride="false" data-interval="false" data-bs-interval="false" data-bs-pause="false" data-pause="false"><ol class="carousel-indicators"><li data-app-prevent-settings="" data-target="#slider1-4e" data-bs-target="#slider1-4e" class=" active" data-slide-to="0" data-bs-slide-to="0"></li><li data-app-prevent-settings="" data-target="#slider1-4e" data-bs-target="#slider1-4e" data-slide-to="1" data-bs-slide-to="1"></li><li data-app-prevent-settings="" data-target="#slider1-4e" data-bs-target="#slider1-4e" data-slide-to="2" data-bs-slide-to="2"></li></ol><div class="carousel-inner" role="listbox"><div class="carousel-item slider-fullscreen-image active" data-bg-video-slide="false" style="background-image: url(assets/images/background1.jpg);"><div class="container container-slide"><div class="image_wrapper"><div class="mbr-overlay"></div><img src="assets/images/background1.jpg" alt="" title=""><div class="carousel-caption justify-content-center"><div class="col-10 align-center"><h2 class="mbr-fonts-style display-1">FULL SCREEN SLIDER</h2><p class="lead mbr-text mbr-fonts-style display-5">Choose from the large selection of latest pre-made blocks - jumbotrons, hero images, parallax scrolling, video backgrounds, hamburger menu, sticky header and more.</p><div class="mbr-section-btn" buttons="0"><a class="btn btn-success display-4" href="#">FOR WINDOWS</a> <a class="btn btn-white-outline display-4" href="#">FOR MAC</a></div></div></div></div></div></div><div class="carousel-item slider-fullscreen-image" data-bg-video-slide="false" style="background-image: url(assets/images/background2.jpg);"><div class="container container-slide"><div class="image_wrapper"><div class="mbr-overlay"></div><img src="assets/images/background2.jpg" alt="" title=""><div class="carousel-caption justify-content-center"><div class="col-10 align-left"><h2 class="mbr-fonts-style display-1">VIDEO SLIDE</h2><p class="lead mbr-text mbr-fonts-style display-5">Slide with youtube video background and color overlay. Title and text are aligned to the left.</p><div class="mbr-section-btn" buttons="0"><a class="btn btn-primary display-4" href="#">FOR WINDOWS</a> <a class="btn btn-white-outline display-4" href="#">FOR MAC</a></div></div></div></div></div></div><div class="carousel-item slider-fullscreen-image" data-bg-video-slide="false" style="background-image: url(assets/images/background3.jpg);"><div class="container container-slide"><div class="image_wrapper"><div class="mbr-overlay"></div><img src="assets/images/background3.jpg" alt="" title=""><div class="carousel-caption justify-content-center"><div class="col-10 align-right"><h2 class="mbr-fonts-style display-1">IMAGE SLIDE</h2><p class="lead mbr-text mbr-fonts-style display-5">Choose from the large selection of latest pre-made blocks - jumbotrons, hero images, parallax scrolling, video backgrounds, hamburger menu, sticky header and more.</p><div class="mbr-section-btn" buttons="0"><a class="btn btn-info display-4" href="#">FOR WINDOWS</a> <a class="btn btn-white-outline display-4" href="#">FOR MAC</a></div></div></div></div></div></div></div><a data-app-prevent-settings="" class="carousel-control carousel-control-prev" role="button" data-slide="prev" data-bs-slide="prev" href="#slider1-4e"><span aria-hidden="true" class="mbri-left mbr-iconfont"></span><span class="sr-only visually-hidden">Previous</span></a><a data-app-prevent-settings="" class="carousel-control carousel-control-next" role="button" data-slide="next" data-bs-slide="next" href="#slider1-4e"><span aria-hidden="true" class="mbri-right mbr-iconfont"></span><span class="sr-only visually-hidden">Next</span></a></div></div>
+
 </section>
 
-<section class="features13 cid-so8xzrpXsS" id="features14-27">
-    
+<section data-bs-version="5.1" class="mbr-gallery mbr-slider-carousel cid-twaKoDBdSg" id="gallery2-4f" data-sortbtn="btn-primary">
 
+
+
+<div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(255, 255, 255);">
+</div>
+<div class="container">
     
-    <div class="container">
-        <div class="row">
-            
-            <div class="card col-12 col-md-4 col-lg-2 p-3">
-                <div class="card-wrapper">
-                    <div class="card-box align-center">
-                        <span class="mbr-iconfont mobi-mbri-apple mobi-mbri"></span>
-                        <h4 class="card-title align-center mbr-black mbr-fonts-style display-7">
-                            <strong>Mac OS</strong></h4>
-                    </div>
-                </div>
-            </div>
-            <div class="card p-3 col-12 col-md-4 col-lg-2">
-                <div class="card-wrapper">
-                    <div class="card-box align-center">
-                        <span class="mbr-iconfont mobi-mbri-credit-card mobi-mbri"></span>
-                        <h4 class="card-title align-center mbr-black mbr-fonts-style display-7">
-                            <strong>Chrome OS</strong></h4>
-                    </div>
-                </div>
-            </div>
-            <div class="card p-3 col-12 col-md-4 col-lg-2">
-                <div class="card-wrapper">
-                    <div class="card-box align-center">
-                        <span class="mbr-iconfont mobi-mbri-windows mobi-mbri"></span>
-                        <h4 class="card-title align-center mbr-black mbr-fonts-style display-7">
-                            <strong>Windows</strong></h4>
-                    </div>
-                </div>
-            </div>
-            <div class="card p-3 col-12 col-md-4 col-lg-2">
-                <div class="card-wrapper">
-                    <div class="card-box align-center">
-                        <span class="mbr-iconfont mobi-mbri-desktop mobi-mbri"></span>
-                        <h4 class="card-title align-center mbr-black mbr-fonts-style display-7">
-                            <strong>Linux</strong></h4>
-                    </div>
-                </div>
-            </div>
-            
-            
-        </div>
-    </div>
+    <h2 class="align-center mbr-fonts-style mbr-section-title display-2">
+    New Apps</h2>
+</div> 
+
+<div class="container">
+    <div class="col-left-gallery"><!-- Filter --><div class="mbr-gallery-filter container gallery-filter-active"><ul buttons="0"><li class="mbr-gallery-filter-all active"><a class="btn btn-md btn-primary-outline display-7" href="">All</a></li></ul></div><!-- Gallery --><div class="mbr-gallery-row"><div class="mbr-gallery-layout-default"><div><div><div class="mbr-gallery-item mbr-gallery-item--p0" data-video-url="false" data-tags="Awesome"><div href="#lb-gallery2-4f" data-slide-to="0" data-bs-slide-to="0" data-toggle="modal" data-bs-toggle="modal"><img src="assets/images/gallery00.jpg" alt="" title=""><span class="icon-focus"></span><span class="mbr-gallery-title mbr-fonts-style display-7">Type caption here</span></div></div><div class="mbr-gallery-item mbr-gallery-item--p0" data-video-url="false" data-tags="Responsive"><div href="#lb-gallery2-4f" data-slide-to="1" data-bs-slide-to="1" data-toggle="modal" data-bs-toggle="modal"><img src="assets/images/gallery01.jpg" alt="" title=""><span class="icon-focus"></span><span class="mbr-gallery-title mbr-fonts-style display-7">Type caption here</span></div></div><div class="mbr-gallery-item mbr-gallery-item--p0" data-video-url="false" data-tags="Creative"><div href="#lb-gallery2-4f" data-slide-to="2" data-bs-slide-to="2" data-toggle="modal" data-bs-toggle="modal"><img src="assets/images/gallery02.jpg" alt="" title=""><span class="icon-focus"></span><span class="mbr-gallery-title mbr-fonts-style display-7">Type caption here</span></div></div><div class="mbr-gallery-item mbr-gallery-item--p0" data-video-url="false" data-tags="Animated"><div href="#lb-gallery2-4f" data-slide-to="3" data-bs-slide-to="3" data-toggle="modal" data-bs-toggle="modal"><img src="assets/images/gallery03.jpg" alt="" title=""><span class="icon-focus"></span><span class="mbr-gallery-title mbr-fonts-style display-7">Type caption here</span></div></div><div class="mbr-gallery-item mbr-gallery-item--p0" data-video-url="false" data-tags="Awesome"><div href="#lb-gallery2-4f" data-slide-to="4" data-bs-slide-to="4" data-toggle="modal" data-bs-toggle="modal"><img src="assets/images/gallery04.jpg" alt="" title=""><span class="icon-focus"></span><span class="mbr-gallery-title mbr-fonts-style display-7">Type caption here</span></div></div><div class="mbr-gallery-item mbr-gallery-item--p0" data-video-url="false" data-tags="Awesome"><div href="#lb-gallery2-4f" data-slide-to="5" data-bs-slide-to="5" data-toggle="modal" data-bs-toggle="modal"><img src="assets/images/gallery05.jpg" alt="" title=""><span class="icon-focus"></span><span class="mbr-gallery-title mbr-fonts-style display-7">Type caption here</span></div></div><div class="mbr-gallery-item mbr-gallery-item--p0" data-video-url="false" data-tags="Responsive"><div href="#lb-gallery2-4f" data-slide-to="6" data-bs-slide-to="6" data-toggle="modal" data-bs-toggle="modal"><img src="assets/images/gallery06.jpg" alt="" title=""><span class="icon-focus"></span><span class="mbr-gallery-title mbr-fonts-style display-7">Type caption here</span></div></div><div class="mbr-gallery-item mbr-gallery-item--p0" data-video-url="false" data-tags="Animated"><div href="#lb-gallery2-4f" data-slide-to="7" data-bs-slide-to="7" data-toggle="modal" data-bs-toggle="modal"><img src="assets/images/gallery07.jpg" alt="" title=""><span class="icon-focus"></span><span class="mbr-gallery-title mbr-fonts-style display-7">Type caption here</span></div></div></div></div><div class="clearfix"></div></div></div><!-- Lightbox --><div data-app-prevent-settings="" class="mbr-slider modal fade carousel slide" tabindex="-1" data-keyboard="true" data-bs-keyboard="true" data-interval="false" data-bs-interval="false" id="lb-gallery2-4f"><div class="modal-dialog"><div class="modal-content"><div class="modal-body"><div class="carousel-inner"><div class="carousel-item active"><img src="assets/images/gallery00.jpg" alt="" title=""></div><div class="carousel-item"><img src="assets/images/gallery01.jpg" alt="" title=""></div><div class="carousel-item"><img src="assets/images/gallery02.jpg" alt="" title=""></div><div class="carousel-item"><img src="assets/images/gallery03.jpg" alt="" title=""></div><div class="carousel-item"><img src="assets/images/gallery04.jpg" alt="" title=""></div><div class="carousel-item"><img src="assets/images/gallery05.jpg" alt="" title=""></div><div class="carousel-item"><img src="assets/images/gallery06.jpg" alt="" title=""></div><div class="carousel-item"><img src="assets/images/gallery07.jpg" alt="" title=""></div></div><a class="carousel-control carousel-control-prev" role="button" data-slide="prev" data-bs-slide="prev" href="#lb-gallery2-4f"><span class="mbri-left mbr-iconfont" aria-hidden="true"></span><span class="sr-only visually-hidden">Previous</span></a><a class="carousel-control carousel-control-next" role="button" data-slide="next" data-bs-slide="next" href="#lb-gallery2-4f"><span class="mbri-right mbr-iconfont" aria-hidden="true"></span><span class="sr-only visually-hidden">Next</span></a><a class="close" href="#" role="button" data-dismiss="modal" data-bs-dismiss="modal"><span class="sr-only visually-hidden">Close</span></a></div></div></div></div></div>
+</div>
 </section>
 
-<section class="pricing2 cid-so8vy2pCTb" id="pricing2-21">
-    
+<section data-bs-version="5.1" class="pricing2 cid-twaKQrlD91" id="pricing2-4g" data-sortbtn="btn-primary">
 
-    
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-6 align-center col-lg-4">
-                <div class="plan">
-                    <div class="plan-header">
-                        <h6 class="plan-title mbr-fonts-style mb-3 display-5">
-                            <strong>Meeovi.com</strong></h6>
-                        <div class="plan-price">
-                            <p class="price mbr-fonts-style m-0 display-1"><strong>$0</strong></p>
-                            <p class="price-term mbr-fonts-style mb-3 display-7"><strong>Per month</strong>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="plan-body">
-                        <div class="plan-list mb-4">
-                            <ul class="list-group mbr-fonts-style list-group-flush display-7">
-                                <li class="list-group-item">Push Notifications</li><li class="list-group-item"><span style="background-color: transparent; font-size: 1.2rem;">Supports All Devices</span></li><li class="list-group-item"><span style="background-color: transparent; font-size: 1.2rem;">Offline Caching</span></li><li class="list-group-item"><span style="background-color: transparent; font-size: 1.2rem;">Shop and Sell on the go</span><br></li>
-                            </ul>
-                        </div>
-                        <div class="mbr-section-btn text-center">
-                            <a href="https://mobiri.se" class="btn btn-primary display-4">Get started</a>
-                        </div>
-                    </div>
+
+
+
+
+<div class="container">
+    <div class="row mt-4">
+        <div class="item features-image сol-12 col-md-6 col-lg-3 active">
+            <div class="item-wrapper">
+                <div class="item-img">
+                    <img src="assets/images/gallery1.jpg" alt="">
+                </div>
+                <div class="item-content">
+                    <p class="mbr-text mbr-fonts-style mt-3 mb-0 display-4">PRODUCT</p>
+                    <p class="price mbr-fonts-style mt-2 mb-0 display-7">$80</p>
+                    <div class="mbr-section-btn mt-4 mb-5"><a class="btn btn-success display-4" href="#">BUY NOW</a></div>
                 </div>
             </div>
-            <div class="col-12 col-md-6 align-center col-lg-4">
-                <div class="plan">
-                    <div class="plan-header">
-                        <h6 class="plan-title mbr-fonts-style mb-3 display-5">
-                            <strong>Pixanomy.com</strong></h6>
-                        <div class="plan-price">
-                            <p class="price mbr-fonts-style m-0 display-1"><strong>$0</strong></p>
-                            <p class="price-term mbr-fonts-style mb-3 display-7"><strong>Per year</strong>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="plan-body">
-                        <div class="plan-list mb-4">
-                            <ul class="list-group mbr-fonts-style list-group-flush display-7">
-                                <li class="list-group-item">Push Notifications</li><li class="list-group-item">Supports All Devices</li><li class="list-group-item">Offline Caching</li><li class="list-group-item">Take and view pictures and artwork on the go</li>
-                            </ul>
-                        </div>
-                        <div class="mbr-section-btn text-center">
-                            <a href="https://mobiri.se" class="btn btn-primary display-4">Get started</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 align-center col-lg-4">
-                <div class="plan">
-                    <div class="plan-header">
-                        <h6 class="plan-title mbr-fonts-style mb-3 display-5">
-                            <strong>Meeovi Notes</strong></h6>
-                        <div class="plan-price">
-                            <p class="price mbr-fonts-style m-0 display-1"><strong>$0</strong></p>
-                            <p class="price-term mbr-fonts-style mb-3 display-7"><strong>One time</strong>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="plan-body">
-                        <div class="plan-list mb-4">
-                            <ul class="list-group mbr-fonts-style list-group-flush display-7">
-                                <li class="list-group-item">Push Notificatons</li><li class="list-group-item">Supports All Devices</li><li class="list-group-item">Offline Mode</li><li class="list-group-item">Write and Read on the go</li>
-                            </ul>
-                        </div>
-                        <div class="mbr-section-btn text-center">
-                            <a href="https://mobiri.se" class="btn btn-primary display-4">Get started</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
         </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     </div>
-</section>
-
-<section class="pricing2 cid-so8vyvMz2D" id="pricing2-22">
-    
-
-    
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-6 align-center col-lg-4">
-                <div class="plan">
-                    <div class="plan-header">
-                        <h6 class="plan-title mbr-fonts-style mb-3 display-5">
-                            <strong>Meeovi Locate</strong></h6>
-                        <div class="plan-price">
-                            <p class="price mbr-fonts-style m-0 display-1"><strong>$0</strong></p>
-                            <p class="price-term mbr-fonts-style mb-3 display-7"><strong>Per month</strong>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="plan-body">
-                        <div class="plan-list mb-4">
-                            <ul class="list-group mbr-fonts-style list-group-flush display-7">
-                                <li class="list-group-item">Code Editor
-                                </li><li class="list-group-item">Mobirise Kit
-                                </li><li class="list-group-item">Form Builder
-                                </li><li class="list-group-item">Social traveling network for those on the go</li>
-                            </ul>
-                        </div>
-                        <div class="mbr-section-btn text-center">
-                            <a href="https://mobiri.se" class="btn btn-primary display-4">Get started</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 align-center col-lg-4">
-                <div class="plan">
-                    <div class="plan-header">
-                        <h6 class="plan-title mbr-fonts-style mb-3 display-5">
-                            <strong>Meeovi Learning</strong></h6>
-                        <div class="plan-price">
-                            <p class="price mbr-fonts-style m-0 display-1"><strong>$0</strong></p>
-                            <p class="price-term mbr-fonts-style mb-3 display-7"><strong>Per year</strong>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="plan-body">
-                        <div class="plan-list mb-4">
-                            <ul class="list-group mbr-fonts-style list-group-flush display-7">
-                                <li class="list-group-item">Code Editor
-                                </li><li class="list-group-item">Mobirise Kit
-                                </li><li class="list-group-item">Form Builder
-                                </li><li class="list-group-item">Take classes, browse and create code, and more on our learning platform</li>
-                            </ul>
-                        </div>
-                        <div class="mbr-section-btn text-center">
-                            <a href="https://mobiri.se" class="btn btn-primary display-4">Get started</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 align-center col-lg-4">
-                <div class="plan">
-                    <div class="plan-header">
-                        <h6 class="plan-title mbr-fonts-style mb-3 display-5">
-                            <strong>Meeovi Messenger</strong></h6>
-                        <div class="plan-price">
-                            <p class="price mbr-fonts-style m-0 display-1"><strong>$0</strong></p>
-                            <p class="price-term mbr-fonts-style mb-3 display-7"><strong>One time</strong>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="plan-body">
-                        <div class="plan-list mb-4">
-                            <ul class="list-group mbr-fonts-style list-group-flush display-7">
-                                <li class="list-group-item">Code Editor
-                                </li><li class="list-group-item">Mobirise Kit
-                                </li><li class="list-group-item">Form Builder
-                                </li><li class="list-group-item">Video, Text, Audio messages</li>
-                            </ul>
-                        </div>
-                        <div class="mbr-section-btn text-center">
-                            <a href="https://mobiri.se" class="btn btn-primary display-4">Get started</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-        </div>
-    </div>
-</section>
-
-<section class="pricing2 cid-so8vyXSy8r" id="pricing2-23">
-    
-
-    
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-6 align-center col-lg-4">
-                <div class="plan">
-                    <div class="plan-header">
-                        <h6 class="plan-title mbr-fonts-style mb-3 display-5">
-                            <strong>ShopnCute</strong></h6>
-                        <div class="plan-price">
-                            <p class="price mbr-fonts-style m-0 display-1"><strong>$19</strong></p>
-                            <p class="price-term mbr-fonts-style mb-3 display-7"><strong>Per month</strong>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="plan-body">
-                        <div class="plan-list mb-4">
-                            <ul class="list-group mbr-fonts-style list-group-flush display-7">
-                                <li class="list-group-item">Code Editor
-                                </li><li class="list-group-item">Mobirise Kit
-                                </li><li class="list-group-item">Form Builder
-                                </li><li class="list-group-item">Shop on the go with the latest in women's fashion.</li>
-                            </ul>
-                        </div>
-                        <div class="mbr-section-btn text-center">
-                            <a href="https://mobiri.se" class="btn btn-primary display-4">Get started</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 align-center col-lg-4">
-                <div class="plan">
-                    <div class="plan-header">
-                        <h6 class="plan-title mbr-fonts-style mb-3 display-5">
-                            <strong>ShopnBold</strong></h6>
-                        <div class="plan-price">
-                            <p class="price mbr-fonts-style m-0 display-1"><strong>$19</strong></p>
-                            <p class="price-term mbr-fonts-style mb-3 display-7"><strong>Per year</strong>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="plan-body">
-                        <div class="plan-list mb-4">
-                            <ul class="list-group mbr-fonts-style list-group-flush display-7">
-                                <li class="list-group-item">Code Editor
-                                </li><li class="list-group-item">Mobirise Kit
-                                </li><li class="list-group-item">Form Builder
-                                </li><li class="list-group-item">Shop while on the go with a big collection of men's fashion</li>
-                            </ul>
-                        </div>
-                        <div class="mbr-section-btn text-center">
-                            <a href="https://mobiri.se" class="btn btn-primary display-4">Get started</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 align-center col-lg-4">
-                <div class="plan">
-                    <div class="plan-header">
-                        <h6 class="plan-title mbr-fonts-style mb-3 display-5">
-                            <strong>Elite Novels</strong></h6>
-                        <div class="plan-price">
-                            <p class="price mbr-fonts-style m-0 display-1"><strong>$399</strong></p>
-                            <p class="price-term mbr-fonts-style mb-3 display-7"><strong>One time</strong>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="plan-body">
-                        <div class="plan-list mb-4">
-                            <ul class="list-group mbr-fonts-style list-group-flush display-7">
-                                <li class="list-group-item">Code Editor
-                                </li><li class="list-group-item">Mobirise Kit
-                                </li><li class="list-group-item">Form Builder
-                                </li><li class="list-group-item">Browse your favorite characters on the go</li>
-                            </ul>
-                        </div>
-                        <div class="mbr-section-btn text-center">
-                            <a href="https://mobiri.se" class="btn btn-primary display-4">Get started</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-        </div>
-    </div>
-</section>
-
-<section class="pricing2 cid-so8vzVQ90v" id="pricing2-24">
-    
-
-    
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-6 align-center col-lg-6">
-                <div class="plan">
-                    <div class="plan-header">
-                        <h6 class="plan-title mbr-fonts-style mb-3 display-5"><strong>Elite Kids</strong></h6>
-                        <div class="plan-price">
-                            <p class="price mbr-fonts-style m-0 display-1"><strong>$19</strong></p>
-                            <p class="price-term mbr-fonts-style mb-3 display-7"><strong>Per month</strong>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="plan-body">
-                        <div class="plan-list mb-4">
-                            <ul class="list-group mbr-fonts-style list-group-flush display-7">
-                                <li class="list-group-item">Code Editor
-                                </li><li class="list-group-item">Mobirise Kit
-                                </li><li class="list-group-item">Form Builder
-                                </li><li class="list-group-item">Read stories, discover characters, and places within the Eliteverse</li>
-                            </ul>
-                        </div>
-                        <div class="mbr-section-btn text-center">
-                            <a href="https://mobiri.se" class="btn btn-primary display-4">Get started</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 align-center col-lg-6">
-                <div class="plan">
-                    <div class="plan-header">
-                        <h6 class="plan-title mbr-fonts-style mb-3 display-5">
-                            <strong>BookmarkIT</strong></h6>
-                        <div class="plan-price">
-                            <p class="price mbr-fonts-style m-0 display-1"><strong>$19</strong></p>
-                            <p class="price-term mbr-fonts-style mb-3 display-7"><strong>Per year</strong>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="plan-body">
-                        <div class="plan-list mb-4">
-                            <ul class="list-group mbr-fonts-style list-group-flush display-7">
-                                <li class="list-group-item">Code Editor
-                                </li><li class="list-group-item">Mobirise Kit
-                                </li><li class="list-group-item">Form Builder
-                                </li><li class="list-group-item">Create, sync, and browse bookmarks</li>
-                            </ul>
-                        </div>
-                        <div class="mbr-section-btn text-center">
-                            <a href="https://mobiri.se" class="btn btn-primary display-4">Get started</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            
-        </div>
-    </div>
-</section>
-
-<section class="content2 cid-so8vEg8QQC" id="content2-25">
-    
-    
-    <div class="container">
-        <div class="mbr-section-head">
-            <h4 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2"><strong>Our Blog</strong></h4>
-            <h5 class="mbr-section-subtitle mbr-fonts-style align-center mb-0 mt-2 display-5">Read the recent blog posts about
-                Meeovi</h5>
-        </div>
-        <div class="row mt-4">
-            <div class="item features-image сol-12 col-md-6 col-lg-4">
-                <div class="item-wrapper">
-                    <div class="item-img">
-                        <img src="../../assets/images/product5.jpg" alt="" title="">
-                    </div>
-                    <div class="item-content">
-                        <h5 class="item-title mbr-fonts-style display-5"><a href="#top" class="text-primary">Easy and Simple</a></h5>
-                        <h6 class="item-subtitle mbr-fonts-style mt-1 display-7">
-                            <strong>John Smith</strong><em> 10-10-2025</em></h6>
-                        <p class="mbr-text mbr-fonts-style mt-3 display-7">Mobirise Page Maker is a free and simple
-                            website builder - just drop site blocks to your page, add content and style it!</p>
-                    </div>
-                    <div class="mbr-section-btn item-footer mt-2"><a href="" class="btn item-btn btn-primary display-7" target="_blank">Read More
-                            &gt;</a></div>
-                </div>
-            </div>
-            <div class="item features-image сol-12 col-md-6 col-lg-4">
-                <div class="item-wrapper">
-                    <div class="item-img">
-                        <img src="../../assets/images/product4.jpg" alt="" title="">
-                    </div>
-                    <div class="item-content">
-                        <h5 class="item-title mbr-fonts-style display-5"><a href="#top" class="text-primary">Auto Mobile</a></h5>
-                        <h6 class="item-subtitle mbr-fonts-style mt-1 display-7"><strong>Ann
-                                Brown</strong><em>&nbsp;09-09-2025</em></h6>
-                        <p class="mbr-text mbr-fonts-style mt-3 display-7">Mobirise Site Creator offers a huge
-                            collection of 3500+ site blocks, templates and themes with thousands flexible options.<br>
-                        </p>
-                    </div>
-                    <div class="mbr-section-btn item-footer mt-2"><a href="" class="btn btn-primary item-btn display-7" target="_blank">Read More
-                            &gt;</a></div>
-                </div>
-            </div>
-            <div class="item features-image сol-12 col-md-6 col-lg-4">
-                <div class="item-wrapper">
-                    <div class="item-img">
-                        <img src="../../assets/images/product3.jpg" alt="" title="">
-                    </div>
-                    <div class="item-content">
-                        <h5 class="item-title mbr-fonts-style display-5"><a href="#top" class="text-primary">Boost Your Rank</a></h5>
-                        <h6 class="item-subtitle mbr-fonts-style mt-1 display-7"><strong>Jessica Doe
-                            </strong><em>08-08-2025</em></h6>
-                        <p class="mbr-text mbr-fonts-style mt-3 display-7">Mobirise Page Maker is a free and simple
-                            website builder - just drop site blocks to your page, add content and style it!</p>
-                    </div>
-                    <div class="mbr-section-btn item-footer mt-2"><a href="" class="btn btn-primary item-btn display-7" target="_blank">Read More
-                            &gt;</a></div>
-                </div>
-            </div>
-
-        </div>
-    </div>
+</div>
 </section>
     </div>
 </template>

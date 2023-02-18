@@ -15,6 +15,7 @@ export default defineNuxtConfig({
     'vuetify/lib/styles/main.sass',
     '@mdi/font/css/materialdesignicons.min.css',
     '@fortawesome/fontawesome-svg-core/styles.css',
+    'assets/commerce/css/ui.css',
     'assets/styles/styles.css',
   ],
 

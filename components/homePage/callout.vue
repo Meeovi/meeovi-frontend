@@ -1,12 +1,12 @@
 <template>
     <div>
-        <section class="slider1 cid-tuFsdyJLsR" id="slider1-3t">
+        <section data-bs-version="5.1" class="slider1 cid-tuFsdyJLsR" id="slider1-3t">
     
-    <div class="carousel slide" id="tuFLaU1os9" data-interval="5000">
+    <div class="carousel slide" id="twaWsQn4Y9" data-interval="5000" data-bs-interval="5000">
         <ol class="carousel-indicators">
-            <li data-slide-to="0" class="active" data-target="#tuFLaU1os9"></li>
-            <li data-slide-to="1" data-target="#tuFLaU1os9"></li>
-            <li data-slide-to="2" data-target="#tuFLaU1os9"></li>
+            <li data-slide-to="0" data-bs-slide-to="0" class="active" data-target="#twaWsQn4Y9" data-bs-target="#twaWsQn4Y9"></li>
+            <li data-slide-to="1" data-bs-slide-to="1" data-target="#twaWsQn4Y9" data-bs-target="#twaWsQn4Y9"></li>
+            <li data-slide-to="2" data-bs-slide-to="2" data-target="#twaWsQn4Y9" data-bs-target="#twaWsQn4Y9"></li>
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item slider-image item active">
@@ -46,18 +46,18 @@
                 </div>
             </div>
         </div>
-        <a class="carousel-control carousel-control-prev" role="button" data-slide="prev" href="#tuFLaU1os9">
+        <a class="carousel-control carousel-control-prev" role="button" data-slide="prev" data-bs-slide="prev" href="#twaWsQn4Y9">
             <span class="mobi-mbri mobi-mbri-arrow-prev" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
+            <span class="sr-only visually-hidden">Previous</span>
         </a>
-        <a class="carousel-control carousel-control-next" role="button" data-slide="next" href="#tuFLaU1os9">
+        <a class="carousel-control carousel-control-next" role="button" data-slide="next" data-bs-slide="next" href="#twaWsQn4Y9">
             <span class="mobi-mbri mobi-mbri-arrow-next" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
+            <span class="sr-only visually-hidden">Next</span>
         </a>
     </div>
 </section>
 
-<section class="header1 cid-skeBjV76wj mbr-parallax-background" id="header1-2">
+<section data-bs-version="5.1" class="header1 cid-skeBjV76wj mbr-parallax-background" id="header1-2">
 
     
 
@@ -72,53 +72,6 @@
 <br></p>
                 <div class="mbr-section-btn mt-3"><a class="btn btn-secondary display-4" href="/signup">Sign Up</a></div>
             </div>
-        </div>
-    </div>
-</section>
-
-<section class="features1 cid-skeDi8flFg" id="features1-c">
-    
-
-    
-    <div class="container">
-        <div class="row">
-            
-        </div>
-        <div class="row">
-            <div class="card col-12 col-md-6 col-lg-3">
-                <div class="card-wrapper">
-                    <div class="card-box align-center">
-                        <div class="iconfont-wrapper">
-                            <span class="mbr-iconfont mobi-mbri-cart-full mobi-mbri" style="color: rgb(255, 255, 255); fill: rgb(255, 255, 255);"></span>
-                        </div>
-                        <h5 class="card-title mbr-fonts-style display-7"><strong>THE PRODUCTS</strong></h5>
-                        <p class="card-text mbr-fonts-style display-7">There are millions of unique products found on Meeovi. Digital, handmade, physical, services, and more. You are sure to find what you truely want.&nbsp;<br></p>
-                    </div>
-                </div>
-            </div>
-            <div class="card col-12 col-md-6 col-lg-3">
-                <div class="card-wrapper">
-                    <div class="card-box align-center">
-                        <div class="iconfont-wrapper">
-                            <span class="mbr-iconfont mobi-mbri-cursor-click mobi-mbri" style="color: rgb(255, 255, 255); fill: rgb(255, 255, 255);"></span>
-                        </div>
-                        <h5 class="card-title mbr-fonts-style display-7"><strong>THE ENGAGEMENTS</strong></h5>
-                        <p class="card-text mbr-fonts-style display-7">As a social marketplace, we pride ourselves on connecting customers with sellers. With sharing tools, product videos, chat system, messages, and activity feed.&nbsp;<br></p>
-                    </div>
-                </div>
-            </div>
-            <div class="card col-12 col-md-6 col-lg-3">
-                <div class="card-wrapper">
-                    <div class="card-box align-center">
-                        <div class="iconfont-wrapper">
-                            <span class="mbr-iconfont mobi-mbri-lock mobi-mbri" style="color: rgb(255, 255, 255); fill: rgb(255, 255, 255);"></span>
-                        </div>
-                        <h5 class="card-title mbr-fonts-style display-7"><strong>THE SECURITY</strong></h5>
-                        <p class="card-text mbr-fonts-style display-7">We use the best safety and security practices with SSL enabled, hotlink protection, spam and scam protection. You are safe while browsing, shopping, and selling with us.&nbsp;<br></p>
-                    </div>
-                </div>
-            </div>
-            
         </div>
     </div>
 </section>

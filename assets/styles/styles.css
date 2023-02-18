@@ -1,6 +1,7 @@
 /********************** Main CSS *************/
 html {
     overflow-y: scroll;
+    font-family: 'Inter', sans-serif !important;
 }
 body {
     margin: 0;
@@ -26,6 +27,10 @@ body {
 
 .v-divider {
     border: black;
+}
+
+.section-content, .section-name, .pricing1 {
+    background-color: transparent !important;
 }
 
 /******************* Main Section CSS *********/
@@ -70,6 +75,10 @@ body {
 
 .contentDashboard {
     padding: 10px;
+}
+
+.relatedMenu {
+    padding: 50px;
 }
 
 /******************** Sidebar CSS *************/

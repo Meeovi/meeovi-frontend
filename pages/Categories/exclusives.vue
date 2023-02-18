@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section class="info3 cid-tuzqZ1PJf1" id="info3-39">
+        <section data-bs-version="5.1" class="info3 cid-tuzqZ1PJf1" id="info3-39">
 
     
 
@@ -22,131 +22,13 @@
 </div>
 </section>
 
-<section class="features8 cid-tuzr5g287r" id="features9-3a">
+<section data-bs-version="5.1" class="mbr-gallery cid-twaG3bRQmW" id="shop2-3y">
 
 
 
-
-
+<!-- <div class="big-container"> -->
 <div class="container">
-    <div class="card">
-        <div class="card-wrapper">
-            <div class="row align-items-center">
-                <div class="col-12 col-md-4">
-                    <div class="image-wrapper">
-                        <img src="assets/images/product1.jpg" alt="Mobirise">
-                    </div>
-                </div>
-                <div class="col-12 col-md">
-                    <div class="card-box">
-                        <div class="row">
-                            <div class="col-md">
-                                <h6 class="card-title mbr-fonts-style display-5">
-                                    <strong>Camera</strong>
-                                </h6>
-                                <p class="mbr-text mbr-fonts-style display-7">
-                                    Themes in the Mobirise website builder offer multiple blocks: intros, sliders, galleries, forms, articles, and so on. Start a project and click on the red plus buttons to see the blocks available for your theme.
-                                </p>
-                            </div>
-                            <div class="col-md-auto">
-                                <p class="price mbr-fonts-style display-2">$29</p>
-                                <div class="mbr-section-btn"><a href="https://mobiri.se" class="btn btn-primary display-4">
-                                        Buy Now
-                                    </a></div>
-                            </div>
-                            <div></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-wrapper">
-            <div class="row align-items-center">
-                <div class="col-12 col-md-4">
-                    <div class="image-wrapper">
-                        <img src="assets/images/product2.jpg" alt="Mobirise">
-                    </div>
-                </div>
-                <div class="col-12 col-md">
-                    <div class="card-box">
-                        <div class="row">
-                            <div class="col-md">
-                                <h6 class="card-title mbr-fonts-style display-5">
-                                    <strong>Mug</strong>
-                                </h6>
-                                <p class="mbr-text mbr-fonts-style display-7">
-                                    All sites you create with the Mobirise web builder are mobile-friendly natively. No special actions required. You can preview your site inside the app. Check the icons on the top.
-                                </p>
-                            </div>
-                            <div class="col-md-auto">
-                                <p class="price mbr-fonts-style display-2">$29</p>
-                                <div class="mbr-section-btn">
-                                    <a href="https://mobiri.se" class="btn btn-primary display-4">
-                                        Buy Now
-                                    </a>
-                                </div>
-                            </div>
-                            <div></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-</div>
-</section>
-
-<section class="features4 cid-tuzr71nZjR" id="features4-3b">
-
-
-<div class="container">
-    
-    <div class="row mt-4">
-        <div class="item features-image сol-12 col-md-6 col-lg-4">
-            <div class="item-wrapper">
-                <div class="item-img">
-                    <img src="assets/images/product2.jpg" alt="" title="">
-                </div>
-                <div class="item-content">
-                    <h5 class="item-title mbr-fonts-style display-5"><strong>Design</strong></h5>
-                    <h6 class="item-subtitle mbr-fonts-style mt-1 display-7">Website Design</h6>
-                    <p class="mbr-text mbr-fonts-style mt-3 display-7">Mobirise is an easy website builder. Just drop site elements to your page, add content and style it to look the way you like.</p>
-                </div>
-                <div class="mbr-section-btn item-footer mt-2"><a href="" class="btn item-btn btn-black display-7" target="_blank">Start Now &gt;</a></div>
-            </div>
-        </div>
-        <div class="item features-image сol-12 col-md-6 col-lg-4">
-            <div class="item-wrapper">
-                <div class="item-img">
-                    <img src="assets/images/product3.jpg" alt="" title="">
-                </div>
-                <div class="item-content">
-                    <h5 class="item-title mbr-fonts-style display-5"><strong>Programming</strong></h5>
-                    <h6 class="item-subtitle mbr-fonts-style mt-1 display-7">
-                        HTML/CSS Coding</h6>
-                    <p class="mbr-text mbr-fonts-style mt-3 display-7">You don't have to code to create your own site. Select one of available themes in the Mobirise Site Maker.</p>
-                </div>
-                <div class="mbr-section-btn item-footer mt-2"><a href="" class="btn item-btn btn-black display-7" target="_blank">Start Now &gt;</a></div>
-            </div>
-        </div>
-        <div class="item features-image сol-12 col-md-6 col-lg-4">
-            <div class="item-wrapper">
-                <div class="item-img">
-                    <img src="assets/images/product1.jpg" alt="" title="">
-                </div>
-                <div class="item-content">
-                    <h5 class="item-title mbr-fonts-style display-5"><strong>Branding</strong></h5>
-                    <h6 class="item-subtitle mbr-fonts-style mt-1 display-7">Creating Your Brand</h6>
-                    <p class="mbr-text mbr-fonts-style mt-3 display-7">Select the theme that suits you. Each theme in the Mobirise Website Software contains a set of unique blocks.<br></p>
-                </div>
-                <div class="mbr-section-btn item-footer mt-2"><a href="" class="btn item-btn btn-black display-7" target="_blank">Start Now &gt;</a></div>
-            </div>
-        </div>
-        
-    </div>
+    <div class="mbr-shop"><!-- Shop Gallery --><div class="row mbr-shop__row col-md-12"><div class="wrapper-shop-items col-md-12"><div class="mbr-gallery-row"><div><div class="shop-items"><div class="mbr-gallery-item" data-tags="Awesome" data-seller="false" data-slide-to="0" data-bs-slide-to="0" data-price="18" data-oldprice="36"><div class="item_overlay" data-toggle="modal" data-bs-toggle="modal"></div><div class="galleryItem" data-toggle="modal" data-bs-toggle="modal"><div class="style_overlay"></div><div class="img_wraper"><img src="../../assets/images/shop0.jpg"></div><span class="onsale mbr-fonts-style display-4" data-onsale="false" style="display: none;">SALE</span><div class="sidebar_wraper"><h4 class="item-title mbr-fonts-style mbr-text display-5">Brown Glasses</h4><div class="price-block"><span class="shop-item-price mbr-fonts-style display-5">$18</span><span class="oldprice mbr-fonts-style display-7" style="display: none;">$36</span></div><div class="card-description">Casual shoes (contact us for sizing)<br><br><ul><li>Lightweight textured fabric</li> <li>Rounded v-neckline</li> <li>Pom pom trims</li> <li>Regular fit – true to size</li></ul> <br>Duis auctor hendrerit nisi, at lacinia ex vulputate quis. Suspendisse convallis iaculis tortor, quis mattis lectus rutrum a.<br><br>Product code: <strong>385DDF5p</strong></div><div class="mbr-section-btn" buttons="0" style="display: none;"><a class="btn btn-primary display-7" href="#">Buy now!</a></div></div></div></div><div class="mbr-gallery-item" data-tags="Wonderful" data-seller="false" data-slide-to="1" data-bs-slide-to="1" data-price="91" data-oldprice="182"><div class="item_overlay" data-toggle="modal" data-bs-toggle="modal"></div><div class="galleryItem" data-toggle="modal" data-bs-toggle="modal"><div class="style_overlay"></div><div class="img_wraper"><img src="../../assets/images/shop1.jpg"></div><span class="onsale mbr-fonts-style display-4" data-onsale="false" style="display: none;">SALE</span><div class="sidebar_wraper"><h4 class="item-title mbr-fonts-style mbr-text display-5">Men's Shoes</h4><div class="price-block"><span class="shop-item-price mbr-fonts-style display-5">$91</span><span class="oldprice mbr-fonts-style display-7" style="display: none;">$182</span></div><div class="card-description">Casual shoes (contact us for sizing)<br><br><ul><li>Lightweight textured fabric</li> <li>Rounded v-neckline</li> <li>Pom pom trims</li> <li>Regular fit – true to size</li></ul> <br>Duis auctor hendrerit nisi, at lacinia ex vulputate quis. Suspendisse convallis iaculis tortor, quis mattis lectus rutrum a.<br><br>Product code: <strong>385DDF5p</strong></div><div class="mbr-section-btn" buttons="0" style="display: none;"><a class="btn btn-primary display-7" href="#">Buy now!</a></div></div></div></div><div class="mbr-gallery-item" data-tags="Creative" data-seller="false" data-slide-to="2" data-bs-slide-to="2" data-price="39" data-oldprice="78"><div class="item_overlay" data-toggle="modal" data-bs-toggle="modal"></div><div class="galleryItem" data-toggle="modal" data-bs-toggle="modal"><div class="style_overlay"></div><div class="img_wraper"><img src="../../assets/images/shop2.jpg"></div><span class="onsale mbr-fonts-style display-4" data-onsale="true">SALE</span><div class="sidebar_wraper"><h4 class="item-title mbr-fonts-style mbr-text display-5">Blue Backpack</h4><div class="price-block"><span class="shop-item-price mbr-fonts-style display-5">$39</span><span class="oldprice mbr-fonts-style display-7">$78</span></div><div class="card-description">Casual shoes (contact us for sizing)<br><br><ul><li>Lightweight textured fabric</li> <li>Rounded v-neckline</li> <li>Pom pom trims</li> <li>Regular fit – true to size</li></ul> <br>Duis auctor hendrerit nisi, at lacinia ex vulputate quis. Suspendisse convallis iaculis tortor, quis mattis lectus rutrum a.<br><br>Product code: <strong>385DDF5p</strong></div><div class="mbr-section-btn" buttons="0" style="display: none;"><a class="btn btn-primary display-7" href="#">Buy now!</a></div></div></div></div><div class="mbr-gallery-item" data-tags="Awesome" data-seller="false" data-slide-to="3" data-bs-slide-to="3" data-price="55" data-oldprice="110"><div class="item_overlay" data-toggle="modal" data-bs-toggle="modal"></div><div class="galleryItem" data-toggle="modal" data-bs-toggle="modal"><div class="style_overlay"></div><div class="img_wraper"><img src="../../assets/images/shop3.jpg"></div><span class="onsale mbr-fonts-style display-4" data-onsale="false" style="display: none;">SALE</span><div class="sidebar_wraper"><h4 class="item-title mbr-fonts-style mbr-text display-5">Red Snapback</h4><div class="price-block"><span class="shop-item-price mbr-fonts-style display-5">$55</span><span class="oldprice mbr-fonts-style display-7" style="display: none;">$110</span></div><div class="card-description">Casual shoes (contact us for sizing)<br><br><ul><li>Lightweight textured fabric</li> <li>Rounded v-neckline</li> <li>Pom pom trims</li> <li>Regular fit – true to size</li></ul> <br>Duis auctor hendrerit nisi, at lacinia ex vulputate quis. Suspendisse convallis iaculis tortor, quis mattis lectus rutrum a.<br><br>Product code: <strong>385DDF5p</strong></div><div class="mbr-section-btn" buttons="0" style="display: none;"><a class="btn btn-primary display-7" href="#">Buy now!</a></div></div></div></div><div class="mbr-gallery-item" data-tags="Responsive" data-seller="false" data-slide-to="4" data-bs-slide-to="4" data-price="31" data-oldprice="62"><div class="item_overlay" data-toggle="modal" data-bs-toggle="modal"></div><div class="galleryItem" data-toggle="modal" data-bs-toggle="modal"><div class="style_overlay"></div><div class="img_wraper"><img src="../../assets/images/shop4.jpg"></div><span class="onsale mbr-fonts-style display-4" data-onsale="false" style="display: none;">SALE</span><div class="sidebar_wraper"><h4 class="item-title mbr-fonts-style mbr-text display-5">Black Glasses</h4><div class="price-block"><span class="shop-item-price mbr-fonts-style display-5">$31</span><span class="oldprice mbr-fonts-style display-7" style="display: none;">$62</span></div><div class="card-description">Casual shoes (contact us for sizing)<br><br><ul><li>Lightweight textured fabric</li> <li>Rounded v-neckline</li> <li>Pom pom trims</li> <li>Regular fit – true to size</li></ul> <br>Duis auctor hendrerit nisi, at lacinia ex vulputate quis. Suspendisse convallis iaculis tortor, quis mattis lectus rutrum a.<br><br>Product code: <strong>385DDF5p</strong></div><div class="mbr-section-btn" buttons="0" style="display: none;"><a class="btn btn-primary display-7" href="#">Buy now!</a></div></div></div></div><div class="mbr-gallery-item" data-tags="Creative" data-seller="false" data-slide-to="5" data-bs-slide-to="5" data-price="31" data-oldprice="62"><div class="item_overlay" data-toggle="modal" data-bs-toggle="modal"></div><div class="galleryItem" data-toggle="modal" data-bs-toggle="modal"><div class="style_overlay"></div><div class="img_wraper"><img src="../../assets/images/shop5.jpg"></div><span class="onsale mbr-fonts-style display-4" data-onsale="false" style="display: none;">SALE</span><div class="sidebar_wraper"><h4 class="item-title mbr-fonts-style mbr-text display-5">Women's Shoes</h4><div class="price-block"><span class="shop-item-price mbr-fonts-style display-5">$31</span><span class="oldprice mbr-fonts-style display-7" style="display: none;">$62</span></div><div class="card-description">Casual shoes (contact us for sizing)<br><br><ul><li>Lightweight textured fabric</li> <li>Rounded v-neckline</li> <li>Pom pom trims</li> <li>Regular fit – true to size</li></ul> <br>Duis auctor hendrerit nisi, at lacinia ex vulputate quis. Suspendisse convallis iaculis tortor, quis mattis lectus rutrum a.<br><br>Product code: <strong>385DDF5p</strong></div><div class="mbr-section-btn" buttons="0" style="display: none;"><a class="btn btn-primary display-7" href="#">Buy now!</a></div></div></div></div><div class="mbr-gallery-item" data-tags="Animated" data-seller="false" data-slide-to="6" data-bs-slide-to="6" data-price="6" data-oldprice="12"><div class="item_overlay" data-toggle="modal" data-bs-toggle="modal"></div><div class="galleryItem" data-toggle="modal" data-bs-toggle="modal"><div class="style_overlay"></div><div class="img_wraper"><img src="../../assets/images/shop6.jpg"></div><span class="onsale mbr-fonts-style display-4" data-onsale="false" style="display: none;">SALE</span><div class="sidebar_wraper"><h4 class="item-title mbr-fonts-style mbr-text display-5">Pink Backpack</h4><div class="price-block"><span class="shop-item-price mbr-fonts-style display-5">$6</span><span class="oldprice mbr-fonts-style display-7" style="display: none;">$12</span></div><div class="card-description">Casual shoes (contact us for sizing)<br><br><ul><li>Lightweight textured fabric</li> <li>Rounded v-neckline</li> <li>Pom pom trims</li> <li>Regular fit – true to size</li></ul> <br>Duis auctor hendrerit nisi, at lacinia ex vulputate quis. Suspendisse convallis iaculis tortor, quis mattis lectus rutrum a.<br><br>Product code: <strong>385DDF5p</strong></div><div class="mbr-section-btn" buttons="0" style="display: none;"><a class="btn btn-primary display-7" href="#">Buy now!</a></div></div></div></div><div class="mbr-gallery-item" data-tags="Awesome" data-seller="false" data-slide-to="7" data-bs-slide-to="7" data-price="31" data-oldprice="62"><div class="item_overlay" data-toggle="modal" data-bs-toggle="modal"></div><div class="galleryItem" data-toggle="modal" data-bs-toggle="modal"><div class="style_overlay"></div><div class="img_wraper"><img src="../../assets/images/shop7.jpg"></div><span class="onsale mbr-fonts-style display-4" data-onsale="false" style="display: none;">SALE</span><div class="sidebar_wraper"><h4 class="item-title mbr-fonts-style mbr-text display-5">Red Cap</h4><div class="price-block"><span class="shop-item-price mbr-fonts-style display-5">$31</span><span class="oldprice mbr-fonts-style display-7" style="display: none;">$62</span></div><div class="card-description">Casual shoes (contact us for sizing)<br><br><ul><li>Lightweight textured fabric</li> <li>Rounded v-neckline</li> <li>Pom pom trims</li> <li>Regular fit – true to size</li></ul> <br>Duis auctor hendrerit nisi, at lacinia ex vulputate quis. Suspendisse convallis iaculis tortor, quis mattis lectus rutrum a.<br><br>Product code: <strong>385DDF5p</strong></div><div class="mbr-section-btn" buttons="0" style="display: none;"><a class="btn btn-primary display-7" href="#">Buy now!</a></div></div></div></div></div></div><div class="clearfix"></div></div></div></div><!-- Lightbox --><div class="shopItemsModal_wraper" style="z-index: 2500;"><div class="shopItemsModalBg"></div><div class="shopItemsModal row"><div class="col-md-6 image-modal"></div><div class="col-md-6 text-modal"></div><div class="closeModal"><div class="close-modal-wrapper"></div></div></div></div></div>
 </div>
 </section>
     </div>

@@ -1,399 +1,610 @@
 <template>
     <div>
-        <section class="slider1 cid-tuzuKFNxWG" id="slider1-3f">
-    
-    <div class="carousel slide" id="tuFLe8oDKA" data-interval="5000">
-        <ol class="carousel-indicators">
-            <li data-slide-to="0" class="active" data-target="#tuFLe8oDKA"></li>
-            <li data-slide-to="1" data-target="#tuFLe8oDKA"></li>
-            <li data-slide-to="2" data-target="#tuFLe8oDKA"></li>
-        </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item slider-image item active">
-                <div class="item-wrapper">
-                    <img class="d-block w-100" src="assets/images/background3.jpg">
-                    
-                    <div class="carousel-caption">
-                        <h5 class="mbr-section-subtitle mbr-fonts-style display-5">
-                            <strong>Full-Width Slider</strong>
-                        </h5>
-                        <p class="mbr-section-text mbr-fonts-style display-7">Click on the image to edit slides.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item slider-image item">
-                <div class="item-wrapper">
-                    <img class="d-block w-100" src="assets/images/background5.jpg">
-                    
-                    <div class="carousel-caption">
-                        <h5 class="mbr-section-subtitle mbr-fonts-style display-5">
-                            <strong>Full-Width Slider</strong>
-                        </h5>
-                        <p class="mbr-section-text mbr-fonts-style display-7">Click on the image to edit slides.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item slider-image item">
-                <div class="item-wrapper">
-                    <img class="d-block w-100" src="assets/images/background8.jpg">
-                    
-                    <div class="carousel-caption">
-                        <h5 class="mbr-section-subtitle mbr-fonts-style display-5">
-                            <strong>Full-Width Slider</strong>
-                        </h5>
-                        <p class="mbr-section-text mbr-fonts-style display-7">Click on the image to edit slides.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <a class="carousel-control carousel-control-prev" role="button" data-slide="prev" href="#tuFLe8oDKA">
-            <span class="mobi-mbri mobi-mbri-arrow-prev" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control carousel-control-next" role="button" data-slide="next" href="#tuFLe8oDKA">
-            <span class="mobi-mbri mobi-mbri-arrow-next" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
-</section>
+        <!-- ========================= SECTION CONTENT ========================= -->
+        <section class="section-content padding-y">
+            <div class="container">
 
-<section class="features6 cid-tuzuSbgJPt" id="features7-3h">
-    <!---->
-    
 
-    
-    <div class="container">
-        <div class="card-wrapper">
-            <div class="row align-items-center">
-                <div class="col-12 col-lg-6">
-                    <div class="image-wrapper">
-                        <img src="assets/images/product2.jpg" alt="Mobirise">
-                    </div>
-                </div>
-                <div class="col-12 col-lg">
-                    <div class="text-box">
-                        <h5 class="mbr-title mbr-fonts-style display-2">
-                            <strong>Special Offer</strong>
-                        </h5>
-                        <p class="mbr-text mbr-fonts-style display-7">If you're wondering how to build a website, Mobirise can be the answer. Start creating your website with pre-made blocks and place your own content. Select the theme that suits you. Each theme contains a set of unique blocks.</p>
-                        <div class="cost">
-                            <span class="currentcost mbr-fonts-style pr-2 display-2">$69</span>
-                            <span class="oldcost mbr-fonts-style display-2">$89</span>
-                        </div>
-                        <div class="mbr-section-btn pt-3">
-                            <a href="https://mobiri.se" class="btn btn-primary display-4">Buy Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+                <!-- ============================  FILTER TOP  ================================= -->
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-2">Filter by</div> <!-- col.// -->
+                            <div class="col-md-10">
+                                <ul class="list-inline">
+                                    <li class="list-inline-item mr-3 dropdown"><a href="#" class="dropdown-toggle"
+                                            data-toggle="dropdown"> Supplier type </a>
+                                        <div class="dropdown-menu p-3" style="max-width:400px;">
+                                            <label class="form-check">
+                                                <input type="radio" name="myfilter" class="form-check-input"> Good
+                                                supplier
+                                            </label>
+                                            <label class="form-check">
+                                                <input type="radio" name="myfilter" class="form-check-input"> Best
+                                                supplier
+                                            </label>
+                                            <label class="form-check">
+                                                <input type="radio" name="myfilter" class="form-check-input"> New
+                                                supplier
+                                            </label>
+                                        </div> <!-- dropdown-menu.// -->
+                                    </li>
+                                    <li class="list-inline-item mr-3 dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Country </a>
+                                        <div class="dropdown-menu p-3">
+                                            <label class="form-check"> <input type="checkbox" class="form-check-input">
+                                                China </label>
+                                            <label class="form-check"> <input type="checkbox" class="form-check-input">
+                                                Japan </label>
+                                            <label class="form-check"> <input type="checkbox" class="form-check-input">
+                                                Uzbekistan </label>
+                                            <label class="form-check"> <input type="checkbox" class="form-check-input">
+                                                Russia </label>
+                                        </div> <!-- dropdown-menu.// -->
+                                    </li>
+                                    <li class="list-inline-item mr-3 dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Feature</a>
+                                        <div class="dropdown-menu">
+                                            <a href="" class="dropdown-item">Anti backterial</a>
+                                            <a href="" class="dropdown-item">With buttons</a>
+                                            <a href="" class="dropdown-item">Extra safety</a>
+                                        </div>
+                                    </li>
+                                    <li class="list-inline-item mr-3"><a href="#">Color</a></li>
+                                    <li class="list-inline-item mr-3"><a href="#">Size</a></li>
+                                    <li class="list-inline-item mr-3">
+                                        <div class="form-inline">
+                                            <label class="mr-2">Price</label>
+                                            <input class="form-control form-control-sm" placeholder="Min" type="number">
+                                            <span class="px-2"> - </span>
+                                            <input class="form-control form-control-sm" placeholder="Max" type="number">
+                                            <button type="submit" class="btn btn-sm btn-light ml-2">Ok</button>
+                                        </div>
+                                    </li>
+                                    <li class="list-inline-item mr-3">
+                                        <label class="custom-control mt-1 custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input">
+                                            <div class="custom-control-label">Ready to ship
+                                            </div>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div> <!-- col.// -->
+                        </div> <!-- row.// -->
+                    </div> <!-- card-body .// -->
+                </div> <!-- card.// -->
+                <!-- ============================ FILTER TOP END.// ================================= -->
 
-<section class="features4 cid-tuzuW0sjQN" id="features4-3k">
-    
-    <div class="mbr-overlay"></div>
-    <div class="container">
-        <div class="mbr-section-head">
-            <h4 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
-                <strong>Services</strong></h4>
-            
-        </div>
-        <div class="row mt-4">
-            <div class="item features-image сol-12 col-md-6 col-lg-4">
-                <div class="item-wrapper">
-                    <div class="item-img">
-                        <img src="assets/images/product2.jpg" alt="" title="">
-                    </div>
-                    <div class="item-content">
-                        <h5 class="item-title mbr-fonts-style display-5"><strong>Design</strong></h5>
-                        <h6 class="item-subtitle mbr-fonts-style mt-1 display-7">Website Design</h6>
-                        <p class="mbr-text mbr-fonts-style mt-3 display-7">Mobirise is an easy website builder. Just drop site elements to your page, add content and style it to look the way you like.</p>
-                    </div>
-                    <div class="mbr-section-btn item-footer mt-2"><a href="" class="btn item-btn btn-black display-7" target="_blank">Start Now &gt;</a></div>
-                </div>
-            </div>
-            <div class="item features-image сol-12 col-md-6 col-lg-4">
-                <div class="item-wrapper">
-                    <div class="item-img">
-                        <img src="assets/images/product3.jpg" alt="" title="">
-                    </div>
-                    <div class="item-content">
-                        <h5 class="item-title mbr-fonts-style display-5"><strong>Programming</strong></h5>
-                        <h6 class="item-subtitle mbr-fonts-style mt-1 display-7">
-                            HTML/CSS Coding</h6>
-                        <p class="mbr-text mbr-fonts-style mt-3 display-7">You don't have to code to create your own site. Select one of available themes in the Mobirise Site Maker.</p>
-                    </div>
-                    <div class="mbr-section-btn item-footer mt-2"><a href="" class="btn item-btn btn-black display-7" target="_blank">Start Now &gt;</a></div>
-                </div>
-            </div>
-            <div class="item features-image сol-12 col-md-6 col-lg-4">
-                <div class="item-wrapper">
-                    <div class="item-img">
-                        <img src="assets/images/product1.jpg" alt="" title="">
-                    </div>
-                    <div class="item-content">
-                        <h5 class="item-title mbr-fonts-style display-5"><strong>Branding</strong></h5>
-                        <h6 class="item-subtitle mbr-fonts-style mt-1 display-7">Creating Your Brand</h6>
-                        <p class="mbr-text mbr-fonts-style mt-3 display-7">Select the theme that suits you. Each theme in the Mobirise Website Software contains a set of unique blocks.<br></p>
-                    </div>
-                    <div class="mbr-section-btn item-footer mt-2"><a href="" class="btn item-btn btn-black display-7" target="_blank">Start Now &gt;</a></div>
-                </div>
-            </div>
-            
-        </div>
-    </div>
-</section>
-
-<section class="features8 cid-tuzuSVYiZb" id="features9-3i">
-    
-    
-
-    
-
-    <div class="container">
-        <div class="card">
-            <div class="card-wrapper">
-                <div class="row align-items-center">
-                    <div class="col-12 col-md-4">
-                        <div class="image-wrapper">
-                            <img src="assets/images/product1.jpg" alt="Mobirise">
+                <header class="mb-3">
+                    <div class="form-inline">
+                        <strong class="mr-md-auto">32 Items found </strong>
+                        <select class="mr-2 form-control">
+                            <option>Latest items</option>
+                            <option>Trending</option>
+                            <option>Most Popular</option>
+                            <option>Cheapest</option>
+                        </select>
+                        <div class="btn-group">
+                            <a href="page-listing-grid.html" class="btn btn-light active" data-toggle="tooltip"
+                                title="List view">
+                                <i class="fas fa-bars"></i></a>
+                            <a href="page-listing-large.html" class="btn btn-light" data-toggle="tooltip"
+                                title="Grid view">
+                                <i class="fas fa-th"></i></a>
                         </div>
                     </div>
-                    <div class="col-12 col-md">
-                        <div class="card-box">
-                            <div class="row">
-                                <div class="col-md">
-                                    <h6 class="card-title mbr-fonts-style display-5">
-                                        <strong>Camera</strong>
-                                    </h6>
-                                    <p class="mbr-text mbr-fonts-style display-7">
-                                        Themes in the Mobirise website builder offer multiple blocks: intros, sliders, galleries, forms, articles, and so on. Start a project and click on the red plus buttons to see the blocks available for your theme.
-                                    </p>
-                                </div>
-                                <div class="col-md-auto">
-                                    <p class="price mbr-fonts-style display-2">$29</p>
-                                    <div class="mbr-section-btn"><a href="https://mobiri.se" class="btn btn-primary display-4">
-                                            Buy Now
-                                        </a></div>
-                                </div>
-                                <div></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-wrapper">
-                <div class="row align-items-center">
-                    <div class="col-12 col-md-4">
-                        <div class="image-wrapper">
-                            <img src="assets/images/product2.jpg" alt="Mobirise">
-                        </div>
-                    </div>
-                    <div class="col-12 col-md">
-                        <div class="card-box">
-                            <div class="row">
-                                <div class="col-md">
-                                    <h6 class="card-title mbr-fonts-style display-5">
-                                        <strong>Mug</strong>
-                                    </h6>
-                                    <p class="mbr-text mbr-fonts-style display-7">
-                                        All sites you create with the Mobirise web builder are mobile-friendly natively. No special actions required. You can preview your site inside the app. Check the icons on the top.
-                                    </p>
-                                </div>
-                                <div class="col-md-auto">
-                                    <p class="price mbr-fonts-style display-2">$29</p>
-                                    <div class="mbr-section-btn">
-                                        <a href="https://mobiri.se" class="btn btn-primary display-4">
-                                            Buy Now
-                                        </a>
+                </header><!-- sect-heading -->
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <figure class="card card-product-grid">
+                            <div class="img-wrap">
+                                <span class="badge badge-danger"> NEW </span>
+                                <img src="../../assets/commerce/images/items/1.jpg">
+                            </div> <!-- img-wrap.// -->
+                            <figcaption class="info-wrap">
+                                <a href="#" class="title mb-2">Hot sale unisex New Design Shirt for sport polo shirts
+                                    latest design</a>
+                                <div class="price-wrap">
+                                    <span class="price">$32.00-$40.00</span>
+                                    <small class="text-muted">/per item</small>
+                                </div> <!-- price-wrap.// -->
+
+                                <p class="mb-2"> 2 Pieces <small class="text-muted">(Min Order)</small></p>
+
+                                <p class="text-muted ">Guangzhou Yichuang Electronic Co</p>
+
+                                <hr>
+
+                                <p class="mb-3">
+                                    <span class="tag"> <i class="fa fa-check"></i> Verified</span>
+                                    <span class="tag"> 2 Years </span>
+                                    <span class="tag"> 23 reviews </span>
+                                    <span class="tag"> Japan </span>
+                                </p>
+
+                                <label class="custom-control mb-3 custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input">
+                                    <div class="custom-control-label">Add to compare
                                     </div>
-                                </div>
-                                <div></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-    </div>
-</section>
+                                </label>
 
-<section class="features7 cid-tuzuUjSCQI" id="features8-3j">
-    <!---->
-    
-    
-    <div class="container">
-        <div class="row">
-            <div class="title col-12">
-                <h5 class="mbr-section-title mbr-fonts-style mb-3 display-2">
-                    <strong>Our Products</strong>
-                </h5>
-                
-            </div>
-            <div class="card col-12 col-md-6">
-                <div class="card-wrapper">
-                    <div class="top-line">
-                        <h6 class="card-title mbr-fonts-style display-5">
-                            <strong>Special Issue</strong>
-                        </h6>
-                        <p class="mbr-text cost mbr-fonts-style display-5">$39</p>
-                    </div>
-                    <div class="bottom-line">
-                        <p class="mbr-text mbr-fonts-style display-7">
-                            All sites you create with the Mobirise web builder are mobile-friendly natively. No special
-                            actions required. For your commercial and non-profit projects.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="card col-12 col-md-6">
-                <div class="card-wrapper">
-                    <div class="top-line">
-                        <h6 class="card-title mbr-fonts-style display-5">
-                            <strong>Special Issue</strong>
-                        </h6>
-                        <p class="mbr-text cost mbr-fonts-style display-5">$49</p>
-                    </div>
-                    <div class="bottom-line">
-                        <p class="mbr-text mbr-fonts-style display-7">
-                            All sites you create with the Mobirise web builder are mobile-friendly natively. No special
-                            actions required. For your commercial and non-profit projects.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="card col-12 col-md-6">
-                <div class="card-wrapper">
-                    <div class="top-line">
-                        <h6 class="card-title mbr-fonts-style display-5">
-                            <strong>Special Issue</strong>
-                        </h6>
-                        <p class="mbr-text cost mbr-fonts-style display-5">$39</p>
-                    </div>
-                    <div class="bottom-line">
-                        <p class="mbr-text mbr-fonts-style display-7">
-                            All sites you create with the Mobirise web builder are mobile-friendly natively. No special
-                            actions required. For your commercial and non-profit projects.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="card col-12 col-md-6">
-                <div class="card-wrapper">
-                    <div class="top-line">
-                        <h6 class="card-title mbr-fonts-style display-5">
-                            <strong>Special Issue</strong>
-                        </h6>
-                        <p class="mbr-text cost mbr-fonts-style display-5">$49</p>
-                    </div>
-                    <div class="bottom-line">
-                        <p class="mbr-text mbr-fonts-style display-7">
-                            All sites you create with the Mobirise web builder are mobile-friendly natively. No special
-                            actions required. For your commercial and non-profit projects.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="card col-12 col-md-6">
-                <div class="card-wrapper">
-                    <div class="top-line">
-                        <h6 class="card-title mbr-fonts-style display-5">
-                            <strong>Special Issue</strong>
-                        </h6>
-                        <p class="mbr-text cost mbr-fonts-style display-5">$39</p>
-                    </div>
-                    <div class="bottom-line">
-                        <p class="mbr-text mbr-fonts-style display-7">
-                            All sites you create with the Mobirise web builder are mobile-friendly natively. No special
-                            actions required. For your commercial and non-profit projects.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="card col-12 col-md-6">
-                <div class="card-wrapper">
-                    <div class="top-line">
-                        <h6 class="card-title mbr-fonts-style display-5">
-                            <strong>Special Issue</strong>
-                        </h6>
-                        <p class="mbr-text cost mbr-fonts-style display-5">$49</p>
-                    </div>
-                    <div class="bottom-line">
-                        <p class="mbr-text mbr-fonts-style display-7">
-                            All sites you create with the Mobirise web builder are mobile-friendly natively. No special
-                            actions required. For your commercial and non-profit projects.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            
-            
-            
-            
-            
-            
-        </div>
-    </div>
-</section>
+                                <a href="#" class="btn btn-outline-primary"> <i class="fa fa-envelope"></i> Contact
+                                    supplier </a>
 
-<section class="content1 cid-tuzuMKvTcz" id="content1-3g">
-    
-    
-    <div class="container">
-        <div class="mbr-section-head">
-            <h4 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2"><strong>Last News and Articles</strong></h4>
-            <h5 class="mbr-section-subtitle mbr-fonts-style align-center mb-0 mt-2 display-5">Read the latest news about Mobirise</h5>
-        </div>
-        <div class="row mt-4">
-            <div class="item features-image сol-12 col-md-6 col-lg-6">
-                <div class="item-wrapper">
-                    <div class="item-img">
-                        <img src="assets/images/product5.jpg" alt="" title="">
-                    </div>
-                    <div class="item-content">
-                        <h5 class="item-title mbr-fonts-style display-5"><a href="#top" class="text-primary"><strong>Easy and Simple</strong></a></h5>
-                        <h6 class="item-subtitle mbr-fonts-style mt-1 display-7">
-                            <strong>John Smith</strong><em> 10-10-2025</em></h6>
-                        <p class="mbr-text mbr-fonts-style mt-3 display-7">Mobirise Page Maker is a free and simple
-                            website builder - just drop site blocks to your page, add content and style it!&nbsp;<a href="#" class="text-primary">Read more..</a></p>
-                    </div>
-                    
-                </div>
-            </div>
-            <div class="item features-image сol-12 col-md-6 col-lg-6">
-                <div class="item-wrapper">
-                    <div class="item-img">
-                        <img src="assets/images/product4.jpg" alt="" title="">
-                    </div>
-                    <div class="item-content">
-                        <h5 class="item-title mbr-fonts-style display-5"><a href="#top" class="text-primary"><strong>Automagically Mobile</strong></a></h5>
-                        <h6 class="item-subtitle mbr-fonts-style mt-1 display-7"><strong>Ann
-                                Brown</strong><em>&nbsp;09-09-2025</em></h6>
-                        <p class="mbr-text mbr-fonts-style mt-3 display-7">Mobirise Site Creator offers a huge
-                            collection of 3500+ site blocks, templates and themes with thousands flexible options. <a href="#top" class="text-primary">Read more..</a><br></p>
-                    </div>
-                    
-                </div>
-            </div>
+                            </figcaption>
+                        </figure>
+                    </div> <!-- col.// -->
+
+                    <div class="col-md-3">
+                        <figure class="card card-product-grid">
+                            <div class="img-wrap">
+                                <img src="../../assets/commerce/images/items/2.jpg">
+                            </div> <!-- img-wrap.// -->
+                            <figcaption class="info-wrap">
+                                <a href="#" class="title mb-2">High Quality Winter PU Rain Jacket with Padding for Men's
+                                    outdoor</a>
+                                <div class="price-wrap">
+                                    <span class="price">$50.00-$75.00</span>
+                                    <small class="text-muted">/per item</small>
+                                </div> <!-- price-wrap.// -->
+
+                                <p class="mb-2"> 4 Pieces <small class="text-muted">(Min Order)</small></p>
+
+                                <p class="text-muted ">Great manufacturer Co ltd.</p>
+
+                                <hr>
+
+                                <p class="mb-3">
+                                    <span class="tag"> <i class="fa fa-check"></i> Verified</span>
+                                    <span class="tag"> 3 Years </span>
+                                    <span class="tag"> 70 reviews </span>
+                                    <span class="tag"> Russia </span>
+                                </p>
+
+                                <label class="custom-control mb-3 custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input">
+                                    <div class="custom-control-label">Add to compare
+                                    </div>
+                                </label>
+
+                                <a href="#" class="btn btn-outline-primary"> <i class="fa fa-envelope"></i> Contact
+                                    supplier </a>
+
+                            </figcaption>
+                        </figure>
+                    </div> <!-- col.// -->
+
+                    <div class="col-md-3">
+                        <figure class="card card-product-grid">
+                            <div class="img-wrap">
+                                <img src="../../assets/commerce/images/items/3.jpg">
+                            </div> <!-- img-wrap.// -->
+                            <figcaption class="info-wrap">
+                                <a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for
+                                    Men</a>
+                                <div class="price-wrap">
+                                    <span class="price">$425.00-$490.00</span>
+                                    <small class="text-muted">/per bag</small>
+                                </div> <!-- price-wrap.// -->
+
+                                <p class="mb-2"> 2 Pieces <small class="text-muted">(Min Order)</small></p>
+
+                                <p class="text-muted ">Best textile company Ltd.</p>
+
+                                <hr>
+
+                                <p class="mb-3">
+                                    <span class="tag"> <i class="fa fa-check"></i> Verified</span>
+                                    <span class="tag"> 7 Years </span>
+                                    <span class="tag"> 34 reviews </span>
+                                    <span class="tag"> Russia </span>
+                                </p>
+
+                                <label class="custom-control mb-3 custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input">
+                                    <div class="custom-control-label">Add to compare
+                                    </div>
+                                </label>
+
+                                <a href="#" class="btn btn-outline-primary"> <i class="fa fa-envelope"></i> Contact
+                                    supplier </a>
+
+                            </figcaption>
+                        </figure>
+                    </div> <!-- col.// -->
+
+                    <div class="col-md-3">
+                        <figure class="card card-product-grid">
+                            <div class="img-wrap">
+                                <img src="../../assets/commerce/images/items/4.jpg">
+                            </div> <!-- img-wrap.// -->
+                            <figcaption class="info-wrap">
+                                <a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for
+                                    Men</a>
+                                <div class="price-wrap">
+                                    <span class="price">$325.00-$390.00</span>
+                                    <small class="text-muted">/per bag</small>
+                                </div> <!-- price-wrap.// -->
+
+                                <p class="mb-2"> 2 Pieces <small class="text-muted">(Min Order)</small></p>
+
+                                <p class="text-muted ">Guangzhou Yichuang Electronic Co</p>
+
+                                <hr>
+
+                                <p class="mb-3">
+                                    <span class="tag"> <i class="fa fa-check"></i> Verified</span>
+                                    <span class="tag"> 4 Years </span>
+                                    <span class="tag"> 60 reviews </span>
+                                    <span class="tag"> China </span>
+                                </p>
+
+                                <label class="custom-control mb-3 custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input">
+                                    <div class="custom-control-label">Add to compare
+                                    </div>
+                                </label>
+
+                                <a href="#" class="btn btn-outline-primary"> <i class="fa fa-envelope"></i> Contact
+                                    supplier </a>
+
+                            </figcaption>
+                        </figure>
+                    </div> <!-- col.// -->
+
+                    <div class="col-md-3">
+                        <figure class="card card-product-grid">
+                            <div class="img-wrap">
+                                <img src="../../assets/commerce/images/items/5.jpg">
+                            </div> <!-- img-wrap.// -->
+                            <figcaption class="info-wrap">
+                                <a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for
+                                    Men</a>
+                                <div class="price-wrap">
+                                    <span class="price">$325.00-$390.00</span>
+                                    <small class="text-muted">/per bag</small>
+                                </div> <!-- price-wrap.// -->
+
+                                <p class="mb-2"> 2 Pieces <small class="text-muted">(Min Order)</small></p>
+
+                                <p class="text-muted ">Guangzhou Yichuang Electronic Co</p>
+
+                                <hr>
+
+                                <p class="mb-3">
+                                    <span class="tag"> <i class="fa fa-check"></i> Verified</span>
+                                    <span class="tag"> 4 Years </span>
+                                    <span class="tag"> 60 reviews </span>
+                                    <span class="tag"> China </span>
+                                </p>
+
+                                <label class="custom-control mb-3 custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input">
+                                    <div class="custom-control-label">Add to compare
+                                    </div>
+                                </label>
+
+                                <a href="#" class="btn btn-outline-primary"> <i class="fa fa-envelope"></i> Contact
+                                    supplier </a>
+
+                            </figcaption>
+                        </figure>
+                    </div> <!-- col.// -->
+
+                    <div class="col-md-3">
+                        <figure class="card card-product-grid">
+                            <div class="img-wrap">
+                                <img src="../../assets/commerce/images/items/6.jpg">
+                            </div> <!-- img-wrap.// -->
+                            <figcaption class="info-wrap">
+                                <a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for
+                                    Men</a>
+                                <div class="price-wrap">
+                                    <span class="price">$325.00-$390.00</span>
+                                    <small class="text-muted">/per bag</small>
+                                </div> <!-- price-wrap.// -->
+
+                                <p class="mb-2"> 2 Pieces <small class="text-muted">(Min Order)</small></p>
+
+                                <p class="text-muted ">Guangzhou Electronic Co</p>
+
+                                <hr>
+
+                                <p class="mb-3">
+                                    <span class="tag"> <i class="fa fa-check"></i> Verified</span>
+                                    <span class="tag"> 4 Years </span>
+                                    <span class="tag"> 60 reviews </span>
+                                    <span class="tag"> China </span>
+                                </p>
+
+                                <label class="custom-control mb-3 custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input">
+                                    <div class="custom-control-label">Add to compare
+                                    </div>
+                                </label>
+
+                                <a href="#" class="btn btn-outline-primary"> <i class="fa fa-envelope"></i> Contact
+                                    supplier </a>
+
+                            </figcaption>
+                        </figure>
+                    </div> <!-- col.// -->
+
+                    <div class="col-md-3">
+                        <figure class="card card-product-grid">
+                            <div class="img-wrap">
+                                <img src="../../assets/commerce/images/items/15.jpg">
+                            </div> <!-- img-wrap.// -->
+                            <figcaption class="info-wrap">
+                                <a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for
+                                    Men</a>
+                                <div class="price-wrap">
+                                    <span class="price">$325.00-$390.00</span>
+                                    <small class="text-muted">/per bag</small>
+                                </div> <!-- price-wrap.// -->
+
+                                <p class="mb-2"> 2 Pieces <small class="text-muted">(Min Order)</small></p>
+
+                                <p class="text-muted ">Pro Electronic Ltd</p>
+
+                                <hr>
+
+                                <p class="mb-3">
+                                    <span class="tag"> <i class="fa fa-check"></i> Verified</span>
+                                    <span class="tag"> 4 Years </span>
+                                    <span class="tag"> 60 reviews </span>
+                                    <span class="tag"> China </span>
+                                </p>
+
+                                <label class="custom-control mb-3 custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input">
+                                    <div class="custom-control-label">Add to compare
+                                    </div>
+                                </label>
+
+                                <a href="#" class="btn btn-outline-primary"> <i class="fa fa-envelope"></i> Contact
+                                    supplier </a>
+
+                            </figcaption>
+                        </figure>
+                    </div> <!-- col.// -->
+
+                    <div class="col-md-3">
+                        <figure class="card card-product-grid">
+                            <div class="img-wrap">
+                                <img src="../../assets/commerce/images/items/1.jpg">
+                            </div> <!-- img-wrap.// -->
+                            <figcaption class="info-wrap">
+                                <a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for
+                                    Men</a>
+                                <div class="price-wrap">
+                                    <span class="price">$325.00-$390.00</span>
+                                    <small class="text-muted">/per bag</small>
+                                </div> <!-- price-wrap.// -->
+
+                                <p class="mb-2"> 2 Pieces <small class="text-muted">(Min Order)</small></p>
+
+                                <p class="text-muted ">Guangzhou Yichuang Electronic Co</p>
+
+                                <hr>
+
+                                <p class="mb-3">
+                                    <span class="tag"> <i class="fa fa-check"></i> Verified</span>
+                                    <span class="tag"> 4 Years </span>
+                                    <span class="tag"> 60 reviews </span>
+                                    <span class="tag"> China </span>
+                                </p>
+
+                                <label class="custom-control mb-3 custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input">
+                                    <div class="custom-control-label">Add to compare
+                                    </div>
+                                </label>
+
+                                <a href="#" class="btn btn-outline-primary"> <i class="fa fa-envelope"></i> Contact
+                                    supplier </a>
+
+                            </figcaption>
+                        </figure>
+                    </div> <!-- col.// -->
+
+                    <div class="col-md-3">
+                        <figure class="card card-product-grid">
+                            <div class="img-wrap">
+                                <span class="badge badge-danger"> NEW </span>
+                                <img src="../../assets/commerce/images/items/2.jpg">
+                            </div> <!-- img-wrap.// -->
+                            <figcaption class="info-wrap">
+                                <a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for
+                                    Men</a>
+                                <div class="price-wrap">
+                                    <span class="price">$325.00-$390.00</span>
+                                    <small class="text-muted">/per bag</small>
+                                </div> <!-- price-wrap.// -->
+
+                                <p class="mb-2"> 2 Pieces <small class="text-muted">(Min Order)</small></p>
+
+                                <p class="text-muted ">Guangzhou Yichuang Electronic Co</p>
+
+                                <hr>
+
+                                <p class="mb-3">
+                                    <span class="tag"> <i class="fa fa-check"></i> Verified</span>
+                                    <span class="tag"> 4 Years </span>
+                                    <span class="tag"> 60 reviews </span>
+                                    <span class="tag"> China </span>
+                                </p>
+
+                                <label class="custom-control mb-3 custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input">
+                                    <div class="custom-control-label">Add to compare
+                                    </div>
+                                </label>
+
+                                <a href="#" class="btn btn-outline-primary"> <i class="fa fa-envelope"></i> Contact
+                                    supplier </a>
+
+                            </figcaption>
+                        </figure>
+                    </div> <!-- col.// -->
+
+                    <div class="col-md-3">
+                        <figure class="card card-product-grid">
+                            <div class="img-wrap">
+                                <span class="badge badge-danger"> NEW </span>
+                                <img src="../../assets/commerce/images/items/3.jpg">
+                            </div> <!-- img-wrap.// -->
+                            <figcaption class="info-wrap">
+                                <a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for
+                                    Men</a>
+                                <div class="price-wrap">
+                                    <span class="price">$325.00-$390.00</span>
+                                    <small class="text-muted">/per bag</small>
+                                </div> <!-- price-wrap.// -->
+
+                                <p class="mb-2"> 2 Pieces <small class="text-muted">(Min Order)</small></p>
+
+                                <p class="text-muted ">Guangzhou Yichuang Electronic Co</p>
+
+                                <hr>
+
+                                <p class="mb-3">
+                                    <span class="tag"> <i class="fa fa-check"></i> Verified</span>
+                                    <span class="tag"> 4 Years </span>
+                                    <span class="tag"> 60 reviews </span>
+                                    <span class="tag"> China </span>
+                                </p>
+
+                                <label class="custom-control mb-3 custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input">
+                                    <div class="custom-control-label">Add to compare
+                                    </div>
+                                </label>
+
+                                <a href="#" class="btn btn-outline-primary"> <i class="fa fa-envelope"></i> Contact
+                                    supplier </a>
+
+                            </figcaption>
+                        </figure>
+                    </div> <!-- col.// -->
+
+                    <div class="col-md-3">
+                        <figure class="card card-product-grid">
+                            <div class="img-wrap">
+                                <span class="badge badge-danger"> NEW </span>
+                                <img src="../../assets/commerce/images/items/4.jpg">
+                            </div> <!-- img-wrap.// -->
+                            <figcaption class="info-wrap">
+                                <a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for
+                                    Men</a>
+                                <div class="price-wrap">
+                                    <span class="price">$325.00-$390.00</span>
+                                    <small class="text-muted">/per bag</small>
+                                </div> <!-- price-wrap.// -->
+
+                                <p class="mb-2"> 2 Pieces <small class="text-muted">(Min Order)</small></p>
+
+                                <p class="text-muted ">Guangzhou Yichuang Electronic Co</p>
+
+                                <hr>
+
+                                <p class="mb-3">
+                                    <span class="tag"> <i class="fa fa-check"></i> Verified</span>
+                                    <span class="tag"> 4 Years </span>
+                                    <span class="tag"> 60 reviews </span>
+                                    <span class="tag"> China </span>
+                                </p>
+
+                                <label class="custom-control mb-3 custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input">
+                                    <div class="custom-control-label">Add to compare
+                                    </div>
+                                </label>
+
+                                <a href="#" class="btn btn-outline-primary"> <i class="fa fa-envelope"></i> Contact
+                                    supplier </a>
+
+                            </figcaption>
+                        </figure>
+                    </div> <!-- col.// -->
+
+                    <div class="col-md-3">
+                        <figure class="card card-product-grid">
+                            <div class="img-wrap">
+                                <span class="badge badge-danger"> NEW </span>
+                                <img src="../../assets/commerce/images/items/1.jpg">
+                            </div> <!-- img-wrap.// -->
+                            <figcaption class="info-wrap">
+                                <a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for
+                                    Men</a>
+                                <div class="price-wrap">
+                                    <span class="price">$325.00-$390.00</span>
+                                    <small class="text-muted">/per bag</small>
+                                </div> <!-- price-wrap.// -->
+
+                                <p class="mb-2"> 2 Pieces <small class="text-muted">(Min Order)</small></p>
+
+                                <p class="text-muted ">Guangzhou Yichuang Electronic Co</p>
+
+                                <hr>
+
+                                <p class="mb-3">
+                                    <span class="tag"> <i class="fa fa-check"></i> Verified</span>
+                                    <span class="tag"> 4 Years </span>
+                                    <span class="tag"> 60 reviews </span>
+                                    <span class="tag"> China </span>
+                                </p>
+
+                                <label class="custom-control mb-3 custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input">
+                                    <div class="custom-control-label">Add to compare
+                                    </div>
+                                </label>
+
+                                <a href="#" class="btn btn-outline-primary"> <i class="fa fa-envelope"></i> Contact
+                                    supplier </a>
+
+                            </figcaption>
+                        </figure>
+                    </div> <!-- col.// -->
+                </div> <!-- row end.// -->
 
 
-        </div>
-    </div>
-</section>
-<relatedcategories />
+                <nav class="mb-4" aria-label="Page navigation sample">
+                    <ul class="pagination">
+                        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+                        <li class="page-item"><a class="page-link" href="#">5</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    </ul>
+                </nav>
+
+
+                <div class="box text-center">
+                    <p>Did you find what you were looking for？</p>
+                    <a href="" class="btn btn-light">Yes</a>
+                    <a href="" class="btn btn-light">No</a>
+                </div>
+
+            </div> <!-- container .//  -->
+        </section>
+        <!-- ========================= SECTION CONTENT END// ========================= -->
+        <relatedcategories />
     </div>
 </template>
 
 <script>
-import relatedcategories from '../../components/Related/relatedcategoriess.vue'
+    import relatedcategories from '../../components/Related/relatedcategories.vue'
 
-export default {
-    components: { relatedcategories },
-}
+    export default {
+        components: {
+            relatedcategories
+        },
+    }
 </script>
 
 <script setup>

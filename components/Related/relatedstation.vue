@@ -1,26 +1,15 @@
 <template>
-    <div>
+    <div class="relatedMenu">
         <v-row>
             <v-col cols="3">
-                <v-card class="mx-auto" max-width="400">
-                    <v-img class="align-end text-white" height="200" src="/images/logo512alpha.png" cover>
-                        <v-card-title>Top 10 Australian beaches</v-card-title>
-                    </v-img>
-                    <v-card-subtitle class="pt-4">
-                        Number 10
-                    </v-card-subtitle>
-                    <v-card-text>
-                        <div>Whitehaven Beach</div>
-                    </v-card-text>
-                    <v-card-actions>
-                        <v-btn color="orange">
-                            Share
-                        </v-btn>
-                        <v-btn color="orange">
-                            $ 0.00
-                        </v-btn>
-                    </v-card-actions>
-                </v-card>
+                <div class="card card-category">
+			  <div class="img-wrap" style="background: #ffd7d7">
+			  	<img src="../../assets/commerce/images/items/1.jpg">
+			  </div>
+			  <div class="card-body">
+			    <h4 class="card-title"><a href="/product/station/">Summer shirts</a></h4>
+			  </div>
+			</div>
             </v-col>
         </v-row>
     </div>
