@@ -46,7 +46,15 @@
               </v-btn>
             </template>
             <v-list>
-              <v-list-item title="Profile" value="profile" href="/user/my-account"></v-list-item>
+                <v-list-item title="Account" value="Account" href="/Admin/User/"></v-list-item>
+                <v-list-item title="Profile" value="Profile" href="/Admin/User/profile"></v-list-item>
+                <v-list-item title="Account" value="Account" href="/Admin/User/Account"></v-list-item>
+                <v-list-item title="Addresses" value="Addresses" href="/Admin/User/Addresses"></v-list-item>
+                <v-list-item title="History" value="History" href="/Admin/User/History"></v-list-item>
+                <v-list-item title="My Uploads" value="My Uploads" href="/Admin/User/my-uploads"></v-list-item>
+                <v-list-item title="Notifications" value="Notifications" href="/Admin/User/Notifications"></v-list-item>
+                <v-list-item title="Recommendations" value="Recommendations" href="/Admin/User/Recommendations"></v-list-item>
+                <v-list-item title="Lists" value="Lists" href="/Admin/User/Lists"></v-list-item>
               <v-divider></v-divider>
               <v-list-item title="Logout" value="Logout" href="/logout"></v-list-item>
             </v-list>
@@ -64,7 +72,7 @@
     <v-main>
       <v-card>
         <v-layout>
-          <v-navigation-drawer class="sidebarSection" v-model="drawer" temporary>
+          <v-navigation-drawer class="sidebarSection" v-model="drawer" temporary >
             <v-list-item prepend-avatar="https://randomuser.me/api/portraits/men/85.jpg" title="John Leider" nav>
               <template v-slot:append>
                 <v-btn variant="text" icon="fas fa-chevron-left" @click.stop="rail = !rail"></v-btn>
@@ -72,18 +80,52 @@
             </v-list-item>
 
             <v-list density="compact" nav>
-              <v-list-item prepend-icon="fas fa-home" title="Home" value="home" href="/"></v-list-item>
-              <v-list-group prepend-icon="fas fa-feather-pointed" value="content manager">
+              <h6>Trending</h6>
+              <v-list-item prepend-icon="fas fa-cart-plus" title="What's New" value="What's New" href="/categories/new"></v-list-item>
+              <v-divider></v-divider>
+              <h6>Shop By Department</h6>
+              <v-list-group prepend-icon="fas fa-building">
                 <template v-slot:activator="{ props }">
-                  <v-list-item v-bind="props" title="Content Manager"></v-list-item>
+                  <v-list-item v-bind="props" title="Shop by Department"></v-list-item>
                 </template>
-                <v-list-item prepend-icon="fas fa-feather" title="Blog" value="Blog" href="/Admin/Content/Blog">
-                </v-list-item>
+                <v-list-item prepend-icon="fas fa-book" title="Books" value="Books" href="/categories/books"></v-list-item>
+                <v-list-item prepend-icon="fas fa-music" title="Music" value="Music" href="/categories/music"></v-list-item>
+                <v-list-item prepend-icon="fas fa-play" title="Theater" value="Theater" href="/categories/theater"></v-list-item>
+                <v-list-item prepend-icon="fas fa-gamepad" title="Games" value="Games" href="/categories/games"></v-list-item>
+                <v-list-item prepend-icon="fas fa-podcast" title="Podcasts" value="Podcasts" href="/categories/podcasts"></v-list-item>
+                <v-list-item prepend-icon="fas fa-volleyball" title="Sports & Fitness" value="Sports & Fitness" href="/categories/sportsfitness"></v-list-item>
+                <v-list-item prepend-icon="fas fa-paw" title="Pets" value="Pets" href="/categories/pets"></v-list-item>
               </v-list-group>
-              <v-list-item prepend-icon="fas fa-user" title="Customers" value="Customers" href="/Admin/Customers">
-              </v-list-item>
-              <v-list-item prepend-icon="fas fa-gear" title="Settings" value="settings"
-                href="/Admin/Settings/general-settings"></v-list-item>
+              <v-divider></v-divider>
+              <h6>Social</h6>
+              <v-list-item prepend-icon="fas fa-video" title="Meeovi Live" value="live" href="/categories/live"> </v-list-item>
+              <v-list-item prepend-icon="fas fa-users" title="Social Feed" value="feed" href="/social/newsfeed"> </v-list-item>
+              <v-list-item prepend-icon="fas fa-people-group" title="Groups" value="groups" href="/social/groups"> </v-list-item>
+              <v-divider></v-divider>
+              <h6>Department Stores</h6>
+              <v-list-item prepend-icon="fas fa-compass-drafting" title="Meeovi Crafts" value="meeovi crafts" href="/crafts/"></v-list-item>
+              <v-list-item prepend-icon="fas fa-person-shelter" title="Meeovi Yardsale" value="meeovi yardsale" href="/yardsale/"></v-list-item>
+              <v-list-item prepend-icon="fas fa-tablet-button" title="Meeovi Appstore" value="meeovi appstore" href="/categories/appstore"></v-list-item>
+              <v-divider></v-divider>
+              <h6>Deals Corner</h6>
+              <v-list-item prepend-icon="fas fa-tablet-button" title="Deals" value="Deals" href="/deals"></v-list-item>
+              <v-list-item prepend-icon="fas fa-tablet-button" title="Exclusives" value="exclusives" href="/categories/exclusives"></v-list-item>
+              <v-divider></v-divider>
+              <h6>My Account</h6>
+              <v-list-group prepend-icon="fas fa-user-circle" value="My Account">
+                <template v-slot:activator="{ props }">
+                  <v-list-item v-bind="props" title="My Account"></v-list-item>
+                </template>
+                <v-list-item title="Account" value="Account" href="/Admin/User/"></v-list-item>
+                <v-list-item title="Profile" value="Profile" href="/Admin/User/profile"></v-list-item>
+                <v-list-item title="Account" value="Account" href="/Admin/User/Account"></v-list-item>
+                <v-list-item title="Addresses" value="Addresses" href="/Admin/User/Addresses"></v-list-item>
+                <v-list-item title="History" value="History" href="/Admin/User/History"></v-list-item>
+                <v-list-item title="My Uploads" value="My Uploads" href="/Admin/User/my-uploads"></v-list-item>
+                <v-list-item title="Notifications" value="Notifications" href="/Admin/User/Notifications"></v-list-item>
+                <v-list-item title="Recommendations" value="Recommendations" href="/Admin/User/Recommendations"></v-list-item>
+                <v-list-item title="Lists" value="Lists" href="/Admin/User/Lists"></v-list-item>
+              </v-list-group>
             </v-list>
 
             <v-spacer></v-spacer>
@@ -96,8 +138,7 @@
           </v-navigation-drawer>
           <v-main id="sidebarNav"></v-main>
           <main id="mainSection">
-            <catbar />
-            
+            <live />
             <slot />
           </main>
         </v-layout>

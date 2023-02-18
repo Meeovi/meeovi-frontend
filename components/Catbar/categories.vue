@@ -1,6 +1,6 @@
 <template>
     <v-card>
-        <v-tabs v-model="tab" bg-color="deep-purple-darken-4" center-active>
+        <v-tabs v-model="tab" style="background-color: indianred; color: white;" center-active>
             <v-tab>
                 <v-list-item title="What's New" value="" href="/categories/new"></v-list-item>
             </v-tab>
