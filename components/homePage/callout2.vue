@@ -1,81 +1,146 @@
 <template>
     <div>
-        <section data-bs-version="5.1" class="features1 cid-skeDi8flFg" id="features1-c">
+        <section data-bs-version="5.1" class="mbr-section features20 cid-txNnCwzel4" id="features20-4t" data-sortbtn="btn-primary">
+
     
 
     
-    <div class="container">
-        <div class="row">
-            
+
+<div class="container-fluid">
+    <h2 class="mbr-section-title align-left mbr-fonts-style mbr-white display-2">
+        Latest Products</h2>
+    <div class="underline align-left pb-3">
+        <div class="line"></div>
+    </div>
+    
+    <div class="row justify-content-center pt-5">
+        <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
+            <div class="card-wrapper ">
+                <div class="card-img">
+                    <img src="../../assets/images/15.jpg" alt="">
+                </div>
+                <div class="card-box">
+                    <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">
+                        Skirt
+                    </p>
+                    <div class="prices align-center">
+                        
+                        <span class="newPrice mbr-fonts-style mbr-bold display-2">$100</span>
+                    </div>
+                    <div class="mbr-section-btn align-center pt-3">
+                        <a href="#" class="btn btn-md btn-success display-4">BUY</a>         
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="row">
-            <div class="card col-12 col-md-6 col-lg-3">
-                <div class="card-wrapper">
-                    <div class="card-box align-center">
-                        <div class="iconfont-wrapper">
-                            <span class="mbr-iconfont mobi-mbri-cart-full mobi-mbri" style="color: rgb(255, 255, 255); fill: rgb(255, 255, 255);"></span>
-                        </div>
-                        <h5 class="card-title mbr-fonts-style display-7"><strong>THE PRODUCTS</strong></h5>
-                        <p class="card-text mbr-fonts-style display-7">There are millions of unique products found on Meeovi. Digital, handmade, physical, services, and more. You are sure to find what you truely want.&nbsp;<br></p>
+
+        <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
+            <div class="card-wrapper">
+                <div class="card-img">
+                    <img src="../../assets/images/17.jpg" alt="">
+                </div>
+                <div class="card-box">
+                    <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">
+                        Jeans
+                    </p>
+                    <div class="prices align-center">
+                        
+                        <span class="newPrice mbr-bold mbr-fonts-style display-2">$100</span>
+                    </div>
+                    <div class="mbr-section-btn align-center pt-3">
+                        <a href="#" class="btn btn-md btn-success display-4">BUY</a>         
                     </div>
                 </div>
             </div>
-            <div class="card col-12 col-md-6 col-lg-3">
-                <div class="card-wrapper">
-                    <div class="card-box align-center">
-                        <div class="iconfont-wrapper">
-                            <span class="mbr-iconfont mobi-mbri-cursor-click mobi-mbri" style="color: rgb(255, 255, 255); fill: rgb(255, 255, 255);"></span>
-                        </div>
-                        <h5 class="card-title mbr-fonts-style display-7"><strong>THE ENGAGEMENTS</strong></h5>
-                        <p class="card-text mbr-fonts-style display-7">As a social marketplace, we pride ourselves on connecting customers with sellers. With sharing tools, product videos, chat system, messages, and activity feed.&nbsp;<br></p>
+        </div>
+
+        <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
+            <div class="card-wrapper">
+                <div class="card-img">
+                    <img src="../../assets/images/14.jpg" alt="">
+                </div>
+                <div class="card-box">
+                    <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">
+                        Denim Jacket
+                    </p>
+                    <div class="prices align-center">
+                        
+                        <span class="newPrice mbr-bold mbr-fonts-style display-2">$100</span>
+                    </div>
+                    <div class="mbr-section-btn align-center pt-3">
+                        <a href="#" class="btn btn-md btn-success display-4">BUY</a>         
                     </div>
                 </div>
             </div>
-            <div class="card col-12 col-md-6 col-lg-3">
-                <div class="card-wrapper">
-                    <div class="card-box align-center">
-                        <div class="iconfont-wrapper">
-                            <span class="mbr-iconfont mobi-mbri-lock mobi-mbri" style="color: rgb(255, 255, 255); fill: rgb(255, 255, 255);"></span>
-                        </div>
-                        <h5 class="card-title mbr-fonts-style display-7"><strong>THE SECURITY</strong></h5>
-                        <p class="card-text mbr-fonts-style display-7">We use the best safety and security practices with SSL enabled, hotlink protection, spam and scam protection. You are safe while browsing, shopping, and selling with us.&nbsp;<br></p>
-                    </div>
+        </div>
+
+        <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
+            <div class="card-wrapper">
+                <div class="card-img">
+                    <img src="../../assets/images/16.jpg" alt="">
+                </div>
+                <div class="card-box">
+                    <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">
+                        Leather Jacket
+                    </p>
+                </div>
+                <div class="prices align-center">
+                    
+                    <span class="newPrice mbr-bold mbr-fonts-style display-2">$100</span>
+                </div>
+                <div class="mbr-section-btn align-center pt-3">
+                    <a href="#" class="btn btn-md btn-success display-4">BUY</a>         
                 </div>
             </div>
-            
         </div>
     </div>
+</div>
 </section>
 
-<section data-bs-version="5.1" class="features11 cid-skeBBk03KK mbr-parallax-background" id="features12-3">
+<section data-bs-version="5.1" class="features6 popup-btn-cards cid-txNsyvlNwV" id="features6-4x" data-sortbtn="btn-primary">
 
+
+
+
+<div class="container">
+    <h2 class="align-center mbr-fonts-style mbr-section-title display-2">Discounts and Exclusives</h2>
     
-    <div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(255, 255, 255);">
-    </div>
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-12 col-lg">
-                <div class="card-wrapper">
-                    <div class="card-box">
-                        <h4 class="card-title mbr-fonts-style mb-4 display-2">
-                            <strong>MEEOVI BOOKS</strong></h4>
-                        <p class="mbr-text mbr-fonts-style mb-4 display-7">Self Published authors are some of the most creative people in the world. Unchained by their everflowing creatism and no company telling them what story to write or how it should be told. Now Meeovi Books provides a place where their sales can be unchained too.&nbsp;<br></p>
-                        <div class="mbr-text mbr-fonts-style counter-container display-7">
-                            <ul>
-                                <li><span style="font-size: 1.2rem;">ebooks and Physical Books</span></li><li><span style="font-size: 1.2rem;">Audiobooks</span></li><li><span style="font-size: 1.2rem;">Comics and Graphic Novels</span><br></li>
-                            </ul>
-                        </div>
-                        <div class="mbr-section-btn mb-4"><a class="btn btn-secondary display-4" href="/books">Visit the Bookstore</a></div>
+    
+    <div class="row main justify-content-center">
+        <div class="col-lg-6 p-4">
+            <div class="image-element card-wrapper">
+                <img src="../../assets/images/07.jpg" alt="" title="">
+                <div class="mbr-overlay card-overlay"></div>
+                <div class="wrapper">
+                    <h3 class="card-title mbr-fonts-style align-left mbr-white display-2">
+                        Deals</h3>
+                    <div class="collapsed-content">
+                        <p class="mbr-text mbr-white mbr-fonts-style display-7">
+                            Deals that make pocket change go even longer. Check out our deals from our sellers.
+                        </p>
+                        <div class="mbr-section-btn"><a class="btn btn-md btn-info display-4" href="/commerce/deals">See Collection</a></div>
                     </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-6 md-pb">
-                <div class="image-wrapper">
-                    <img src="../../assets/images/mbr-676x451.jpg" alt="">
+               </div>
+           </div>
+        </div>
+        <div class="col-lg-6 p-4">
+            <div class="image-element card-wrapper">
+                <img src="../../assets/images/11.jpg" alt="" title="">
+                <div class="mbr-overlay card-overlay"></div>
+                <div class="wrapper">
+                    <h3 class="card-title mbr-fonts-style align-left mbr-white display-2">
+                        Exclusives</h3>
+                    <div class="collapsed-content">
+                        <p class="mbr-text mbr-white mbr-fonts-style display-7">
+                            Products and content that you can only find on Meeovi.com
+                        </p>
+                        <div class="mbr-section-btn"><a class="btn btn-md btn-info display-4" href="/category/exclusives">See Collection</a></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </section>
     </div>
 </template>

@@ -166,13 +166,100 @@
 </div>
 </section>
 
-<section data-bs-version="5.1" class="mbr-gallery cid-twaIEuqRf0" id="shop2-45">
+<section data-bs-version="5.1" class="mbr-section features20 cid-txNmOhao93" id="features20-4s">
 
 
 
-<!-- <div class="big-container"> -->
-<div class="container">
-    <div class="mbr-shop"><!-- Shop Gallery --><div class="row mbr-shop__row col-md-12"><div class="wrapper-shop-items col-md-12"><div class="mbr-gallery-row"><div><div class="shop-items"><div class="mbr-gallery-item" data-tags="Awesome" data-seller="true" data-slide-to="0" data-bs-slide-to="0" data-price="100" data-oldprice="200"><div class="item_overlay" data-toggle="modal" data-bs-toggle="modal"></div><div class="galleryItem" data-toggle="modal" data-bs-toggle="modal"><div class="style_overlay"></div><div class="img_wraper"><img src="../../assets/images/shop0.jpg"></div><span class="onsale mbr-fonts-style display-4" data-onsale="true">SALE</span><div class="sidebar_wraper"><h4 class="item-title mbr-fonts-style mbr-text display-5">Brown Glasses</h4><div class="price-block"><span class="shop-item-price mbr-fonts-style display-5">$100</span><span class="oldprice mbr-fonts-style display-7">$200</span></div><div class="card-description">Casual shoes (contact us for sizing)<br><br><ul><li>Lightweight textured fabric</li> <li>Rounded v-neckline</li> <li>Pom pom trims</li> <li>Regular fit – true to size</li></ul> <br>Duis auctor hendrerit nisi, at lacinia ex vulputate quis. Suspendisse convallis iaculis tortor, quis mattis lectus rutrum a.<br><br>Product code: <strong>385DDF5p</strong></div><div class="mbr-section-btn" buttons="0" style="display: none;"><a class="btn btn-primary display-7" href="#">Buy now!</a></div></div></div></div><div class="mbr-gallery-item" data-tags="Wonderful" data-seller="false" data-slide-to="1" data-bs-slide-to="1" data-price="51" data-oldprice="102"><div class="item_overlay" data-toggle="modal" data-bs-toggle="modal"></div><div class="galleryItem" data-toggle="modal" data-bs-toggle="modal"><div class="style_overlay"></div><div class="img_wraper"><img src="../../assets/images/shop1.jpg"></div><span class="onsale mbr-fonts-style display-4" data-onsale="false" style="display: none;">SALE</span><div class="sidebar_wraper"><h4 class="item-title mbr-fonts-style mbr-text display-5">Men's Shoes</h4><div class="price-block"><span class="shop-item-price mbr-fonts-style display-5">$51</span><span class="oldprice mbr-fonts-style display-7" style="display: none;">$102</span></div><div class="card-description">Casual shoes (contact us for sizing)<br><br><ul><li>Lightweight textured fabric</li> <li>Rounded v-neckline</li> <li>Pom pom trims</li> <li>Regular fit – true to size</li></ul> <br>Duis auctor hendrerit nisi, at lacinia ex vulputate quis. Suspendisse convallis iaculis tortor, quis mattis lectus rutrum a.<br><br>Product code: <strong>385DDF5p</strong></div><div class="mbr-section-btn" buttons="0" style="display: none;"><a class="btn btn-primary display-7" href="#">Buy now!</a></div></div></div></div><div class="mbr-gallery-item" data-tags="Creative" data-seller="false" data-slide-to="2" data-bs-slide-to="2" data-price="92" data-oldprice="184"><div class="item_overlay" data-toggle="modal" data-bs-toggle="modal"></div><div class="galleryItem" data-toggle="modal" data-bs-toggle="modal"><div class="style_overlay"></div><div class="img_wraper"><img src="../../assets/images/shop2.jpg"></div><span class="onsale mbr-fonts-style display-4" data-onsale="true">SALE</span><div class="sidebar_wraper"><h4 class="item-title mbr-fonts-style mbr-text display-5">Blue Backpack</h4><div class="price-block"><span class="shop-item-price mbr-fonts-style display-5">$92</span><span class="oldprice mbr-fonts-style display-7">$184</span></div><div class="card-description">Casual shoes (contact us for sizing)<br><br><ul><li>Lightweight textured fabric</li> <li>Rounded v-neckline</li> <li>Pom pom trims</li> <li>Regular fit – true to size</li></ul> <br>Duis auctor hendrerit nisi, at lacinia ex vulputate quis. Suspendisse convallis iaculis tortor, quis mattis lectus rutrum a.<br><br>Product code: <strong>385DDF5p</strong></div><div class="mbr-section-btn" buttons="0" style="display: none;"><a class="btn btn-primary display-7" href="#">Buy now!</a></div></div></div></div><div class="mbr-gallery-item" data-tags="Awesome" data-seller="false" data-slide-to="3" data-bs-slide-to="3" data-price="27" data-oldprice="54"><div class="item_overlay" data-toggle="modal" data-bs-toggle="modal"></div><div class="galleryItem" data-toggle="modal" data-bs-toggle="modal"><div class="style_overlay"></div><div class="img_wraper"><img src="../../assets/images/shop3.jpg"></div><span class="onsale mbr-fonts-style display-4" data-onsale="false" style="display: none;">SALE</span><div class="sidebar_wraper"><h4 class="item-title mbr-fonts-style mbr-text display-5">Red Snapback</h4><div class="price-block"><span class="shop-item-price mbr-fonts-style display-5">$27</span><span class="oldprice mbr-fonts-style display-7" style="display: none;">$54</span></div><div class="card-description">Casual shoes (contact us for sizing)<br><br><ul><li>Lightweight textured fabric</li> <li>Rounded v-neckline</li> <li>Pom pom trims</li> <li>Regular fit – true to size</li></ul> <br>Duis auctor hendrerit nisi, at lacinia ex vulputate quis. Suspendisse convallis iaculis tortor, quis mattis lectus rutrum a.<br><br>Product code: <strong>385DDF5p</strong></div><div class="mbr-section-btn" buttons="0" style="display: none;"><a class="btn btn-primary display-7" href="#">Buy now!</a></div></div></div></div><div class="mbr-gallery-item" data-tags="Responsive" data-seller="false" data-slide-to="4" data-bs-slide-to="4" data-price="86" data-oldprice="172"><div class="item_overlay" data-toggle="modal" data-bs-toggle="modal"></div><div class="galleryItem" data-toggle="modal" data-bs-toggle="modal"><div class="style_overlay"></div><div class="img_wraper"><img src="../../assets/images/shop4.jpg"></div><span class="onsale mbr-fonts-style display-4" data-onsale="false" style="display: none;">SALE</span><div class="sidebar_wraper"><h4 class="item-title mbr-fonts-style mbr-text display-5">Black Glasses</h4><div class="price-block"><span class="shop-item-price mbr-fonts-style display-5">$86</span><span class="oldprice mbr-fonts-style display-7" style="display: none;">$172</span></div><div class="card-description">Casual shoes (contact us for sizing)<br><br><ul><li>Lightweight textured fabric</li> <li>Rounded v-neckline</li> <li>Pom pom trims</li> <li>Regular fit – true to size</li></ul> <br>Duis auctor hendrerit nisi, at lacinia ex vulputate quis. Suspendisse convallis iaculis tortor, quis mattis lectus rutrum a.<br><br>Product code: <strong>385DDF5p</strong></div><div class="mbr-section-btn" buttons="0" style="display: none;"><a class="btn btn-primary display-7" href="#">Buy now!</a></div></div></div></div><div class="mbr-gallery-item" data-tags="Creative" data-seller="false" data-slide-to="5" data-bs-slide-to="5" data-price="19" data-oldprice="38"><div class="item_overlay" data-toggle="modal" data-bs-toggle="modal"></div><div class="galleryItem" data-toggle="modal" data-bs-toggle="modal"><div class="style_overlay"></div><div class="img_wraper"><img src="../../assets/images/shop5.jpg"></div><span class="onsale mbr-fonts-style display-4" data-onsale="false" style="display: none;">SALE</span><div class="sidebar_wraper"><h4 class="item-title mbr-fonts-style mbr-text display-5">Women's Shoes</h4><div class="price-block"><span class="shop-item-price mbr-fonts-style display-5">$19</span><span class="oldprice mbr-fonts-style display-7" style="display: none;">$38</span></div><div class="card-description">Casual shoes (contact us for sizing)<br><br><ul><li>Lightweight textured fabric</li> <li>Rounded v-neckline</li> <li>Pom pom trims</li> <li>Regular fit – true to size</li></ul> <br>Duis auctor hendrerit nisi, at lacinia ex vulputate quis. Suspendisse convallis iaculis tortor, quis mattis lectus rutrum a.<br><br>Product code: <strong>385DDF5p</strong></div><div class="mbr-section-btn" buttons="0" style="display: none;"><a class="btn btn-primary display-7" href="#">Buy now!</a></div></div></div></div><div class="mbr-gallery-item" data-tags="Animated" data-seller="false" data-slide-to="6" data-bs-slide-to="6" data-price="30" data-oldprice="60"><div class="item_overlay" data-toggle="modal" data-bs-toggle="modal"></div><div class="galleryItem" data-toggle="modal" data-bs-toggle="modal"><div class="style_overlay"></div><div class="img_wraper"><img src="../../assets/images/shop6.jpg"></div><span class="onsale mbr-fonts-style display-4" data-onsale="false" style="display: none;">SALE</span><div class="sidebar_wraper"><h4 class="item-title mbr-fonts-style mbr-text display-5">Pink Backpack</h4><div class="price-block"><span class="shop-item-price mbr-fonts-style display-5">$30</span><span class="oldprice mbr-fonts-style display-7" style="display: none;">$60</span></div><div class="card-description">Casual shoes (contact us for sizing)<br><br><ul><li>Lightweight textured fabric</li> <li>Rounded v-neckline</li> <li>Pom pom trims</li> <li>Regular fit – true to size</li></ul> <br>Duis auctor hendrerit nisi, at lacinia ex vulputate quis. Suspendisse convallis iaculis tortor, quis mattis lectus rutrum a.<br><br>Product code: <strong>385DDF5p</strong></div><div class="mbr-section-btn" buttons="0" style="display: none;"><a class="btn btn-primary display-7" href="#">Buy now!</a></div></div></div></div><div class="mbr-gallery-item" data-tags="Awesome" data-seller="false" data-slide-to="7" data-bs-slide-to="7" data-price="89" data-oldprice="178"><div class="item_overlay" data-toggle="modal" data-bs-toggle="modal"></div><div class="galleryItem" data-toggle="modal" data-bs-toggle="modal"><div class="style_overlay"></div><div class="img_wraper"><img src="../../assets/images/shop7.jpg"></div><span class="onsale mbr-fonts-style display-4" data-onsale="false" style="display: none;">SALE</span><div class="sidebar_wraper"><h4 class="item-title mbr-fonts-style mbr-text display-5">Red Cap</h4><div class="price-block"><span class="shop-item-price mbr-fonts-style display-5">$89</span><span class="oldprice mbr-fonts-style display-7" style="display: none;">$178</span></div><div class="card-description">Casual shoes (contact us for sizing)<br><br><ul><li>Lightweight textured fabric</li> <li>Rounded v-neckline</li> <li>Pom pom trims</li> <li>Regular fit – true to size</li></ul> <br>Duis auctor hendrerit nisi, at lacinia ex vulputate quis. Suspendisse convallis iaculis tortor, quis mattis lectus rutrum a.<br><br>Product code: <strong>385DDF5p</strong></div><div class="mbr-section-btn" buttons="0" style="display: none;"><a class="btn btn-primary display-7" href="#">Buy now!</a></div></div></div></div></div></div><div class="clearfix"></div></div></div></div><!-- Lightbox --><div class="shopItemsModal_wraper" style="z-index: 2500;"><div class="shopItemsModalBg"></div><div class="shopItemsModal row"><div class="col-md-6 image-modal"></div><div class="col-md-6 text-modal"></div><div class="closeModal"><div class="close-modal-wrapper"></div></div></div></div></div>
+
+
+<div class="container-fluid">
+    <h2 class="mbr-section-title align-left mbr-fonts-style mbr-white display-2">
+        Products from our sellers</h2>
+    <div class="underline align-left pb-3">
+        <div class="line"></div>
+    </div>
+    
+    <div class="row justify-content-center pt-5">
+        <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
+            <div class="card-wrapper ">
+                <div class="card-img">
+                    <img src="../../assets/images/15.jpg" alt="">
+                </div>
+                <div class="card-box">
+                    <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">
+                        Skirt
+                    </p>
+                    <div class="prices align-center">
+                        
+                        <span class="newPrice mbr-fonts-style mbr-bold display-2">$100</span>
+                    </div>
+                    <div class="mbr-section-btn align-center pt-3">
+                        <a href="#" class="btn btn-md btn-success display-4">BUY</a>         
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
+            <div class="card-wrapper">
+                <div class="card-img">
+                    <img src="../../assets/images/17.jpg" alt="">
+                </div>
+                <div class="card-box">
+                    <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">
+                        Jeans
+                    </p>
+                    <div class="prices align-center">
+                        
+                        <span class="newPrice mbr-bold mbr-fonts-style display-2">$100</span>
+                    </div>
+                    <div class="mbr-section-btn align-center pt-3">
+                        <a href="#" class="btn btn-md btn-success display-4">BUY</a>         
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
+            <div class="card-wrapper">
+                <div class="card-img">
+                    <img src="../../assets/images/14.jpg" alt="">
+                </div>
+                <div class="card-box">
+                    <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">
+                        Denim Jacket
+                    </p>
+                    <div class="prices align-center">
+                        
+                        <span class="newPrice mbr-bold mbr-fonts-style display-2">$100</span>
+                    </div>
+                    <div class="mbr-section-btn align-center pt-3">
+                        <a href="#" class="btn btn-md btn-success display-4">BUY</a>         
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
+            <div class="card-wrapper">
+                <div class="card-img">
+                    <img src="../../assets/images/16.jpg" alt="">
+                </div>
+                <div class="card-box">
+                    <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">
+                        Leather Jacket
+                    </p>
+                </div>
+                <div class="prices align-center">
+                    
+                    <span class="newPrice mbr-bold mbr-fonts-style display-2">$100</span>
+                </div>
+                <div class="mbr-section-btn align-center pt-3">
+                    <a href="#" class="btn btn-md btn-success display-4">BUY</a>         
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </section>
     </div>

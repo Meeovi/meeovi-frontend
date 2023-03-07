@@ -1,5 +1,5 @@
-import { NuxtModule } from '@nuxt/schema'
-declare module '@nuxt/schema' {
+import { NuxtModule } from 'nuxt/schema'
+declare module 'nuxt/schema' {
   interface NuxtConfig {
     ["apollo"]?: typeof import("@nuxtjs/apollo").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
     ["content"]?: typeof import("@nuxt/content").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>

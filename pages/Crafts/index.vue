@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section class="header1 cid-tuFtoSsKHW mbr-fullscreen" id="header1-3u">
+        <section data-bs-version="5.1" class="header1 cid-tuFtoSsKHW mbr-fullscreen" id="header1-3u">
 
     
 
@@ -19,7 +19,7 @@
 </div>
 </section>
 
-<section class="features1 cid-tuzvYRLMvG" id="features2-3n">
+<section data-bs-version="5.1" class="features1 cid-tuzvYRLMvG" id="features2-3n">
 
 
 
@@ -70,7 +70,7 @@
 </div>
 </section>
 
-<section class="features3 cid-tuzw8diy0z" id="features3-3o">
+<section data-bs-version="5.1" class="features3 cid-tuzw8diy0z" id="features3-3o">
 
 
 <div class="container">
@@ -83,7 +83,7 @@
         <div class="item features-image сol-12 col-md-6 col-lg-4">
             <div class="item-wrapper">
                 <div class="item-img">
-                    <img src="assets/images/features1.jpg">
+                    <img src="../../assets/images/features1.jpg">
                 </div>
                 <div class="item-content">
                     <h5 class="item-title mbr-fonts-style display-7"><strong>No Coding</strong></h5>
@@ -98,7 +98,7 @@
         <div class="item features-image сol-12 col-md-6 col-lg-4">
             <div class="item-wrapper">
                 <div class="item-img">
-                    <img src="assets/images/features2.jpg">
+                    <img src="../../assets/images/features2.jpg">
                 </div>
                 <div class="item-content">
                     <h5 class="item-title mbr-fonts-style display-7"><strong>Mobile Friendly</strong></h5>
@@ -113,7 +113,7 @@
         <div class="item features-image сol-12 col-md-6 col-lg-4">
             <div class="item-wrapper">
                 <div class="item-img">
-                    <img src="assets/images/features3.jpg">
+                    <img src="../../assets/images/features3.jpg">
                 </div>
                 <div class="item-content">
                     <h5 class="item-title mbr-fonts-style display-7"><strong>Unique Styles</strong></h5>
@@ -129,7 +129,104 @@
 </div>
 </section>
 
-<section class="features4 cid-tuzwY4wBVD" id="features5-3r">
+<section data-bs-version="5.1" class="mbr-section features20 cid-txNm5Y2yB3" id="features20-4q">
+
+
+
+
+
+<div class="container-fluid">
+    <h2 class="mbr-section-title align-left mbr-fonts-style mbr-white display-2">
+        Explore Our Products</h2>
+    <div class="underline align-left pb-3">
+        <div class="line"></div>
+    </div>
+    
+    <div class="row justify-content-center pt-5">
+        <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
+            <div class="card-wrapper ">
+                <div class="card-img">
+                    <img src="../../assets/images/15.jpg" alt="">
+                </div>
+                <div class="card-box">
+                    <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">
+                        Skirt
+                    </p>
+                    <div class="prices align-center">
+                        
+                        <span class="newPrice mbr-fonts-style mbr-bold display-2">$100</span>
+                    </div>
+                    <div class="mbr-section-btn align-center pt-3">
+                        <a href="#" class="btn btn-md btn-success display-4">BUY</a>         
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
+            <div class="card-wrapper">
+                <div class="card-img">
+                    <img src="../../assets/images/17.jpg" alt="">
+                </div>
+                <div class="card-box">
+                    <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">
+                        Jeans
+                    </p>
+                    <div class="prices align-center">
+                        
+                        <span class="newPrice mbr-bold mbr-fonts-style display-2">$100</span>
+                    </div>
+                    <div class="mbr-section-btn align-center pt-3">
+                        <a href="#" class="btn btn-md btn-success display-4">BUY</a>         
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
+            <div class="card-wrapper">
+                <div class="card-img">
+                    <img src="../../assets/images/14.jpg" alt="">
+                </div>
+                <div class="card-box">
+                    <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">
+                        Denim Jacket
+                    </p>
+                    <div class="prices align-center">
+                        
+                        <span class="newPrice mbr-bold mbr-fonts-style display-2">$100</span>
+                    </div>
+                    <div class="mbr-section-btn align-center pt-3">
+                        <a href="#" class="btn btn-md btn-success display-4">BUY</a>         
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
+            <div class="card-wrapper">
+                <div class="card-img">
+                    <img src="../../assets/images/16.jpg" alt="">
+                </div>
+                <div class="card-box">
+                    <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">
+                        Leather Jacket
+                    </p>
+                </div>
+                <div class="prices align-center">
+                    
+                    <span class="newPrice mbr-bold mbr-fonts-style display-2">$100</span>
+                </div>
+                <div class="mbr-section-btn align-center pt-3">
+                    <a href="#" class="btn btn-md btn-success display-4">BUY</a>         
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<section data-bs-version="5.1" class="features4 cid-tuzwY4wBVD" id="features5-3r">
 
 
 
@@ -149,13 +246,13 @@
                             </h5>
                             <p class="mbr-text mbr-fonts-style mb-5 display-4">You don't have to code when you create your own site. Select one of available themes in the Mobirise sitebuilder.</p>
                             <div class="mbr-section-btn">
-                                <a href="https://mobiri.se" class="btn btn-warning display-4">Learn more</a>
+                                <a href="#" class="btn btn-warning display-4">Learn more</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 col-md-5">
                         <div class="img-wrapper">
-                            <img src="assets/images/1.png" alt="Mobirise">
+                            <img src="../../assets/images/1.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -174,13 +271,13 @@
                             </h5>
                             <p class="mbr-text mbr-fonts-style mb-5 display-4">Select the theme that suits you. Each theme in the Mobirise website building software contains a set of unique blocks.</p>
                             <div class="mbr-section-btn">
-                                <a href="https://mobiri.se" class="btn btn-warning display-4">Learn more</a>
+                                <a href="#" class="btn btn-warning display-4">Learn more</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 col-md-5">
                         <div class="img-wrapper">
-                            <img src="assets/images/3.png" alt="Mobirise">
+                            <img src="../../assets/images/3.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -190,7 +287,7 @@
 </div>
 </section>
 
-<section class="features18 cid-tuzwdDRTxd" id="features19-3p">
+<section data-bs-version="5.1" class="features18 cid-tuzwdDRTxd" id="features19-3p">
 
 
 
@@ -205,138 +302,20 @@
                 <p class="mbr-text mbr-fonts-style display-7">
                     All sites you create with the Mobirise web builder are mobile-friendly natively. No special actions required. You can preview your site inside the app. Check the icons on the top.</p>
                 <div class="mbr-section-btn">
-                    <a class="btn btn-primary display-4" href="https://mobiri.se">Start now</a>
+                    <a class="btn btn-primary display-4" href="#">Start now</a>
                 </div>
             </div>
         </div>
         <div class="col-12 col-lg-6">
             <div class="image-wrapper">
-                <img src="assets/images/2.jpg" alt="Mobirise">
+                <img src="../../assets/images/2.jpg" alt="">
             </div>
         </div>
     </div>
 </div>
 </section>
 
-<section class="features7 cid-tuzx1iGae7" id="features8-3s">
-<!---->
-
-
-<div class="container">
-    <div class="row">
-        <div class="title col-12">
-            <h5 class="mbr-section-title mbr-fonts-style mb-3 display-2">
-                <strong>Our Products</strong>
-            </h5>
-            
-        </div>
-        <div class="card col-12 col-md-6">
-            <div class="card-wrapper">
-                <div class="top-line">
-                    <h6 class="card-title mbr-fonts-style display-5">
-                        <strong>Special Issue</strong>
-                    </h6>
-                    <p class="mbr-text cost mbr-fonts-style display-5">$39</p>
-                </div>
-                <div class="bottom-line">
-                    <p class="mbr-text mbr-fonts-style display-7">
-                        All sites you create with the Mobirise web builder are mobile-friendly natively. No special
-                        actions required. For your commercial and non-profit projects.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="card col-12 col-md-6">
-            <div class="card-wrapper">
-                <div class="top-line">
-                    <h6 class="card-title mbr-fonts-style display-5">
-                        <strong>Special Issue</strong>
-                    </h6>
-                    <p class="mbr-text cost mbr-fonts-style display-5">$49</p>
-                </div>
-                <div class="bottom-line">
-                    <p class="mbr-text mbr-fonts-style display-7">
-                        All sites you create with the Mobirise web builder are mobile-friendly natively. No special
-                        actions required. For your commercial and non-profit projects.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="card col-12 col-md-6">
-            <div class="card-wrapper">
-                <div class="top-line">
-                    <h6 class="card-title mbr-fonts-style display-5">
-                        <strong>Special Issue</strong>
-                    </h6>
-                    <p class="mbr-text cost mbr-fonts-style display-5">$39</p>
-                </div>
-                <div class="bottom-line">
-                    <p class="mbr-text mbr-fonts-style display-7">
-                        All sites you create with the Mobirise web builder are mobile-friendly natively. No special
-                        actions required. For your commercial and non-profit projects.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="card col-12 col-md-6">
-            <div class="card-wrapper">
-                <div class="top-line">
-                    <h6 class="card-title mbr-fonts-style display-5">
-                        <strong>Special Issue</strong>
-                    </h6>
-                    <p class="mbr-text cost mbr-fonts-style display-5">$49</p>
-                </div>
-                <div class="bottom-line">
-                    <p class="mbr-text mbr-fonts-style display-7">
-                        All sites you create with the Mobirise web builder are mobile-friendly natively. No special
-                        actions required. For your commercial and non-profit projects.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="card col-12 col-md-6">
-            <div class="card-wrapper">
-                <div class="top-line">
-                    <h6 class="card-title mbr-fonts-style display-5">
-                        <strong>Special Issue</strong>
-                    </h6>
-                    <p class="mbr-text cost mbr-fonts-style display-5">$39</p>
-                </div>
-                <div class="bottom-line">
-                    <p class="mbr-text mbr-fonts-style display-7">
-                        All sites you create with the Mobirise web builder are mobile-friendly natively. No special
-                        actions required. For your commercial and non-profit projects.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="card col-12 col-md-6">
-            <div class="card-wrapper">
-                <div class="top-line">
-                    <h6 class="card-title mbr-fonts-style display-5">
-                        <strong>Special Issue</strong>
-                    </h6>
-                    <p class="mbr-text cost mbr-fonts-style display-5">$49</p>
-                </div>
-                <div class="bottom-line">
-                    <p class="mbr-text mbr-fonts-style display-7">
-                        All sites you create with the Mobirise web builder are mobile-friendly natively. No special
-                        actions required. For your commercial and non-profit projects.
-                    </p>
-                </div>
-            </div>
-        </div>
-        
-        
-        
-        
-        
-        
-    </div>
-</div>
-</section>
-
-<section class="features17 cid-tuzwCySArw" id="features18-3q">
+<section data-bs-version="5.1" class="features17 cid-tuzwCySArw" id="features18-3q">
 
 
 

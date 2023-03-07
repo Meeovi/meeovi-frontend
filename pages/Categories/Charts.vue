@@ -31,7 +31,7 @@
         <div class="item features-image сol-12 col-md-6 col-lg-6">
             <div class="item-wrapper">
                 <div class="item-img">
-                    <img src="assets/images/product5.jpg" alt="" title="">
+                    <img src="../../assets/images/product5.jpg" alt="" title="">
                 </div>
                 <div class="item-content">
                     <h5 class="item-title mbr-fonts-style display-5"><a href="#top" class="text-primary"><strong>Easy and Simple</strong></a></h5>
@@ -45,7 +45,7 @@
         <div class="item features-image сol-12 col-md-6 col-lg-6">
             <div class="item-wrapper">
                 <div class="item-img">
-                    <img src="assets/images/product4.jpg" alt="" title="">
+                    <img src="../../assets/images/product4.jpg" alt="" title="">
                 </div>
                 <div class="item-content">
                     <h5 class="item-title mbr-fonts-style display-5"><a href="#top" class="text-primary"><strong>Automagically Mobile</strong></a></h5>
