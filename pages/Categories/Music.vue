@@ -1,5 +1,6 @@
 <template>
     <div>
+        <musicbar />
         <section data-bs-version="5.1" class="features15 popup-btn-cards cid-txNj8ml5nb mbr-parallax-background" id="features15-4l">
 
     
@@ -464,8 +465,10 @@
 </template>
 
 <script>
-    export default {
+import musicbar from '../../components/Menus/musicbar.vue'
 
+    export default {
+        components: { musicbar }
     }
 </script>
 

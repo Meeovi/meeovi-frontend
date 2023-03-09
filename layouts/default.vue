@@ -105,6 +105,8 @@
               <h6>Department Stores</h6>
               <v-list-item prepend-icon="fas fa-compass-drafting" title="Meeovi Crafts" value="meeovi crafts" href="/crafts/"></v-list-item>
               <v-list-item prepend-icon="fas fa-person-shelter" title="Meeovi Yardsale" value="meeovi yardsale" href="/yardsale/"></v-list-item>
+              <v-list-item prepend-icon="fab fa-mattress-pillow" title="Meeovi Fabrics" value="meeovi fabrics" href="/fabrics/"></v-list-item>
+              <v-list-item prepend-icon="fas fa-message" title="Meeovi Reviews" value="meeovi reviews" href="/reviews/"></v-list-item>
               <v-list-item prepend-icon="fas fa-tablet-button" title="Meeovi Appstore" value="meeovi appstore" href="/categories/appstore"></v-list-item>
               <v-divider></v-divider>
               <h6>Deals Corner</h6>
