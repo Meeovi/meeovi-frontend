@@ -80,6 +80,7 @@ declare global {
   const useApollo: typeof import('../../node_modules/@nuxtjs/apollo/dist/runtime/composables')['useApollo']
   const useApolloClient: typeof import('@vue/apollo-composable')['useApolloClient']
   const useAppConfig: typeof import('../../node_modules/nuxt/dist/app')['useAppConfig']
+  const useAppwrite: typeof import('../../node_modules/nuxt-appwrite/dist/runtime/composables/useAppwrite')['useAppwrite']
   const useAsyncData: typeof import('../../node_modules/nuxt/dist/app')['useAsyncData']
   const useAsyncQuery: typeof import('../../node_modules/@nuxtjs/apollo/dist/runtime/composables')['useAsyncQuery']
   const useAttrs: typeof import('vue')['useAttrs']
@@ -220,6 +221,7 @@ declare module 'vue' {
     readonly useApollo: UnwrapRef<typeof import('../../node_modules/@nuxtjs/apollo/dist/runtime/composables')['useApollo']>
     readonly useApolloClient: UnwrapRef<typeof import('@vue/apollo-composable')['useApolloClient']>
     readonly useAppConfig: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useAppConfig']>
+    readonly useAppwrite: UnwrapRef<typeof import('../../node_modules/nuxt-appwrite/dist/runtime/composables/useAppwrite')['useAppwrite']>
     readonly useAsyncData: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useAsyncData']>
     readonly useAsyncQuery: UnwrapRef<typeof import('../../node_modules/@nuxtjs/apollo/dist/runtime/composables')['useAsyncQuery']>
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>

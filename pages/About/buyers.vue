@@ -41,7 +41,7 @@
                     </div>
                     <div class="col-12 col-md-5">
                         <div class="img-wrapper">
-                            <img src="../../assetsimages/mbr-502x335.png" alt="Mobirise">
+                            <img src="../../assets/images/mbr-502x335.png" alt="Mobirise">
                         </div>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                     </div>
                     <div class="col-12 col-md-5">
                         <div class="img-wrapper">
-                            <img src="../../assetsimages/mbr-502x324.jpg" alt="Mobirise">
+                            <img src="../../assets/images/mbr-502x324.jpg" alt="Mobirise">
                         </div>
                     </div>
                 </div>

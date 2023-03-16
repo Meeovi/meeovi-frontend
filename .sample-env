@@ -26,10 +26,13 @@ SQLITE_FILENAME="./mydb.sqlite"
 
 SENTRY_DSN=''
 
-# GRAPHQL Endpoint
+# Appwrite Credentials
 
-GRAPHQL_ENDPOINT=''
+APPWRITE_ENDPOINT=''
+APPWRITE_PROJECT=''
 
-# Meilisearch Endpoint
+# Meilisearch Credentials
 
-SEARCH_API='http://my-meilisearch-server.domain.com'
+HOSTURL='http://my-meilisearch-server.domain.com'
+SEARCH_APIKEY='<your_public_key>'
+ADMIN_APIKEY='<your_secret_key>'

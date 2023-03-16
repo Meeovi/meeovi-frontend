@@ -10,7 +10,7 @@
                 <div class="row align-items-center">
                     <div class="col-12 col-md-4">
                         <div class="image-wrapper">
-                            <img src="../../../assets/images/team1.jpg" alt="">
+                            <img src="" alt="">
                         </div>
                     </div>
                     <div class="col-12 col-md">

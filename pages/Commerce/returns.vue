@@ -9,7 +9,7 @@
     <div class="row main align-items-center">
         <div class="col-md-6 image-element align-self-stretch">
             <div class="img-wrap" style="width: 80%; height: 80%;">
-                <img src="../../assets/images/mbr-1553x1553.jpg" alt="">
+                <img src="../../assets/images/big-height.jpg" alt="">
             </div>
         </div>
         <div class="col-md-6 text-element">
@@ -39,7 +39,7 @@
 <div class="container">
     <div class="row justify-content-between align-items-center">
         <div class="mb-md-0 col-xl-5 col-lg-4 col-md-2 col-sm-6 d-md-flex align-items-stretch image justify-content-end">
-            <img src="../../assets/images/mbr-1036x1036.jpg" alt="" data-target="#mbrCarousel" data-bs-target="#mbrCarousel" data-slide-to="0" data-bs-slide-to="0" title="">
+            <img src="../../assets/images/big-height.jpg" alt="" data-target="#mbrCarousel" data-bs-target="#mbrCarousel" data-slide-to="0" data-bs-slide-to="0" title="">
         </div>
         <div class="col-xl-6 col-lg-7 col-md-12 content__block">
             

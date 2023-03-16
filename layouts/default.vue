@@ -83,10 +83,10 @@
               <h6>Trending</h6>
               <v-list-item prepend-icon="fas fa-cart-plus" title="What's New" value="What's New" href="/categories/new"></v-list-item>
               <v-divider></v-divider>
-              <h6>Shop By Department</h6>
+              <h6>Shop By Category</h6>
               <v-list-group prepend-icon="fas fa-building">
                 <template v-slot:activator="{ props }">
-                  <v-list-item v-bind="props" title="Shop by Department"></v-list-item>
+                  <v-list-item v-bind="props" title="Categories"></v-list-item>
                 </template>
                 <v-list-item prepend-icon="fas fa-book" title="Books" value="Books" href="/categories/books"></v-list-item>
                 <v-list-item prepend-icon="fas fa-music" title="Music" value="Music" href="/categories/music"></v-list-item>

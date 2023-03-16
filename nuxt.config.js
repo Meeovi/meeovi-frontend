@@ -25,6 +25,7 @@ export default defineNuxtConfig({
     '@nuxt/content',
     //'@nuxtjs/i18n',
     'nuxt-meilisearch',
+    'nuxt-appwrite',
   ],
 
 /*
@@ -44,10 +45,15 @@ export default defineNuxtConfig({
   }, 
   */
 
+  appwrite: {
+    endpoint: process.env.APPWRITE_ENDPOINT,
+    project: process.env.APPWRITE_PROJECT,
+  },
+
   meilisearch: {
-    hostUrl:  'http://my-meilisearch-server.domain.com',
-    searchApiKey: '<your_public_key>',
-    adminApiKey: '<your_secret_key>',
+    hostUrl:  process.env.HOSTURL,
+    searchApiKey: process.env.SEARCH_APIKEY,
+    adminApiKey: process.env.ADMIN_APIKEY,
     serverSideUsage: true,
     instantSearch: {
       theme: 'algolia'

@@ -1,0 +1,1 @@
+import{o as e,J as t}from"./entry.4d806ec5.js";import{u as a}from"./composables.cafbcfda.js";const s={},i=Object.assign(s,{__name:"affiliateapply",setup(o){return a({title:"Affiliates Apply"}),(_,p)=>(e(),t("div"))}});export{i as default};

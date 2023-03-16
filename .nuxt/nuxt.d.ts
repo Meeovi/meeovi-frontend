@@ -2,6 +2,7 @@
 /// <reference types="@nuxtjs/apollo" />
 /// <reference types="@nuxt/content" />
 /// <reference types="nuxt-meilisearch" />
+/// <reference types="nuxt-appwrite" />
 /// <reference types="@nuxt/devtools" />
 /// <reference types="@nuxt/telemetry" />
 /// <reference types="nuxt" />

@@ -72,7 +72,7 @@
 </template>
 
 <script>
-    import relatedstation from '../../components/Related/relatedstation.vue'
+    import relatedstation from '../../../components/Related/relatedstation.vue'
 
     export default {
         components: {

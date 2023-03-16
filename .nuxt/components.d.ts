@@ -3,7 +3,6 @@ declare module 'vue' {
   export interface GlobalComponents {
     'BottomFooter': typeof import("../components/BottomFooter.vue")['default']
     'CatbarBookscat': typeof import("../components/Catbar/bookscat.vue")['default']
-    'CatbarCategories copy': typeof import("../components/Catbar/categories copy.vue")['default']
     'CatbarCategories': typeof import("../components/Catbar/categories.vue")['default']
     'CatbarLive': typeof import("../components/Catbar/live.vue")['default']
     'CatbarMusiccat': typeof import("../components/Catbar/musiccat.vue")['default']
@@ -102,7 +101,6 @@ declare module 'vue' {
     'Body': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Body']
     'LazyBottomFooter': typeof import("../components/BottomFooter.vue")['default']
     'LazyCatbarBookscat': typeof import("../components/Catbar/bookscat.vue")['default']
-    'LazyCatbarCategories copy': typeof import("../components/Catbar/categories copy.vue")['default']
     'LazyCatbarCategories': typeof import("../components/Catbar/categories.vue")['default']
     'LazyCatbarLive': typeof import("../components/Catbar/live.vue")['default']
     'LazyCatbarMusiccat': typeof import("../components/Catbar/musiccat.vue")['default']
@@ -204,7 +202,6 @@ declare module 'vue' {
 
 export const BottomFooter: typeof import("../components/BottomFooter.vue")['default']
 export const CatbarBookscat: typeof import("../components/Catbar/bookscat.vue")['default']
-export const CatbarCategories copy: typeof import("../components/Catbar/categories copy.vue")['default']
 export const CatbarCategories: typeof import("../components/Catbar/categories.vue")['default']
 export const CatbarLive: typeof import("../components/Catbar/live.vue")['default']
 export const CatbarMusiccat: typeof import("../components/Catbar/musiccat.vue")['default']
@@ -303,7 +300,6 @@ export const Html: typeof import("../node_modules/nuxt/dist/head/runtime/compone
 export const Body: typeof import("../node_modules/nuxt/dist/head/runtime/components")['Body']
 export const LazyBottomFooter: typeof import("../components/BottomFooter.vue")['default']
 export const LazyCatbarBookscat: typeof import("../components/Catbar/bookscat.vue")['default']
-export const LazyCatbarCategories copy: typeof import("../components/Catbar/categories copy.vue")['default']
 export const LazyCatbarCategories: typeof import("../components/Catbar/categories.vue")['default']
 export const LazyCatbarLive: typeof import("../components/Catbar/live.vue")['default']
 export const LazyCatbarMusiccat: typeof import("../components/Catbar/musiccat.vue")['default']

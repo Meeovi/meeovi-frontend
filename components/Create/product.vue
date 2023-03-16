@@ -160,8 +160,8 @@
 </template>
 
 <script>
-    import gql from "graphql-tag";
-    import editor from '../../../Editors/editor.vue'
+    //import gql from "graphql-tag";
+    import editor from '../Editors/editor.vue'
 
 /*    import findManyProducts from "../../../../graphql/query/findManyProducts.gql"
     import findManyCategories from "../../../../graphql/query/findManyCategories.gql"
@@ -219,11 +219,11 @@
         weight
         zone
   }
-}`;
+}`; */
 
     export default {
         components: { editor },
-        data() {
+    /*    data() {
             return {
                 dialog: false,
                 notifications: false,
@@ -491,8 +491,8 @@
                 prefetch: true,
                 query: findManyProducts
             }
-        }
-    } */
+        }*/
+    } 
 </script>
 
 <script setup>

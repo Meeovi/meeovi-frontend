@@ -84,7 +84,7 @@
             <div class="item features-image сol-12 col-md-6 col-lg-4">
                 <div class="item-wrapper">
                     <div class="item-img">
-                        <img src="../../assets/images/mbr-676x459.jpg" alt="">
+                        <img src="../../../assets/images/mbr-676x459.jpg" alt="">
                     </div>
                     <div class="item-content">
                         <h5 class="item-title mbr-fonts-style display-7"><strong>Lorem Ipsum</strong></h5>
@@ -99,7 +99,7 @@
             <div class="item features-image сol-12 col-md-6 col-lg-4">
                 <div class="item-wrapper">
                     <div class="item-img">
-                        <img src="../../assets/images/mbr-676x459.jpg" alt="">
+                        <img src="../../../assets/images/mbr-676x459.jpg" alt="">
                     </div>
                     <div class="item-content">
                         <h5 class="item-title mbr-fonts-style display-7"><strong>Lorem Ipsum</strong></h5>
@@ -114,7 +114,7 @@
             <div class="item features-image сol-12 col-md-6 col-lg-4">
                 <div class="item-wrapper">
                     <div class="item-img">
-                        <img src="../../assets/images/mbr-676x459.jpg" alt="">
+                        <img src="../../../assets/images/mbr-676x459.jpg" alt="">
                     </div>
                     <div class="item-content">
                         <h5 class="item-title mbr-fonts-style display-7"><strong>Lorem Ipsum</strong></h5>
@@ -158,7 +158,7 @@
             <div class="item features-image сol-12 col-md-6 col-lg-4">
                 <div class="item-wrapper">
                     <div class="item-img">
-                        <img src="../../assets/images/product5.jpg" alt="" title="">
+                        <img src="../../../assets/images/product5.jpg" alt="" title="">
                     </div>
                     <div class="item-content">
                         <h5 class="item-title mbr-fonts-style display-5">Lorem Ipsum</h5>
@@ -173,7 +173,7 @@
             <div class="item features-image сol-12 col-md-6 col-lg-4">
                 <div class="item-wrapper">
                     <div class="item-img">
-                        <img src="../../assets/images/product4.jpg" alt="" title="">
+                        <img src="../../../assets/images/product4.jpg" alt="" title="">
                     </div>
                     <div class="item-content">
                         <h5 class="item-title mbr-fonts-style display-5">Lorem Ipsum</h5>
@@ -188,7 +188,7 @@
             <div class="item features-image сol-12 col-md-6 col-lg-4">
                 <div class="item-wrapper">
                     <div class="item-img">
-                        <img src="../../assets/images/product3.jpg" alt="" title="">
+                        <img src="../../../assets/images/product3.jpg" alt="" title="">
                     </div>
                     <div class="item-content">
                         <h5 class="item-title mbr-fonts-style display-5">Lorem Ipsum</h5>
@@ -209,7 +209,7 @@
 </template>
 
 <script>
-import relatedvideo from '../../components/Related/relatedvideos.vue'
+import relatedvideo from '../../../components/Related/relatedvideo.vue'
 
 export default {
     components: { relatedvideo },

@@ -25,7 +25,7 @@
                         <strong>Website Builder</strong>
                     </h4>
                     <div class="image-wrapper mb-4">
-                        <img src="../../../assetsimages/features1.jpg" alt="Mobirise" title="">
+                        <img src="../../../assets/images/features1.jpg" alt="Mobirise" title="">
                     </div>
                     <p class="mbr-text mbr-fonts-style display-7">
                         You don't have to code to create your own site. Select one of available themes in the Mobirise
@@ -41,7 +41,7 @@
                         <strong>Code Editor</strong>
                     </h4>
                     <div class="image-wrapper mb-4">
-                        <img src="../../../assetsimages/features2.jpg" alt="Mobirise" title="">
+                        <img src="../../../assets/images/features2.jpg" alt="Mobirise" title="">
                     </div>
                     <p class="mbr-text mbr-fonts-style display-7">
                         All sites you create with the Mobirise web builder are mobile-friendly natively. No special
@@ -73,7 +73,7 @@
                         <strong>Mobirise Kit</strong>
                     </h4>
                     <div class="image-wrapper mb-4">
-                        <img src="../../../assetsimages/features3.jpg" alt="Mobirise" title="">
+                        <img src="../../../assets/images/features3.jpg" alt="Mobirise" title="">
                     </div>
                     <p class="mbr-text mbr-fonts-style display-7">
                         Select the theme that suits you. Each theme in the Mobirise site builder contains a set of
