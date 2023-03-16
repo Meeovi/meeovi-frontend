@@ -1,1 +1,0 @@
-import{o as e,J as t}from"./entry.4d806ec5.js";import{u as s}from"./composables.cafbcfda.js";const o={},i=Object.assign(o,{__name:"index",setup(a){return s({title:"Meeovi Business"}),(_,n)=>(e(),t("div"))}});export{i as default};

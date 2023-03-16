@@ -25,7 +25,6 @@ export default defineNuxtConfig({
     '@nuxt/content',
     //'@nuxtjs/i18n',
     'nuxt-meilisearch',
-    'nuxt-appwrite',
   ],
 
 /*
@@ -44,11 +43,6 @@ export default defineNuxtConfig({
     enableGlobalAppMiddleware: false
   }, 
   */
-
-  appwrite: {
-    endpoint: process.env.APPWRITE_ENDPOINT,
-    project: process.env.APPWRITE_PROJECT,
-  },
 
   meilisearch: {
     hostUrl:  process.env.HOSTURL,

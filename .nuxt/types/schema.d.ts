@@ -4,11 +4,10 @@ declare module 'nuxt/schema' {
     ["apollo"]?: typeof import("@nuxtjs/apollo").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
     ["content"]?: typeof import("@nuxt/content").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
     ["meilisearch"]?: typeof import("nuxt-meilisearch").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
-    ["appwrite"]?: typeof import("nuxt-appwrite").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
     ["devtools"]?: typeof import("C:/Users/Basti/AppData/Roaming/npm/node_modules/@nuxt/devtools/module").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
     ["nuxt-config-schema"]?: typeof import("nuxt-config-schema").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
     ["telemetry"]?: typeof import("@nuxt/telemetry").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
-    modules?: (NuxtModule | string | [NuxtModule | string, Record<string, any>] | ["@nuxtjs/apollo", NuxtConfig["apollo"]] | ["@nuxt/content", NuxtConfig["content"]] | ["nuxt-meilisearch", NuxtConfig["meilisearch"]] | ["nuxt-appwrite", NuxtConfig["appwrite"]] | ["C:/Users/Basti/AppData/Roaming/npm/node_modules/@nuxt/devtools/module", NuxtConfig["devtools"]] | ["nuxt-config-schema", NuxtConfig["nuxt-config-schema"]] | ["@nuxt/telemetry", NuxtConfig["telemetry"]])[],
+    modules?: (NuxtModule | string | [NuxtModule | string, Record<string, any>] | ["@nuxtjs/apollo", NuxtConfig["apollo"]] | ["@nuxt/content", NuxtConfig["content"]] | ["nuxt-meilisearch", NuxtConfig["meilisearch"]] | ["C:/Users/Basti/AppData/Roaming/npm/node_modules/@nuxt/devtools/module", NuxtConfig["devtools"]] | ["nuxt-config-schema", NuxtConfig["nuxt-config-schema"]] | ["@nuxt/telemetry", NuxtConfig["telemetry"]])[],
   }
   interface RuntimeConfig {
    app: {
@@ -171,7 +170,7 @@ declare module 'nuxt/schema' {
 
       defaultLocale: any,
 
-      integrity: number,
+      integrity: any,
 
       experimental: {
          stripQueryParameters: boolean,
@@ -276,12 +275,6 @@ declare module 'nuxt/schema' {
 
          keepZeroFacets: boolean,
       },
-   },
-
-   appwrite: {
-      endpoint: string,
-
-      project: string,
    },
   }
 }
