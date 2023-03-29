@@ -1,38 +1,47 @@
 # Information here will appear across AlternateCMS
 
+# Medusa Credentials
+
+ADMIN_CORS='http://localhost:7000,http://localhost:7001'
+
 # Database URL
 
-DATABASE_URL='postgresql://{env.DB_USER}:{env.DB_PASSWORD}@{env.DB_HOST}:{env.DB_PORT}/{env.DB_DATABASE}'
+DATABASE_URL=''
+
+TEST_URL=''
+
+MY_SQL=''
+
+SQLITE_URL='file://server/config/database/main.db'
 
 # Supabase URL and Credentials (Supabase is not required, but recommended)
 
-YOUR_SUPABASE_URL=""
-YOUR_SUPABASE_KEY=""
+YOUR_SUPABASE_URL=''
+YOUR_SUPABASE_KEY=''
 
 # DATABASE DETAILS
 
-DB_Client=""
-DB_HOST=""
-DB_PORT="5432"
-DB_USER=""
-DB_PASSWORD=""
-DB_DATABASE=""
+DB_HOST=''
+DB_PORT=''
+DB_USER=''
+DB_PASSWORD=''
+DB_DATABASE=''
+DB_CLIENT=''
+DB_SSL=false
 
-# SQLITE3 Filename
+# Directus Credentials
 
-SQLITE_FILENAME="./mydb.sqlite"
-
-# SENTRY Integration
-
-SENTRY_DSN=''
-
-# Appwrite Credentials
-
-APPWRITE_ENDPOINT=''
-APPWRITE_PROJECT=''
+DIRECTUS_URL=''
+DIRECTUS_TOKEN='-'
+DIRECTUS_EMAIL=
+DIRECTUS_PASSWORD=
 
 # Meilisearch Credentials
 
-HOSTURL='http://my-meilisearch-server.domain.com'
+HOSTURL=''
 SEARCH_APIKEY='<your_public_key>'
 ADMIN_APIKEY='<your_secret_key>'
+
+# Sentry Credentials
+
+SENTRY_DSN=''

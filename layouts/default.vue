@@ -84,7 +84,7 @@
               <v-list-item prepend-icon="fas fa-cart-plus" title="What's New" value="What's New" href="/categories/new"></v-list-item>
               <v-divider></v-divider>
               <h6>Shop By Category</h6>
-              <v-list-group prepend-icon="fas fa-building">
+              <v-list-group prepend-icon="fas fa-building" v-for="categories in categories" :key="categories.id">
                 <template v-slot:activator="{ props }">
                   <v-list-item v-bind="props" title="Categories"></v-list-item>
                 </template>
@@ -94,7 +94,7 @@
                 <v-list-item prepend-icon="fas fa-gamepad" title="Games" value="Games" href="/categories/games"></v-list-item>
                 <v-list-item prepend-icon="fas fa-podcast" title="Podcasts" value="Podcasts" href="/categories/podcasts"></v-list-item>
                 <v-list-item prepend-icon="fas fa-volleyball" title="Sports & Fitness" value="Sports & Fitness" href="/categories/sportsfitness"></v-list-item>
-                <v-list-item prepend-icon="fas fa-paw" title="Pets" value="Pets" href="/categories/pets"></v-list-item>
+                <v-list-item :title="categories.name" :value="categories.name" :href="`/categories/${categories.id}`"></v-list-item>
               </v-list-group>
               <v-divider></v-divider>
               <h6>Social</h6>
@@ -185,6 +185,9 @@ import live from '../components/Catbar/live.vue'
   import {
     ref
   } from 'vue'
+  const { getItems } = useDirectusItems();
+
+  const categories = await getItems({ collection: "categories" });
 
   const theme = ref('light')
 

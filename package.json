@@ -51,6 +51,7 @@
       "graphql-tag": "^2.12.6",
       "instantsearch.css": "^8.0.0",
       "jquery": "^3.6.3",
+      "nuxt-directus": "^5.1.1",
       "nuxt-security": "^0.10.1",
       "sass": "^1.57.0",
       "ts-node": "^10.9.1",

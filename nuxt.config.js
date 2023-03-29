@@ -25,6 +25,7 @@ export default defineNuxtConfig({
     '@nuxt/content',
     //'@nuxtjs/i18n',
     'nuxt-meilisearch',
+    'nuxt-directus'
   ],
 
 /*
@@ -43,6 +44,15 @@ export default defineNuxtConfig({
     enableGlobalAppMiddleware: false
   }, 
   */
+
+  directus: {
+    url: process.env.DIRECTUS_URL,
+    auth: {
+      email: process.env.DIRECTUS_EMAIL,
+      password: process.env.DIRECTUS_PASSWORD,
+      token: process.env.DIRECTUS_TOKEN,
+    }
+  },
 
   meilisearch: {
     hostUrl:  process.env.HOSTURL,
