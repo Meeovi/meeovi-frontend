@@ -1,1 +1,0 @@
-import{o as e,J as t}from"./entry.4d806ec5.js";import{u as r}from"./composables.cafbcfda.js";const o={},i=Object.assign(o,{__name:"corner",setup(a){return r({title:"Crafting Corner"}),(n,s)=>(e(),t("div"))}});export{i as default};

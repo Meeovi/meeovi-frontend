@@ -96,3 +96,28 @@ body {
     height: 100% !important;
     width: 290px !important;
 }
+
+/********************* Social CSS **************/
+
+.newsfeed-channel {
+    padding: 10px;
+}
+
+.centralfeed {
+    padding-left: 25%;
+    padding-right: 25%;
+}
+
+.feedcomments {
+    background-color: #232323 !important;
+}
+
+.livefeed {
+    padding-top: 10px;
+}
+
+/****************** Social Profile ****************/
+
+.profilePage {
+    padding: 10px;
+}

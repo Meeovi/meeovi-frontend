@@ -1,1 +1,0 @@
-import{o as e,J as t}from"./entry.4d806ec5.js";import{u as a}from"./composables.cafbcfda.js";const o={},p=Object.assign(o,{__name:"upload",setup(r){return a({title:"Upload Center"}),(s,_)=>(e(),t("div"))}});export{p as default};

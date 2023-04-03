@@ -1,9 +1,5 @@
 # Information here will appear across AlternateCMS
 
-# Medusa Credentials
-
-ADMIN_CORS='http://localhost:7000,http://localhost:7001'
-
 # Database URL
 
 DATABASE_URL=''
@@ -22,11 +18,11 @@ YOUR_SUPABASE_KEY=''
 # DATABASE DETAILS
 
 DB_HOST=''
-DB_PORT=''
+DB_PORT='5432'
 DB_USER=''
 DB_PASSWORD=''
 DB_DATABASE=''
-DB_CLIENT=''
+DB_SCHEMA=''
 DB_SSL=false
 
 # Directus Credentials
@@ -38,10 +34,24 @@ DIRECTUS_PASSWORD=
 
 # Meilisearch Credentials
 
-HOSTURL=''
+HOSTURL='https://meeovi-meilisearch.q9re0h.easypanel.host/'
 SEARCH_APIKEY='<your_public_key>'
 ADMIN_APIKEY='<your_secret_key>'
 
 # Sentry Credentials
 
 SENTRY_DSN=''
+
+# Graphql Endpoint
+
+GRAPHQL_ENDPOINT=''
+
+# Keycloak Credentials
+
+KEYCLOAK_API_URL=
+KEYCLOAK_CLIENTID=
+
+# Umami Analytics
+
+NUXT_PUBLIC_UMAMI_HOST="https://domain.tld"
+NUXT_PUBLIC_UMAMI_ID="abc123-456def-ghi789"
