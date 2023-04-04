@@ -1,5 +1,6 @@
 <template>
     <div>
+        <profilebar />
         <section data-bs-version="5.1" class="info1 cid-tuzvvh2C2A" id="info1-3m">
     
     
@@ -47,9 +48,14 @@
 </template>
 
 <script>
-export default {
-    
-}
+import profilebar from '../../../components/Menus/profilebar.vue'
+
+    export default {
+        components: { profilebar },
+        data: () => ({
+            tab: null,
+        }),
+    }
 </script>
 
 <script setup>

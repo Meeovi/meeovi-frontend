@@ -1,20 +1,5 @@
 <template>
     <div>
-        <section data-bs-version="5.1" class="info1 cid-tuzvvh2C2A" id="info1-3m">
-    
-    
-    <div class="align-center container">
-        <div class="row justify-content-center">
-            <div class="col-12 col-lg-8">
-                <h3 class="mbr-section-title mb-4 mbr-fonts-style display-1">
-                    <strong>Recommendations</strong></h3>
-                
-                
-            </div>
-        </div>
-    </div>
-</section>
-
 <section data-bs-version="5.1" class="features10 cid-twaJZmEpe9" id="features10-4d">
 
     
@@ -47,9 +32,12 @@
 </template>
 
 <script>
-export default {
-    
-}
+
+    export default {
+        data: () => ({
+            tab: null,
+        }),
+    }
 </script>
 
 <script setup>

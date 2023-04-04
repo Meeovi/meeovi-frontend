@@ -121,7 +121,7 @@
                 href="/crafts/"></v-list-item>
               <v-list-item prepend-icon="fas fa-person-shelter" title="Meeovi Yardsale" value="meeovi yardsale"
                 href="/yardsale/"></v-list-item>
-              <v-list-item prepend-icon="fab fa-mattress-pillow" title="Meeovi Fabrics" value="meeovi fabrics"
+              <v-list-item prepend-icon="fas fa-mattress-pillow" title="Meeovi Fabrics" value="meeovi fabrics"
                 href="/fabrics/"></v-list-item>
               <v-list-item prepend-icon="fas fa-message" title="Meeovi Reviews" value="meeovi reviews" href="/reviews/">
               </v-list-item>
@@ -129,8 +129,8 @@
                 href="/categories/appstore"></v-list-item>
               <v-divider></v-divider>
               <h6>Deals Corner</h6>
-              <v-list-item prepend-icon="fas fa-tablet-button" title="Deals" value="Deals" href="/deals"></v-list-item>
-              <v-list-item prepend-icon="fas fa-tablet-button" title="Exclusives" value="exclusives"
+              <v-list-item prepend-icon="fas fa-money-bill" title="Deals" value="Deals" href="/deals"></v-list-item>
+              <v-list-item prepend-icon="fas fa-key" title="Exclusives" value="exclusives"
                 href="/categories/exclusives"></v-list-item>
               <v-divider></v-divider>
               <h6>My Account</h6>
