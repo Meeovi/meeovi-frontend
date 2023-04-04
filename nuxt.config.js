@@ -120,6 +120,8 @@ export default defineNuxtConfig({
   build: {
     transpile: [
       'vuetify',
+      '@apollo/client',
+      'ts-invariant/process',
       "@fortawesome/vue-fontawesome",
       "@fortawesome/fontawesome-svg-core",
       "@fortawesome/pro-solid-svg-icons",
