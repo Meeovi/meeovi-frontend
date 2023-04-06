@@ -5,7 +5,7 @@
                 <v-list-item title="All" value="" href="/categories/new"></v-list-item>
             </v-tab>
             <v-tab>
-                <v-list-item title="Books" value="" href="/categories/books"></v-list-item>
+                <v-list-item title="Videos" value="" href="/categories/books"></v-list-item>
             </v-tab>
         </v-tabs>
     </v-card>

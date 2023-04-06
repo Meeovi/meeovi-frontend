@@ -24,9 +24,6 @@
             <v-col class="text-center mt-4" cols="3">
                 <h5><strong>The Meeovi Company</strong></h5>
                 <v-list-item title="Elite Novels" value="elite novels" href="https://www.elitenovels.com"></v-list-item>
-                <v-list-item title="Meeovi Learning" value="meeovi learning" href="https://learning.meeovi.com"></v-list-item>
-                <v-list-item title="Meeovi Notes" value="meeovi notes" href="https://notes.meeovi.com"></v-list-item>
-                <v-list-item title="Meeovi Locate" value="meeovi locate" href="https://locate.meeovi.com"></v-list-item>
                 <v-list-item title="Collaborrate" value="collaborrate" href="https://www.collaborrate.com"></v-list-item>
                 <v-list-item title="ShopnCute" value="shopncute" href="https://www.shopncute.com"></v-list-item>
                 <v-list-item title="ShopnBold" value="shopnbold" href="https://www.shopnbold.com"></v-list-item>

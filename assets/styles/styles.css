@@ -33,6 +33,19 @@ body {
     background-color: transparent !important;
 }
 
+.accountDropdown h6 {
+    padding-left: 15px;
+    padding-top: 10px;
+}
+
+.lowerbar h5 {
+    padding: 15px;
+}
+
+.lowerbar a {
+    color: white;
+}
+
 /******************* Main Section CSS *********/
 
 #mainSection {
@@ -127,6 +140,6 @@ body {
     text-align: center;
 }
 
-.people5, .people1, .features10, .flip-card {
+.people5, .people1, .features10, .features12, .teams1, .features19, .flip-card, .features13, .pricing2, .plan, .content2 {
     background-color: transparent !important;
 }
