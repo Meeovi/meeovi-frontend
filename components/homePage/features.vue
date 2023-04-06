@@ -1,14 +1,40 @@
 <template>
     <div>
-        <section data-bs-version="5.1" class="mbr-section features20 cid-txNnDiFWnY" id="features20-4u" data-sortbtn="btn-primary">
+        <section data-bs-version="5.1" class="features1 cid-tAGULGk3ZD" id="features1-60">
 
     
 
     
+<div class="container">
+    <div class="row main align-items-center">
+        <div class="col-md-6 image-element ">
+            <div class="img-wrap">
+                <img src="../../assets/images/mbr-676x459.jpg" alt="">
+            </div>
+        </div>
+        <div class="col-md-6 text-element">
+            <div class="text-content">
+                
+                <h2 class="mbr-title pt-2 mbr-fonts-style align-center mbr-white display-2">Meeovi Theater</h2>
+                <div class="mbr-section-text">
+                    <p class="mbr-text pt-3 mbr-light mbr-fonts-style align-center mbr-white display-7">Dedicated personal videos, amateur &amp; professional movies, tv shows, and web series are all found within the virtual walls of the Meeovi Theater.<br></p>
+                </div>
+                <div class="mbr-section-btn pt-3 align-center"><a class="btn btn-md btn-white display-4" href="/categories/theater">Start Watching</a></div>
+            </div>
+        </div>
+    </div>
+</div>          
+</section>
+
+<section data-bs-version="5.1" class="mbr-section features20 cid-tAGWM3F077" id="features20-64">
+
+
+
+
 
 <div class="container-fluid">
     <h2 class="mbr-section-title align-left mbr-fonts-style mbr-white display-2">
-        Newest Products</h2>
+        Most Popular Products</h2>
     <div class="underline align-left pb-3">
         <div class="line"></div>
     </div>
@@ -96,35 +122,6 @@
     </div>
 </div>
 </section>
-
-<section data-bs-version="5.1" class="features16 cid-skeBGL5AVt" id="features17-5" data-sortbtn="btn-primary">
-
-
-<div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(255, 255, 255);">
-</div>
-<div class="container">
-    <div class="content-wrapper">
-        <div class="row align-items-center">
-            <div class="col-12 col-lg-6">
-                <div class="image-wrapper">
-                    <img src="../../assets/images/mbr-2-676x451.jpg" alt="">
-                </div>
-            </div>
-            <div class="col-12 col-lg">
-                <div class="text-wrapper">
-                    <h6 class="card-title mbr-fonts-style display-5">
-                        <strong>Meeovi Music</strong></h6>
-                    <p class="mbr-text mbr-fonts-style mb-4 display-4">Independent Music is growing with all types of artists and producers making the decision to release their music their way without interference of the big labels. With Meeovi Music, now they have a place where they control it all.&nbsp;<br></p>
-                    <div class="mbr-section-btn mt-3"><a class="btn btn-primary display-4" href="/music">
-                            Learn more
-                        </a></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</section>
-
     </div>
 </template>
 

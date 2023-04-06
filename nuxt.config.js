@@ -18,11 +18,14 @@ export default defineNuxtConfig({
 
   css: [
     'assets/web/assets/mobirise-icons2/mobirise2.css',
+    'assets/web/assets/mobirise-icons/mobirise-icons.css',
     'assets/bootstrap/css/bootstrap.min.css',
     'assets/tether/tether.min.css',
     'assets/bootstrap/css/bootstrap-grid.min.css',
     'assets/bootstrap/css/bootstrap-reboot.min.css',
+    'assets/parallax/jarallax.css',
     'assets/theme/css/style.css',
+    'assets/gallery/style.css',
     'assets/mobirise/css/mbr-additional.css',
     'vuetify/lib/styles/main.sass',
     '@mdi/font/css/materialdesignicons.min.css',

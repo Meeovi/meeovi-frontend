@@ -1,10 +1,37 @@
 <template>
     <div>
-        <section data-bs-version="5.1" class="mbr-section features20 cid-txNnCwzel4" id="features20-4t" data-sortbtn="btn-primary">
+        <section data-bs-version="5.1" class="features2 cid-tAGUH8o3YK" id="features2-5z">
 
     
 
     
+<div class="container">
+    <div class="row main align-items-center">
+        <div class="col-md-6 image-element">
+            <div class="img-wrap">
+                <img src="../../assets/images/04.jpg" alt="" title="">
+            </div>
+        </div>
+        <div class="col-md-6 text-element">
+            <div class="text-content">
+                
+                <h2 class="mbr-title pt-2 mbr-fonts-style align-center display-2">
+                    Meeovi Music</h2>
+                <div class="mbr-section-text">
+                    <p class="mbr-text pt-3 mbr-light mbr-fonts-style align-center display-7">Independent Music is growing with all types of artists and producers making the decision to release their music their way without interference of the big labels. With Meeovi Music, now they have a place where they control it all.<br></p>
+                </div>
+                <div class="mbr-section-btn pt-3 align-center"><a class="btn btn-md btn-primary display-4" href="/categories/music">Start Listening</a></div>
+            </div>
+        </div>
+    </div>
+</div>          
+</section>
+
+<section data-bs-version="5.1" class="mbr-section features20 cid-tAGWKgM1Rr" id="features20-63">
+
+
+
+
 
 <div class="container-fluid">
     <h2 class="mbr-section-title align-left mbr-fonts-style mbr-white display-2">
@@ -90,52 +117,6 @@
                 </div>
                 <div class="mbr-section-btn align-center pt-3">
                     <a href="#" class="btn btn-md btn-success display-4">BUY</a>         
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</section>
-
-<section data-bs-version="5.1" class="features6 popup-btn-cards cid-txNsyvlNwV" id="features6-4x" data-sortbtn="btn-primary">
-
-
-
-
-<div class="container">
-    <h2 class="align-center mbr-fonts-style mbr-section-title display-2">Discounts and Exclusives</h2>
-    
-    
-    <div class="row main justify-content-center">
-        <div class="col-lg-6 p-4">
-            <div class="image-element card-wrapper">
-                <img src="../../assets/images/07.jpg" alt="" title="">
-                <div class="mbr-overlay card-overlay"></div>
-                <div class="wrapper">
-                    <h3 class="card-title mbr-fonts-style align-left mbr-white display-2">
-                        Deals</h3>
-                    <div class="collapsed-content">
-                        <p class="mbr-text mbr-white mbr-fonts-style display-7">
-                            Deals that make pocket change go even longer. Check out our deals from our sellers.
-                        </p>
-                        <div class="mbr-section-btn"><a class="btn btn-md btn-info display-4" href="/commerce/deals">See Collection</a></div>
-                    </div>
-               </div>
-           </div>
-        </div>
-        <div class="col-lg-6 p-4">
-            <div class="image-element card-wrapper">
-                <img src="../../assets/images/11.jpg" alt="" title="">
-                <div class="mbr-overlay card-overlay"></div>
-                <div class="wrapper">
-                    <h3 class="card-title mbr-fonts-style align-left mbr-white display-2">
-                        Exclusives</h3>
-                    <div class="collapsed-content">
-                        <p class="mbr-text mbr-white mbr-fonts-style display-7">
-                            Products and content that you can only find on Meeovi.com
-                        </p>
-                        <div class="mbr-section-btn"><a class="btn btn-md btn-info display-4" href="/category/exclusives">See Collection</a></div>
-                    </div>
                 </div>
             </div>
         </div>
