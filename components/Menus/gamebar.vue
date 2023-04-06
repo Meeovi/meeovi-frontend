@@ -2,7 +2,9 @@
     <v-card class="lowerbar">
         <v-tabs style="background-color: green; color: white;" center-active>
             <h5>Meeovi Games</h5>
-            <v-tab><a href="">Example</a></v-tab>
+            <v-tab><a href="/categories/games">All</a></v-tab>
+            <v-tab><a href="/categories/games">Walkthroughs</a></v-tab>
+            <v-tab><a href="/categories/games"></a></v-tab>
         </v-tabs>
     </v-card>
 </template>
