@@ -7,7 +7,7 @@
                 <v-card :color="isSelected ? 'primary' : 'grey-lighten-1'" class="ma-4" height="200" width="100"
                     @click="toggle">
                     <v-img class="align-end text-white" height="200"
-                        src="../assets/images/face5.jpg" cover>
+                        src="../../assets/images/face5.jpg" cover>
                     </v-img>
                     <div class="d-flex fill-height align-center justify-center">
                         <v-scale-transition>

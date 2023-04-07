@@ -94,6 +94,25 @@ body {
     padding: 50px;
 }
 
+.categorySheet {
+    background-color: transparent !important;
+}
+
+.categoryPage h4 {
+    color: white;
+    padding-top: 30px;
+    padding-left: 5%;
+}
+
+.sliderProducts h4, .sliderCreators h4 {
+    padding-top: 30px;
+    padding-left: 5%;
+}
+
+.productPage {
+    padding: 10px;
+}
+
 /******************** Sidebar CSS *************/
 
 #sidebarNav {
@@ -140,6 +159,6 @@ body {
     text-align: center;
 }
 
-.people5, .people1, .features10, .features12, .teams1, .features19, .flip-card, .features13, .pricing2, .plan, .content2 {
+.people5, .people1, .features10, .features12, .teams1, .features19, .flip-card, .features13, .pricing2, .plan, .content2, .mbr-gallery, .mbr-section {
     background-color: transparent !important;
 }

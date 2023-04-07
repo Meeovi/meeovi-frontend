@@ -1,139 +1,85 @@
 <template>
     <div>
-        <section data-bs-version="5.1" class="mbr-section features13 cid-txNjPsul0g mbr-parallax-background" id="features13-4p">
+        <appbar />
+        <v-row class="categoryPage" style="background-color: purple;">
+            <v-col cols="12">
+                <h4>Popular Apps</h4>
+                <v-sheet class="mx-auto categorySheet">
+                    <v-slide-group v-model="model" class="pa-4" center-active show-arrows>
+                        <v-slide-group-item v-for="n in 15" :key="n" v-slot="{ isSelected, toggle }">
+                            <v-card :color="isSelected ? 'primary' : 'grey-lighten-1'" class="ma-4" height="200"
+                                width="100" @click="toggle">
+                                <v-img class="align-end text-white" height="200"
+                                    src="https://cdn.vuetifyjs.com/images/cards/docks.jpg" cover>
+                                </v-img>
+                                <div class="d-flex fill-height align-center justify-center">
+                                    <v-scale-transition>
+                                        <v-icon v-if="isSelected" color="white" size="48"
+                                            icon="mdi-close-circle-outline"></v-icon>
+                                    </v-scale-transition>
+                                </div>
+                            </v-card>
+                        </v-slide-group-item>
+                    </v-slide-group>
+                </v-sheet>
+            </v-col>
+        </v-row>
 
+        <v-row class="productPage">
+            <v-col cols="3">
+                <a href="">
+                    <v-card class="mx-auto" max-width="300">
+                        <v-img class="align-end text-white" height="200"
+                            src="https://cdn.vuetifyjs.com/images/cards/docks.jpg" cover>
+                        </v-img>
 
+                        <v-card-title class="pt-4">
+                            Product Name
+                        </v-card-title>
 
-<div class="mbr-overlay" style="opacity: 0.8; background-color: rgb(255, 255, 255);">
-</div>
+                        <v-card-text>
+                            <div>By: Seller</div>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-12 text-row col-md-6">
-            <h2 class="align-center pb-3 mbr-fonts-style display-2">
-                Meeovi Appstore</h2>
-            
-            <div class="mbr-section-btn title-btn align-center pt-3">
-                <a class="btn btn-black-outline display-4" href="#">VIEW ALL</a>
-            </div>
-        </div>
-        <div class="card px-3 py-4 col-12 col-md-6 col-lg-4 col-xl-3">
-            <div class="card-wrapper">
-                <div class="card-img">
-                    <img src="../../assets/images/01.jpg" alt="">
-                </div>
-                <div class="card-box">
-                    <p class="mbr-text mbr-fonts-style align-center display-7">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    </p>
-                    <div class="mbr-section-btn card-btn align-center">
-                        <a href="#" class="btn btn-secondary display-4">
-                            BUY
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+                            <div>Excerpt</div>
+                        </v-card-text>
 
-        <div class="card px-3 py-4 col-12 col-md-6 col-lg-4 col-xl-3">
-            <div class="card-wrapper">
-                <div class="card-img">
-                    <img src="../../assets/images/02.jpg" alt="">
-                </div>
-                <div class="card-box">
-                    <p class="mbr-text mbr-fonts-style align-center display-7">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    </p>
-                    <div class="mbr-section-btn card-btn align-center">
-                        <a href="#" class="btn btn-secondary display-4">
-                            BUY
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+                        <v-card-actions>
+                            <v-card-title>$ 59</v-card-title>
+                            <v-btn color="orange">
+                                Buy Now
+                            </v-btn>
 
-        <div class="card px-3 py-4 col-12 col-md-6 col-lg-4 col-xl-3">
-            <div class="card-wrapper">
-                <div class="card-img">
-                    <img src="../../assets/images/03.jpg" alt="">
-                </div>
-                <div class="card-box">
-                    <p class="mbr-text mbr-fonts-style align-center display-7">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    </p>
-                    <div class="mbr-section-btn card-btn align-center">
-                        <a href="#" class="btn btn-secondary display-4">
-                            BUY
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card px-3 py-4 col-12 col-md-6 col-lg-4 col-xl-3">
-            <div class="card-wrapper">
-                <div class="card-img">
-                    <img src="../../assets/images/04.jpg" alt="">
-                </div>
-                <div class="card-box">
-                    <p class="mbr-text mbr-fonts-style align-center display-7">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    </p>
-                    <div class="mbr-section-btn card-btn align-center">
-                        <a href="#" class="btn btn-secondary display-4">
-                            BUY
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card px-3 py-4 col-12 col-md-6 col-lg-4 col-xl-3">
-            <div class="card-wrapper">
-                <div class="card-img">
-                    <img src="../../assets/images/05.jpg" alt="">
-                </div>
-                <div class="card-box">
-                    <p class="mbr-text mbr-fonts-style align-center display-7">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    </p>
-                    <div class="mbr-section-btn card-btn align-center">
-                        <a href="#" class="btn btn-secondary display-4">
-                            BUY
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card px-3 py-4 col-12 col-md-6 col-lg-4 col-xl-3">
-            <div class="card-wrapper">
-                <div class="card-img">
-                    <img src="../../assets/images/06.jpg" alt="">
-                </div>
-                <div class="card-box">
-                    <p class="mbr-text mbr-fonts-style align-center display-7">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    </p>
-                    <div class="mbr-section-btn card-btn align-center">
-                        <a href="#" class="btn btn-secondary display-4">
-                            BUY
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</section>
+                            <v-btn color="orange">
+                                Share
+                            </v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </a>
+            </v-col>
+        </v-row>
+        <latestproducts />
+        <bestsellers />
+        <relatedappdev />
     </div>
 </template>
 
 <script>
-export default {
-    
-}
+    import appbar from '../../components/Menus/appbar.vue'
+    import latestproducts from '../../components/Related/latestproducts.vue'
+    import bestsellers from '../../components/Related/bestsellers.vue'
+    import relatedappdev from '../../components/Creators/relatedappdev.vue'
+
+    export default {
+        components: {
+            appbar,
+            latestproducts,
+            bestsellers,
+            relatedappdev
+        },
+        data: () => ({
+            model: null,
+        }),
+    }
 </script>
 
 <script setup>
