@@ -113,6 +113,14 @@ body {
     padding: 10px;
 }
 
+.feedButton {
+    z-index: 9999999 !important;
+    float: right;
+    right: 20px;
+    bottom: 20px;
+    position: fixed;
+}
+
 /******************** Sidebar CSS *************/
 
 #sidebarNav {

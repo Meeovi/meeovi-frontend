@@ -188,6 +188,7 @@
           <main id="mainSection">
             <live />
             <slot />
+            <BottomFooter />
           </main>
         </v-layout>
       </v-card>
