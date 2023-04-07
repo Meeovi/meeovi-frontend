@@ -1,9 +1,9 @@
 <template>
     <div>
-        <newsbar />
-        <v-row class="categoryPage" style="background-color: slateblue;">
+        <fitnessbar />
+        <v-row class="categoryPage" style="background-color: rosybrown;">
             <v-col cols="12">
-                <h4 style="color: black">Latest News</h4>
+                <h4 style="color: black">Popular Fitness</h4>
                 <v-sheet class="mx-auto categorySheet">
                     <v-slide-group v-model="model" class="pa-4" center-active show-arrows>
                         <v-slide-group-item v-for="n in 15" :key="n" v-slot="{ isSelected, toggle }">
@@ -59,22 +59,22 @@
         </v-row>
         <latestproducts />
         <bestsellers />
-        <relatedpodcasters />
+        <relatedtrainers />
     </div>
 </template>
 
 <script>
-    import newsbar from '../../components/Menus/newsbar.vue'
+    import fitnessbar from '../../components/Menus/fitnessbar.vue'
     import latestproducts from '../../components/Related/latestproducts.vue'
     import bestsellers from '../../components/Related/bestsellers.vue'
-    import relatedpodcasters from '../../components/Creators/relatedpodcasters.vue'
+    import relatedtrainers from '../../components/Creators/relatedtrainers.vue'
 
     export default {
         components: {
-            newsbar,
+            fitnessbar,
             latestproducts,
             bestsellers,
-            relatedpodcasters
+            relatedtrainers
         },
         data: () => ({
             model: null,
@@ -84,6 +84,6 @@
 
 <script setup>
     useHead({
-        title: 'Meeovi News',
+        title: 'Meeovi Fitness',
     })
 </script>

@@ -1,128 +1,58 @@
 <template>
     <div>
-        <section data-bs-version="5.1" class="info3 cid-tuzqZ1PJf1" id="info3-39">
+        <v-toolbar title="Exclusives" color="orange"></v-toolbar>
+        <v-row class="productPage">
+            <v-col cols="3">
+                <a href="">
+                    <v-card class="mx-auto" max-width="300">
+                        <v-img class="align-end text-white" height="200"
+                            src="https://cdn.vuetifyjs.com/images/cards/docks.jpg" cover>
+                        </v-img>
 
+                        <v-card-title class="pt-4">
+                            Product Name
+                        </v-card-title>
 
+                        <v-card-text>
+                            <div>By: Seller</div>
 
-            <div class="mbr-overlay" style="opacity: 0.6; background-color: rgb(68, 121, 217);">
-            </div>
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="card col-12 col-lg-10">
-                        <div class="card-wrapper">
-                            <div class="card-box align-center">
-                                <h4 class="card-title mbr-fonts-style align-center mb-4 display-1">
-                                    <strong>Exclusives</strong></h4>
-                                <p class="mbr-text mbr-fonts-style mb-4 display-7">Things you can only find here on
-                                    Meeovi.</p>
+                            <div>Excerpt</div>
+                        </v-card-text>
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+                        <v-card-actions>
+                            <v-card-title>$ 59</v-card-title>
+                            <v-btn color="orange">
+                                Buy Now
+                            </v-btn>
 
-        <section data-bs-version="5.1" class="mbr-section features20 cid-txNmbfDNcf" id="features20-4r">
-
-
-
-
-
-            <div class="container-fluid">
-
-
-
-                <div class="row justify-content-center pt-5">
-                    <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
-                        <div class="card-wrapper ">
-                            <div class="card-img">
-                                <img src="../../assets/images/15.jpg" alt="">
-                            </div>
-                            <div class="card-box">
-                                <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">
-                                    Skirt
-                                </p>
-                                <div class="prices align-center">
-
-                                    <span class="newPrice mbr-fonts-style mbr-bold display-2">$100</span>
-                                </div>
-                                <div class="mbr-section-btn align-center pt-3">
-                                    <a href="#" class="btn btn-md btn-success display-4">BUY</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
-                        <div class="card-wrapper">
-                            <div class="card-img">
-                                <img src="../../assets/images/17.jpg" alt="">
-                            </div>
-                            <div class="card-box">
-                                <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">
-                                    Jeans
-                                </p>
-                                <div class="prices align-center">
-
-                                    <span class="newPrice mbr-bold mbr-fonts-style display-2">$100</span>
-                                </div>
-                                <div class="mbr-section-btn align-center pt-3">
-                                    <a href="#" class="btn btn-md btn-success display-4">BUY</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
-                        <div class="card-wrapper">
-                            <div class="card-img">
-                                <img src="../../assets/images/14.jpg" alt="">
-                            </div>
-                            <div class="card-box">
-                                <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">
-                                    Denim Jacket
-                                </p>
-                                <div class="prices align-center">
-
-                                    <span class="newPrice mbr-bold mbr-fonts-style display-2">$100</span>
-                                </div>
-                                <div class="mbr-section-btn align-center pt-3">
-                                    <a href="#" class="btn btn-md btn-success display-4">BUY</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
-                        <div class="card-wrapper">
-                            <div class="card-img">
-                                <img src="../../assets/images/16.jpg" alt="">
-                            </div>
-                            <div class="card-box">
-                                <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">
-                                    Leather Jacket
-                                </p>
-                            </div>
-                            <div class="prices align-center">
-
-                                <span class="newPrice mbr-bold mbr-fonts-style display-2">$100</span>
-                            </div>
-                            <div class="mbr-section-btn align-center pt-3">
-                                <a href="#" class="btn btn-md btn-success display-4">BUY</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
+                            <v-btn color="orange">
+                                Share
+                            </v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </a>
+            </v-col>
+        </v-row>
+        <latestproducts />
+        <bestsellers />
+        <relatedcreators />
     </div>
 </template>
 
 <script>
-    export default {
+    import latestproducts from '../../components/Related/latestproducts.vue'
+    import bestsellers from '../../components/Related/bestsellers.vue'
+    import relatedcreators from '../../components/Creators/relatedcreators.vue'
 
+    export default {
+        components: {
+            latestproducts,
+            bestsellers,
+            relatedcreators
+        },
+        data: () => ({
+            model: null,
+        }),
     }
 </script>
 

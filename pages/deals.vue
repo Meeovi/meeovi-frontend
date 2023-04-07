@@ -1,122 +1,59 @@
 <template>
     <div>
-        <section data-bs-version="5.1" class="header3 cid-twaFvFUoaK mbr-fullscreen mbr-parallax-background" id="header3-3w">
+        <v-toolbar title="Deals" color="orange"></v-toolbar>
+        <v-row class="productPage">
+            <v-col cols="3">
+                <a href="">
+                    <v-card class="mx-auto" max-width="300">
+                        <v-img class="align-end text-white" height="200"
+                            src="https://cdn.vuetifyjs.com/images/cards/docks.jpg" cover>
+                        </v-img>
 
-    
+                        <v-card-title class="pt-4">
+                            Product Name
+                        </v-card-title>
 
-<div class="mbr-overlay" style="opacity: 0.5;">
-</div>
+                        <v-card-text>
+                            <div>By: Seller</div>
 
-<div class="container align-left">
-    <div class="row justify-content-center mbr-white">
-        <div class="mbr-white col-md-12">
-            <h4 class="mbr-section-subtitle mbr-fonts-style align-left pb-2 display-5">Deals under $100</h4>
-            <h1 class="mbr-section-title mbr-white mbr-fonts-style align-left display-1">Deals unlike any other</h1>
-            <p class="mbr-text pb-3 mbr-fonts-style mbr-white align-left display-7">Meeovi Deals is the best spot to find a great deals that updates every week.&nbsp;</p>
-            
-        </div>
-    </div>
-</div>
+                            <div>Excerpt</div>
+                        </v-card-text>
 
-</section>
+                        <v-card-actions>
+                            <v-card-title>$ 59</v-card-title>
+                            <v-btn color="orange">
+                                Buy Now
+                            </v-btn>
 
-<section data-bs-version="5.1" class="mbr-section features20 cid-txNm5Y2yB3" id="features20-4q">
-
-
-
-
-
-<div class="container-fluid">
-    <div class="row justify-content-center pt-5">
-        <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
-            <div class="card-wrapper ">
-                <div class="card-img">
-                    <img src="../assets/images/15.jpg" alt="">
-                </div>
-                <div class="card-box">
-                    <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">
-                        Skirt
-                    </p>
-                    <div class="prices align-center">
-                        
-                        <span class="newPrice mbr-fonts-style mbr-bold display-2">$100</span>
-                    </div>
-                    <div class="mbr-section-btn align-center pt-3">
-                        <a href="#" class="btn btn-md btn-success display-4">BUY</a>         
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
-            <div class="card-wrapper">
-                <div class="card-img">
-                    <img src="../assets/images/17.jpg" alt="">
-                </div>
-                <div class="card-box">
-                    <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">
-                        Jeans
-                    </p>
-                    <div class="prices align-center">
-                        
-                        <span class="newPrice mbr-bold mbr-fonts-style display-2">$100</span>
-                    </div>
-                    <div class="mbr-section-btn align-center pt-3">
-                        <a href="#" class="btn btn-md btn-success display-4">BUY</a>         
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
-            <div class="card-wrapper">
-                <div class="card-img">
-                    <img src="../assets/images/14.jpg" alt="">
-                </div>
-                <div class="card-box">
-                    <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">
-                        Denim Jacket
-                    </p>
-                    <div class="prices align-center">
-                        
-                        <span class="newPrice mbr-bold mbr-fonts-style display-2">$100</span>
-                    </div>
-                    <div class="mbr-section-btn align-center pt-3">
-                        <a href="#" class="btn btn-md btn-success display-4">BUY</a>         
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
-            <div class="card-wrapper">
-                <div class="card-img">
-                    <img src="../assets/images/16.jpg" alt="">
-                </div>
-                <div class="card-box">
-                    <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">
-                        Leather Jacket
-                    </p>
-                </div>
-                <div class="prices align-center">
-                    
-                    <span class="newPrice mbr-bold mbr-fonts-style display-2">$100</span>
-                </div>
-                <div class="mbr-section-btn align-center pt-3">
-                    <a href="#" class="btn btn-md btn-success display-4">BUY</a>         
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</section>
+                            <v-btn color="orange">
+                                Share
+                            </v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </a>
+            </v-col>
+        </v-row>
+        <latestproducts />
+        <bestsellers />
+        <relatedcreators />
     </div>
 </template>
 
 <script>
-export default {
-    
-}
+    import latestproducts from '../../components/Related/latestproducts.vue'
+    import bestsellers from '../../components/Related/bestsellers.vue'
+    import relatedcreators from '../../components/Creators/relatedcreators.vue'
+
+    export default {
+        components: {
+            latestproducts,
+            bestsellers,
+            relatedcreators
+        },
+        data: () => ({
+            model: null,
+        }),
+    }
 </script>
 
 <script setup>

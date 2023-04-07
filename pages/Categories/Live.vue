@@ -1,6 +1,7 @@
 <template>
-    <div class="livefeed">
-        <v-row>
+    <div>
+        <v-toolbar title="Meeovi Live" color="orange"></v-toolbar>
+        <v-row class="livefeed">
             <v-col cols="4">
                 <div class="text-center">
                     <v-dialog v-model="dialog" width="auto">
@@ -36,6 +37,6 @@
 
 <script setup>
     useHead({
-        title: ''
+        title: 'Meeovi Live'
     })
 </script>

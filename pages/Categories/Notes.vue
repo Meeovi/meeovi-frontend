@@ -1,91 +1,84 @@
 <template>
     <div>
         <notesbar />
-        <section data-bs-version="5.1" class="features19 cid-tABGJcl023" id="features19-5u" data-sortbtn="btn-primary">
-
-
-
-
-            <div class="container-fluid">
-                <h2 class="mbr-section-title align-left mbr-fonts-style display-2">
-                    Latest Notes</h2>
-                <div class="underline align-left pb-3">
-                    <div class="line"></div>
-                </div>
-
-                <div class="row justify-content-center align-items-start pt-5">
-                    <div class="card px-3 py-4 col-12 col-md-6 col-lg-4">
-                        <div class="card-wrapper flip-card">
-                            <div class="card-img">
-                                <img src="../../assets/images/01.jpg" alt="">
-
-                                <div class="img-name mbr-fonts-style mbr-bold mbr-white display-2">
-                                    Outwear
+        <v-row class="categoryPage" style="background-color: palevioletred;">
+            <v-col cols="12">
+                <h4 style="color: black">Popular Notes</h4>
+                <v-sheet class="mx-auto categorySheet">
+                    <v-slide-group v-model="model" class="pa-4" center-active show-arrows>
+                        <v-slide-group-item v-for="n in 15" :key="n" v-slot="{ isSelected, toggle }">
+                            <v-card :color="isSelected ? 'primary' : 'grey-lighten-1'" class="ma-4" height="200"
+                                width="100" @click="toggle">
+                                <v-img class="align-end text-white" height="200"
+                                    src="https://cdn.vuetifyjs.com/images/cards/docks.jpg" cover>
+                                </v-img>
+                                <div class="d-flex fill-height align-center justify-center">
+                                    <v-scale-transition>
+                                        <v-icon v-if="isSelected" color="white" size="48"
+                                            icon="mdi-close-circle-outline"></v-icon>
+                                    </v-scale-transition>
                                 </div>
-                            </div>
-                            <div class="card-box">
-                                <p class="mbr-card-text mbr-fonts-style align-center display-7">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                </p>
-                                <div class="mbr-section-btn align-center">
-                                    <a href="#" class="btn btn-primary-outline display-4">VIEW ALL</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card px-3 py-4 col-12 col-md-6 col-lg-4">
-                        <div class="card-wrapper flip-card">
-                            <div class="card-img">
-                                <img src="../../assets/images/02.jpg" alt="">
+                            </v-card>
+                        </v-slide-group-item>
+                    </v-slide-group>
+                </v-sheet>
+            </v-col>
+        </v-row>
 
-                                <div class="img-name mbr-fonts-style mbr-bold mbr-white display-2">
-                                    Shirts
-                                </div>
-                            </div>
-                            <div class="card-box">
-                                <p class="mbr-card-text mbr-fonts-style align-center display-7">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                </p>
-                                <div class="mbr-section-btn align-center">
-                                    <a href="#" class="btn btn-primary-outline display-4">VIEW ALL</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <v-row class="productPage">
+            <v-col cols="3">
+                <a href="">
+                    <v-card class="mx-auto" max-width="300">
+                        <v-img class="align-end text-white" height="200"
+                            src="https://cdn.vuetifyjs.com/images/cards/docks.jpg" cover>
+                        </v-img>
 
-                    <div class="card px-3 py-4 col-12 col-md-6 col-lg-4">
-                        <div class="card-wrapper flip-card">
-                            <div class="card-img">
-                                <img src="../../assets/images/03.jpg" alt="">
+                        <v-card-title class="pt-4">
+                            Product Name
+                        </v-card-title>
 
-                                <div class="img-name mbr-fonts-style mbr-bold mbr-white display-2">
-                                    Sweatshirts
-                                </div>
-                            </div>
-                            <div class="card-box">
-                                <p class="mbr-card-text mbr-fonts-style align-center display-7">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                </p>
-                                <div class="mbr-section-btn align-center">
-                                    <a href="#" class="btn btn-primary-outline display-4">VIEW ALL</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
+                        <v-card-text>
+                            <div>By: Seller</div>
+
+                            <div>Excerpt</div>
+                        </v-card-text>
+
+                        <v-card-actions>
+                            <v-card-title>$ 59</v-card-title>
+                            <v-btn color="orange">
+                                Buy Now
+                            </v-btn>
+
+                            <v-btn color="orange">
+                                Share
+                            </v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </a>
+            </v-col>
+        </v-row>
+        <latestproducts />
+        <bestsellers />
+        <relatedauthors />
     </div>
 </template>
 
 <script>
     import notesbar from '../../components/Menus/notesbar.vue'
+    import latestproducts from '../../components/Related/latestproducts.vue'
+    import bestsellers from '../../components/Related/bestsellers.vue'
+    import relatedauthors from '../../components/Creators/relatedauthors.vue'
 
     export default {
         components: {
-            notesbar
-        }
+            notesbar,
+            latestproducts,
+            bestsellers,
+            relatedauthors
+        },
+        data: () => ({
+            model: null,
+        }),
     }
 </script>
 
