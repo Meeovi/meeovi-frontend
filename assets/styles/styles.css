@@ -46,6 +46,15 @@ body {
     color: white;
 }
 
+.rightnav {
+    padding-top: 35px;
+    position: relative;
+}
+
+.rightnav li {
+    display: inline-block;
+}
+
 /******************* Main Section CSS *********/
 
 #mainSection {
@@ -120,6 +129,13 @@ body {
     bottom: 20px;
     position: fixed;
 }
+
+/******************** Commerce CSS ************/
+
+.cartPage {
+    padding: 20px;
+}
+
 
 /******************** Sidebar CSS *************/
 

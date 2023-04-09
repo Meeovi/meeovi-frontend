@@ -32,6 +32,10 @@ DIRECTUS_TOKEN='-'
 DIRECTUS_EMAIL=
 DIRECTUS_PASSWORD=
 
+# Medusa Credentials
+
+MEDUSA_URL=<YOUR_MEDUSA_URL> # By default http://localhost:9000
+
 # Meilisearch Credentials
 
 HOSTURL='https://meeovi-meilisearch.q9re0h.easypanel.host/'

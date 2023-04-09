@@ -1,6 +1,6 @@
 <template>
     <div class="text-center">
-        <v-dialog v-model="dialog" width="500">
+        <v-dialog v-model="dialog">
             <template v-slot:activator="{ props }">
                 <v-btn class="feedButton" icon="fas fa-plus" color="orange" title="Post to Social Feed" v-bind="props">
                 </v-btn>

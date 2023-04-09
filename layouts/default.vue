@@ -24,9 +24,9 @@
         <v-col>
           <v-menu :location="location" transition="slide-y-transition">
             <template v-slot:activator="{ props }">
-              <v-btn variant="flat" v-bind="props">
+              <a variant="flat" v-bind="props">
                 <v-icon start icon="fas fa-bell"></v-icon>
-              </v-btn>
+              </a>
             </template>
             <v-list>
               <v-list-item title="" value="" href="/"></v-list-item>
@@ -43,9 +43,9 @@
         <v-col>
           <v-menu :location="location" transition="slide-y-transition">
             <template v-slot:activator="{ props }">
-              <v-btn variant="flat" v-bind="props">
+              <a variant="flat" v-bind="props">
                 <v-icon start icon="fas fa-user-circle"></v-icon>
-              </v-btn>
+              </a>
             </template>
             <v-list>
               <v-row class="accountDropdown">
@@ -90,9 +90,9 @@
         </v-col>
 
         <v-col>
-          <v-btn variant="flat" href="/commerce/cart">
+          <a variant="flat" href="/commerce/cart">
             <v-icon start icon="fas fa-shopping-cart"></v-icon>
-          </v-btn>
+          </a>
         </v-col>
       </div>
     </v-app-bar>
@@ -113,7 +113,7 @@
               </v-list-item>
               <v-divider></v-divider>
               <h6>Shop By Category</h6>
-              <v-list-group prepend-icon="fas fa-building" v-for="categories in meeovi_categories" :key="categories.id">
+              <v-list-group prepend-icon="fas fa-building" v-for="categories in allCategoriesList" :key="categories.id">
                 <template v-slot:activator="{ props }">
                   <v-list-item v-bind="props" title="Categories"></v-list-item>
                 </template>
@@ -205,12 +205,12 @@
   import gql from 'graphql-tag'
 
   const query = gql `
-    query categories {
-      meeovi_categories {
-      id
-      name
-    }
-  }`
+    query MyQuery {
+      allCategoriesList {
+        id
+        name
+      }
+}`
 
   export default {
     data() {

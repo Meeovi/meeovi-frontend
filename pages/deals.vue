@@ -40,9 +40,9 @@
 </template>
 
 <script>
-    import latestproducts from '../../components/Related/latestproducts.vue'
-    import bestsellers from '../../components/Related/bestsellers.vue'
-    import relatedcreators from '../../components/Creators/relatedcreators.vue'
+    import latestproducts from '../components/Related/latestproducts.vue'
+    import bestsellers from '../components/Related/bestsellers.vue'
+    import relatedcreators from '../components/Creators/relatedcreators.vue'
 
     export default {
         components: {
