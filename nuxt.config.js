@@ -40,7 +40,7 @@ export default defineNuxtConfig({
     '@nuxt/content',
     'nuxt-meilisearch',
     'nuxt-directus',
-    'nuxt-medusa',
+    //'nuxt-medusa',
   ],
 
   /*auth: {
@@ -96,13 +96,13 @@ export default defineNuxtConfig({
     }
   },
 
-  medusa: {
+/*  medusa: {
     baseUrl: process.env.MEDUSA_URL,
     publishableApiKey: process.env.PUBLISHABLE_API_key,
     maxRetries: 3,
     global: true,
     server: false
-  },
+  }, */
 
   meilisearch: {
     hostUrl: process.env.HOSTURL,
