@@ -218,8 +218,8 @@
 </template>
 
 <script>
-    import relatedvideo from '../../components/Related/relatedvideo.vue'
-    import recentlyviewed from '../../components/Related/recentlyviewed.vue'
+    import relatedvideo from '../../../components/Related/relatedvideo.vue'
+    import recentlyviewed from '../../../components/Related/recentlyviewed.vue'
 
     export default {
         components: {

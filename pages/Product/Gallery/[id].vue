@@ -170,8 +170,8 @@
 </template>
 
 <script>
-    import relatedgallery from '../../components/Related/relatedgallery.vue'
-    import recentlyviewed from '../../components/Related/recentlyviewed.vue'
+    import relatedgallery from '../../../components/Related/relatedgallery.vue'
+    import recentlyviewed from '../../../components/Related/recentlyviewed.vue'
 
     export default {
         components: {

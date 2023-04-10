@@ -93,8 +93,8 @@
 </template>
 
 <script>
-    import relatedchart from '../../components/Related/relatedchart.vue'
-    import recentlyviewed from '../../components/Related/recentlyviewed.vue'
+    import relatedchart from '../../../components/Related/relatedchart.vue'
+    import recentlyviewed from '../../../components/Related/recentlyviewed.vue'
 
     export default {
         components: {

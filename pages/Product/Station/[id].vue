@@ -79,8 +79,8 @@
 </template>
 
 <script>
-    import relatedstation from '../../components/Related/relatedstation.vue'
-    import recentlyviewed from '../../components/Related/recentlyviewed.vue'
+    import relatedstation from '../../../components/Related/relatedstation.vue'
+    import recentlyviewed from '../../../components/Related/recentlyviewed.vue'
 
     export default {
         components: {
