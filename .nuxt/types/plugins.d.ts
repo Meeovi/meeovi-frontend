@@ -16,7 +16,6 @@ type NuxtAppInjections =
   InjectionType<typeof import("../../node_modules/nuxt/dist/app/plugins/chunk-reload.client").default> &
   InjectionType<typeof import("../../plugins/directus").default> &
   InjectionType<typeof import("../../plugins/fontawesome").default> &
-  InjectionType<typeof import("../../plugins/graphql").default> &
   InjectionType<typeof import("../../plugins/instantsearch").default> &
   InjectionType<typeof import("../../plugins/vuetify").default>
 
