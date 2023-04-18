@@ -28,8 +28,6 @@
     const {
       data: categories
     } = await useAsyncData('categories', () => {
-      return $directus.items('categories').readByQuery({
-        fields: ['id', 'name']
-      })
+      return $directus.items('categories').readByQuery()
     })
 </script>
