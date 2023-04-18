@@ -8,7 +8,6 @@ import { provider, isWindows } from 'file://C:/Users/Basti/OneDrive/Documents/My
 import { defineEventHandler, handleCacheHeaders, createEvent, eventHandler, setHeaders, sendRedirect, proxyRequest, setResponseStatus, getRequestHeader, setResponseHeader, getRequestHeaders, getQuery, getCookie, createError, createApp, createRouter as createRouter$1, toNodeListener, fetchWithEvent, lazyEventHandler } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/h3/dist/index.mjs';
 import { createRenderer } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/vue-bundle-renderer/dist/runtime.mjs';
 import devalue from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/@nuxt/devalue/dist/devalue.mjs';
-import { renderToString } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/vue/server-renderer/index.mjs';
 import { createFetch as createFetch$1, Headers } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/ofetch/dist/node.mjs';
 import destr from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/destr/dist/index.mjs';
 import { createCall, createFetch } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/unenv/runtime/fetch/index.mjs';
@@ -20,7 +19,6 @@ import { parseURL, withoutBase, joinURL, withQuery, withLeadingSlash, withoutTra
 import { createStorage, prefixStorage } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/unstorage/dist/index.mjs';
 import unstorage_47drivers_47fs from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/unstorage/drivers/fs.mjs';
 import { toRouteMatcher, createRouter } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/radix3/dist/index.mjs';
-import { GraphQLClient } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/graphql-request/dist/index.js';
 import { MeiliSearch } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/meilisearch/dist/bundles/meilisearch.cjs.js';
 import { extname, join } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/pathe/dist/index.mjs';
 import { unified } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/unified/index.js';
@@ -58,7 +56,7 @@ const inlineAppConfig = {};
 
 const appConfig = defuFn(inlineAppConfig);
 
-const _runtimeConfig = {"app":{"baseURL":"/","buildAssetsDir":"/_nuxt/","cdnURL":""},"nitro":{"envPrefix":"NUXT_","routeRules":{"/__nuxt_error":{"cache":false}}},"public":{"GQL_HOST":"http://127.0.0.1:4001","graphql-client":{"clients":{"default":{"token":{"type":"Bearer","name":"Authorization"},"proxyCookies":true,"tokenStorage":{"mode":"cookie","cookieOptions":{"maxAge":604800,"secure":false},"name":"gql:default"},"preferGETQueries":false,"host":"http://127.0.0.1:4001"}},"watch":true,"autoImport":true,"functionPrefix":"Gql","documentPaths":["./graphql/queries/"],"preferGETQueries":false},"content":{"locales":[],"defaultLocale":"","integrity":"","experimental":{"stripQueryParameters":false,"clientDB":false},"api":{"baseURL":"/api/_content"},"navigation":{"fields":[]},"tags":{"p":"prose-p","a":"prose-a","blockquote":"prose-blockquote","code-inline":"prose-code-inline","code":"prose-code","em":"prose-em","h1":"prose-h1","h2":"prose-h2","h3":"prose-h3","h4":"prose-h4","h5":"prose-h5","h6":"prose-h6","hr":"prose-hr","img":"prose-img","ul":"prose-ul","ol":"prose-ol","li":"prose-li","strong":"prose-strong","table":"prose-table","thead":"prose-thead","tbody":"prose-tbody","td":"prose-td","th":"prose-th","tr":"prose-tr"},"highlight":false,"wsUrl":"ws://localhost:4003/","documentDriven":false,"host":"","trailingSlash":false,"anchorLinks":{"depth":4,"exclude":[1]}},"meilisearchClient":{"hostUrl":"https://meeovicms.com:7700/","searchApiKey":"<your_public_key>","serverSideUsage":true,"instantSearch":{"theme":"algolia"},"clientOptions":{"placeholderSearch":true,"paginationTotalHits":50,"finitePagination":true,"primaryKey":"","keepZeroFacets":false}},"directus":{"url":"http://meeovicms.com:35901/","autoFetch":true,"fetchUserParams":"","token":""}},"graphql-client":{"clients":{}},"content":{"cacheVersion":2,"cacheIntegrity":"kc4UzpZUjI","transformers":[],"base":"","api":{"baseURL":"/api/_content"},"watch":{"ws":{"port":{"port":4000,"portRange":[4000,4040]},"hostname":"localhost","showURL":false}},"sources":{},"ignores":["\\.","-"],"locales":[],"defaultLocale":"","highlight":false,"markdown":{"tags":{"p":"prose-p","a":"prose-a","blockquote":"prose-blockquote","code-inline":"prose-code-inline","code":"prose-code","em":"prose-em","h1":"prose-h1","h2":"prose-h2","h3":"prose-h3","h4":"prose-h4","h5":"prose-h5","h6":"prose-h6","hr":"prose-hr","img":"prose-img","ul":"prose-ul","ol":"prose-ol","li":"prose-li","strong":"prose-strong","table":"prose-table","thead":"prose-thead","tbody":"prose-tbody","td":"prose-td","th":"prose-th","tr":"prose-tr"},"anchorLinks":{"depth":4,"exclude":[1]},"remarkPlugins":{},"rehypePlugins":{}},"yaml":{},"csv":{"delimeter":",","json":true},"navigation":{"fields":[]},"documentDriven":false,"experimental":{"clientDB":false,"stripQueryParameters":false}},"serverMeilisearchClient":{"hostUrl":"https://meeovicms.com:7700/","searchApiKey":"<your_public_key>","adminApiKey":"<your_secret_key>","serverSideUsage":true,"instantSearch":{"theme":"algolia"},"clientOptions":{"placeholderSearch":true,"paginationTotalHits":50,"finitePagination":true,"primaryKey":"","keepZeroFacets":false}}};
+const _runtimeConfig = {"app":{"baseURL":"/","buildAssetsDir":"/_nuxt/","cdnURL":""},"nitro":{"envPrefix":"NUXT_","routeRules":{"/__nuxt_error":{"cache":false}}},"public":{"content":{"locales":[],"defaultLocale":"","integrity":"","experimental":{"stripQueryParameters":false,"clientDB":false},"api":{"baseURL":"/api/_content"},"navigation":{"fields":[]},"tags":{"p":"prose-p","a":"prose-a","blockquote":"prose-blockquote","code-inline":"prose-code-inline","code":"prose-code","em":"prose-em","h1":"prose-h1","h2":"prose-h2","h3":"prose-h3","h4":"prose-h4","h5":"prose-h5","h6":"prose-h6","hr":"prose-hr","img":"prose-img","ul":"prose-ul","ol":"prose-ol","li":"prose-li","strong":"prose-strong","table":"prose-table","thead":"prose-thead","tbody":"prose-tbody","td":"prose-td","th":"prose-th","tr":"prose-tr"},"highlight":false,"wsUrl":"ws://localhost:4000/","documentDriven":false,"host":"","trailingSlash":false,"anchorLinks":{"depth":4,"exclude":[1]}},"meilisearchClient":{"hostUrl":"https://meeovicms.com:7700/","searchApiKey":"<your_public_key>","serverSideUsage":true,"instantSearch":{"theme":"algolia"},"clientOptions":{"placeholderSearch":true,"paginationTotalHits":50,"finitePagination":true,"primaryKey":"","keepZeroFacets":false}},"directus":{"url":"http://meeovicms.com:8011/","autoFetch":true,"fetchUserParams":"","token":""}},"content":{"cacheVersion":2,"cacheIntegrity":"kc4UzpZUjI","transformers":[],"base":"","api":{"baseURL":"/api/_content"},"watch":{"ws":{"port":{"port":4000,"portRange":[4000,4040]},"hostname":"localhost","showURL":false}},"sources":{},"ignores":["\\.","-"],"locales":[],"defaultLocale":"","highlight":false,"markdown":{"tags":{"p":"prose-p","a":"prose-a","blockquote":"prose-blockquote","code-inline":"prose-code-inline","code":"prose-code","em":"prose-em","h1":"prose-h1","h2":"prose-h2","h3":"prose-h3","h4":"prose-h4","h5":"prose-h5","h6":"prose-h6","hr":"prose-hr","img":"prose-img","ul":"prose-ul","ol":"prose-ol","li":"prose-li","strong":"prose-strong","table":"prose-table","thead":"prose-thead","tbody":"prose-tbody","td":"prose-td","th":"prose-th","tr":"prose-tr"},"anchorLinks":{"depth":4,"exclude":[1]},"remarkPlugins":{},"rehypePlugins":{}},"yaml":{},"csv":{"delimeter":",","json":true},"navigation":{"fields":[]},"documentDriven":false,"experimental":{"clientDB":false,"stripQueryParameters":false}},"serverMeilisearchClient":{"hostUrl":"https://meeovicms.com:7700/","searchApiKey":"<your_public_key>","adminApiKey":"<your_secret_key>","serverSideUsage":true,"instantSearch":{"theme":"algolia"},"clientOptions":{"placeholderSearch":true,"paginationTotalHits":50,"finitePagination":true,"primaryKey":"","keepZeroFacets":false}}};
 const ENV_PREFIX = "NITRO_";
 const ENV_PREFIX_ALT = _runtimeConfig.nitro.envPrefix ?? process.env.NITRO_ENV_PREFIX ?? "_";
 overrideConfig(_runtimeConfig);
@@ -363,9 +361,9 @@ function cloneWithProxy(obj, overrides) {
 }
 const cachedEventHandler = defineCachedEventHandler;
 
-const config$1 = useRuntimeConfig();
+const config = useRuntimeConfig();
 const _routeRulesMatcher = toRouteMatcher(
-  createRouter({ routes: config$1.nitro.routeRules })
+  createRouter({ routes: config.nitro.routeRules })
 );
 function createRouteRulesHandler() {
   return eventHandler((event) => {
@@ -411,9 +409,9 @@ function getRouteRulesForPath(path) {
   return defu({}, ..._routeRulesMatcher.matchAll(path).reverse());
 }
 
-function defineNitroPlugin(def) {
-  return def;
-}
+const plugins = [
+  
+];
 
 function defineRenderHandler(handler) {
   return eventHandler(async (event) => {
@@ -445,34 +443,6 @@ function defineRenderHandler(handler) {
     return typeof response.body === "string" ? response.body : JSON.stringify(response.body);
   });
 }
-
-const config = {"default":{"token":{"type":"Bearer","name":"Authorization"},"proxyCookies":true,"tokenStorage":{"mode":"cookie","cookieOptions":{"maxAge":604800,"secure":false},"name":"gql:default"},"preferGETQueries":false,"host":"http://127.0.0.1:4001"}};
-const clients = {};
-
-const GqlNitro = { clients, config };
-
-const _6LAactgYQf = defineNitroPlugin(() => {
-  const GqlConfig = GqlNitro.config;
-  for (const [client, conf] of Object.entries(GqlConfig)) {
-    const serverHeaders = typeof conf?.headers?.serverOnly === "object" && conf?.headers?.serverOnly || void 0;
-    if (conf?.headers?.serverOnly) {
-      delete conf.headers.serverOnly;
-    }
-    const tokenName = conf.token.name;
-    const tokenType = conf.token.type;
-    const authToken = !tokenType ? conf?.token?.value : `${tokenType} ${conf?.token?.value}`;
-    const headers = {
-      ...conf?.headers,
-      ...serverHeaders,
-      ...conf?.token?.value && { [tokenName]: authToken }
-    };
-    GqlNitro.clients[client] = new GraphQLClient(conf.host, { headers });
-  }
-});
-
-const plugins = [
-  _6LAactgYQf
-];
 
 function hasReqHeader(event, name, includes) {
   const value = getRequestHeader(event, name);
@@ -3832,31 +3802,6 @@ globalThis.__buildAssetsURL = buildAssetsURL;
 globalThis.__publicAssetsURL = publicAssetsURL;
 const getClientManifest = () => import('file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/.nuxt/dist/server/client.manifest.mjs').then((r) => r.default || r).then((r) => typeof r === "function" ? r() : r);
 const getStaticRenderedHead = () => Promise.resolve().then(function () { return _virtual__headStatic$1; }).then((r) => r.default || r);
-const getServerEntry = () => import('file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/.nuxt/dist/server/server.mjs').then((r) => r.default || r);
-const getSSRRenderer = lazyCachedFunction(async () => {
-  const manifest = await getClientManifest();
-  if (!manifest) {
-    throw new Error("client.manifest is not available");
-  }
-  const createSSRApp = await getServerEntry();
-  if (!createSSRApp) {
-    throw new Error("Server bundle is not available");
-  }
-  const options = {
-    manifest,
-    renderToString: renderToString$1,
-    buildAssetsURL
-  };
-  const renderer = createRenderer(createSSRApp, options);
-  async function renderToString$1(input, context) {
-    const html = await renderToString(input, context);
-    if (process.env.NUXT_VITE_NODE_OPTIONS) {
-      renderer.rendererContext.updateManifest(await getClientManifest());
-    }
-    return `<${appRootTag} id="${appRootId}">${html}</${appRootTag}>`;
-  }
-  return renderer;
-});
 const getSPARenderer = lazyCachedFunction(async () => {
   const manifest = await getClientManifest();
   const options = {
@@ -3903,19 +3848,19 @@ const renderer = defineRenderHandler(async (event) => {
     url = url.substring(0, url.lastIndexOf("/")) || "/";
     event.node.req.url = url;
   }
-  const routeOptions = getRouteRules(event);
+  getRouteRules(event);
   const ssrContext = {
     url,
     event,
     runtimeConfig: useRuntimeConfig(),
-    noSSR: !!event.node.req.headers["x-nuxt-no-ssr"] || routeOptions.ssr === false || (false),
+    noSSR: !!true   ,
     error: !!ssrError,
     nuxt: void 0,
     /* NuxtApp */
     payload: ssrError ? { error: ssrError } : {},
     islandContext
   };
-  const renderer = ssrContext.noSSR ? await getSPARenderer() : await getSSRRenderer();
+  const renderer = await getSPARenderer() ;
   const _rendered = await renderer.renderToString(ssrContext).catch((error) => {
     throw !ssrError && ssrContext.payload?.error || error;
   });

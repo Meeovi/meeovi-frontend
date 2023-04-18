@@ -64,10 +64,10 @@
 </template>
 
 <script>
-    import appbar from '../../components/Menus/appbar.vue'
-    import latestproducts from '../../components/Related/latestproducts.vue'
-    import bestsellers from '../../components/Related/bestsellers.vue'
-    import relatedappdev from '../../components/Creators/relatedappdev.vue'
+    import appbar from '../../../components/Menus/appbar.vue'
+    import latestproducts from '../../../components/Related/latestproducts.vue'
+    import bestsellers from '../../../components/Related/bestsellers.vue'
+    import relatedappdev from '../../../components/Creators/relatedappdev.vue'
 
     export default {
         components: {

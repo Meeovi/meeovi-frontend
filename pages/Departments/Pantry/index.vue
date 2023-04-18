@@ -34,7 +34,7 @@
         <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
             <div class="card-wrapper">
                 <div class="card-img">
-                    <img src="../../assets/images/mbr-2-696x464.jpg" alt="">
+                    <img src="../../../assets/images/mbr-2-696x464.jpg" alt="">
                 </div>
                 <div class="card-box">
                     <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">
@@ -47,7 +47,7 @@
         <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
             <div class="card-wrapper">
                 <div class="card-img">
-                    <img src="../../assets/images/mbr-3-696x464.jpg" alt="">
+                    <img src="../../../assets/images/mbr-3-696x464.jpg" alt="">
                 </div>
                 <div class="card-box">
                     <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">
@@ -60,7 +60,7 @@
         <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
             <div class="card-wrapper">
                 <div class="card-img">
-                    <img src="../../assets/images/mbr-4-696x464.jpg" alt="">
+                    <img src="../../../assets/images/mbr-4-696x464.jpg" alt="">
                 </div>
                 <div class="card-box">
                     <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">
@@ -73,7 +73,7 @@
         <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
             <div class="card-wrapper">
                 <div class="card-img">
-                    <img src="../../assets/images/mbr-5-696x464.jpg" alt="">
+                    <img src="../../../assets/images/mbr-5-696x464.jpg" alt="">
                 </div>
                 <div class="card-box">
                     <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">
@@ -104,7 +104,7 @@
         <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
             <div class="card-wrapper">
                 <div class="card-img">
-                    <img src="../../assets/images/mbr-7-696x464.jpg" alt="">
+                    <img src="../../../assets/images/mbr-7-696x464.jpg" alt="">
                 </div>
                 <div class="card-box">
                     <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">Household</p>
@@ -116,7 +116,7 @@
         <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
             <div class="card-wrapper">
                 <div class="card-img">
-                    <img src="../../assets/images/mbr-8-696x464.jpg" alt="">
+                    <img src="../../../assets/images/mbr-8-696x464.jpg" alt="">
                 </div>
                 <div class="card-box">
                     <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">Snacks</p>
@@ -128,7 +128,7 @@
         <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
             <div class="card-wrapper">
                 <div class="card-img">
-                    <img src="../../assets/images/mbr-9-696x464.jpg" alt="">
+                    <img src="../../../assets/images/mbr-9-696x464.jpg" alt="">
                 </div>
                 <div class="card-box">
                     <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">Beverages</p>
@@ -140,7 +140,7 @@
         <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
             <div class="card-wrapper">
                 <div class="card-img">
-                    <img src="../../assets/images/mbr-10-696x464.jpg" alt="">
+                    <img src="../../../assets/images/mbr-10-696x464.jpg" alt="">
                 </div>
                 <div class="card-box">
                     <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">Health Care</p>
@@ -165,7 +165,7 @@
         <div class="card px-3 py-4 col-12 col-md-6 col-lg-4">
             <div class="card-wrapper flip-card">
                 <div class="card-img">
-                    <img src="../../assets/images/mbr-950x633.jpg" alt="">
+                    <img src="../../../assets/images/mbr-950x633.jpg" alt="">
                     <div class="img-text mbr-text mbr-fonts-style align-center mbr-white display-7">
                          Vegetarian</div>
                 </div>
@@ -183,7 +183,7 @@
         <div class="card px-3 py-4 col-12 col-md-6 col-lg-4">
             <div class="card-wrapper flip-card">
                 <div class="card-img">
-                    <img src="../../assets/images/mbr-1-950x633.jpg" alt="">
+                    <img src="../../../assets/images/mbr-1-950x633.jpg" alt="">
                     <div class="img-text mbr-text mbr-fonts-style align-center mbr-white display-7">
                          Chocolate</div>
                 </div>
@@ -227,7 +227,7 @@
         <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
             <div class="card-wrapper ">
                 <div class="card-img">
-                    <img src="../../assets/images/15.jpg" alt="">
+                    <img src="../../../assets/images/15.jpg" alt="">
                 </div>
                 <div class="card-box">
                     <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">
@@ -247,7 +247,7 @@
         <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
             <div class="card-wrapper">
                 <div class="card-img">
-                    <img src="../../assets/images/17.jpg" alt="">
+                    <img src="../../../assets/images/17.jpg" alt="">
                 </div>
                 <div class="card-box">
                     <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">
@@ -267,7 +267,7 @@
         <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
             <div class="card-wrapper">
                 <div class="card-img">
-                    <img src="../../assets/images/14.jpg" alt="">
+                    <img src="../../../assets/images/14.jpg" alt="">
                 </div>
                 <div class="card-box">
                     <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">
@@ -287,7 +287,7 @@
         <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
             <div class="card-wrapper">
                 <div class="card-img">
-                    <img src="../../assets/images/16.jpg" alt="">
+                    <img src="../../../assets/images/16.jpg" alt="">
                 </div>
                 <div class="card-box">
                     <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">

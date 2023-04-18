@@ -43,7 +43,7 @@ body {
 }
 
 .lowerbar a {
-    color: white;
+    color: black;
 }
 
 .rightnav {
@@ -128,6 +128,19 @@ body {
     right: 20px;
     bottom: 20px;
     position: fixed;
+}
+
+.feedDialog {
+    padding: 10px !important;
+}
+
+.contentSection {
+    padding: 10px;
+}
+
+.feedFollowBtn {
+    top: 12px;
+    position: relative;
 }
 
 /******************** Commerce CSS ************/

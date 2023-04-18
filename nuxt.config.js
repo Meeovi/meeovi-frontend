@@ -4,6 +4,7 @@ import {
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  ssr: false,
   app: {
     head: {
       script: [{
@@ -35,12 +36,11 @@ export default defineNuxtConfig({
   ],
 
   modules: [
-    'nuxt-graphql-client',
     //'@sidebase/nuxt-auth',
     '@nuxt/content',
     'nuxt-meilisearch',
-    'nuxt-directus',
-    //'nuxt-medusa',
+    '@nuxtjs/apollo',
+    "nuxt-directus",
   ],
 
   /*auth: {
@@ -90,19 +90,24 @@ export default defineNuxtConfig({
   directus: {
     url: process.env.DIRECTUS_URL,
     auth: {
-      email: process.env.DIRECTUS_EMAIL,
-      password: process.env.DIRECTUS_PASSWORD,
       token: process.env.DIRECTUS_TOKEN,
+      email: process.env.DIRECTUS_EMAIL,
+      password: process.env.DIRECTUS_PASSWORD
     }
   },
 
-/*  medusa: {
-    baseUrl: process.env.MEDUSA_URL,
-    publishableApiKey: process.env.PUBLISHABLE_API_key,
-    maxRetries: 3,
-    global: true,
-    server: false
-  }, */
+  apollo: {
+    clients: {
+      default: {
+        httpEndpoint: process.env.GQL_HOST,
+        autoImports: true,
+        authType: 'Bearer',
+        authHeader: 'Authorization',
+        tokenStorage: 'cookie',
+        proxyCookies: true,
+      },
+    },
+  },
 
   meilisearch: {
     hostUrl: process.env.HOSTURL,
@@ -113,21 +118,6 @@ export default defineNuxtConfig({
       theme: 'algolia'
     }
   },
-
-  runtimeConfig: {
-    public: {
-      GQL_HOST: process.env.GQL_HOST,
-      'graphql-client': {
-        watch: true,
-        autoImport: true,
-        functionPrefix: 'Gql',
-        documentPaths: ['./graphql/queries/'],
-        preferGETQueries: false
-      },
-    }
-  },
-
-
 
   build: {
     transpile: [

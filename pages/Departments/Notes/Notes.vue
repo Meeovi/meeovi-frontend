@@ -1,9 +1,9 @@
 <template>
     <div>
-        <learnbar />
-        <v-row class="categoryPage" style="background-color: orangered;">
+        <notesbar />
+        <v-row class="categoryPage" style="background-color: palevioletred;">
             <v-col cols="12">
-                <h4>Popular Courses</h4>
+                <h4 style="color: black">Popular Notes</h4>
                 <v-sheet class="mx-auto categorySheet">
                     <v-slide-group v-model="model" class="pa-4" center-active show-arrows>
                         <v-slide-group-item v-for="n in 15" :key="n" v-slot="{ isSelected, toggle }">
@@ -59,22 +59,22 @@
         </v-row>
         <latestproducts />
         <bestsellers />
-        <relatedtutors />
+        <relatedauthors />
     </div>
 </template>
 
 <script>
-    import learnbar from '../../components/Menus/learnbar.vue'
-    import latestproducts from '../../components/Related/latestproducts.vue'
-    import bestsellers from '../../components/Related/bestsellers.vue'
-    import relatedtutors from '../../components/Creators/relatedtutors.vue'
+    import notesbar from '../../../components/Menus/notesbar.vue'
+    import latestproducts from '../../../components/Related/latestproducts.vue'
+    import bestsellers from '../../../components/Related/bestsellers.vue'
+    import relatedauthors from '../../../components/Creators/relatedauthors.vue'
 
     export default {
         components: {
-            learnbar,
+            notesbar,
             latestproducts,
             bestsellers,
-            relatedtutors
+            relatedauthors
         },
         data: () => ({
             model: null,
@@ -84,6 +84,6 @@
 
 <script setup>
     useHead({
-        title: 'Meeovi Learning',
+        title: 'Meeovi Notes',
     })
 </script>

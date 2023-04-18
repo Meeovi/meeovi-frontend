@@ -2,11 +2,9 @@
     <div>
         <v-card class="lowerbar">
             <v-tabs style="background-color: orange; color: black;" center-active>
-                <h5>Meeovi </h5>
-                <v-tab><a href="/categories/books">All</a></v-tab>
-                <v-tab><a href="/categories/books">Audiobooks</a></v-tab>
-                <v-tab><a href="/categories/books">Comics</a></v-tab>
-                <v-tab><a href="/categories/books"></a></v-tab>
+                <h5>Meeovi {{ category.name }}</h5>
+                <v-tab><a :href="`/categories/books${category.name}`">All</a></v-tab>
+                <v-tab><a :href="`/categories/books${category.name}`">{{ category.name }}</a></v-tab>
             </v-tabs>
         </v-card>
 
@@ -94,5 +92,20 @@
 <script setup>
     useHead({
         title: 'Meeovi ',
+    })
+
+    const {
+        $directus
+    } = useNuxtApp()
+
+    const route = useRoute()
+    const {
+        data: category
+    } = await useAsyncData('category', () => {
+        return $directus.items('categories').readOne(route.params.slug)
+    })
+    if (!category.value) throw createError({
+        statusCode: 404,
+        statusMessage: 'Category Not Found'
     })
 </script>

@@ -61,7 +61,7 @@
         <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
             <div class="card-wrapper ">
                 <div class="card-img">
-                    <img src="../../assets/images/15.jpg" alt="">
+                    <img src="../../../assets/images/15.jpg" alt="">
                 </div>
                 <div class="card-box">
                     <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">
@@ -81,7 +81,7 @@
         <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
             <div class="card-wrapper">
                 <div class="card-img">
-                    <img src="../../assets/images/17.jpg" alt="">
+                    <img src="../../../assets/images/17.jpg" alt="">
                 </div>
                 <div class="card-box">
                     <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">
@@ -101,7 +101,7 @@
         <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
             <div class="card-wrapper">
                 <div class="card-img">
-                    <img src="../../assets/images/14.jpg" alt="">
+                    <img src="../../../assets/images/14.jpg" alt="">
                 </div>
                 <div class="card-box">
                     <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">
@@ -121,7 +121,7 @@
         <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
             <div class="card-wrapper">
                 <div class="card-img">
-                    <img src="../../assets/images/16.jpg" alt="">
+                    <img src="../../../assets/images/16.jpg" alt="">
                 </div>
                 <div class="card-box">
                     <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">
@@ -150,7 +150,7 @@
     <div class="row main align-items-center">
         <div class="col-md-6 image-element ">
             <div class="img-wrap">
-                <img src="../../assets/images/background2.jpg">
+                <img src="../../../assets/images/background2.jpg">
             </div>
         </div>
         <div class="col-md-6 text-element">
@@ -182,7 +182,7 @@
     <div class="row align-items-center">
         <div class="col-md-6 align-left img-block">
             <div class="mbr-figure">
-                <img src="../../assets/images/mbr-1224x816.jpg" alt="Yardsale" title="">
+                <img src="../../../assets/images/mbr-1224x816.jpg" alt="Yardsale" title="">
             </div>
         </div>
         <div class="mbr-white col-md-6">

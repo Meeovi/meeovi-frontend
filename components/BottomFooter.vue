@@ -1,13 +1,13 @@
 <template>
-    <div class="text-center">
-        <v-dialog v-model="dialog">
+    <div class="text-center feedButton">
+        <v-dialog v-model="dialog" max-height="500" max-width="500">
             <template v-slot:activator="{ props }">
-                <v-btn class="feedButton" icon="fas fa-plus" color="orange" title="Post to Social Feed" v-bind="props">
+                <v-btn icon="fas fa-plus" color="orange" title="Post to Social Feed" v-bind="props">
                 </v-btn>
             </template>
 
-            <v-card>
-                <v-textarea title="What's happening?" variant="underlined"></v-textarea>
+            <v-card class="feedDialog">
+                <v-textarea label="What's happening?" variant="underlined"></v-textarea>
                 <v-row>
                     <v-col cols="4">
                         <v-file-input prepend-icon="fas fa-image" accept="image/*"></v-file-input>

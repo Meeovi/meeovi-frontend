@@ -19,9 +19,6 @@
 
       <div class="d-flex align-center flex-column flex-sm-row fill-height">
         <v-col>
-          <v-btn :prepend-icon="theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon'" @click="onClick"></v-btn>
-        </v-col>
-        <v-col>
           <v-menu :location="location" transition="slide-y-transition">
             <template v-slot:activator="{ props }">
               <a variant="flat" v-bind="props">
@@ -31,67 +28,24 @@
             <v-list>
               <v-list-item title="" value="" href="/"></v-list-item>
               <v-divider></v-divider>
-              <v-list-item title="All Notifications" value="notifications" append-icon="fas fa-bell" href="/admin/user/notifications">
+              <v-list-item title="All Notifications" value="notifications" append-icon="fas fa-bell"
+                href="/admin/user/notifications">
               </v-list-item>
             </v-list>
           </v-menu>
         </v-col>
+
         <v-col>
           <ecosystemmenu />
         </v-col>
 
         <v-col>
-          <v-menu :location="location" transition="slide-y-transition">
-            <template v-slot:activator="{ props }">
-              <a variant="flat" v-bind="props">
-                <v-icon start icon="fas fa-user-circle"></v-icon>
-              </a>
-            </template>
-            <v-list>
-              <v-row class="accountDropdown">
-                <v-col cols="6">
-                  <h6>My Account</h6>
-                  <v-list-item title="Account" value="Account" append-icon="fas fa-user" href="/Admin/User/">
-                  </v-list-item>
-                  <v-list-item title="Profile" value="Profile" append-icon="fas fa-id-card" href="/Admin/User/profile">
-                  </v-list-item>
-                  <v-list-item title="Account" value="Account" append-icon="fas fa-id-card-clip"
-                    href="/Admin/User/Account">
-                  </v-list-item>
-                  <v-list-item title="Addresses" value="Addresses" append-icon="fas fa-address-card"
-                    href="/Admin/User/Addresses"></v-list-item>
-                  <v-list-item title="History" value="History" append-icon="fas fa-clock-rotate-left"
-                    href="/Admin/User/History"></v-list-item>
-                  <v-list-item title="My Uploads" value="My Uploads" append-icon="fas fa-upload"
-                    href="/Admin/User/my-uploads"></v-list-item>
-                  <v-list-item title="Recommendations" value="Recommendations" append-icon="fas fa-thumbs-up" href="/Admin/User/Recommendations"></v-list-item>  
-                </v-col>
-
-                <v-col cols="6">
-                  <h6>My Commerce</h6>
-                  <v-list-item title="Orders" value="Orders" append-icon="fas fa-truck-fast" href="/Commerce/Orders"></v-list-item>
-                  <v-list-item title="Lists" value="Lists" append-icon="fas fa-list" href="/Admin/User/Lists"></v-list-item>
-                  <v-list-item title="Coupons" value="Coupons" append-icon="fas fa-file-invoice" href="/Commerce/Coupons"></v-list-item>
-                  <v-list-item title="Receipts" value="Receipts" append-icon="fas fa-receipt" href="/Commerce/Receipts"></v-list-item>
-                  <v-list-item title="Events" value="Events" append-icon="fas fa-calendar-check" href="/Commerce/Events"></v-list-item>
-                  <v-list-item title="Returns" value="Returns" append-icon="fas fa-rotate-left" href="/Commerce/Returns"></v-list-item>
-                  <v-list-item title="Subscriptions" value="Subscriptions" append-icon="fas fa-cart-plus" href="/Commerce/Subscriptions"></v-list-item>
-                </v-col>
-
-                <v-col cols="12">
-                  <v-divider></v-divider>
-                  <v-list-item title="Upload Center" value="Upload Center" append-icon="fas fa-arrow-up-from-bracket" href="/Upload"></v-list-item>
-                  <v-divider></v-divider>
-                  <v-list-item title="Logout" value="Logout" append-icon="fas fa-right-from-bracket" href="/logout"></v-list-item>
-                </v-col>
-              </v-row>
-            </v-list>
-          </v-menu>
+          <myaccounttopmenu />
         </v-col>
 
         <v-col>
           <a variant="flat" href="/commerce/cart">
-            <v-icon start icon="fas fa-shopping-cart"></v-icon>
+            <v-icon color="orange" start icon="fas fa-shopping-cart"></v-icon>
           </a>
         </v-col>
       </div>
@@ -109,80 +63,63 @@
 
             <v-list density="compact" nav>
               <h6>Trending</h6>
-              <v-list-item prepend-icon="fas fa-cart-plus" title="What's New" value="What's New" href="/categories/new">
-              </v-list-item>
-              <v-divider></v-divider>
-              <h6>Shop By Category</h6>
-              <v-list-group prepend-icon="fas fa-building" v-for="categories in allCategoriesList" :key="categories.id">
-                <template v-slot:activator="{ props }">
-                  <v-list-item v-bind="props" title="Categories"></v-list-item>
-                </template>
-                <v-list-item prepend-icon="fas fa-book" title="Books" value="Books" href="/categories/books">
-                </v-list-item>
-                <v-list-item prepend-icon="fas fa-music" title="Music" value="Music" href="/categories/music">
-                </v-list-item>
-                <v-list-item prepend-icon="fas fa-play" title="Theater" value="Theater" href="/categories/theater">
-                </v-list-item>
-                <v-list-item prepend-icon="fas fa-gamepad" title="Games" value="Games" href="/categories/games">
-                </v-list-item>
-                <v-list-item prepend-icon="fas fa-podcast" title="Podcasts" value="Podcasts"
-                  href="/categories/podcasts"></v-list-item>
-                <v-list-item prepend-icon="fas fa-volleyball" title="Sports & Fitness" value="Sports & Fitness"
-                  href="/categories/sportsfitness"></v-list-item>
-                <v-list-item :title="categories.name" :value="categories.name" :href="`/categories/${categories.id}`">
-                </v-list-item>
-              </v-list-group>
+              <v-row>
+                <v-col cols="4">
+                  <v-btn variant="text" stacked title="What's New" prepend-icon="fas fa-cart-plus" size="x-small"
+                    href="/categories/new">What's new</v-btn>
+                </v-col>
+                <v-col cols="4">
+                  <v-btn variant="text" stacked title="Deals" prepend-icon="fas fa-money-bill" size="x-small"
+                    href="/deals">Deals</v-btn>
+                </v-col>
+                <v-col cols="4">
+                  <v-btn variant="text" stacked title="Exclusives" prepend-icon="fas fa-key" size="x-small"
+                    href="/categories/exclusives">Exclusives</v-btn>
+                </v-col>
+              </v-row>
               <v-divider></v-divider>
               <h6>Social</h6>
-              <v-list-item prepend-icon="fas fa-video" title="Meeovi Live" value="live" href="/categories/live">
-              </v-list-item>
-              <v-list-item prepend-icon="fas fa-users" title="Social Feed" value="feed" href="/social/newsfeed">
-              </v-list-item>
-              <v-list-item prepend-icon="fas fa-people-group" title="Groups" value="groups" href="/social/groups">
-              </v-list-item>
+              <v-row>
+                <v-col cols="4">
+                  <v-btn variant="text" stacked title="Social Feed" prepend-icon="fas fa-feed" size="x-small"
+                    href="/social/newsfeed">Feed</v-btn>
+                </v-col>
+                <v-col cols="4">
+                  <v-btn variant="text" stacked title="Spaces" prepend-icon="fas fa-people-group" size="x-small"
+                    href="/social/groups">Spaces</v-btn>
+                </v-col>
+                <v-col cols="4">
+                  <v-btn variant="text" stacked title="Meeovi Live" prepend-icon="fas fa-video" size="x-small"
+                    href="/categories/live">Live</v-btn>
+                </v-col>
+              </v-row>
               <v-divider></v-divider>
-              <h6>Department Stores</h6>
-              <v-list-item prepend-icon="fas fa-compass-drafting" title="Meeovi Crafts" value="meeovi crafts"
-                href="/crafts/"></v-list-item>
-              <v-list-item prepend-icon="fas fa-person-shelter" title="Meeovi Yardsale" value="meeovi yardsale"
-                href="/yardsale/"></v-list-item>
-              <v-list-item prepend-icon="fas fa-mattress-pillow" title="Meeovi Fabrics" value="meeovi fabrics"
-                href="/fabrics/"></v-list-item>
-              <v-list-item prepend-icon="fas fa-message" title="Meeovi Reviews" value="meeovi reviews" href="/reviews/">
-              </v-list-item>
-              <v-list-item prepend-icon="fas fa-tablet-button" title="Meeovi Appstore" value="meeovi appstore"
-                href="/categories/appstore"></v-list-item>
+
+              <categoriesmenu />
               <v-divider></v-divider>
-              <h6>Deals Corner</h6>
-              <v-list-item prepend-icon="fas fa-money-bill" title="Deals" value="Deals" href="/deals"></v-list-item>
-              <v-list-item prepend-icon="fas fa-key" title="Exclusives" value="exclusives"
-                href="/categories/exclusives"></v-list-item>
+
+              <departmentsmenu />
               <v-divider></v-divider>
-              <h6>My Account</h6>
-              <v-list-group prepend-icon="fas fa-user-circle" value="My Account">
-                <template v-slot:activator="{ props }">
-                  <v-list-item v-bind="props" title="My Account"></v-list-item>
-                </template>
-                <v-list-item title="Account" value="Account" href="/Admin/User/"></v-list-item>
-                <v-list-item title="Profile" value="Profile" href="/Admin/User/profile"></v-list-item>
-                <v-list-item title="Account" value="Account" href="/Admin/User/Account"></v-list-item>
-                <v-list-item title="Addresses" value="Addresses" href="/Admin/User/Addresses"></v-list-item>
-                <v-list-item title="History" value="History" href="/Admin/User/History"></v-list-item>
-                <v-list-item title="My Uploads" value="My Uploads" href="/Admin/User/my-uploads"></v-list-item>
-                <v-list-item title="Notifications" value="Notifications" href="/Admin/User/Notifications"></v-list-item>
-                <v-list-item title="Recommendations" value="Recommendations" href="/Admin/User/Recommendations">
-                </v-list-item>
-                <v-list-item title="Lists" value="Lists" href="/Admin/User/Lists"></v-list-item>
-              </v-list-group>
+
+              <myaccountmenu />
+              <v-divider></v-divider>
+
+              <v-row>
+                <v-col cols="4">
+                  <v-btn variant="text" stacked title="Help" prepend-icon="fas fa-question-circle" size="x-small"
+                    href="https://help.meeovi.com">Help</v-btn>
+                </v-col>
+                <v-col cols="4">
+                  <v-btn variant="text" stacked title="Change Background"
+                    :prepend-icon="theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon'" @click="onClick" size="x-small">Dark
+                    Mode</v-btn>
+                </v-col>
+                <v-col cols="4">
+                  <v-btn variant="text" stacked title="Logout" prepend-icon="fas fa-right-from-bracket" size="x-small"
+                    href="/logout">Logout</v-btn>
+                </v-col>
+              </v-row>
             </v-list>
-
-            <v-spacer></v-spacer>
-
-            <div class="pa-2">
-              <v-btn block>
-                Logout
-              </v-btn>
-            </div>
           </v-navigation-drawer>
           <v-main id="sidebarNav"></v-main>
           <main id="mainSection">
@@ -202,15 +139,10 @@
   import ecosystemmenu from '../components/Menus/ecosystemmenu.vue'
   import catbar from '../components/Catbar/categories.vue'
   import live from '../components/Catbar/live.vue'
-  import gql from 'graphql-tag'
-
-  const query = gql `
-    query MyQuery {
-      allCategoriesList {
-        id
-        name
-      }
-}`
+  import categoriesmenu from '../components/Menus/Sidebar/categoriesmenu.vue'
+  import departmentsmenu from '../components/Menus/Sidebar/departmentsmenu.vue'
+  import myaccountmenu from '../components/Menus/Sidebar/myaccountmenu.vue'
+  import myaccounttopmenu from '../components/Menus/TopMenu/myaccounttopmenu.vue'
 
   export default {
     data() {
@@ -219,10 +151,13 @@
           search,
           ecosystemmenu,
           catbar,
-          live
+          live,
+          categoriesmenu,
+          departmentsmenu,
+          myaccountmenu,
+          myaccounttopmenu
         },
         drawer: null,
-        location: 'bottom',
         rail: true,
         loaded: false,
         loading: false,
@@ -254,4 +189,16 @@
   function onClick() {
     theme.value = theme.value === 'light' ? 'dark' : 'light'
   };
+
+  /*  const {
+      $directus
+    } = useNuxtApp()
+
+    const {
+      data: categories
+    } = await useAsyncData('categories', () => {
+      return $directus.items('categories').readByQuery({
+        fields: ['id', 'name']
+      })
+    }) */
 </script>

@@ -28,6 +28,7 @@
    },
    "devDependencies": {
       "@nuxt/content": "^2.3.0",
+      "@nuxtjs/apollo": "^5.0.0-alpha.6",
       "@sidebase/nuxt-auth": "^0.3.3",
       "@types/node": "^16.11.10",
       "graphql": "^15.8.0",
@@ -37,6 +38,7 @@
       "typescript": "4.5.2"
    },
    "dependencies": {
+      "@directus/sdk": "^10.3.3",
       "@fortawesome/fontawesome-svg-core": "^6.2.1",
       "@fortawesome/free-solid-svg-icons": "^6.2.1",
       "@fortawesome/vue-fontawesome": "^3.0.2",
@@ -55,8 +57,7 @@
       "instantsearch.css": "^8.0.0",
       "jquery": "^3.6.3",
       "keycloak-nuxt-auth-module": "^4.8.4",
-      "nuxt-directus": "^5.1.1",
-      "nuxt-graphql-client": "^0.2.27",
+      "nuxt-directus": "^5.1.2",
       "nuxt-security": "^0.10.1",
       "sass": "^1.57.0",
       "ts-node": "^10.9.1",
@@ -64,6 +65,7 @@
       "videojs-contrib-ads": "^7.1.0",
       "videojs-contrib-quality-levels": "^3.0.0",
       "videojs-share": "^3.2.1",
+      "villus": "^3.1.0",
       "vue-chartjs": "^5.2.0",
       "vue-instantsearch": "^4.8.1",
       "vuetify": "^3.0.5"
