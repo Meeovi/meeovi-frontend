@@ -159,6 +159,7 @@
         },
         drawer: null,
         rail: true,
+        location: 'bottom',
         loaded: false,
         loading: false,
       }

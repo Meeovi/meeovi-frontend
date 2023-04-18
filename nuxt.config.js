@@ -40,7 +40,7 @@ export default defineNuxtConfig({
     '@nuxt/content',
     'nuxt-meilisearch',
     '@nuxtjs/apollo',
-    "nuxt-directus",
+    //"nuxt-directus",
   ],
 
   /*auth: {
@@ -85,7 +85,7 @@ export default defineNuxtConfig({
       // logout: "/login",
       home: "/index.vue",
     },
-  }, */
+  }, 
 
   directus: {
     url: process.env.DIRECTUS_URL,
@@ -94,7 +94,7 @@ export default defineNuxtConfig({
       email: process.env.DIRECTUS_EMAIL,
       password: process.env.DIRECTUS_PASSWORD
     }
-  },
+  },*/
 
   apollo: {
     clients: {

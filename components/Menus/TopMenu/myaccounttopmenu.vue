@@ -65,11 +65,11 @@
 
 <script>
     export default {
-        data: () => ({
-            locations: [
-                'bottom',
-            ],
-        }),
+        data() {
+            return {
+                location: 'bottom',
+            }
+        }
     }
 </script>
 
