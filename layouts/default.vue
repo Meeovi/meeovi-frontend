@@ -95,9 +95,6 @@
               </v-row>
               <v-divider></v-divider>
 
-              <categoriesmenu />
-              <v-divider></v-divider>
-
               <departmentsmenu />
               <v-divider></v-divider>
 
@@ -137,9 +134,7 @@
 <script>
   import search from '../components/Search/search.vue'
   import ecosystemmenu from '../components/Menus/ecosystemmenu.vue'
-  import catbar from '../components/Catbar/categories.vue'
   import live from '../components/Catbar/live.vue'
-  import categoriesmenu from '../components/Menus/Sidebar/categoriesmenu.vue'
   import departmentsmenu from '../components/Menus/Sidebar/departmentsmenu.vue'
   import myaccountmenu from '../components/Menus/Sidebar/myaccountmenu.vue'
   import myaccounttopmenu from '../components/Menus/TopMenu/myaccounttopmenu.vue'
@@ -150,9 +145,7 @@
         components: {
           search,
           ecosystemmenu,
-          catbar,
           live,
-          categoriesmenu,
           departmentsmenu,
           myaccountmenu,
           myaccounttopmenu

@@ -1,9 +1,21 @@
 <template>
     <div>
-        <musicbar />
-        <v-row class="categoryPage" style="background-color: indianred;">
+        <v-card class="lowerbar">
+            <v-tabs :style="`background-color:${departments.color}; color:${departments.colortext};`" center-active>
+                <h5>Meeovi {{ departments.name }}</h5>
+                <v-tab><a :href="`/departments/${departments.id}`">All</a></v-tab>
+                <v-tab><a :href="`/categories/${departments.categories}`">{{ departments.categories }}</a>
+                </v-tab>
+            </v-tabs>
+        </v-card>
+
+        <v-carousel>
+            <v-carousel-item :src="departments.media" cover></v-carousel-item>
+        </v-carousel>
+
+        <v-row class="categoryPage" :style="`background-color:${departments.color};`">
             <v-col cols="12">
-                <h4>Popular Music</h4>
+                <h4 :style="`color:${departments.colortext};`">Popular Content</h4>
                 <v-sheet class="mx-auto categorySheet">
                     <v-slide-group v-model="model" class="pa-4" center-active show-arrows>
                         <v-slide-group-item v-for="n in 15" :key="n" v-slot="{ isSelected, toggle }">
@@ -59,31 +71,49 @@
         </v-row>
         <latestproducts />
         <bestsellers />
-        <relatedmusicians />
+        <relatedcreators />
     </div>
 </template>
 
 <script>
-    import musicbar from '../../components/Menus/musicbar.vue'
+    //import videobar from '../../components/Menus/videobar.vue'
     import latestproducts from '../../components/Related/latestproducts.vue'
     import bestsellers from '../../components/Related/bestsellers.vue'
-    import relatedmusicians from '../../components/Creators/relatedmusicians.vue'
+    import relatedcreators from '../../components/Creators/relatedcreators.vue'
 
     export default {
         components: {
-            musicbar,
+            //videobar,
             latestproducts,
             bestsellers,
-            relatedmusicians
+            relatedcreators
         },
-        data: () => ({
-            model: null,
-        }),
+        data() {
+            return {
+                model: null,
+                url: process.env.DIRECTUS_URL
+            }
+        },
     }
 </script>
 
 <script setup>
     useHead({
-        title: 'Meeovi Music',
+        title: 'Meeovi ',
     })
+
+    const {
+        getItemById
+    } = useDirectusItems();
+    const route = useRoute();
+
+    const departments = await getItemById({
+        collection: "departments",
+        id: route.params.id
+    });
+    if (!departments) throwError("No Department found, 404");
+
+    const {
+        getThumbnail: img
+    } = useDirectusFiles();
 </script>
