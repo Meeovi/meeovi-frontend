@@ -1,5 +1,6 @@
 <template>
     <div>
+        <profilebar />
         <section class="info3 cid-sBXUmXiOq3" id="info3-2h">
 
     
@@ -12,9 +13,9 @@
             <div class="card-wrapper">
                 <div class="card-box align-center">
                     <h4 class="card-title mbr-fonts-style align-center mb-4 display-1">
-                        <strong>Groups</strong></h4>
+                        <strong>Spaces</strong></h4>
                     <p class="mbr-text mbr-fonts-style mb-4 display-7">
-                        Join or create a group about any topic you can think of.</p>
+                        Join or create a space about any topic you can think of.</p>
                     
                 </div>
             </div>
@@ -81,13 +82,14 @@
 </template>
 
 <script>
+import profilebar from '../../components/Menus/profilebar.vue'
 export default {
-    
+    components: { profilebar }
 }
 </script>
 
 <script setup>
     useHead({
-        title: 'Groups',
+        title: 'Spaces',
     })
 </script>

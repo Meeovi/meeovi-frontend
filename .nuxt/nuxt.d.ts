@@ -2,6 +2,7 @@
 /// <reference types="@nuxt/content" />
 /// <reference types="nuxt-meilisearch" />
 /// <reference types="@nuxtjs/apollo" />
+/// <reference types="nuxt-directus" />
 /// <reference types="@nuxt/devtools" />
 /// <reference types="@nuxt/telemetry" />
 /// <reference types="nuxt" />

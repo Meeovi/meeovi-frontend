@@ -86,7 +86,7 @@
                 </v-col>
                 <v-col cols="4">
                   <v-btn variant="text" stacked title="Spaces" prepend-icon="fas fa-people-group" size="x-small"
-                    href="/social/groups">Spaces</v-btn>
+                    href="/social/spaces">Spaces</v-btn>
                 </v-col>
                 <v-col cols="4">
                   <v-btn variant="text" stacked title="Meeovi Live" prepend-icon="fas fa-video" size="x-small"

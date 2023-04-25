@@ -4,7 +4,6 @@ import {
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  ssr: false,
   app: {
     head: {
       script: [{
@@ -40,7 +39,7 @@ export default defineNuxtConfig({
     '@nuxt/content',
     'nuxt-meilisearch',
     '@nuxtjs/apollo',
-    //"nuxt-directus",
+    "nuxt-directus",
   ],
 
   /*auth: {
@@ -85,16 +84,16 @@ export default defineNuxtConfig({
       // logout: "/login",
       home: "/index.vue",
     },
-  }, 
-
+  }, */
+  
   directus: {
     url: process.env.DIRECTUS_URL,
     auth: {
       token: process.env.DIRECTUS_TOKEN,
       email: process.env.DIRECTUS_EMAIL,
       password: process.env.DIRECTUS_PASSWORD
-    }
-  },*/
+    }/* */
+  },
 
   apollo: {
     clients: {

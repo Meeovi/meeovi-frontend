@@ -21,9 +21,7 @@
 </script>
 
 <script setup>
-    const { $directus } = useNuxtApp()
+const { getItems } = useDirectusItems();
 
-    const { data: categories } = await useAsyncData('categories', () => {
-      return $directus.items('categories').readByQuery({ fields: ['id', 'name'] })
-    })
+const categories = await getItems({ collection: "categories" });
 </script>

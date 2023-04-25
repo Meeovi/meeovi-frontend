@@ -1,14 +1,15 @@
 <template>
-    <div class="newsfeed-channel">
+    <div>
+        <profilebar />
         <v-row class="centralfeed">
             <v-col cols="8">
                 <v-row>
                     <v-col cols="12">
-                        <v-textarea title="What's happening?" variant="underlined"></v-textarea>
+                        <v-textarea label="What's happening?" variant="outlined"></v-textarea>
                         <v-row>
                             <v-col cols="4"><v-file-input prepend-icon="fas fa-image" accept="image/*"></v-file-input></v-col>
                             <v-col cols="4"><v-file-input prepend-icon="fas fa-video" accept="video/*"></v-file-input></v-col>
-                            <v-col cols="4"><v-btn title="Post" color="info">Post</v-btn></v-col>
+                            <v-col cols="4"><v-btn title="Post" color="orange" size="x-large">Post</v-btn></v-col>
                         </v-row>
                     </v-col>
                     <v-col cols="12">
@@ -60,10 +61,12 @@
 
 <script>
     import Editor from '../../components/Editors/editor.vue'
+    import profilebar from '../../components/Menus/profilebar.vue'
 
     export default {
         components: {
-            Editor
+            Editor,
+            profilebar
         },
         data: () => ({
             step: 1,

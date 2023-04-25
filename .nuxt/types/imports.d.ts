@@ -92,6 +92,17 @@ declare global {
   const useCookie: typeof import('../../node_modules/nuxt/dist/app')['useCookie']
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
+  const useDirectus: typeof import('../../node_modules/nuxt-directus/dist/runtime/composables/useDirectus')['useDirectus']
+  const useDirectusAuth: typeof import('../../node_modules/nuxt-directus/dist/runtime/composables/useDirectusAuth')['useDirectusAuth']
+  const useDirectusCollections: typeof import('../../node_modules/nuxt-directus/dist/runtime/composables/useDirectusCollections')['useDirectusCollections']
+  const useDirectusFiles: typeof import('../../node_modules/nuxt-directus/dist/runtime/composables/useDirectusFiles')['useDirectusFiles']
+  const useDirectusItems: typeof import('../../node_modules/nuxt-directus/dist/runtime/composables/useDirectusItems')['useDirectusItems']
+  const useDirectusNotifications: typeof import('../../node_modules/nuxt-directus/dist/runtime/composables/useDirectusNotifications')['useDirectusNotifications']
+  const useDirectusRevisions: typeof import('../../node_modules/nuxt-directus/dist/runtime/composables/useDirectusRevisions')['useDirectusRevisions']
+  const useDirectusToken: typeof import('../../node_modules/nuxt-directus/dist/runtime/composables/useDirectusToken')['useDirectusToken']
+  const useDirectusUrl: typeof import('../../node_modules/nuxt-directus/dist/runtime/composables/useDirectusUrl')['useDirectusUrl']
+  const useDirectusUser: typeof import('../../node_modules/nuxt-directus/dist/runtime/composables/useDirectusUser')['useDirectusUser']
+  const useDirectusUsers: typeof import('../../node_modules/nuxt-directus/dist/runtime/composables/useDirectusUsers')['useDirectusUsers']
   const useError: typeof import('../../node_modules/nuxt/dist/app')['useError']
   const useFetch: typeof import('../../node_modules/nuxt/dist/app')['useFetch']
   const useGlobalMutationLoading: typeof import('@vue/apollo-composable')['useGlobalMutationLoading']
@@ -237,6 +248,17 @@ declare module 'vue' {
     readonly useCookie: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useCookie']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
+    readonly useDirectus: UnwrapRef<typeof import('../../node_modules/nuxt-directus/dist/runtime/composables/useDirectus')['useDirectus']>
+    readonly useDirectusAuth: UnwrapRef<typeof import('../../node_modules/nuxt-directus/dist/runtime/composables/useDirectusAuth')['useDirectusAuth']>
+    readonly useDirectusCollections: UnwrapRef<typeof import('../../node_modules/nuxt-directus/dist/runtime/composables/useDirectusCollections')['useDirectusCollections']>
+    readonly useDirectusFiles: UnwrapRef<typeof import('../../node_modules/nuxt-directus/dist/runtime/composables/useDirectusFiles')['useDirectusFiles']>
+    readonly useDirectusItems: UnwrapRef<typeof import('../../node_modules/nuxt-directus/dist/runtime/composables/useDirectusItems')['useDirectusItems']>
+    readonly useDirectusNotifications: UnwrapRef<typeof import('../../node_modules/nuxt-directus/dist/runtime/composables/useDirectusNotifications')['useDirectusNotifications']>
+    readonly useDirectusRevisions: UnwrapRef<typeof import('../../node_modules/nuxt-directus/dist/runtime/composables/useDirectusRevisions')['useDirectusRevisions']>
+    readonly useDirectusToken: UnwrapRef<typeof import('../../node_modules/nuxt-directus/dist/runtime/composables/useDirectusToken')['useDirectusToken']>
+    readonly useDirectusUrl: UnwrapRef<typeof import('../../node_modules/nuxt-directus/dist/runtime/composables/useDirectusUrl')['useDirectusUrl']>
+    readonly useDirectusUser: UnwrapRef<typeof import('../../node_modules/nuxt-directus/dist/runtime/composables/useDirectusUser')['useDirectusUser']>
+    readonly useDirectusUsers: UnwrapRef<typeof import('../../node_modules/nuxt-directus/dist/runtime/composables/useDirectusUsers')['useDirectusUsers']>
     readonly useError: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useError']>
     readonly useFetch: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useFetch']>
     readonly useGlobalMutationLoading: UnwrapRef<typeof import('@vue/apollo-composable')['useGlobalMutationLoading']>

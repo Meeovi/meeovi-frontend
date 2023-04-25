@@ -143,13 +143,20 @@ body {
     position: relative;
 }
 
+.rightAddBtn {
+    position: relative;
+    margin-top: 20px;
+}
+
 /******************** Commerce CSS ************/
 
 .cartPage {
     padding: 20px;
 }
 
-
+.features13 .display-2 {
+    padding-top: 15%;
+}
 /******************** Sidebar CSS *************/
 
 #sidebarNav {
@@ -173,6 +180,7 @@ body {
 }
 
 .centralfeed {
+    padding-top: 15px;
     padding-left: 25%;
     padding-right: 25%;
 }

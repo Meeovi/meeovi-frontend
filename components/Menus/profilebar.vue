@@ -2,7 +2,8 @@
     <v-card>
         <v-tabs style="background-color: transparent" center-active>
             <v-tab><a href="/Admin/User/profile">Profile</a></v-tab>
-            <v-tab><a href="/Admin/User/">Feed</a></v-tab>
+            <v-tab><a href="/Social/newsfeed">Feed</a></v-tab>
+            <v-tab><a href="/Social/spaces">Spaces</a></v-tab>
             <v-tab><a href="/Admin/User/followersfollowing">Followers / Following</a></v-tab>
             <v-tab><a href="/Admin/User/lists">Lists</a></v-tab>
             <v-tab><a href="/Commerce/orders">Orders</a></v-tab>
