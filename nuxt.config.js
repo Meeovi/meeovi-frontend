@@ -39,7 +39,7 @@ export default defineNuxtConfig({
     '@nuxt/content',
     'nuxt-meilisearch',
     '@nuxtjs/apollo',
-    "nuxt-directus",
+    //"nuxt-directus",
   ],
 
   /*auth: {

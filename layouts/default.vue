@@ -120,6 +120,7 @@
           </v-navigation-drawer>
           <v-main id="sidebarNav"></v-main>
           <main id="mainSection">
+            <lowerbar />
             <live />
             <slot />
             <BottomFooter />
@@ -134,6 +135,7 @@
 <script>
   import search from '../components/Search/search.vue'
   import ecosystemmenu from '../components/Menus/ecosystemmenu.vue'
+  import lowerbar from '../components/Menus/lowerbar.vue'
   import live from '../components/Catbar/live.vue'
   import departmentsmenu from '../components/Menus/Sidebar/departmentsmenu.vue'
   import myaccountmenu from '../components/Menus/Sidebar/myaccountmenu.vue'
@@ -145,6 +147,7 @@
         components: {
           search,
           ecosystemmenu,
+          lowerbar,
           live,
           departmentsmenu,
           myaccountmenu,
