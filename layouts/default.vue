@@ -62,23 +62,12 @@
             </v-list-item>
 
             <v-list density="compact" nav>
-              <h6>Trending</h6>
-              <v-row>
-                <v-col cols="4">
-                  <v-btn variant="text" stacked title="What's New" prepend-icon="fas fa-cart-plus" size="x-small"
-                    href="/categories/new">What's new</v-btn>
-                </v-col>
-                <v-col cols="4">
-                  <v-btn variant="text" stacked title="Deals" prepend-icon="fas fa-money-bill" size="x-small"
-                    href="/deals">Deals</v-btn>
-                </v-col>
-                <v-col cols="4">
-                  <v-btn variant="text" stacked title="Exclusives" prepend-icon="fas fa-key" size="x-small"
-                    href="/categories/exclusives">Exclusives</v-btn>
-                </v-col>
-              </v-row>
+              <h5>Trending</h5>
+              <v-list-item title="What's New" prepend-icon="fas fa-cart-plus" href="/categories/new"></v-list-item>
+              <v-list-item title="Deals" prepend-icon="fas fa-money-bill" href="/deals"></v-list-item>
+              <v-list-item title="Exclusives" prepend-icon="fas fa-key" href="/categories/exclusives"></v-list-item>
               <v-divider></v-divider>
-              <h6>Social</h6>
+              <h5>Social</h5>
               <v-row>
                 <v-col cols="4">
                   <v-btn variant="text" stacked title="Social Feed" prepend-icon="fas fa-feed" size="x-small"
@@ -93,7 +82,6 @@
                     href="/categories/live">Live</v-btn>
                 </v-col>
               </v-row>
-              <v-divider></v-divider>
 
               <departmentsmenu />
               <v-divider></v-divider>
