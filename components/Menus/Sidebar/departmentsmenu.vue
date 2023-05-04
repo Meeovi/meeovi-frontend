@@ -21,7 +21,17 @@
 </script>
 
 <script setup>
-const { getItems } = useDirectusItems();
+const query = gql`
+  query getDepartments {
+    departments {
+        id
+        name
+    }
+  }
+`
+const { data: departments } = await useAsyncQuery(query)
 
-const departments = await getItems({ collection: "departments" });
+/*const { getItems } = useDirectusItems();
+
+const departments = await getItems({ collection: "departments" }); */
 </script>

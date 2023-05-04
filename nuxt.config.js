@@ -99,11 +99,9 @@ export default defineNuxtConfig({
     clients: {
       default: {
         httpEndpoint: process.env.GQL_HOST,
-        autoImports: true,
-        authType: 'Bearer',
-        authHeader: 'Authorization',
-        tokenStorage: 'cookie',
-        proxyCookies: true,
+        httpLinkOptions: {
+          credentials: 'include'
+        }
       },
     },
   },
