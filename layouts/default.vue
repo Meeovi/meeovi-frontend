@@ -55,7 +55,7 @@
       <v-card>
         <v-layout>
           <v-navigation-drawer class="sidebarSection" v-model="drawer" temporary>
-            <v-list-item prepend-icon="fas fa-user-circle" title="John Leider" nav>
+            <v-list-item prepend-icon="fas fa-user-circle" title="John Leider">
               <template v-slot:append>
                 <v-btn variant="text" icon="fas fa-chevron-left" @click.stop="rail = !rail"></v-btn>
               </template>
