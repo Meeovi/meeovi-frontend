@@ -1,10 +1,11 @@
 <template>
     <div>
+        <live />
         <v-card class="lowerbar">
             <v-tabs style="background-color: orange; color: black;" center-active>
-                <h5>Meeovi {{ category.name }}</h5>
-                <v-tab><a :href="`/categories/books${category.name}`">All</a></v-tab>
-                <v-tab><a :href="`/categories/books${category.name}`">{{ category.name }}</a></v-tab>
+                <h5>{{ categories.name }}</h5>
+                <v-tab><a :href="`/categories/${categories.name}`">All</a></v-tab>
+                <v-tab><a :href="`/categories/${categories.name}`">{{ categories.name }}</a></v-tab>
             </v-tabs>
         </v-card>
 
@@ -72,6 +73,7 @@
 
 <script>
     //import videobar from '../../components/Menus/videobar.vue'
+    import live from '../../components/Catbar/live.vue'
     import latestproducts from '../../components/Related/latestproducts.vue'
     import bestsellers from '../../components/Related/bestsellers.vue'
     import relatedcreators from '../../components/Creators/relatedcreators.vue'
@@ -79,6 +81,7 @@
     export default {
         components: {
             //videobar,
+            live,
             latestproducts,
             bestsellers,
             relatedcreators
@@ -95,17 +98,17 @@
     })
 
     const {
-        $directus
-    } = useNuxtApp()
+        getItemById
+    } = useDirectusItems();
+    const route = useRoute();
 
-    const route = useRoute()
+    const categories = await getItemById({
+        collection: "categories",
+        id: route.params.id
+    });
+    if (!categories) throwError("No Category found, 404");
+
     const {
-        data: category
-    } = await useAsyncData('category', () => {
-        return $directus.items('categories').readOne(route.params.slug)
-    })
-    if (!category.value) throw createError({
-        statusCode: 404,
-        statusMessage: 'Category Not Found'
-    })
+        getThumbnail: img
+    } = useDirectusFiles();
 </script>

@@ -21,7 +21,7 @@
 </script>
 
 <script setup>
-/*const { getItems } = useDirectusItems();
+const { getItems } = useDirectusItems();
 
-const departments = await getItems({ collection: "departments" }); */
+const departments = await getItems({ collection: "departments" });
 </script>

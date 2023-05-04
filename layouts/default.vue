@@ -108,8 +108,6 @@
           </v-navigation-drawer>
           <v-main id="sidebarNav"></v-main>
           <main id="mainSection">
-            <lowerbar />
-            <live />
             <slot />
             <BottomFooter />
           </main>

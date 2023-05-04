@@ -1,5 +1,6 @@
 <template>
     <div>
+        <live />
         <v-card class="lowerbar">
             <v-tabs :style="`background-color:${departments.color}; color:${departments.colortext};`" center-active>
                 <h5>Meeovi {{ departments.name }}</h5>
@@ -10,7 +11,7 @@
         </v-card>
 
         <v-carousel>
-            <v-carousel-item :src="departments.media" cover></v-carousel-item>
+            <v-carousel-item :src="departments.image" cover></v-carousel-item>
         </v-carousel>
 
         <v-row class="categoryPage" :style="`background-color:${departments.color};`">
@@ -77,6 +78,7 @@
 
 <script>
     //import videobar from '../../components/Menus/videobar.vue'
+    import live from '../../components/Catbar/live.vue'
     import latestproducts from '../../components/Related/latestproducts.vue'
     import bestsellers from '../../components/Related/bestsellers.vue'
     import relatedcreators from '../../components/Creators/relatedcreators.vue'
@@ -84,6 +86,7 @@
     export default {
         components: {
             //videobar,
+            live,
             latestproducts,
             bestsellers,
             relatedcreators
@@ -98,10 +101,6 @@
 </script>
 
 <script setup>
-    useHead({
-        title: 'Meeovi ',
-    })
-
     const {
         getItemById
     } = useDirectusItems();
@@ -116,4 +115,8 @@
     const {
         getThumbnail: img
     } = useDirectusFiles();
+
+    useHead({
+        title: 'Meeovi ' + route.params.name,
+    })
 </script>
