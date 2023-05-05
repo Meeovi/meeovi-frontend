@@ -40,6 +40,7 @@ export default defineNuxtConfig({
     'nuxt-meilisearch',
     '@nuxtjs/apollo',
     "nuxt-directus",
+    'nuxt-medusa',
   ],
 
   /*auth: {
@@ -85,6 +86,13 @@ export default defineNuxtConfig({
       home: "/index.vue",
     },
   }, */
+
+  medusa: {
+    baseUrl: process.env.MEDUSA_URL,
+    maxRetries: 3,
+    global: true,
+    server: false
+  },
   
   directus: {
     url: process.env.DIRECTUS_URL,

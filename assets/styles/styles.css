@@ -11,6 +11,20 @@ body {
     width: 100% !important;
 }
 
+.lowernav {
+    top: 50px;
+    position: relative;
+    background-color: crimson !important;
+}
+
+.shopping-cart {
+    color: crimson;
+}
+
+.lowernav a {
+    color: white;
+}
+
 .logobrand {
     text-decoration: none;
 }
@@ -57,7 +71,7 @@ body {
     top: 0px !important;
     position: relative !important;
     left: 0px;
-    width: 100% !important;
+    max-width: 100% !important;
     height: 100% !important;
 }
 
@@ -193,6 +207,11 @@ body {
 
 .livefeed {
     padding-top: 10px;
+}
+
+.postbtn {
+    background-color: crimson !important;
+    color: white !important;
 }
 
 /****************** Social Profile ****************/

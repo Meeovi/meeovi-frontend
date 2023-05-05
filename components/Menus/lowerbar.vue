@@ -1,6 +1,6 @@
 <template>
-    <v-card>
-        <v-tabs style="background-color: transparent" center-active>
+    <v-card class="lowernav">
+        <v-tabs center-active>
             <v-tab></v-tab>
             <v-tab><a href="/Departments/books">Books</a></v-tab>
             <v-tab><a href="/Departments/music">Music</a></v-tab>

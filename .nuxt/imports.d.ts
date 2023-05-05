@@ -15,6 +15,7 @@ export { useDirectusToken } from '../node_modules/nuxt-directus/dist/runtime/com
 export { useDirectusUrl } from '../node_modules/nuxt-directus/dist/runtime/composables/useDirectusUrl';
 export { useDirectusUser } from '../node_modules/nuxt-directus/dist/runtime/composables/useDirectusUser';
 export { useDirectusUsers } from '../node_modules/nuxt-directus/dist/runtime/composables/useDirectusUsers';
+export { useMedusaClient } from '../node_modules/nuxt-medusa/dist/runtime/composables/useMedusaClient';
 export { queryContent } from '../node_modules/@nuxt/content/dist/runtime/composables/query';
 export { useContentHelpers } from '../node_modules/@nuxt/content/dist/runtime/composables/helpers';
 export { useContentHead } from '../node_modules/@nuxt/content/dist/runtime/composables/head';

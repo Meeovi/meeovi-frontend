@@ -2,7 +2,7 @@
     <div class="text-center feedButton">
         <v-dialog v-model="dialog" max-height="500" max-width="500">
             <template v-slot:activator="{ props }">
-                <v-btn icon="fas fa-plus" color="orange" title="Post to Social Feed" v-bind="props">
+                <v-btn icon="fas fa-plus" class="postbtn" title="Post to Social Feed" v-bind="props">
                 </v-btn>
             </template>
 
