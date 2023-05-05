@@ -99,11 +99,9 @@ export default defineNuxtConfig({
     clients: {
       default: {
         httpEndpoint: process.env.GQL_HOST,
-        httpLinkOptions: {
-          credentials: 'include'
-        }
+        tokenStorage: 'cookie'
       },
-    },
+    }
   },
 
   meilisearch: {

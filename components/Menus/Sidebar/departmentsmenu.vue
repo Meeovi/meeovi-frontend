@@ -29,7 +29,7 @@ const query = gql`
     }
   }
 `
-const { data: departments } = await useAsyncQuery(query)
+const { data: departments } = await useQuery(query)
 
 /*const { getItems } = useDirectusItems();
 
