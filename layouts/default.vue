@@ -45,12 +45,14 @@
 
         <v-col>
           <a variant="flat" href="/commerce/cart">
-            <v-icon color="orange" start icon="fas fa-shopping-cart"></v-icon>
+            <v-icon class="shopping-cart" start icon="fas fa-shopping-cart"></v-icon>
           </a>
         </v-col>
       </div>
     </v-app-bar>
-
+    
+    <lowerbar />
+    
     <v-main>
       <v-card>
         <v-layout>
@@ -106,13 +108,15 @@
               </v-row>
             </v-list>
           </v-navigation-drawer>
+          
           <v-main id="sidebarNav"></v-main>
           <main id="mainSection">
+            
             <slot />
-            <BottomFooter />
           </main>
         </v-layout>
       </v-card>
+      <BottomFooter />
       <FooterNav />
     </v-main>
   </v-app>
