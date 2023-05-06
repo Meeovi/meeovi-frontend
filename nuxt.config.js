@@ -39,7 +39,6 @@ export default defineNuxtConfig({
     '@nuxt/content',
     'nuxt-meilisearch',
     '@nuxtjs/apollo',
-    "nuxt-directus",
     'nuxt-medusa',
   ],
 
@@ -93,23 +92,22 @@ export default defineNuxtConfig({
     global: true,
     server: false
   },
-  
-  directus: {
-    url: process.env.DIRECTUS_URL,
-    auth: {
-      token: process.env.DIRECTUS_TOKEN,
-      email: process.env.DIRECTUS_EMAIL,
-      password: process.env.DIRECTUS_PASSWORD
-    }/* */
+
+  runtimeConfig: {
+    websiteURL: process.env.GQL_HOST,
+    websiteToken: process.env.WEBSITE_TOKEN,
   },
 
   apollo: {
+    authType: "Bearer",
+    authHeader: "Authorization",
+    tokenStorage: "cookie",
     clients: {
       default: {
+        tokenName: "apollo-token",
         httpEndpoint: process.env.GQL_HOST,
-        tokenStorage: 'cookie'
       },
-    }
+    },
   },
 
   meilisearch: {
@@ -125,8 +123,6 @@ export default defineNuxtConfig({
   build: {
     transpile: [
       'vuetify',
-      '@apollo/client',
-      'ts-invariant/process',
       "@fortawesome/vue-fontawesome",
       "@fortawesome/fontawesome-svg-core",
       "@fortawesome/pro-solid-svg-icons",

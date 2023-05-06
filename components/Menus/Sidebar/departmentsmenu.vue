@@ -3,8 +3,8 @@
         <v-expansion-panels variant="accordion">
             <v-expansion-panel title="Departments" expand-icon="fas fa-plus" collapse-icon="fas fa-minus" elevation="0">
                 <v-expansion-panel-text>
-                    <div v-for="departments in departments" :key="departments.id">
-                        <v-list-item :title="departments.name" :value="departments.name"
+                    <div v-for="departments in data.departments.data" :key="departments.id">
+                        <v-list-item :title="departments.attributes.Name" :value="departments.attributes.Name"
                             :href="`/departments/${departments.id}`">
                         </v-list-item>
                     </div>
@@ -15,23 +15,25 @@
 </template>
 
 <script>
-    export default {
 
-    }
+export default {
+    
+}
 </script>
 
 <script setup>
 const query = gql`
-  query getDepartments {
-    departments {
-        id
-        name
+    query {
+      departments {
+        data {
+            id 
+            attributes {
+                Name
+            }
+        }
     }
-  }
-`
-const { data: departments } = await useQuery(query)
+}`
 
-/*const { getItems } = useDirectusItems();
 
-const departments = await getItems({ collection: "departments" }); */
+const { data } = useAsyncQuery(query);
 </script>
