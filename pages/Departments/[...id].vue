@@ -2,21 +2,20 @@
     <div>
         <live />
         <v-card class="lowerbar">
-            <v-tabs :style="`background-color:${departments.color}; color:${departments.colortext};`" center-active>
-                <h5>Meeovi {{ departments.name }}</h5>
-                <v-tab><a :href="`/departments/${departments.id}`">All</a></v-tab>
-                <v-tab><a :href="`/categories/${departments.categories}`">{{ departments.categories }}</a>
-                </v-tab>
+            <v-tabs :style="`background-color:${data.department.data.attributes.color}; color:${data.department.data.attributes.colortext};`" center-active>
+                <h5>Meeovi {{ data.department.data.attributes.Name }}</h5>
+                <v-tab><a :href="`/departments/${data.department.data.attributes.id}`">All</a></v-tab>
+                <v-tab><a :href="`/categories/${data.department.data.attributes.categories}`">{{ data.department.data.attributes.categories }}</a></v-tab>
             </v-tabs>
         </v-card>
 
         <v-carousel>
-            <v-carousel-item :src="departments.image" cover></v-carousel-item>
+            <v-carousel-item :src="data.department.data.attributes.media" cover></v-carousel-item>
         </v-carousel>
 
-        <v-row class="categoryPage" :style="`background-color:${departments.color};`">
+        <v-row class="categoryPage" :style="`background-color:${data.department.data.attributes.color};`">
             <v-col cols="12">
-                <h4 :style="`color:${departments.colortext};`">Popular Content</h4>
+                <h4 :style="`color:${data.department.data.attributes.colortext};`">Popular Content</h4>
                 <v-sheet class="mx-auto categorySheet">
                     <v-slide-group v-model="model" class="pa-4" center-active show-arrows>
                         <v-slide-group-item v-for="n in 15" :key="n" v-slot="{ isSelected, toggle }">
@@ -52,8 +51,6 @@
 
                         <v-card-text>
                             <div>By: Seller</div>
-
-                            <div>Excerpt</div>
                         </v-card-text>
 
                         <v-card-actions>
@@ -94,29 +91,54 @@
         data() {
             return {
                 model: null,
-                url: process.env.DIRECTUS_URL
             }
         },
     }
 </script>
 
 <script setup>
-    const {
-        getItemById
-    } = useDirectusItems();
-    const route = useRoute();
+const route = useRoute()
 
-    const departments = await getItemById({
-        collection: "departments",
-        id: route.params.id
-    });
-    if (!departments) throwError("No Department found, 404");
+const query = gql`
+    query getDepartment($id: ID!) {
+    department(id: $id){
+        data {
+        id
+        attributes {
+            Name
+            color
+            colortext
+            categories {
+            data {
+                attributes {
+                Name
+                }
+            }
+            }
+            products {
+            data {
+                attributes {
+                Name
+                price
+                media {
+                    data {
+                    attributes {
+                        name
+                    }
+                    }
+                }
+                }
+            }
+            }
+            
+        }
+        }
+    }
+    }`
 
-    const {
-        getThumbnail: img
-    } = useDirectusFiles();
+const { data } = useAsyncQuery(query);
 
     useHead({
-        title: 'Meeovi ' + route.params.name,
+        title: 'Meeovi ' + route.params.id,
     })
 </script>

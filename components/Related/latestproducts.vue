@@ -2,18 +2,33 @@
     <v-sheet class="mx-auto sliderProducts">
         <h4>Latest Products</h4>
         <v-slide-group v-model="model" class="pa-4" center-active show-arrows>
-            <v-slide-group-item v-for="n in 15" :key="n" v-slot="{ isSelected, toggle }">
-                <v-card :color="isSelected ? 'primary' : 'grey-lighten-1'" class="ma-4" height="250" width="250"
-                    @click="toggle">
-                    <v-img class="align-end text-white" height="250"
-                        src="https://cdn.vuetifyjs.com/images/cards/docks.jpg" cover>
-                    </v-img>
-                    <div class="d-flex fill-height align-center justify-center">
-                        <v-scale-transition>
-                            <v-icon v-if="isSelected" color="white" size="48" icon="mdi-close-circle-outline"></v-icon>
-                        </v-scale-transition>
-                    </div>
-                </v-card>
+            <v-slide-group-item v-for="products in data.products.data" :key="products.id"
+                v-slot="{ isSelected, toggle }">
+                <a :href="products.attributes.id">
+                    <v-card class="ma-4" height="380" width="250" @click="toggle">
+                        <v-img class="align-end text-white" height="200" :src="`${url}/${products.attributes.media}`" cover>
+                        </v-img>
+
+                        <v-card-title class="pt-4">
+                            {{ products.attributes.Name }}
+                        </v-card-title>
+
+                        <v-card-text>
+                            <div>By: {{ products.attributes.customers.data.attributes.Name }}</div>
+                            <div>Category: {{ products.attributes.category.data.attributes.Name }}</div>
+                        </v-card-text>
+
+                        <v-card-actions>
+                            <v-card-title>$ {{ products.attributes.price }}</v-card-title>
+                        </v-card-actions>
+                        <div class="d-flex fill-height align-center justify-center">
+                            <v-scale-transition>
+                                <v-icon v-if="isSelected" color="white" size="48" icon="mdi-close-circle-outline">
+                                </v-icon>
+                            </v-scale-transition>
+                        </div>
+                    </v-card>
+                </a>
             </v-slide-group-item>
         </v-slide-group>
     </v-sheet>
@@ -23,10 +38,47 @@
     export default {
         data: () => ({
             model: null,
+            url: process.env.GQL_HOST
         }),
     }
 </script>
 
 <script setup>
+    const query = gql`
+    query {
+        products(sort: "desc") {
+    data {
+      attributes {
+        Name
+        price
+        media {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+        customers {
+          data {
+            attributes {
+              Name
+            }
+          }
+        }
+        category {
+          data {
+            attributes {
+              Name
+            }
+          }
+        }
+      }
+    }
+  }
+}`
 
+
+    const {
+        data
+    } = useAsyncQuery(query);
 </script>

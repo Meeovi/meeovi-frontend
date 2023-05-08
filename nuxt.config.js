@@ -106,6 +106,11 @@ export default defineNuxtConfig({
       default: {
         tokenName: "apollo-token",
         httpEndpoint: process.env.GQL_HOST,
+        httpLinkOptions: {
+          headers: {
+            'x-hasura-admin-secret': process.env.GQL_VALUE
+          }
+        }
       },
     },
   },
