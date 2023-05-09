@@ -2,24 +2,24 @@
     <v-sheet class="mx-auto sliderProducts">
         <h4>Latest Products</h4>
         <v-slide-group v-model="model" class="pa-4" center-active show-arrows>
-            <v-slide-group-item v-for="products in data.products.data" :key="products.id"
+            <v-slide-group-item v-for="products in data.products" :key="products.id"
                 v-slot="{ isSelected, toggle }">
-                <a :href="products.attributes.id">
+                <a :href="`/product/${products.id}`">
                     <v-card class="ma-4" height="380" width="250" @click="toggle">
-                        <v-img class="align-end text-white" height="200" :src="`${url}/${products.attributes.media}`" cover>
+                        <v-img class="align-end text-white" height="200" :src="`${url}assets/${products.image.filename_disk}`" cover>
                         </v-img>
 
                         <v-card-title class="pt-4">
-                            {{ products.attributes.Name }}
+                            {{ products.name }}
                         </v-card-title>
 
                         <v-card-text>
-                            <div>By: {{ products.attributes.customers.data.attributes.Name }}</div>
-                            <div>Category: {{ products.attributes.category.data.attributes.Name }}</div>
+                            <div>By: {{ products.id }}</div>
+                            <div>Category: </div>
                         </v-card-text>
 
                         <v-card-actions>
-                            <v-card-title>$ {{ products.attributes.price }}</v-card-title>
+                            <v-card-title>$ {{ products.price }}</v-card-title>
                         </v-card-actions>
                         <div class="d-flex fill-height align-center justify-center">
                             <v-scale-transition>
@@ -38,44 +38,23 @@
     export default {
         data: () => ({
             model: null,
-            url: process.env.GQL_HOST
+            url: process.env.DIRECTUS_URL
         }),
     }
 </script>
 
 <script setup>
-    const query = gql`
+    const query = gql `
     query {
-        products(sort: "desc") {
-    data {
-      attributes {
-        Name
-        price
-        media {
-          data {
-            attributes {
-              url
+        products {
+            id
+            name
+            image {
+                filename_disk
             }
-          }
-        }
-        customers {
-          data {
-            attributes {
-              Name
-            }
-          }
-        }
-        category {
-          data {
-            attributes {
-              Name
-            }
-          }
-        }
-      }
-    }
-  }
-}`
+            price
+        } 
+    }`
 
 
     const {
