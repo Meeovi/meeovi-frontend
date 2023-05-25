@@ -42,6 +42,7 @@
       "@fortawesome/fontawesome-svg-core": "^6.2.1",
       "@fortawesome/free-solid-svg-icons": "^6.2.1",
       "@fortawesome/vue-fontawesome": "^3.0.2",
+      "@graphql-mesh/json-schema": "^0.93.1",
       "@huntersofbook/naive-ui-nuxt": "^0.5.1",
       "@mdi/font": "^7.1.96",
       "@meilisearch/instant-meilisearch": "^0.10.1",

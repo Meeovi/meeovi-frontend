@@ -30,7 +30,7 @@
 </script>
 
 <script setup>
-    const query = gql`
+ /*   const query = gql`
     query {
         customers {
             id
@@ -43,5 +43,5 @@
 
     const {
         data
-    } = useAsyncQuery(query);
+    } = useAsyncQuery(query); */
 </script>

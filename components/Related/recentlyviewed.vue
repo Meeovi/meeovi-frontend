@@ -44,13 +44,13 @@
 </script>
 
 <script setup>
-    const query = gql `
+ /*   const query = gql `
     query {
         products {
             id
             name
             image {
-                filename_download
+                filename_disk
             }
             price
         } 
@@ -59,5 +59,5 @@
 
     const {
         data
-    } = useAsyncQuery(query);
+    } = useAsyncQuery(query); */
 </script>

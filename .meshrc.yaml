@@ -1,5 +1,11 @@
 sources:
-  - name: MainDB
+  - name: CommerceUI
     handler:
-      postgraphile:
-        connectionString: postgres://{env.DB_USER}:{env.DB_PASSWORD}@{env.DB_HOST}/{env.DB_USER}?schema={env.DB_SCHEMA}
+      jsonSchema:
+        endpoint: https://cms.meeovicms.com/endpoint-path/
+        operations:
+          - type: Query
+            field: users
+            path: /users
+            method: GET
+            responseSchema: ./json-schemas/users.json

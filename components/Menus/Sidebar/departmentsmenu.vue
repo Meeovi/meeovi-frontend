@@ -22,7 +22,7 @@ export default {
 </script>
 
 <script setup>
-const query = gql`
+/* const query = gql`
     query {
         departments {
             id
@@ -31,5 +31,5 @@ const query = gql`
     }`
 
 
-const { data } = useAsyncQuery(query);
+const { data } = useAsyncQuery(query); */
 </script>
