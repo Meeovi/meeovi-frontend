@@ -1,11 +1,9 @@
 sources:
-  - name: CommerceUI
+  - name: Employees
     handler:
-      jsonSchema:
-        endpoint: https://cms.meeovicms.com/endpoint-path/
-        operations:
-          - type: Query
-            field: users
-            path: /users
-            method: GET
-            responseSchema: ./json-schemas/users.json
+      mysql:
+         host: "{env.DB_HOST}"
+         port: 3307
+         user: "{env.DB_USER}"
+         password: "{env.DB_PASSWORD}"
+         database: "{env.DB_DATABASE}"
