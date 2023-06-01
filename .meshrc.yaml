@@ -1,9 +1,9 @@
 sources:
-  - name: Employees
+  - name: Mysql
     handler:
       mysql:
-         host: "{env.DB_HOST}"
+         host: "meeovicms.com"
          port: 3307
-         user: "{env.DB_USER}"
-         password: "{env.DB_PASSWORD}"
-         database: "{env.DB_DATABASE}"
+         user: "root"
+         password: "Libraxus1986"
+         database: "meeware"

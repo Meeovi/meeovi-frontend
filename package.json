@@ -13,6 +13,9 @@
    },
    "license": "MIT",
    "private": true,
+   "prisma:": {
+      "schema": "node_modules/graphql-yoga-prisma/prisma/schema.prisma"
+   },
    "scripts": {
       "alternate-commit": "git add . && git commit -m \"ready for update\"",
       "alternate-update": "git pull \"https://github.com/Meeovi/meeovi-frontend\"",
@@ -24,7 +27,11 @@
       "prebuild": "mesh build",
       "preview": "nuxt preview",
       "postinstall": "nuxt prepare",
-      "all": "npm-run-all --parallel start dev"
+      "yoga": "ts-node node_modules/graphql-yoga-prisma/index.ts",
+      "prisma-dev": "npx prisma generate",
+      "prisma": "prisma generate --schema=node_modules/graphql-yoga-prisma/prisma/schema.prisma",
+      "db-pull": "prisma db pull --schema=node_modules/graphql-yoga-prisma/prisma/schema.prisma",
+      "all": "npm-run-all --parallel yoga dev"
    },
    "devDependencies": {
       "@nuxt/content": "^2.3.0",
@@ -53,6 +60,7 @@
       "@types/graphql": "^14.5.0",
       "@vue/apollo-composable": "^4.0.0-beta.4",
       "graphql-tag": "^2.12.6",
+      "graphql-yoga-prisma": "^1.0.0",
       "instantsearch.css": "^8.0.0",
       "jquery": "^3.6.3",
       "keycloak-nuxt-auth-module": "^4.8.4",
