@@ -60,7 +60,7 @@
       "@types/graphql": "^14.5.0",
       "@vue/apollo-composable": "^4.0.0-beta.4",
       "graphql-tag": "^2.12.6",
-      "graphql-yoga-prisma": "^1.0.0",
+      "graphql-yoga-prisma": "^1.0.1",
       "instantsearch.css": "^8.0.0",
       "jquery": "^3.6.3",
       "keycloak-nuxt-auth-module": "^4.8.4",
