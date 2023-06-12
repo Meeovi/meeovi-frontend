@@ -2,21 +2,19 @@
     <div>
         <v-toolbar title="Deals" color="orange"></v-toolbar>
         <v-row class="productPage">
-            <v-col cols="3">
+            <v-col cols="3" v-for="products in data" :key="products">
                 <a href="">
                     <v-card class="mx-auto" max-width="300">
                         <v-img class="align-end text-white" height="200"
-                            src="https://cdn.vuetifyjs.com/images/cards/docks.jpg" cover>
+                            :src="products.items.image" cover>
                         </v-img>
 
                         <v-card-title class="pt-4">
-                            Product Name
+                            {{ products.items.name }}
                         </v-card-title>
 
                         <v-card-text>
                             <div>By: Seller</div>
-
-                            <div>Excerpt</div>
                         </v-card-text>
 
                         <v-card-actions>
@@ -60,4 +58,26 @@
     useHead({
         title: 'Deals',
     })
+
+    const query = gql `
+    query {
+    products (filter: { price: { to: "50" } }) {
+        items {
+        name
+        price_range {
+            maximum_price {
+            regular_price {
+                value
+                currency
+            }
+            }
+        }
+        }
+    }
+    }`
+
+
+    const {
+        data
+    } = useAsyncQuery(query);
 </script>

@@ -4,16 +4,6 @@ import {
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  app: {
-    head: {
-      script: [{
-        src: process.env.NUXT_PUBLIC_UMAMI_HOST,
-        async: true,
-        'data-website-id': process.env.NUXT_PUBLIC_UMAMI_ID
-      }],
-    },
-  },
-
   extends: ['@sidebase/core'],
 
   css: [
@@ -37,9 +27,7 @@ export default defineNuxtConfig({
   modules: [
     //'@sidebase/nuxt-auth',
     '@nuxt/content',
-    'nuxt-meilisearch',
     '@nuxtjs/apollo',
-    'nuxt-medusa',
   ],
 
   /*auth: {
@@ -86,13 +74,6 @@ export default defineNuxtConfig({
     },
   }, */
 
-  medusa: {
-    baseUrl: process.env.MEDUSA_URL,
-    maxRetries: 3,
-    global: true,
-    server: false
-  },
-
   runtimeConfig: {
     websiteURL: process.env.GQL_HOST,
     websiteToken: process.env.WEBSITE_TOKEN,
@@ -106,23 +87,14 @@ export default defineNuxtConfig({
       default: {
         tokenName: "apollo-token",
         httpEndpoint: process.env.GQL_HOST,
-        httpLinkOptions: {
+      /*  httpLinkOptions: {
           headers: {
-            'x-hasura-admin-secret': process.env.GQL_VALUE
+            'x-magento-cache-id': process.env.GQL_KEY,
+            'x-magento-tags': 'FPC'
           }
-        }
+        } */
       },
     },
-  },
-
-  meilisearch: {
-    hostUrl: process.env.HOSTURL,
-    searchApiKey: process.env.SEARCH_APIKEY,
-    adminApiKey: process.env.ADMIN_APIKEY,
-    serverSideUsage: true,
-    instantSearch: {
-      theme: 'algolia'
-    }
   },
 
   build: {

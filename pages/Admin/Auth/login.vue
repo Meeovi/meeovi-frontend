@@ -1,50 +1,54 @@
+<script setup lang="ts">
+const { push } = useRouter();
+const { logout, isLoggedIn } = useUser();
+
+const redirectAfterLogin = (path = "/account") => push(path);
+
+onBeforeMount(async () => {
+  if (process.client && isLoggedIn.value) {
+    // redirect to account page if user is logged in
+    navigateTo({ path: "/account" });
+  } else {
+    await logout(); // if you do a hard reload on the login page, you will be logged out
+  }
+});
+
+useBreadcrumbs([
+  {
+    name: "Login",
+    path: "/login",
+  },
+]);
+</script>
+
+<script lang="ts">
+export default {
+  name: "LoginPage",
+};
+</script>
+
 <template>
-    <v-sheet class="bg-deep-purple pa-12" rounded>
-        <v-card class="mx-auto px-6 py-8" max-width="344">
-            <v-form v-model="form" @submit.prevent="onSubmit">
-                <v-text-field v-model="email" :readonly="loading" :rules="[required]" class="mb-2" clearable
-                    label="Email"></v-text-field>
+  <div class="login-wrapper">
+    <AccountLoginForm @success="redirectAfterLogin('/account')">
+      <div class="flex items-center justify-end">
+        <div class="text-sm">
+          <NuxtLink
+            to="/account/recover"
+            class="font-medium text-indigo-600 hover:text-indigo-500"
+          >
+            {{ $t("recoveryPassword.forgotPassword") }}
+          </NuxtLink>
+        </div>
+      </div>
 
-                <v-text-field v-model="password" :readonly="loading" :rules="[required]" clearable label="Password"
-                    placeholder="Enter your password"></v-text-field>
-
-                <br>
-
-                <v-btn :disabled="!form" :loading="loading" block color="success" size="large" type="submit"
-                    variant="elevated">
-                    Sign In
-                </v-btn>
-            </v-form>
-        </v-card>
-    </v-sheet>
+      <template #action>
+        <NuxtLink
+          to="/register"
+          class="w-full flex justify-center py-2 px-4 border border-indigo-600 text-sm font-medium rounded-md text-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        >
+          {{ $t("account.signUp") }}
+        </NuxtLink>
+      </template>
+    </AccountLoginForm>
+  </div>
 </template>
-
-<script>
-    export default {
-        data: () => ({
-            form: false,
-            email: null,
-            password: null,
-            loading: false,
-        }),
-
-        methods: {
-            onSubmit() {
-                if (!this.form) return
-
-                this.loading = true
-
-                setTimeout(() => (this.loading = false), 2000)
-            },
-            required(v) {
-                return !!v || 'Field is required'
-            },
-        },
-    }
-</script>
-
-<script setup>
-    useHead({
-        title: 'Login to Meeovi',
-    });
-</script>

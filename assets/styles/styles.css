@@ -75,7 +75,7 @@ body {
     height: 100% !important;
 }
 
-.homeSection {
+.homeSection, .contentPage {
     padding: 45px !important;
 }
 

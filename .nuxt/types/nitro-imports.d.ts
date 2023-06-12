@@ -41,6 +41,7 @@ declare global {
   const getRequestHeader: typeof import('h3')['getRequestHeader']
   const getRequestHeaders: typeof import('h3')['getRequestHeaders']
   const getRequestHost: typeof import('h3')['getRequestHost']
+  const getRequestPath: typeof import('h3')['getRequestPath']
   const getRequestProtocol: typeof import('h3')['getRequestProtocol']
   const getRequestURL: typeof import('h3')['getRequestURL']
   const getResponseHeader: typeof import('h3')['getResponseHeader']
