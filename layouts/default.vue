@@ -51,7 +51,7 @@
       </div>
     </v-app-bar>
     
-    <live />
+    
     
     <v-main>
       <v-card>
@@ -114,7 +114,7 @@
           
           <v-main id="sidebarNav"></v-main>
           <main id="mainSection">
-            
+            <live />
             <slot />
           </main>
         </v-layout>

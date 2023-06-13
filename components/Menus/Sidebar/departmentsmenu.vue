@@ -21,14 +21,13 @@
 <script setup>
  const query = gql`
     query {
-        categories {
+        categories (filters: {parent_id: {in: ["2"]}}) {
             items {
             uid
             name
             }
         }
     }`
-
 
 const { data } = useAsyncQuery(query); 
 </script>
