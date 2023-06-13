@@ -77,6 +77,7 @@ body {
 
 .v-main {
     flex: none !important;
+    --v-layout-top: 0px !important;
 }
 
 .homeSection, .contentPage {

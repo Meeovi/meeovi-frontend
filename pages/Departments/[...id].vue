@@ -1,6 +1,5 @@
 <template>
     <div>
-        <live />
         <v-card class="lowerbar">
             <v-tabs :style="`background-color:${data.department.data.attributes.color}; color:${data.department.data.attributes.colortext};`" center-active>
                 <h5>Meeovi {{ data.department.data.attributes.Name }}</h5>

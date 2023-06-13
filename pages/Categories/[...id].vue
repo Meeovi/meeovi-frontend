@@ -1,6 +1,5 @@
 <template>
     <div>
-        <live />
         <v-card class="lowerbar">
             <v-tabs style="background-color: orange; color: black;" center-active>
                 <h5>{{ categories.name }}</h5>

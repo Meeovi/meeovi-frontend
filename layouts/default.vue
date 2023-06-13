@@ -51,7 +51,7 @@
       </div>
     </v-app-bar>
     
-    <lowerbar />
+    <live />
     
     <v-main>
       <v-card>
