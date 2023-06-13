@@ -3,9 +3,9 @@
         <v-expansion-panels variant="accordion">
             <v-expansion-panel title="Departments" expand-icon="fas fa-plus" collapse-icon="fas fa-minus" elevation="0">
                 <v-expansion-panel-text>
-                    <div v-for="categories in data" :key="categories">
-                        <v-list-item :title="categories.items.name" :value="categories.items.name"
-                            :href="`/departments/${categories.items.uid}`">
+                    <div v-for="categories in data.categories.items" :key="categories">
+                        <v-list-item :title="categories.name" :value="categories.name"
+                            :href="`/departments/${categories.uid}`">
                         </v-list-item>
                     </div>
                 </v-expansion-panel-text>

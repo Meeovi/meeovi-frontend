@@ -187,7 +187,7 @@ body {
     display: inline-block;
     max-width: 100%;
     min-width: 50px;
-    padding-left: 20px;
+    padding: 20px;
     text-align: left;
     vertical-align: top;
     width: 200px;
