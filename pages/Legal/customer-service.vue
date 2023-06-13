@@ -1,7 +1,6 @@
 <template>
-    <div class="contentPage" v-for="cmspage in data" :key="cmspage">
-       <h2>{{ cmspage.title }}</h2>
-       <div v-html="cmspage.content"></div>
+    <div v-for="cmspage in data" :key="cmspage">
+       <div class="contentPage" v-html="cmspage.content"></div>
     </div>
 </template>
 
@@ -13,12 +12,12 @@ export default {
 
 <script setup>
     useHead({
-        title: 'Payments',
+        title: 'Customer Service',
     })
 
     const query = gql `
     query {
-    cmsPage(identifier: "payments") {
+    cmsPage(identifier: "customer-service") {
         title
         content
         relative_url

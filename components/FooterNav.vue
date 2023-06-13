@@ -18,7 +18,7 @@
                     <v-list-item title="Return Policy" value="Return Policy" href="/legal/returns"></v-list-item>
                     <v-list-item title="Conditions of Use" value="Conditions of Use" href="/legal/terms"></v-list-item>
                     <v-list-item title="Privacy Notice" value="Privacy Notice" href="/legal/privacy"></v-list-item>
-                    <v-list-item title="Contact Us" value="Contact Us" href="/legal/contact"></v-list-item>
+                    <v-list-item title="Contact Us" value="Customer Service" href="/legal/customer-service"></v-list-item>
                     <v-list-item title="Developers" value="Developers" href="/about/developers"></v-list-item>
                     <v-list-item title="Sellers" value="Sellers" href="/sell/"></v-list-item>
                 </v-col>
