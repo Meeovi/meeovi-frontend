@@ -1,7 +1,7 @@
 <template>
     <v-sheet class="mx-auto sliderProducts">
         <h4>Latest Products</h4>
-        <v-slide-group v-model="model" class="pa-4" center-active show-arrows>
+        <!--<v-slide-group v-model="model" class="pa-4" center-active show-arrows>
             <v-slide-group-item v-for="products in data.products.items" :key="products.uid"
                 v-slot="{ isSelected, toggle }">
                 <a :href="`/product/${products.uid}`">
@@ -28,7 +28,10 @@
                     </v-card>
                 </a>
             </v-slide-group-item>
-        </v-slide-group>
+        </v-slide-group>-->
+        <div class="contentPage" v-for="cmsblock in data.cmsBlocks.items" :key="cmsblock">
+            <div v-html="cmsblock.content"></div>
+        </div>
     </v-sheet>
 </template>
 
@@ -41,29 +44,18 @@
 </script>
 
 <script setup>
-const query = gql`
+const query = gql `
 query {
-    products(filter: {price: {to: "50"}}){
+    cmsBlocks(identifiers: "latest block") {
     items {
-      uid
-      name
-      country_of_manufacture
-      categories {
-        name
-      }
-      price_range {
-        maximum_price {
-          regular_price {
-            value
-          }
-        }
-      }
-      image {
-        url
-      }
+      title
+      content
     }
   }
 }`
 
-const { data } = useAsyncQuery(query);
+
+    const {
+        data
+    } = useAsyncQuery(query);
 </script>
