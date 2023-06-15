@@ -16,7 +16,7 @@
     import headerslider from '../components/homePage/headerslider.vue'
     import callout from '../components/homePage/callout.vue'
     import callout2 from '../components/homePage/callout2.vue'
-    //import latestproducts from '../components/Related/latestproducts.vue'
+    import latestproducts from '../components/Related/latestproducts.vue'
     import features from '../components/homePage/features.vue'
     //import featuredproducts from '../components/Related/featuredproducts.vue'
     //import productList from '../components/homePage/productList.vue'
@@ -28,7 +28,7 @@
             headerslider,
             callout,
             callout2,
-            //latestproducts,
+            latestproducts,
             features,
             //featuredproducts,
             //productList,
