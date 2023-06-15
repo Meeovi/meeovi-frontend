@@ -13,7 +13,7 @@
                         </v-card-title>
 
                         <v-card-text>
-                            <div>By: {{ products.uid }}</div>
+                            <div>Country of Manufacture: {{ products.country_of_manufacture }}</div>
                             <div>Category: {{ products.categories.name }}</div>
                         </v-card-text>
 
@@ -41,12 +41,13 @@
 </script>
 
 <script setup>
-    const query = gql `
-    query {
+const query = gql`
+query {
     products(filter: {price: {to: "50"}}){
     items {
       uid
       name
+      country_of_manufacture
       categories {
         name
       }
@@ -64,8 +65,5 @@
   }
 }`
 
-
-    const {
-        data
-    } = useAsyncQuery(query);
+const { data } = useAsyncQuery(query);
 </script>
