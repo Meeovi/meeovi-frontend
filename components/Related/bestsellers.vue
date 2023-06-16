@@ -2,8 +2,7 @@
     <v-sheet class="mx-auto sliderProducts">
         <h4>Best Sellers</h4>
         <v-slide-group v-model="model" class="pa-4" center-active show-arrows>
-            <v-slide-group-item v-for="products in data.products.items" :key="products.id"
-                v-slot="{ isSelected, toggle }">
+            <v-slide-group-item v-for="products in data.products.items" :key="products.uid" v-slot="{ isSelected, toggle }">
                 <a :href="`/product/${products.uid}`">
                     <v-card class="ma-4" height="380" width="250" @click="toggle">
                         <v-img class="align-end text-white" height="200" :src="products.image.url" cover></v-img>
@@ -13,7 +12,7 @@
                         </v-card-title>
 
                         <v-card-text>
-                            <div>By: {{ products.uid }}</div>
+                            <div>Country of Manufacture: {{ products.country_of_manufacture }}</div>
                             <div>Category: {{ products.categories.name }}</div>
                         </v-card-text>
 
@@ -29,6 +28,9 @@
                 </a>
             </v-slide-group-item>
         </v-slide-group>
+      <!--  <div class="contentPage" v-for="cmsblock in data" :key="cmsblock">
+            <div v-html="cmsblock.content"></div>
+        </div>-->
     </v-sheet>
 </template>
 
@@ -41,9 +43,9 @@
 </script>
 
 <script setup>
-    const query = gql `
-    query {
-    products(filter: {price: {to: "50"}}){
+const query = gql `
+query {
+    products(filter: {price: {to: "999.99"}}){
     items {
       uid
       name

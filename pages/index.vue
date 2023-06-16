@@ -7,7 +7,7 @@
         <features />
         <featuredproducts />
         <productList />
-        <relatedcreators />
+        <bestsellers />
         <simpleSingle />
     </div>
 </template>
@@ -18,9 +18,9 @@
     import callout2 from '../components/homePage/callout2.vue'
     import latestproducts from '../components/Related/latestproducts.vue'
     import features from '../components/homePage/features.vue'
-    //import featuredproducts from '../components/Related/featuredproducts.vue'
-    //import productList from '../components/homePage/productList.vue'
-    //import relatedcreators from '../components/Creators/relatedcreators.vue'
+    import featuredproducts from '../components/Related/featuredproducts.vue'
+    import productList from '../components/homePage/productList.vue'
+    import bestsellers from '../components/Related/bestsellers.vue'
     import simpleSingle from '../components/homePage/simpleSingle.vue'
 
     export default {
@@ -30,9 +30,9 @@
             callout2,
             latestproducts,
             features,
-            //featuredproducts,
-            //productList,
-            //relatedcreators,
+            featuredproducts,
+            productList,
+            bestsellers,
             simpleSingle
         }
     }
