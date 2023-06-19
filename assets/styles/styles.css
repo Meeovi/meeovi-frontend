@@ -135,7 +135,7 @@ body {
 
 .sliderProducts h4, .sliderCreators h4 {
     padding-top: 30px;
-    padding-left: 5%;
+    padding-left: 30px;
 }
 
 .productPage {
@@ -172,6 +172,10 @@ body {
 .rightAddBtn {
     position: relative;
     margin-top: 20px;
+}
+
+.features19 .v-col {
+    display: inline-block !important
 }
 
 /******************** Commerce CSS ************/
@@ -262,4 +266,15 @@ body {
 
 .people5, .people1, .features10, .features12, .teams1, .features19, .flip-card, .features13, .pricing2, .plan, .content2, .mbr-gallery, .mbr-section {
     background-color: transparent !important;
+}
+
+/***************** Footer ********************/
+
+footer {
+    background-color: #6592e6 !important;
+    color: white !important;
+}
+
+footer a:hover {
+    color: white !important;
 }

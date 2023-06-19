@@ -1,39 +1,50 @@
 <template>
     <div>
         <headerslider />
-        <callout />
-        <callout2 />
+        <exclusives />
+        <deals />
+        <bookcallout />
         <latestproducts />
-        <features />
+        <theatercallout />
         <featuredproducts />
-        <productList />
+        <musiccallout />
         <bestsellers />
-        <simpleSingle />
+        <spotlight />
+        <yardsale />
+        <blogposts />
     </div>
 </template>
 
 <script>
     import headerslider from '../components/homePage/headerslider.vue'
-    import callout from '../components/homePage/callout.vue'
-    import callout2 from '../components/homePage/callout2.vue'
+    //import callout from '../components/homePage/callout.vue'
+    import bookcallout from '../components/homePage/bookcallout.vue'
+    import musiccallout from '../components/homePage/musiccallout.vue'
     import latestproducts from '../components/Related/latestproducts.vue'
-    import features from '../components/homePage/features.vue'
+    import theatercallout from '../components/homePage/theatercallout.vue'
     import featuredproducts from '../components/Related/featuredproducts.vue'
-    import productList from '../components/homePage/productList.vue'
+    import spotlight from '../components/homePage/spotlight.vue'
     import bestsellers from '../components/Related/bestsellers.vue'
-    import simpleSingle from '../components/homePage/simpleSingle.vue'
+    import exclusives from '../components/Related/exclusives.vue'
+    import deals from '../components/Related/deals.vue'
+    import yardsale from '../components/Related/yardsale.vue'
+    import blogposts from '../components/homePage/blogposts.vue'
 
     export default {
         components: {
             headerslider,
-            callout,
-            callout2,
+            //callout,
+            bookcallout,
+            musiccallout,
             latestproducts,
-            features,
+            theatercallout,
             featuredproducts,
-            productList,
+            spotlight,
             bestsellers,
-            simpleSingle
+            exclusives,
+            deals,
+            yardsale,
+            blogposts
         }
     }
 </script>

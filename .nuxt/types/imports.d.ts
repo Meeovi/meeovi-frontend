@@ -94,8 +94,6 @@ declare global {
   const useAsyncData: typeof import('../../node_modules/nuxt/dist/app')['useAsyncData']
   const useAsyncQuery: typeof import('../../node_modules/@nuxtjs/apollo/dist/runtime/composables')['useAsyncQuery']
   const useAttrs: typeof import('vue')['useAttrs']
-  const useAuthGuardRedirection: typeof import('../../composables/useAuthGuard')['useAuthGuardRedirection']
-  const useCmsHead: typeof import('../../composables/useCmsHead')['useCmsHead']
   const useContent: typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/utils')['useContentDisabled']
   const useContentHead: typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/head')['useContentHead']
   const useContentHelpers: typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/helpers')['useContentHelpers']
@@ -115,8 +113,6 @@ declare global {
   const useLazyFetch: typeof import('../../node_modules/nuxt/dist/app')['useLazyFetch']
   const useLazyQuery: typeof import('@vue/apollo-composable')['useLazyQuery']
   const useLink: typeof import('../vue-router')['useLink']
-  const useMeta: typeof import('../../composables/useMeta')['useMeta']
-  const useModal: typeof import('../../composables/useModal')['useModal']
   const useModel: typeof import('vue')['useModel']
   const useMutation: typeof import('@vue/apollo-composable')['useMutation']
   const useMutationLoading: typeof import('@vue/apollo-composable')['useMutationLoading']
@@ -135,7 +131,6 @@ declare global {
   const useServerHead: typeof import('@unhead/vue')['useServerHead']
   const useServerHeadSafe: typeof import('@unhead/vue')['useServerHeadSafe']
   const useServerSeoMeta: typeof import('@unhead/vue')['useServerSeoMeta']
-  const useSideMenuModal: typeof import('../../composables/useModal')['useSideMenuModal']
   const useSlots: typeof import('vue')['useSlots']
   const useState: typeof import('../../node_modules/nuxt/dist/app')['useState']
   const useSubscription: typeof import('@vue/apollo-composable')['useSubscription']
@@ -256,8 +251,6 @@ declare module 'vue' {
     readonly useAsyncData: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useAsyncData']>
     readonly useAsyncQuery: UnwrapRef<typeof import('../../node_modules/@nuxtjs/apollo/dist/runtime/composables')['useAsyncQuery']>
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
-    readonly useAuthGuardRedirection: UnwrapRef<typeof import('../../composables/useAuthGuard')['useAuthGuardRedirection']>
-    readonly useCmsHead: UnwrapRef<typeof import('../../composables/useCmsHead')['useCmsHead']>
     readonly useContent: UnwrapRef<typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/utils')['useContentDisabled']>
     readonly useContentHead: UnwrapRef<typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/head')['useContentHead']>
     readonly useContentHelpers: UnwrapRef<typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/helpers')['useContentHelpers']>
@@ -277,8 +270,6 @@ declare module 'vue' {
     readonly useLazyFetch: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useLazyFetch']>
     readonly useLazyQuery: UnwrapRef<typeof import('@vue/apollo-composable')['useLazyQuery']>
     readonly useLink: UnwrapRef<typeof import('../vue-router')['useLink']>
-    readonly useMeta: UnwrapRef<typeof import('../../composables/useMeta')['useMeta']>
-    readonly useModal: UnwrapRef<typeof import('../../composables/useModal')['useModal']>
     readonly useModel: UnwrapRef<typeof import('vue')['useModel']>
     readonly useMutation: UnwrapRef<typeof import('@vue/apollo-composable')['useMutation']>
     readonly useMutationLoading: UnwrapRef<typeof import('@vue/apollo-composable')['useMutationLoading']>
@@ -297,7 +288,6 @@ declare module 'vue' {
     readonly useServerHead: UnwrapRef<typeof import('@unhead/vue')['useServerHead']>
     readonly useServerHeadSafe: UnwrapRef<typeof import('@unhead/vue')['useServerHeadSafe']>
     readonly useServerSeoMeta: UnwrapRef<typeof import('@unhead/vue')['useServerSeoMeta']>
-    readonly useSideMenuModal: UnwrapRef<typeof import('../../composables/useModal')['useSideMenuModal']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
     readonly useState: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useState']>
     readonly useSubscription: UnwrapRef<typeof import('@vue/apollo-composable')['useSubscription']>
@@ -412,8 +402,6 @@ declare module '@vue/runtime-core' {
     readonly useAsyncData: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useAsyncData']>
     readonly useAsyncQuery: UnwrapRef<typeof import('../../node_modules/@nuxtjs/apollo/dist/runtime/composables')['useAsyncQuery']>
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
-    readonly useAuthGuardRedirection: UnwrapRef<typeof import('../../composables/useAuthGuard')['useAuthGuardRedirection']>
-    readonly useCmsHead: UnwrapRef<typeof import('../../composables/useCmsHead')['useCmsHead']>
     readonly useContent: UnwrapRef<typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/utils')['useContentDisabled']>
     readonly useContentHead: UnwrapRef<typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/head')['useContentHead']>
     readonly useContentHelpers: UnwrapRef<typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/helpers')['useContentHelpers']>
@@ -433,8 +421,6 @@ declare module '@vue/runtime-core' {
     readonly useLazyFetch: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useLazyFetch']>
     readonly useLazyQuery: UnwrapRef<typeof import('@vue/apollo-composable')['useLazyQuery']>
     readonly useLink: UnwrapRef<typeof import('../vue-router')['useLink']>
-    readonly useMeta: UnwrapRef<typeof import('../../composables/useMeta')['useMeta']>
-    readonly useModal: UnwrapRef<typeof import('../../composables/useModal')['useModal']>
     readonly useModel: UnwrapRef<typeof import('vue')['useModel']>
     readonly useMutation: UnwrapRef<typeof import('@vue/apollo-composable')['useMutation']>
     readonly useMutationLoading: UnwrapRef<typeof import('@vue/apollo-composable')['useMutationLoading']>
@@ -453,7 +439,6 @@ declare module '@vue/runtime-core' {
     readonly useServerHead: UnwrapRef<typeof import('@unhead/vue')['useServerHead']>
     readonly useServerHeadSafe: UnwrapRef<typeof import('@unhead/vue')['useServerHeadSafe']>
     readonly useServerSeoMeta: UnwrapRef<typeof import('@unhead/vue')['useServerSeoMeta']>
-    readonly useSideMenuModal: UnwrapRef<typeof import('../../composables/useModal')['useSideMenuModal']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
     readonly useState: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useState']>
     readonly useSubscription: UnwrapRef<typeof import('@vue/apollo-composable')['useSubscription']>
