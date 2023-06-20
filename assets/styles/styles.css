@@ -178,6 +178,10 @@ body {
     display: inline-block !important
 }
 
+.v-layout {
+    display: block !important;
+}
+
 /******************** Commerce CSS ************/
 
 .cartPage {

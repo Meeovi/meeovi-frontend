@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="contentPage" v-for="cmspage in data" :key="cmspage">
-            <div v-html="cmspage.content"></div></div>
+            <div v-html="cmspage.content"></div>
         <v-row>
             <v-col v-for="products in data.products.items" :key="products.uid" cols="2">
                 <a :href="`/product/${products.uid}`">
@@ -29,7 +29,7 @@
                 </a>
             </v-col>
         </v-row>
-        
+        </div>
         <!---->
     </div>
 </template>
@@ -52,7 +52,7 @@
         content
         relative_url
     }
-    products(filter: {price: {to: "50"}}){
+    products(filter: {price: {to: "50"}}, pageSize: 50){
     items {
       uid
       name
