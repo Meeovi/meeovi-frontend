@@ -67,7 +67,6 @@ query {
   }
 }`
 
-
     const {
         data
     } = useAsyncQuery(query);

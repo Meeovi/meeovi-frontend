@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="contentPage" v-for="cmspage in data" :key="cmspage">
-            <div v-html="cmspage.content"></div>
+            <div v-html="cmspage.content"></div></div>
         <v-row>
             <v-col v-for="products in data.products.items" :key="products.uid" cols="2">
                 <a :href="`/product/${products.uid}`">
@@ -29,7 +29,7 @@
                 </a>
             </v-col>
         </v-row>
-        </div>
+        
         <!---->
     </div>
 </template>

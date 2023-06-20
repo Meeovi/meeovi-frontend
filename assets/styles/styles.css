@@ -238,6 +238,7 @@ body {
     padding-top: 15px;
     padding-left: 25%;
     padding-right: 25%;
+    padding-bottom: 5%;
 }
 
 .feedcomments {
@@ -264,7 +265,7 @@ body {
     text-align: center;
 }
 
-.people5, .people1, .features10, .features12, .teams1, .features19, .flip-card, .features13, .pricing2, .plan, .content2, .mbr-gallery, .mbr-section {
+.people5, .people1, .features10, .features12, .teams1, .features19, .flip-card, .features13, .pricing2, .plan, .content2, .mbr-gallery, .mbr-section, .shop2 {
     background-color: transparent !important;
 }
 
