@@ -182,6 +182,16 @@ body {
     display: block !important;
 }
 
+.accountForm {
+    padding: 30px;
+}
+
+.accountFormH2 {
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
+}
+
 /******************** Commerce CSS ************/
 
 .cartPage {

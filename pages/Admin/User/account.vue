@@ -1,21 +1,22 @@
 <template>
     <div>
         <profilebar />
-        <form method="post" @v-on:submit.prevent="addAccessToken()">
+        <h2 class="accountFormH2">Account Details</h2>
+        <form class="accountForm" method="post" @v-on:submit.prevent="addAccessToken()">
             <v-row>
-                <v-col cols="12">
+                <v-col cols="6">
                     <v-text-field v-model="first_name" type="text" label="First Name" required></v-text-field>
                 </v-col>
-                <v-col cols="12">
+                <v-col cols="6">
                     <v-text-field v-model="last_name" type="text" label="Last Name" required></v-text-field>
                 </v-col>
                 <v-col cols="12">
                     <v-text-field v-model="email" type="email" label="Email" required></v-text-field>
                 </v-col>
-                <v-col cols="12">
+                <v-col cols="6">
                     <v-text-field v-model="username" type="username" label="Username" required></v-text-field>
                 </v-col>
-                <v-col cols="12">
+                <v-col cols="6">
                     <v-text-field v-model="password" type="password" label="Password" required></v-text-field>
                 </v-col>
             </v-row>

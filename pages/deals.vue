@@ -13,7 +13,7 @@
                         </v-card-title>
 
                         <v-card-text>
-                            <div>By: {{ products.uid }}</div>
+                            <div># of Ratings: {{ products.rating_summary }}</div>
                             <div>Category: {{ products.categories.name }}</div>
                         </v-card-text>
 
@@ -56,6 +56,7 @@
     items {
       uid
       name
+      rating_summary
       categories {
         name
       }

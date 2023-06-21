@@ -27,7 +27,7 @@
     import bestsellers from '../components/Related/bestsellers.vue'
     import exclusives from '../components/Related/exclusives.vue'
     import deals from '../components/Related/deals.vue'
-    import yardsale from '../components/Related/yardsale.vue'
+    import yardsale from '../components/homePage/yardsale.vue'
     import blogposts from '../components/homePage/blogposts.vue'
 
     export default {

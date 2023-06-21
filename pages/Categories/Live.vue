@@ -12,7 +12,7 @@
                         </template>
 
                         <v-card>
-                            <video src=""></video>
+                            <video src="" autoplay></video>
                             <v-card-actions>
                                 <v-btn color="primary" block @click="dialog = false">Close Dialog</v-btn>
                             </v-card-actions>

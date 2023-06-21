@@ -3,9 +3,6 @@
     <section v-for="categories in data.categories.items" :key="categories" data-bs-version="5.1"
       class="features19 cid-tAGUZsWaoz mbr-parallax-background" id="features12-62"
       :style="`background-image: url(${categories.image});`">
-
-
-
       <div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(255, 255, 255);">
       </div>
       <div class="container">
@@ -16,15 +13,14 @@
             v-slot="{ isSelected, toggle }">
             <a :href="`/product/${products.uid}`">
               <v-card class="ma-4" height="380" width="250" @click="toggle">
-                <v-img class="align-end text-white" height="200" :src="products.image.url" cover>
-                </v-img>
+                <img class="align-end text-white" height="200" :src="products.image.url" cover>
 
                 <v-card-title class="pt-4">
                   {{ products.name }}
                 </v-card-title>
 
                 <v-card-text>
-                  <div>Country of Manufacture: {{ products.country_of_manufacture }}</div>
+                  <div># of Ratings: {{ products.rating_summary }}</div>
                   <div>Category: {{ products.categories.name }}</div>
                 </v-card-text>
 
@@ -55,7 +51,7 @@
 </script>
 
 <script setup>
-  const query = gql `
+  const query = gql`
 query {
     categories (filters: {ids: {in: "41"}}) {
       items {
@@ -63,10 +59,11 @@ query {
         image
       }
     }
-    products(filter: {category_id: {eq: "41"}}, pageSize: 3){
+    products(filter: {category_id: {eq: "41"}}){
     items {
       uid
       name
+      rating_summary
       categories {
         name
       }
