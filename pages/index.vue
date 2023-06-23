@@ -1,7 +1,7 @@
 <template>
     <div>
         <headerslider />
-        <exclusives />
+        <!----><exclusives />
         <deals />
         <bookcallout />
         <latestproducts />

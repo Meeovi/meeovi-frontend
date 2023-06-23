@@ -21,7 +21,7 @@
 
                 <v-card-text>
                   <div># of Ratings: {{ products.rating_summary }}</div>
-                  <div>Category: {{ products.categories.name }}</div>
+                  <div>SKU: {{ products.categories.name }}</div>
                 </v-card-text>
 
                 <v-card-actions>
