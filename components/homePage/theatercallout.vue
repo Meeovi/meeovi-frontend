@@ -1,91 +1,59 @@
 <template>
   <div>
-    <section v-for="categories in data.categories.items" :key="categories" data-bs-version="5.1"
-      class="features19 cid-tAGUZsWaoz mbr-parallax-background" id="features12-62"
-      :style="`background-image: url(${categories.image});`">
+      <section v-for="departments in departments" :key="departments.id" data-bs-version="5.1" class="features19 cid-tAGUZsWaoz mbr-parallax-background" id="features12-62" style="`background-image: url(../../assets/images/books.jpg);`">
 
+<div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(255, 255, 255);">
+</div>
+<div class="container">
+  <h2 class="mbr-section-title align-left mbr-fonts-style mbr-bold display-2">
+      <strong>What to watch in Meeovi {{ departments.name }}</strong></h2>
+      <v-slide-group v-model="model" class="pa-4" center-active show-arrows>
+        <v-slide-group-item v-for="products in products" :key="products.id"
+                      v-slot="{ isSelected, toggle }">
+                      <a :href="`/product/${products.id}`">
+                          <v-card class="ma-4" height="380" width="250" @click="toggle">
+                              <img class="align-end text-white" height="200" :src="`${url}/assets/${products.image}`" :alt="products.name" cover />
 
+                              <v-card-title class="pt-4">
+                                  {{ products.name }}
+                              </v-card-title>
 
-      <div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(255, 255, 255);">
-      </div>
-      <div class="container">
-        <h2 class="mbr-section-title align-left mbr-fonts-style mbr-bold display-2">
-          <strong>What's Viewing in Meeovi {{ categories.name }}</strong></h2>
-        <v-slide-group v-model="model" class="pa-4" center-active show-arrows>
-          <v-slide-group-item v-for="products in data.products.items" :key="products.uid"
-            v-slot="{ isSelected, toggle }">
-            <a :href="`/product/${products.uid}`">
-              <v-card class="ma-4" height="380" width="250" @click="toggle">
-                <img class="align-end text-white" height="200" :src="products.image.url" cover />
+                              <v-card-text>
+                                  <div>Format: {{ products.format }}</div>
+                                  <div>Category: {{ products.categories }}</div>
+                              </v-card-text>
 
-                <v-card-title class="pt-4">
-                  {{ products.name }}
-                </v-card-title>
-
-                <v-card-text>
-                  <div># of Ratings: {{ products.rating_summary }}</div>
-                  <div>Category: {{ products.categories.name }}</div>
-                </v-card-text>
-
-                <v-card-actions>
-                  <v-card-title>$ {{ products.price_range.maximum_price.regular_price.value }}
-                  </v-card-title>
-                </v-card-actions>
-                <div class="d-flex fill-height align-center justify-center">
-                  <v-scale-transition>
-                    <v-icon v-if="isSelected" color="white" size="48" icon="mdi-close-circle-outline"></v-icon>
-                  </v-scale-transition>
-                </div>
-              </v-card>
-            </a>
-          </v-slide-group-item>
-        </v-slide-group>
-      </div>
-    </section>
+                              <v-card-actions>
+                                  <v-card-title>$ {{ products.price }}
+                                  </v-card-title>
+                              </v-card-actions>
+                              <div class="d-flex fill-height align-center justify-center">
+                                  <v-scale-transition>
+                                      <v-icon v-if="isSelected" color="white" size="48"
+                                          icon="mdi-close-circle-outline"></v-icon>
+                                  </v-scale-transition>
+                              </div>
+                          </v-card>
+                      </a>
+                  </v-slide-group-item>
+              </v-slide-group>
+          </div>
+      </section>
   </div>
 </template>
 
 <script>
   export default {
-    data: () => ({
-      model: null,
-    }),
+      data: () => ({
+          model: null,
+          url: 'http://meeovicms.com:8011'
+      }),
   }
 </script>
 
 <script setup>
-  const query = gql `
-query {
-    categories (filters: {ids: {in: "43"}}) {
-      items {
-        name
-        image
-      }
-    }
-    products(filter: {category_id: {eq: "43"}}){
-    items {
-      uid
-      name
-      rating_summary
-      categories {
-        name
-      }
-      price_range {
-        maximum_price {
-          regular_price {
-            currency
-            value
-          }
-        }
-      }
-      image {
-        url
-      }
-    }
-  }
-}`
+const { getItems } = useDirectusItems()
 
-  const {
-    data
-  } = useAsyncQuery(query);
+const products = await getItems({ collection: "products"});
+const departments = await getItems({ collection: "departments", params: {filter: {name: {_eq: "Theater"}}}, limit: 6 });
 </script>

@@ -1,13 +1,13 @@
 <template>
-    <div v-for="cmspage in data" :key="cmspage">
-       <div class="contentPage" v-html="cmspage.content"></div>
+    <div class="contentPage" v-for="pages in pages" :key="pages.id">
+        <v-card :title="pages.name" :subtitle="pages.date_created" :text="pages.description" variant="tonal"></v-card>
     </div>
 </template>
 
 <script>
-export default {
-    
-}
+    export default {
+
+    }
 </script>
 
 <script setup>
@@ -15,17 +15,9 @@ export default {
         title: 'Privacy Policies',
     })
 
-    const query = gql `
-    query {
-    cmsPage(identifier: "privacy-policy-cookie-restriction-mode") {
-        title
-        content
-        relative_url
-    }
-    }`
-
-
     const {
-        data
-    } = useAsyncQuery(query);
+        getItems
+    } = useDirectusItems()
+
+    const pages = await getItems({ collection: "pages", params: {filter: {name: {_eq: "Privacy Policies"}}}});
 </script>

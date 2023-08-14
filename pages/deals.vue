@@ -1,24 +1,24 @@
 <template>
     <div>
-        <div class="contentPage" v-for="cmspage in data" :key="cmspage">
-            <div v-html="cmspage.content"></div>
+        <div class="contentPage" v-for="pages in pages" :key="pages.id">
+            <div v-html="pages.content"></div>
         <v-row>
-            <v-col v-for="products in data.products.items" :key="products.uid" cols="2">
-                <a :href="`/product/${products.uid}`">
+            <v-col v-for="products in products" :key="products.id" cols="2">
+                <a :href="`/product/${products.id}`">
                     <v-card class="ma-4" height="380" width="250" @click="toggle">
-                        <v-img class="align-end text-white" height="200" :src="products.image.url" cover></v-img>
+                        <v-img class="align-end text-white" height="200" :src="products.image.directus_files_id" cover></v-img>
 
                         <v-card-title class="pt-4">
                             {{ products.name }}
                         </v-card-title>
 
                         <v-card-text>
-                            <div># of Ratings: {{ products.rating_summary }}</div>
-                            <div>Category: {{ products.categories.name }}</div>
+                            <div>tags: {{ products.tags }}</div>
+                            <div>Category: {{ products.categories }}</div>
                         </v-card-text>
 
                         <v-card-actions>
-                            <v-card-title>$ {{ products.price_range.maximum_price.regular_price.value }}</v-card-title>
+                            <v-card-title>$ {{ products.price }}</v-card-title>
                         </v-card-actions>
                         <div class="d-flex fill-height align-center justify-center">
                             <v-scale-transition>
@@ -36,47 +36,15 @@
 
 <script>
     export default {
-
+        data: () => ({
+            url: 'http://meeovicms.com:8011'
+        }),
     }
 </script>
 
 <script setup>
-    useHead({
-        title: 'Deals',
-    })
+const { getItems } = useDirectusItems()
 
-    const query = gql `
-    query {
-    cmsPage(identifier: "deals") {
-        title
-        content
-        relative_url
-    }
-    products(filter: {price: {to: "50"}}, pageSize: 50){
-    items {
-      uid
-      name
-      rating_summary
-      categories {
-        name
-      }
-      price_range {
-        maximum_price {
-          regular_price {
-            currency
-            value
-          }
-        }
-      }
-      image {
-        url
-      }
-    }
-  }
-}`
-
-
-    const {
-        data
-    } = useAsyncQuery(query);
+const products = await getItems({ collection: "products", params: {filter: {price: {_between: "19.99"}}, limit: 50 }});
+const pages = await getItems({ collection: "pages", params: {filter: {name: "Deals"}}});
 </script>

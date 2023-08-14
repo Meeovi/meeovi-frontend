@@ -8,10 +8,10 @@
 
 <div class="align-center container">
     <div class="row justify-content-end">
-        <div class="col-12 col-lg-6">
-            <h1 class="mbr-section-title mbr-fonts-style mb-3 display-1"><strong>Welcome Buyers</strong></h1>
+        <div class="col-12 col-lg-6" v-for="pages in pages" :key="pages.id">
+            <h1 class="mbr-section-title mbr-fonts-style mb-3 display-1"><strong>{{ pages.name }}</strong></h1>
             
-            <p class="mbr-text mbr-fonts-style display-7">Take a look of why becoming a buyer on Meeovi is awesome&nbsp;<br></p>
+            <p class="mbr-text mbr-fonts-style display-7">{{ pages.content }}&nbsp;<br></p>
             
         </div>
     </div>
@@ -74,73 +74,23 @@
 </section>
 
 <section class="features7 cid-skf7r8dpNY" id="features8-v">
-<!---->
-
-
 <div class="container-fluid">
     <div class="row">
         <div class="title col-12">
             
             
         </div>
-        <div class="card col-12 col-md-6">
+        <div class="card col-12 col-md-6" v-for="pages in pages" :key="pages.id">
             <div class="card-wrapper">
                 <div class="top-line">
-                    <h6 class="card-title mbr-fonts-style display-5"><strong>Tutorials</strong></h6>
+                    <h6 class="card-title mbr-fonts-style display-5"><strong>{{ pages.list.name }}</strong></h6>
                     <p class="mbr-text cost mbr-fonts-style display-5"></p>
                 </div>
                 <div class="bottom-line">
-                    <p class="mbr-text mbr-fonts-style display-7">We know that anything new can be a bit overwhelming. That is why we have tutorial videos, blog posts, videos, and even images to help you take control of your shopping experience.&nbsp;&nbsp;<br></p>
+                    <p class="mbr-text mbr-fonts-style display-7">{{ pages.list.description }}<br></p>
                 </div>
             </div>
         </div>
-        <div class="card col-12 col-md-6">
-            <div class="card-wrapper">
-                <div class="top-line">
-                    <h6 class="card-title mbr-fonts-style display-5"><strong>Make Money</strong></h6>
-                    <p class="mbr-text cost mbr-fonts-style display-5"></p>
-                </div>
-                <div class="bottom-line">
-                    <p class="mbr-text mbr-fonts-style display-7">
-                        Go from just being a buyer to becoming a seller. With tools that can help you start selling your own products or products you own. Check out our Sellers page.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="card col-12 col-md-6">
-            <div class="card-wrapper">
-                <div class="top-line">
-                    <h6 class="card-title mbr-fonts-style display-5"><strong>Digital and Physical Products</strong></h6>
-                    <p class="mbr-text cost mbr-fonts-style display-5"></p>
-                </div>
-                <div class="bottom-line">
-                    <p class="mbr-text mbr-fonts-style display-7">
-                        Unlike our competitors in the same space. We don't just focus on one or the other. Instead we offer both digital and physical products from around the world. From independent content creators to small business owners. 
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="card col-12 col-md-6">
-            <div class="card-wrapper">
-                <div class="top-line">
-                    <h6 class="card-title mbr-fonts-style display-5"><strong>Best Products</strong></h6>
-                    <p class="mbr-text cost mbr-fonts-style display-5"></p>
-                </div>
-                <div class="bottom-line">
-                    <p class="mbr-text mbr-fonts-style display-7">Here at Meeovi, we offer the best prices around with over a million unique products. You are bound to find one that you truly want.
-<br>
-<br></p>
-                </div>
-            </div>
-        </div>
-        
-        
-        
-        
-        
-        
-        
-        
     </div>
 </div>
 </section>
@@ -157,4 +107,10 @@ export default {
     useHead({
         title: 'Buyers',
     })
+
+    const {
+        getItems
+    } = useDirectusItems()
+
+    const pages = await getItems({ collection: "pages", params: {filter: {name: {_eq: "Buyers"}}}});
 </script>

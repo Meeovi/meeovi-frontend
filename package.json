@@ -13,25 +13,16 @@
    },
    "license": "MIT",
    "private": true,
-   "prisma:": {
-      "schema": "node_modules/graphql-yoga-prisma/prisma/schema.prisma"
-   },
    "scripts": {
       "alternate-commit": "git add . && git commit -m \"ready for update\"",
       "alternate-update": "git pull \"https://github.com/Meeovi/meeovi-frontend\"",
-      "build": "nuxt build && mesh build",
-      "start": "mesh start --port 4001",
+      "build": "nuxt build",
       "dev": "nuxt dev --port 3011",
       "ts-node": "ts-node -r tsconfig-paths/register --compiler-options '{\"module\":\"CommonJS\"}'",
       "generate": "nuxt generate",
-      "prebuild": "mesh build",
       "preview": "nuxt preview",
       "analyze": "nuxi analyze",
       "postinstall": "nuxt prepare",
-      "yoga": "ts-node node_modules/graphql-yoga-prisma/index.ts",
-      "prisma-dev": "npx prisma generate",
-      "prisma": "prisma generate --schema=node_modules/graphql-yoga-prisma/prisma/schema.prisma",
-      "db-pull": "prisma db pull --schema=node_modules/graphql-yoga-prisma/prisma/schema.prisma",
       "all": "npm-run-all --parallel yoga dev"
    },
    "devDependencies": {
@@ -41,16 +32,13 @@
       "graphql": "latest",
       "npm-run-all": "^4.1.5",
       "nuxt": "latest",
+      "nuxt-meilisearch": "latest",
       "typescript": "latest"
    },
    "dependencies": {
       "@fortawesome/fontawesome-svg-core": "^6.2.1",
       "@fortawesome/free-solid-svg-icons": "^6.2.1",
       "@fortawesome/vue-fontawesome": "^3.0.2",
-      "@graphql-mesh/cli": "^0.82.35",
-      "@graphql-mesh/json-schema": "^0.93.1",
-      "@graphql-mesh/mysql": "^0.93.1",
-      "@graphql-mesh/openapi": "^0.93.2",
       "@huntersofbook/naive-ui-nuxt": "^0.5.1",
       "@mdi/font": "^7.1.96",
       "@nuxt/types": "^2.15.8",
@@ -63,16 +51,17 @@
       "instantsearch.css": "^8.0.0",
       "jquery": "latest",
       "keycloak-nuxt-auth-module": "^4.8.4",
+      "nuxt-directus": "latest",
       "nuxt-security": "^0.10.1",
       "sass": "^1.57.0",
       "ts-node": "^10.9.1",
-      "video.js": "^8.0.4",
+      "video.js": "latest",
       "videojs-contrib-ads": "^7.1.0",
       "videojs-contrib-quality-levels": "^3.0.0",
       "videojs-share": "^3.2.1",
       "vue-chartjs": "^5.2.0",
       "vue-instantsearch": "^4.8.1",
-      "vue-matomo": "^4.2.0",
-      "vuetify": "^3.3.5"
+      "vue-matomo": "latest",
+      "vuetify": "latest"
    }
 }

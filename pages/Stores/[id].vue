@@ -1,22 +1,22 @@
 <template>
     <div>
         <v-card class="lowerbar">
-            <v-tabs :style="`background-color:${departments.color}; color:${departments.colortext};`" center-active>
-                <h5>Meeovi {{ departments.name }}</h5>
-                <v-tab><a :href="`/departments/${departments.id}`">All</a></v-tab>
-                <v-tab><a :href="`/categories/${departments.categories}`">{{ departments.categories }}</a></v-tab>
+            <v-tabs center-active>
+                <h5>Meeovi {{ meeovistores.name }}</h5>
+                <v-tab><a :href="`/meeovistores/${meeovistores.id}`">All</a></v-tab>
+                <v-tab><a :href="`/categories/${meeovistores.categories}`">{{ meeovistores.categories }}</a></v-tab>
             </v-tabs>
         </v-card>
 
         <v-carousel>
-            <img :src="`${url}/assets/${departments.image}`" :alt="departments.name" cover />
+            <img :src="`${url}/assets/${meeovistores.image}`" :alt="meeovistores.name" cover />
         </v-carousel>
 
         <v-row class="productPage">
             <v-col cols="3" v-for="products in products" :key="products.id">
                 <a href="">
                     <v-card class="ma-4" height="380" width="250" @click="toggle">
-                        <img class="align-end text-white" height="200" :src="`${url}/assets/${products.image}`" cover />
+                        <img class="align-end text-white" height="200" :src="products.image" cover />
 
                         <v-card-title class="pt-4">
                             {{ products.name }}
@@ -69,12 +69,14 @@
 </script>
 
 <script setup>
-    const { getItemById, getItems } = useDirectusItems()
-
-    const departments = await getItemById({ collection: "departments", id: 28});
-    const products = await getItems({ collection: "products"});
-
     useHead({
-        title: departments.name,
+        title: meeovistores.name,
     })
+
+    const {
+        getItems
+    } = useDirectusItems()
+
+    const meeovistores = await getItems({ collection: "Meeovistores", id: 1});
+    const products = await getItems({ collection: "products"});
 </script>

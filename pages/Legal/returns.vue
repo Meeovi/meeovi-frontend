@@ -1,32 +1,23 @@
 <template>
-    <div class="contentPage" v-for="cmspage in data" :key="cmspage">
-        <h2>{{ cmspage.title }}</h2>
-       <div v-html="cmspage.content"></div>
+    <div class="contentPage" v-for="pages in pages" :key="pages.id">
+        <v-card :title="pages.name" :subtitle="pages.date_created" :text="pages.description" variant="tonal"></v-card>
     </div>
 </template>
 
 <script>
-export default {
-    
-}
+    export default {
+
+    }
 </script>
 
 <script setup>
     useHead({
-        title: 'Return Policies',
+        title: 'Return Policy',
     })
 
-    const query = gql `
-    query {
-    cmsPage(identifier: "returns-policy") {
-        title
-        content
-        relative_url
-    }
-    }`
-
-
     const {
-        data
-    } = useAsyncQuery(query);
+        getItems
+    } = useDirectusItems()
+
+    const pages = await getItems({ collection: "pages", params: {filter: {name: {_eq: "Return Policies"}}}});
 </script>

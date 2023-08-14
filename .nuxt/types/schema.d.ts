@@ -2,10 +2,11 @@ import { NuxtModule, RuntimeConfig } from 'nuxt/schema'
 declare module 'nuxt/schema' {
   interface NuxtConfig {
     ["content"]?: typeof import("@nuxt/content").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
-    ["apollo"]?: typeof import("@nuxtjs/apollo").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
+    ["meilisearch"]?: typeof import("nuxt-meilisearch").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
+    ["directus"]?: typeof import("nuxt-directus").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
     ["devtools"]?: typeof import("C:/Users/Basti/AppData/Roaming/npm/node_modules/@nuxt/devtools/module").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
     ["telemetry"]?: typeof import("@nuxt/telemetry").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
-    modules?: (undefined | null | false | NuxtModule | string | [NuxtModule | string, Record<string, any>] | ["@nuxt/content", Exclude<NuxtConfig["content"], boolean>] | ["@nuxtjs/apollo", Exclude<NuxtConfig["apollo"], boolean>] | ["C:/Users/Basti/AppData/Roaming/npm/node_modules/@nuxt/devtools/module", Exclude<NuxtConfig["devtools"], boolean>] | ["@nuxt/telemetry", Exclude<NuxtConfig["telemetry"], boolean>])[],
+    modules?: (undefined | null | false | NuxtModule | string | [NuxtModule | string, Record<string, any>] | ["@nuxt/content", Exclude<NuxtConfig["content"], boolean>] | ["nuxt-meilisearch", Exclude<NuxtConfig["meilisearch"], boolean>] | ["nuxt-directus", Exclude<NuxtConfig["directus"], boolean>] | ["C:/Users/Basti/AppData/Roaming/npm/node_modules/@nuxt/devtools/module", Exclude<NuxtConfig["devtools"], boolean>] | ["@nuxt/telemetry", Exclude<NuxtConfig["telemetry"], boolean>])[],
   }
   interface RuntimeConfig {
    app: {
@@ -15,10 +16,6 @@ declare module 'nuxt/schema' {
 
       cdnURL: string,
    },
-
-   websiteURL: string,
-
-   websiteToken: string,
 
    content: {
       cacheVersion: number,
@@ -139,6 +136,32 @@ declare module 'nuxt/schema' {
          stripQueryParameters: boolean,
       },
    },
+
+   serverMeilisearchClient: {
+      hostUrl: string,
+
+      searchApiKey: string,
+
+      adminApiKey: string,
+
+      serverSideUsage: boolean,
+
+      instantSearch: {
+         theme: string,
+      },
+
+      clientOptions: {
+         placeholderSearch: boolean,
+
+         paginationTotalHits: number,
+
+         finitePagination: boolean,
+
+         primaryKey: any,
+
+         keepZeroFacets: boolean,
+      },
+   },
   }
   interface PublicRuntimeConfig {
    content: {
@@ -227,6 +250,52 @@ declare module 'nuxt/schema' {
 
          exclude: Array<number>,
       },
+   },
+
+   meilisearchClient: {
+      hostUrl: string,
+
+      searchApiKey: string,
+
+      serverSideUsage: boolean,
+
+      instantSearch: {
+         theme: string,
+      },
+
+      clientOptions: {
+         placeholderSearch: boolean,
+
+         paginationTotalHits: number,
+
+         finitePagination: boolean,
+
+         primaryKey: any,
+
+         keepZeroFacets: boolean,
+      },
+   },
+
+   directus: {
+      url: string,
+
+      autoFetch: boolean,
+
+      autoRefresh: boolean,
+
+      onAutoRefreshFailure: any,
+
+      fetchUserParams: any,
+
+      token: any,
+
+      devtools: boolean,
+
+      cookieNameToken: string,
+
+      cookieNameRefreshToken: string,
+
+      maxAgeRefreshToken: number,
    },
   }
 }

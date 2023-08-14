@@ -16,12 +16,18 @@
                     </v-card-title>
                 </v-toolbar>
                 <v-row style="padding: 10px;">
-                    <v-col cols="3">
-                        <a href="https://www.meeovi.com"><v-card class="mx-auto" width="200" prepend-icon="fas fa-shopping-cart">
-                            <template v-slot:title>
-                                Meeovi
-                            </template>
-                        </v-card></a>
+                    <v-col cols="3" v-for="ecosystemmenu in ecosystemmenu" :key="ecosystemmenu.id">
+                        <a :href="ecosystemmenu.link">
+                            <v-card class="mx-auto" width="200">
+                                <img class="align-end text-white" height="200"
+                                    :src="`${url}/assets/${ecosystemmenu.image}`" cover />
+                                <v-card-title>Top 10 Australian beaches</v-card-title>
+
+                                <v-card-subtitle class="pt-4">
+                                    {{ ecosystemmenu.name }}
+                                </v-card-subtitle>
+                            </v-card>
+                        </a>
                     </v-col>
                 </v-row>
             </v-card>
@@ -37,7 +43,18 @@
                 notifications: false,
                 sound: true,
                 widgets: false,
+                url: 'http://meeovicms.com:8011'
             }
         }
     }
+</script>
+
+<script setup>
+    const {
+        getItems
+    } = useDirectusItems()
+
+    const ecosystemmenu = await getItems({
+        collection: "ecosystemmenu"
+    });
 </script>

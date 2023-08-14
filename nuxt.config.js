@@ -25,11 +25,31 @@ export default defineNuxtConfig({
   ],
 
   modules: [
-    //'@sidebase/nuxt-auth',
     '@nuxt/content',
-    '@nuxtjs/apollo',
+    'nuxt-meilisearch',
+    'nuxt-directus',
+    //'@nuxtjs/apollo',
   ],
 
+  directus: {
+    url: process.env.DIRECTUS_URL,
+    auth: {
+      email: process.env.DIRECTUS_EMAIL,
+      password: process.env.DIRECTUS_PASSWORD,
+      token: process.env.DIRECTUS_TOKEN,
+    }
+  },
+
+  meilisearch: {
+    hostUrl: process.env.HOSTURL,
+    searchApiKey: process.env.SEARCH_APIKEY,
+    adminApiKey: process.env.ADMIN_APIKEY,
+    serverSideUsage: true,
+    instantSearch: {
+      theme: 'algolia'
+    }
+  },
+  
   /*auth: {
     strategies: {
       local: false,
@@ -72,7 +92,7 @@ export default defineNuxtConfig({
       // logout: "/login",
       home: "/index.vue",
     },
-  }, */
+  }, 
 
   runtimeConfig: {
     websiteURL: process.env.GQL_HOST,
@@ -92,10 +112,13 @@ export default defineNuxtConfig({
             'x-magento-cache-id': process.env.GQL_KEY,
             'x-magento-tags': 'FPC'
           }
-        } */
+        } 
+      },
+      directus: {
+        httpEndpoint: process.env.DIRECTUS_GRAPHQL,
       },
     },
-  },
+  },*/
 
   build: {
     transpile: [

@@ -5,32 +5,18 @@
                 <v-col class="text-center mt-4" cols="3">
                     <h5><strong>MEEOVI</strong></h5>
                     <v-list-item title="About Us" value="about us" href="/about/"></v-list-item>
-                    <v-list-item title="Careers" value="Careers" href="/about/careers"></v-list-item>
-                    <v-list-item title="Licenses" value="Licenses" href="/about/licenses"></v-list-item>
-                    <v-list-item title="Affiliates" value="Affiliates" href="/partner/affiliates"></v-list-item>
-                    <v-list-item title="Diversity & Inclusion" value="Diversity & Inclusion" href="/about/dei">
-                    </v-list-item>
+                    <v-list-item v-for="pages in aboutpages" :key="pages.id" :title="pages.name" :value="pages.name" :href="`/legal/${pages.id}`"></v-list-item>
                     <v-list-item title="Buyers" value="Buyers" href="/about/buyers"></v-list-item>
                 </v-col>
 
                 <v-col class="text-center mt-4" cols="3">
                     <h5><strong>HELP</strong></h5>
-                    <v-list-item title="Return Policy" value="Return Policy" href="/legal/returns"></v-list-item>
-                    <v-list-item title="Conditions of Use" value="Conditions of Use" href="/legal/terms"></v-list-item>
-                    <v-list-item title="Privacy Notice" value="Privacy Notice" href="/legal/privacy"></v-list-item>
-                    <v-list-item title="Contact Us" value="Customer Service" href="/legal/customer-service"></v-list-item>
-                    <v-list-item title="Developers" value="Developers" href="/about/developers"></v-list-item>
-                    <v-list-item title="Sellers" value="Sellers" href="/sell/"></v-list-item>
+                    <v-list-item v-for="ecosystemmenu in ecosystemmenu" :key="ecosystemmenu.id" :title="ecosystemmenu.name" :value="ecosystemmenu.name" :href="ecosystemmenu.link"></v-list-item>
                 </v-col>
 
                 <v-col class="text-center mt-4" cols="3">
                     <h5><strong>The Meeovi Company</strong></h5>
-                    <v-list-item title="Elite Novels" value="elite novels" href="https://www.elitenovels.com">
-                    </v-list-item>
-                    <v-list-item title="Collaborrate" value="collaborrate" href="https://www.collaborrate.com">
-                    </v-list-item>
-                    <v-list-item title="ShopnCute" value="shopncute" href="https://www.shopncute.com"></v-list-item>
-                    <v-list-item title="ShopnBold" value="shopnbold" href="https://www.shopnbold.com"></v-list-item>
+                    <v-list-item v-for="pages in legalpages" :key="pages.id" :title="pages.name" :value="pages.name" :href="`/legal/${pages.id}`"></v-list-item>
                 </v-col>
 
                 <v-col class="text-center mt-4" cols="3">
@@ -45,4 +31,14 @@
 
 <script>
     export default {}
+</script>
+
+<script setup>
+    const {
+        getItems
+    } = useDirectusItems()
+
+    const ecosystemmenu = await getItems({ collection: "ecosystemmenu"});
+    const aboutpages = await getItems({ collection: "pages", params: {filter: {type: {_eq: "About"}}}});
+    const legalpages = await getItems({ collection: "pages", params: {filter: {type: {_eq: "Legal"}}}});
 </script>

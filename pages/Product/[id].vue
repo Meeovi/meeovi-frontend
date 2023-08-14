@@ -4,7 +4,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-md-6">
-                        <img src="../../assets/images/image12.jpg" class="top" alt="">
+                        <img :src="`${url}/assets/${products.id}`" class="top" :alt="products.name">
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="right">
@@ -12,39 +12,32 @@
                                 <p class="desc1 bord mbr-fonts-style display-4">
                                     SALE</p>
                             </div>
-                            <p class="name mbr-fonts-style display-2"><strong>Diamond Ring</strong></p>
+                            <p class="name mbr-fonts-style display-2"><strong>{{ products.name }}</strong></p>
 
                             <div class="price-line">
-                                <p class="desc2 mbr-fonts-style display-5"><s>$145.00</s></p>
+                                <p class="desc2 mbr-fonts-style display-5"><s>{{ products.price }}</s></p>
                                 <p class="plus1 mbr-fonts-style display-5">
                                     <strong>&nbsp;</strong>$135.00</p>
                             </div>
-                            <p class="mbr-text mbr-fonts-style display-4">Dicta sunt explicabo. Nemo enim
-                                ipsam voluptatem
-                                voluptas sit odit aut fugit, sed quia consequuntur. Lorem ipsum nonum eirmod dolor.
-                                <br>
-                                <br>Aquia sit amet, elitr, sed diam nonum eirmod tempor invidunt labore et dolore magna
-                                aliquyam.erat, sed diam voluptua. At vero accusam et justo duo dolores et ea rebum. Stet
-                                clitain
-                                vidunt ut labore eirmod tempor invidunt magna aliquyam. Stet clitain vidunt ut labore.
+                            <p class="mbr-text mbr-fonts-style display-4">{{ product.short_description }}
                             </p>
                             <div class="mbr-section-btn"><a class="btn btn-secondary display-7" href="">Buy Now</a>
                             </div>
                             <div class="price-line1">
                                 <p class="desc mbr-fonts-style display-7"><strong>
-                                        Category:</strong></p>
+                                        Category: </strong></p>
                                 <p class="plus mbr-fonts-style display-4">
-                                    &nbsp;Rings</p>
+                                    &nbsp;{{ product.categories}}</p>
                             </div>
                             <div class="price-line1">
                                 <p class="desc mbr-fonts-style display-7"><strong>
                                         Tags:</strong>&nbsp;</p>
-                                <p class="plus mbr-fonts-style display-4">ring</p>
+                                <p class="plus mbr-fonts-style display-4">{{ product.tags}}</p>
                             </div>
                             <div class="price-line1">
                                 <p class="desc mbr-fonts-style display-7"><strong>
                                         Product ID:</strong></p>
-                                <p class="plus mbr-fonts-style display-4">2234</p>
+                                <p class="plus mbr-fonts-style display-4">{{ product.sku}}</p>
                             </div>
                         </div>
                     </div>
@@ -62,14 +55,11 @@
                                     <span class="mbr-iconfont mobi-mbri-photos mobi-mbri"></span>
                                 </div>
                                 <div class="text-wrap">
-                                    <h1 class="mbr-section-title align-center mbr-fonts-style display-2">
-                                        Our shared mission.
-                                    </h1>
+                                    <h4 class="mbr-section-title align-center mbr-fonts-style display-2">
+                                        {{ product.format}}
+                                    </h4>
                                     <p class="mbr-text align-center mbr-fonts-style display-4">
-                                        Neque convallis a cras semper auctor neque. Mi tempus imperdiet nulla malesuada
-                                        pellentesque elit eget gravida cum. Interdum varius sit amet mattis vulputate
-                                        enim nulla.
-                                        Sapien pellentesque habitant morbi tristique.
+                                        {{ product.content}}
                                     </p>
 
                                 </div>
@@ -96,7 +86,9 @@
                         <div class="tabl-container">
                             <div class="tabl-item-row">
                                 <div class="tabl-item-column">
-                                    <p class="card-title mbr-fonts-style mb-0 display-7"></p>
+                                    <p class="card-title mbr-fonts-style mb-0 display-7">
+
+                                    </p>
                                 </div>
                                 <div class="tabl-item-column">
                                     <p class="card-title mbr-fonts-style mb-0 display-7">
@@ -196,10 +188,6 @@
                                     </p>
                                 </div>
                             </div>
-
-
-
-
                         </div>
                     </div>
                 </div>
@@ -224,6 +212,12 @@
 
 <script setup>
     useHead({
-        title: '',
+        title: products.name,
     })
+
+    const {
+        getItems
+    } = useDirectusItems()
+
+    const products = await getItems({ collection: "products", id: 1});
 </script>

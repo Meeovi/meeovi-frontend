@@ -131,7 +131,7 @@
   import lowerbar from '../components/Menus/lowerbar.vue'
   import live from '../components/Catbar/live.vue'
   import departmentsmenu from '../components/Menus/Sidebar/departmentsmenu.vue'
-  import luxurystoresmenu from '../components/Menus/Sidebar/luxurystoresmenu.vue'
+  import luxurystoresmenu from '../components/Menus/Sidebar/meeovistoresmenu.vue'
   import myaccountmenu from '../components/Menus/Sidebar/myaccountmenu.vue'
   import myaccounttopmenu from '../components/Menus/TopMenu/myaccounttopmenu.vue'
 

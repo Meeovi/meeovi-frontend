@@ -42,7 +42,7 @@
 </template>
 
 <script>
-    import relatedpost from '../../components/Related/relatedposts.vue'
+    import relatedpost from '../../components/homePage/blogposts.vue'
 
     export default {
         components: {

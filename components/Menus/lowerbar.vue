@@ -1,27 +1,21 @@
 <template>
     <v-card class="lowernav">
         <v-tabs center-active>
-            <v-tab><a href="/Departments/books">Books</a></v-tab>
-            <v-tab><a href="/Departments/music">Music</a></v-tab>
-            <v-tab><a href="/Departments/theater">Theater</a></v-tab>
-            <v-tab><a href="/Departments/podcasts">Podcasts</a></v-tab>
-            <v-tab><a href="/Departments/games">Games</a></v-tab>
-            <v-tab><a href="/Departments/sportsnfitness">Sports & Fitness</a></v-tab>
-            <v-tab><a href="/Departments/crafts">Crafts</a></v-tab>
-            <v-tab><a href="/Departments/fabrics">Fabrics</a></v-tab>
-            <v-tab><a href="/Departments/yardsale">Yardsale</a></v-tab>
+            <v-tab v-for="departments in departments" :key="departments.id"><a :href="`/departments/${departments.id}`">{{ departments.name }}</a></v-tab>
             <v-tab><a href="/social/newsfeed">Newsfeed</a></v-tab>
             <v-tab><a href="/social/spaces">Spaces</a></v-tab>
             <v-tab><a href="https://www.pixanomy.com">Sell Your Artwork</a></v-tab>
-            <v-tab><a href="/Luxurystores/shopncute">Shop For Her</a></v-tab>
-            <v-tab><a href="/Luxurystores/shopnbold">Shop For Him</a></v-tab>
+            <v-tab v-for="meeovistores in meeovistores" :key="meeovistores.id"><a :href="`/stores/${meeovistores.id}`">{{ meeovistores.name }}</a></v-tab>
             <v-tab><a href="/commerce/buyagain">Buy Again</a></v-tab>
         </v-tabs>
     </v-card>
 </template>
 
-<script>
-    export default {
+<script setup>
+    const {
+        getItems
+    } = useDirectusItems()
 
-    }
+    const departments = await getItems({ collection: "departments" });
+    const meeovistores = await getItems({ collection: "meeovistores" });
 </script>

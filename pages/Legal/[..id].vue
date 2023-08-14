@@ -1,5 +1,5 @@
 <template>
-    <div class="contentPage" v-for="pages in pages" :key="pages.id">
+    <div class="contentPage">
         <v-card :title="pages.name" :subtitle="pages.date_created" :text="pages.description" variant="tonal"></v-card>
     </div>
 </template>
@@ -12,12 +12,12 @@
 
 <script setup>
     useHead({
-        title: 'Terms and Conditions',
+        title: pages.name,
     })
 
     const {
         getItems
     } = useDirectusItems()
 
-    const pages = await getItems({ collection: "pages", params: {filter: {name: {_eq: "Terms and Conditions"}}}});
+    const pages = await getItems({ collection: "pages", id: 4});
 </script>

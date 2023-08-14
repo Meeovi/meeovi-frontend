@@ -1,14 +1,13 @@
 <template>
-    <div class="contentPage" v-for="cmspage in data" :key="cmspage">
-       <h2>{{ cmspage.title }}</h2>
-       <div v-html="cmspage.content"></div>
+    <div class="contentPage" v-for="legal in legal" :key="legal.id">
+        <v-card :title="legal.name" :subtitle="legal.date_created" :text="legal.description" variant="tonal"></v-card>
     </div>
 </template>
 
 <script>
-export default {
-    
-}
+    export default {
+
+    }
 </script>
 
 <script setup>
@@ -16,17 +15,9 @@ export default {
         title: 'Press',
     })
 
-    const query = gql `
-    query {
-    cmsPage(identifier: "press") {
-        title
-        content
-        relative_url
-    }
-    }`
-
-
     const {
-        data
-    } = useAsyncQuery(query);
+        getItems
+    } = useDirectusItems()
+
+    const legal = await getItems({ collection: "legal", params: {filter: {name: {_eq: "Press"}}}});
 </script>

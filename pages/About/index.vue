@@ -232,102 +232,37 @@
             </div>
         </section>
 
-        <section data-bs-version="5.1" class="mbr-section features20 cid-txY5I22AIl" id="features20-56">
+        <v-sheet class="mx-auto sliderProducts">
+            <v-slide-group v-model="model" class="pa-4" center-active show-arrows>
+                <v-slide-group-item v-for="products in products" :key="products.id" v-slot="{ isSelected, toggle }">
+                    <a :href="`/product/${products.id}`">
+                        <v-card class="ma-4" height="380" width="250" @click="toggle">
+                            <v-img class="align-end text-white" height="200" :src="products.image.directus_files_id"
+                                cover></v-img>
 
+                            <v-card-title class="pt-4">
+                                {{ products.name }}
+                            </v-card-title>
 
+                            <v-card-text>
+                                <div>tags: {{ products.tags }}</div>
+                                <div>Category: {{ products.categories }}</div>
+                            </v-card-text>
 
-
-
-            <div class="container-fluid">
-                <h2 class="mbr-section-title align-left mbr-fonts-style mbr-white display-2">
-                    Explore Our Products</h2>
-                <div class="underline align-left pb-3">
-                    <div class="line"></div>
-                </div>
-
-                <div class="row justify-content-center pt-5">
-                    <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
-                        <div class="card-wrapper ">
-                            <div class="card-img">
-                                <img src="../../assets/images/15.jpg" alt="">
+                            <v-card-actions>
+                                <v-card-title>$ {{ products.price }}</v-card-title>
+                            </v-card-actions>
+                            <div class="d-flex fill-height align-center justify-center">
+                                <v-scale-transition>
+                                    <v-icon v-if="isSelected" color="white" size="48" icon="mdi-close-circle-outline">
+                                    </v-icon>
+                                </v-scale-transition>
                             </div>
-                            <div class="card-box">
-                                <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">
-                                    Skirt
-                                </p>
-                                <div class="prices align-center">
-
-                                    <span class="newPrice mbr-fonts-style mbr-bold display-2">$100</span>
-                                </div>
-                                <div class="mbr-section-btn align-center pt-3">
-                                    <a href="#" class="btn btn-md btn-success display-4">BUY</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
-                        <div class="card-wrapper">
-                            <div class="card-img">
-                                <img src="../../assets/images/17.jpg" alt="">
-                            </div>
-                            <div class="card-box">
-                                <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">
-                                    Jeans
-                                </p>
-                                <div class="prices align-center">
-
-                                    <span class="newPrice mbr-bold mbr-fonts-style display-2">$100</span>
-                                </div>
-                                <div class="mbr-section-btn align-center pt-3">
-                                    <a href="#" class="btn btn-md btn-success display-4">BUY</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
-                        <div class="card-wrapper">
-                            <div class="card-img">
-                                <img src="../../assets/images/14.jpg" alt="">
-                            </div>
-                            <div class="card-box">
-                                <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">
-                                    Denim Jacket
-                                </p>
-                                <div class="prices align-center">
-
-                                    <span class="newPrice mbr-bold mbr-fonts-style display-2">$100</span>
-                                </div>
-                                <div class="mbr-section-btn align-center pt-3">
-                                    <a href="#" class="btn btn-md btn-success display-4">BUY</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card px-3 py-4 col-12 col-md-6 col-lg-3">
-                        <div class="card-wrapper">
-                            <div class="card-img">
-                                <img src="../../assets/images/16.jpg" alt="">
-                            </div>
-                            <div class="card-box">
-                                <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">
-                                    Leather Jacket
-                                </p>
-                            </div>
-                            <div class="prices align-center">
-
-                                <span class="newPrice mbr-bold mbr-fonts-style display-2">$100</span>
-                            </div>
-                            <div class="mbr-section-btn align-center pt-3">
-                                <a href="#" class="btn btn-md btn-success display-4">BUY</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+                        </v-card>
+                    </a>
+                </v-slide-group-item>
+            </v-slide-group>
+        </v-sheet>
 
         <section data-bs-version="5.1" class="content2 cid-so8oXNtQyu" id="content2-1z">
 
@@ -341,65 +276,22 @@
                         Meeovi</h5>
                 </div>
                 <div class="row mt-4">
-                    <div class="item features-image сol-12 col-md-6 col-lg-4">
+                    <div class="item features-image сol-12 col-md-6 col-lg-4" v-for="articles in articles" :key="articles.id">
                         <div class="item-wrapper">
                             <div class="item-img">
-                                <img src="../../assets/images/product5.jpg" alt="" title="">
+                                <img :src="`${url}/assets/${articles.image}`" :alt="articles.name">
                             </div>
                             <div class="item-content">
-                                <h5 class="item-title mbr-fonts-style display-5"><a href="#top"
-                                        class="text-primary">Easy and Simple</a></h5>
-                                <h6 class="item-subtitle mbr-fonts-style mt-1 display-7">
-                                    <strong>John Smith</strong><em> 10-10-2025</em></h6>
-                                <p class="mbr-text mbr-fonts-style mt-3 display-7">Mobirise Page Maker is a free and
-                                    simple
-                                    website builder - just drop site blocks to your page, add content and style it!</p>
+                                <h5 class="item-title mbr-fonts-style display-5"><a :href="`/blog/${articles.id}`"
+                                        class="text-primary">{{ articles.name }}</a></h5>
+                                <h6 class="item-subtitle mbr-fonts-style mt-1 display-7"><em> {{ articles.created_at }}</em></h6>
+                                <p class="mbr-text mbr-fonts-style mt-3 display-7">{{ articles.excerpt }}</p>
                             </div>
-                            <div class="mbr-section-btn item-footer mt-2"><a href=""
+                            <div class="mbr-section-btn item-footer mt-2"><a :href="`/blog/${articles.id}`"
                                     class="btn item-btn btn-primary display-7" target="_blank">Read More
                                     &gt;</a></div>
                         </div>
                     </div>
-                    <div class="item features-image сol-12 col-md-6 col-lg-4">
-                        <div class="item-wrapper">
-                            <div class="item-img">
-                                <img src="../../assets/images/product4.jpg" alt="" title="">
-                            </div>
-                            <div class="item-content">
-                                <h5 class="item-title mbr-fonts-style display-5"><a href="#top"
-                                        class="text-primary">Auto Mobile</a></h5>
-                                <h6 class="item-subtitle mbr-fonts-style mt-1 display-7"><strong>Ann
-                                        Brown</strong><em>&nbsp;09-09-2025</em></h6>
-                                <p class="mbr-text mbr-fonts-style mt-3 display-7">Mobirise Site Creator offers a huge
-                                    collection of 3500+ site blocks, templates and themes with thousands flexible
-                                    options.<br>
-                                </p>
-                            </div>
-                            <div class="mbr-section-btn item-footer mt-2"><a href=""
-                                    class="btn btn-primary item-btn display-7" target="_blank">Read More
-                                    &gt;</a></div>
-                        </div>
-                    </div>
-                    <div class="item features-image сol-12 col-md-6 col-lg-4">
-                        <div class="item-wrapper">
-                            <div class="item-img">
-                                <img src="../../assets/images/product3.jpg" alt="" title="">
-                            </div>
-                            <div class="item-content">
-                                <h5 class="item-title mbr-fonts-style display-5"><a href="#top"
-                                        class="text-primary">Boost Your Rank</a></h5>
-                                <h6 class="item-subtitle mbr-fonts-style mt-1 display-7"><strong>Jessica Doe
-                                    </strong><em>08-08-2025</em></h6>
-                                <p class="mbr-text mbr-fonts-style mt-3 display-7">Mobirise Page Maker is a free and
-                                    simple
-                                    website builder - just drop site blocks to your page, add content and style it!</p>
-                            </div>
-                            <div class="mbr-section-btn item-footer mt-2"><a href=""
-                                    class="btn btn-primary item-btn display-7" target="_blank">Read More
-                                    &gt;</a></div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </section>
@@ -408,11 +300,20 @@
 
 <script>
     export default {
-
+        data(){
+            return {
+                url: 'http://meeovicms.com:8011'
+            }
+        }
     }
 </script>
 
 <script setup>
+const { getItems } = useDirectusItems()
+
+const articles = await getItems({ collection: "articles"});
+const products = await getItems({ collection: "products", limit: 6});
+
     useHead({
         title: 'About Meeovi',
     })

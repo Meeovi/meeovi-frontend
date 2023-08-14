@@ -4,11 +4,11 @@
         <!----><exclusives />
         <deals />
         <bookcallout />
-        <latestproducts />
+        <!----><latestproducts />
         <theatercallout />
-        <featuredproducts />
+        <!----><featuredproducts />
         <musiccallout />
-        <bestsellers />
+        <!----><bestsellers />
         <spotlight />
         <yardsale />
         <blogposts />

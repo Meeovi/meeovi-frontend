@@ -1,21 +1,21 @@
 <template>
     <div>
-        <v-carousel>
-            <v-carousel-item src="https://cdn.vuetifyjs.com/images/cards/docks.jpg" cover></v-carousel-item>
-
-            <v-carousel-item src="https://cdn.vuetifyjs.com/images/cards/hotel.jpg" cover></v-carousel-item>
-
-            <v-carousel-item src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" cover></v-carousel-item>
+        <v-carousel v-for="pages in pages" :key="pages.id">
+            <img :src="`${url}/assets/${pages.image}`" :alt="pages.name" cover />
         </v-carousel>
     </div>
 </template>
 
 <script>
-    export default {
-
-    }
+  export default {
+      data: () => ({
+          url: 'http://meeovicms.com:8011'
+      }),
+  }
 </script>
 
 <script setup>
+const { getItems } = useDirectusItems()
 
+const pages = await getItems({ collection: "pages", params: {filter: {name: {_eq: "Homepage Slider"}} }});
 </script>

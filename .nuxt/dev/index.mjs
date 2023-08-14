@@ -21,6 +21,7 @@ import { parseURL, withoutBase, joinURL, getQuery, withQuery, withLeadingSlash, 
 import { createStorage, prefixStorage } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/unstorage/dist/index.mjs';
 import unstorage_47drivers_47fs from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/unstorage/drivers/fs.mjs';
 import { toRouteMatcher, createRouter } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/radix3/dist/index.mjs';
+import { MeiliSearch } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/meilisearch/dist/bundles/meilisearch.cjs.js';
 import { extname, join } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/pathe/dist/index.mjs';
 import { unified } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/unified/index.js';
 import { toString } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/mdast-util-to-string/index.js';
@@ -123,10 +124,35 @@ const _inlineRuntimeConfig = {
           1
         ]
       }
+    },
+    "meilisearchClient": {
+      "hostUrl": "https://meeovicms.com:7700/",
+      "searchApiKey": "<your_public_key>",
+      "serverSideUsage": true,
+      "instantSearch": {
+        "theme": "algolia"
+      },
+      "clientOptions": {
+        "placeholderSearch": true,
+        "paginationTotalHits": 50,
+        "finitePagination": true,
+        "primaryKey": "",
+        "keepZeroFacets": false
+      }
+    },
+    "directus": {
+      "url": "http://meeovicms.com:8011/",
+      "autoFetch": true,
+      "autoRefresh": false,
+      "onAutoRefreshFailure": "",
+      "fetchUserParams": "",
+      "token": "",
+      "devtools": false,
+      "cookieNameToken": "directus_token",
+      "cookieNameRefreshToken": "directus_refresh_token",
+      "maxAgeRefreshToken": 604800
     }
   },
-  "websiteURL": "http://meeovi.meeovicms.com/graphql",
-  "websiteToken": "inzej5mp6qtricbel9vd6u7oodtj6ncj",
   "content": {
     "cacheVersion": 2,
     "cacheIntegrity": "kc4UzpZUjI",
@@ -204,6 +230,22 @@ const _inlineRuntimeConfig = {
     "experimental": {
       "clientDB": false,
       "stripQueryParameters": false
+    }
+  },
+  "serverMeilisearchClient": {
+    "hostUrl": "https://meeovicms.com:7700/",
+    "searchApiKey": "<your_public_key>",
+    "adminApiKey": "<your_secret_key>",
+    "serverSideUsage": true,
+    "instantSearch": {
+      "theme": "algolia"
+    },
+    "clientOptions": {
+      "placeholderSearch": true,
+      "paginationTotalHits": 50,
+      "finitePagination": true,
+      "primaryKey": "",
+      "keepZeroFacets": false
     }
   }
 };
@@ -694,6 +736,27 @@ const errorHandler = (async function errorhandler(error, event) {
   }
   setResponseStatus(event, res.status && res.status !== 200 ? res.status : void 0, res.statusText);
   event.node.res.end(await res.text());
+});
+
+function buildAssetsURL(...path) {
+  return joinURL(publicAssetsURL(), useRuntimeConfig().app.buildAssetsDir, ...path);
+}
+function publicAssetsURL(...path) {
+  const publicBase = useRuntimeConfig().app.cdnURL || useRuntimeConfig().app.baseURL;
+  return path.length ? joinURL(publicBase, ...path) : publicBase;
+}
+
+const useConfig = () => useRuntimeConfig().serverMeilisearchClient;
+
+const _d1eaGg = defineEventHandler(async (event) => {
+  const { hostUrl, adminApiKey } = useConfig();
+  if (!event.context.serverMeilisearchClient) {
+    event.context.serverMeilisearchClient = new MeiliSearch({
+      host: hostUrl,
+      apiKey: adminApiKey
+    });
+  }
+  event.context.serverMeilisearchClient;
 });
 
 const get = (obj, path) => path.split(".").reduce((acc, part) => acc && acc[part], obj);
@@ -3391,14 +3454,6 @@ const getPreview = (event) => {
   return { key };
 };
 
-function buildAssetsURL(...path) {
-  return joinURL(publicAssetsURL(), useRuntimeConfig().app.buildAssetsDir, ...path);
-}
-function publicAssetsURL(...path) {
-  const publicBase = useRuntimeConfig().app.cdnURL || useRuntimeConfig().app.baseURL;
-  return path.length ? joinURL(publicBase, ...path) : publicBase;
-}
-
 async function getContentIndex(event) {
   const defaultLocale = useRuntimeConfig().content.defaultLocale;
   let contentIndex = await cacheStorage.getItem("content-index.json");
@@ -3825,6 +3880,7 @@ const _lazy_0bm7Da = () => Promise.resolve().then(function () { return renderer$
 
 const handlers = [
   { route: '/__nuxt_error', handler: _lazy_0bm7Da, lazy: true, middleware: false, method: undefined },
+  { route: '', handler: _d1eaGg, lazy: false, middleware: false, method: undefined },
   { route: '/api/_content/query/:qid/**:params', handler: _9g8Tkl, lazy: false, middleware: false, method: "get" },
   { route: '/api/_content/query/:qid', handler: _9g8Tkl, lazy: false, middleware: false, method: "get" },
   { route: '/api/_content/query', handler: _9g8Tkl, lazy: false, middleware: false, method: "get" },
