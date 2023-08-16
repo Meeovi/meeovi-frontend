@@ -40,7 +40,7 @@
                                 </p>
                             </div>
                             <div class="mbr-section-btn item-footer mt-2"><a :href="`/blog/${articles.id}`"
-                                    class="btn btn-primary item-btn display-7">Learn More
+                                    class="btn btn-primary item-btn display-7">Read More
                                     &gt;</a></div>
                         </div>
                     </div>

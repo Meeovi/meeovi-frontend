@@ -14,7 +14,7 @@ type NuxtAppInjections =
   InjectionType<typeof import("../../node_modules/nuxt-directus/dist/runtime/plugin").default> &
   InjectionType<typeof import("../../node_modules/@nuxt/content/dist/runtime/plugins/ws").default> &
   InjectionType<typeof import("../../node_modules/nuxt/dist/app/plugins/chunk-reload.client").default> &
-  InjectionType<typeof import("../../plugins/apollo").default> &
+  InjectionType<typeof import("../../plugins/directus").default> &
   InjectionType<typeof import("../../plugins/fontawesome").default> &
   InjectionType<typeof import("../../plugins/instantsearch").default> &
   InjectionType<typeof import("../../plugins/matomo.client").default> &
