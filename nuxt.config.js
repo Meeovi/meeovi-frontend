@@ -28,7 +28,7 @@ export default defineNuxtConfig({
     '@nuxt/content',
     'nuxt-meilisearch',
     'nuxt-directus',
-    //'@nuxtjs/apollo',
+    '@nuxtjs/apollo',
   ],
 
     directus: {
@@ -97,7 +97,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     websiteURL: process.env.GQL_HOST,
     websiteToken: process.env.WEBSITE_TOKEN,
-  },
+  },*/
 
   apollo: {
     authType: "Bearer",
@@ -109,16 +109,13 @@ export default defineNuxtConfig({
         httpEndpoint: process.env.GQL_HOST,
       /*  httpLinkOptions: {
           headers: {
-            'x-magento-cache-id': process.env.GQL_KEY,
-            'x-magento-tags': 'FPC'
+            'x-hasura-admin-secret': process.env.GQL_KEY,
           }
-        } 
+        } */
       },
-      directus: {
-        httpEndpoint: process.env.DIRECTUS_GRAPHQL,
-      },
+      other: './apollo/other.ts'
     },
-  },*/
+  },/**/
 
   build: {
     transpile: [

@@ -3,15 +3,26 @@ sources:
     handler:
       mysql:
         # You can use environment variables like
-        # host: "{env.MYSQL_HOST}"
-        # port: "{env.MYSQL_PORT}"
-        # user: "{env.MYSQL_USER}"
-        # password: "{env.MYSQL_PASSWORD}"
-        # database: "{env.MYSQL_DATABASE}"
-        host: meeovicms.com
+        host: "meeovimariadb.ctxiztlmalra.us-east-1.rds.amazonaws.com"
         port: 3306
-        user: admin_shop812
-        password: 4p.SYEJ!84
-        database: admin_shop812
+        user: "bastianhilton"
+        password: "Libraxus1986"
+        database: "meeware"
+        #host: meeovicms.com
+        #port: 3306
+        #user: admin_shop812
+        #password: 4p.SYEJ!84
+        #database: admin_shop812
+
+  #- name: Meeware
+  #  handler:
+  #    openapi:
+  #      source: '{env.REST_URL}/store-api/_info/openapi3.json'
+  #      endpoint: '{env.REST_URL}/store-api/'
+  #      operationHeaders:
+  #        Authorization-Header: '{env.REST_HEADER}'
+  #        Authorization-Cookie: Bearer {env.REST_API_KEY}
+ 
+# You can provide a custom fetch function to override the default fetch function
 serve:
   playground: true

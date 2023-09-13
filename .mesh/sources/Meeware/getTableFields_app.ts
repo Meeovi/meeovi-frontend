@@ -1,0 +1,256 @@
+// @ts-nocheck
+export default {
+  "id": {
+    "Field": "id",
+    "Type": "binary(16)",
+    "Collation": null,
+    "Null": "NO",
+    "Key": "PRI",
+    "Default": null,
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "name": {
+    "Field": "name",
+    "Type": "varchar(255)",
+    "Collation": "utf8mb4_unicode_ci",
+    "Null": "NO",
+    "Key": "UNI",
+    "Default": null,
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "path": {
+    "Field": "path",
+    "Type": "varchar(255)",
+    "Collation": "utf8mb4_unicode_ci",
+    "Null": "NO",
+    "Key": "",
+    "Default": null,
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "author": {
+    "Field": "author",
+    "Type": "varchar(255)",
+    "Collation": "utf8mb4_unicode_ci",
+    "Null": "YES",
+    "Key": "",
+    "Default": null,
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "copyright": {
+    "Field": "copyright",
+    "Type": "varchar(255)",
+    "Collation": "utf8mb4_unicode_ci",
+    "Null": "YES",
+    "Key": "",
+    "Default": null,
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "license": {
+    "Field": "license",
+    "Type": "varchar(255)",
+    "Collation": "utf8mb4_unicode_ci",
+    "Null": "YES",
+    "Key": "",
+    "Default": null,
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "privacy": {
+    "Field": "privacy",
+    "Type": "varchar(255)",
+    "Collation": "utf8mb4_unicode_ci",
+    "Null": "YES",
+    "Key": "",
+    "Default": null,
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "version": {
+    "Field": "version",
+    "Type": "varchar(255)",
+    "Collation": "utf8mb4_unicode_ci",
+    "Null": "NO",
+    "Key": "",
+    "Default": null,
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "base_app_url": {
+    "Field": "base_app_url",
+    "Type": "varchar(1024)",
+    "Collation": "utf8mb4_unicode_ci",
+    "Null": "YES",
+    "Key": "",
+    "Default": null,
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "active": {
+    "Field": "active",
+    "Type": "tinyint(1)",
+    "Collation": null,
+    "Null": "NO",
+    "Key": "",
+    "Default": "0",
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "allow_disable": {
+    "Field": "allow_disable",
+    "Type": "tinyint(1)",
+    "Collation": null,
+    "Null": "NO",
+    "Key": "",
+    "Default": "1",
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "configurable": {
+    "Field": "configurable",
+    "Type": "tinyint(1)",
+    "Collation": null,
+    "Null": "NO",
+    "Key": "",
+    "Default": "0",
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "icon": {
+    "Field": "icon",
+    "Type": "mediumblob",
+    "Collation": null,
+    "Null": "YES",
+    "Key": "",
+    "Default": null,
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "app_secret": {
+    "Field": "app_secret",
+    "Type": "varchar(255)",
+    "Collation": "utf8mb4_unicode_ci",
+    "Null": "YES",
+    "Key": "",
+    "Default": null,
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "modules": {
+    "Field": "modules",
+    "Type": "longtext",
+    "Collation": "utf8mb4_bin",
+    "Null": "YES",
+    "Key": "",
+    "Default": null,
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "main_module": {
+    "Field": "main_module",
+    "Type": "longtext",
+    "Collation": "utf8mb4_bin",
+    "Null": "YES",
+    "Key": "",
+    "Default": null,
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "cookies": {
+    "Field": "cookies",
+    "Type": "longtext",
+    "Collation": "utf8mb4_bin",
+    "Null": "YES",
+    "Key": "",
+    "Default": null,
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "allowed_hosts": {
+    "Field": "allowed_hosts",
+    "Type": "longtext",
+    "Collation": "utf8mb4_bin",
+    "Null": "YES",
+    "Key": "",
+    "Default": null,
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "integration_id": {
+    "Field": "integration_id",
+    "Type": "binary(16)",
+    "Collation": null,
+    "Null": "NO",
+    "Key": "MUL",
+    "Default": null,
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "acl_role_id": {
+    "Field": "acl_role_id",
+    "Type": "binary(16)",
+    "Collation": null,
+    "Null": "NO",
+    "Key": "MUL",
+    "Default": null,
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "created_at": {
+    "Field": "created_at",
+    "Type": "datetime(3)",
+    "Collation": null,
+    "Null": "NO",
+    "Key": "",
+    "Default": null,
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "updated_at": {
+    "Field": "updated_at",
+    "Type": "datetime(3)",
+    "Collation": null,
+    "Null": "YES",
+    "Key": "",
+    "Default": null,
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "template_load_priority": {
+    "Field": "template_load_priority",
+    "Type": "int(11)",
+    "Collation": null,
+    "Null": "YES",
+    "Key": "",
+    "Default": "0",
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  }
+}

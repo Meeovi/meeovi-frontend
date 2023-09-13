@@ -5,10 +5,10 @@
         <deals />
         <bookcallout />
         <!----><latestproducts />
-        <theatercallout />
+        <!----><theatercallout />
         <!----><featuredproducts />
         <musiccallout />
-        <!----><bestsellers />
+        <bestsellers />
         <spotlight />
         <yardsale />
         <blogposts />

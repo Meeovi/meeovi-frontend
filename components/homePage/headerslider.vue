@@ -1,7 +1,7 @@
 <template>
     <div>
-        <v-carousel v-for="pages in pages" :key="pages.id">
-            <img :src="`${url}/assets/${pages.image}`" :alt="pages.name" cover />
+        <v-carousel v-for="pages in data.collections.items" :key="pages.id">
+            <img :src="`${pages.featuredAsset.preview}`" :alt="pages.name" cover />
         </v-carousel>
     </div>
 </template>
@@ -9,13 +9,28 @@
 <script>
   export default {
       data: () => ({
-          url: 'http://meeovicms.com:8011'
+          url: 'http://meeovicms.com:3000'
       }),
   }
 </script>
 
 <script setup>
-const { getItems } = useDirectusItems()
+const query = gql`
+  query {
+  collections (options: {topLevelOnly: false, filter: {name: {eq: "Homepage-Slider"}}}){
+    items {
+      name
+      featuredAsset {
+        id
+        preview
+      }
+    }
+  }
+}
+`
+const { data } = await useAsyncQuery(query)
 
-const pages = await getItems({ collection: "pages", params: {filter: {name: {_eq: "Homepage Slider"}} }});
+/*const { getItems } = useDirectusItems()
+
+const pages = await getItems({ collection: "pages", params: {filter: {name: {_eq: "Homepage Slider"}} }}); */
 </script>

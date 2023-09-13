@@ -1,0 +1,245 @@
+// @ts-nocheck
+export default {
+  "id": {
+    "Field": "id",
+    "Type": "binary(16)",
+    "Collation": null,
+    "Null": "NO",
+    "Key": "PRI",
+    "Default": null,
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "iso": {
+    "Field": "iso",
+    "Type": "varchar(255)",
+    "Collation": "utf8mb4_unicode_ci",
+    "Null": "YES",
+    "Key": "",
+    "Default": null,
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "position": {
+    "Field": "position",
+    "Type": "int(11)",
+    "Collation": null,
+    "Null": "NO",
+    "Key": "",
+    "Default": "1",
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "tax_free": {
+    "Field": "tax_free",
+    "Type": "tinyint(1)",
+    "Collation": null,
+    "Null": "NO",
+    "Key": "",
+    "Default": "0",
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "active": {
+    "Field": "active",
+    "Type": "tinyint(1)",
+    "Collation": null,
+    "Null": "NO",
+    "Key": "",
+    "Default": "1",
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "iso3": {
+    "Field": "iso3",
+    "Type": "varchar(45)",
+    "Collation": "utf8mb4_unicode_ci",
+    "Null": "YES",
+    "Key": "",
+    "Default": null,
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "display_state_in_registration": {
+    "Field": "display_state_in_registration",
+    "Type": "tinyint(1)",
+    "Collation": null,
+    "Null": "NO",
+    "Key": "",
+    "Default": "0",
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "force_state_in_registration": {
+    "Field": "force_state_in_registration",
+    "Type": "tinyint(1)",
+    "Collation": null,
+    "Null": "NO",
+    "Key": "",
+    "Default": "0",
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "company_tax_free": {
+    "Field": "company_tax_free",
+    "Type": "tinyint(1)",
+    "Collation": null,
+    "Null": "NO",
+    "Key": "",
+    "Default": "0",
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "check_vat_id_pattern": {
+    "Field": "check_vat_id_pattern",
+    "Type": "tinyint(1)",
+    "Collation": null,
+    "Null": "NO",
+    "Key": "",
+    "Default": "0",
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "vat_id_pattern": {
+    "Field": "vat_id_pattern",
+    "Type": "varchar(255)",
+    "Collation": "utf8mb4_unicode_ci",
+    "Null": "YES",
+    "Key": "",
+    "Default": null,
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "vat_id_required": {
+    "Field": "vat_id_required",
+    "Type": "tinyint(1)",
+    "Collation": null,
+    "Null": "NO",
+    "Key": "",
+    "Default": "0",
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "customer_tax": {
+    "Field": "customer_tax",
+    "Type": "longtext",
+    "Collation": "utf8mb4_bin",
+    "Null": "YES",
+    "Key": "",
+    "Default": null,
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "company_tax": {
+    "Field": "company_tax",
+    "Type": "longtext",
+    "Collation": "utf8mb4_bin",
+    "Null": "YES",
+    "Key": "",
+    "Default": null,
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "advanced_postal_code_pattern": {
+    "Field": "advanced_postal_code_pattern",
+    "Type": "varchar(255)",
+    "Collation": "utf8mb4_unicode_ci",
+    "Null": "YES",
+    "Key": "",
+    "Default": null,
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "check_advanced_postal_code_pattern": {
+    "Field": "check_advanced_postal_code_pattern",
+    "Type": "tinyint(1)",
+    "Collation": null,
+    "Null": "NO",
+    "Key": "",
+    "Default": "0",
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "check_postal_code_pattern": {
+    "Field": "check_postal_code_pattern",
+    "Type": "tinyint(1)",
+    "Collation": null,
+    "Null": "NO",
+    "Key": "",
+    "Default": "0",
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "default_postal_code_pattern": {
+    "Field": "default_postal_code_pattern",
+    "Type": "varchar(1024)",
+    "Collation": "utf8mb4_unicode_ci",
+    "Null": "YES",
+    "Key": "",
+    "Default": null,
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "postal_code_required": {
+    "Field": "postal_code_required",
+    "Type": "tinyint(1)",
+    "Collation": null,
+    "Null": "NO",
+    "Key": "",
+    "Default": "0",
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "created_at": {
+    "Field": "created_at",
+    "Type": "datetime(3)",
+    "Collation": null,
+    "Null": "NO",
+    "Key": "",
+    "Default": null,
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "updated_at": {
+    "Field": "updated_at",
+    "Type": "datetime(3)",
+    "Collation": null,
+    "Null": "YES",
+    "Key": "",
+    "Default": null,
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  },
+  "shipping_available": {
+    "Field": "shipping_available",
+    "Type": "tinyint(1)",
+    "Collation": null,
+    "Null": "NO",
+    "Key": "",
+    "Default": "1",
+    "Extra": "",
+    "Privileges": "select,insert,update,references",
+    "Comment": ""
+  }
+}

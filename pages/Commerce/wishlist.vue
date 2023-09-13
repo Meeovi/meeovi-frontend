@@ -1,71 +1,9 @@
 <script lang="ts">
-export default {
-  name: "WishlistPage",
-};
+
 </script>
 
 <script setup lang="ts">
-import { getProducts } from "@shopware-pwa/api-client";
-import { ClientApiError, Product } from "@shopware-pwa/types";
 
-const { items, clearWishlist } = useWishlist();
-const { apiInstance } = useShopwareContext();
-const products = ref<Product[]>([]);
-const isLoading = ref(false);
-const { t } = useI18n();
-useBreadcrumbs([
-  {
-    name: t("breadcrumbs.wishlist"),
-    path: "/wishlist",
-  },
-]);
-const clearWishlistHandler = async () => {
-  try {
-    isLoading.value = true;
-    await clearWishlist();
-  } finally {
-    isLoading.value = false;
-  }
-};
-const loadProductsByItemIds = async (itemIds: string[]): Promise<void> => {
-  isLoading.value = true;
-
-  try {
-    const result = await getProducts(
-      {
-        ids: itemIds || items.value,
-      },
-      apiInstance
-    );
-
-    if (result) {
-      products.value = result.elements;
-    }
-  } catch (error) {
-    console.error(
-      "[wishlist][loadProductsByItemIds]",
-      (error as ClientApiError).messages
-    );
-  }
-
-  isLoading.value = false;
-};
-
-watch(
-  items,
-  (items, oldItems) => {
-    if (items.length !== oldItems?.length) {
-      products.value = products.value.filter(({ id }) => items.includes(id));
-    }
-    if (!items.length) {
-      return;
-    }
-    loadProductsByItemIds(items);
-  },
-  {
-    immediate: true,
-  }
-);
 </script>
 
 <template>
@@ -125,5 +63,3 @@ watch(
     </div>
   </div>
 </template>
-
-<style scoped></style>
