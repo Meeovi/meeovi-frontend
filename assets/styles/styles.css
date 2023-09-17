@@ -80,13 +80,17 @@ body {
     --v-layout-top: 0px !important;
 }
 
-.homeSection, .contentPage {
+.homeSection, .contentPage, .contentPage404 {
     padding: 45px !important;
 }
 
 .contentPage h2 {
     width: 100% !important;
     text-align: center;
+}
+
+.contentPage404 {
+    font-size: 30px;
 }
 
 .homeSection a {
@@ -284,9 +288,16 @@ body {
 }
 
 /***************** Footer ********************/
+.topfooter {
+    background-color: #232323;
+}
 
 footer {
     background-color: #6592e6 !important;
+    color: white !important;
+}
+
+footer a {
     color: white !important;
 }
 

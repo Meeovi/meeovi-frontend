@@ -1,7 +1,7 @@
 <template>
     <div>
-        <v-carousel v-for="pages in data.collections.items" :key="pages.id">
-            <img :src="`${pages.featuredAsset.preview}`" :alt="pages.name" cover />
+      <v-carousel hide-delimiters show-arrows="hover" :continuous="true">
+            <v-carousel-item v-for="pages in data.collections.items" :key="pages.id" :src="`${pages.featuredAsset.preview}`" :alt="pages.name" cover></v-carousel-item>
         </v-carousel>
     </div>
 </template>

@@ -4,7 +4,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-md-6">
-                        <img :src="`${url}/assets/${products.id}`" class="top" :alt="products.name">
+                        <img :src="`${data.product.featuredAsset.preview}`" class="top" :alt="data.product.name" />
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="right">
@@ -12,32 +12,34 @@
                                 <p class="desc1 bord mbr-fonts-style display-4">
                                     SALE</p>
                             </div>
-                            <p class="name mbr-fonts-style display-2"><strong>{{ products.name }}</strong></p>
+                            <p class="name mbr-fonts-style display-2"><strong>{{ data.product.name }}</strong></p>
 
                             <div class="price-line">
-                                <p class="desc2 mbr-fonts-style display-5"><s>{{ products.price }}</s></p>
+                                <p class="desc2 mbr-fonts-style display-5"><s>{{ data.product.price }}</s></p>
                                 <p class="plus1 mbr-fonts-style display-5">
                                     <strong>&nbsp;</strong>$135.00</p>
                             </div>
-                            <p class="mbr-text mbr-fonts-style display-4">{{ product.short_description }}
+                            <p class="mbr-text mbr-fonts-style display-4">Created: {{ data.product.createdAt }}
                             </p>
-                            <div class="mbr-section-btn"><a class="btn btn-secondary display-7" href="">Buy Now</a>
-                            </div>
+                            <form method="post" onSubmit={addItem}>
+                                <input name="quantity" type="number" min="0" defaultValue={1} />
+                                <v-btn type="submit">Add to cart</v-btn>
+                            </form>
                             <div class="price-line1">
                                 <p class="desc mbr-fonts-style display-7"><strong>
                                         Category: </strong></p>
                                 <p class="plus mbr-fonts-style display-4">
-                                    &nbsp;{{ product.categories}}</p>
+                                    &nbsp;{{ data.product.collections.name}}</p>
                             </div>
                             <div class="price-line1">
                                 <p class="desc mbr-fonts-style display-7"><strong>
                                         Tags:</strong>&nbsp;</p>
-                                <p class="plus mbr-fonts-style display-4">{{ product.tags}}</p>
+                                <p class="plus mbr-fonts-style display-4">{{ data.product.facetValues.name}}</p>
                             </div>
                             <div class="price-line1">
                                 <p class="desc mbr-fonts-style display-7"><strong>
                                         Product ID:</strong></p>
-                                <p class="plus mbr-fonts-style display-4">{{ product.sku}}</p>
+                                <p class="plus mbr-fonts-style display-4">{{ data.product.variants.sku}}</p>
                             </div>
                         </div>
                     </div>
@@ -56,12 +58,11 @@
                                 </div>
                                 <div class="text-wrap">
                                     <h4 class="mbr-section-title align-center mbr-fonts-style display-2">
-                                        {{ product.format}}
+                                        Last Updated: {{ data.product.updatedAt}}
                                     </h4>
                                     <p class="mbr-text align-center mbr-fonts-style display-4">
-                                        {{ product.content}}
+                                        {{ data.product.description}}
                                     </p>
-
                                 </div>
                             </div>
                         </div>
@@ -71,17 +72,12 @@
         </section>
 
         <section data-bs-version="5.1" class="pricing1 lodgem5 cid-twaVk5oC96" id="apricing1-4j">
-
-
-
-
             <div class="container">
                 <div class="row">
                     <div class="col-12">
                         <div class="mbr-section-head">
                             <h3 class="mbr-section-title mbr-fonts-style mb-0 display-5">
                                 Specifications</h3>
-
                         </div>
                         <div class="tabl-container">
                             <div class="tabl-item-row">
@@ -211,13 +207,59 @@
 </script>
 
 <script setup>
-    useHead({
-        title: products.name,
-    })
-
+    const query = gql`
+ query ($id: ID!) {
+  product(id: $id) {
+    id
+    createdAt
+    updatedAt
+    name
+    slug
+    description
+    featuredAsset {
+      id
+      preview
+    }
+    assets {
+      id
+      preview
+    }
+    variants {
+      id
+      name
+      sku
+      stockLevel
+      currencyCode
+      price
+      priceWithTax
+      featuredAsset {
+        id
+        preview
+      }
+      assets {
+        id
+        preview
+      }
+    }
+    collections {
+        name
+    }
+    facetValues {
+        name
+    }
+  }
+}
+`
     const {
-        getItems
-    } = useDirectusItems()
+        data
+    } = await useAsyncQuery(query)
+    /*   useHead({
+           title: product.name,
+       })
 
-    const products = await getItems({ collection: "products", id: 1});
+       const {
+           getItems
+       } = useDirectusItems()
+
+       const products = await getItems({ collection: "products", id: 1});*/
 </script>

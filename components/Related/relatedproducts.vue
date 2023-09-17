@@ -1,23 +1,23 @@
 <template>
     <v-sheet class="mx-auto sliderProducts">
-        <h4>Exclusives</h4>
+        <h4>Latest Products</h4>
         <v-slide-group v-model="model" class="pa-4" center-active show-arrows>
-                    <v-slide-group-item v-for="products in data.collections.items" :key="products.id"
+                    <v-slide-group-item v-for="products in data.products.items" :key="products.id"
                       v-slot="{ isSelected, toggle }">
-                      <a :href="`/product/${products.productVariants.items[0].product.id}`">
+                      <a :href="`/product/${products.id}`">
                             <v-card class="ma-4" height="380" width="250" @click="toggle">
-                                <img class="align-end text-white" height="200" :src="`${products.productVariants.items[0].product.featuredAsset.preview}`" :alt="products.productVariants.items[0].product.name" cover />
+                                <img class="align-end text-white" height="200" :src="`${products.featuredAsset.preview}`" :alt="products.name" cover />
   
                                 <v-card-title class="pt-4">
-                                    {{ products.productVariants.items[0].product.name }}
+                                    {{ products.name }}
                                 </v-card-title>
   
                                 <v-card-text>
-                                    <div>Sku: {{ products.productVariants.items[0].product.variants.sku }}</div>
+                                    <div>Sku: {{ products.variants.sku }}</div>
                                 </v-card-text>
   
                                 <v-card-actions>
-                                    <v-card-title>$ {{ products.productVariants.items[0].product.variants.price }}
+                                    <v-card-title>$ {{ products.variants.price }}
                                     </v-card-title>
                                 </v-card-actions>
                                 <div class="d-flex fill-height align-center justify-center">
@@ -45,29 +45,17 @@
 <script setup>
 const query = gql`
  query {
-  collections (options: {topLevelOnly: true, filter: {name: {eq: "Exclusives & Devices"}}}){
+  products (options: {take: 6 sort: {createdAt: DESC}}) {
     items {
+      id
       name
-      slug
       featuredAsset {
         id
         preview
       }
-      productVariants {
-        items {
-          product {
-            id
-            name
-            featuredAsset {
-              id
-              preview
-            }
-            variants {
-              price
-            }
-          }
-          sku
-        }
+      variants {
+        price
+        sku
       }
     }
   }

@@ -6,7 +6,7 @@
                     <v-icon start icon="fas fa-bars-staggered"></v-icon>
                 </v-btn>
             </template>
-            <v-card>
+            <v-card min-height="500" min-width="500">
                 <v-toolbar dark color="primary">
                     <v-btn icon dark @click="dialog = false">
                         <v-icon icon="fas fa-circle-xmark"></v-icon>

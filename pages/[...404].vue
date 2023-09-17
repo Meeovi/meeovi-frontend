@@ -1,8 +1,7 @@
 <template>
-    <div v-for="pages in pages" :key="pages">
-        <div class="contentPage" v-html="pages.content"></div>
+    <div v-for="pages in data.collections.items" :key="pages">
+        <div class="contentPage404" v-html="pages.description"></div>
         <v-row>
-            <h3>However, since you are here</h3>
             <v-col cols="3" v-for="products in data.products.items" :key="products.id">
                 <a :href="`/product/${products.id}`">
                     <v-card class="ma-4" height="380" width="250">
@@ -37,8 +36,19 @@
 </script>
 
 <script setup>
-    const query = gql `
+const query = gql `
    query {
+    collections (options: {topLevelOnly: false, filter: {name: {eq: "404"}}}){
+    items {
+      name
+      slug
+      featuredAsset {
+        id
+        preview
+      }
+      description
+    }
+  }
     products (options: {take: 10}) {
         items {
         id
@@ -63,7 +73,7 @@
         title: '404, Error Page',
     })
 
-    const {
+   /* const {
         getItems
     } = useDirectusItems()
 
@@ -77,7 +87,7 @@
             }
         }
     });
-    /* const products = await getItems({
+     const products = await getItems({
          collection: "products",
          limit: 6
      }); */

@@ -4,8 +4,8 @@
             <v-expansion-panel title="Meeovi Stores" expand-icon="fas fa-plus" collapse-icon="fas fa-minus" elevation="0">
                 <v-expansion-panel-text>
                     <div v-for="stores in data.collections.items" :key="stores.id">
-                        <v-list-item :title="stores.children.name" :value="stores.children.name"
-                            :href="`/stores/${stores.children.slug}`">
+                        <v-list-item :title="stores.name" :value="stores.children[0].name"
+                            :href="`/stores/${stores.children[0].slug}`">
                         </v-list-item>
                     </div>
                 </v-expansion-panel-text>

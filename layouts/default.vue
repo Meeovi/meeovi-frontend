@@ -9,7 +9,7 @@
 
       <v-app-bar-title><a class="logobrand" href="/">
           <v-icon start>
-            <v-img src="/images/logo.png"></v-img>
+            <v-img src="../assets/images/logo512alpha-192x192.png"></v-img>
           </v-icon>Meeovi
         </a></v-app-bar-title>
 
@@ -128,7 +128,6 @@
 <script>
   import search from '../components/Search/search.vue'
   import ecosystemmenu from '../components/Menus/ecosystemmenu.vue'
-  import lowerbar from '../components/Menus/lowerbar.vue'
   import live from '../components/Catbar/live.vue'
   import departmentsmenu from '../components/Menus/Sidebar/departmentsmenu.vue'
   import luxurystoresmenu from '../components/Menus/Sidebar/meeovistoresmenu.vue'
@@ -141,7 +140,6 @@
         components: {
           search,
           ecosystemmenu,
-          lowerbar,
           live,
           departmentsmenu,
           luxurystoresmenu,

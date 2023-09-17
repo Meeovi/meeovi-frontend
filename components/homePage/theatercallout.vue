@@ -56,6 +56,7 @@
     collections (options: {topLevelOnly: false, filter: {name: {eq: "Theater"}}}){
       items {
         name
+        slug
         featuredAsset {
           id
           preview

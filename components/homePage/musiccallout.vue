@@ -52,10 +52,11 @@
   
   <script setup>
   const query = gql`
-    query {
+   query {
     collections (options: {topLevelOnly: true, filter: {name: {eq: "Music"}}}){
       items {
         name
+        slug
         featuredAsset {
           id
           preview

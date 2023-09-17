@@ -5,7 +5,6 @@ import {
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   extends: ['@sidebase/core'],
-
   css: [
     'assets/web/assets/mobirise-icons2/mobirise2.css',
     'assets/web/assets/mobirise-icons/mobirise-icons.css',
