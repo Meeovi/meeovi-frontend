@@ -1,0 +1,35 @@
+query special_discounts_by_id($id: ID!, $version: String){
+    special_discounts_by_id(id: $id, version: $version){
+        id
+        name
+        excerpt
+        discount
+        image
+        published
+        published_func{
+            year
+            month
+            week
+            day
+            weekday
+            hour
+            minute
+            second
+        }
+        rewards
+        coupons
+        expiration
+        expiration_func{
+            year
+            month
+            week
+            day
+            weekday
+        }
+        categories
+        articles
+        products
+        customers
+        users
+    }
+}

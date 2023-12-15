@@ -1,0 +1,250 @@
+query brands($filter: manufacturer_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String, $filter1: brands_manufacturer_filter, $sort1: [String], $limit1: Int, $offset1: Int, $page1: Int, $search1: String, $filter2: brands_filter, $sort2: [String], $limit2: Int, $offset2: Int, $page2: Int, $search2: String, $filter3: categories_filter, $sort3: [String], $limit3: Int, $offset3: Int, $page3: Int, $search3: String, $filter4: brands_categories_filter, $sort4: [String], $limit4: Int, $offset4: Int, $page4: Int, $search4: String, $filter5: collections_filter, $sort5: [String], $limit5: Int, $offset5: Int, $page5: Int, $search5: String, $filter6: brands_filter, $sort6: [String], $limit6: Int, $offset6: Int, $page6: Int, $search6: String, $filter7: collections_brands_filter, $sort7: [String], $limit7: Int, $offset7: Int, $page7: Int, $search7: String, $filter8: brands_filter, $sort8: [String], $limit8: Int, $offset8: Int, $page8: Int, $search8: String, $filter9: departments_filter, $sort9: [String], $limit9: Int, $offset9: Int, $page9: Int, $search9: String, $filter10: brands_departments_filter, $sort10: [String], $limit10: Int, $offset10: Int, $page10: Int, $search10: String, $filter11: brands_filter, $sort11: [String], $limit11: Int, $offset11: Int, $page11: Int, $search11: String, $filter12: customers_filter, $sort12: [String], $limit12: Int, $offset12: Int, $page12: Int, $search12: String, $filter13: brands_customers_filter, $sort13: [String], $limit13: Int, $offset13: Int, $page13: Int, $search13: String, $filter14: brands_filter, $sort14: [String], $limit14: Int, $offset14: Int, $page14: Int, $search14: String, $filter15: shorts_filter, $sort15: [String], $limit15: Int, $offset15: Int, $page15: Int, $search15: String, $filter16: brands_shorts_filter, $sort16: [String], $limit16: Int, $offset16: Int, $page16: Int, $search16: String, $filter17: brands_filter, $sort17: [String], $limit17: Int, $offset17: Int, $page17: Int, $search17: String, $filter18: products_filter, $sort18: [String], $limit18: Int, $offset18: Int, $page18: Int, $search18: String, $filter19: brands_products_filter, $sort19: [String], $limit19: Int, $offset19: Int, $page19: Int, $search19: String, $filter20: brands_filter, $sort20: [String], $limit20: Int, $offset20: Int, $page20: Int, $search20: String, $filter21: brands_manufacturer_filter, $sort21: [String], $limit21: Int, $offset21: Int, $page21: Int, $search21: String, $filter22: brands_categories_filter, $sort22: [String], $limit22: Int, $offset22: Int, $page22: Int, $search22: String, $filter23: collections_brands_filter, $sort23: [String], $limit23: Int, $offset23: Int, $page23: Int, $search23: String, $filter24: brands_departments_filter, $sort24: [String], $limit24: Int, $offset24: Int, $page24: Int, $search24: String, $filter25: brands_customers_filter, $sort25: [String], $limit25: Int, $offset25: Int, $page25: Int, $search25: String, $filter26: brands_shorts_filter, $sort26: [String], $limit26: Int, $offset26: Int, $page26: Int, $search26: String, $filter27: brands_products_filter, $sort27: [String], $limit27: Int, $offset27: Int, $page27: Int, $search27: String, $filter28: brands_filter, $sort28: [String], $limit28: Int, $offset28: Int, $page28: Int, $search28: String){
+    brands(filter: $filter28, sort: $sort28, limit: $limit28, offset: $offset28, page: $page28, search: $search28){
+        id
+        created_at
+        created_at_func{
+            year
+            month
+            week
+            day
+            weekday
+            hour
+            minute
+            second
+        }
+        code
+        name
+        description
+        image
+        manufacturer(filter: $filter21, sort: $sort21, limit: $limit21, offset: $offset21, page: $page21, search: $search21){
+            id
+            brands_id(filter: $filter20, sort: $sort20, limit: $limit20, offset: $offset20, page: $page20, search: $search20){
+                id
+                created_at
+                created_at_func{
+                    year
+                    month
+                    week
+                    day
+                    weekday
+                    hour
+                    minute
+                    second
+                }
+                code
+                name
+                description
+                image
+                manufacturer(filter: $filter1, sort: $sort1, limit: $limit1, offset: $offset1, page: $page1, search: $search1){
+                    id
+                    manufacturer_id(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
+                        id
+                        created_at
+                        code
+                        name
+                        description
+                        isPublic
+                    }
+                }
+                manufacturer_func{
+                    count
+                }
+                categories(filter: $filter4, sort: $sort4, limit: $limit4, offset: $offset4, page: $page4, search: $search4){
+                    id
+                    brands_id(filter: $filter2, sort: $sort2, limit: $limit2, offset: $offset2, page: $page2, search: $search2){
+                        id
+                        created_at
+                        code
+                        name
+                        description
+                        image
+                    }
+                    categories_id(filter: $filter3, sort: $sort3, limit: $limit3, offset: $offset3, page: $page3, search: $search3){
+                        id
+                        name
+                        description
+                        content
+                    }
+                }
+                categories_func{
+                    count
+                }
+                collections(filter: $filter7, sort: $sort7, limit: $limit7, offset: $offset7, page: $page7, search: $search7){
+                    id
+                    collections_id(filter: $filter5, sort: $sort5, limit: $limit5, offset: $offset5, page: $page5, search: $search5){
+                        id
+                        created_at
+                        name
+                        description
+                        type
+                    }
+                    brands_id(filter: $filter6, sort: $sort6, limit: $limit6, offset: $offset6, page: $page6, search: $search6){
+                        id
+                        created_at
+                        code
+                        name
+                        description
+                        image
+                    }
+                }
+                collections_func{
+                    count
+                }
+                departments(filter: $filter10, sort: $sort10, limit: $limit10, offset: $offset10, page: $page10, search: $search10){
+                    id
+                    brands_id(filter: $filter8, sort: $sort8, limit: $limit8, offset: $offset8, page: $page8, search: $search8){
+                        id
+                        created_at
+                        code
+                        name
+                        description
+                        image
+                    }
+                    departments_id(filter: $filter9, sort: $sort9, limit: $limit9, offset: $offset9, page: $page9, search: $search9){
+                        id
+                        name
+                        websites
+                        description
+                        content
+                        color
+                        colortext
+                        Active
+                    }
+                }
+                departments_func{
+                    count
+                }
+                customers(filter: $filter13, sort: $sort13, limit: $limit13, offset: $offset13, page: $page13, search: $search13){
+                    id
+                    brands_id(filter: $filter11, sort: $sort11, limit: $limit11, offset: $offset11, page: $page11, search: $search11){
+                        id
+                        created_at
+                        code
+                        name
+                        description
+                        image
+                    }
+                    customers_id(filter: $filter12, sort: $sort12, limit: $limit12, offset: $offset12, page: $page12, search: $search12){
+                        id
+                        name_prefix
+                        first_name
+                        middle_name
+                        last_name
+                        email
+                        phone
+                        zipcode
+                        name_suffix
+                        tax_vat_number
+                        description
+                        Address
+                        username
+                        password
+                        payment
+                        dateofbirth
+                        gender
+                        type
+                    }
+                }
+                customers_func{
+                    count
+                }
+                shorts(filter: $filter16, sort: $sort16, limit: $limit16, offset: $offset16, page: $page16, search: $search16){
+                    id
+                    brands_id(filter: $filter14, sort: $sort14, limit: $limit14, offset: $offset14, page: $page14, search: $search14){
+                        id
+                        created_at
+                        code
+                        name
+                        description
+                        image
+                    }
+                    shorts_id(filter: $filter15, sort: $sort15, limit: $limit15, offset: $offset15, page: $page15, search: $search15){
+                        id
+                        status
+                        sort
+                        user_created
+                        date_created
+                        user_updated
+                        date_updated
+                        name
+                        description
+                    }
+                }
+                shorts_func{
+                    count
+                }
+                products(filter: $filter19, sort: $sort19, limit: $limit19, offset: $offset19, page: $page19, search: $search19){
+                    id
+                    brands_id(filter: $filter17, sort: $sort17, limit: $limit17, offset: $offset17, page: $page17, search: $search17){
+                        id
+                        created_at
+                        code
+                        name
+                        description
+                        image
+                    }
+                    products_id(filter: $filter18, sort: $sort18, limit: $limit18, offset: $offset18, page: $page18, search: $search18){
+                        id
+                        sku
+                        name
+                        tax_class
+                        stock_status
+                        weight
+                        created_at
+                        height
+                        content
+                        part_number
+                        format
+                        type
+                        visibility
+                        price
+                        size
+                        rating
+                    }
+                }
+                products_func{
+                    count
+                }
+            }
+        }
+        manufacturer_func{
+            count
+        }
+        categories(filter: $filter22, sort: $sort22, limit: $limit22, offset: $offset22, page: $page22, search: $search22){
+            id
+        }
+        categories_func{
+            count
+        }
+        collections(filter: $filter23, sort: $sort23, limit: $limit23, offset: $offset23, page: $page23, search: $search23){
+            id
+        }
+        collections_func{
+            count
+        }
+        departments(filter: $filter24, sort: $sort24, limit: $limit24, offset: $offset24, page: $page24, search: $search24){
+            id
+        }
+        departments_func{
+            count
+        }
+        customers(filter: $filter25, sort: $sort25, limit: $limit25, offset: $offset25, page: $page25, search: $search25){
+            id
+        }
+        customers_func{
+            count
+        }
+        shorts(filter: $filter26, sort: $sort26, limit: $limit26, offset: $offset26, page: $page26, search: $search26){
+            id
+        }
+        shorts_func{
+            count
+        }
+        products(filter: $filter27, sort: $sort27, limit: $limit27, offset: $offset27, page: $page27, search: $search27){
+            id
+        }
+        products_func{
+            count
+        }
+    }
+}

@@ -4,15 +4,15 @@
         <v-row class="livefeed">
             <v-col cols="4">
                 <div class="text-center">
-                    <v-dialog v-model="dialog" width="auto" v-for="shorts in shorts" :key="shorts.id">
+                    <v-dialog v-model="dialog" width="auto" v-for="shorts in data" :key="shorts.id">
                         <template v-slot:activator="{ props }">
                             <v-avatar size="180" v-bind="props">
-                                <img :src="`${url}/assets/shorts.video`" :alt="shorts.name" />
+                                <video :src="`${shorts.video}`"></video>
                             </v-avatar>
                         </template>
 
                         <v-card>
-                            <video :src="`${url}/assets/${shorts.video}`" autoplay></video>
+                            <video :src="`${shorts.video}`" autoplay></video>
                             <v-card-actions>
                                 <v-btn color="primary" block @click="dialog = false">Close Dialog</v-btn>
                             </v-card-actions>
@@ -30,16 +30,19 @@
         data() {
             return {
                 dialog: false,
-                url: 'http://meeovicms.com:8011'
             }
         },
     }
 </script>
 
 <script setup>
-const { getItems } = useDirectusItems()
+import query from '../../apollo/Queries/shorts.js'
 
-const shorts = await getItems({ collection: "shorts"});
+const { data } = await useAsyncQuery(query)
+
+/*const { getItems } = useDirectusItems()
+
+const shorts = await getItems({ collection: "shorts"}); */
 
     useHead({
         title: 'Meeovi Shorts',

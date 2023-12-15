@@ -1,0 +1,5 @@
+mutation delete_manufacturer_items($ids: [ID]!){
+    delete_manufacturer_items(ids: $ids){
+        ids
+    }
+}

@@ -1,0 +1,39 @@
+subscription special_discounts_mutated($event: EventEnum){
+    special_discounts_mutated(event: $event){
+        key
+        event
+        data{
+            id
+            name
+            excerpt
+            discount
+            image
+            published
+            published_func{
+                year
+                month
+                week
+                day
+                weekday
+                hour
+                minute
+                second
+            }
+            rewards
+            coupons
+            expiration
+            expiration_func{
+                year
+                month
+                week
+                day
+                weekday
+            }
+            categories
+            articles
+            products
+            customers
+            users
+        }
+    }
+}

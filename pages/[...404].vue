@@ -1,5 +1,5 @@
 <template>
-    <div v-for="pages in data.collections.items" :key="pages">
+    <div v-for="pages in data" :key="pages">
         <div class="contentPage404" v-html="pages.description"></div>
         <v-row>
             <v-col cols="3" v-for="products in data.products.items" :key="products.id">
@@ -30,25 +30,12 @@
     export default {
         data: () => ({
             //model: null,
-            url: 'http://meeovicms.com:3000'
         }),
     }
 </script>
 
 <script setup>
 const query = gql `
-   query {
-    collections (options: {topLevelOnly: false, filter: {name: {eq: "404"}}}){
-    items {
-      name
-      slug
-      featuredAsset {
-        id
-        preview
-      }
-      description
-    }
-  }
     products (options: {take: 10}) {
         items {
         id
@@ -63,7 +50,18 @@ const query = gql `
         }
         }
     }
-    }`
+    query {
+    pages (filter: {name: {_starts_with: "404"}}) {
+      id
+      status
+      sort
+      name
+      content
+      link
+      list
+      type
+    }
+  }`
 
     const {
         data

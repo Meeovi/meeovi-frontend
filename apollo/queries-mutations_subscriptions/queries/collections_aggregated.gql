@@ -1,0 +1,32 @@
+query collections_aggregated($groupBy: [String], $filter: collections_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
+    collections_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
+        group
+        countAll
+        count{
+            id
+            created_at
+            name
+            description
+            image
+            type
+            products
+            brands
+            customers
+            departments
+            meeovistores
+        }
+        countDistinct{
+            id
+            created_at
+            name
+            description
+            image
+            type
+            products
+            brands
+            customers
+            departments
+            meeovistores
+        }
+    }
+}

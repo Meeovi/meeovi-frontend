@@ -1,0 +1,38 @@
+query newsletters_aggregated($groupBy: [String], $filter: newsletters_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
+    newsletters_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
+        group
+        countAll
+        count{
+            id
+            email
+            created_at
+            optin
+            customers
+        }
+        countDistinct{
+            id
+            email
+            created_at
+            optin
+            customers
+        }
+        avg{
+            id
+        }
+        sum{
+            id
+        }
+        avgDistinct{
+            id
+        }
+        sumDistinct{
+            id
+        }
+        min{
+            id
+        }
+        max{
+            id
+        }
+    }
+}

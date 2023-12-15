@@ -54,16 +54,59 @@
       "public/*": [
         "../public/*"
       ],
+      "#mdc-imports": [
+        "./file:/C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/.nuxt/mdc-imports"
+      ],
       "#apollo": [
         "./apollo"
       ],
+      "vue-i18n": [
+        "../node_modules/vue-i18n/dist/vue-i18n"
+      ],
+      "@intlify/shared": [
+        "../node_modules/@intlify/shared/dist/shared"
+      ],
+      "@intlify/message-compiler": [
+        "../node_modules/@intlify/message-compiler/dist/message-compiler"
+      ],
+      "@intlify/vue-router-bridge": [
+        "../node_modules/@intlify/vue-router-bridge/lib/index"
+      ],
+      "@intlify/vue-i18n-bridge": [
+        "../node_modules/@intlify/vue-i18n-bridge/lib/index"
+      ],
+      "vue-i18n-routing": [
+        "../node_modules/vue-i18n-routing/dist/vue-i18n-routing"
+      ],
+      "#i18n": [
+        "../node_modules/@nuxtjs/i18n/dist/runtime/composables"
+      ],
+      "#image": [
+        "../node_modules/@nuxt/image/dist/runtime"
+      ],
+      "#image/*": [
+        "../node_modules/@nuxt/image/dist/runtime/*"
+      ],
       "#content/server": [
-        "../node_modules/@nuxt/content/dist/runtime/server/index"
+        "../node_modules/@nuxt/content/dist/runtime/legacy/server"
       ]
     }
   },
   "include": [
     "./types/nitro-nuxt.d.ts",
+    "../node_modules/@nuxtjs/mdc/runtime/server",
+    "../node_modules/@nuxt/content/runtime/server",
+    "../node_modules/nuxt-meilisearch/runtime/server",
+    "../node_modules/nuxt-directus/runtime/server",
+    "../node_modules/@nuxtjs/apollo/runtime/server",
+    "../node_modules/nuxt-gtag/runtime/server",
+    "../node_modules/@nuxtjs/google-fonts/runtime/server",
+    "../node_modules/@nuxtjs/i18n/runtime/server",
+    "../node_modules/@nuxt/image/runtime/server",
+    "../node_modules/nuxt-paypal/runtime/server",
+    "../node_modules/nuxt-medusa/runtime/server",
+    "../../../../../../../../../../AppData/Roaming/npm/node_modules/@nuxt/devtools/module.cjs/runtime/server",
+    "../node_modules/@nuxt/telemetry/runtime/server",
     "./types/nitro.d.ts",
     "../**/*",
     "../server/**/*"

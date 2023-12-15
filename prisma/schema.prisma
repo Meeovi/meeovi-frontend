@@ -1,0 +1,1706 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Space {
+  id                                                Int               @id @default(autoincrement())
+  status                                            String            @default("draft") @db.VarChar(255)
+  sort                                              Int?
+  user_created                                      String?           @db.Uuid
+  date_created                                      DateTime?         @db.Timestamptz(6)
+  user_updated                                      String?           @db.Uuid
+  date_updated                                      DateTime?         @db.Timestamptz(6)
+  Name                                              String?           @db.VarChar(255)
+  Description                                       String?
+  Image                                             String?           @db.Uuid
+  directus_files                                    directus_files?   @relation(fields: [Image], references: [id], onUpdate: NoAction, map: "space_image_foreign")
+  directus_users_Space_user_createdTodirectus_users directus_users?   @relation("Space_user_createdTodirectus_users", fields: [user_created], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "space_user_created_foreign")
+  directus_users_Space_user_updatedTodirectus_users directus_users?   @relation("Space_user_updatedTodirectus_users", fields: [user_updated], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "space_user_updated_foreign")
+  Space_newsfeed                                    Space_newsfeed[]
+  Space_products                                    Space_products[]
+  Space_shorts                                      Space_shorts[]
+  customers_Space                                   customers_Space[]
+}
+
+model Space_newsfeed {
+  id          Int       @id @default(autoincrement())
+  Space_id    Int?
+  newsfeed_id Int?
+  newsfeed    newsfeed? @relation(fields: [newsfeed_id], references: [id], onUpdate: NoAction, map: "space_newsfeed_newsfeed_id_foreign")
+  Space       Space?    @relation(fields: [Space_id], references: [id], onUpdate: NoAction, map: "space_newsfeed_space_id_foreign")
+}
+
+model Space_products {
+  id          Int       @id @default(autoincrement())
+  Space_id    Int?
+  products_id BigInt?
+  products    products? @relation(fields: [products_id], references: [id], onUpdate: NoAction, map: "space_products_products_id_foreign")
+  Space       Space?    @relation(fields: [Space_id], references: [id], onUpdate: NoAction, map: "space_products_space_id_foreign")
+}
+
+model Space_shorts {
+  id        Int     @id @default(autoincrement())
+  Space_id  Int?
+  shorts_id Int?
+  shorts    shorts? @relation(fields: [shorts_id], references: [id], onUpdate: NoAction, map: "space_shorts_shorts_id_foreign")
+  Space     Space?  @relation(fields: [Space_id], references: [id], onUpdate: NoAction, map: "space_shorts_space_id_foreign")
+}
+
+model agreements {
+  id                   BigInt                 @id @default(autoincrement())
+  created              DateTime?              @default(now())
+  content              String?
+  name                 String?
+  excerpt              String?
+  image                String?                @db.Uuid
+  type                 Json?                  @db.Json
+  directus_files       directus_files?        @relation(fields: [image], references: [id], onUpdate: NoAction, map: "agreements_image_foreign")
+  agreements_customers agreements_customers[]
+  agreements_products  agreements_products[]
+  shops_agreements     shops_agreements[]
+}
+
+model agreements_customers {
+  id            Int         @id @default(autoincrement())
+  agreements_id BigInt?
+  customers_id  Int?
+  agreements    agreements? @relation(fields: [agreements_id], references: [id], onUpdate: NoAction, map: "agreements_customers_agreements_id_foreign")
+  customers     customers?  @relation(fields: [customers_id], references: [id], onUpdate: NoAction, map: "agreements_customers_customers_id_foreign")
+}
+
+model agreements_products {
+  id            Int         @id @default(autoincrement())
+  agreements_id BigInt?
+  products_id   BigInt?
+  agreements    agreements? @relation(fields: [agreements_id], references: [id], onUpdate: NoAction, map: "agreements_products_agreements_id_foreign")
+  products      products?   @relation(fields: [products_id], references: [id], onUpdate: NoAction, map: "agreements_products_products_id_foreign")
+}
+
+model articles {
+  id                   Int                    @id @default(autoincrement())
+  name                 String?
+  excerpt              String?
+  content              String?
+  created_at           DateTime?              @db.Timestamptz(6)
+  image                String?                @db.Uuid
+  type                 Json?                  @db.Json
+  directus_files       directus_files?        @relation(fields: [image], references: [id], onUpdate: NoAction, map: "articles_image_foreign")
+  articles_categories  articles_categories[]
+  articles_comments    articles_comments[]
+  articles_departments articles_departments[]
+  tags_articles        tags_articles[]
+}
+
+model articles_categories {
+  id            Int         @id @default(autoincrement())
+  articles_id   Int?
+  categories_id Int?
+  articles      articles?   @relation(fields: [articles_id], references: [id], onUpdate: NoAction, map: "articles_categories_articles_id_foreign")
+  categories    categories? @relation(fields: [categories_id], references: [id], onUpdate: NoAction, map: "articles_categories_categories_id_foreign")
+}
+
+model articles_comments {
+  id          Int       @id @default(autoincrement())
+  articles_id Int?
+  comments_id Int?
+  articles    articles? @relation(fields: [articles_id], references: [id], onUpdate: NoAction, map: "articles_comments_articles_id_foreign")
+  comments    comments? @relation(fields: [comments_id], references: [id], onUpdate: NoAction, map: "articles_comments_comments_id_foreign")
+}
+
+model articles_departments {
+  id             Int          @id @default(autoincrement())
+  articles_id    Int?
+  departments_id Int?
+  articles       articles?    @relation(fields: [articles_id], references: [id], onUpdate: NoAction, map: "articles_departments_articles_id_foreign")
+  departments    departments? @relation(fields: [departments_id], references: [id], onUpdate: NoAction, map: "articles_departments_departments_id_foreign")
+}
+
+model attributes {
+  id                  Int                   @id(map: "product_attribute_pkey") @default(autoincrement())
+  default_label       String?
+  attribute_code      String?
+  isPublic            Boolean?
+  attributes_products attributes_products[]
+}
+
+model attributes_products {
+  id            Int         @id @default(autoincrement())
+  attributes_id Int?
+  products_id   BigInt?
+  attributes    attributes? @relation(fields: [attributes_id], references: [id], onUpdate: NoAction, map: "attributes_products_attributes_id_foreign")
+  products      products?   @relation(fields: [products_id], references: [id], onUpdate: NoAction, map: "attributes_products_products_id_foreign")
+}
+
+model brands {
+  id                  BigInt                @id @default(autoincrement())
+  created_at          DateTime?             @default(now())
+  code                String?
+  name                String?
+  description         String?
+  image               String?               @db.Uuid
+  brands_categories   brands_categories[]
+  brands_customers    brands_customers[]
+  brands_departments  brands_departments[]
+  brands_manufacturer brands_manufacturer[]
+  brands_products     brands_products[]
+  brands_shorts       brands_shorts[]
+  collections_brands  collections_brands[]
+}
+
+model brands_categories {
+  id            Int         @id @default(autoincrement())
+  brands_id     BigInt?
+  categories_id Int?
+  brands        brands?     @relation(fields: [brands_id], references: [id], onUpdate: NoAction, map: "brands_categories_brands_id_foreign")
+  categories    categories? @relation(fields: [categories_id], references: [id], onUpdate: NoAction, map: "brands_categories_categories_id_foreign")
+}
+
+model brands_customers {
+  id           Int        @id @default(autoincrement())
+  brands_id    BigInt?
+  customers_id Int?
+  brands       brands?    @relation(fields: [brands_id], references: [id], onUpdate: NoAction, map: "brands_customers_brands_id_foreign")
+  customers    customers? @relation(fields: [customers_id], references: [id], onUpdate: NoAction, map: "brands_customers_customers_id_foreign")
+}
+
+model brands_departments {
+  id             Int          @id @default(autoincrement())
+  brands_id      BigInt?
+  departments_id Int?
+  brands         brands?      @relation(fields: [brands_id], references: [id], onUpdate: NoAction, map: "brands_departments_brands_id_foreign")
+  departments    departments? @relation(fields: [departments_id], references: [id], onUpdate: NoAction, map: "brands_departments_departments_id_foreign")
+}
+
+model brands_manufacturer {
+  id              Int           @id @default(autoincrement())
+  brands_id       BigInt?
+  manufacturer_id BigInt?
+  brands          brands?       @relation(fields: [brands_id], references: [id], onUpdate: NoAction, map: "brands_manufacturer_brands_id_foreign")
+  manufacturer    manufacturer? @relation(fields: [manufacturer_id], references: [id], onUpdate: NoAction, map: "brands_manufacturer_manufacturer_id_foreign")
+}
+
+model brands_products {
+  id          Int       @id @default(autoincrement())
+  brands_id   BigInt?
+  products_id BigInt?
+  brands      brands?   @relation(fields: [brands_id], references: [id], onUpdate: NoAction, map: "brands_products_brands_id_foreign")
+  products    products? @relation(fields: [products_id], references: [id], onUpdate: NoAction, map: "brands_products_products_id_foreign")
+}
+
+model brands_shorts {
+  id        Int     @id @default(autoincrement())
+  brands_id BigInt?
+  shorts_id Int?
+  brands    brands? @relation(fields: [brands_id], references: [id], onUpdate: NoAction, map: "brands_shorts_brands_id_foreign")
+  shorts    shorts? @relation(fields: [shorts_id], references: [id], onUpdate: NoAction, map: "brands_shorts_shorts_id_foreign")
+}
+
+model categories {
+  id                      Int                       @id @default(autoincrement())
+  name                    String?
+  description             String?
+  content                 String?
+  image                   String?                   @db.Uuid
+  articles_categories     articles_categories[]
+  brands_categories       brands_categories[]
+  directus_files          directus_files?           @relation(fields: [image], references: [id], onUpdate: NoAction, map: "categories_image_foreign")
+  categories_customers    categories_customers[]
+  categories_departments  categories_departments[]
+  categories_meeovistores categories_meeovistores[]
+  categories_shorts       categories_shorts[]
+  departments_categories  departments_categories[]
+  digiboard_categories    digiboard_categories[]
+  musicchart_categories   musicchart_categories[]
+  products_categories     products_categories[]
+  shops_categories        shops_categories[]
+  tags_categories         tags_categories[]
+}
+
+model categories_customers {
+  id            Int         @id @default(autoincrement())
+  categories_id Int?
+  customers_id  Int?
+  categories    categories? @relation(fields: [categories_id], references: [id], onUpdate: NoAction, map: "categories_customers_categories_id_foreign")
+  customers     customers?  @relation(fields: [customers_id], references: [id], onUpdate: NoAction, map: "categories_customers_customers_id_foreign")
+}
+
+model categories_departments {
+  id             Int          @id @default(autoincrement())
+  categories_id  Int?
+  departments_id Int?
+  categories     categories?  @relation(fields: [categories_id], references: [id], onUpdate: NoAction, map: "categories_departments_categories_id_foreign")
+  departments    departments? @relation(fields: [departments_id], references: [id], onUpdate: NoAction, map: "categories_departments_departments_id_foreign")
+}
+
+model categories_meeovistores {
+  id              Int           @id @default(autoincrement())
+  categories_id   Int?
+  meeovistores_id Int?
+  categories      categories?   @relation(fields: [categories_id], references: [id], onUpdate: NoAction, map: "categories_meeovistores_categories_id_foreign")
+  meeovistores    meeovistores? @relation(fields: [meeovistores_id], references: [id], onUpdate: NoAction, map: "categories_meeovistores_meeovistores_id_foreign")
+}
+
+model categories_shorts {
+  id            Int         @id @default(autoincrement())
+  categories_id Int?
+  shorts_id     Int?
+  categories    categories? @relation(fields: [categories_id], references: [id], onUpdate: NoAction, map: "categories_shorts_categories_id_foreign")
+  shorts        shorts?     @relation(fields: [shorts_id], references: [id], onUpdate: NoAction, map: "categories_shorts_shorts_id_foreign")
+}
+
+model cities {
+  id               Int                @id @default(autoincrement())
+  name             String
+  description      String?
+  postalCode       String?
+  image            String?            @db.Uuid
+  longitude        String?            @db.VarChar(255)
+  latitude         String?            @db.VarChar(255)
+  languagenames    String?
+  directus_files   directus_files?    @relation(fields: [image], references: [id], onUpdate: NoAction, map: "cities_image_foreign")
+  cities_countries cities_countries[]
+  cities_customers cities_customers[]
+  cities_states    cities_states[]
+}
+
+model cities_countries {
+  id           Int     @id @default(autoincrement())
+  cities_id    Int?
+  countries_id Int?
+  cities       cities? @relation(fields: [cities_id], references: [id], onUpdate: NoAction, map: "cities_countries_cities_id_foreign")
+}
+
+model cities_customers {
+  id           Int        @id @default(autoincrement())
+  cities_id    Int?
+  customers_id Int?
+  cities       cities?    @relation(fields: [cities_id], references: [id], onUpdate: NoAction, map: "cities_customers_cities_id_foreign")
+  customers    customers? @relation(fields: [customers_id], references: [id], onUpdate: NoAction, map: "cities_customers_customers_id_foreign")
+}
+
+model cities_states {
+  id        Int     @id @default(autoincrement())
+  cities_id Int?
+  states_id Int?
+  cities    cities? @relation(fields: [cities_id], references: [id], onUpdate: NoAction, map: "cities_states_cities_id_foreign")
+}
+
+model collections {
+  id                       BigInt                     @id @default(autoincrement())
+  created_at               DateTime?                  @default(now())
+  name                     String?
+  description              String?
+  image                    String?                    @db.Uuid
+  type                     Json?                      @db.Json
+  directus_files           directus_files?            @relation(fields: [image], references: [id], onUpdate: NoAction, map: "collections_image_foreign")
+  collections_brands       collections_brands[]
+  collections_customers    collections_customers[]
+  collections_products     collections_products[]
+  departments_collections  departments_collections[]
+  meeovistores_collections meeovistores_collections[]
+}
+
+model collections_brands {
+  id             Int          @id @default(autoincrement())
+  collections_id BigInt?
+  brands_id      BigInt?
+  brands         brands?      @relation(fields: [brands_id], references: [id], onUpdate: NoAction, map: "collections_brands_brands_id_foreign")
+  collections    collections? @relation(fields: [collections_id], references: [id], onUpdate: NoAction, map: "collections_brands_collections_id_foreign")
+}
+
+model collections_customers {
+  id             Int          @id @default(autoincrement())
+  collections_id BigInt?
+  customers_id   Int?
+  collections    collections? @relation(fields: [collections_id], references: [id], onUpdate: NoAction, map: "collections_customers_collections_id_foreign")
+  customers      customers?   @relation(fields: [customers_id], references: [id], onUpdate: NoAction, map: "collections_customers_customers_id_foreign")
+}
+
+model collections_products {
+  id             Int          @id @default(autoincrement())
+  collections_id BigInt?
+  products_id    BigInt?
+  collections    collections? @relation(fields: [collections_id], references: [id], onUpdate: NoAction, map: "collections_products_collections_id_foreign")
+  products       products?    @relation(fields: [products_id], references: [id], onUpdate: NoAction, map: "collections_products_products_id_foreign")
+}
+
+model comments {
+  id                 Int                  @id @default(autoincrement())
+  response           String?
+  media              String?              @db.Uuid
+  articles_comments  articles_comments[]
+  directus_files     directus_files?      @relation(fields: [media], references: [id], onUpdate: NoAction, map: "comments_media_foreign")
+  comments_customers comments_customers[]
+  comments_products  comments_products[]
+  comments_shorts    comments_shorts[]
+  digiboard_comments digiboard_comments[]
+}
+
+model comments_customers {
+  id           Int        @id @default(autoincrement())
+  comments_id  Int?
+  customers_id Int?
+  comments     comments?  @relation(fields: [comments_id], references: [id], onUpdate: NoAction, map: "comments_customers_comments_id_foreign")
+  customers    customers? @relation(fields: [customers_id], references: [id], onUpdate: NoAction, map: "comments_customers_customers_id_foreign")
+}
+
+model comments_products {
+  id          Int       @id @default(autoincrement())
+  comments_id Int?
+  products_id BigInt?
+  comments    comments? @relation(fields: [comments_id], references: [id], onUpdate: NoAction, map: "comments_products_comments_id_foreign")
+  products    products? @relation(fields: [products_id], references: [id], onUpdate: NoAction, map: "comments_products_products_id_foreign")
+}
+
+model comments_shorts {
+  id          Int       @id @default(autoincrement())
+  comments_id Int?
+  shorts_id   Int?
+  comments    comments? @relation(fields: [comments_id], references: [id], onUpdate: NoAction, map: "comments_shorts_comments_id_foreign")
+  shorts      shorts?   @relation(fields: [shorts_id], references: [id], onUpdate: NoAction, map: "comments_shorts_shorts_id_foreign")
+}
+
+model countries {
+  id              Int       @id
+  name            String?   @db.VarChar(100)
+  iso3            String?   @db.Char(3)
+  iso2            String?   @db.Char(2)
+  phonecode       String?   @db.VarChar(255)
+  capital         String?   @db.VarChar(255)
+  currency        String?   @db.VarChar(255)
+  currency_symbol String?   @db.VarChar(255)
+  tld             String?   @db.VarChar(255)
+  native          String?   @db.VarChar(255)
+  region          String?   @db.VarChar(255)
+  subregion       String?   @db.VarChar(255)
+  timezones       String?
+  translations    String?
+  latitude        Decimal?  @db.Decimal(10, 8)
+  longitude       Decimal?  @db.Decimal(11, 8)
+  emoji           String?   @db.VarChar(191)
+  emojiU          String?   @db.VarChar(191)
+  created_at      DateTime? @db.Timestamp(6)
+  updated_at      DateTime? @db.Timestamp(6)
+  flag            Int       @default(1)
+  wikiDataId      String?   @db.VarChar(255)
+}
+
+model coupons {
+  id                BigInt              @id @default(autoincrement())
+  name              String
+  excerpt           String?
+  discount          Int?
+  image             String?             @db.Uuid
+  expiration        DateTime?           @db.Timestamp(6)
+  directus_files    directus_files?     @relation(fields: [image], references: [id], onUpdate: NoAction, map: "coupons_image_foreign")
+  coupons_customers coupons_customers[]
+  coupons_products  coupons_products[]
+}
+
+model coupons_customers {
+  id           Int        @id @default(autoincrement())
+  coupons_id   BigInt?
+  customers_id Int?
+  coupons      coupons?   @relation(fields: [coupons_id], references: [id], onUpdate: NoAction, map: "coupons_customers_coupons_id_foreign")
+  customers    customers? @relation(fields: [customers_id], references: [id], onUpdate: NoAction, map: "coupons_customers_customers_id_foreign")
+}
+
+model coupons_products {
+  id          Int       @id @default(autoincrement())
+  coupons_id  BigInt?
+  products_id BigInt?
+  coupons     coupons?  @relation(fields: [coupons_id], references: [id], onUpdate: NoAction, map: "coupons_products_coupons_id_foreign")
+  products    products? @relation(fields: [products_id], references: [id], onUpdate: NoAction, map: "coupons_products_products_id_foreign")
+}
+
+model currencies_countries {
+  id            Int     @id @default(autoincrement())
+  currencies_id BigInt?
+  countries_id  Int?
+}
+
+model currency {
+  id                   Int                    @id @default(autoincrement())
+  sort                 Int?
+  date_created         DateTime?              @db.Timestamptz(6)
+  date_updated         DateTime?              @db.Timestamptz(6)
+  name                 String?                @db.VarChar(255)
+  code                 String?                @db.VarChar(255)
+  symbol               String?                @db.VarChar(255)
+  currency_customers   currency_customers[]
+  currency_departments currency_departments[]
+}
+
+model currency_customers {
+  id           Int        @id @default(autoincrement())
+  currency_id  Int?
+  customers_id Int?
+  currency     currency?  @relation(fields: [currency_id], references: [id], onUpdate: NoAction, map: "currency_customers_currency_id_foreign")
+  customers    customers? @relation(fields: [customers_id], references: [id], onUpdate: NoAction, map: "currency_customers_customers_id_foreign")
+}
+
+model currency_departments {
+  id             Int          @id @default(autoincrement())
+  currency_id    Int?
+  departments_id Int?
+  currency       currency?    @relation(fields: [currency_id], references: [id], onUpdate: NoAction, map: "currency_departments_currency_id_foreign")
+  departments    departments? @relation(fields: [departments_id], references: [id], onUpdate: NoAction, map: "currency_departments_departments_id_foreign")
+}
+
+model customers {
+  id                     Int                      @id @default(autoincrement())
+  name_prefix            String?
+  first_name             String
+  middle_name            String?
+  last_name              String
+  email                  String
+  phone                  String?
+  zipcode                String?
+  name_suffix            String?
+  websites               String?
+  tax_vat_number         String?
+  description            String?
+  Address                String?
+  username               String?
+  password               String?
+  payment                String?                  @db.VarChar(255)
+  dateofbirth            DateTime?                @db.Timestamp(6)
+  image                  String?                  @db.Uuid
+  gender                 String?                  @db.VarChar(255)
+  type                   String?
+  agreements_customers   agreements_customers[]
+  brands_customers       brands_customers[]
+  categories_customers   categories_customers[]
+  cities_customers       cities_customers[]
+  collections_customers  collections_customers[]
+  comments_customers     comments_customers[]
+  coupons_customers      coupons_customers[]
+  currency_customers     currency_customers[]
+  directus_files         directus_files?          @relation(fields: [image], references: [id], onUpdate: NoAction, map: "customers_image_foreign")
+  customers_Space        customers_Space[]
+  customers_products     customers_products[]
+  customers_shorts       customers_shorts[]
+  departments_customers  departments_customers[]
+  digiboard_customers    digiboard_customers[]
+  lists_customers        lists_customers[]
+  meeovistores_customers meeovistores_customers[]
+  musicchart_customers   musicchart_customers[]
+  newsfeed_customers     newsfeed_customers[]
+  newsletters_customers  newsletters_customers[]
+  reviews_customers      reviews_customers[]
+  shops_customers        shops_customers[]
+  websites_customers     websites_customers[]
+}
+
+model customers_Space {
+  id           Int        @id @default(autoincrement())
+  customers_id Int?
+  Space_id     Int?
+  customers    customers? @relation(fields: [customers_id], references: [id], onUpdate: NoAction, map: "customers_space_customers_id_foreign")
+  Space        Space?     @relation(fields: [Space_id], references: [id], onUpdate: NoAction, map: "customers_space_space_id_foreign")
+}
+
+model customers_products {
+  id           Int        @id @default(autoincrement())
+  customers_id Int?
+  products_id  BigInt?
+  customers    customers? @relation(fields: [customers_id], references: [id], onUpdate: NoAction, map: "customers_products_customers_id_foreign")
+  products     products?  @relation(fields: [products_id], references: [id], onUpdate: NoAction, map: "customers_products_products_id_foreign")
+}
+
+model customers_shorts {
+  id           Int        @id @default(autoincrement())
+  customers_id Int?
+  shorts_id    Int?
+  customers    customers? @relation(fields: [customers_id], references: [id], onUpdate: NoAction, map: "customers_shorts_customers_id_foreign")
+  shorts       shorts?    @relation(fields: [shorts_id], references: [id], onUpdate: NoAction, map: "customers_shorts_shorts_id_foreign")
+}
+
+model departments {
+  id                      Int                       @id @default(autoincrement())
+  name                    String
+  websites                String?
+  description             String?
+  content                 String?
+  color                   String?                   @db.VarChar(255)
+  image                   String?                   @db.Uuid
+  colortext               String?                   @db.VarChar(255)
+  articles_departments    articles_departments[]
+  brands_departments      brands_departments[]
+  categories_departments  categories_departments[]
+  currency_departments    currency_departments[]
+  directus_files          directus_files?           @relation(fields: [image], references: [id], onUpdate: NoAction, map: "departments_image_foreign")
+  departments_categories  departments_categories[]
+  departments_collections departments_collections[]
+  departments_customers   departments_customers[]
+  departments_shorts      departments_shorts[]
+  products_departments    products_departments[]
+  shops_departments       shops_departments[]
+  tags_departments        tags_departments[]
+}
+
+model departments_categories {
+  id             Int          @id @default(autoincrement())
+  departments_id Int?
+  categories_id  Int?
+  categories     categories?  @relation(fields: [categories_id], references: [id], onUpdate: NoAction, map: "departments_categories_categories_id_foreign")
+  departments    departments? @relation(fields: [departments_id], references: [id], onUpdate: NoAction, map: "departments_categories_departments_id_foreign")
+}
+
+model departments_collections {
+  id             Int          @id @default(autoincrement())
+  departments_id Int?
+  collections_id BigInt?
+  collections    collections? @relation(fields: [collections_id], references: [id], onUpdate: NoAction, map: "departments_collections_collections_id_foreign")
+  departments    departments? @relation(fields: [departments_id], references: [id], onUpdate: NoAction, map: "departments_collections_departments_id_foreign")
+}
+
+model departments_customers {
+  id             Int          @id @default(autoincrement())
+  departments_id Int?
+  customers_id   Int?
+  customers      customers?   @relation(fields: [customers_id], references: [id], onUpdate: NoAction, map: "departments_customers_customers_id_foreign")
+  departments    departments? @relation(fields: [departments_id], references: [id], onUpdate: NoAction, map: "departments_customers_departments_id_foreign")
+}
+
+model departments_shorts {
+  id             Int          @id @default(autoincrement())
+  departments_id Int?
+  shorts_id      Int?
+  departments    departments? @relation(fields: [departments_id], references: [id], onUpdate: NoAction, map: "departments_shorts_departments_id_foreign")
+  shorts         shorts?      @relation(fields: [shorts_id], references: [id], onUpdate: NoAction, map: "departments_shorts_shorts_id_foreign")
+}
+
+model digiboard {
+  id                   Int                    @id(map: "product_attribute_set_pkey") @default(autoincrement())
+  name                 String
+  board                String?
+  created_at           DateTime               @default(now()) @db.Timestamptz(6)
+  image                String?                @db.Uuid
+  directus_files       directus_files?        @relation(fields: [image], references: [id], onUpdate: NoAction, map: "digiboard_image_foreign")
+  digiboard_categories digiboard_categories[]
+  digiboard_comments   digiboard_comments[]
+  digiboard_customers  digiboard_customers[]
+}
+
+model digiboard_categories {
+  id            Int         @id @default(autoincrement())
+  digiboard_id  Int?
+  categories_id Int?
+  categories    categories? @relation(fields: [categories_id], references: [id], onUpdate: NoAction, map: "digiboard_categories_categories_id_foreign")
+  digiboard     digiboard?  @relation(fields: [digiboard_id], references: [id], onUpdate: NoAction, map: "digiboard_categories_digiboard_id_foreign")
+}
+
+model digiboard_comments {
+  id           Int        @id @default(autoincrement())
+  digiboard_id Int?
+  comments_id  Int?
+  comments     comments?  @relation(fields: [comments_id], references: [id], onUpdate: NoAction, map: "digiboard_comments_comments_id_foreign")
+  digiboard    digiboard? @relation(fields: [digiboard_id], references: [id], onUpdate: NoAction, map: "digiboard_comments_digiboard_id_foreign")
+}
+
+model digiboard_customers {
+  id           Int        @id @default(autoincrement())
+  digiboard_id Int?
+  customers_id Int?
+  customers    customers? @relation(fields: [customers_id], references: [id], onUpdate: NoAction, map: "digiboard_customers_customers_id_foreign")
+  digiboard    digiboard? @relation(fields: [digiboard_id], references: [id], onUpdate: NoAction, map: "digiboard_customers_digiboard_id_foreign")
+}
+
+model directus_activity {
+  id                 Int                  @id @default(autoincrement())
+  action             String               @db.VarChar(45)
+  user               String?              @db.Uuid
+  timestamp          DateTime             @default(now()) @db.Timestamptz(6)
+  ip                 String?              @db.VarChar(50)
+  user_agent         String?              @db.VarChar(255)
+  collection         String               @db.VarChar(64)
+  item               String               @db.VarChar(255)
+  comment            String?
+  origin             String?              @db.VarChar(255)
+  directus_revisions directus_revisions[]
+}
+
+model directus_collections {
+  collection                 String                 @id @db.VarChar(64)
+  icon                       String?                @db.VarChar(30)
+  note                       String?
+  display_template           String?                @db.VarChar(255)
+  hidden                     Boolean                @default(false)
+  singleton                  Boolean                @default(false)
+  translations               Json?                  @db.Json
+  archive_field              String?                @db.VarChar(64)
+  archive_app_filter         Boolean                @default(true)
+  archive_value              String?                @db.VarChar(255)
+  unarchive_value            String?                @db.VarChar(255)
+  sort_field                 String?                @db.VarChar(64)
+  accountability             String?                @default("all") @db.VarChar(255)
+  color                      String?                @db.VarChar(255)
+  item_duplication_fields    Json?                  @db.Json
+  sort                       Int?
+  group                      String?                @db.VarChar(64)
+  collapse                   String                 @default("open") @db.VarChar(255)
+  preview_url                String?                @db.VarChar(255)
+  versioning                 Boolean                @default(false)
+  directus_collections       directus_collections?  @relation("directus_collectionsTodirectus_collections", fields: [group], references: [collection], onDelete: NoAction, onUpdate: NoAction, map: "directus_collections_group_foreign")
+  other_directus_collections directus_collections[] @relation("directus_collectionsTodirectus_collections")
+  directus_shares            directus_shares[]
+  directus_versions          directus_versions[]
+}
+
+model directus_dashboards {
+  id              String            @id @db.Uuid
+  name            String            @db.VarChar(255)
+  icon            String            @default("dashboard") @db.VarChar(30)
+  note            String?
+  date_created    DateTime?         @default(now()) @db.Timestamptz(6)
+  user_created    String?           @db.Uuid
+  color           String?           @db.VarChar(255)
+  directus_users  directus_users?   @relation(fields: [user_created], references: [id], onUpdate: NoAction, map: "directus_dashboards_user_created_foreign")
+  directus_panels directus_panels[]
+}
+
+model directus_extensions {
+  name    String  @id @db.VarChar(255)
+  enabled Boolean @default(true)
+}
+
+model directus_fields {
+  id                 Int      @id @default(autoincrement())
+  collection         String   @db.VarChar(64)
+  field              String   @db.VarChar(64)
+  special            String?  @db.VarChar(64)
+  interface          String?  @db.VarChar(64)
+  options            Json?    @db.Json
+  display            String?  @db.VarChar(64)
+  display_options    Json?    @db.Json
+  readonly           Boolean  @default(false)
+  hidden             Boolean  @default(false)
+  sort               Int?
+  width              String?  @default("full") @db.VarChar(30)
+  translations       Json?    @db.Json
+  note               String?
+  conditions         Json?    @db.Json
+  required           Boolean? @default(false)
+  group              String?  @db.VarChar(64)
+  validation         Json?    @db.Json
+  validation_message String?
+}
+
+model directus_files {
+  id                                                                    String              @id @db.Uuid
+  storage                                                               String              @db.VarChar(255)
+  filename_disk                                                         String?             @db.VarChar(255)
+  filename_download                                                     String              @db.VarChar(255)
+  title                                                                 String?             @db.VarChar(255)
+  type                                                                  String?             @db.VarChar(255)
+  folder                                                                String?             @db.Uuid
+  uploaded_by                                                           String?             @db.Uuid
+  uploaded_on                                                           DateTime            @default(now()) @db.Timestamptz(6)
+  modified_by                                                           String?             @db.Uuid
+  modified_on                                                           DateTime            @default(now()) @db.Timestamptz(6)
+  charset                                                               String?             @db.VarChar(50)
+  filesize                                                              BigInt?
+  width                                                                 Int?
+  height                                                                Int?
+  duration                                                              Int?
+  embed                                                                 String?             @db.VarChar(200)
+  description                                                           String?
+  location                                                              String?
+  tags                                                                  String?
+  metadata                                                              Json?               @db.Json
+  Space                                                                 Space[]
+  agreements                                                            agreements[]
+  articles                                                              articles[]
+  categories                                                            categories[]
+  cities                                                                cities[]
+  collections                                                           collections[]
+  comments                                                              comments[]
+  coupons                                                               coupons[]
+  customers                                                             customers[]
+  departments                                                           departments[]
+  digiboard                                                             digiboard[]
+  directus_folders                                                      directus_folders?   @relation(fields: [folder], references: [id], onUpdate: NoAction, map: "directus_files_folder_foreign")
+  directus_users_directus_files_modified_byTodirectus_users             directus_users?     @relation("directus_files_modified_byTodirectus_users", fields: [modified_by], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "directus_files_modified_by_foreign")
+  directus_users_directus_files_uploaded_byTodirectus_users             directus_users?     @relation("directus_files_uploaded_byTodirectus_users", fields: [uploaded_by], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "directus_files_uploaded_by_foreign")
+  directus_settings_directus_settings_project_logoTodirectus_files      directus_settings[] @relation("directus_settings_project_logoTodirectus_files")
+  directus_settings_directus_settings_public_backgroundTodirectus_files directus_settings[] @relation("directus_settings_public_backgroundTodirectus_files")
+  directus_settings_directus_settings_public_faviconTodirectus_files    directus_settings[] @relation("directus_settings_public_faviconTodirectus_files")
+  directus_settings_directus_settings_public_foregroundTodirectus_files directus_settings[] @relation("directus_settings_public_foregroundTodirectus_files")
+  lists                                                                 lists[]
+  manufacturer                                                          manufacturer[]
+  meeovistores                                                          meeovistores[]
+  musicchart                                                            musicchart[]
+  newsfeed                                                              newsfeed[]
+  pages                                                                 pages[]
+  products_products_fileTodirectus_files                                products[]          @relation("products_fileTodirectus_files")
+  products_products_imageTodirectus_files                               products[]          @relation("products_imageTodirectus_files")
+  shops_files                                                           shops_files[]
+  shorts                                                                shorts[]
+  tags                                                                  tags[]
+  websites                                                              websites[]
+}
+
+model directus_flows {
+  id                  String                @id @db.Uuid
+  name                String                @db.VarChar(255)
+  icon                String?               @db.VarChar(30)
+  color               String?               @db.VarChar(255)
+  description         String?
+  status              String                @default("active") @db.VarChar(255)
+  trigger             String?               @db.VarChar(255)
+  accountability      String?               @default("all") @db.VarChar(255)
+  options             Json?                 @db.Json
+  operation           String?               @unique(map: "directus_flows_operation_unique") @db.Uuid
+  date_created        DateTime?             @default(now()) @db.Timestamptz(6)
+  user_created        String?               @db.Uuid
+  directus_users      directus_users?       @relation(fields: [user_created], references: [id], onUpdate: NoAction, map: "directus_flows_user_created_foreign")
+  directus_operations directus_operations[]
+}
+
+model directus_folders {
+  id                     String              @id @db.Uuid
+  name                   String              @db.VarChar(255)
+  parent                 String?             @db.Uuid
+  directus_files         directus_files[]
+  directus_folders       directus_folders?   @relation("directus_foldersTodirectus_folders", fields: [parent], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "directus_folders_parent_foreign")
+  other_directus_folders directus_folders[]  @relation("directus_foldersTodirectus_folders")
+  directus_settings      directus_settings[]
+}
+
+model directus_migrations {
+  version   String    @id @db.VarChar(255)
+  name      String    @db.VarChar(255)
+  timestamp DateTime? @default(now()) @db.Timestamptz(6)
+}
+
+model directus_notifications {
+  id                                                              Int             @id @default(autoincrement())
+  timestamp                                                       DateTime?       @default(now()) @db.Timestamptz(6)
+  status                                                          String?         @default("inbox") @db.VarChar(255)
+  recipient                                                       String          @db.Uuid
+  sender                                                          String?         @db.Uuid
+  subject                                                         String          @db.VarChar(255)
+  message                                                         String?
+  collection                                                      String?         @db.VarChar(64)
+  item                                                            String?         @db.VarChar(255)
+  directus_users_directus_notifications_recipientTodirectus_users directus_users  @relation("directus_notifications_recipientTodirectus_users", fields: [recipient], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "directus_notifications_recipient_foreign")
+  directus_users_directus_notifications_senderTodirectus_users    directus_users? @relation("directus_notifications_senderTodirectus_users", fields: [sender], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "directus_notifications_sender_foreign")
+}
+
+model directus_operations {
+  id                                                                         String               @id @db.Uuid
+  name                                                                       String?              @db.VarChar(255)
+  key                                                                        String               @db.VarChar(255)
+  type                                                                       String               @db.VarChar(255)
+  position_x                                                                 Int
+  position_y                                                                 Int
+  options                                                                    Json?                @db.Json
+  resolve                                                                    String?              @unique(map: "directus_operations_resolve_unique") @db.Uuid
+  reject                                                                     String?              @unique(map: "directus_operations_reject_unique") @db.Uuid
+  flow                                                                       String               @db.Uuid
+  date_created                                                               DateTime?            @default(now()) @db.Timestamptz(6)
+  user_created                                                               String?              @db.Uuid
+  directus_flows                                                             directus_flows       @relation(fields: [flow], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "directus_operations_flow_foreign")
+  directus_operations_directus_operations_rejectTodirectus_operations        directus_operations? @relation("directus_operations_rejectTodirectus_operations", fields: [reject], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "directus_operations_reject_foreign")
+  other_directus_operations_directus_operations_rejectTodirectus_operations  directus_operations? @relation("directus_operations_rejectTodirectus_operations")
+  directus_operations_directus_operations_resolveTodirectus_operations       directus_operations? @relation("directus_operations_resolveTodirectus_operations", fields: [resolve], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "directus_operations_resolve_foreign")
+  other_directus_operations_directus_operations_resolveTodirectus_operations directus_operations? @relation("directus_operations_resolveTodirectus_operations")
+  directus_users                                                             directus_users?      @relation(fields: [user_created], references: [id], onUpdate: NoAction, map: "directus_operations_user_created_foreign")
+}
+
+model directus_panels {
+  id                  String              @id @db.Uuid
+  dashboard           String              @db.Uuid
+  name                String?             @db.VarChar(255)
+  icon                String?             @db.VarChar(30)
+  color               String?             @db.VarChar(10)
+  show_header         Boolean             @default(false)
+  note                String?
+  type                String              @db.VarChar(255)
+  position_x          Int
+  position_y          Int
+  width               Int
+  height              Int
+  options             Json?               @db.Json
+  date_created        DateTime?           @default(now()) @db.Timestamptz(6)
+  user_created        String?             @db.Uuid
+  directus_dashboards directus_dashboards @relation(fields: [dashboard], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "directus_panels_dashboard_foreign")
+  directus_users      directus_users?     @relation(fields: [user_created], references: [id], onUpdate: NoAction, map: "directus_panels_user_created_foreign")
+}
+
+model directus_permissions {
+  id             Int             @id @default(autoincrement())
+  role           String?         @db.Uuid
+  collection     String          @db.VarChar(64)
+  action         String          @db.VarChar(10)
+  permissions    Json?           @db.Json
+  validation     Json?           @db.Json
+  presets        Json?           @db.Json
+  fields         String?
+  directus_roles directus_roles? @relation(fields: [role], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "directus_permissions_role_foreign")
+}
+
+model directus_presets {
+  id               Int             @id @default(autoincrement())
+  bookmark         String?         @db.VarChar(255)
+  user             String?         @db.Uuid
+  role             String?         @db.Uuid
+  collection       String?         @db.VarChar(64)
+  search           String?         @db.VarChar(100)
+  layout           String?         @default("tabular") @db.VarChar(100)
+  layout_query     Json?           @db.Json
+  layout_options   Json?           @db.Json
+  refresh_interval Int?
+  filter           Json?           @db.Json
+  icon             String?         @default("bookmark") @db.VarChar(30)
+  color            String?         @db.VarChar(255)
+  directus_roles   directus_roles? @relation(fields: [role], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "directus_presets_role_foreign")
+  directus_users   directus_users? @relation(fields: [user], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "directus_presets_user_foreign")
+}
+
+model directus_relations {
+  id                      Int     @id @default(autoincrement())
+  many_collection         String  @db.VarChar(64)
+  many_field              String  @db.VarChar(64)
+  one_collection          String? @db.VarChar(64)
+  one_field               String? @db.VarChar(64)
+  one_collection_field    String? @db.VarChar(64)
+  one_allowed_collections String?
+  junction_field          String? @db.VarChar(64)
+  sort_field              String? @db.VarChar(64)
+  one_deselect_action     String  @default("nullify") @db.VarChar(255)
+}
+
+model directus_revisions {
+  id                       Int                  @id @default(autoincrement())
+  activity                 Int
+  collection               String               @db.VarChar(64)
+  item                     String               @db.VarChar(255)
+  data                     Json?                @db.Json
+  delta                    Json?                @db.Json
+  parent                   Int?
+  version                  String?              @db.Uuid
+  directus_activity        directus_activity    @relation(fields: [activity], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "directus_revisions_activity_foreign")
+  directus_revisions       directus_revisions?  @relation("directus_revisionsTodirectus_revisions", fields: [parent], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "directus_revisions_parent_foreign")
+  other_directus_revisions directus_revisions[] @relation("directus_revisionsTodirectus_revisions")
+  directus_versions        directus_versions?   @relation(fields: [version], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "directus_revisions_version_foreign")
+}
+
+model directus_roles {
+  id                   String                 @id @db.Uuid
+  name                 String                 @db.VarChar(100)
+  icon                 String                 @default("supervised_user_circle") @db.VarChar(30)
+  description          String?
+  ip_access            String?
+  enforce_tfa          Boolean                @default(false)
+  admin_access         Boolean                @default(false)
+  app_access           Boolean                @default(true)
+  directus_permissions directus_permissions[]
+  directus_presets     directus_presets[]
+  directus_shares      directus_shares[]
+  directus_users       directus_users[]
+}
+
+model directus_sessions {
+  token           String           @id @db.VarChar(64)
+  user            String?          @db.Uuid
+  expires         DateTime         @db.Timestamptz(6)
+  ip              String?          @db.VarChar(255)
+  user_agent      String?          @db.VarChar(255)
+  share           String?          @db.Uuid
+  origin          String?          @db.VarChar(255)
+  directus_shares directus_shares? @relation(fields: [share], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "directus_sessions_share_foreign")
+  directus_users  directus_users?  @relation(fields: [user], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "directus_sessions_user_foreign")
+}
+
+model directus_settings {
+  id                                                                 Int               @id @default(autoincrement())
+  project_name                                                       String            @default("Directus") @db.VarChar(100)
+  project_url                                                        String?           @db.VarChar(255)
+  project_color                                                      String            @default("#6644FF") @db.VarChar(255)
+  project_logo                                                       String?           @db.Uuid
+  public_foreground                                                  String?           @db.Uuid
+  public_background                                                  String?           @db.Uuid
+  public_note                                                        String?
+  auth_login_attempts                                                Int?              @default(25)
+  auth_password_policy                                               String?           @db.VarChar(100)
+  storage_asset_transform                                            String?           @default("all") @db.VarChar(7)
+  storage_asset_presets                                              Json?             @db.Json
+  custom_css                                                         String?
+  storage_default_folder                                             String?           @db.Uuid
+  basemaps                                                           Json?             @db.Json
+  mapbox_key                                                         String?           @db.VarChar(255)
+  module_bar                                                         Json?             @db.Json
+  project_descriptor                                                 String?           @db.VarChar(100)
+  default_language                                                   String            @default("en-US") @db.VarChar(255)
+  custom_aspect_ratios                                               Json?             @db.Json
+  public_favicon                                                     String?           @db.Uuid
+  default_appearance                                                 String            @default("auto") @db.VarChar(255)
+  default_theme_light                                                String?           @db.VarChar(255)
+  theme_light_overrides                                              Json?             @db.Json
+  default_theme_dark                                                 String?           @db.VarChar(255)
+  theme_dark_overrides                                               Json?             @db.Json
+  directus_files_directus_settings_project_logoTodirectus_files      directus_files?   @relation("directus_settings_project_logoTodirectus_files", fields: [project_logo], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "directus_settings_project_logo_foreign")
+  directus_files_directus_settings_public_backgroundTodirectus_files directus_files?   @relation("directus_settings_public_backgroundTodirectus_files", fields: [public_background], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "directus_settings_public_background_foreign")
+  directus_files_directus_settings_public_faviconTodirectus_files    directus_files?   @relation("directus_settings_public_faviconTodirectus_files", fields: [public_favicon], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "directus_settings_public_favicon_foreign")
+  directus_files_directus_settings_public_foregroundTodirectus_files directus_files?   @relation("directus_settings_public_foregroundTodirectus_files", fields: [public_foreground], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "directus_settings_public_foreground_foreign")
+  directus_folders                                                   directus_folders? @relation(fields: [storage_default_folder], references: [id], onUpdate: NoAction, map: "directus_settings_storage_default_folder_foreign")
+}
+
+model directus_shares {
+  id                   String               @id @db.Uuid
+  name                 String?              @db.VarChar(255)
+  collection           String               @db.VarChar(64)
+  item                 String               @db.VarChar(255)
+  role                 String?              @db.Uuid
+  password             String?              @db.VarChar(255)
+  user_created         String?              @db.Uuid
+  date_created         DateTime?            @default(now()) @db.Timestamptz(6)
+  date_start           DateTime?            @db.Timestamptz(6)
+  date_end             DateTime?            @db.Timestamptz(6)
+  times_used           Int?                 @default(0)
+  max_uses             Int?
+  directus_sessions    directus_sessions[]
+  directus_collections directus_collections @relation(fields: [collection], references: [collection], onDelete: Cascade, onUpdate: NoAction, map: "directus_shares_collection_foreign")
+  directus_roles       directus_roles?      @relation(fields: [role], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "directus_shares_role_foreign")
+  directus_users       directus_users?      @relation(fields: [user_created], references: [id], onUpdate: NoAction, map: "directus_shares_user_created_foreign")
+}
+
+model directus_translations {
+  id       String @id @db.Uuid
+  language String @db.VarChar(255)
+  key      String @db.VarChar(255)
+  value    String
+}
+
+model directus_users {
+  id                                                                      String                   @id @db.Uuid
+  first_name                                                              String?                  @db.VarChar(50)
+  last_name                                                               String?                  @db.VarChar(50)
+  email                                                                   String?                  @unique(map: "directus_users_email_unique") @db.VarChar(128)
+  password                                                                String?                  @db.VarChar(255)
+  location                                                                String?                  @db.VarChar(255)
+  title                                                                   String?                  @db.VarChar(50)
+  description                                                             String?
+  tags                                                                    Json?                    @db.Json
+  avatar                                                                  String?                  @db.Uuid
+  language                                                                String?                  @db.VarChar(255)
+  tfa_secret                                                              String?                  @db.VarChar(255)
+  status                                                                  String                   @default("active") @db.VarChar(16)
+  role                                                                    String?                  @db.Uuid
+  token                                                                   String?                  @unique(map: "directus_users_token_unique") @db.VarChar(255)
+  last_access                                                             DateTime?                @db.Timestamptz(6)
+  last_page                                                               String?                  @db.VarChar(255)
+  provider                                                                String                   @default("default") @db.VarChar(128)
+  external_identifier                                                     String?                  @unique(map: "directus_users_external_identifier_unique") @db.VarChar(255)
+  auth_data                                                               Json?                    @db.Json
+  email_notifications                                                     Boolean?                 @default(true)
+  appearance                                                              String?                  @db.VarChar(255)
+  theme_dark                                                              String?                  @db.VarChar(255)
+  theme_light                                                             String?                  @db.VarChar(255)
+  theme_light_overrides                                                   Json?                    @db.Json
+  theme_dark_overrides                                                    Json?                    @db.Json
+  Space_Space_user_createdTodirectus_users                                Space[]                  @relation("Space_user_createdTodirectus_users")
+  Space_Space_user_updatedTodirectus_users                                Space[]                  @relation("Space_user_updatedTodirectus_users")
+  directus_dashboards                                                     directus_dashboards[]
+  directus_files_directus_files_modified_byTodirectus_users               directus_files[]         @relation("directus_files_modified_byTodirectus_users")
+  directus_files_directus_files_uploaded_byTodirectus_users               directus_files[]         @relation("directus_files_uploaded_byTodirectus_users")
+  directus_flows                                                          directus_flows[]
+  directus_notifications_directus_notifications_recipientTodirectus_users directus_notifications[] @relation("directus_notifications_recipientTodirectus_users")
+  directus_notifications_directus_notifications_senderTodirectus_users    directus_notifications[] @relation("directus_notifications_senderTodirectus_users")
+  directus_operations                                                     directus_operations[]
+  directus_panels                                                         directus_panels[]
+  directus_presets                                                        directus_presets[]
+  directus_sessions                                                       directus_sessions[]
+  directus_shares                                                         directus_shares[]
+  directus_roles                                                          directus_roles?          @relation(fields: [role], references: [id], onUpdate: NoAction, map: "directus_users_role_foreign")
+  directus_versions_directus_versions_user_createdTodirectus_users        directus_versions[]      @relation("directus_versions_user_createdTodirectus_users")
+  directus_versions_directus_versions_user_updatedTodirectus_users        directus_versions[]      @relation("directus_versions_user_updatedTodirectus_users")
+  helpa_helpa_user_createdTodirectus_users                                helpa[]                  @relation("helpa_user_createdTodirectus_users")
+  helpa_helpa_user_updatedTodirectus_users                                helpa[]                  @relation("helpa_user_updatedTodirectus_users")
+  helpq_helpq_user_createdTodirectus_users                                helpq[]                  @relation("helpq_user_createdTodirectus_users")
+  helpq_helpq_user_updatedTodirectus_users                                helpq[]                  @relation("helpq_user_updatedTodirectus_users")
+  lists_lists_user_createdTodirectus_users                                lists[]                  @relation("lists_user_createdTodirectus_users")
+  lists_lists_user_updatedTodirectus_users                                lists[]                  @relation("lists_user_updatedTodirectus_users")
+  meeovistores_meeovistores_user_createdTodirectus_users                  meeovistores[]           @relation("meeovistores_user_createdTodirectus_users")
+  meeovistores_meeovistores_user_updatedTodirectus_users                  meeovistores[]           @relation("meeovistores_user_updatedTodirectus_users")
+  musicchart_musicchart_user_createdTodirectus_users                      musicchart[]             @relation("musicchart_user_createdTodirectus_users")
+  musicchart_musicchart_user_updatedTodirectus_users                      musicchart[]             @relation("musicchart_user_updatedTodirectus_users")
+  newsfeed_newsfeed_user_createdTodirectus_users                          newsfeed[]               @relation("newsfeed_user_createdTodirectus_users")
+  newsfeed_newsfeed_user_updatedTodirectus_users                          newsfeed[]               @relation("newsfeed_user_updatedTodirectus_users")
+  shops_shops_user_createdTodirectus_users                                shops[]                  @relation("shops_user_createdTodirectus_users")
+  shops_shops_user_updatedTodirectus_users                                shops[]                  @relation("shops_user_updatedTodirectus_users")
+  shorts_shorts_user_createdTodirectus_users                              shorts[]                 @relation("shorts_user_createdTodirectus_users")
+  shorts_shorts_user_updatedTodirectus_users                              shorts[]                 @relation("shorts_user_updatedTodirectus_users")
+}
+
+model directus_versions {
+  id                                                            String               @id @db.Uuid
+  key                                                           String               @db.VarChar(64)
+  name                                                          String?              @db.VarChar(255)
+  collection                                                    String               @db.VarChar(64)
+  item                                                          String               @db.VarChar(255)
+  hash                                                          String?              @db.VarChar(255)
+  date_created                                                  DateTime?            @default(now()) @db.Timestamptz(6)
+  date_updated                                                  DateTime?            @default(now()) @db.Timestamptz(6)
+  user_created                                                  String?              @db.Uuid
+  user_updated                                                  String?              @db.Uuid
+  directus_revisions                                            directus_revisions[]
+  directus_collections                                          directus_collections @relation(fields: [collection], references: [collection], onDelete: Cascade, onUpdate: NoAction, map: "directus_versions_collection_foreign")
+  directus_users_directus_versions_user_createdTodirectus_users directus_users?      @relation("directus_versions_user_createdTodirectus_users", fields: [user_created], references: [id], onUpdate: NoAction, map: "directus_versions_user_created_foreign")
+  directus_users_directus_versions_user_updatedTodirectus_users directus_users?      @relation("directus_versions_user_updatedTodirectus_users", fields: [user_updated], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "directus_versions_user_updated_foreign")
+}
+
+model directus_webhooks {
+  id          Int     @id @default(autoincrement())
+  name        String  @db.VarChar(255)
+  method      String  @default("POST") @db.VarChar(10)
+  url         String  @db.VarChar(255)
+  status      String  @default("active") @db.VarChar(10)
+  data        Boolean @default(true)
+  actions     String  @db.VarChar(100)
+  collections String  @db.VarChar(255)
+  headers     Json?   @db.Json
+}
+
+model helpa {
+  id                                                Int             @id @default(autoincrement())
+  status                                            String          @default("draft") @db.VarChar(255)
+  sort                                              Int?
+  user_created                                      String?         @db.Uuid
+  date_created                                      DateTime?       @db.Timestamptz(6)
+  user_updated                                      String?         @db.Uuid
+  date_updated                                      DateTime?       @db.Timestamptz(6)
+  message                                           String?
+  question_id                                       Int?
+  helpq                                             helpq?          @relation(fields: [question_id], references: [id], onUpdate: NoAction, map: "helpa_question_id_foreign")
+  directus_users_helpa_user_createdTodirectus_users directus_users? @relation("helpa_user_createdTodirectus_users", fields: [user_created], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "helpa_user_created_foreign")
+  directus_users_helpa_user_updatedTodirectus_users directus_users? @relation("helpa_user_updatedTodirectus_users", fields: [user_updated], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "helpa_user_updated_foreign")
+}
+
+model helpq {
+  id                                                Int             @id @default(autoincrement())
+  status                                            String          @default("draft") @db.VarChar(255)
+  sort                                              Int?
+  user_created                                      String?         @db.Uuid
+  date_created                                      DateTime?       @db.Timestamptz(6)
+  user_updated                                      String?         @db.Uuid
+  date_updated                                      DateTime?       @db.Timestamptz(6)
+  subject                                           String?         @db.VarChar(255)
+  answer_id                                         String?         @db.Uuid
+  helpa                                             helpa[]
+  directus_users_helpq_user_createdTodirectus_users directus_users? @relation("helpq_user_createdTodirectus_users", fields: [user_created], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "helpq_user_created_foreign")
+  directus_users_helpq_user_updatedTodirectus_users directus_users? @relation("helpq_user_updatedTodirectus_users", fields: [user_updated], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "helpq_user_updated_foreign")
+}
+
+model lists {
+  id                                                Int               @id @default(autoincrement())
+  sort                                              Int?
+  user_created                                      String?           @db.Uuid
+  date_created                                      DateTime?         @db.Timestamptz(6)
+  user_updated                                      String?           @db.Uuid
+  date_updated                                      DateTime?         @db.Timestamptz(6)
+  name                                              String?           @db.VarChar(255)
+  description                                       String?
+  image                                             String?           @db.Uuid
+  type                                              String?           @db.VarChar(255)
+  directus_files                                    directus_files?   @relation(fields: [image], references: [id], onUpdate: NoAction, map: "lists_image_foreign")
+  directus_users_lists_user_createdTodirectus_users directus_users?   @relation("lists_user_createdTodirectus_users", fields: [user_created], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "lists_user_created_foreign")
+  directus_users_lists_user_updatedTodirectus_users directus_users?   @relation("lists_user_updatedTodirectus_users", fields: [user_updated], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "lists_user_updated_foreign")
+  lists_customers                                   lists_customers[]
+  lists_products                                    lists_products[]
+}
+
+model lists_customers {
+  id           Int        @id @default(autoincrement())
+  lists_id     Int?
+  customers_id Int?
+  customers    customers? @relation(fields: [customers_id], references: [id], onUpdate: NoAction, map: "lists_customers_customers_id_foreign")
+  lists        lists?     @relation(fields: [lists_id], references: [id], onUpdate: NoAction, map: "lists_customers_lists_id_foreign")
+}
+
+model lists_products {
+  id          Int       @id @default(autoincrement())
+  lists_id    Int?
+  products_id BigInt?
+  lists       lists?    @relation(fields: [lists_id], references: [id], onUpdate: NoAction, map: "lists_products_lists_id_foreign")
+  products    products? @relation(fields: [products_id], references: [id], onUpdate: NoAction, map: "lists_products_products_id_foreign")
+}
+
+model manufacturer {
+  id                    BigInt                  @id @default(autoincrement())
+  created_at            DateTime?               @default(now())
+  code                  String?
+  name                  String?
+  description           String?
+  isPublic              Boolean?
+  image                 String?                 @db.Uuid
+  brands_manufacturer   brands_manufacturer[]
+  directus_files        directus_files?         @relation(fields: [image], references: [id], onUpdate: NoAction, map: "manufacturer_image_foreign")
+  products_manufacturer products_manufacturer[]
+}
+
+model meeovistores {
+  id                                                       Int                        @id @default(autoincrement())
+  sort                                                     Int?
+  user_created                                             String?                    @db.Uuid
+  date_created                                             DateTime?                  @db.Timestamptz(6)
+  user_updated                                             String?                    @db.Uuid
+  date_updated                                             DateTime?                  @db.Timestamptz(6)
+  name                                                     String?                    @db.VarChar(255)
+  content                                                  String?
+  image                                                    String?                    @db.Uuid
+  color                                                    String?                    @db.VarChar(255)
+  colortext                                                String?                    @db.VarChar(255)
+  categories_meeovistores                                  categories_meeovistores[]
+  directus_files                                           directus_files?            @relation(fields: [image], references: [id], onUpdate: NoAction, map: "meeovistores_image_foreign")
+  directus_users_meeovistores_user_createdTodirectus_users directus_users?            @relation("meeovistores_user_createdTodirectus_users", fields: [user_created], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "meeovistores_user_created_foreign")
+  directus_users_meeovistores_user_updatedTodirectus_users directus_users?            @relation("meeovistores_user_updatedTodirectus_users", fields: [user_updated], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "meeovistores_user_updated_foreign")
+  meeovistores_collections                                 meeovistores_collections[]
+  meeovistores_customers                                   meeovistores_customers[]
+  meeovistores_products                                    meeovistores_products[]
+  meeovistores_websites                                    meeovistores_websites[]
+}
+
+model meeovistores_collections {
+  id              Int           @id @default(autoincrement())
+  meeovistores_id Int?
+  collections_id  BigInt?
+  collections     collections?  @relation(fields: [collections_id], references: [id], onUpdate: NoAction, map: "meeovistores_collections_collections_id_foreign")
+  meeovistores    meeovistores? @relation(fields: [meeovistores_id], references: [id], onUpdate: NoAction, map: "meeovistores_collections_meeovistores_id_foreign")
+}
+
+model meeovistores_customers {
+  id              Int           @id @default(autoincrement())
+  meeovistores_id Int?
+  customers_id    Int?
+  customers       customers?    @relation(fields: [customers_id], references: [id], onUpdate: NoAction, map: "meeovistores_customers_customers_id_foreign")
+  meeovistores    meeovistores? @relation(fields: [meeovistores_id], references: [id], onUpdate: NoAction, map: "meeovistores_customers_meeovistores_id_foreign")
+}
+
+model meeovistores_products {
+  id              Int           @id @default(autoincrement())
+  meeovistores_id Int?
+  products_id     BigInt?
+  meeovistores    meeovistores? @relation(fields: [meeovistores_id], references: [id], onUpdate: NoAction, map: "meeovistores_products_meeovistores_id_foreign")
+  products        products?     @relation(fields: [products_id], references: [id], onUpdate: NoAction, map: "meeovistores_products_products_id_foreign")
+}
+
+model meeovistores_websites {
+  id              Int           @id @default(autoincrement())
+  meeovistores_id Int?
+  websites_id     BigInt?
+  meeovistores    meeovistores? @relation(fields: [meeovistores_id], references: [id], onUpdate: NoAction, map: "meeovistores_websites_meeovistores_id_foreign")
+  websites        websites?     @relation(fields: [websites_id], references: [id], onUpdate: NoAction, map: "meeovistores_websites_websites_id_foreign")
+}
+
+model musicchart {
+  id                                                     Int                     @id @default(autoincrement())
+  status                                                 String                  @default("draft") @db.VarChar(255)
+  sort                                                   Int?
+  user_created                                           String?                 @db.Uuid
+  date_created                                           DateTime?               @db.Timestamptz(6)
+  user_updated                                           String?                 @db.Uuid
+  date_updated                                           DateTime?               @db.Timestamptz(6)
+  name                                                   String?                 @db.VarChar(255)
+  description                                            String?
+  image                                                  String?                 @db.Uuid
+  directus_files                                         directus_files?         @relation(fields: [image], references: [id], onUpdate: NoAction, map: "musicchart_image_foreign")
+  directus_users_musicchart_user_createdTodirectus_users directus_users?         @relation("musicchart_user_createdTodirectus_users", fields: [user_created], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "musicchart_user_created_foreign")
+  directus_users_musicchart_user_updatedTodirectus_users directus_users?         @relation("musicchart_user_updatedTodirectus_users", fields: [user_updated], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "musicchart_user_updated_foreign")
+  musicchart_categories                                  musicchart_categories[]
+  musicchart_customers                                   musicchart_customers[]
+  musicchart_products                                    musicchart_products[]
+}
+
+model musicchart_categories {
+  id            Int         @id @default(autoincrement())
+  musicchart_id Int?
+  categories_id Int?
+  categories    categories? @relation(fields: [categories_id], references: [id], onUpdate: NoAction, map: "musicchart_categories_categories_id_foreign")
+  musicchart    musicchart? @relation(fields: [musicchart_id], references: [id], onUpdate: NoAction, map: "musicchart_categories_musicchart_id_foreign")
+}
+
+model musicchart_customers {
+  id            Int         @id @default(autoincrement())
+  musicchart_id Int?
+  customers_id  Int?
+  customers     customers?  @relation(fields: [customers_id], references: [id], onUpdate: NoAction, map: "musicchart_customers_customers_id_foreign")
+  musicchart    musicchart? @relation(fields: [musicchart_id], references: [id], onUpdate: NoAction, map: "musicchart_customers_musicchart_id_foreign")
+}
+
+model musicchart_products {
+  id            Int         @id @default(autoincrement())
+  musicchart_id Int?
+  products_id   BigInt?
+  musicchart    musicchart? @relation(fields: [musicchart_id], references: [id], onUpdate: NoAction, map: "musicchart_products_musicchart_id_foreign")
+  products      products?   @relation(fields: [products_id], references: [id], onUpdate: NoAction, map: "musicchart_products_products_id_foreign")
+}
+
+model newsfeed {
+  id                                                   Int                  @id @default(autoincrement())
+  status                                               String               @default("draft") @db.VarChar(255)
+  sort                                                 Int?
+  user_created                                         String?              @db.Uuid
+  date_created                                         DateTime?            @db.Timestamptz(6)
+  user_updated                                         String?              @db.Uuid
+  date_updated                                         DateTime?            @db.Timestamptz(6)
+  post                                                 String?
+  image                                                String?              @db.Uuid
+  Space_newsfeed                                       Space_newsfeed[]
+  directus_files                                       directus_files?      @relation(fields: [image], references: [id], onUpdate: NoAction, map: "newsfeed_image_foreign")
+  directus_users_newsfeed_user_createdTodirectus_users directus_users?      @relation("newsfeed_user_createdTodirectus_users", fields: [user_created], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "newsfeed_user_created_foreign")
+  directus_users_newsfeed_user_updatedTodirectus_users directus_users?      @relation("newsfeed_user_updatedTodirectus_users", fields: [user_updated], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "newsfeed_user_updated_foreign")
+  newsfeed_customers                                   newsfeed_customers[]
+  newsfeed_products                                    newsfeed_products[]
+  shops_newsfeed                                       shops_newsfeed[]
+}
+
+model newsfeed_customers {
+  id           Int        @id @default(autoincrement())
+  newsfeed_id  Int?
+  customers_id Int?
+  customers    customers? @relation(fields: [customers_id], references: [id], onUpdate: NoAction, map: "newsfeed_customers_customers_id_foreign")
+  newsfeed     newsfeed?  @relation(fields: [newsfeed_id], references: [id], onUpdate: NoAction, map: "newsfeed_customers_newsfeed_id_foreign")
+}
+
+model newsfeed_products {
+  id          Int       @id @default(autoincrement())
+  newsfeed_id Int?
+  products_id BigInt?
+  newsfeed    newsfeed? @relation(fields: [newsfeed_id], references: [id], onUpdate: NoAction, map: "newsfeed_products_newsfeed_id_foreign")
+  products    products? @relation(fields: [products_id], references: [id], onUpdate: NoAction, map: "newsfeed_products_products_id_foreign")
+}
+
+model newsletters {
+  id                    Int                     @id(map: "newsletter_subscribers_pkey") @default(autoincrement())
+  email                 String
+  created_at            DateTime?               @default(now())
+  optin                 Boolean?
+  newsletters_customers newsletters_customers[]
+}
+
+model newsletters_customers {
+  id             Int          @id @default(autoincrement())
+  newsletters_id Int?
+  customers_id   Int?
+  customers      customers?   @relation(fields: [customers_id], references: [id], onUpdate: NoAction, map: "newsletters_customers_customers_id_foreign")
+  newsletters    newsletters? @relation(fields: [newsletters_id], references: [id], onUpdate: NoAction, map: "newsletters_customers_newsletters_id_foreign")
+}
+
+model pages {
+  id             Int             @id @default(autoincrement())
+  status         String          @default("draft") @db.VarChar(255)
+  sort           Int?
+  date_created   DateTime?       @db.Timestamptz(6)
+  date_updated   DateTime?       @db.Timestamptz(6)
+  name           String?         @db.VarChar(255)
+  content        String?
+  list           Json?           @db.Json
+  type           String?         @db.VarChar(255)
+  link           String?         @db.VarChar(255)
+  image          String?         @db.Uuid
+  directus_files directus_files? @relation(fields: [image], references: [id], onUpdate: NoAction, map: "pages_image_foreign")
+}
+
+model product_types {
+  id                     Int                      @id @default(autoincrement())
+  name                   String?                  @db.VarChar(255)
+  isShippable            Boolean?
+  product_types_products product_types_products[]
+}
+
+model product_types_products {
+  id               Int            @id @default(autoincrement())
+  product_types_id Int?
+  products_id      BigInt?
+  product_types    product_types? @relation(fields: [product_types_id], references: [id], onUpdate: NoAction, map: "product_types_products_product_types_id_foreign")
+  products         products?      @relation(fields: [products_id], references: [id], onUpdate: NoAction, map: "product_types_products_products_id_foreign")
+}
+
+model products {
+  id                                                                BigInt                   @id @default(autoincrement())
+  sku                                                               BigInt?
+  name                                                              String?
+  status                                                            Boolean?
+  tax_class                                                         String?
+  stock_status                                                      String?
+  weight                                                            String?
+  created_at                                                        DateTime?                @default(now())
+  height                                                            String?
+  content                                                           String?
+  part_number                                                       String?
+  format                                                            Json?                    @db.Json
+  tags                                                              String?
+  file                                                              String?                  @db.Uuid
+  image                                                             String?                  @db.Uuid
+  type                                                              String?                  @db.VarChar(255)
+  visibility                                                        Boolean?
+  price                                                             Decimal?                 @db.Decimal(10, 5)
+  size                                                              Json?                    @db.Json
+  Space_products                                                    Space_products[]
+  agreements_products                                               agreements_products[]
+  attributes_products                                               attributes_products[]
+  brands_products                                                   brands_products[]
+  collections_products                                              collections_products[]
+  comments_products                                                 comments_products[]
+  coupons_products                                                  coupons_products[]
+  customers_products                                                customers_products[]
+  lists_products                                                    lists_products[]
+  meeovistores_products                                             meeovistores_products[]
+  musicchart_products                                               musicchart_products[]
+  newsfeed_products                                                 newsfeed_products[]
+  product_types_products                                            product_types_products[]
+  directus_files_products_fileTodirectus_files                      directus_files?          @relation("products_fileTodirectus_files", fields: [file], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "products_file_foreign")
+  directus_files_products_imageTodirectus_files                     directus_files?          @relation("products_imageTodirectus_files", fields: [image], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "products_image_foreign")
+  products_categories                                               products_categories[]
+  products_countries                                                products_countries[]
+  products_departments                                              products_departments[]
+  products_manufacturer                                             products_manufacturer[]
+  products_products_products_products_products_idToproducts         products_products[]      @relation("products_products_products_idToproducts")
+  products_products_products_products_related_products_idToproducts products_products[]      @relation("products_products_related_products_idToproducts")
+  products_websites                                                 products_websites[]
+  reviews_products                                                  reviews_products[]
+  shops_products                                                    shops_products[]
+  shorts_products                                                   shorts_products[]
+  tags_products                                                     tags_products[]
+}
+
+model products_categories {
+  id            Int         @id @default(autoincrement())
+  products_id   BigInt?
+  categories_id Int?
+  categories    categories? @relation(fields: [categories_id], references: [id], onUpdate: NoAction, map: "products_categories_categories_id_foreign")
+  products      products?   @relation(fields: [products_id], references: [id], onUpdate: NoAction, map: "products_categories_products_id_foreign")
+}
+
+model products_countries {
+  id           Int       @id @default(autoincrement())
+  products_id  BigInt?
+  countries_id Int?
+  products     products? @relation(fields: [products_id], references: [id], onUpdate: NoAction, map: "products_countries_products_id_foreign")
+}
+
+model products_departments {
+  id             Int          @id @default(autoincrement())
+  products_id    BigInt?
+  departments_id Int?
+  departments    departments? @relation(fields: [departments_id], references: [id], onUpdate: NoAction, map: "products_departments_departments_id_foreign")
+  products       products?    @relation(fields: [products_id], references: [id], onUpdate: NoAction, map: "products_departments_products_id_foreign")
+}
+
+model products_manufacturer {
+  id              Int           @id @default(autoincrement())
+  products_id     BigInt?
+  manufacturer_id BigInt?
+  manufacturer    manufacturer? @relation(fields: [manufacturer_id], references: [id], onUpdate: NoAction, map: "products_manufacturer_manufacturer_id_foreign")
+  products        products?     @relation(fields: [products_id], references: [id], onUpdate: NoAction, map: "products_manufacturer_products_id_foreign")
+}
+
+model products_products {
+  id                                                       Int       @id @default(autoincrement())
+  products_id                                              BigInt?
+  related_products_id                                      BigInt?
+  products_products_products_products_idToproducts         products? @relation("products_products_products_idToproducts", fields: [products_id], references: [id], onUpdate: NoAction, map: "products_products_products_id_foreign")
+  products_products_products_related_products_idToproducts products? @relation("products_products_related_products_idToproducts", fields: [related_products_id], references: [id], onUpdate: NoAction, map: "products_products_related_products_id_foreign")
+}
+
+model products_websites {
+  id          Int       @id @default(autoincrement())
+  products_id BigInt?
+  websites_id BigInt?
+  products    products? @relation(fields: [products_id], references: [id], onUpdate: NoAction, map: "products_websites_products_id_foreign")
+  websites    websites? @relation(fields: [websites_id], references: [id], onUpdate: NoAction, map: "products_websites_websites_id_foreign")
+}
+
+model reviews_customers {
+  id           Int        @id @default(autoincrement())
+  customers_id Int?
+  customers    customers? @relation(fields: [customers_id], references: [id], onUpdate: NoAction, map: "reviews_customers_customers_id_foreign")
+}
+
+model reviews_products {
+  id          Int       @id @default(autoincrement())
+  products_id BigInt?
+  products    products? @relation(fields: [products_id], references: [id], onUpdate: NoAction, map: "reviews_products_products_id_foreign")
+}
+
+model rewards {
+  id         Int       @id @default(autoincrement())
+  name       String
+  slug       String?
+  level      String?
+  created_at DateTime? @default(now())
+  coupons    String?
+  expiration String?
+  categories String?
+  articles   String?
+  products   String?
+  customers  String?
+  users      String?
+}
+
+model shipments {
+  product       String?
+  speed_grade   String?
+  ship_date     DateTime? @default(now())
+  carrier_name  String
+  transit_time  String?
+  tracking_url  String?
+  image         String?
+  id            BigInt    @id @default(autoincrement())
+  client_id     String?
+  client_secret String?
+  country       String?
+  website       String?
+}
+
+model shops {
+  id                                                Int                 @id @default(autoincrement())
+  status                                            String              @default("draft") @db.VarChar(255)
+  sort                                              Int?
+  user_created                                      String?             @db.Uuid
+  date_created                                      DateTime?           @db.Timestamptz(6)
+  user_updated                                      String?             @db.Uuid
+  date_updated                                      DateTime?           @db.Timestamptz(6)
+  name                                              String?             @db.VarChar(255)
+  content                                           String?
+  website                                           String?             @db.VarChar(255)
+  directus_users_shops_user_createdTodirectus_users directus_users?     @relation("shops_user_createdTodirectus_users", fields: [user_created], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "shops_user_created_foreign")
+  directus_users_shops_user_updatedTodirectus_users directus_users?     @relation("shops_user_updatedTodirectus_users", fields: [user_updated], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "shops_user_updated_foreign")
+  shops_agreements                                  shops_agreements[]
+  shops_categories                                  shops_categories[]
+  shops_customers                                   shops_customers[]
+  shops_departments                                 shops_departments[]
+  shops_files                                       shops_files[]
+  shops_newsfeed                                    shops_newsfeed[]
+  shops_products                                    shops_products[]
+}
+
+model shops_agreements {
+  id            Int         @id @default(autoincrement())
+  shops_id      Int?
+  agreements_id BigInt?
+  agreements    agreements? @relation(fields: [agreements_id], references: [id], onUpdate: NoAction, map: "shops_agreements_agreements_id_foreign")
+  shops         shops?      @relation(fields: [shops_id], references: [id], onUpdate: NoAction, map: "shops_agreements_shops_id_foreign")
+}
+
+model shops_categories {
+  id            Int         @id @default(autoincrement())
+  shops_id      Int?
+  categories_id Int?
+  categories    categories? @relation(fields: [categories_id], references: [id], onUpdate: NoAction, map: "shops_categories_categories_id_foreign")
+  shops         shops?      @relation(fields: [shops_id], references: [id], onUpdate: NoAction, map: "shops_categories_shops_id_foreign")
+}
+
+model shops_customers {
+  id           Int        @id @default(autoincrement())
+  shops_id     Int?
+  customers_id Int?
+  customers    customers? @relation(fields: [customers_id], references: [id], onUpdate: NoAction, map: "shops_customers_customers_id_foreign")
+  shops        shops?     @relation(fields: [shops_id], references: [id], onUpdate: NoAction, map: "shops_customers_shops_id_foreign")
+}
+
+model shops_departments {
+  id             Int          @id @default(autoincrement())
+  shops_id       Int?
+  departments_id Int?
+  departments    departments? @relation(fields: [departments_id], references: [id], onUpdate: NoAction, map: "shops_departments_departments_id_foreign")
+  shops          shops?       @relation(fields: [shops_id], references: [id], onUpdate: NoAction, map: "shops_departments_shops_id_foreign")
+}
+
+model shops_files {
+  id                Int             @id @default(autoincrement())
+  shops_id          Int?
+  directus_files_id String?         @db.Uuid
+  directus_files    directus_files? @relation(fields: [directus_files_id], references: [id], onUpdate: NoAction, map: "shops_files_directus_files_id_foreign")
+  shops             shops?          @relation(fields: [shops_id], references: [id], onUpdate: NoAction, map: "shops_files_shops_id_foreign")
+}
+
+model shops_newsfeed {
+  id          Int       @id @default(autoincrement())
+  shops_id    Int?
+  newsfeed_id Int?
+  newsfeed    newsfeed? @relation(fields: [newsfeed_id], references: [id], onUpdate: NoAction, map: "shops_newsfeed_newsfeed_id_foreign")
+  shops       shops?    @relation(fields: [shops_id], references: [id], onUpdate: NoAction, map: "shops_newsfeed_shops_id_foreign")
+}
+
+model shops_products {
+  id          Int       @id @default(autoincrement())
+  shops_id    Int?
+  products_id BigInt?
+  products    products? @relation(fields: [products_id], references: [id], onUpdate: NoAction, map: "shops_products_products_id_foreign")
+  shops       shops?    @relation(fields: [shops_id], references: [id], onUpdate: NoAction, map: "shops_products_shops_id_foreign")
+}
+
+model shorts {
+  id                                                 Int                  @id @default(autoincrement())
+  status                                             String               @default("draft") @db.VarChar(255)
+  sort                                               Int?
+  user_created                                       String?              @db.Uuid
+  date_created                                       DateTime?            @db.Timestamptz(6)
+  user_updated                                       String?              @db.Uuid
+  date_updated                                       DateTime?            @db.Timestamptz(6)
+  name                                               String?              @db.VarChar(255)
+  description                                        String?
+  video                                              String?              @db.Uuid
+  Space_shorts                                       Space_shorts[]
+  brands_shorts                                      brands_shorts[]
+  categories_shorts                                  categories_shorts[]
+  comments_shorts                                    comments_shorts[]
+  customers_shorts                                   customers_shorts[]
+  departments_shorts                                 departments_shorts[]
+  directus_users_shorts_user_createdTodirectus_users directus_users?      @relation("shorts_user_createdTodirectus_users", fields: [user_created], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "shorts_user_created_foreign")
+  directus_users_shorts_user_updatedTodirectus_users directus_users?      @relation("shorts_user_updatedTodirectus_users", fields: [user_updated], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "shorts_user_updated_foreign")
+  directus_files                                     directus_files?      @relation(fields: [video], references: [id], onUpdate: NoAction, map: "shorts_video_foreign")
+  shorts_products                                    shorts_products[]
+  tags_shorts                                        tags_shorts[]
+}
+
+model shorts_products {
+  id          Int       @id @default(autoincrement())
+  shorts_id   Int?
+  products_id BigInt?
+  products    products? @relation(fields: [products_id], references: [id], onUpdate: NoAction, map: "shorts_products_products_id_foreign")
+  shorts      shorts?   @relation(fields: [shorts_id], references: [id], onUpdate: NoAction, map: "shorts_products_shorts_id_foreign")
+}
+
+model special_discounts {
+  id         Int       @id @default(autoincrement())
+  name       String
+  excerpt    String?
+  discount   Decimal?
+  image      String?
+  published  DateTime?
+  rewards    String?
+  coupons    String?
+  expiration DateTime? @db.Date
+  categories String?
+  articles   String?
+  products   String?
+  customers  String?
+  users      String?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model states {
+  id           Int?
+  name         String    @db.VarChar(255)
+  country_id   Int?
+  country_code String    @db.Char(2)
+  fips_code    String?   @db.VarChar(255)
+  iso2         String?   @db.VarChar(255)
+  latitude     Decimal?  @db.Decimal(10, 8)
+  longitude    Decimal?  @db.Decimal(11, 8)
+  created_at   DateTime? @db.Timestamp(6)
+  updated_at   DateTime? @db.Timestamp(6)
+  flag         Int       @default(1)
+  wikiDataId   String?   @db.VarChar(255)
+
+  @@ignore
+}
+
+model states_countries {
+  id           Int  @id @default(autoincrement())
+  states_id    Int?
+  countries_id Int?
+}
+
+model tags {
+  id               Int                @id @default(autoincrement())
+  status           String             @default("draft") @db.VarChar(255)
+  sort             Int?
+  date_created     DateTime?          @db.Timestamptz(6)
+  name             String?            @db.VarChar(255)
+  description      String?
+  image            String?            @db.Uuid
+  directus_files   directus_files?    @relation(fields: [image], references: [id], onUpdate: NoAction, map: "tags_image_foreign")
+  tags_articles    tags_articles[]
+  tags_categories  tags_categories[]
+  tags_departments tags_departments[]
+  tags_products    tags_products[]
+  tags_shorts      tags_shorts[]
+}
+
+model tags_articles {
+  id          Int       @id @default(autoincrement())
+  tags_id     Int?
+  articles_id Int?
+  articles    articles? @relation(fields: [articles_id], references: [id], onUpdate: NoAction, map: "tags_articles_articles_id_foreign")
+  tags        tags?     @relation(fields: [tags_id], references: [id], onUpdate: NoAction, map: "tags_articles_tags_id_foreign")
+}
+
+model tags_categories {
+  id            Int         @id @default(autoincrement())
+  tags_id       Int?
+  categories_id Int?
+  categories    categories? @relation(fields: [categories_id], references: [id], onUpdate: NoAction, map: "tags_categories_categories_id_foreign")
+  tags          tags?       @relation(fields: [tags_id], references: [id], onUpdate: NoAction, map: "tags_categories_tags_id_foreign")
+}
+
+model tags_departments {
+  id             Int          @id @default(autoincrement())
+  tags_id        Int?
+  departments_id Int?
+  departments    departments? @relation(fields: [departments_id], references: [id], onUpdate: NoAction, map: "tags_departments_departments_id_foreign")
+  tags           tags?        @relation(fields: [tags_id], references: [id], onUpdate: NoAction, map: "tags_departments_tags_id_foreign")
+}
+
+model tags_products {
+  id          Int       @id @default(autoincrement())
+  tags_id     Int?
+  products_id BigInt?
+  products    products? @relation(fields: [products_id], references: [id], onUpdate: NoAction, map: "tags_products_products_id_foreign")
+  tags        tags?     @relation(fields: [tags_id], references: [id], onUpdate: NoAction, map: "tags_products_tags_id_foreign")
+}
+
+model tags_shorts {
+  id        Int     @id @default(autoincrement())
+  tags_id   Int?
+  shorts_id Int?
+  shorts    shorts? @relation(fields: [shorts_id], references: [id], onUpdate: NoAction, map: "tags_shorts_shorts_id_foreign")
+  tags      tags?   @relation(fields: [tags_id], references: [id], onUpdate: NoAction, map: "tags_shorts_tags_id_foreign")
+}
+
+model warehouse {
+  id          BigInt    @id @default(autoincrement())
+  created_at  DateTime? @default(now())
+  name        String?
+  description String?
+  city        String?
+  state       String?
+  country     String?
+  postal      String?
+  status      String?
+  image       String?
+  products    String?
+  category    String?
+  isPublic    String?
+}
+
+model websites {
+  id                    BigInt                  @id @default(autoincrement())
+  created_at            DateTime?               @default(now())
+  name                  String?
+  url                   String?
+  image                 String?                 @db.Uuid
+  type                  String?                 @db.VarChar(255)
+  meeovistores_websites meeovistores_websites[]
+  products_websites     products_websites[]
+  directus_files        directus_files?         @relation(fields: [image], references: [id], onUpdate: NoAction, map: "websites_image_foreign")
+  websites_customers    websites_customers[]
+}
+
+model websites_customers {
+  id           Int        @id @default(autoincrement())
+  websites_id  BigInt?
+  customers_id Int?
+  customers    customers? @relation(fields: [customers_id], references: [id], onUpdate: NoAction, map: "websites_customers_customers_id_foreign")
+  websites     websites?  @relation(fields: [websites_id], references: [id], onUpdate: NoAction, map: "websites_customers_websites_id_foreign")
+}

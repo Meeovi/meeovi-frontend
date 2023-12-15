@@ -16,14 +16,14 @@
                     </v-card-title>
                 </v-toolbar>
                 <v-row style="padding: 10px;">
-                    <v-col cols="3" v-for="ecosystemmenu in data" :key="ecosystemmenu.id">
-                        <a :href="ecosystemmenu.link">
+                    <v-col cols="3" v-for="websites in data.websites" :key="websites.id">
+                        <a :href="websites.url">
                             <v-card class="mx-auto" width="200">
-                                <img class="align-end text-white" height="200" :src="`${url}/assets/${ecosystemmenu.image}`" cover />
-                                <v-card-title>{{ ecosystemmenu.name }}</v-card-title>
+                                <img class="align-end text-white" height="280" :src="`${url}assets/${websites.image.filename_disk}`" :alt="websites.name" cover />
+                                <v-card-title>{{ websites.name }}</v-card-title>
 
                                 <v-card-subtitle class="pt-4">
-                                    {{ ecosystemmenu.name }}
+                                    {{ websites.name }}
                                 </v-card-subtitle>
                             </v-card>
                         </a>
@@ -42,7 +42,7 @@
                 notifications: false,
                 sound: true,
                 widgets: false,
-                url: 'http://meeovicms.com:8011'
+                url: process.env.DIRECTUS_URL,
             }
         }
     }
@@ -50,23 +50,17 @@
 
 <script setup>
 const query = gql`
- query {
-  ecosystemmenu {
+query {
+  websites (search: "ecosystemmenu") {
     id
     name
     image {
       filename_disk
     }
+    url
+    type
   }
 }
 `
 const { data } = await useAsyncQuery(query)
-
-  /*  const {
-        getItems
-    } = useDirectusItems()
-
-    const ecosystemmenu = await getItems({
-        collection: "ecosystemmenu"
-    }); */
 </script>

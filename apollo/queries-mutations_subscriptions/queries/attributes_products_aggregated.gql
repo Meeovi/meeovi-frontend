@@ -1,0 +1,46 @@
+query attributes_products_aggregated($groupBy: [String], $filter: attributes_products_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
+    attributes_products_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
+        group
+        countAll
+        count{
+            id
+            attributes_id
+            products_id
+        }
+        countDistinct{
+            id
+            attributes_id
+            products_id
+        }
+        avg{
+            id
+            attributes_id
+            products_id
+        }
+        sum{
+            id
+            attributes_id
+            products_id
+        }
+        avgDistinct{
+            id
+            attributes_id
+            products_id
+        }
+        sumDistinct{
+            id
+            attributes_id
+            products_id
+        }
+        min{
+            id
+            attributes_id
+            products_id
+        }
+        max{
+            id
+            attributes_id
+            products_id
+        }
+    }
+}

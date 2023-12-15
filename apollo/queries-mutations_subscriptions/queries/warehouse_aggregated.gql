@@ -1,0 +1,36 @@
+query warehouse_aggregated($groupBy: [String], $filter: warehouse_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
+    warehouse_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
+        group
+        countAll
+        count{
+            id
+            created_at
+            name
+            description
+            city
+            state
+            country
+            postal
+            status
+            image
+            products
+            category
+            isPublic
+        }
+        countDistinct{
+            id
+            created_at
+            name
+            description
+            city
+            state
+            country
+            postal
+            status
+            image
+            products
+            category
+            isPublic
+        }
+    }
+}

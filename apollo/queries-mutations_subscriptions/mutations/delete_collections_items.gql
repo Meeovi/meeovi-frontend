@@ -1,0 +1,5 @@
+mutation delete_collections_items($ids: [ID]!){
+    delete_collections_items(ids: $ids){
+        ids
+    }
+}

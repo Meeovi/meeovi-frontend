@@ -1,0 +1,26 @@
+query rewards($filter: rewards_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
+    rewards(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
+        id
+        name
+        slug
+        level
+        created_at
+        created_at_func{
+            year
+            month
+            week
+            day
+            weekday
+            hour
+            minute
+            second
+        }
+        coupons
+        expiration
+        categories
+        articles
+        products
+        customers
+        users
+    }
+}

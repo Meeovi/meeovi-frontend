@@ -1,0 +1,5 @@
+mutation delete_customers_item($id: ID!){
+    delete_customers_item(id: $id){
+        id
+    }
+}

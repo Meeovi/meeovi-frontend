@@ -1,0 +1,46 @@
+query meeovistores_products_aggregated($groupBy: [String], $filter: meeovistores_products_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
+    meeovistores_products_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
+        group
+        countAll
+        count{
+            id
+            meeovistores_id
+            products_id
+        }
+        countDistinct{
+            id
+            meeovistores_id
+            products_id
+        }
+        avg{
+            id
+            meeovistores_id
+            products_id
+        }
+        sum{
+            id
+            meeovistores_id
+            products_id
+        }
+        avgDistinct{
+            id
+            meeovistores_id
+            products_id
+        }
+        sumDistinct{
+            id
+            meeovistores_id
+            products_id
+        }
+        min{
+            id
+            meeovistores_id
+            products_id
+        }
+        max{
+            id
+            meeovistores_id
+            products_id
+        }
+    }
+}

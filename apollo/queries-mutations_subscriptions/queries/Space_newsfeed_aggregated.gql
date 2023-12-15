@@ -1,0 +1,46 @@
+query Space_newsfeed_aggregated($groupBy: [String], $filter: Space_newsfeed_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
+    Space_newsfeed_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
+        group
+        countAll
+        count{
+            id
+            Space_id
+            newsfeed_id
+        }
+        countDistinct{
+            id
+            Space_id
+            newsfeed_id
+        }
+        avg{
+            id
+            Space_id
+            newsfeed_id
+        }
+        sum{
+            id
+            Space_id
+            newsfeed_id
+        }
+        avgDistinct{
+            id
+            Space_id
+            newsfeed_id
+        }
+        sumDistinct{
+            id
+            Space_id
+            newsfeed_id
+        }
+        min{
+            id
+            Space_id
+            newsfeed_id
+        }
+        max{
+            id
+            Space_id
+            newsfeed_id
+        }
+    }
+}

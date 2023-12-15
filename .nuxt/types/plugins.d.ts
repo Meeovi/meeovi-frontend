@@ -11,13 +11,19 @@ type NuxtAppInjections =
   InjectionType<typeof import("../../node_modules/nuxt/dist/head/runtime/plugins/unhead").default> &
   InjectionType<typeof import("../../node_modules/nuxt/dist/pages/runtime/plugins/router").default> &
   InjectionType<typeof import("../../node_modules/nuxt/dist/pages/runtime/plugins/prefetch.client").default> &
+  InjectionType<typeof import("../../../../../../../../../../../AppData/Roaming/npm/node_modules/@nuxt/devtools/dist/runtime/plugins/devtools.client").default> &
+  InjectionType<typeof import("../../node_modules/nuxt-medusa/dist/runtime/plugin").default> &
+  InjectionType<typeof import("../../node_modules/nuxt-paypal/dist/runtime/plugins/paypal").default> &
+  InjectionType<typeof import("../../node_modules/@nuxtjs/i18n/dist/runtime/plugins/composition").default> &
+  InjectionType<typeof import("../../node_modules/@nuxtjs/i18n/dist/runtime/plugins/i18n").default> &
+  InjectionType<typeof import("../../node_modules/nuxt-gtag/dist/runtime/plugin.client").default> &
   InjectionType<typeof import("../../node_modules/@nuxtjs/apollo/dist/runtime/plugin").default> &
   InjectionType<typeof import("../../node_modules/nuxt-directus/dist/runtime/plugin").default> &
   InjectionType<typeof import("../../node_modules/@nuxt/content/dist/runtime/plugins/ws").default> &
   InjectionType<typeof import("../../node_modules/nuxt/dist/app/plugins/chunk-reload.client").default> &
+  InjectionType<typeof import("../../node_modules/nuxt/dist/app/plugins/check-outdated-build.client").default> &
   InjectionType<typeof import("../../plugins/fontawesome").default> &
   InjectionType<typeof import("../../plugins/instantsearch").default> &
-  InjectionType<typeof import("../../plugins/matomo.client").default> &
   InjectionType<typeof import("../../plugins/vuetify").default>
 
 declare module '#app' {

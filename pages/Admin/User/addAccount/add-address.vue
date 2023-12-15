@@ -1,6 +1,6 @@
 <template>
     <v-row justify="center">
-        <v-dialog v-model="dialog" fullscreen :scrim="false" transition="dialog-bottom-transition" persistent>
+        <v-dialog v-model="dialog" :scrim="false" transition="dialog-bottom-transition">
             <template v-slot:activator="{ props }">
                 <v-btn v-bind="props" class="rightAddBtn">
                     <v-icon start icon="fas fa-plus"></v-icon>Add Address
@@ -71,21 +71,21 @@
     }`; */
 
     export default {
-  /*      data() {
+        data() {
             return {
                 dialog: false,
                 notifications: false,
                 sound: true,
                 widgets: false,
-                name: ' ',
+            /*    name: ' ',
                 content: ' ',
                 image: ' ',
                 meta_description: ' ',
                 meta_keywords: ' ',
-                meta_title: ' '
+                meta_title: ' ' */
             }
         },
-        methods: {
+      /*  methods: {
             addAddress() {
                 const name = this.name;
                 const content = this.content;

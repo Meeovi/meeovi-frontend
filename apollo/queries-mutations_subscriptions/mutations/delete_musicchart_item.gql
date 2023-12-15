@@ -1,0 +1,5 @@
+mutation delete_musicchart_item($id: ID!){
+    delete_musicchart_item(id: $id){
+        id
+    }
+}

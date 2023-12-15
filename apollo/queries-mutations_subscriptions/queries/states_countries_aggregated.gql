@@ -1,0 +1,38 @@
+query states_countries_aggregated($groupBy: [String], $filter: states_countries_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
+    states_countries_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
+        group
+        countAll
+        count{
+            id
+            countries_id
+        }
+        countDistinct{
+            id
+            countries_id
+        }
+        avg{
+            id
+            countries_id
+        }
+        sum{
+            id
+            countries_id
+        }
+        avgDistinct{
+            id
+            countries_id
+        }
+        sumDistinct{
+            id
+            countries_id
+        }
+        min{
+            id
+            countries_id
+        }
+        max{
+            id
+            countries_id
+        }
+    }
+}

@@ -1,31 +1,32 @@
 <template>
   <div>
     <v-row>
-      <v-col v-for="products in data.products.items" :key="products.id" cols="3">
+      <v-col v-for="products in data.products" :key="products.id" cols="3">
         <a :href="`/product/${products.id}`">
-          <v-card class="ma-4" height="380" width="250" @click="toggle">
-            <img class="align-end text-white" height="200" :src="`${products.featuredAsset.preview}`"
-              :alt="products.name" cover />
+              <v-card class="ma-4" height="580" width="250" @click="toggle">
+                <img class="align-end text-white" height="280" :src="`${url}assets/${products.image.filename_disk}`"
+                  :alt="products.name" cover />
 
-            <v-card-title class="pt-4">
-              {{ products.name }}
-            </v-card-title>
+                <v-card-title class="pt-4">
+                  {{ products.name }}
+                </v-card-title>
 
-            <v-card-text>
-              <div>Sku: {{ products.variants.sku }}</div>
-            </v-card-text>
+                <v-card-text>
+                  <div>Sku: {{ products.sku }}</div>
+                </v-card-text>
 
-            <v-card-actions>
-              <v-card-title>$ {{ products.variants.price }}
-              </v-card-title>
-            </v-card-actions>
-            <div class="d-flex fill-height align-center justify-center">
-              <v-scale-transition>
-                <v-icon v-if="isSelected" color="white" size="48" icon="mdi-close-circle-outline"></v-icon>
-              </v-scale-transition>
-            </div>
-          </v-card>
-        </a>
+                <v-card-actions>
+                  <v-card-title>$ {{ products.price }}</v-card-title>
+                  <v-card-title>Category: {{ products.categories.categories_id.name }}</v-card-title>
+                  <v-card-title>Seller: {{ products.customers.customers_id.name }}</v-card-title>
+                </v-card-actions>
+                <div class="d-flex fill-height align-center justify-center">
+                  <v-scale-transition>
+                    <v-icon v-if="isSelected" color="white" size="48" icon="mdi-close-circle-outline"></v-icon>
+                  </v-scale-transition>
+                </div>
+              </v-card>
+            </a>
       </v-col>
     </v-row>
   </div>
@@ -33,34 +34,117 @@
 
 <script>
   export default {
-
+    data: () => ({
+      url: process.env.DIRECTUS_URL,
+    }),
   }
 </script>
 
 <script setup>
-const query = gql`
- query {
-  products (options: {take: 6}) {
-    items {
+  const query = gql `
+query {
+  departments (limit: 6){
+    id
+    Active
+    name
+    color
+    colortext
+    description
+    content
+    brands {
       id
-      name
-      featuredAsset {
-        id
-        preview
-      }
-      variants {
-        price
-        sku
+      brands_id {
+        name
+        image
       }
     }
+    articles {
+      articles_id {
+        id
+        name
+        excerpt
+        content
+        categories {
+          categories_id {
+            id
+            name
+          }
+        }
+      }
+    }
+    image {
+      filename_disk
+    }
+    customers {
+      customers_id {
+        id
+        first_name
+        last_name
+        image {
+          filename_disk
+        }
+      }
+    }
+    categories {
+      categories_id {
+        id
+        name
+        image {
+          filename_disk
+        }
+      }
+    }
+    products {
+      id
+      products_id {
+        id
+        name
+        price
+        image {
+          filename_disk
+        }
+        sku
+        Space {
+          id
+          Space_id {
+            id
+            Name
+          }
+        }
+      }
+    }
+    shorts {
+      shorts_id {
+        id
+        name
+        video {
+          filename_disk
+        }
+      }
+    }
+    shops {
+      shops_id {
+        id
+        name
+      }
+    }
+    collections {
+      collections_id {
+        id
+        name
+      }
+    }
+    websites
   }
 }
 `
-const { data } = await useAsyncQuery(query)
+  const {
+    data
+  } = await useAsyncQuery(query)
 
-/*
-const { getItems } = useDirectusItems()
+  /*
+  const { getItems } = useDirectusItems()
 
-const products = await getItems({ collection: "products"});
-const departments = await getItems({ collection: "departments", params: {filter: {name: {_eq: "Yardsale"}}}, limit: 6 });*/
+  const products = await getItems({ collection: "products"});
+  const departments = await getItems({ collection: "departments", params: {filter: {name: {_eq: "Yardsale"}}}, limit: 6 });*/
 </script>

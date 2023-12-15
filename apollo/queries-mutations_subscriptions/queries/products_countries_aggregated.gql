@@ -1,0 +1,46 @@
+query products_countries_aggregated($groupBy: [String], $filter: products_countries_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
+    products_countries_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
+        group
+        countAll
+        count{
+            id
+            products_id
+            countries_id
+        }
+        countDistinct{
+            id
+            products_id
+            countries_id
+        }
+        avg{
+            id
+            products_id
+            countries_id
+        }
+        sum{
+            id
+            products_id
+            countries_id
+        }
+        avgDistinct{
+            id
+            products_id
+            countries_id
+        }
+        sumDistinct{
+            id
+            products_id
+            countries_id
+        }
+        min{
+            id
+            products_id
+            countries_id
+        }
+        max{
+            id
+            products_id
+            countries_id
+        }
+    }
+}

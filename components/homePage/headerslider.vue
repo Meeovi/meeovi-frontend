@@ -1,7 +1,7 @@
 <template>
     <div>
-      <v-carousel hide-delimiters show-arrows="hover" :continuous="true">
-            <v-carousel-item v-for="pages in data.collections.items" :key="pages.id" :src="`${pages.featuredAsset.preview}`" :alt="pages.name" cover></v-carousel-item>
+      <v-carousel hide-delimiters show-arrows="hover" :continuous="true" v-for="pages in data.pages" :key="pages.id">
+            <v-carousel-item :src="`${url}assets/${pages.image.filename_disk}`" :alt="pages.name" cover></v-carousel-item>
         </v-carousel>
     </div>
 </template>
@@ -9,24 +9,29 @@
 <script>
   export default {
       data: () => ({
-          url: 'http://meeovicms.com:3000'
+        url: process.env.DIRECTUS_URL,
       }),
   }
 </script>
 
 <script setup>
 const query = gql`
-  query {
-  collections (options: {topLevelOnly: false, filter: {name: {eq: "Homepage-Slider"}}}){
-    items {
+query {
+    pages (search: "homepage slider") {
+      id
+      status
+      sort
       name
-      featuredAsset {
-        id
-        preview
+      content
+      link
+      image {
+        filename_disk
       }
+      list
+      type
+      date_created
     }
   }
-}
 `
 const { data } = await useAsyncQuery(query)
 

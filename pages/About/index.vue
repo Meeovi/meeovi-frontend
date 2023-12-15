@@ -302,7 +302,8 @@
     export default {
         data(){
             return {
-                url: 'http://meeovicms.com:8011'
+                model: null,
+                url: process.env.DIRECTUS_URL,
             }
         }
     }

@@ -1,0 +1,5 @@
+mutation delete_helpa_item($id: ID!){
+    delete_helpa_item(id: $id){
+        id
+    }
+}

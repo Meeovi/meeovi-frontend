@@ -1,0 +1,46 @@
+query digiboard_comments_aggregated($groupBy: [String], $filter: digiboard_comments_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
+    digiboard_comments_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
+        group
+        countAll
+        count{
+            id
+            digiboard_id
+            comments_id
+        }
+        countDistinct{
+            id
+            digiboard_id
+            comments_id
+        }
+        avg{
+            id
+            digiboard_id
+            comments_id
+        }
+        sum{
+            id
+            digiboard_id
+            comments_id
+        }
+        avgDistinct{
+            id
+            digiboard_id
+            comments_id
+        }
+        sumDistinct{
+            id
+            digiboard_id
+            comments_id
+        }
+        min{
+            id
+            digiboard_id
+            comments_id
+        }
+        max{
+            id
+            digiboard_id
+            comments_id
+        }
+    }
+}

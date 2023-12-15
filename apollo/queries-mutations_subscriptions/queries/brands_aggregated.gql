@@ -1,0 +1,36 @@
+query brands_aggregated($groupBy: [String], $filter: brands_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
+    brands_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
+        group
+        countAll
+        count{
+            id
+            created_at
+            code
+            name
+            description
+            image
+            manufacturer
+            categories
+            collections
+            departments
+            customers
+            shorts
+            products
+        }
+        countDistinct{
+            id
+            created_at
+            code
+            name
+            description
+            image
+            manufacturer
+            categories
+            collections
+            departments
+            customers
+            shorts
+            products
+        }
+    }
+}

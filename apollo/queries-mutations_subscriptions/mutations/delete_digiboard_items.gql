@@ -1,0 +1,5 @@
+mutation delete_digiboard_items($ids: [ID]!){
+    delete_digiboard_items(ids: $ids){
+        ids
+    }
+}

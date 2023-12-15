@@ -1,0 +1,27 @@
+query warehouse_by_id($id: ID!, $version: String){
+    warehouse_by_id(id: $id, version: $version){
+        id
+        created_at
+        created_at_func{
+            year
+            month
+            week
+            day
+            weekday
+            hour
+            minute
+            second
+        }
+        name
+        description
+        city
+        state
+        country
+        postal
+        status
+        image
+        products
+        category
+        isPublic
+    }
+}

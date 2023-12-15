@@ -1,12 +1,12 @@
 <template>
-    <div>
-        <v-card>
-            <v-tabs class="livebar" v-model="tab" center-active>
+    <div class="livebar">
+        <v-card height="75" variant="text">
+            <v-tabs v-model="tab" center-active height="75" show-arrows>
                 <v-tab>
                     <div class="text-center">
                         <v-dialog v-model="dialog" width="auto">
                             <template v-slot:activator="{ props }">
-                                <v-avatar icon="fas fa-plus" color="info" size="40" v-bind="props">
+                                <v-avatar icon="fas fa-plus" color="info" size="70" v-bind="props">
                                     <v-img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John"></v-img>
                                 </v-avatar>
                             </template>
@@ -23,7 +23,7 @@
                     <div class="text-center">
                         <v-dialog v-model="dialog" width="auto">
                             <template v-slot:activator="{ props }">
-                                <v-avatar v-bind="props">
+                                <v-avatar v-bind="props" size="70">
                                     <v-img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John"></v-img>
                                 </v-avatar>
                             </template>
@@ -49,4 +49,8 @@
             dialog: false,
         }),
     }
+</script>
+
+<script>
+
 </script>

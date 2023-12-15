@@ -1,0 +1,26 @@
+mutation update_shipments_item($id: ID!, $data: update_shipments_input!){
+    update_shipments_item(id: $id, data: $data){
+        product
+        speed_grade
+        ship_date
+        ship_date_func{
+            year
+            month
+            week
+            day
+            weekday
+            hour
+            minute
+            second
+        }
+        carrier_name
+        transit_time
+        tracking_url
+        image
+        id
+        client_id
+        client_secret
+        country
+        website
+    }
+}

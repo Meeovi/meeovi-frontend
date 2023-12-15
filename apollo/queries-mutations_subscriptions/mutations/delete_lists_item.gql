@@ -1,0 +1,5 @@
+mutation delete_lists_item($id: ID!){
+    delete_lists_item(id: $id){
+        id
+    }
+}

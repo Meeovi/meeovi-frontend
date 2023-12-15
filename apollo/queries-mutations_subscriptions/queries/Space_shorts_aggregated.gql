@@ -1,0 +1,46 @@
+query Space_shorts_aggregated($groupBy: [String], $filter: Space_shorts_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
+    Space_shorts_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
+        group
+        countAll
+        count{
+            id
+            Space_id
+            shorts_id
+        }
+        countDistinct{
+            id
+            Space_id
+            shorts_id
+        }
+        avg{
+            id
+            Space_id
+            shorts_id
+        }
+        sum{
+            id
+            Space_id
+            shorts_id
+        }
+        avgDistinct{
+            id
+            Space_id
+            shorts_id
+        }
+        sumDistinct{
+            id
+            Space_id
+            shorts_id
+        }
+        min{
+            id
+            Space_id
+            shorts_id
+        }
+        max{
+            id
+            Space_id
+            shorts_id
+        }
+    }
+}

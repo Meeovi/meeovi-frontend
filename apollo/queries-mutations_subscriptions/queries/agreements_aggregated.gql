@@ -1,0 +1,30 @@
+query agreements_aggregated($groupBy: [String], $filter: agreements_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
+    agreements_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
+        group
+        countAll
+        count{
+            id
+            created
+            content
+            name
+            excerpt
+            image
+            type
+            customers
+            products
+            shops
+        }
+        countDistinct{
+            id
+            created
+            content
+            name
+            excerpt
+            image
+            type
+            customers
+            products
+            shops
+        }
+    }
+}

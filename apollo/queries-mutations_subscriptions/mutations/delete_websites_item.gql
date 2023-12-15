@@ -1,0 +1,5 @@
+mutation delete_websites_item($id: ID!){
+    delete_websites_item(id: $id){
+        id
+    }
+}

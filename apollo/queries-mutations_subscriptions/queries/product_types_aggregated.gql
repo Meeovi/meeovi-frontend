@@ -1,0 +1,36 @@
+query product_types_aggregated($groupBy: [String], $filter: product_types_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
+    product_types_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
+        group
+        countAll
+        count{
+            id
+            name
+            isShippable
+            products
+        }
+        countDistinct{
+            id
+            name
+            isShippable
+            products
+        }
+        avg{
+            id
+        }
+        sum{
+            id
+        }
+        avgDistinct{
+            id
+        }
+        sumDistinct{
+            id
+        }
+        min{
+            id
+        }
+        max{
+            id
+        }
+    }
+}

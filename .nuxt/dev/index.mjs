@@ -1,12 +1,11 @@
-globalThis._importMeta_={url:import.meta.url,env:process.env};import 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/node-fetch-native/dist/polyfill.mjs';
-import { Server } from 'node:http';
+globalThis._importMeta_={url:import.meta.url,env:process.env};import { Server } from 'node:http';
 import { tmpdir } from 'node:os';
-import { join as join$1 } from 'node:path';
+import { join } from 'node:path';
 import { mkdirSync } from 'node:fs';
 import { parentPort, threadId } from 'node:worker_threads';
-import { defineEventHandler, handleCacheHeaders, isEvent, createEvent, getRequestHeader, splitCookiesString, eventHandler, setHeaders, sendRedirect, proxyRequest, setResponseHeader, send, getResponseStatus, setResponseStatus, setResponseHeaders, getRequestHeaders, getQuery as getQuery$1, getCookie, createError, createApp, createRouter as createRouter$1, toNodeListener, fetchWithEvent, lazyEventHandler, getResponseStatusText } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/h3/dist/index.mjs';
+import { defineEventHandler, handleCacheHeaders, splitCookiesString, isEvent, createEvent, getRequestHeader, eventHandler, setHeaders, sendRedirect, proxyRequest, setResponseHeader, send, getResponseStatus, setResponseStatus, setResponseHeaders, getRequestHeaders, getQuery as getQuery$1, getCookie, createError, lazyEventHandler, useBase, createApp, createRouter as createRouter$1, toNodeListener, fetchWithEvent, getResponseStatusText } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/h3/dist/index.mjs';
 import { getRequestDependencies, getPreloadLinks, getPrefetchLinks, createRenderer } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/vue-bundle-renderer/dist/runtime.mjs';
-import { stringify, uneval } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/devalue/index.js';
+import { stringify, uneval } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/nuxt/node_modules/devalue/index.js';
 import { renderToString } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/vue/server-renderer/index.mjs';
 import { renderSSRHead } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/@unhead/ssr/dist/index.mjs';
 import { createFetch as createFetch$1, Headers as Headers$1 } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/ofetch/dist/node.mjs';
@@ -15,49 +14,49 @@ import { createCall, createFetch } from 'file://C:/Users/Basti/OneDrive/Document
 import { createHooks } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/hookable/dist/index.mjs';
 import { snakeCase, kebabCase, pascalCase, camelCase } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/scule/dist/index.mjs';
 import { klona } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/klona/dist/index.mjs';
-import defu, { defuFn } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/defu/dist/defu.mjs';
+import defu, { defuFn, defu as defu$1 } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/defu/dist/defu.mjs';
 import { hash } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/ohash/dist/index.mjs';
 import { parseURL, withoutBase, joinURL, getQuery, withQuery, withLeadingSlash, withoutTrailingSlash, isRelative } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/ufo/dist/index.mjs';
 import { createStorage, prefixStorage } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/unstorage/dist/index.mjs';
 import unstorage_47drivers_47fs from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/unstorage/drivers/fs.mjs';
 import { toRouteMatcher, createRouter } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/radix3/dist/index.mjs';
-import { MeiliSearch } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/meilisearch/dist/bundles/meilisearch.cjs.js';
-import { extname, join } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/pathe/dist/index.mjs';
+import { extname, isAbsolute } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/pathe/dist/index.mjs';
 import { unified } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/unified/index.js';
 import { toString } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/mdast-util-to-string/index.js';
-import { preprocess } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/micromark/dev/lib/preprocess.js';
-import { postprocess } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/micromark/dev/lib/postprocess.js';
+import { postprocess, preprocess } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/micromark/dev/index.js';
 import { stringifyPosition } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/unist-util-stringify-position/index.js';
 import { markdownLineEnding, markdownSpace } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/micromark-util-character/dev/index.js';
 import { push, splice } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/micromark-util-chunked/dev/index.js';
 import { resolveAll } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/micromark-util-resolve-all/index.js';
+import { normalizeUri } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/micromark-util-sanitize-uri/dev/index.js';
+import slugify from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/slugify/slugify.js';
+import remarkParse from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/remark-parse/index.js';
+import remark2rehype from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/remark-rehype/index.js';
+import remarkMDC, { parseFrontMatter } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/remark-mdc/dist/index.mjs';
+import { toString as toString$1 } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/hast-util-to-string/index.js';
+import Slugger from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/github-slugger/index.js';
+import { detab } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/detab/index.js';
 import remarkEmoji from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/remark-emoji/index.js';
-import rehypeSlug from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/rehype-slug/index.js';
-import remarkSqueezeParagraphs from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/remark-squeeze-paragraphs/index.js';
+import remarkGFM from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/remark-gfm/index.js';
 import rehypeExternalLinks from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/rehype-external-links/index.js';
-import remarkGfm from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/remark-gfm/index.js';
 import rehypeSortAttributeValues from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/rehype-sort-attribute-values/index.js';
 import rehypeSortAttributes from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/rehype-sort-attributes/index.js';
 import rehypeRaw from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/rehype-raw/index.js';
-import remarkMDC, { parseFrontMatter } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/remark-mdc/dist/index.mjs';
-import remarkParse from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/remark-parse/index.js';
-import remark2rehype from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/remark-rehype/index.js';
-import { all } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/mdast-util-to-hast/index.js';
-import { detab } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/detab/index.js';
-import { u as u$1 } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/unist-builder/index.js';
-import { encode } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/mdurl/index.js';
-import slugify from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/slugify/slugify.js';
-import { position } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/unist-util-position/index.js';
 import { visit } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/unist-util-visit/index.js';
-import { BUNDLED_LANGUAGES, BUNDLED_THEMES, getHighlighter } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/shiki-es/dist/shiki.node.mjs';
-import consola from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/unenv/runtime/npm/consola.mjs';
+import { fileURLToPath } from 'node:url';
+import { ipxFSStorage, ipxHttpStorage, createIPX, createIPXH3Handler } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/ipx/dist/index.mjs';
 import { version, unref } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/vue/index.mjs';
 import { createServerHead as createServerHead$1 } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/unhead/dist/index.mjs';
 import { defineHeadPlugin } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/@unhead/shared/dist/index.mjs';
 
 const r=Object.create(null),t=e=>globalThis.process?.env||globalThis._importMeta_.env||globalThis.Deno?.env.toObject()||globalThis.__env__||(e?r:globalThis),s=new Proxy(r,{get(e,o){return t()[o]??r[o]},has(e,o){const i=t();return o in i||o in r},set(e,o,i){const p=t(!0);return p[o]=i,!0},deleteProperty(e,o){if(!o)return !1;const i=t(!0);return delete i[o],!0},ownKeys(){const e=t(!0);return Object.keys(e)}}),E=typeof process<"u"&&process.env&&"development"||"",d=[["APPVEYOR"],["AZURE_PIPELINES","SYSTEM_TEAMFOUNDATIONCOLLECTIONURI"],["AZURE_STATIC","INPUT_AZURE_STATIC_WEB_APPS_API_TOKEN"],["APPCIRCLE","AC_APPCIRCLE"],["BAMBOO","bamboo_planKey"],["BITBUCKET","BITBUCKET_COMMIT"],["BITRISE","BITRISE_IO"],["BUDDY","BUDDY_WORKSPACE_ID"],["BUILDKITE"],["CIRCLE","CIRCLECI"],["CIRRUS","CIRRUS_CI"],["CLOUDFLARE_PAGES","CF_PAGES",{ci:!0}],["CODEBUILD","CODEBUILD_BUILD_ARN"],["CODEFRESH","CF_BUILD_ID"],["DRONE"],["DRONE","DRONE_BUILD_EVENT"],["DSARI"],["GITHUB_ACTIONS"],["GITLAB","GITLAB_CI"],["GITLAB","CI_MERGE_REQUEST_ID"],["GOCD","GO_PIPELINE_LABEL"],["LAYERCI"],["HUDSON","HUDSON_URL"],["JENKINS","JENKINS_URL"],["MAGNUM"],["NETLIFY"],["NETLIFY","NETLIFY_LOCAL",{ci:!1}],["NEVERCODE"],["RENDER"],["SAIL","SAILCI"],["SEMAPHORE"],["SCREWDRIVER"],["SHIPPABLE"],["SOLANO","TDDIUM"],["STRIDER"],["TEAMCITY","TEAMCITY_VERSION"],["TRAVIS"],["VERCEL","NOW_BUILDER"],["VERCEL","VERCEL",{ci:!1}],["VERCEL","VERCEL_ENV",{ci:!1}],["APPCENTER","APPCENTER_BUILD_ID"],["CODESANDBOX","CODESANDBOX_SSE",{ci:!1}],["STACKBLITZ"],["STORMKIT"],["CLEAVR"]];function B(){if(globalThis.process?.env)for(const e of d){const o=e[1]||e[0];if(globalThis.process?.env[o])return {name:e[0].toLowerCase(),...e[2]}}return globalThis.process?.env?.SHELL==="/bin/jsh"&&globalThis.process?.versions?.webcontainer?{name:"stackblitz",ci:!1}:{name:"",ci:!1}}const I=B(),U=I.name;function n(e){return e?e!=="false":!1}const l=globalThis.process?.platform||"",T=n(s.CI)||I.ci!==!1,a=n(globalThis.process?.stdout&&globalThis.process?.stdout.isTTY);n(s.DEBUG);const c=E==="test"||n(s.TEST);n(s.MINIMAL)||T||c||!a;const C=/^win/i.test(l);!n(s.NO_COLOR)&&(n(s.FORCE_COLOR)||C&&s.TERM!=="dumb"||a&&s.TERM&&s.TERM==="dumb"||T);const R=(globalThis.process?.versions?.node||"").replace(/^v/,"")||null;Number(R?.split(".")[0])||null;const Y=globalThis.process||Object.create(null),L={versions:{}};new Proxy(Y,{get(e,o){if(o==="env")return s;if(o in e)return e[o];if(o in L)return L[o]}});const _=!!globalThis.Netlify,O=!!globalThis.EdgeRuntime,D=globalThis.navigator?.userAgent==="Cloudflare-Workers",A=!!globalThis.Deno,u=!!globalThis.__lagon__,N=globalThis.process?.release?.name==="node",S=!!globalThis.Bun||!!globalThis.process?.versions?.bun,b=!!globalThis.fastly,K=[[_,"netlify"],[O,"edge-light"],[D,"workerd"],[A,"deno"],[u,"lagon"],[N,"node"],[S,"bun"],[b,"fastly"]];function F(){const e=K.find(o=>o[0]);if(e)return {name:e[1]}}const g=F();g?.name||"";
 
-const inlineAppConfig = {};
+const inlineAppConfig = {
+  "titleSuffix": "Meeovi",
+  "nuxt": {
+    "buildId": "test"
+  }
+};
 
 
 
@@ -74,18 +73,74 @@ const _inlineRuntimeConfig = {
     "routeRules": {
       "/__nuxt_error": {
         "cache": false
+      },
+      "/_nuxt/builds/meta/**": {
+        "headers": {
+          "cache-control": "public, max-age=31536000, immutable"
+        }
+      },
+      "/_nuxt/builds/**": {
+        "headers": {
+          "cache-control": "public, max-age=1, immutable"
+        }
       }
     }
   },
   "public": {
+    "paypal": {
+      "clientId": "YOUR_CLIENT_ID"
+    },
+    "mdc": {
+      "components": {
+        "prose": true,
+        "map": {
+          "p": "prose-p",
+          "a": "prose-a",
+          "blockquote": "prose-blockquote",
+          "code-inline": "prose-code-inline",
+          "code": "ProseCodeInline",
+          "em": "prose-em",
+          "h1": "prose-h1",
+          "h2": "prose-h2",
+          "h3": "prose-h3",
+          "h4": "prose-h4",
+          "h5": "prose-h5",
+          "h6": "prose-h6",
+          "hr": "prose-hr",
+          "img": "prose-img",
+          "ul": "prose-ul",
+          "ol": "prose-ol",
+          "li": "prose-li",
+          "strong": "prose-strong",
+          "table": "prose-table",
+          "thead": "prose-thead",
+          "tbody": "prose-tbody",
+          "td": "prose-td",
+          "th": "prose-th",
+          "tr": "prose-tr"
+        }
+      },
+      "headings": {
+        "anchorLinks": {
+          "h1": false,
+          "h2": true,
+          "h3": true,
+          "h4": true,
+          "h5": false,
+          "h6": false
+        }
+      }
+    },
     "content": {
       "locales": [],
       "defaultLocale": "",
       "integrity": "",
       "experimental": {
         "stripQueryParameters": false,
+        "advanceQuery": false,
         "clientDB": false
       },
+      "respectPathCase": false,
       "api": {
         "baseURL": "/api/_content"
       },
@@ -97,7 +152,7 @@ const _inlineRuntimeConfig = {
         "a": "prose-a",
         "blockquote": "prose-blockquote",
         "code-inline": "prose-code-inline",
-        "code": "prose-code",
+        "code": "ProseCodeInline",
         "em": "prose-em",
         "h1": "prose-h1",
         "h2": "prose-h2",
@@ -123,6 +178,7 @@ const _inlineRuntimeConfig = {
       "documentDriven": false,
       "host": "",
       "trailingSlash": false,
+      "contentHead": true,
       "anchorLinks": {
         "depth": 4,
         "exclude": [
@@ -132,8 +188,8 @@ const _inlineRuntimeConfig = {
     },
     "meilisearchClient": {
       "hostUrl": "https://meeovicms.com:7700/",
-      "searchApiKey": "<your_public_key>",
-      "serverSideUsage": true,
+      "searchApiKey": "pi5jKwSuDO",
+      "serverSideUsage": false,
       "instantSearch": {
         "theme": "algolia"
       },
@@ -146,7 +202,7 @@ const _inlineRuntimeConfig = {
       }
     },
     "directus": {
-      "url": "http://meeovicms.com:8011/",
+      "url": "http://67.207.71.123:8011/",
       "autoFetch": true,
       "autoRefresh": false,
       "onAutoRefreshFailure": "",
@@ -155,12 +211,35 @@ const _inlineRuntimeConfig = {
       "devtools": false,
       "cookieNameToken": "directus_token",
       "cookieNameRefreshToken": "directus_refresh_token",
-      "maxAgeRefreshToken": 604800
+      "cookieMaxAge": 604800000,
+      "cookieSameSite": "lax",
+      "cookieSecure": false
+    },
+    "gtag": {
+      "id": "UA-40535916-2",
+      "config": {},
+      "initialConsent": true,
+      "loadingStrategy": "defer"
+    },
+    "i18n": {
+      "experimental": {
+        "jsTsFormatResource": false
+      },
+      "baseUrl": ""
+    },
+    "medusa": {
+      "baseUrl": "<YOUR_MEDUSA_URL>",
+      "maxRetries": 3,
+      "publishableApiKey": "",
+      "global": true
     }
+  },
+  "mdc": {
+    "highlight": {}
   },
   "content": {
     "cacheVersion": 2,
-    "cacheIntegrity": "kc4UzpZUjI",
+    "cacheIntegrity": "dLYeSFVwsx",
     "transformers": [],
     "base": "",
     "api": {
@@ -180,10 +259,7 @@ const _inlineRuntimeConfig = {
       }
     },
     "sources": {},
-    "ignores": [
-      "\\.",
-      "-"
-    ],
+    "ignores": [],
     "locales": [],
     "defaultLocale": "",
     "highlight": false,
@@ -193,7 +269,7 @@ const _inlineRuntimeConfig = {
         "a": "prose-a",
         "blockquote": "prose-blockquote",
         "code-inline": "prose-code-inline",
-        "code": "prose-code",
+        "code": "ProseCodeInline",
         "em": "prose-em",
         "h1": "prose-h1",
         "h2": "prose-h2",
@@ -231,26 +307,42 @@ const _inlineRuntimeConfig = {
     "navigation": {
       "fields": []
     },
+    "contentHead": true,
     "documentDriven": false,
+    "respectPathCase": false,
     "experimental": {
       "clientDB": false,
-      "stripQueryParameters": false
+      "stripQueryParameters": false,
+      "advanceQuery": false
     }
   },
   "serverMeilisearchClient": {
     "hostUrl": "https://meeovicms.com:7700/",
-    "searchApiKey": "<your_public_key>",
-    "adminApiKey": "<your_secret_key>",
-    "serverSideUsage": true,
+    "searchApiKey": "pi5jKwSuDO",
+    "serverSideUsage": false,
     "instantSearch": {
       "theme": "algolia"
     },
+    "adminApiKey": "VQbf6LzVAi",
     "clientOptions": {
       "placeholderSearch": true,
       "paginationTotalHits": 50,
       "finitePagination": true,
       "primaryKey": "",
       "keepZeroFacets": false
+    }
+  },
+  "private": {
+    "apiKey": ""
+  },
+  "ipx": {
+    "baseURL": "/_ipx",
+    "alias": {},
+    "fs": {
+      "dir": "C:/Users/Basti/OneDrive/Documents/My Websites/Handmade Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/public"
+    },
+    "http": {
+      "domains": []
     }
   }
 };
@@ -354,8 +446,8 @@ function defineCachedFunction(fn, opts = {}) {
   const pending = {};
   const group = opts.group || "nitro/functions";
   const name = opts.name || fn.name || "_";
-  const integrity = hash([opts.integrity, fn, opts]);
-  const validate = opts.validate || (() => true);
+  const integrity = opts.integrity || hash([fn, opts]);
+  const validate = opts.validate || ((entry) => entry.value !== void 0);
   async function get(key, resolver, shouldInvalidateCache, event) {
     const cacheKey = [opts.base, group, name, key + ".json"].filter(Boolean).join(":").replace(/:\/$/, ":index");
     const entry = await useStorage().getItem(cacheKey) || {};
@@ -363,7 +455,7 @@ function defineCachedFunction(fn, opts = {}) {
     if (ttl) {
       entry.expires = Date.now() + ttl;
     }
-    const expired = shouldInvalidateCache || entry.integrity !== integrity || ttl && Date.now() - (entry.mtime || 0) > ttl || !validate(entry);
+    const expired = shouldInvalidateCache || entry.integrity !== integrity || ttl && Date.now() - (entry.mtime || 0) > ttl || validate(entry) === false;
     const _resolve = async () => {
       const isPending = pending[key];
       if (!isPending) {
@@ -387,8 +479,9 @@ function defineCachedFunction(fn, opts = {}) {
         entry.mtime = Date.now();
         entry.integrity = integrity;
         delete pending[key];
-        if (validate(entry)) {
+        if (validate(entry) !== false) {
           const promise = useStorage().setItem(cacheKey, entry).catch((error) => {
+            console.error(`[nitro] [cache] Cache write error.`, error);
             useNitroApp().captureError(error, { event, tags: ["cache"] });
           });
           if (event && event.waitUntil) {
@@ -398,11 +491,14 @@ function defineCachedFunction(fn, opts = {}) {
       }
     };
     const _resolvePromise = expired ? _resolve() : Promise.resolve();
-    if (expired && event && event.waitUntil) {
+    if (entry.value === void 0) {
+      await _resolvePromise;
+    } else if (expired && event && event.waitUntil) {
       event.waitUntil(_resolvePromise);
     }
-    if (opts.swr && entry.value) {
+    if (opts.swr && validate(entry) !== false) {
       _resolvePromise.catch((error) => {
+        console.error(`[nitro] [cache] SWR handler error.`, error);
         useNitroApp().captureError(error, { event, tags: ["cache"] });
       });
       return entry;
@@ -452,6 +548,9 @@ function defineCachedEventHandler(handler, opts = defaultCacheOptions) {
       return [_hashedPath, ..._headers].join(":");
     },
     validate: (entry) => {
+      if (!entry.value) {
+        return false;
+      }
       if (entry.value.code >= 400) {
         return false;
       }
@@ -461,7 +560,7 @@ function defineCachedEventHandler(handler, opts = defaultCacheOptions) {
       return true;
     },
     group: opts.group || "nitro/handlers",
-    integrity: [opts.integrity, handler]
+    integrity: opts.integrity || hash([handler, opts])
   };
   const _cachedHandler = cachedFunction(
     async (incomingEvent) => {
@@ -537,8 +636,8 @@ function defineCachedEventHandler(handler, opts = defaultCacheOptions) {
       event.context = incomingEvent.context;
       const body = await handler(event) || _resSendBody;
       const headers = event.node.res.getHeaders();
-      headers.etag = headers.Etag || headers.etag || `W/"${hash(body)}"`;
-      headers["last-modified"] = headers["Last-Modified"] || headers["last-modified"] || (/* @__PURE__ */ new Date()).toUTCString();
+      headers.etag = String(headers.Etag || headers.etag) || `W/"${hash(body)}"`;
+      headers["last-modified"] = String(headers["Last-Modified"] || headers["last-modified"]) || (/* @__PURE__ */ new Date()).toUTCString();
       const cacheControl = [];
       if (opts.swr) {
         if (opts.maxAge) {
@@ -584,7 +683,15 @@ function defineCachedEventHandler(handler, opts = defaultCacheOptions) {
     }
     event.node.res.statusCode = response.code;
     for (const name in response.headers) {
-      event.node.res.setHeader(name, response.headers[name]);
+      const value = response.headers[name];
+      if (name === "set-cookie") {
+        event.node.res.appendHeader(
+          name,
+          splitCookiesString(value)
+        );
+      } else {
+        event.node.res.setHeader(name, value);
+      }
     }
     return response.body;
   });
@@ -736,11 +843,10 @@ function defineRenderHandler(handler) {
   return eventHandler(async (event) => {
     if (event.path.endsWith("/favicon.ico")) {
       setResponseHeader(event, "Content-Type", "image/x-icon");
-      send(
+      return send(
         event,
         "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
       );
-      return;
     }
     const response = await handler(event);
     if (!response) {
@@ -759,7 +865,7 @@ function defineRenderHandler(handler) {
     if (response.statusCode || response.statusMessage) {
       setResponseStatus(event, response.statusCode, response.statusMessage);
     }
-    return typeof response.body === "string" ? response.body : JSON.stringify(response.body);
+    return response.body;
   });
 }
 
@@ -818,32 +924,9 @@ const errorHandler = (async function errorhandler(error, event) {
   return send(event, html);
 });
 
-function buildAssetsDir() {
-  return useRuntimeConfig().app.buildAssetsDir;
-}
-function buildAssetsURL(...path) {
-  return joinURL(publicAssetsURL(), buildAssetsDir(), ...path);
-}
-function publicAssetsURL(...path) {
-  const publicBase = useRuntimeConfig().app.cdnURL || useRuntimeConfig().app.baseURL;
-  return path.length ? joinURL(publicBase, ...path) : publicBase;
-}
-
-const useConfig = () => useRuntimeConfig().serverMeilisearchClient;
-
-const _d1eaGg = defineEventHandler(async (event) => {
-  const { hostUrl, adminApiKey } = useConfig();
-  if (!event.context.serverMeilisearchClient) {
-    event.context.serverMeilisearchClient = new MeiliSearch({
-      host: hostUrl,
-      apiKey: adminApiKey
-    });
-  }
-  event.context.serverMeilisearchClient;
-});
-
 const get = (obj, path) => path.split(".").reduce((acc, part) => acc && acc[part], obj);
 const _pick = (obj, condition) => Object.keys(obj).filter(condition).reduce((newObj, key) => Object.assign(newObj, { [key]: obj[key] }), {});
+const omit = (keys) => (obj) => keys && keys.length ? _pick(obj, (key) => !keys.includes(key)) : obj;
 const apply = (fn) => (data) => Array.isArray(data) ? data.map((item) => fn(item)) : fn(data);
 const detectProperties = (keys) => {
   const prefixes = [];
@@ -902,17 +985,15 @@ const assertArray = (value, message = "Expected an array") => {
     throw new TypeError(message);
   }
 };
-const ensureArray = (value) => Array.isArray(value) ? value : value ? [value] : [];
+const ensureArray = (value) => {
+  return Array.isArray(value) ? value : [void 0, null].includes(value) ? [] : [value];
+};
 
 const arrayParams = ["sort", "where", "only", "without"];
-const createQuery = (fetcher, intitialParams) => {
-  const queryParams = {
-    ...intitialParams
-  };
-  for (const key of arrayParams) {
-    if (queryParams[key]) {
-      queryParams[key] = ensureArray(queryParams[key]);
-    }
+function createQuery(fetcher, opts = {}) {
+  const queryParams = {};
+  for (const key of Object.keys(opts.initialParams || {})) {
+    queryParams[key] = arrayParams.includes(key) ? ensureArray(opts.initialParams[key]) : opts.initialParams[key];
   }
   const $set = (key, fn = (v) => v) => {
     return (...values) => {
@@ -920,201 +1001,57 @@ const createQuery = (fetcher, intitialParams) => {
       return query;
     };
   };
+  const resolveResult = (result) => {
+    if (opts.legacy) {
+      if (result?.surround) {
+        return result.surround;
+      }
+      if (!result) {
+        return result;
+      }
+      if (result?.dirConfig) {
+        result.result = {
+          _path: result.dirConfig?._path,
+          ...result.result,
+          _dir: result.dirConfig
+        };
+      }
+      return result?._path || Array.isArray(result) || !Object.prototype.hasOwnProperty.call(result, "result") ? result : result?.result;
+    }
+    return result;
+  };
   const query = {
-    params: () => queryParams,
+    params: () => ({
+      ...queryParams,
+      ...queryParams.where ? { where: [...ensureArray(queryParams.where)] } : {},
+      ...queryParams.sort ? { sort: [...ensureArray(queryParams.sort)] } : {}
+    }),
     only: $set("only", ensureArray),
     without: $set("without", ensureArray),
-    where: $set("where", (q) => [...ensureArray(queryParams.where), q]),
+    where: $set("where", (q) => [...ensureArray(queryParams.where), ...ensureArray(q)]),
     sort: $set("sort", (sort) => [...ensureArray(queryParams.sort), ...ensureArray(sort)]),
     limit: $set("limit", (v) => parseInt(String(v), 10)),
     skip: $set("skip", (v) => parseInt(String(v), 10)),
     // find
-    find: () => fetcher(query),
-    findOne: () => {
-      queryParams.first = true;
-      return fetcher(query);
-    },
-    findSurround: (surroundQuery, options) => {
-      queryParams.surround = { query: surroundQuery, ...options };
-      return fetcher(query);
-    },
+    find: () => fetcher(query).then(resolveResult),
+    findOne: () => fetcher($set("first")(true)).then(resolveResult),
+    count: () => fetcher($set("count")(true)).then(resolveResult),
     // locale
-    locale: (_locale) => query.where({ _locale })
+    locale: (_locale) => query.where({ _locale }),
+    withSurround: $set("surround", (surroundQuery, options) => ({ query: surroundQuery, ...options })),
+    withDirConfig: () => $set("dirConfig")(true)
   };
-  return query;
-};
-
-function createMatch(opts = {}) {
-  const operators = createOperators(match, opts.operators);
-  function match(item, conditions) {
-    if (typeof conditions !== "object" || conditions instanceof RegExp) {
-      return operators.$eq(item, conditions);
-    }
-    return Object.keys(conditions || {}).every((key) => {
-      const condition = conditions[key];
-      if (key.startsWith("$") && operators[key]) {
-        const fn = operators[key];
-        return typeof fn === "function" ? fn(item, condition) : false;
-      }
-      return match(get(item, key), condition);
-    });
+  if (opts.legacy) {
+    query.findSurround = (surroundQuery, options) => {
+      return query.withSurround(surroundQuery, options).find().then(resolveResult);
+    };
+    return query;
   }
-  return match;
-}
-function createOperators(match, operators = {}) {
-  return {
-    $match: (item, condition) => match(item, condition),
-    /**
-     * Match if item equals condition
-     **/
-    $eq: (item, condition) => condition instanceof RegExp ? condition.test(item) : item === condition,
-    /**
-     * Match if item not equals condition
-     **/
-    $ne: (item, condition) => condition instanceof RegExp ? !condition.test(item) : item !== condition,
-    /**
-     * Match is condition is false
-     **/
-    $not: (item, condition) => !match(item, condition),
-    /**
-     * Match only if all of nested conditions are true
-     **/
-    $and: (item, condition) => {
-      assertArray(condition, "$and requires an array as condition");
-      return condition.every((cond) => match(item, cond));
-    },
-    /**
-     * Match if any of nested conditions is true
-     **/
-    $or: (item, condition) => {
-      assertArray(condition, "$or requires an array as condition");
-      return condition.some((cond) => match(item, cond));
-    },
-    /**
-     * Match if item is in condition array
-     **/
-    $in: (item, condition) => ensureArray(condition).some(
-      (cond) => Array.isArray(item) ? match(item, { $contains: cond }) : match(item, cond)
-    ),
-    /**
-     * Match if item contains every condition or math every rule in condition array
-     **/
-    $contains: (item, condition) => {
-      item = Array.isArray(item) ? item : String(item);
-      return ensureArray(condition).every((i) => item.includes(i));
-    },
-    /**
-     * Ignore case contains
-     **/
-    $icontains: (item, condition) => {
-      if (typeof condition !== "string") {
-        throw new TypeError("$icontains requires a string, use $contains instead");
-      }
-      item = String(item).toLocaleLowerCase();
-      return ensureArray(condition).every((i) => item.includes(i.toLocaleLowerCase()));
-    },
-    /**
-     * Match if item contains at least one rule from condition array
-     */
-    $containsAny: (item, condition) => {
-      assertArray(condition, "$containsAny requires an array as condition");
-      item = Array.isArray(item) ? item : String(item);
-      return condition.some((i) => item.includes(i));
-    },
-    /**
-     * Check key existence
-     */
-    $exists: (item, condition) => condition ? typeof item !== "undefined" : typeof item === "undefined",
-    /**
-     * Match if type of item equals condition
-     */
-    $type: (item, condition) => typeof item === String(condition),
-    /**
-     * Provides regular expression capabilities for pattern matching strings.
-     */
-    $regex: (item, condition) => {
-      if (!(condition instanceof RegExp)) {
-        const matched = String(condition).match(/\/(.*)\/([dgimsuy]*)$/);
-        condition = matched ? new RegExp(matched[1], matched[2] || "") : new RegExp(condition);
-      }
-      return condition.test(String(item || ""));
-    },
-    /**
-     * Check if item is less than condition
-     */
-    $lt: (item, condition) => {
-      return item < condition;
-    },
-    /**
-     * Check if item is less than or equal to condition
-     */
-    $lte: (item, condition) => {
-      return item <= condition;
-    },
-    /**
-     * Check if item is greater than condition
-     */
-    $gt: (item, condition) => {
-      return item > condition;
-    },
-    /**
-     * Check if item is greater than or equal to condition
-     */
-    $gte: (item, condition) => {
-      return item >= condition;
-    },
-    ...operators || {}
-  };
-}
-
-function createPipelineFetcher(getContentsList) {
-  const match = createMatch();
-  const surround = (data, { query, before, after }) => {
-    const matchQuery = typeof query === "string" ? { _path: query } : query;
-    const index = data.findIndex((item) => match(item, matchQuery));
-    before = before || 1;
-    after = after || 1;
-    const slice = new Array(before + after).fill(null, 0);
-    return index === -1 ? slice : slice.map((_, i) => data[index - before + i + Number(i >= before)] || null);
-  };
-  const pipelines = [
-    // Conditions
-    (data, params) => data.filter((item) => ensureArray(params.where).every((matchQuery) => match(item, matchQuery))),
-    // Sort data
-    (data, params) => ensureArray(params.sort).forEach((options) => sortList(data, options)),
-    // Surround logic
-    (data, params) => params.surround ? surround(data, params.surround) : data,
-    // Skip first items
-    (data, params) => params.skip ? data.slice(params.skip) : data,
-    // Pick first items
-    (data, params) => params.limit ? data.slice(0, params.limit) : data,
-    // Remove unwanted fields
-    (data, params) => apply(withoutKeys(params.without))(data),
-    // Select only wanted fields
-    (data, params) => apply(withKeys(params.only))(data)
-  ];
-  return async (query) => {
-    const data = await getContentsList();
-    const params = query.params();
-    const filteredData = pipelines.reduce(($data, pipe) => pipe($data, params) || $data, data);
-    if (params.first) {
-      return filteredData[0];
-    }
-    return filteredData;
-  };
+  return query;
 }
 
 const defineTransformer = (transformer) => {
   return transformer;
-};
-const createSingleton = (fn) => {
-  let instance;
-  return (...args) => {
-    if (!instance) {
-      instance = fn(...args);
-    }
-    return instance;
-  };
 };
 
 function createTokenizer(parser, initialize, from) {
@@ -1561,7 +1498,7 @@ function attemptLastLine(effects, ok, nok) {
     return nok(code);
   }
 }
-const parse$1 = (options) => {
+const parse = (options) => {
   return createTokenizer(
     { ...options },
     { tokenize: initializeDocument },
@@ -1580,13 +1517,13 @@ const fromCSV = function(value, encoding, options) {
     options = encoding;
     encoding = void 0;
   }
-  return compiler$1()(
+  return compiler()(
     postprocess(
-      parse$1(options).write(preprocess()(value, encoding, true))
+      parse(options).write(preprocess()(value, encoding, true))
     )
   );
 };
-function compiler$1() {
+function compiler() {
   const config = {
     enter: {
       column: opener(openColumn),
@@ -1817,103 +1754,159 @@ const csv = defineTransformer({
   }
 });
 
-function flattenNodeText(node) {
-  if (node.type === "text") {
-    return node.value || "";
-  } else {
-    return (node.children || []).reduce((text, child) => {
-      return text.concat(flattenNodeText(child));
-    }, "");
+const useProcessorPlugins = async (processor, plugins = {}) => {
+  const toUse = Object.entries(plugins).filter((p) => p[1] !== false);
+  for (const plugin of toUse) {
+    const instance = plugin[1].instance || await import(
+      /* @vite-ignore */
+      plugin[0]
+    ).then((m) => m.default || m);
+    processor.use(instance, plugin[1].options);
   }
-}
-function flattenNode(node, maxDepth = 2, _depth = 0) {
-  if (!Array.isArray(node.children) || _depth === maxDepth) {
-    return [node];
-  }
-  return [
-    node,
-    ...node.children.reduce((acc, child) => acc.concat(flattenNode(child, maxDepth, _depth + 1)), [])
-  ];
-}
-
-const TOC_TAGS = ["h2", "h3", "h4", "h5", "h6"];
-const TOC_TAGS_DEPTH = TOC_TAGS.reduce((tags, tag) => {
-  tags[tag] = Number(tag.charAt(tag.length - 1));
-  return tags;
-}, {});
-const getHeaderDepth = (node) => TOC_TAGS_DEPTH[node.tag];
-const getTocTags = (depth) => {
-  if (depth < 1 || depth > 5) {
-    console.log(`\`toc.depth\` is set to ${depth}. It should be a number between 1 and 5. `);
-    depth = 1;
-  }
-  return TOC_TAGS.slice(0, depth);
 };
-function nestHeaders(headers) {
-  if (headers.length <= 1) {
-    return headers;
+
+const unsafeLinkPrefix = [
+  "javascript:",
+  "data:text/html",
+  "vbscript:",
+  "data:text/javascript",
+  "data:text/vbscript",
+  "data:text/css",
+  "data:text/plain",
+  "data:text/xml"
+];
+const validateProp = (attribute, value) => {
+  if (attribute.startsWith("on")) {
+    return false;
   }
-  const toc = [];
-  let parent;
-  headers.forEach((header) => {
-    if (!parent || header.depth <= parent.depth) {
-      header.children = [];
-      parent = header;
-      toc.push(header);
-    } else {
-      parent.children.push(header);
+  if (attribute === "href" || attribute === "src") {
+    return !unsafeLinkPrefix.some((prefix) => value.toLowerCase().startsWith(prefix));
+  }
+  return true;
+};
+const validateProps = (props) => {
+  if (!props) {
+    return {};
+  }
+  return Object.fromEntries(
+    Object.entries(props).filter(([name, value]) => {
+      const isValid = validateProp(name, value);
+      if (!isValid) {
+        console.warn(`[@nuxtjs/mdc] removing unsafe attribute: ${name}="${value}"`);
+      }
+      return isValid;
+    })
+  );
+};
+
+function compileHast() {
+  const slugs = new Slugger();
+  function compileToJSON(node, parent) {
+    if (node.type === "root") {
+      return {
+        type: "root",
+        children: node.children.map((child) => compileToJSON(child, node)).filter(Boolean)
+      };
     }
-  });
-  toc.forEach((header) => {
-    if (header.children?.length) {
-      header.children = nestHeaders(header.children);
-    } else {
-      delete header.children;
+    if (node.type === "element") {
+      if (node.tagName === "p" && node.children.every((child) => child.type === "text" && /^\s*$/.test(child.value))) {
+        return null;
+      }
+      if (node.tagName === "li") {
+        let hasPreviousParagraph = false;
+        node.children = node.children?.flatMap((child) => {
+          if (child.type === "element" && child.tagName === "p") {
+            if (hasPreviousParagraph) {
+              child.children.unshift({
+                type: "element",
+                tagName: "br",
+                properties: {},
+                children: []
+              });
+            }
+            hasPreviousParagraph = true;
+            return child.children;
+          }
+          return child;
+        });
+      }
+      if (node.tagName?.match(/^h\d$/)) {
+        node.properties = node.properties || {};
+        node.properties.id = String(node.properties?.id || slugs.slug(toString$1(node))).replace(/-+/g, "-").replace(/^-|-$/g, "").replace(/^(\d)/, "_$1");
+      }
+      if (node.tagName === "component-slot") {
+        node.tagName = "template";
+      }
+      return {
+        type: "element",
+        tag: node.tagName,
+        props: validateProps(node.properties),
+        children: node.children.map((child) => compileToJSON(child, node)).filter(Boolean)
+      };
     }
-  });
-  return toc;
-}
-function generateFlatToc(body, options) {
-  const { searchDepth, depth, title = "" } = options;
-  const tags = getTocTags(depth);
-  const headers = flattenNode(body, searchDepth).filter((node) => tags.includes(node.tag || ""));
-  const links = headers.map((node) => ({
-    id: node.props?.id,
-    depth: getHeaderDepth(node),
-    text: flattenNodeText(node)
-  }));
-  return {
-    title,
-    searchDepth,
-    depth,
-    links
+    if (node.type === "text") {
+      if (node.value !== "\n" || parent?.properties?.emptyLinePlaceholder) {
+        return {
+          type: "text",
+          value: node.value
+        };
+      }
+    }
+    return null;
+  }
+  this.Compiler = (tree) => {
+    const body = compileToJSON(tree);
+    let excerpt = void 0;
+    const excerptIndex = tree.children.findIndex((node) => node.type === "comment" && node.value?.trim() === "more");
+    if (excerptIndex !== -1) {
+      excerpt = compileToJSON({
+        type: "root",
+        children: tree.children.slice(0, excerptIndex)
+      });
+      if (excerpt.children.find((node) => node.type === "element" && node.tag === "pre")) {
+        const lastChild = body.children[body.children.length - 1];
+        if (lastChild.type === "element" && lastChild.tag === "style") {
+          excerpt.children.push(lastChild);
+        }
+      }
+    }
+    return {
+      body,
+      excerpt
+    };
   };
 }
-function generateToc(body, options) {
-  const toc = generateFlatToc(body, options);
-  toc.links = nestHeaders(toc.links);
-  return toc;
-}
 
-function emphasis(h, node) {
-  return h(node, "em", node.attributes, all(h, node));
+function emphasis(state, node) {
+  const result = {
+    type: "element",
+    tagName: "em",
+    properties: node.attributes || {},
+    children: state.all(node)
+  };
+  state.patch(node, result);
+  return state.applyData(node, result);
 }
 
 function parseThematicBlock(lang) {
-  if (!lang) {
+  if (!lang?.trim()) {
     return {
       language: void 0,
       highlights: void 0,
-      fileName: void 0
+      filename: void 0,
+      meta: void 0
     };
   }
-  const language = lang.replace(/[{|[](.+)/, "").match(/^[^ \t]+(?=[ \t]|$)/);
-  const highlightTokens = lang.match(/{([^}]+)}/);
-  const filenameTokens = lang.match(/\[(.+)\]/);
+  const languageMatches = lang.replace(/[{|[](.+)/, "").match(/^[^ \t]+(?=[ \t]|$)/);
+  const highlightTokensMatches = lang.match(/{([^}]*)}/);
+  const filenameMatches = lang.match(/\[((\\]|[^\]])*)\]/);
+  const meta = lang.replace(languageMatches?.[0] ?? "", "").replace(highlightTokensMatches?.[0] ?? "", "").replace(filenameMatches?.[0] ?? "", "").trim();
   return {
-    language: language ? language[0] : void 0,
-    highlights: parseHighlightedLines(highlightTokens && highlightTokens[1]),
-    filename: Array.isArray(filenameTokens) ? filenameTokens[1] : void 0
+    language: languageMatches?.[0] || void 0,
+    highlights: parseHighlightedLines(highlightTokensMatches?.[1] || void 0),
+    // https://github.com/nuxt/content/pull/2169
+    filename: filenameMatches?.[1].replace(/\\]/g, "]") || void 0,
+    meta
   };
 }
 function parseHighlightedLines(lines) {
@@ -1928,207 +1921,96 @@ function getTagName(value) {
   const result = String(value).match(TAG_NAME_REGEXP);
   return result && result[1];
 }
-function wrap(nodes, loose = false) {
-  const result = [];
-  let index = -1;
-  if (loose) {
-    result.push(u$1("text", "\n"));
-  }
-  while (++index < nodes.length) {
-    if (index) {
-      result.push(u$1("text", "\n"));
-    }
-    result.push(nodes[index]);
-  }
-  if (loose && nodes.length > 0) {
-    result.push(u$1("text", "\n"));
-  }
-  return result;
-}
 
-const code = (h, node) => {
+const code = (state, node) => {
   const lang = (node.lang || "") + " " + (node.meta || "");
-  const { language, highlights, filename } = parseThematicBlock(lang);
-  const code = node.value ? detab(node.value + "\n") : "";
-  return h(
-    node.position,
-    "code",
-    {
-      language,
-      filename,
-      highlights,
-      meta: node.meta,
-      code
-    },
-    [h(node, "pre", {}, [h(node, "code", { __ignoreMap: "" }, [u$1("text", code)])])]
-  );
+  const { language, highlights, filename, meta } = parseThematicBlock(lang);
+  const value = node.value ? detab(node.value + "\n") : "";
+  let result = {
+    type: "element",
+    tagName: "code",
+    properties: { __ignoreMap: "" },
+    children: [{ type: "text", value }]
+  };
+  if (meta) {
+    result.data = {
+      // @ts-ignore
+      meta
+    };
+  }
+  state.patch(node, result);
+  result = state.applyData(node, result);
+  const properties = {
+    language,
+    filename,
+    highlights,
+    meta,
+    code: value
+  };
+  if (language) {
+    properties.className = ["language-" + language];
+  }
+  result = { type: "element", tagName: "pre", properties, children: [result] };
+  state.patch(node, result);
+  return result;
 };
 
-function html(h, node) {
+function html(state, node) {
   const tagName = getTagName(node.value);
   if (tagName && /[A-Z]/.test(tagName)) {
     node.value = node.value.replace(tagName, kebabCase(tagName));
   }
-  if (tagName === "code") {
-    node.value = node.value.replace(tagName, "code-inline");
+  if (state.dangerous || state.options?.allowDangerousHtml) {
+    const result = { type: "raw", value: node.value };
+    state.patch(node, result);
+    return state.applyData(node, result);
   }
-  return h.dangerous ? h.augment(node, u$1("raw", node.value)) : null;
+  return void 0;
 }
 
-function heading(h, node) {
-  return h(node, "h" + node.depth, all(h, node));
-}
-
-const SEMVER_REGEX = /^(\d+)(\.\d+)*(\.x)?$/;
-const describeId = (_id) => {
-  const [_source, ...parts] = _id.split(":");
-  const [, filename, _extension] = parts[parts.length - 1].match(/(.*)\.([^.]+)$/);
-  parts[parts.length - 1] = filename;
-  const _path = parts.join("/");
-  return {
-    _source,
-    _path,
-    _extension,
-    _file: _extension ? `${_path}.${_extension}` : _path
-  };
-};
-const pathMeta = defineTransformer({
-  name: "path-meta",
-  extensions: [".*"],
-  transform(content, options = {}) {
-    const { locales = [], defaultLocale = "en" } = options;
-    const { _source, _file, _path, _extension } = describeId(content._id);
-    const parts = _path.split("/");
-    const _locale = locales.includes(parts[0]) ? parts.shift() : defaultLocale;
-    const filePath = generatePath(parts.join("/"));
-    return {
-      _path: filePath,
-      _dir: filePath.split("/").slice(-2)[0],
-      _draft: isDraft(_path),
-      _partial: isPartial(_path),
-      _locale,
-      ...content,
-      // TODO: move title to Markdown parser
-      title: content.title || generateTitle(refineUrlPart(parts[parts.length - 1])),
-      _source,
-      _file,
-      _extension
-    };
-  }
-});
-const isDraft = (path) => !!path.match(/\.draft(\/|\.|$)/);
-const isPartial = (path) => path.split(/[:/]/).some((part) => part.match(/^_.*/));
-const generatePath = (path, { forceLeadingSlash = true } = {}) => {
-  path = path.split("/").map((part) => slugify(refineUrlPart(part), { lower: true })).join("/");
-  return forceLeadingSlash ? withLeadingSlash(withoutTrailingSlash(path)) : path;
-};
-const generateTitle = (path) => path.split(/[\s-]/g).map(pascalCase).join(" ");
-function refineUrlPart(name) {
-  name = name.split(/[/:]/).pop();
-  if (SEMVER_REGEX.test(name)) {
-    return name;
-  }
-  return name.replace(/(\d+\.)?(.*)/, "$2").replace(/^index(\.draft)?$/, "").replace(/\.draft$/, "");
-}
-
-function link(h, node) {
-  const props = {
+function link$1(state, node) {
+  const properties = {
     ...node.attributes || {},
-    href: encode(normalizeLink(node.url))
+    href: normalizeUri(node.url)
   };
   if (node.title !== null && node.title !== void 0) {
-    props.title = node.title;
+    properties.title = node.title;
   }
-  return h(node, "a", props, all(h, node));
-}
-function normalizeLink(link2) {
-  if (link2.endsWith(".md") && (isRelative(link2) || !/^https?/.test(link2) && !link2.startsWith("/"))) {
-    return generatePath(link2.replace(/\.md$/, ""), { forceLeadingSlash: false });
-  } else {
-    return link2;
-  }
+  const result = {
+    type: "element",
+    tagName: "a",
+    properties,
+    children: state.all(node)
+  };
+  state.patch(node, result);
+  return state.applyData(node, result);
 }
 
-function list(h, node) {
-  const props = {};
-  const name = `${node.ordered ? "ol" : "ul"}`;
+function list(state, node) {
+  const properties = {};
+  const results = state.all(node);
+  let index = -1;
   if (typeof node.start === "number" && node.start !== 1) {
-    props.start = node.start;
+    properties.start = node.start;
+  }
+  while (++index < results.length) {
+    const child = results[index];
+    if (child.type === "element" && child.tagName === "li" && child.properties && Array.isArray(child.properties.className) && child.properties.className.includes("task-list-item")) {
+      properties.className = ["contains-task-list"];
+      break;
+    }
   }
   if ((node.children || []).some((child) => typeof child.checked === "boolean")) {
-    props.className = ["contains-task-list"];
+    properties.className = ["contains-task-list"];
   }
-  return h(node, name, props, wrap(all(h, node), true));
-}
-
-function listItem(h, node, parent) {
-  const result = all(h, node);
-  const loose = parent ? listLoose(parent) : listItemLoose(node);
-  const props = {};
-  let wrapped = [];
-  let index;
-  let child;
-  if (typeof node.checked === "boolean") {
-    result.unshift(
-      h({}, "input", {
-        type: "checkbox",
-        checked: node.checked,
-        disabled: true
-      })
-    );
-    props.className = ["task-list-item"];
-  }
-  const length = result.length;
-  index = -1;
-  while (++index < length) {
-    child = result[index];
-    if (child.tagName === "p" && !loose) {
-      wrapped = wrapped.concat(child.children || []);
-    } else {
-      wrapped.push(child);
-    }
-  }
-  return h(node, "li", props, wrapped);
-}
-function listLoose(node) {
-  let loose = node.spread;
-  const children = node.children;
-  const length = children.length;
-  let index = -1;
-  while (!loose && ++index < length) {
-    loose = listItemLoose(children[index]);
-  }
-  return loose;
-}
-function listItemLoose(node) {
-  const spread = node.spread;
-  const children = node.children || [];
-  return spread === void 0 || spread === null ? children.length > 1 : spread;
-}
-
-function table(h, node) {
-  const rows = node.children;
-  const align = node.align || [];
-  const result = rows.map((row, index) => {
-    const childres = row.children;
-    const name = index === 0 ? "th" : "td";
-    let pos = node.align ? align.length : childres.length;
-    const out = [];
-    while (pos--) {
-      const cell = childres[pos];
-      out[pos] = h(cell, name, { align: align[pos] }, cell ? all(h, cell) : []);
-    }
-    return h(row, "tr", wrap(out, true));
-  });
-  const body = result[1] && h(
-    {
-      start: position(result[1]).start,
-      end: position(result[result.length - 1]).end
-    },
-    "tbody",
-    wrap(result.slice(1), true)
-  );
-  return h(node, "table", wrap([h(result[0].position, "thead", wrap([result[0]], true))].concat(body || []), true));
+  const result = {
+    type: "element",
+    tagName: node.ordered ? "ol" : "ul",
+    properties,
+    children: state.wrap(results, true)
+  };
+  state.patch(node, result);
+  return state.applyData(node, result);
 }
 
 const htmlTags = [
@@ -2251,129 +2133,277 @@ const htmlTags = [
   "wbr"
 ];
 
-function paragraph(h, node) {
+function paragraph(state, node) {
   if (node.children && node.children[0] && node.children[0].type === "html") {
     const tagName = kebabCase(getTagName(node.children[0].value) || "div");
     if (!htmlTags.includes(tagName)) {
-      return all(h, node);
+      return state.all(node);
     }
   }
-  return h(node, "p", all(h, node));
-}
-
-function image(h, node) {
-  const props = {
-    ...node.attributes,
-    src: encode(node.url),
-    alt: node.alt
+  const result = {
+    type: "element",
+    tagName: "p",
+    properties: {},
+    children: state.all(node)
   };
-  if (node.title !== null && node.title !== void 0) {
-    props.title = node.title;
+  state.patch(node, result);
+  return state.applyData(node, result);
+}
+
+function image(state, node) {
+  const properties = { ...node.attributes, src: normalizeUri(node.url) };
+  if (node.alt !== null && node.alt !== void 0) {
+    properties.alt = node.alt;
   }
-  return h(node, "img", props);
+  if (node.title !== null && node.title !== void 0) {
+    properties.title = node.title;
+  }
+  const result = { type: "element", tagName: "img", properties, children: [] };
+  state.patch(node, result);
+  return state.applyData(node, result);
 }
 
-function blockquote(h, node) {
-  return h(node, "blockquote", wrap(all(h, node), true));
+function strong(state, node) {
+  const result = {
+    type: "element",
+    tagName: "strong",
+    properties: node.attributes || {},
+    children: state.all(node)
+  };
+  state.patch(node, result);
+  return state.applyData(node, result);
 }
 
-function strong(h, node) {
-  return h(node, "strong", node.attributes, all(h, node));
+function inlineCode(state, node) {
+  const language = node.attributes?.language || node.attributes?.lang;
+  const text = { type: "text", value: node.value.replace(/\r?\n|\r/g, " ") };
+  state.patch(node, text);
+  const result = {
+    type: "element",
+    tagName: "code",
+    properties: node.attributes || {},
+    children: [text]
+  };
+  const classes = (result.properties.class || "").split(" ");
+  delete result.properties.class;
+  if (language) {
+    result.properties.language = language;
+    delete result.properties.lang;
+    classes.push("language-" + language);
+  }
+  result.properties.className = classes.join(" ");
+  state.patch(node, result);
+  return state.applyData(node, result);
 }
 
-function inlineCode(h, node) {
-  return h(node, "code-inline", node.attributes, [
-    // @ts-ignore
-    u$1("text", node.value.replace(/\r?\n|\r/g, " "))
-  ]);
-}
-
-function thematicBreak(h, node) {
-  return h(node, "hr");
-}
-
-function containerComponent(h, node) {
-  const hast = h(node, node.tagName, node.attributes, all(h, node));
-  hast.attributes = node.attributes;
-  hast.fmAttributes = node.fmAttributes;
-  return hast;
+function containerComponent(state, node) {
+  const result = {
+    type: "element",
+    tagName: node.name,
+    properties: {
+      ...node.attributes,
+      ...node.data?.hProperties
+    },
+    children: state.all(node)
+  };
+  state.patch(node, result);
+  result.attributes = node.attributes;
+  result.fmAttributes = node.fmAttributes;
+  return result;
 }
 
 const handlers$1 = {
   emphasis,
   code,
+  link: link$1,
   paragraph,
   html,
-  link,
   list,
-  listItem,
-  heading,
-  table,
   image,
-  blockquote,
   strong,
   inlineCode,
-  thematicBreak,
   containerComponent
 };
 
-function compiler(_options) {
-  function parseAsJSON(node) {
-    if (Array.isArray(node)) {
-      return node.map(parseAsJSON).filter(Boolean);
-    }
-    if (node.tagName?.startsWith("h") && node.properties.id) {
-      node.properties.id = node.properties.id.replace(/-+/g, "-").replace(/-$/, "").replace(/^-/, "");
-    }
-    if (node.type === "element") {
-      if (node.tagName === "li") {
-        let hasPreviousParagraph = false;
-        node.children = node.children.flatMap((child) => {
-          if (child.tagName === "p") {
-            if (hasPreviousParagraph) {
-              child.children.unshift({
-                type: "element",
-                tagName: "br",
-                properties: {}
-              });
-            }
-            hasPreviousParagraph = true;
-            return child.children;
-          }
-          return child;
-        });
+const defaults$1 = {
+  remark: {
+    plugins: {
+      "remark-emoji": {
+        instance: remarkEmoji
+      },
+      "remark-gfm": {
+        instance: remarkGFM
       }
-      if (node.tagName === "component-slot") {
-        node.tagName = "template";
+    }
+  },
+  rehype: {
+    options: {
+      // @ts-ignore
+      handlers: handlers$1,
+      allowDangerousHtml: true
+    },
+    plugins: {
+      "rehype-external-links": {
+        instance: rehypeExternalLinks
+      },
+      "rehype-sort-attribute-values": {
+        instance: rehypeSortAttributeValues
+      },
+      "rehype-sort-attributes": {
+        instance: rehypeSortAttributes
+      },
+      "rehype-raw": {
+        instance: rehypeRaw,
+        options: {
+          passThrough: ["element"]
+        }
       }
-      return {
-        type: "element",
-        tag: node.tagName,
-        props: node.properties,
-        children: parseAsJSON(node.children || [])
-      };
     }
-    if (node.type === "text") {
-      if (node.value === "\n") {
-        return null;
-      }
-      return {
-        type: "text",
-        value: node.value
-      };
-    }
-    if (node.type === "comment") {
-      return null;
-    }
-    node.children = parseAsJSON(node.children || []);
-    return node;
+  },
+  highlight: false,
+  toc: {
+    searchDepth: 2,
+    depth: 2
   }
-  this.Compiler = function(root) {
-    return {
-      type: "root",
-      children: parseAsJSON(root.children || [])
-    };
+};
+
+const defaults = {
+  theme: {
+    default: "github-light",
+    dark: "github-dark"
+  },
+  highlighter: (code, lang, theme, highlights) => {
+    return $fetch("/api/_mdc/highlight", {
+      params: {
+        code,
+        lang,
+        theme: JSON.stringify(theme),
+        highlights: JSON.stringify(highlights)
+      }
+    });
+  }
+};
+function rehypeShiki(opts = {}) {
+  const options = { ...defaults, ...opts };
+  return async (tree) => {
+    const tasks = [];
+    const styles = [];
+    visit(
+      tree,
+      (node) => ["pre", "code"].includes(node.tagName) && !!node.properties?.language,
+      (node) => {
+        const _node = node;
+        const task = options.highlighter(
+          toString$1(node),
+          _node.properties.language,
+          options.theme,
+          _node.properties.highlights ?? []
+        ).then(({ tree: tree2, className, style, inlineStyle }) => {
+          _node.properties.className = ((_node.properties.className || "") + " " + className).trim();
+          _node.properties.style = ((_node.properties.style || "") + " " + inlineStyle).trim();
+          if (_node.children[0]?.tagName === "code") {
+            _node.children[0].children = tree2;
+          } else {
+            _node.children = tree2[0].children;
+          }
+          if (style)
+            styles.push(style);
+        });
+        tasks.push(task);
+      }
+    );
+    if (tasks.length) {
+      await Promise.all(tasks);
+      tree.children.push({
+        type: "element",
+        tagName: "style",
+        children: [{ type: "text", value: cleanCSS(styles.join("")) }],
+        properties: {}
+      });
+    }
   };
+}
+const cleanCSS = (css) => {
+  const styles = css.split("}").filter((s) => Boolean(s.trim())).map((s) => s.trim() + "}");
+  return Array.from(new Set(styles)).join("");
+};
+
+function flattenNodeText(node) {
+  if (node.type === "text") {
+    return node.value || "";
+  } else {
+    return (node.children || []).reduce((text, child) => {
+      return text.concat(flattenNodeText(child));
+    }, "");
+  }
+}
+function flattenNode(node, maxDepth = 2, _depth = 0) {
+  if (!Array.isArray(node.children) || _depth === maxDepth) {
+    return [node];
+  }
+  return [
+    node,
+    ...node.children.reduce((acc, child) => acc.concat(flattenNode(child, maxDepth, _depth + 1)), [])
+  ];
+}
+
+const TOC_TAGS = ["h2", "h3", "h4", "h5", "h6"];
+const TOC_TAGS_DEPTH = TOC_TAGS.reduce((tags, tag) => {
+  tags[tag] = Number(tag.charAt(tag.length - 1));
+  return tags;
+}, {});
+const getHeaderDepth = (node) => TOC_TAGS_DEPTH[node.tag];
+const getTocTags = (depth) => {
+  if (depth < 1 || depth > 5) {
+    console.log(`\`toc.depth\` is set to ${depth}. It should be a number between 1 and 5. `);
+    depth = 1;
+  }
+  return TOC_TAGS.slice(0, depth);
+};
+function nestHeaders(headers) {
+  if (headers.length <= 1) {
+    return headers;
+  }
+  const toc = [];
+  let parent;
+  headers.forEach((header) => {
+    if (!parent || header.depth <= parent.depth) {
+      header.children = [];
+      parent = header;
+      toc.push(header);
+    } else {
+      parent.children.push(header);
+    }
+  });
+  toc.forEach((header) => {
+    if (header.children?.length) {
+      header.children = nestHeaders(header.children);
+    } else {
+      delete header.children;
+    }
+  });
+  return toc;
+}
+function generateFlatToc(body, options) {
+  const { searchDepth, depth, title = "" } = options;
+  const tags = getTocTags(depth);
+  const headers = flattenNode(body, searchDepth).filter((node) => tags.includes(node.tag || ""));
+  const links = headers.map((node) => ({
+    id: node.props?.id,
+    depth: getHeaderDepth(node),
+    text: flattenNodeText(node)
+  }));
+  return {
+    title,
+    searchDepth,
+    depth,
+    links
+  };
+}
+function generateToc(body, options) {
+  const toc = generateFlatToc(body, options);
+  toc.links = nestHeaders(toc.links);
+  return toc;
 }
 
 function isTag(vnode, tag) {
@@ -2389,13 +2419,13 @@ function isTag(vnode, tag) {
   return false;
 }
 function isText(vnode) {
-  return isTag(vnode, "text") || typeof vnode.children === "string";
+  return isTag(vnode, "text") || isTag(vnode, Symbol.for("v-txt"));
 }
 function nodeChildren(node) {
   if (Array.isArray(node.children) || typeof node.children === "string") {
     return node.children;
   }
-  if (typeof node.children.default === "function") {
+  if (typeof node.children?.default === "function") {
     return node.children.default();
   }
   return [];
@@ -2408,52 +2438,58 @@ function nodeTextContent(node) {
     return node.map(nodeTextContent).join("");
   }
   if (isText(node)) {
-    return node.children || node.value;
+    return node.children || node.value || "";
   }
   const children = nodeChildren(node);
   if (Array.isArray(children)) {
-    return children.map(nodeTextContent).join("");
+    return children.map(nodeTextContent).filter(Boolean).join("");
   }
   return "";
 }
 
-const usePlugins = (plugins, stream) => {
-  for (const plugin of Object.values(plugins)) {
-    if (plugin) {
-      const { instance, ...options } = plugin;
-      stream.use(instance, options);
-    }
+let moduleOptions;
+const parseMarkdown = async (md, opts = {}) => {
+  if (!moduleOptions) {
+    moduleOptions = await import(
+      'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/.nuxt/mdc-imports.mjs'
+      /* @vite-ignore */
+    ).catch(() => ({}));
   }
-};
-function generateBody(content, options) {
-  const rehypeOptions = {
-    handlers: handlers$1,
-    allowDangerousHtml: true
+  const options = defu$1(opts, {
+    remark: { plugins: moduleOptions?.remarkPlugins },
+    rehype: { plugins: moduleOptions?.rehypePlugins },
+    highlight: moduleOptions?.highlight
+  }, defaults$1);
+  const { content, data: frontmatter } = await parseFrontMatter(md);
+  const processor = unified();
+  processor.use(remarkParse);
+  processor.use(remarkMDC);
+  await useProcessorPlugins(processor, options.remark?.plugins);
+  processor.use(remark2rehype, options.rehype?.options);
+  if (options.highlight) {
+    processor.use(rehypeShiki, options.highlight);
+  }
+  await useProcessorPlugins(processor, options.rehype?.plugins);
+  processor.use(compileHast);
+  const processedFile = await processor.process({ value: content, data: frontmatter });
+  const result = processedFile.result;
+  const data = Object.assign(
+    contentHeading(result.body),
+    frontmatter,
+    processedFile?.data || {}
+  );
+  let toc;
+  if (data.toc !== false) {
+    const tocOption = defu$1(data.toc || {}, options.toc);
+    toc = generateToc(result.body, tocOption);
+  }
+  return {
+    data,
+    body: result.body,
+    excerpt: result.excerpt,
+    toc
   };
-  return new Promise((resolve, reject) => {
-    const stream = unified().use(remarkParse);
-    if (options.mdc) {
-      stream.use(remarkMDC);
-    }
-    usePlugins(options.remarkPlugins, stream);
-    stream.use(remark2rehype, rehypeOptions);
-    usePlugins(options.rehypePlugins, stream);
-    stream.use(compiler, options);
-    stream.process(
-      {
-        value: content,
-        data: options.data
-      },
-      (error, file) => {
-        if (error) {
-          return reject(error);
-        }
-        Object.assign(options.data, file?.data || {});
-        resolve(file?.result);
-      }
-    );
-  });
-}
+};
 function contentHeading(body) {
   let title = "";
   let description = "";
@@ -2472,81 +2508,56 @@ function contentHeading(body) {
   };
 }
 
-const useDefaultOptions = () => ({
-  mdc: true,
-  toc: {
-    depth: 2,
-    searchDepth: 2
-  },
-  tags: {},
-  remarkPlugins: {
-    "remark-emoji": {
-      instance: remarkEmoji
-    },
-    "remark-squeeze-paragraphs": {
-      instance: remarkSqueezeParagraphs
-    },
-    "remark-gfm": {
-      instance: remarkGfm
-    }
-  },
-  rehypePlugins: {
-    "rehype-slug": {
-      instance: rehypeSlug
-    },
-    "rehype-external-links": {
-      instance: rehypeExternalLinks
-    },
-    "rehype-sort-attribute-values": {
-      instance: rehypeSortAttributeValues
-    },
-    "rehype-sort-attributes": {
-      instance: rehypeSortAttributes
-    },
-    "rehype-raw": {
-      instance: rehypeRaw,
-      passThrough: ["element"]
-    }
+const SEMVER_REGEX = /^(\d+)(\.\d+)*(\.x)?$/;
+const describeId = (_id) => {
+  const [_source, ...parts] = _id.split(":");
+  const [, filename, _extension] = parts[parts.length - 1].match(/(.*)\.([^.]+)$/);
+  parts[parts.length - 1] = filename;
+  const _path = parts.join("/");
+  return {
+    _source,
+    _path,
+    _extension,
+    _file: _extension ? `${_path}.${_extension}` : _path
+  };
+};
+const pathMeta = defineTransformer({
+  name: "path-meta",
+  extensions: [".*"],
+  transform(content, options = {}) {
+    const { locales = [], defaultLocale = "en", respectPathCase = false } = options;
+    const { _source, _file, _path, _extension } = describeId(content._id);
+    const parts = _path.split("/");
+    const _locale = locales.includes(parts[0]) ? parts.shift() : defaultLocale;
+    const filePath = generatePath(parts.join("/"), { respectPathCase });
+    return {
+      _path: filePath,
+      _dir: filePath.split("/").slice(-2)[0],
+      _draft: content._draft ?? isDraft(_path),
+      _partial: isPartial(_path),
+      _locale,
+      ...content,
+      // TODO: move title to Markdown parser
+      title: content.title || generateTitle(refineUrlPart(parts[parts.length - 1])),
+      _source,
+      _file,
+      _extension
+    };
   }
 });
-async function parse(file, userOptions = {}) {
-  const options = defu(userOptions, useDefaultOptions());
-  const { content, data } = await parseFrontMatter(file);
-  const body = await generateBody(content, { ...options, data });
-  let toc;
-  if (data.toc !== false) {
-    const tocOption = defu(data.toc || {}, options.toc);
-    toc = generateToc(body, tocOption);
+const isDraft = (path) => !!path.match(/\.draft(\/|\.|$)/);
+const isPartial = (path) => path.split(/[:/]/).some((part) => part.match(/^_.*/));
+const generatePath = (path, { forceLeadingSlash = true, respectPathCase = false } = {}) => {
+  path = path.split("/").map((part) => slugify(refineUrlPart(part), { lower: !respectPathCase })).join("/");
+  return forceLeadingSlash ? withLeadingSlash(withoutTrailingSlash(path)) : path;
+};
+const generateTitle = (path) => path.split(/[\s-]/g).map(pascalCase).join(" ");
+function refineUrlPart(name) {
+  name = name.split(/[/:]/).pop();
+  if (SEMVER_REGEX.test(name)) {
+    return name;
   }
-  const excerptString = useExcerpt(content);
-  const excerpt = excerptString ? await generateBody(excerptString, { ...options, data }) : void 0;
-  const heading = contentHeading(body);
-  return {
-    body: {
-      ...body,
-      toc
-    },
-    meta: {
-      _empty: content.trim().length === 0,
-      title: heading.title,
-      description: heading.description,
-      excerpt,
-      ...data
-    }
-  };
-}
-function useExcerpt(content, delimiter = /<!--\s*?more\s*?-->/i) {
-  if (!delimiter) {
-    return "";
-  }
-  let idx = -1;
-  const match = delimiter.exec(content);
-  if (match) {
-    idx = match.index;
-  }
-  if (idx !== -1) {
-    return content.slice(0, idx);
-  }
+  return name.replace(/(\d+\.)?(.*)/, "$2").replace(/^index(\.draft)?$/, "").replace(/\.draft$/, "");
 }
 
 const markdown = defineTransformer({
@@ -2556,10 +2567,28 @@ const markdown = defineTransformer({
     const config = { ...options };
     config.rehypePlugins = await importPlugins(config.rehypePlugins);
     config.remarkPlugins = await importPlugins(config.remarkPlugins);
-    const parsed = await parse(content, config);
+    const parsed = await parseMarkdown(content, {
+      highlight: options.highlight,
+      remark: {
+        plugins: config.remarkPlugins
+      },
+      rehype: {
+        options: {
+          handlers: {
+            link
+          }
+        },
+        plugins: config.rehypePlugins
+      },
+      toc: config.toc
+    });
     return {
-      ...parsed.meta,
-      body: parsed.body,
+      ...parsed.data,
+      excerpt: parsed.excerpt,
+      body: {
+        ...parsed.body,
+        toc: parsed.toc
+      },
       _type: "markdown",
       _id
     };
@@ -2574,7 +2603,7 @@ async function importPlugins(plugins = {}) {
           /* @vite-ignore */
           name
         ).then((m) => m.default || m),
-        ...plugin
+        options: plugin
       };
     } else {
       resolvedPlugins[name] = false;
@@ -2582,12 +2611,38 @@ async function importPlugins(plugins = {}) {
   }
   return resolvedPlugins;
 }
+function link(state, node) {
+  const properties = {
+    ...node.attributes || {},
+    href: normalizeUri(normalizeLink(node.url))
+  };
+  if (node.title !== null && node.title !== void 0) {
+    properties.title = node.title;
+  }
+  const result = {
+    type: "element",
+    tagName: "a",
+    properties,
+    children: state.all(node)
+  };
+  state.patch(node, result);
+  return state.applyData(node, result);
+}
+function normalizeLink(link2) {
+  const match = link2.match(/#.+$/);
+  const hash = match ? match[0] : "";
+  if (link2.replace(/#.+$/, "").endsWith(".md") && (isRelative(link2) || !/^https?/.test(link2) && !link2.startsWith("/"))) {
+    return generatePath(link2.replace(".md" + hash, ""), { forceLeadingSlash: false }) + hash;
+  } else {
+    return link2;
+  }
+}
 
 const yaml = defineTransformer({
   name: "Yaml",
   extensions: [".yml", ".yaml"],
-  parse: async (_id, content) => {
-    const { data } = await parseFrontMatter(`---
+  parse: (_id, content) => {
+    const { data } = parseFrontMatter(`---
 ${content}
 ---`);
     let parsed = data;
@@ -2600,859 +2655,6 @@ ${content}
       _id,
       _type: "yaml"
     };
-  }
-});
-
-const grammar = {
-  "information_for_contributors": [
-    "This file has been converted from https://github.com/docusgen/vscode-extension/blob/main/syntaxes/mdc.tmLanguage.json",
-    "If you want to provide a fix or improvement, please create a pull request against the original repository.",
-    "Once accepted there, we are happy to receive an update request."
-  ],
-  "version": "https://github.com/docusgen/vscode-extension/blob/1303abd16342880a42a4d143a660da049c79ea6c/syntaxes/mdc.tmLanguage.json",
-  "name": "markdown",
-  "injectionSelector": "L:text.html.markdown",
-  "scopeName": "text.markdown.mdc",
-  "patterns": [
-    {
-      "include": "text.html.markdown#frontMatter"
-    },
-    {
-      "include": "#component_block"
-    },
-    {
-      "include": "#block"
-    }
-  ],
-  "repository": {
-    "block": {
-      "comment": "Same as `text.html.markdown#block`, but without `raw_block`",
-      "patterns": [
-        {
-          "include": "#component_block"
-        },
-        {
-          "include": "text.html.markdown#separator"
-        },
-        {
-          "include": "#heading"
-        },
-        {
-          "include": "#blockquote"
-        },
-        {
-          "include": "#lists"
-        },
-        {
-          "include": "#paragraph"
-        },
-        {
-          "include": "text.html.markdown#fenced_code_block"
-        },
-        {
-          "include": "text.html.markdown#link-def"
-        },
-        {
-          "include": "text.html.markdown#html"
-        }
-      ]
-    },
-    "inline": {
-      "patterns": [
-        {
-          "include": "#component_inline"
-        },
-        {
-          "include": "#span"
-        },
-        {
-          "include": "#markdown_attributes"
-        }
-      ]
-    },
-    "markdown_attributes": {
-      "match": "(?x)([^ ])(               # attributes\n    ({)\n      ([^{]*)\n    (})\n  )",
-      "name": "markup.component.attribute",
-      "captures": {
-        "4": {
-          "patterns": [
-            {
-              "include": "#attribute"
-            }
-          ]
-        }
-      }
-    },
-    "span": {
-      "match": "(?x)\n  (\\[)           # Open\n    ([^]]*)\n  (\\])\n  (               # attributes\n    ({)\n      ([^{]*)\n    (})\n  )?",
-      "name": "markup.component.span",
-      "captures": {
-        "2": {
-          "name": "string.other.link.description.title.markdown"
-        },
-        "4": {
-          "patterns": [
-            {
-              "include": "#attributes"
-            }
-          ]
-        }
-      }
-    },
-    "attributes": {
-      "match": "(?x)(               # attributes\n    ({)\n      ([^{]*)\n    (})\n  )",
-      "name": "markup.attributes",
-      "captures": {
-        "3": {
-          "patterns": [
-            {
-              "include": "#attribute"
-            }
-          ]
-        }
-      }
-    },
-    "component_inline": {
-      "match": "(?x)\n  (^|\\G|\\s+)\n  (:)           # component colon\n  (?i:             # component name\n    (\\w[\\w\\d-]*)\n  )\n  (\n      ({[^}]*})        # attributes\n      (\\[[^\\]]*\\]?) # slot\n      # reverse order\n    | (\\[[^\\]]*\\])  # slot\n      ({[^}]*})?       # attributes\n  )?",
-      "name": "markup.component.inline",
-      "captures": {
-        "2": {
-          "name": "punctuation.definition.tag.start.component"
-        },
-        "3": {
-          "name": "entity.name.tag.component"
-        },
-        "5": {
-          "patterns": [
-            {
-              "include": "#attributes"
-            }
-          ]
-        },
-        "6": {
-          "patterns": [
-            {
-              "include": "#span"
-            }
-          ]
-        },
-        "7": {
-          "patterns": [
-            {
-              "include": "#span"
-            }
-          ]
-        },
-        "8": {
-          "patterns": [
-            {
-              "include": "#attributes"
-            }
-          ]
-        }
-      }
-    },
-    "component_block": {
-      "begin": "(?x)\n  (^|\\G)(\\s*)\n  (:{2,})     # component colons\n  (?i:\n    (\\w[\\w\\d-]+)   # component name\n    (                 # folowing spaces or attributes\n        \\s*\n      | {([^{]*)}\n    )\n    $\n  )",
-      "name": "markup.component.block",
-      "end": "(^|\\G)(\\2)(\\3)\\s*$",
-      "beginCaptures": {
-        "4": {
-          "name": "entity.name.tag.component"
-        },
-        "5": {
-          "patterns": [
-            {
-              "include": "#attribute"
-            }
-          ]
-        }
-      },
-      "patterns": [
-        {
-          "include": "#content"
-        }
-      ]
-    },
-    "content": {
-      "begin": "(^|\\G)(\\s*)(.*)",
-      "while": "(^|\\G)(?!\\s*([:]{2,})\\s*$)",
-      "contentName": "meta.embedded.block.component",
-      "patterns": [
-        {
-          "begin": "(^|\\G)(\\s*)(-{3})(\\s*)$",
-          "end": "(^|\\G)(\\s*(-{3})(\\s*)$)",
-          "patterns": [
-            {
-              "include": "source.yaml"
-            }
-          ]
-        },
-        {
-          "match": "^(\\s*)(#[\\w\\-\\_]*)\\s*(<!--(.*)-->)?$",
-          "captures": {
-            "2": {
-              "name": "entity.other.attribute-name.html"
-            },
-            "3": {
-              "name": "comment.block.html"
-            }
-          }
-        },
-        {
-          "comment": "Block Repository created to disable 4-space raw block inside components",
-          "include": "#block"
-        }
-      ]
-    },
-    "attribute": {
-      "patterns": [
-        {
-          "match": `(?x)
-  (
-    ([^=><\\s]*)  # attribute name
-    (             # attribute value
-        =["]([^"]*)(["])|[']([^']*)(['])
-      | =[^\\s'"]*
-    )?
-    \\s*
-  )`,
-          "captures": {
-            "2": {
-              "name": "entity.other.attribute-name.html"
-            },
-            "3": {
-              "patterns": [
-                {
-                  "include": "#attribute-interior"
-                }
-              ]
-            }
-          }
-        }
-      ]
-    },
-    "attribute-interior": {
-      "comment": "https://github.com/microsoft/vscode/blob/08d59c432609ae9306eb3889815977e93bb548de/extensions/html/syntaxes/html.tmLanguage.json#L376",
-      "patterns": [
-        {
-          "begin": "=",
-          "beginCaptures": {
-            "0": {
-              "name": "punctuation.separator.key-value.html"
-            }
-          },
-          "end": "(?<=[^\\s=])(?!\\s*=)|(?=/?>)",
-          "patterns": [
-            {
-              "match": "([^\\s\"'=<>`/]|/(?!>))+",
-              "name": "string.unquoted.html"
-            },
-            {
-              "begin": '"',
-              "beginCaptures": {
-                "0": {
-                  "name": "punctuation.definition.string.begin.html"
-                }
-              },
-              "end": '"',
-              "endCaptures": {
-                "0": {
-                  "name": "punctuation.definition.string.end.html"
-                }
-              },
-              "name": "string.quoted.double.html",
-              "patterns": [
-                {
-                  "include": "#entities"
-                }
-              ]
-            },
-            {
-              "begin": "'",
-              "beginCaptures": {
-                "0": {
-                  "name": "punctuation.definition.string.begin.html"
-                }
-              },
-              "end": "'",
-              "endCaptures": {
-                "0": {
-                  "name": "punctuation.definition.string.end.html"
-                }
-              },
-              "name": "string.quoted.single.html",
-              "patterns": [
-                {
-                  "include": "#entities"
-                }
-              ]
-            },
-            {
-              "match": "=",
-              "name": "invalid.illegal.unexpected-equals-sign.html"
-            }
-          ]
-        }
-      ]
-    },
-    "entities": {
-      "comment": "https://github.com/microsoft/vscode/blob/08d59c432609ae9306eb3889815977e93bb548de/extensions/html/syntaxes/html.tmLanguage.json#L532",
-      "patterns": [
-        {
-          "captures": {
-            "1": {
-              "name": "punctuation.definition.entity.html"
-            },
-            "912": {
-              "name": "punctuation.definition.entity.html"
-            }
-          },
-          "comment": "Yes this is a bit ridiculous, there are quite a lot of these",
-          "match": "(?x)\n						(&)	(?=[a-zA-Z])\n						(\n							(a(s(ymp(eq)?|cr|t)|n(d(slope|d|v|and)?|g(s(t|ph)|zarr|e|le|rt(vb(d)?)?|msd(a(h|c|d|e|f|a|g|b))?)?)|c(y|irc|d|ute|E)?|tilde|o(pf|gon)|uml|p(id|os|prox(eq)?|e|E|acir)?|elig|f(r)?|w(conint|int)|l(pha|e(ph|fsym))|acute|ring|grave|m(p|a(cr|lg))|breve)|A(s(sign|cr)|nd|MP|c(y|irc)|tilde|o(pf|gon)|uml|pplyFunction|fr|Elig|lpha|acute|ring|grave|macr|breve))\n						  | (B(scr|cy|opf|umpeq|e(cause|ta|rnoullis)|fr|a(ckslash|r(v|wed))|reve)|b(s(cr|im(e)?|ol(hsub|b)?|emi)|n(ot|e(quiv)?)|c(y|ong)|ig(s(tar|qcup)|c(irc|up|ap)|triangle(down|up)|o(times|dot|plus)|uplus|vee|wedge)|o(t(tom)?|pf|wtie|x(h(d|u|D|U)?|times|H(d|u|D|U)?|d(R|l|r|L)|u(R|l|r|L)|plus|D(R|l|r|L)|v(R|h|H|l|r|L)?|U(R|l|r|L)|V(R|h|H|l|r|L)?|minus|box))|Not|dquo|u(ll(et)?|mp(e(q)?|E)?)|prime|e(caus(e)?|t(h|ween|a)|psi|rnou|mptyv)|karow|fr|l(ock|k(1(2|4)|34)|a(nk|ck(square|triangle(down|left|right)?|lozenge)))|a(ck(sim(eq)?|cong|prime|epsilon)|r(vee|wed(ge)?))|r(eve|vbar)|brk(tbrk)?))\n						  | (c(s(cr|u(p(e)?|b(e)?))|h(cy|i|eck(mark)?)|ylcty|c(irc|ups(sm)?|edil|a(ps|ron))|tdot|ir(scir|c(eq|le(d(R|circ|S|dash|ast)|arrow(left|right)))?|e|fnint|E|mid)?|o(n(int|g(dot)?)|p(y(sr)?|f|rod)|lon(e(q)?)?|m(p(fn|le(xes|ment))?|ma(t)?))|dot|u(darr(l|r)|p(s|c(up|ap)|or|dot|brcap)?|e(sc|pr)|vee|wed|larr(p)?|r(vearrow(left|right)|ly(eq(succ|prec)|vee|wedge)|arr(m)?|ren))|e(nt(erdot)?|dil|mptyv)|fr|w(conint|int)|lubs(uit)?|a(cute|p(s|c(up|ap)|dot|and|brcup)?|r(on|et))|r(oss|arr))|C(scr|hi|c(irc|onint|edil|aron)|ircle(Minus|Times|Dot|Plus)|Hcy|o(n(tourIntegral|int|gruent)|unterClockwiseContourIntegral|p(f|roduct)|lon(e)?)|dot|up(Cap)?|OPY|e(nterDot|dilla)|fr|lo(seCurly(DoubleQuote|Quote)|ckwiseContourIntegral)|a(yleys|cute|p(italDifferentialD)?)|ross))\n						  | (d(s(c(y|r)|trok|ol)|har(l|r)|c(y|aron)|t(dot|ri(f)?)|i(sin|e|v(ide(ontimes)?|onx)?|am(s|ond(suit)?)?|gamma)|Har|z(cy|igrarr)|o(t(square|plus|eq(dot)?|minus)?|ublebarwedge|pf|wn(harpoon(left|right)|downarrows|arrow)|llar)|d(otseq|a(rr|gger))?|u(har|arr)|jcy|e(lta|g|mptyv)|f(isht|r)|wangle|lc(orn|rop)|a(sh(v)?|leth|rr|gger)|r(c(orn|rop)|bkarow)|b(karow|lac)|Arr)|D(s(cr|trok)|c(y|aron)|Scy|i(fferentialD|a(critical(Grave|Tilde|Do(t|ubleAcute)|Acute)|mond))|o(t(Dot|Equal)?|uble(Right(Tee|Arrow)|ContourIntegral|Do(t|wnArrow)|Up(DownArrow|Arrow)|VerticalBar|L(ong(RightArrow|Left(RightArrow|Arrow))|eft(RightArrow|Tee|Arrow)))|pf|wn(Right(TeeVector|Vector(Bar)?)|Breve|Tee(Arrow)?|arrow|Left(RightVector|TeeVector|Vector(Bar)?)|Arrow(Bar|UpArrow)?))|Zcy|el(ta)?|D(otrahd)?|Jcy|fr|a(shv|rr|gger)))\n						  | (e(s(cr|im|dot)|n(sp|g)|c(y|ir(c)?|olon|aron)|t(h|a)|o(pf|gon)|dot|u(ro|ml)|p(si(v|lon)?|lus|ar(sl)?)|e|D(ot|Dot)|q(s(im|lant(less|gtr))|c(irc|olon)|u(iv(DD)?|est|als)|vparsl)|f(Dot|r)|l(s(dot)?|inters|l)?|a(ster|cute)|r(Dot|arr)|g(s(dot)?|rave)?|x(cl|ist|p(onentiale|ectation))|m(sp(1(3|4))?|pty(set|v)?|acr))|E(s(cr|im)|c(y|irc|aron)|ta|o(pf|gon)|NG|dot|uml|TH|psilon|qu(ilibrium|al(Tilde)?)|fr|lement|acute|grave|x(ists|ponentialE)|m(pty(SmallSquare|VerySmallSquare)|acr)))\n						  | (f(scr|nof|cy|ilig|o(pf|r(k(v)?|all))|jlig|partint|emale|f(ilig|l(ig|lig)|r)|l(tns|lig|at)|allingdotseq|r(own|a(sl|c(1(2|8|3|4|5|6)|78|2(3|5)|3(8|4|5)|45|5(8|6)))))|F(scr|cy|illed(SmallSquare|VerySmallSquare)|o(uriertrf|pf|rAll)|fr))\n						  | (G(scr|c(y|irc|edil)|t|opf|dot|T|Jcy|fr|amma(d)?|reater(Greater|SlantEqual|Tilde|Equal(Less)?|FullEqual|Less)|g|breve)|g(s(cr|im(e|l)?)|n(sim|e(q(q)?)?|E|ap(prox)?)|c(y|irc)|t(c(c|ir)|dot|quest|lPar|r(sim|dot|eq(qless|less)|less|a(pprox|rr)))?|imel|opf|dot|jcy|e(s(cc|dot(o(l)?)?|l(es)?)?|q(slant|q)?|l)?|v(nE|ertneqq)|fr|E(l)?|l(j|E|a)?|a(cute|p|mma(d)?)|rave|g(g)?|breve))\n						  | (h(s(cr|trok|lash)|y(phen|bull)|circ|o(ok(leftarrow|rightarrow)|pf|arr|rbar|mtht)|e(llip|arts(uit)?|rcon)|ks(earow|warow)|fr|a(irsp|lf|r(dcy|r(cir|w)?)|milt)|bar|Arr)|H(s(cr|trok)|circ|ilbertSpace|o(pf|rizontalLine)|ump(DownHump|Equal)|fr|a(cek|t)|ARDcy))\n						  | (i(s(cr|in(s(v)?|dot|v|E)?)|n(care|t(cal|prod|e(rcal|gers)|larhk)?|odot|fin(tie)?)?|c(y|irc)?|t(ilde)?|i(nfin|i(nt|int)|ota)?|o(cy|ta|pf|gon)|u(kcy|ml)|jlig|prod|e(cy|xcl)|quest|f(f|r)|acute|grave|m(of|ped|a(cr|th|g(part|e|line))))|I(scr|n(t(e(rsection|gral))?|visible(Comma|Times))|c(y|irc)|tilde|o(ta|pf|gon)|dot|u(kcy|ml)|Ocy|Jlig|fr|Ecy|acute|grave|m(plies|a(cr|ginaryI))?))\n						  | (j(s(cr|ercy)|c(y|irc)|opf|ukcy|fr|math)|J(s(cr|ercy)|c(y|irc)|opf|ukcy|fr))\n						  | (k(scr|hcy|c(y|edil)|opf|jcy|fr|appa(v)?|green)|K(scr|c(y|edil)|Hcy|opf|Jcy|fr|appa))\n						  | (l(s(h|cr|trok|im(e|g)?|q(uo(r)?|b)|aquo)|h(ar(d|u(l)?)|blk)|n(sim|e(q(q)?)?|E|ap(prox)?)|c(y|ub|e(il|dil)|aron)|Barr|t(hree|c(c|ir)|imes|dot|quest|larr|r(i(e|f)?|Par))?|Har|o(ng(left(arrow|rightarrow)|rightarrow|mapsto)|times|z(enge|f)?|oparrow(left|right)|p(f|lus|ar)|w(ast|bar)|a(ng|rr)|brk)|d(sh|ca|quo(r)?|r(dhar|ushar))|ur(dshar|uhar)|jcy|par(lt)?|e(s(s(sim|dot|eq(qgtr|gtr)|approx|gtr)|cc|dot(o(r)?)?|g(es)?)?|q(slant|q)?|ft(harpoon(down|up)|threetimes|leftarrows|arrow(tail)?|right(squigarrow|harpoons|arrow(s)?))|g)?|v(nE|ertneqq)|f(isht|loor|r)|E(g)?|l(hard|corner|tri|arr)?|a(ng(d|le)?|cute|t(e(s)?|ail)?|p|emptyv|quo|rr(sim|hk|tl|pl|fs|lp|b(fs)?)?|gran|mbda)|r(har(d)?|corner|tri|arr|m)|g(E)?|m(idot|oust(ache)?)|b(arr|r(k(sl(d|u)|e)|ac(e|k))|brk)|A(tail|arr|rr))|L(s(h|cr|trok)|c(y|edil|aron)|t|o(ng(RightArrow|left(arrow|rightarrow)|rightarrow|Left(RightArrow|Arrow))|pf|wer(RightArrow|LeftArrow))|T|e(ss(Greater|SlantEqual|Tilde|EqualGreater|FullEqual|Less)|ft(Right(Vector|Arrow)|Ceiling|T(ee(Vector|Arrow)?|riangle(Bar|Equal)?)|Do(ubleBracket|wn(TeeVector|Vector(Bar)?))|Up(TeeVector|DownVector|Vector(Bar)?)|Vector(Bar)?|arrow|rightarrow|Floor|A(ngleBracket|rrow(RightArrow|Bar)?)))|Jcy|fr|l(eftarrow)?|a(ng|cute|placetrf|rr|mbda)|midot))\n						  | (M(scr|cy|inusPlus|opf|u|e(diumSpace|llintrf)|fr|ap)|m(s(cr|tpos)|ho|nplus|c(y|omma)|i(nus(d(u)?|b)?|cro|d(cir|dot|ast)?)|o(dels|pf)|dash|u(ltimap|map)?|p|easuredangle|DDot|fr|l(cp|dr)|a(cr|p(sto(down|up|left)?)?|l(t(ese)?|e)|rker)))\n						  | (n(s(hort(parallel|mid)|c(cue|e|r)?|im(e(q)?)?|u(cc(eq)?|p(set(eq(q)?)?|e|E)?|b(set(eq(q)?)?|e|E)?)|par|qsu(pe|be)|mid)|Rightarrow|h(par|arr|Arr)|G(t(v)?|g)|c(y|ong(dot)?|up|edil|a(p|ron))|t(ilde|lg|riangle(left(eq)?|right(eq)?)|gl)|i(s(d)?|v)?|o(t(ni(v(c|a|b))?|in(dot|v(c|a|b)|E)?)?|pf)|dash|u(m(sp|ero)?)?|jcy|p(olint|ar(sl|t|allel)?|r(cue|e(c(eq)?)?)?)|e(s(im|ear)|dot|quiv|ar(hk|r(ow)?)|xist(s)?|Arr)?|v(sim|infin|Harr|dash|Dash|l(t(rie)?|e|Arr)|ap|r(trie|Arr)|g(t|e))|fr|w(near|ar(hk|r(ow)?)|Arr)|V(dash|Dash)|l(sim|t(ri(e)?)?|dr|e(s(s)?|q(slant|q)?|ft(arrow|rightarrow))?|E|arr|Arr)|a(ng|cute|tur(al(s)?)?|p(id|os|prox|E)?|bla)|r(tri(e)?|ightarrow|arr(c|w)?|Arr)|g(sim|t(r)?|e(s|q(slant|q)?)?|E)|mid|L(t(v)?|eft(arrow|rightarrow)|l)|b(sp|ump(e)?))|N(scr|c(y|edil|aron)|tilde|o(nBreakingSpace|Break|t(R(ightTriangle(Bar|Equal)?|everseElement)|Greater(Greater|SlantEqual|Tilde|Equal|FullEqual|Less)?|S(u(cceeds(SlantEqual|Tilde|Equal)?|perset(Equal)?|bset(Equal)?)|quareSu(perset(Equal)?|bset(Equal)?))|Hump(DownHump|Equal)|Nested(GreaterGreater|LessLess)|C(ongruent|upCap)|Tilde(Tilde|Equal|FullEqual)?|DoubleVerticalBar|Precedes(SlantEqual|Equal)?|E(qual(Tilde)?|lement|xists)|VerticalBar|Le(ss(Greater|SlantEqual|Tilde|Equal|Less)?|ftTriangle(Bar|Equal)?))?|pf)|u|e(sted(GreaterGreater|LessLess)|wLine|gative(MediumSpace|Thi(nSpace|ckSpace)|VeryThinSpace))|Jcy|fr|acute))\n						  | (o(s(cr|ol|lash)|h(m|bar)|c(y|ir(c)?)|ti(lde|mes(as)?)|S|int|opf|d(sold|iv|ot|ash|blac)|uml|p(erp|lus|ar)|elig|vbar|f(cir|r)|l(c(ir|ross)|t|ine|arr)|a(st|cute)|r(slope|igof|or|d(er(of)?|f|m)?|v|arr)?|g(t|on|rave)|m(i(nus|cron|d)|ega|acr))|O(s(cr|lash)|c(y|irc)|ti(lde|mes)|opf|dblac|uml|penCurly(DoubleQuote|Quote)|ver(B(ar|rac(e|ket))|Parenthesis)|fr|Elig|acute|r|grave|m(icron|ega|acr)))\n						  | (p(s(cr|i)|h(i(v)?|one|mmat)|cy|i(tchfork|v)?|o(intint|und|pf)|uncsp|er(cnt|tenk|iod|p|mil)|fr|l(us(sim|cir|two|d(o|u)|e|acir|mn|b)?|an(ck(h)?|kv))|ar(s(im|l)|t|a(llel)?)?|r(sim|n(sim|E|ap)|cue|ime(s)?|o(d|p(to)?|f(surf|line|alar))|urel|e(c(sim|n(sim|eqq|approx)|curlyeq|eq|approx)?)?|E|ap)?|m)|P(s(cr|i)|hi|cy|i|o(incareplane|pf)|fr|lusMinus|artialD|r(ime|o(duct|portion(al)?)|ecedes(SlantEqual|Tilde|Equal)?)?))\n						  | (q(scr|int|opf|u(ot|est(eq)?|at(int|ernions))|prime|fr)|Q(scr|opf|UOT|fr))\n						  | (R(s(h|cr)|ho|c(y|edil|aron)|Barr|ight(Ceiling|T(ee(Vector|Arrow)?|riangle(Bar|Equal)?)|Do(ubleBracket|wn(TeeVector|Vector(Bar)?))|Up(TeeVector|DownVector|Vector(Bar)?)|Vector(Bar)?|arrow|Floor|A(ngleBracket|rrow(Bar|LeftArrow)?))|o(undImplies|pf)|uleDelayed|e(verse(UpEquilibrium|E(quilibrium|lement)))?|fr|EG|a(ng|cute|rr(tl)?)|rightarrow)|r(s(h|cr|q(uo(r)?|b)|aquo)|h(o(v)?|ar(d|u(l)?))|nmid|c(y|ub|e(il|dil)|aron)|Barr|t(hree|imes|ri(e|f|ltri)?)|i(singdotseq|ng|ght(squigarrow|harpoon(down|up)|threetimes|left(harpoons|arrows)|arrow(tail)?|rightarrows))|Har|o(times|p(f|lus|ar)|a(ng|rr)|brk)|d(sh|ca|quo(r)?|ldhar)|uluhar|p(polint|ar(gt)?)|e(ct|al(s|ine|part)?|g)|f(isht|loor|r)|l(har|arr|m)|a(ng(d|e|le)?|c(ute|e)|t(io(nals)?|ail)|dic|emptyv|quo|rr(sim|hk|c|tl|pl|fs|w|lp|ap|b(fs)?)?)|rarr|x|moust(ache)?|b(arr|r(k(sl(d|u)|e)|ac(e|k))|brk)|A(tail|arr|rr)))\n						  | (s(s(cr|tarf|etmn|mile)|h(y|c(hcy|y)|ort(parallel|mid)|arp)|c(sim|y|n(sim|E|ap)|cue|irc|polint|e(dil)?|E|a(p|ron))?|t(ar(f)?|r(ns|aight(phi|epsilon)))|i(gma(v|f)?|m(ne|dot|plus|e(q)?|l(E)?|rarr|g(E)?)?)|zlig|o(pf|ftcy|l(b(ar)?)?)|dot(e|b)?|u(ng|cc(sim|n(sim|eqq|approx)|curlyeq|eq|approx)?|p(s(im|u(p|b)|et(neq(q)?|eq(q)?)?)|hs(ol|ub)|1|n(e|E)|2|d(sub|ot)|3|plus|e(dot)?|E|larr|mult)?|m|b(s(im|u(p|b)|et(neq(q)?|eq(q)?)?)|n(e|E)|dot|plus|e(dot)?|E|rarr|mult)?)|pa(des(uit)?|r)|e(swar|ct|tm(n|inus)|ar(hk|r(ow)?)|xt|mi|Arr)|q(su(p(set(eq)?|e)?|b(set(eq)?|e)?)|c(up(s)?|ap(s)?)|u(f|ar(e|f))?)|fr(own)?|w(nwar|ar(hk|r(ow)?)|Arr)|larr|acute|rarr|m(t(e(s)?)?|i(d|le)|eparsl|a(shp|llsetminus))|bquo)|S(scr|hort(RightArrow|DownArrow|UpArrow|LeftArrow)|c(y|irc|edil|aron)?|tar|igma|H(cy|CHcy)|opf|u(c(hThat|ceeds(SlantEqual|Tilde|Equal)?)|p(set|erset(Equal)?)?|m|b(set(Equal)?)?)|OFTcy|q(uare(Su(perset(Equal)?|bset(Equal)?)|Intersection|Union)?|rt)|fr|acute|mallCircle))\n						  | (t(s(hcy|c(y|r)|trok)|h(i(nsp|ck(sim|approx))|orn|e(ta(sym|v)?|re(4|fore))|k(sim|ap))|c(y|edil|aron)|i(nt|lde|mes(d|b(ar)?)?)|o(sa|p(cir|f(ork)?|bot)?|ea)|dot|prime|elrec|fr|w(ixt|ohead(leftarrow|rightarrow))|a(u|rget)|r(i(sb|time|dot|plus|e|angle(down|q|left(eq)?|right(eq)?)?|minus)|pezium|ade)|brk)|T(s(cr|trok)|RADE|h(i(nSpace|ckSpace)|e(ta|refore))|c(y|edil|aron)|S(cy|Hcy)|ilde(Tilde|Equal|FullEqual)?|HORN|opf|fr|a(u|b)|ripleDot))\n						  | (u(scr|h(ar(l|r)|blk)|c(y|irc)|t(ilde|dot|ri(f)?)|Har|o(pf|gon)|d(har|arr|blac)|u(arr|ml)|p(si(h|lon)?|harpoon(left|right)|downarrow|uparrows|lus|arrow)|f(isht|r)|wangle|l(c(orn(er)?|rop)|tri)|a(cute|rr)|r(c(orn(er)?|rop)|tri|ing)|grave|m(l|acr)|br(cy|eve)|Arr)|U(scr|n(ion(Plus)?|der(B(ar|rac(e|ket))|Parenthesis))|c(y|irc)|tilde|o(pf|gon)|dblac|uml|p(si(lon)?|downarrow|Tee(Arrow)?|per(RightArrow|LeftArrow)|DownArrow|Equilibrium|arrow|Arrow(Bar|DownArrow)?)|fr|a(cute|rr(ocir)?)|ring|grave|macr|br(cy|eve)))\n						  | (v(s(cr|u(pn(e|E)|bn(e|E)))|nsu(p|b)|cy|Bar(v)?|zigzag|opf|dash|prop|e(e(eq|bar)?|llip|r(t|bar))|Dash|fr|ltri|a(ngrt|r(s(igma|u(psetneq(q)?|bsetneq(q)?))|nothing|t(heta|riangle(left|right))|p(hi|i|ropto)|epsilon|kappa|r(ho)?))|rtri|Arr)|V(scr|cy|opf|dash(l)?|e(e|r(yThinSpace|t(ical(Bar|Separator|Tilde|Line))?|bar))|Dash|vdash|fr|bar))\n						  | (w(scr|circ|opf|p|e(ierp|d(ge(q)?|bar))|fr|r(eath)?)|W(scr|circ|opf|edge|fr))\n						  | (X(scr|i|opf|fr)|x(s(cr|qcup)|h(arr|Arr)|nis|c(irc|up|ap)|i|o(time|dot|p(f|lus))|dtri|u(tri|plus)|vee|fr|wedge|l(arr|Arr)|r(arr|Arr)|map))\n						  | (y(scr|c(y|irc)|icy|opf|u(cy|ml)|en|fr|ac(y|ute))|Y(scr|c(y|irc)|opf|uml|Icy|Ucy|fr|acute|Acy))\n						  | (z(scr|hcy|c(y|aron)|igrarr|opf|dot|e(ta|etrf)|fr|w(nj|j)|acute)|Z(scr|c(y|aron)|Hcy|opf|dot|e(ta|roWidthSpace)|fr|acute))\n						)\n						(;)\n					",
-          "name": "constant.character.entity.named.$2.html"
-        },
-        {
-          "captures": {
-            "1": {
-              "name": "punctuation.definition.entity.html"
-            },
-            "3": {
-              "name": "punctuation.definition.entity.html"
-            }
-          },
-          "match": "(&)#[0-9]+(;)",
-          "name": "constant.character.entity.numeric.decimal.html"
-        },
-        {
-          "captures": {
-            "1": {
-              "name": "punctuation.definition.entity.html"
-            },
-            "3": {
-              "name": "punctuation.definition.entity.html"
-            }
-          },
-          "match": "(&)#[xX][0-9a-fA-F]+(;)",
-          "name": "constant.character.entity.numeric.hexadecimal.html"
-        },
-        {
-          "match": "&(?=[a-zA-Z0-9]+;)",
-          "name": "invalid.illegal.ambiguous-ampersand.html"
-        }
-      ]
-    },
-    "heading": {
-      "match": "(?:^|\\G)[ ]*(#{1,6}\\s+(.*?)(\\s+#{1,6})?\\s*)$",
-      "captures": {
-        "1": {
-          "patterns": [
-            {
-              "match": "(#{6})\\s+(.*?)(?:\\s+(#+))?\\s*$",
-              "name": "heading.6.markdown",
-              "captures": {
-                "1": {
-                  "name": "punctuation.definition.heading.markdown"
-                },
-                "2": {
-                  "name": "entity.name.section.markdown",
-                  "patterns": [
-                    {
-                      "include": "text.html.markdown#inline"
-                    },
-                    {
-                      "include": "text.html.derivative"
-                    }
-                  ]
-                },
-                "3": {
-                  "name": "punctuation.definition.heading.markdown"
-                }
-              }
-            },
-            {
-              "match": "(#{5})\\s+(.*?)(?:\\s+(#+))?\\s*$",
-              "name": "heading.5.markdown",
-              "captures": {
-                "1": {
-                  "name": "punctuation.definition.heading.markdown"
-                },
-                "2": {
-                  "name": "entity.name.section.markdown",
-                  "patterns": [
-                    {
-                      "include": "text.html.markdown#inline"
-                    },
-                    {
-                      "include": "text.html.derivative"
-                    }
-                  ]
-                },
-                "3": {
-                  "name": "punctuation.definition.heading.markdown"
-                }
-              }
-            },
-            {
-              "match": "(#{4})\\s+(.*?)(?:\\s+(#+))?\\s*$",
-              "name": "heading.4.markdown",
-              "captures": {
-                "1": {
-                  "name": "punctuation.definition.heading.markdown"
-                },
-                "2": {
-                  "name": "entity.name.section.markdown",
-                  "patterns": [
-                    {
-                      "include": "text.html.markdown#inline"
-                    },
-                    {
-                      "include": "text.html.derivative"
-                    }
-                  ]
-                },
-                "3": {
-                  "name": "punctuation.definition.heading.markdown"
-                }
-              }
-            },
-            {
-              "match": "(#{3})\\s+(.*?)(?:\\s+(#+))?\\s*$",
-              "name": "heading.3.markdown",
-              "captures": {
-                "1": {
-                  "name": "punctuation.definition.heading.markdown"
-                },
-                "2": {
-                  "name": "entity.name.section.markdown",
-                  "patterns": [
-                    {
-                      "include": "text.html.markdown#inline"
-                    },
-                    {
-                      "include": "text.html.derivative"
-                    }
-                  ]
-                },
-                "3": {
-                  "name": "punctuation.definition.heading.markdown"
-                }
-              }
-            },
-            {
-              "match": "(#{2})\\s+(.*?)(?:\\s+(#+))?\\s*$",
-              "name": "heading.2.markdown",
-              "captures": {
-                "1": {
-                  "name": "punctuation.definition.heading.markdown"
-                },
-                "2": {
-                  "name": "entity.name.section.markdown",
-                  "patterns": [
-                    {
-                      "include": "text.html.markdown#inline"
-                    },
-                    {
-                      "include": "text.html.derivative"
-                    }
-                  ]
-                },
-                "3": {
-                  "name": "punctuation.definition.heading.markdown"
-                }
-              }
-            },
-            {
-              "match": "(#{1})\\s+(.*?)(?:\\s+(#+))?\\s*$",
-              "name": "heading.1.markdown",
-              "captures": {
-                "1": {
-                  "name": "punctuation.definition.heading.markdown"
-                },
-                "2": {
-                  "name": "entity.name.section.markdown",
-                  "patterns": [
-                    {
-                      "include": "text.html.markdown#inline"
-                    },
-                    {
-                      "include": "text.html.derivative"
-                    }
-                  ]
-                },
-                "3": {
-                  "name": "punctuation.definition.heading.markdown"
-                }
-              }
-            }
-          ]
-        }
-      },
-      "name": "markup.heading.markdown",
-      "patterns": [
-        {
-          "include": "text.html.markdown#inline"
-        }
-      ]
-    },
-    "heading-setext": {
-      "patterns": [
-        {
-          "match": "^(={3,})(?=[ \\t]*$\\n?)",
-          "name": "markup.heading.setext.1.markdown"
-        },
-        {
-          "match": "^(-{3,})(?=[ \\t]*$\\n?)",
-          "name": "markup.heading.setext.2.markdown"
-        }
-      ]
-    },
-    "lists": {
-      "patterns": [
-        {
-          "begin": "(^|\\G)([ ]*)([*+-])([ \\t])",
-          "beginCaptures": {
-            "3": {
-              "name": "punctuation.definition.list.begin.markdown"
-            }
-          },
-          "comment": "Currently does not support un-indented second lines.",
-          "name": "markup.list.unnumbered.markdown",
-          "patterns": [
-            {
-              "include": "#block"
-            },
-            {
-              "include": "text.html.markdown#list_paragraph"
-            }
-          ],
-          "while": "((^|\\G)([ ]*|\\t))|(^[ \\t]*$)"
-        },
-        {
-          "begin": "(^|\\G)([ ]*)([0-9]+\\.)([ \\t])",
-          "beginCaptures": {
-            "3": {
-              "name": "punctuation.definition.list.begin.markdown"
-            }
-          },
-          "name": "markup.list.numbered.markdown",
-          "patterns": [
-            {
-              "include": "#block"
-            },
-            {
-              "include": "text.html.markdown#list_paragraph"
-            }
-          ],
-          "while": "((^|\\G)([ ]*|\\t))|(^[ \\t]*$)"
-        }
-      ]
-    },
-    "paragraph": {
-      "begin": "(^|\\G)[ ]*(?=\\S)",
-      "name": "meta.paragraph.markdown",
-      "patterns": [
-        {
-          "include": "#inline"
-        },
-        {
-          "include": "text.html.markdown#inline"
-        },
-        {
-          "include": "text.html.derivative"
-        },
-        {
-          "include": "#heading-setext"
-        }
-      ],
-      "while": "(^|\\G)((?=\\s*[-=]{3,}\\s*$)|[ ]{4,}(?=\\S))"
-    },
-    "blockquote": {
-      "begin": "(^|\\G)[ ]*(>) ?",
-      "captures": {
-        "2": {
-          "name": "punctuation.definition.quote.begin.markdown"
-        }
-      },
-      "name": "markup.quote.markdown",
-      "patterns": [
-        {
-          "include": "#block"
-        }
-      ],
-      "while": "(^|\\G)\\s*(>) ?"
-    }
-  }
-};
-const mdcTMLanguage = grammar;
-
-const logger = consola.withScope("@nuxt/content");
-const resolveLang = (lang) => BUNDLED_LANGUAGES.find((l) => l.id === lang || l.aliases?.includes(lang));
-const resolveTheme = (theme) => {
-  if (!theme) {
-    return;
-  }
-  if (typeof theme === "string") {
-    theme = {
-      default: theme
-    };
-  }
-  return Object.entries(theme).reduce((acc, [key, value]) => {
-    acc[key] = BUNDLED_THEMES.find((t) => t === value);
-    return acc;
-  }, {});
-};
-const useShikiHighlighter = createSingleton((opts) => {
-  const { theme, preload } = opts || {};
-  let promise;
-  const getShikiHighlighter = () => {
-    if (!promise) {
-      promise = getHighlighter({
-        theme: theme?.default || theme || "dark-plus",
-        langs: [
-          ...preload || [],
-          "diff",
-          "json",
-          "js",
-          "ts",
-          "css",
-          "shell",
-          "html",
-          "md",
-          "yaml",
-          "vue",
-          {
-            id: "md",
-            scopeName: "text.markdown.mdc",
-            path: "mdc.tmLanguage.json",
-            aliases: ["markdown", "md", "mdc"],
-            grammar: mdcTMLanguage
-          }
-        ]
-      }).then((highlighter) => {
-        const themes = Object.values(typeof theme === "string" ? { default: theme } : theme || {});
-        if (themes.length) {
-          return Promise.all(themes.map((theme2) => highlighter.loadTheme(theme2))).then(() => highlighter);
-        }
-        return highlighter;
-      });
-    }
-    return promise;
-  };
-  const getHighlightedTokens = async (code, lang, theme2) => {
-    const highlighter = await getShikiHighlighter();
-    code = code.replace(/\n+$/, "");
-    lang = resolveLang(lang || "")?.id || lang;
-    theme2 = resolveTheme(theme2 || "") || { default: highlighter.getTheme() };
-    if (!lang) {
-      return [[{ content: code }]];
-    }
-    if (!highlighter.getLoadedLanguages().includes(lang)) {
-      const languageRegistration = resolveLang(lang);
-      if (languageRegistration) {
-        await highlighter.loadLanguage(languageRegistration);
-      } else {
-        logger.warn(`Language '${lang}' is not supported by shiki. Skipping highlight.`);
-        return [[{ content: code }]];
-      }
-    }
-    const newThemes = Object.values(theme2).filter((t) => !highlighter.getLoadedThemes().includes(t));
-    if (newThemes.length) {
-      await Promise.all(newThemes.map(highlighter.loadTheme));
-    }
-    const coloredTokens = Object.entries(theme2).map(([key, theme3]) => {
-      const tokens = highlighter.codeToThemedTokens(code, lang, theme3, { includeExplanation: false });
-      return {
-        key,
-        theme: theme3,
-        tokens
-      };
-    });
-    const highlightedCode = [];
-    for (const line in coloredTokens[0].tokens) {
-      highlightedCode[line] = coloredTokens.reduce((acc, color) => {
-        return mergeLines({
-          key: coloredTokens[0].key,
-          tokens: acc
-        }, {
-          key: color.key,
-          tokens: color.tokens[line]
-        });
-      }, coloredTokens[0].tokens[line]);
-    }
-    return highlightedCode;
-  };
-  const getHighlightedAST = async (code, lang, theme2, opts2) => {
-    const lines = await getHighlightedTokens(code, lang, theme2);
-    const { highlights = [], colorMap = {} } = opts2 || {};
-    return lines.map((line, lineIndex) => ({
-      type: "element",
-      tag: "span",
-      props: { class: ["line", highlights.includes(lineIndex + 1) ? "highlight" : ""].join(" ").trim() },
-      children: line.map(tokenSpan)
-    }));
-    function getColorProps(token) {
-      if (!token.color) {
-        return {};
-      }
-      if (typeof token.color === "string") {
-        return { style: { color: token.color } };
-      }
-      const key = Object.values(token.color).join("");
-      if (!colorMap[key]) {
-        colorMap[key] = {
-          colors: token.color,
-          className: "ct-" + Math.random().toString(16).substring(2, 8)
-          // hash(key)
-        };
-      }
-      return { class: colorMap[key].className };
-    }
-    function tokenSpan(token) {
-      return {
-        type: "element",
-        tag: "span",
-        props: getColorProps(token),
-        children: [{ type: "text", value: token.content }]
-      };
-    }
-  };
-  const getHighlightedCode = async (code, lang, theme2, opts2) => {
-    const colorMap = opts2?.colorMap || {};
-    const highlights = opts2?.highlights || [];
-    const ast = await getHighlightedAST(code, lang, theme2, { colorMap, highlights });
-    function renderNode(node) {
-      if (node.type === "text") {
-        return node.value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-      }
-      const children = node.children.map(renderNode).join("");
-      return `<${node.tag} class="${node.props.class}">${children}</${node.tag}>`;
-    }
-    return {
-      code: ast.map(renderNode).join(""),
-      styles: generateStyles(colorMap)
-    };
-  };
-  const generateStyles = (colorMap) => {
-    const colors = [];
-    for (const colorClass of Object.values(colorMap)) {
-      Object.entries(colorClass.colors).forEach(([variant, color]) => {
-        if (variant === "default") {
-          colors.unshift(`.${colorClass.className}{color:${color}}`);
-        } else {
-          colors.push(`.${variant} .${colorClass.className}{color:${color}}`);
-        }
-      });
-    }
-    return colors.join("\n");
-  };
-  return {
-    getHighlightedTokens,
-    getHighlightedAST,
-    getHighlightedCode,
-    generateStyles
-  };
-});
-function mergeLines(line1, line2) {
-  const mergedTokens = [];
-  const getColors = (h, i) => typeof h.tokens[i].color === "string" ? { [h.key]: h.tokens[i].color } : h.tokens[i].color;
-  const right = {
-    key: line1.key,
-    tokens: line1.tokens.slice()
-  };
-  const left = {
-    key: line2.key,
-    tokens: line2.tokens.slice()
-  };
-  let index = 0;
-  while (index < right.tokens.length) {
-    const rightToken = right.tokens[index];
-    const leftToken = left.tokens[index];
-    if (rightToken.content === leftToken.content) {
-      mergedTokens.push({
-        content: rightToken.content,
-        color: {
-          ...getColors(right, index),
-          ...getColors(left, index)
-        }
-      });
-      index += 1;
-      continue;
-    }
-    if (rightToken.content.startsWith(leftToken.content)) {
-      const nextRightToken = {
-        ...rightToken,
-        content: rightToken.content.slice(leftToken.content.length)
-      };
-      rightToken.content = leftToken.content;
-      right.tokens.splice(index + 1, 0, nextRightToken);
-      continue;
-    }
-    if (leftToken.content.startsWith(rightToken.content)) {
-      const nextLeftToken = {
-        ...leftToken,
-        content: leftToken.content.slice(rightToken.content.length)
-      };
-      leftToken.content = rightToken.content;
-      left.tokens.splice(index + 1, 0, nextLeftToken);
-      continue;
-    }
-    throw new Error("Unexpected token");
-  }
-  return mergedTokens;
-}
-
-const shiki = defineTransformer({
-  name: "highlight",
-  extensions: [".md"],
-  transform: async (content, options = {}) => {
-    const shikiHighlighter = useShikiHighlighter(options);
-    await Promise.all([
-      highlight(content.body),
-      highlight(content.excerpt)
-    ]);
-    return content;
-    async function highlight(document) {
-      if (!document) {
-        return;
-      }
-      const colorMap = {};
-      const codeBlocks = [];
-      const inlineCodes = [];
-      visit(
-        document,
-        (node) => node?.tag === "code" && node?.props.code || node?.tag === "code-inline" && (node.props?.lang || node.props?.language),
-        (node) => {
-          if (node?.tag === "code") {
-            codeBlocks.push(node);
-          } else if (node?.tag === "code-inline") {
-            inlineCodes.push(node);
-          }
-        }
-      );
-      await Promise.all(codeBlocks.map((node) => highlightBlock(node, colorMap)));
-      await Promise.all(inlineCodes.map((node) => highlightInline(node, colorMap)));
-      if (Object.values(colorMap).length) {
-        document?.children.push({
-          type: "element",
-          tag: "style",
-          children: [{ type: "text", value: shikiHighlighter.generateStyles(colorMap) }]
-        });
-      }
-    }
-    async function highlightInline(node, colorMap) {
-      const code = node.children[0].value;
-      const lines = await shikiHighlighter.getHighlightedAST(code, node.props.lang || node.props.language, options.theme, { colorMap });
-      node.children = lines[0].children;
-      node.props = Object.assign(node.props || {}, { class: "colored" });
-      return node;
-    }
-    async function highlightBlock(node, colorMap) {
-      const { code, language: lang, highlights = [] } = node.props;
-      const innerCodeNode = node.children[0].children[0];
-      innerCodeNode.children = await shikiHighlighter.getHighlightedAST(code, lang, options.theme, { colorMap, highlights });
-      return node;
-    }
   }
 });
 
@@ -3489,7 +2691,6 @@ const TRANSFORMERS = [
   markdown,
   json,
   yaml,
-  shiki,
   pathMeta
 ];
 function getParser(ext, additionalTransformers = []) {
@@ -3528,6 +2729,237 @@ async function transformContent(id, content, options = {}) {
   return result;
 }
 
+function makeIgnored(ignores) {
+  const rxAll = ["/\\.", "/-", ...ignores.filter((p) => p)].map((p) => new RegExp(p));
+  return function isIgnored(key) {
+    const path = "/" + key.replace(/:/g, "/");
+    return rxAll.some((rx) => rx.test(path));
+  };
+}
+
+function createMatch(opts = {}) {
+  const operators = createOperators(match, opts.operators);
+  function match(item, conditions) {
+    if (typeof conditions !== "object" || conditions instanceof RegExp) {
+      return operators.$eq(item, conditions);
+    }
+    return Object.keys(conditions || {}).every((key) => {
+      const condition = conditions[key];
+      if (key.startsWith("$") && operators[key]) {
+        const fn = operators[key];
+        return typeof fn === "function" ? fn(item, condition) : false;
+      }
+      return match(get(item, key), condition);
+    });
+  }
+  return match;
+}
+function createOperators(match, operators = {}) {
+  return {
+    $match: (item, condition) => match(item, condition),
+    /**
+     * Match if item equals condition
+     **/
+    $eq: (item, condition) => condition instanceof RegExp ? condition.test(item) : item === condition,
+    /**
+     * Match if item not equals condition
+     **/
+    $ne: (item, condition) => condition instanceof RegExp ? !condition.test(item) : item !== condition,
+    /**
+     * Match is condition is false
+     **/
+    $not: (item, condition) => !match(item, condition),
+    /**
+     * Match only if all of nested conditions are true
+     **/
+    $and: (item, condition) => {
+      assertArray(condition, "$and requires an array as condition");
+      return condition.every((cond) => match(item, cond));
+    },
+    /**
+     * Match if any of nested conditions is true
+     **/
+    $or: (item, condition) => {
+      assertArray(condition, "$or requires an array as condition");
+      return condition.some((cond) => match(item, cond));
+    },
+    /**
+     * Match if item is in condition array
+     **/
+    $in: (item, condition) => ensureArray(condition).some(
+      (cond) => Array.isArray(item) ? match(item, { $contains: cond }) : match(item, cond)
+    ),
+    /**
+     * Match if item contains every condition or math every rule in condition array
+     **/
+    $contains: (item, condition) => {
+      item = Array.isArray(item) ? item : String(item);
+      return ensureArray(condition).every((i) => item.includes(i));
+    },
+    /**
+     * Ignore case contains
+     **/
+    $icontains: (item, condition) => {
+      if (typeof condition !== "string") {
+        throw new TypeError("$icontains requires a string, use $contains instead");
+      }
+      item = String(item).toLocaleLowerCase();
+      return ensureArray(condition).every((i) => item.includes(i.toLocaleLowerCase()));
+    },
+    /**
+     * Match if item contains at least one rule from condition array
+     */
+    $containsAny: (item, condition) => {
+      assertArray(condition, "$containsAny requires an array as condition");
+      item = Array.isArray(item) ? item : String(item);
+      return condition.some((i) => item.includes(i));
+    },
+    /**
+     * Check key existence
+     */
+    $exists: (item, condition) => condition ? typeof item !== "undefined" : typeof item === "undefined",
+    /**
+     * Match if type of item equals condition
+     */
+    $type: (item, condition) => typeof item === String(condition),
+    /**
+     * Provides regular expression capabilities for pattern matching strings.
+     */
+    $regex: (item, condition) => {
+      if (!(condition instanceof RegExp)) {
+        const matched = String(condition).match(/\/(.*)\/([dgimsuy]*)$/);
+        condition = matched ? new RegExp(matched[1], matched[2] || "") : new RegExp(condition);
+      }
+      return condition.test(String(item || ""));
+    },
+    /**
+     * Check if item is less than condition
+     */
+    $lt: (item, condition) => {
+      return item < condition;
+    },
+    /**
+     * Check if item is less than or equal to condition
+     */
+    $lte: (item, condition) => {
+      return item <= condition;
+    },
+    /**
+     * Check if item is greater than condition
+     */
+    $gt: (item, condition) => {
+      return item > condition;
+    },
+    /**
+     * Check if item is greater than or equal to condition
+     */
+    $gte: (item, condition) => {
+      return item >= condition;
+    },
+    ...operators || {}
+  };
+}
+
+function createPipelineFetcher(getContentsList) {
+  const match = createMatch();
+  const surround = (data, { query, before, after }) => {
+    const matchQuery = typeof query === "string" ? { _path: query } : query;
+    const index = data.findIndex((item) => match(item, matchQuery));
+    before = before ?? 1;
+    after = after ?? 1;
+    const slice = new Array(before + after).fill(null, 0);
+    return index === -1 ? slice : slice.map((_, i) => data[index - before + i + Number(i >= before)] || null);
+  };
+  const matchingPipelines = [
+    // Conditions
+    (state, params) => {
+      const filtered = state.result.filter((item) => ensureArray(params.where).every((matchQuery) => match(item, matchQuery)));
+      return {
+        ...state,
+        result: filtered,
+        total: filtered.length
+      };
+    },
+    // Sort data
+    (state, params) => ensureArray(params.sort).forEach((options) => sortList(state.result, options)),
+    function fetchSurround(state, params, db) {
+      if (params.surround) {
+        let _surround = surround(state.result?.length === 1 ? db : state.result, params.surround);
+        _surround = apply(withoutKeys(params.without))(_surround);
+        _surround = apply(withKeys(params.only))(_surround);
+        state.surround = _surround;
+      }
+      return state;
+    }
+  ];
+  const transformingPiples = [
+    // Skip first items
+    (state, params) => {
+      if (params.skip) {
+        return {
+          ...state,
+          result: state.result.slice(params.skip),
+          skip: params.skip
+        };
+      }
+    },
+    // Pick first items
+    (state, params) => {
+      if (params.limit) {
+        return {
+          ...state,
+          result: state.result.slice(0, params.limit),
+          limit: params.limit
+        };
+      }
+    },
+    function fetchDirConfig(state, params, db) {
+      if (params.dirConfig) {
+        const path = state.result[0]?._path || params.where?.find((w) => w._path)?._path;
+        const dirConfig = db.find((item) => item._path === joinURL(path, "_dir"));
+        if (dirConfig) {
+          state.dirConfig = { _path: dirConfig._path, ...withoutKeys(["_"])(dirConfig) };
+        }
+      }
+      return state;
+    },
+    // Remove unwanted fields
+    (state, params) => ({
+      ...state,
+      result: apply(withoutKeys(params.without))(state.result)
+    }),
+    // Select only wanted fields
+    (state, params) => ({
+      ...state,
+      result: apply(withKeys(params.only))(state.result)
+    })
+  ];
+  return async (query) => {
+    const db = await getContentsList();
+    const params = query.params();
+    const result1 = {
+      result: db,
+      limit: 0,
+      skip: 0,
+      total: db.length
+    };
+    const matchedData = matchingPipelines.reduce(($data, pipe) => pipe($data, params, db) || $data, result1);
+    if (params.count) {
+      return {
+        result: matchedData.result.length
+      };
+    }
+    const result = transformingPiples.reduce(($data, pipe) => pipe($data, params, db) || $data, matchedData);
+    if (params.first) {
+      return {
+        ...omit(["skip", "limit", "total"])(result),
+        result: result.result[0]
+      };
+    }
+    return result;
+  };
+}
+
 const isPreview = (event) => {
   const previewToken = getQuery$1(event).previewToken || getCookie(event, "previewToken");
   return !!previewToken;
@@ -3536,6 +2968,17 @@ const getPreview = (event) => {
   const key = getQuery$1(event).previewToken || getCookie(event, "previewToken");
   return { key };
 };
+
+function buildAssetsDir() {
+  return useRuntimeConfig().app.buildAssetsDir;
+}
+function buildAssetsURL(...path) {
+  return joinURL(publicAssetsURL(), buildAssetsDir(), ...path);
+}
+function publicAssetsURL(...path) {
+  const publicBase = useRuntimeConfig().app.cdnURL || useRuntimeConfig().app.baseURL;
+  return path.length ? joinURL(publicBase, ...path) : publicBase;
+}
 
 async function getContentIndex(event) {
   const defaultLocale = useRuntimeConfig().content.defaultLocale;
@@ -3558,7 +3001,7 @@ async function getContentIndex(event) {
 async function getIndexedContentsList(event, query) {
   const params = query.params();
   const path = params?.where?.find((wh) => wh._path)?._path;
-  if (!isPreview(event) && (typeof path === "string" || path instanceof RegExp)) {
+  if (!isPreview(event) && !params.surround && !params.dirConfig && (typeof path === "string" || path instanceof RegExp)) {
     const index = await getContentIndex(event);
     const keys = Object.keys(index).filter((key) => path.test ? path.test(key) : key === String(path)).flatMap((key) => index[key]);
     const contents = await Promise.all(keys.map((key) => getContent(event, key)));
@@ -3573,12 +3016,10 @@ const sourceStorage = prefixStorage(useStorage(), "content:source");
 const cacheStorage = prefixStorage(useStorage(), "cache:content");
 const cacheParsedStorage = prefixStorage(useStorage(), "cache:content:parsed");
 const contentConfig = useRuntimeConfig().content;
-const contentIgnores = contentConfig.ignores.map(
-  (p) => typeof p === "string" ? new RegExp(`^${p}|:${p}`) : p
-);
+const isIgnored = makeIgnored(contentConfig.ignores);
 const invalidKeyCharacters = `'"?#/`.split("");
 const contentIgnorePredicate = (key) => {
-  if (key.startsWith("preview:") || contentIgnores.some((prefix) => prefix.test(key))) {
+  if (key.startsWith("preview:") || isIgnored(key)) {
     return false;
   }
   if (invalidKeyCharacters.some((ik) => key.includes(ik))) {
@@ -3613,11 +3054,22 @@ const getContentsIds = async (event, prefix) => {
   }
   return keys.filter(contentIgnorePredicate);
 };
+function* chunksFromArray(arr, n) {
+  for (let i = 0; i < arr.length; i += n) {
+    yield arr.slice(i, i + n);
+  }
+}
 const getContentsList = async (event, prefix) => {
   const keys = await getContentsIds(event, prefix);
-  const contents = await Promise.all(keys.map((key) => getContent(event, key)));
+  const keyChunks = [...chunksFromArray(keys, 10)];
+  const contents = [];
+  for (const chunk of keyChunks) {
+    const result = await Promise.all(chunk.map((key) => getContent(event, key)));
+    contents.push(...result);
+  }
   return contents;
 };
+const pendingPromises = {};
 const getContent = async (event, id) => {
   const contentId = id;
   if (!contentIgnorePredicate(id)) {
@@ -3633,8 +3085,13 @@ const getContent = async (event, id) => {
   }
   const cached = await cacheParsedStorage.getItem(id);
   const meta = await sourceStorage.getMeta(id);
+  const mtime = meta.mtime;
+  const size = meta.size || 0;
   const hash$1 = hash({
-    meta,
+    // Last modified time
+    mtime,
+    // File size
+    size,
     // Add Content version to the hash, to revalidate the cache on content update
     version: contentConfig.cacheVersion,
     integrity: contentConfig.cacheIntegrity
@@ -3642,42 +3099,50 @@ const getContent = async (event, id) => {
   if (cached?.hash === hash$1) {
     return cached.parsed;
   }
-  const body = await sourceStorage.getItem(id);
-  if (body === null) {
-    return { _id: contentId, body: null };
-  }
-  const parsed = await parseContent(contentId, body);
-  await cacheParsedStorage.setItem(id, { parsed, hash: hash$1 }).catch(() => {
+  const promise = pendingPromises[hash$1] || new Promise(async (resolve) => {
+    const body = await sourceStorage.getItem(id);
+    if (body === null) {
+      return resolve({ _id: contentId, body: null });
+    }
+    const parsed = await parseContent(contentId, body);
+    await cacheParsedStorage.setItem(id, { parsed, hash: hash$1 }).catch(() => {
+    });
+    resolve(parsed);
+    delete pendingPromises[hash$1];
   });
-  return parsed;
+  return promise;
 };
-async function parseContent(id, content, opts = {}) {
+const parseContent = async (id, content, opts = {}) => {
   const nitroApp = useNitroApp();
   const options = defu(
     opts,
     {
-      markdown: contentConfig.markdown,
+      markdown: {
+        ...contentConfig.markdown,
+        highlight: contentConfig.highlight
+      },
       csv: contentConfig.csv,
       yaml: contentConfig.yaml,
-      highlight: contentConfig.highlight,
       transformers: transformers,
       pathMeta: {
         defaultLocale: contentConfig.defaultLocale,
-        locales: contentConfig.locales
+        locales: contentConfig.locales,
+        respectPathCase: contentConfig.respectPathCase
       }
     }
   );
-  const file = { _id: id, body: content };
+  const file = { _id: id, body: typeof content === "string" ? content.replace(/\r\n|\r/g, "\n") : content };
   await nitroApp.hooks.callHook("content:file:beforeParse", file);
   const result = await transformContent(id, file.body, options);
   await nitroApp.hooks.callHook("content:file:afterParse", result);
   return result;
-}
+};
 const createServerQueryFetch = (event) => (query) => {
   return createPipelineFetcher(() => getIndexedContentsList(event, query))(query);
 };
 function serverQueryContent(event, query, ...pathParts) {
-  const queryBuilder = createQuery(createServerQueryFetch(event), typeof query !== "string" ? query || {} : {});
+  const { advanceQuery } = useRuntimeConfig().public.content.experimental;
+  const queryBuilder = advanceQuery ? createQuery(createServerQueryFetch(event), { initialParams: typeof query !== "string" ? query || {} : {}, legacy: false }) : createQuery(createServerQueryFetch(event), { initialParams: typeof query !== "string" ? query || {} : {}, legacy: true });
   let path;
   if (typeof query === "string") {
     path = withLeadingSlash(joinURL(query, ...pathParts));
@@ -3739,7 +3204,7 @@ const getContentQuery = (event) => {
   if (params) {
     return decodeQueryParams(params.replace(/.json$/, ""));
   }
-  const qid = event.context.params.qid?.replace(/.json$/, "");
+  const qid = event.context.params?.qid?.replace(/.json$/, "");
   const query = getQuery$1(event) || {};
   if (qid && query._params) {
     memory[qid] = parseJSONQueryParams(decodeURIComponent(query._params));
@@ -3748,7 +3213,7 @@ const getContentQuery = (event) => {
     }
     return memory[qid];
   }
-  if (memory[qid]) {
+  if (qid && memory[qid]) {
     return memory[qid];
   }
   if (query._params) {
@@ -3789,22 +3254,18 @@ const getContentQuery = (event) => {
   return query;
 };
 
-const _9g8Tkl = defineEventHandler(async (event) => {
+const _PUrSVM = defineEventHandler(async (event) => {
   const query = getContentQuery(event);
+  const { advanceQuery } = useRuntimeConfig().public.content.experimental;
   if (query.first) {
-    const content = await serverQueryContent(event, query).findOne();
-    const path = content?._path || query.where?.find((w) => w._path)?._path;
-    if (path) {
-      const _dir = await serverQueryContent(event).where({ _path: join(path, "_dir") }).without("_").findOne();
-      if (_dir && !Array.isArray(_dir)) {
-        return {
-          _path: path,
-          ...content || {},
-          _dir
-        };
-      }
+    let contentQuery = serverQueryContent(event, query);
+    if (!advanceQuery) {
+      contentQuery = contentQuery.withDirConfig();
     }
-    if (!content) {
+    const content = await contentQuery.findOne();
+    const _result = advanceQuery ? content?.result : content;
+    const missing = !_result && !content?.dirConfig?.navigation?.redirect && !content?._dir?.navigation?.redirect;
+    if (missing) {
       throw createError({
         statusMessage: "Document not found!",
         statusCode: 404,
@@ -3816,11 +3277,13 @@ const _9g8Tkl = defineEventHandler(async (event) => {
     }
     return content;
   }
-  const contents = await serverQueryContent(event, query).find();
-  return contents;
+  if (query.count) {
+    return serverQueryContent(event, query).count();
+  }
+  return serverQueryContent(event, query).find();
 });
 
-const _WdqZyi = defineEventHandler(async (event) => {
+const _GOUK10 = defineEventHandler(async (event) => {
   const { content } = useRuntimeConfig();
   const now = Date.now();
   const contents = await serverQueryContent(event).find();
@@ -3836,7 +3299,7 @@ const _WdqZyi = defineEventHandler(async (event) => {
 });
 
 function createNav(contents, configs) {
-  const { navigation } = useRuntimeConfig().content;
+  const { navigation } = useRuntimeConfig().public.content;
   const pickNavigationFields = (content) => ({
     ...pick(["title", ...navigation.fields])(content),
     ...isObject(content?.navigation) ? content.navigation : {}
@@ -3900,7 +3363,7 @@ const collator = new Intl.Collator(void 0, { numeric: true, sensitivity: "base" 
 function sortAndClear(nav) {
   const sorted = nav.sort((a, b) => collator.compare(a._file, b._file));
   for (const item of sorted) {
-    if (item.children.length) {
+    if (item.children?.length) {
       sortAndClear(item.children);
     } else {
       delete item.children;
@@ -3922,7 +3385,7 @@ function isObject(obj) {
   return Object.prototype.toString.call(obj) === "[object Object]";
 }
 
-const _XTC2bo = defineEventHandler(async (event) => {
+const _okHXL1 = defineEventHandler(async (event) => {
   const query = getContentQuery(event);
   if (!isPreview(event) && Object.keys(query).length === 0) {
     const cache = await cacheStorage.getItem("content-navigation.json");
@@ -3944,7 +3407,7 @@ const _XTC2bo = defineEventHandler(async (event) => {
     }
   }).find();
   const dirConfigs = await serverQueryContent(event).where({ _path: /\/_dir$/i, _partial: true }).find();
-  const configs = dirConfigs.reduce((configs2, conf) => {
+  const configs = (dirConfigs?.result || dirConfigs).reduce((configs2, conf) => {
     if (conf.title?.toLowerCase() === "dir") {
       conf.title = void 0;
     }
@@ -3956,21 +3419,39 @@ const _XTC2bo = defineEventHandler(async (event) => {
     };
     return configs2;
   }, {});
-  return createNav(contents, configs);
+  return createNav(contents?.result || contents, configs);
+});
+
+const _40I7OP = lazyEventHandler(() => {
+  const opts = useRuntimeConfig().ipx || {};
+  const fsDir = opts.fs?.dir ? isAbsolute(opts.fs.dir) ? opts.fs.dir : fileURLToPath(new URL(opts.fs.dir, globalThis._importMeta_.url)) : void 0;
+  const fsStorage = opts.fs?.dir ? ipxFSStorage({ ...opts.fs, dir: fsDir }) : void 0;
+  const httpStorage = opts.http?.domains ? ipxHttpStorage({ ...opts.http }) : void 0;
+  if (!fsStorage && !httpStorage) {
+    throw new Error("IPX storage is not configured!");
+  }
+  const ipxOptions = {
+    ...opts,
+    storage: fsStorage || httpStorage,
+    httpStorage
+  };
+  const ipx = createIPX(ipxOptions);
+  const ipxHandler = createIPXH3Handler(ipx);
+  return useBase(opts.baseURL, ipxHandler);
 });
 
 const _lazy_0bm7Da = () => Promise.resolve().then(function () { return renderer$1; });
 
 const handlers = [
   { route: '/__nuxt_error', handler: _lazy_0bm7Da, lazy: true, middleware: false, method: undefined },
-  { route: '', handler: _d1eaGg, lazy: false, middleware: false, method: undefined },
-  { route: '/api/_content/query/:qid/**:params', handler: _9g8Tkl, lazy: false, middleware: false, method: "get" },
-  { route: '/api/_content/query/:qid', handler: _9g8Tkl, lazy: false, middleware: false, method: "get" },
-  { route: '/api/_content/query', handler: _9g8Tkl, lazy: false, middleware: false, method: "get" },
-  { route: '/api/_content/cache.json', handler: _WdqZyi, lazy: false, middleware: false, method: "get" },
-  { route: '/api/_content/navigation/:qid/**:params', handler: _XTC2bo, lazy: false, middleware: false, method: "get" },
-  { route: '/api/_content/navigation/:qid', handler: _XTC2bo, lazy: false, middleware: false, method: "get" },
-  { route: '/api/_content/navigation', handler: _XTC2bo, lazy: false, middleware: false, method: "get" },
+  { route: '/api/_content/query/:qid/**:params', handler: _PUrSVM, lazy: false, middleware: false, method: "get" },
+  { route: '/api/_content/query/:qid', handler: _PUrSVM, lazy: false, middleware: false, method: "get" },
+  { route: '/api/_content/query', handler: _PUrSVM, lazy: false, middleware: false, method: "get" },
+  { route: '/api/_content/cache.json', handler: _GOUK10, lazy: false, middleware: false, method: "get" },
+  { route: '/api/_content/navigation/:qid/**:params', handler: _okHXL1, lazy: false, middleware: false, method: "get" },
+  { route: '/api/_content/navigation/:qid', handler: _okHXL1, lazy: false, middleware: false, method: "get" },
+  { route: '/api/_content/navigation', handler: _okHXL1, lazy: false, middleware: false, method: "get" },
+  { route: '/_ipx/**', handler: _40I7OP, lazy: false, middleware: false, method: undefined },
   { route: '/**', handler: _lazy_0bm7Da, lazy: true, middleware: false, method: undefined }
 ];
 
@@ -4018,11 +3499,9 @@ function createNitroApp() {
   });
   const localCall = createCall(toNodeListener(h3App));
   const _localFetch = createFetch(localCall, globalThis.fetch);
-  const localFetch = (...args) => {
-    return _localFetch(...args).then(
-      (response) => normalizeFetchResponse(response)
-    );
-  };
+  const localFetch = (input, init) => _localFetch(input, init).then(
+    (response) => normalizeFetchResponse(response)
+  );
   const $fetch = createFetch$1({
     fetch: localFetch,
     Headers: Headers$1,
@@ -4100,16 +3579,16 @@ const useNitroApp = () => nitroApp;
 
 const server = new Server(toNodeListener(nitroApp.h3App));
 function getAddress() {
-  if (U === "stackblitz" || process.env.NITRO_NO_UNIX_SOCKET) {
-    return "0";
+  if (U === "stackblitz" || process.env.NITRO_NO_UNIX_SOCKET || process.versions.bun) {
+    return 0;
   }
   const socketName = `worker-${process.pid}-${threadId}.sock`;
   if (C) {
-    return join$1("\\\\.\\pipe\\nitro", socketName);
+    return join("\\\\.\\pipe\\nitro", socketName);
   } else {
-    const socketDir = join$1(tmpdir(), "nitro");
+    const socketDir = join(tmpdir(), "nitro");
     mkdirSync(socketDir, { recursive: true });
-    return join$1(socketDir, socketName);
+    return join(socketDir, socketName);
   }
 }
 const listenAddress = getAddress();
@@ -4153,8 +3632,8 @@ const _template = (messages) => _render({ messages: { ..._messages, ...messages 
 const template$1 = _template;
 
 const errorDev = /*#__PURE__*/Object.freeze({
-      __proto__: null,
-      template: template$1
+  __proto__: null,
+  template: template$1
 });
 
 const Vue3 = version.startsWith("3");
@@ -4213,7 +3692,7 @@ function createServerHead(options = {}) {
 
 const unheadPlugins = [];
 
-const appHead = {"meta":[{"name":"viewport","content":"width=device-width, initial-scale=1"},{"charset":"utf-8"}],"link":[],"style":[],"script":[],"noscript":[]};
+const appHead = {"meta":[{"name":"viewport","content":"minimum-scale=1, initial-scale=1, width=device-width"},{"charset":"utf-8"},{"name":"description","content":"Social Marketplace for Creators"},{"name":"theme-color","content":"#018937"}],"link":[{"rel":"icon","href":"/favicon.ico"},{"rel":"apple-touch-icon","href":"/icons/apple-touch-icon-180x180.png"}],"style":[],"script":[{"src":"https://platform-api.sharethis.com/js/sharethis.js#property=63155c574a688f00124a59c2&product=sticky-share-buttons","async":"async"},{"src":"http://free-website-translation.com/scripts/fwt.js","async":"async"}],"noscript":[],"viewport":"minimum-scale=1, initial-scale=1, width=device-width","htmlAttrs":{"lang":"en"}};
 
 const appRootId = "__nuxt";
 
@@ -4310,7 +3789,7 @@ const renderer = defineRenderHandler(async (event) => {
     url,
     event,
     runtimeConfig: useRuntimeConfig(),
-    noSSR: event.context.nuxt?.noSSR || routeOptions.ssr === false || (false),
+    noSSR: event.context.nuxt?.noSSR || routeOptions.ssr === false && !islandContext || (false),
     head,
     error: !!ssrError,
     nuxt: void 0,
@@ -4342,11 +3821,11 @@ const renderer = defineRenderHandler(async (event) => {
   const inlinedStyles = Boolean(islandContext) ? await renderInlineStyles(ssrContext.modules ?? ssrContext._registeredComponents ?? []) : [];
   const NO_SCRIPTS = routeOptions.experimentalNoScripts;
   const { styles, scripts } = getRequestDependencies(ssrContext, renderer.rendererContext);
+  head.push({ style: inlinedStyles });
   head.push({
     link: Object.values(styles).map(
       (resource) => ({ rel: "stylesheet", href: renderer.rendererContext.buildAssetsURL(resource.file) })
-    ),
-    style: inlinedStyles
+    )
   }, headEntryOptions);
   if (!NO_SCRIPTS) {
     head.push({
@@ -4474,21 +3953,21 @@ function splitPayload(ssrContext) {
 }
 
 const renderer$1 = /*#__PURE__*/Object.freeze({
-      __proto__: null,
-      default: renderer
+  __proto__: null,
+  default: renderer
 });
 
 const styles = {};
 
 const styles$1 = /*#__PURE__*/Object.freeze({
-      __proto__: null,
-      default: styles
+  __proto__: null,
+  default: styles
 });
 
 const template = "";
 
 const _virtual__spaTemplate = /*#__PURE__*/Object.freeze({
-      __proto__: null,
-      template: template
+  __proto__: null,
+  template: template
 });
 //# sourceMappingURL=index.mjs.map

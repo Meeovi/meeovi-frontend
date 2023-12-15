@@ -1,0 +1,46 @@
+query coupons_customers_aggregated($groupBy: [String], $filter: coupons_customers_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
+    coupons_customers_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
+        group
+        countAll
+        count{
+            id
+            coupons_id
+            customers_id
+        }
+        countDistinct{
+            id
+            coupons_id
+            customers_id
+        }
+        avg{
+            id
+            coupons_id
+            customers_id
+        }
+        sum{
+            id
+            coupons_id
+            customers_id
+        }
+        avgDistinct{
+            id
+            coupons_id
+            customers_id
+        }
+        sumDistinct{
+            id
+            coupons_id
+            customers_id
+        }
+        min{
+            id
+            coupons_id
+            customers_id
+        }
+        max{
+            id
+            coupons_id
+            customers_id
+        }
+    }
+}

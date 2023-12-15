@@ -1,23 +1,24 @@
 <template>
-    <div>
+    <div class="contentPage">
         <headerslider />
-        <!----><exclusives />
+        <exclusives />
         <deals />
         <bookcallout />
-        <!----><latestproducts />
-        <!----><theatercallout />
-        <!----><featuredproducts />
+        <latestproducts />
+        <theatercallout />
+        <featuredproducts />
         <musiccallout />
         <bestsellers />
+        <pixanomycallout />
         <spotlight />
         <yardsale />
-        <blogposts />
-    </div>
+        <blogposts /><!---->
+    </div><!---->
 </template>
 
 <script>
     import headerslider from '../components/homePage/headerslider.vue'
-    //import callout from '../components/homePage/callout.vue'
+    import pixanomycallout from '../components/homePage/pixanomycallout.vue'
     import bookcallout from '../components/homePage/bookcallout.vue'
     import musiccallout from '../components/homePage/musiccallout.vue'
     import latestproducts from '../components/Related/latestproducts.vue'
@@ -33,7 +34,7 @@
     export default {
         components: {
             headerslider,
-            //callout,
+            pixanomycallout,
             bookcallout,
             musiccallout,
             latestproducts,

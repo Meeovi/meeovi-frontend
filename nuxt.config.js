@@ -1,10 +1,41 @@
-import {
+/*import {
   defineNuxtConfig
-} from 'nuxt/config'
+} from 'nuxt' */
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  devtools: { enabled: true },
   extends: ['@sidebase/core'],
+
+  typescript: {
+    typeCheck: true,
+  },
+  app: {
+    head: {
+      viewport: 'minimum-scale=1, initial-scale=1, width=device-width',
+      htmlAttrs: {
+        lang: 'en',
+      },
+      meta: [
+        { name: 'description', content: 'Social Marketplace for Creators' },
+        { name: 'theme-color', content: '#018937' },
+      ],
+      link: [
+        { rel: 'icon', href: '/favicon.ico' },
+        { rel: 'apple-touch-icon', href: '/icons/apple-touch-icon-180x180.png' },
+      ],
+      script: [
+        { src: 'https://platform-api.sharethis.com/js/sharethis.js#property=63155c574a688f00124a59c2&product=sticky-share-buttons', async: 'async'},
+        { src: 'http://free-website-translation.com/scripts/fwt.js', async: 'async'}
+      ],
+    },
+  },
+  appConfig: {
+    titleSuffix: 'Meeovi',
+  },
+  imports: {
+    dirs: ['composables/**', 'utils/**'],
+  },
   css: [
     'assets/web/assets/mobirise-icons2/mobirise2.css',
     'assets/web/assets/mobirise-icons/mobirise-icons.css',
@@ -17,36 +48,94 @@ export default defineNuxtConfig({
     'assets/gallery/style.css',
     'assets/mobirise/css/mbr-additional.css',
     'vuetify/lib/styles/main.sass',
-    '@mdi/font/css/materialdesignicons.min.css',
+    //'@mdi/font/css/materialdesignicons.min.css',
     '@fortawesome/fontawesome-svg-core/styles.css',
     //'assets/commerce/css/magento.css',
     'assets/styles/styles.css',
+    'assets/style.scss'
   ],
+
+  image: {
+    screens: {
+      '4xl': 1920,
+      '3xl': 1536,
+      '2xl': 1366,
+      xl: 1280,
+      lg: 1024,
+      md: 768,
+      sm: 640,
+      xs: 376,
+      '2xs': 360,
+    },
+  },
 
   modules: [
     '@nuxt/content',
     'nuxt-meilisearch',
     'nuxt-directus',
     '@nuxtjs/apollo',
+    'nuxt-gtag',
+    [
+      '@nuxtjs/google-fonts',
+      {
+        families: {
+          'Red Hat Display': [400, 500, 700],
+          'Red Hat Text': [300, 400, 500, 700],
+        },
+      },
+    ],
+    [
+      '@nuxtjs/i18n',
+      {
+        locales: [
+          {
+            code: 'en',
+            file: 'en.json',
+          },
+        ],
+        lazy: true,
+        langDir: 'lang',
+        defaultLocale: 'en',
+      },
+    ],
+    '@nuxt/image',
+    'nuxt-paypal',
+    'nuxt-medusa',
   ],
 
-    directus: {
-      url: process.env.DIRECTUS_URL,
-      auth: {
-        email: process.env.DIRECTUS_EMAIL,
-        password: process.env.DIRECTUS_PASSWORD,
-        token: process.env.DIRECTUS_TOKEN,
-      }
-    },
+  paypal: {
+    clientId: process.env.PAYPAL_CLIENT_ID,
+  },
+
+  directus: {
+    url: process.env.DIRECTUS_URL,
+    auth: {
+      email: process.env.DIRECTUS_EMAIL,
+      password: process.env.DIRECTUS_PASSWORD,
+      token: process.env.DIRECTUS_TOKEN,
+    }
+  },
 
   meilisearch: {
     hostUrl: process.env.HOSTURL,
     searchApiKey: process.env.SEARCH_APIKEY,
     adminApiKey: process.env.ADMIN_APIKEY,
-    serverSideUsage: true,
+    instantSearch: true,
+    serverSideUsage: false,
     instantSearch: {
       theme: 'algolia'
-    }
+    },
+    clientOptions: {
+      placeholderSearch: true, // default
+      paginationTotalHits: 50, // default
+      finitePagination: true, // default
+      primaryKey: undefined, // default
+      keepZeroFacets: false, // default
+    },
+  },
+
+  gtag: {
+    id: process.env.NUXT_PUBLIC_GTAG_ID
   },
   
   /*auth: {
@@ -105,14 +194,22 @@ export default defineNuxtConfig({
     clients: {
       default: {
         tokenName: "apollo-token",
-        httpEndpoint: process.env.GQL_HOST,
+        httpEndpoint: process.env.DIRECTUS_GRAPHQL,
       /*  httpLinkOptions: {
           headers: {
             'x-hasura-admin-secret': process.env.GQL_KEY,
           }
         } */
       },
-      other: './apollo/other.ts'
+      //other: './apollo/other.ts'
+      vendure: {
+        httpEndpoint: process.env.GQL_HOST,
+      /*  httpLinkOptions: {
+          headers: {
+            'x-hasura-admin-secret': process.env.GQL_KEY,
+          }
+        } */
+      }
     },
   },/**/
 
@@ -124,6 +221,8 @@ export default defineNuxtConfig({
       "@fortawesome/pro-solid-svg-icons",
       "@fortawesome/pro-regular-svg-icons",
       "@fortawesome/free-brands-svg-icons",
+      'vue-instantsearch',
+      'instantsearch.js/es'
     ],
   },
 

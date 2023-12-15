@@ -1,0 +1,33 @@
+query helpq($filter: helpq_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
+    helpq(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
+        id
+        status
+        sort
+        user_created
+        date_created
+        date_created_func{
+            year
+            month
+            week
+            day
+            weekday
+            hour
+            minute
+            second
+        }
+        user_updated
+        date_updated
+        date_updated_func{
+            year
+            month
+            week
+            day
+            weekday
+            hour
+            minute
+            second
+        }
+        subject
+        answer_id
+    }
+}

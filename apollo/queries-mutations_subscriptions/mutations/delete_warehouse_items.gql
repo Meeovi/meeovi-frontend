@@ -1,0 +1,5 @@
+mutation delete_warehouse_items($ids: [ID]!){
+    delete_warehouse_items(ids: $ids){
+        ids
+    }
+}

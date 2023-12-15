@@ -1,0 +1,18 @@
+subscription directus_folders_mutated($filter: directus_folders_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String, $filter1: directus_folders_filter, $sort1: [String], $limit1: Int, $offset1: Int, $page1: Int, $search1: String, $event: EventEnum){
+    directus_folders_mutated(event: $event){
+        key
+        event
+        data{
+            id
+            name
+            parent(filter: $filter1, sort: $sort1, limit: $limit1, offset: $offset1, page: $page1, search: $search1){
+                id
+                name
+                parent(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
+                    id
+                    name
+                }
+            }
+        }
+    }
+}

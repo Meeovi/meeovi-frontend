@@ -3,6 +3,7 @@
   "compilerOptions": {
     "forceConsistentCasingInFileNames": true,
     "jsx": "preserve",
+    "jsxImportSource": "vue",
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "Node",
@@ -10,6 +11,10 @@
     "isolatedModules": true,
     "useDefineForClassFields": true,
     "strict": true,
+    "noImplicitThis": true,
+    "esModuleInterop": true,
+    "types": [],
+    "verbatimModuleSyntax": true,
     "allowJs": true,
     "noEmit": true,
     "resolveJsonModule": true,
@@ -60,11 +65,41 @@
       "vue-demi": [
         "../node_modules/nuxt/dist/app/compat/vue-demi"
       ],
+      "#mdc-imports": [
+        "./mdc-imports"
+      ],
       "#apollo": [
         "./apollo.mjs"
       ],
+      "vue-i18n": [
+        "../node_modules/vue-i18n/dist/vue-i18n"
+      ],
+      "@intlify/shared": [
+        "../node_modules/@intlify/shared/dist/shared"
+      ],
+      "@intlify/message-compiler": [
+        "../node_modules/@intlify/message-compiler/dist/message-compiler"
+      ],
+      "@intlify/vue-router-bridge": [
+        "../node_modules/@intlify/vue-router-bridge/lib/index"
+      ],
+      "@intlify/vue-i18n-bridge": [
+        "../node_modules/@intlify/vue-i18n-bridge/lib/index"
+      ],
+      "vue-i18n-routing": [
+        "../node_modules/vue-i18n-routing/dist/vue-i18n-routing"
+      ],
+      "#i18n": [
+        "../node_modules/@nuxtjs/i18n/dist/runtime/composables"
+      ],
+      "#image": [
+        "../node_modules/@nuxt/image/dist/runtime"
+      ],
+      "#image/*": [
+        "../node_modules/@nuxt/image/dist/runtime/*"
+      ],
       "#vue-router": [
-        "./vue-router"
+        "./vue-router-stub"
       ],
       "#imports": [
         "./imports"
@@ -84,12 +119,38 @@
     "./nuxt.d.ts",
     "../**/*",
     "../node_modules/@sidebase/core/**/*",
+    "../node_modules/@nuxtjs/mdc/runtime",
+    "../node_modules/@nuxt/content/runtime",
+    "../node_modules/nuxt-meilisearch/runtime",
+    "../node_modules/nuxt-directus/runtime",
+    "../node_modules/@nuxtjs/apollo/runtime",
+    "../node_modules/nuxt-gtag/runtime",
+    "../node_modules/@nuxtjs/google-fonts/runtime",
+    "../node_modules/@nuxtjs/i18n/runtime",
+    "../node_modules/@nuxt/image/runtime",
+    "../node_modules/nuxt-paypal/runtime",
+    "../node_modules/nuxt-medusa/runtime",
+    "../../../../../../../../../../AppData/Roaming/npm/node_modules/@nuxt/devtools/module.cjs/runtime",
+    "../node_modules/@nuxt/telemetry/runtime",
     ".."
   ],
   "exclude": [
     "../node_modules",
     "../node_modules/nuxt/node_modules",
     "../../../../../../../../../../AppData/Roaming/npm/node_modules/@nuxt/devtools",
+    "../node_modules/@nuxtjs/mdc/runtime/server",
+    "../node_modules/@nuxt/content/runtime/server",
+    "../node_modules/nuxt-meilisearch/runtime/server",
+    "../node_modules/nuxt-directus/runtime/server",
+    "../node_modules/@nuxtjs/apollo/runtime/server",
+    "../node_modules/nuxt-gtag/runtime/server",
+    "../node_modules/@nuxtjs/google-fonts/runtime/server",
+    "../node_modules/@nuxtjs/i18n/runtime/server",
+    "../node_modules/@nuxt/image/runtime/server",
+    "../node_modules/nuxt-paypal/runtime/server",
+    "../node_modules/nuxt-medusa/runtime/server",
+    "../../../../../../../../../../AppData/Roaming/npm/node_modules/@nuxt/devtools/module.cjs/runtime/server",
+    "../node_modules/@nuxt/telemetry/runtime/server",
     "../dist",
     "../.output"
   ]

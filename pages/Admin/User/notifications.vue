@@ -1,6 +1,7 @@
 <template>
     <div>
         <profilebar />
+        <v-toolbar title="Notification Center" color="transparent"></v-toolbar>
     <v-table fixed-header height="300px">
         <thead>
             <tr>

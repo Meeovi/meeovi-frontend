@@ -13,6 +13,9 @@ declare global {
   const defineAppConfig: typeof import('../../node_modules/nuxt/dist/app')['defineAppConfig']
   const defineAsyncComponent: typeof import('../../node_modules/vue')['defineAsyncComponent']
   const defineComponent: typeof import('../../node_modules/vue')['defineComponent']
+  const defineI18nConfig: typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['defineI18nConfig']
+  const defineI18nLocale: typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['defineI18nLocale']
+  const defineI18nRoute: typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['defineI18nRoute']
   const defineModel: typeof import('../../node_modules/vue')['defineModel']
   const defineNuxtComponent: typeof import('../../node_modules/nuxt/dist/app')['defineNuxtComponent']
   const defineNuxtLink: typeof import('../../node_modules/nuxt/dist/app')['defineNuxtLink']
@@ -26,9 +29,11 @@ declare global {
   const defineSlots: typeof import('../../node_modules/vue')['defineSlots']
   const effect: typeof import('../../node_modules/vue')['effect']
   const effectScope: typeof import('../../node_modules/vue')['effectScope']
-  const fetchContentNavigation: typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/navigation')['fetchContentNavigation']
+  const fetchContentNavigation: typeof import('../../node_modules/@nuxt/content/dist/runtime/legacy/composables/navigation')['fetchContentNavigation']
+  const getAppManifest: typeof import('../../node_modules/nuxt/dist/app')['getAppManifest']
   const getCurrentInstance: typeof import('../../node_modules/vue')['getCurrentInstance']
   const getCurrentScope: typeof import('../../node_modules/vue')['getCurrentScope']
+  const getRouteRules: typeof import('../../node_modules/nuxt/dist/app')['getRouteRules']
   const gql: typeof import('../../node_modules/graphql-tag/main')['gql']
   const h: typeof import('../../node_modules/vue')['h']
   const hasInjectionContext: typeof import('../../node_modules/vue')['hasInjectionContext']
@@ -50,8 +55,8 @@ declare global {
   const nextTick: typeof import('../../node_modules/vue')['nextTick']
   const onActivated: typeof import('../../node_modules/vue')['onActivated']
   const onBeforeMount: typeof import('../../node_modules/vue')['onBeforeMount']
-  const onBeforeRouteLeave: typeof import('../vue-router')['onBeforeRouteLeave']
-  const onBeforeRouteUpdate: typeof import('../vue-router')['onBeforeRouteUpdate']
+  const onBeforeRouteLeave: typeof import('../vue-router-stub')['onBeforeRouteLeave']
+  const onBeforeRouteUpdate: typeof import('../vue-router-stub')['onBeforeRouteUpdate']
   const onBeforeUnmount: typeof import('../../node_modules/vue')['onBeforeUnmount']
   const onBeforeUpdate: typeof import('../../node_modules/vue')['onBeforeUpdate']
   const onDeactivated: typeof import('../../node_modules/vue')['onDeactivated']
@@ -68,9 +73,10 @@ declare global {
   const preloadComponents: typeof import('../../node_modules/nuxt/dist/app')['preloadComponents']
   const preloadPayload: typeof import('../../node_modules/nuxt/dist/app')['preloadPayload']
   const preloadRouteComponents: typeof import('../../node_modules/nuxt/dist/app')['preloadRouteComponents']
+  const prerenderRoutes: typeof import('../../node_modules/nuxt/dist/app')['prerenderRoutes']
   const provide: typeof import('../../node_modules/vue')['provide']
   const proxyRefs: typeof import('../../node_modules/vue')['proxyRefs']
-  const queryContent: typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/query')['queryContent']
+  const queryContent: typeof import('../../node_modules/@nuxt/content/dist/runtime/legacy/composables/query')['queryContent']
   const reactive: typeof import('../../node_modules/vue')['reactive']
   const readonly: typeof import('../../node_modules/vue')['readonly']
   const ref: typeof import('../../node_modules/vue')['ref']
@@ -90,18 +96,23 @@ declare global {
   const toValue: typeof import('../../node_modules/vue')['toValue']
   const triggerRef: typeof import('../../node_modules/vue')['triggerRef']
   const unref: typeof import('../../node_modules/vue')['unref']
+  const unwrapSlot: typeof import('../../node_modules/@nuxtjs/mdc/dist/runtime/utils/node')['flatUnwrap']
   const updateAppConfig: typeof import('../../node_modules/nuxt/dist/app')['updateAppConfig']
   const useApollo: typeof import('../../node_modules/@nuxtjs/apollo/dist/runtime/composables')['useApollo']
-  const useApolloClient: typeof import('../../node_modules/@vue/apollo-composable')['useApolloClient']
+  const useApolloClient: typeof import('@vue/apollo-composable')['useApolloClient']
   const useAppConfig: typeof import('../../node_modules/nuxt/dist/app')['useAppConfig']
   const useAsyncData: typeof import('../../node_modules/nuxt/dist/app')['useAsyncData']
+  const useAsyncMeiliSearch: typeof import('../../node_modules/nuxt-meilisearch/dist/runtime/composables/useAsyncMeiliSearch')['useAsyncMeiliSearch']
   const useAsyncQuery: typeof import('../../node_modules/@nuxtjs/apollo/dist/runtime/composables')['useAsyncQuery']
   const useAttrs: typeof import('../../node_modules/vue')['useAttrs']
+  const useBrowserLocale: typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['useBrowserLocale']
   const useContent: typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/utils')['useContentDisabled']
   const useContentHead: typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/head')['useContentHead']
   const useContentHelpers: typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/helpers')['useContentHelpers']
+  const useContentPreview: typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/preview')['useContentPreview']
   const useContentState: typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/utils')['useContentDisabled']
   const useCookie: typeof import('../../node_modules/nuxt/dist/app')['useCookie']
+  const useCookieLocale: typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['useCookieLocale']
   const useCssModule: typeof import('../../node_modules/vue')['useCssModule']
   const useCssVars: typeof import('../../node_modules/vue')['useCssVars']
   const useDirectus: typeof import('../../node_modules/nuxt-directus/dist/runtime/composables/useDirectus')['useDirectus']
@@ -117,29 +128,40 @@ declare global {
   const useDirectusUsers: typeof import('../../node_modules/nuxt-directus/dist/runtime/composables/useDirectusUsers')['useDirectusUsers']
   const useError: typeof import('../../node_modules/nuxt/dist/app')['useError']
   const useFetch: typeof import('../../node_modules/nuxt/dist/app')['useFetch']
-  const useGlobalMutationLoading: typeof import('../../node_modules/@vue/apollo-composable')['useGlobalMutationLoading']
-  const useGlobalQueryLoading: typeof import('../../node_modules/@vue/apollo-composable')['useGlobalQueryLoading']
-  const useGlobalSubscriptionLoading: typeof import('../../node_modules/@vue/apollo-composable')['useGlobalSubscriptionLoading']
+  const useGlobalMutationLoading: typeof import('@vue/apollo-composable')['useGlobalMutationLoading']
+  const useGlobalQueryLoading: typeof import('@vue/apollo-composable')['useGlobalQueryLoading']
+  const useGlobalSubscriptionLoading: typeof import('@vue/apollo-composable')['useGlobalSubscriptionLoading']
+  const useGtag: typeof import('../../node_modules/nuxt-gtag/dist/runtime/composables/useGtag')['useGtag']
   const useHead: typeof import('../../node_modules/@unhead/vue')['useHead']
   const useHeadSafe: typeof import('../../node_modules/@unhead/vue')['useHeadSafe']
+  const useI18n: typeof import('../../node_modules/vue-i18n/dist/vue-i18n')['useI18n']
+  const useImage: typeof import('../../node_modules/@nuxt/image/dist/runtime/composables')['useImage']
+  const useInstantSearch: typeof import('../../node_modules/nuxt-meilisearch/dist/runtime/composables/useInstantSearch')['useInstantSearch']
   const useLazyAsyncData: typeof import('../../node_modules/nuxt/dist/app')['useLazyAsyncData']
   const useLazyAsyncQuery: typeof import('../../node_modules/@nuxtjs/apollo/dist/runtime/composables')['useLazyAsyncQuery']
   const useLazyFetch: typeof import('../../node_modules/nuxt/dist/app')['useLazyFetch']
-  const useLazyQuery: typeof import('../../node_modules/@vue/apollo-composable')['useLazyQuery']
-  const useLink: typeof import('../vue-router')['useLink']
-  const useMeilisearchClient: typeof import('../../node_modules/nuxt-meilisearch/dist/runtime/composables/useMeilisearchClient')['useMeilisearchClient']
+  const useLazyQuery: typeof import('@vue/apollo-composable')['useLazyQuery']
+  const useLink: typeof import('../vue-router-stub')['useLink']
+  const useLocaleHead: typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['useLocaleHead']
+  const useLocalePath: typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['useLocalePath']
+  const useLocaleRoute: typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['useLocaleRoute']
+  const useMedusaClient: typeof import('../../node_modules/nuxt-medusa/dist/runtime/composables/useMedusaClient')['useMedusaClient']
+  const useMeiliSearch: typeof import('../../node_modules/nuxt-meilisearch/dist/runtime/composables/useMeiliSearch')['useMeiliSearch']
+  const useMeiliSearchRef: typeof import('../../node_modules/nuxt-meilisearch/dist/runtime/composables/useMeiliSearchRef')['useMeiliSearchRef']
   const useModel: typeof import('../../node_modules/vue')['useModel']
-  const useMutation: typeof import('../../node_modules/@vue/apollo-composable')['useMutation']
-  const useMutationLoading: typeof import('../../node_modules/@vue/apollo-composable')['useMutationLoading']
+  const useMutation: typeof import('@vue/apollo-composable')['useMutation']
+  const useMutationLoading: typeof import('@vue/apollo-composable')['useMutationLoading']
   const useNuxtApp: typeof import('../../node_modules/nuxt/dist/app')['useNuxtApp']
   const useNuxtData: typeof import('../../node_modules/nuxt/dist/app')['useNuxtData']
-  const useQuery: typeof import('../../node_modules/@vue/apollo-composable')['useQuery']
-  const useQueryLoading: typeof import('../../node_modules/@vue/apollo-composable')['useQueryLoading']
+  const usePaypalButton: typeof import('../../node_modules/nuxt-paypal/dist/runtime/composables/usePaypal')['usePaypalButton']
+  const useQuery: typeof import('@vue/apollo-composable')['useQuery']
+  const useQueryLoading: typeof import('@vue/apollo-composable')['useQueryLoading']
   const useRequestEvent: typeof import('../../node_modules/nuxt/dist/app')['useRequestEvent']
   const useRequestFetch: typeof import('../../node_modules/nuxt/dist/app')['useRequestFetch']
   const useRequestHeaders: typeof import('../../node_modules/nuxt/dist/app')['useRequestHeaders']
   const useRequestURL: typeof import('../../node_modules/nuxt/dist/app')['useRequestURL']
   const useRoute: typeof import('../../node_modules/nuxt/dist/app')['useRoute']
+  const useRouteBaseName: typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['useRouteBaseName']
   const useRouter: typeof import('../../node_modules/nuxt/dist/app')['useRouter']
   const useRuntimeConfig: typeof import('../../node_modules/nuxt/dist/app')['useRuntimeConfig']
   const useSeoMeta: typeof import('../../node_modules/@unhead/vue')['useSeoMeta']
@@ -148,10 +170,12 @@ declare global {
   const useServerSeoMeta: typeof import('../../node_modules/@unhead/vue')['useServerSeoMeta']
   const useSlots: typeof import('../../node_modules/vue')['useSlots']
   const useState: typeof import('../../node_modules/nuxt/dist/app')['useState']
-  const useSubscription: typeof import('../../node_modules/@vue/apollo-composable')['useSubscription']
-  const useSubscriptionLoading: typeof import('../../node_modules/@vue/apollo-composable')['useSubscriptionLoading']
+  const useSubscription: typeof import('@vue/apollo-composable')['useSubscription']
+  const useSubscriptionLoading: typeof import('@vue/apollo-composable')['useSubscriptionLoading']
+  const useSwitchLocalePath: typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['useSwitchLocalePath']
+  const useTrackEvent: typeof import('../../node_modules/nuxt-gtag/dist/runtime/composables/useTrackEvent')['useTrackEvent']
   const useTransitionState: typeof import('../../node_modules/vue')['useTransitionState']
-  const useUnwrap: typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/utils')['useUnwrap']
+  const useUnwrap: typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/useUnwrap')['useUnwrap']
   const watch: typeof import('../../node_modules/vue')['watch']
   const watchEffect: typeof import('../../node_modules/vue')['watchEffect']
   const watchPostEffect: typeof import('../../node_modules/vue')['watchPostEffect']
@@ -185,6 +209,9 @@ declare module 'vue' {
     readonly defineAppConfig: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['defineAppConfig']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('../../node_modules/vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('../../node_modules/vue')['defineComponent']>
+    readonly defineI18nConfig: UnwrapRef<typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['defineI18nConfig']>
+    readonly defineI18nLocale: UnwrapRef<typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['defineI18nLocale']>
+    readonly defineI18nRoute: UnwrapRef<typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['defineI18nRoute']>
     readonly defineModel: UnwrapRef<typeof import('../../node_modules/vue')['defineModel']>
     readonly defineNuxtComponent: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['defineNuxtComponent']>
     readonly defineNuxtLink: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['defineNuxtLink']>
@@ -198,9 +225,11 @@ declare module 'vue' {
     readonly defineSlots: UnwrapRef<typeof import('../../node_modules/vue')['defineSlots']>
     readonly effect: UnwrapRef<typeof import('../../node_modules/vue')['effect']>
     readonly effectScope: UnwrapRef<typeof import('../../node_modules/vue')['effectScope']>
-    readonly fetchContentNavigation: UnwrapRef<typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/navigation')['fetchContentNavigation']>
+    readonly fetchContentNavigation: UnwrapRef<typeof import('../../node_modules/@nuxt/content/dist/runtime/legacy/composables/navigation')['fetchContentNavigation']>
+    readonly getAppManifest: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['getAppManifest']>
     readonly getCurrentInstance: UnwrapRef<typeof import('../../node_modules/vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('../../node_modules/vue')['getCurrentScope']>
+    readonly getRouteRules: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['getRouteRules']>
     readonly gql: UnwrapRef<typeof import('../../node_modules/graphql-tag/main')['gql']>
     readonly h: UnwrapRef<typeof import('../../node_modules/vue')['h']>
     readonly hasInjectionContext: UnwrapRef<typeof import('../../node_modules/vue')['hasInjectionContext']>
@@ -222,8 +251,8 @@ declare module 'vue' {
     readonly nextTick: UnwrapRef<typeof import('../../node_modules/vue')['nextTick']>
     readonly onActivated: UnwrapRef<typeof import('../../node_modules/vue')['onActivated']>
     readonly onBeforeMount: UnwrapRef<typeof import('../../node_modules/vue')['onBeforeMount']>
-    readonly onBeforeRouteLeave: UnwrapRef<typeof import('../vue-router')['onBeforeRouteLeave']>
-    readonly onBeforeRouteUpdate: UnwrapRef<typeof import('../vue-router')['onBeforeRouteUpdate']>
+    readonly onBeforeRouteLeave: UnwrapRef<typeof import('../vue-router-stub')['onBeforeRouteLeave']>
+    readonly onBeforeRouteUpdate: UnwrapRef<typeof import('../vue-router-stub')['onBeforeRouteUpdate']>
     readonly onBeforeUnmount: UnwrapRef<typeof import('../../node_modules/vue')['onBeforeUnmount']>
     readonly onBeforeUpdate: UnwrapRef<typeof import('../../node_modules/vue')['onBeforeUpdate']>
     readonly onDeactivated: UnwrapRef<typeof import('../../node_modules/vue')['onDeactivated']>
@@ -240,9 +269,10 @@ declare module 'vue' {
     readonly preloadComponents: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['preloadComponents']>
     readonly preloadPayload: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['preloadPayload']>
     readonly preloadRouteComponents: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['preloadRouteComponents']>
+    readonly prerenderRoutes: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['prerenderRoutes']>
     readonly provide: UnwrapRef<typeof import('../../node_modules/vue')['provide']>
     readonly proxyRefs: UnwrapRef<typeof import('../../node_modules/vue')['proxyRefs']>
-    readonly queryContent: UnwrapRef<typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/query')['queryContent']>
+    readonly queryContent: UnwrapRef<typeof import('../../node_modules/@nuxt/content/dist/runtime/legacy/composables/query')['queryContent']>
     readonly reactive: UnwrapRef<typeof import('../../node_modules/vue')['reactive']>
     readonly readonly: UnwrapRef<typeof import('../../node_modules/vue')['readonly']>
     readonly ref: UnwrapRef<typeof import('../../node_modules/vue')['ref']>
@@ -262,18 +292,23 @@ declare module 'vue' {
     readonly toValue: UnwrapRef<typeof import('../../node_modules/vue')['toValue']>
     readonly triggerRef: UnwrapRef<typeof import('../../node_modules/vue')['triggerRef']>
     readonly unref: UnwrapRef<typeof import('../../node_modules/vue')['unref']>
+    readonly unwrapSlot: UnwrapRef<typeof import('../../node_modules/@nuxtjs/mdc/dist/runtime/utils/node')['flatUnwrap']>
     readonly updateAppConfig: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['updateAppConfig']>
     readonly useApollo: UnwrapRef<typeof import('../../node_modules/@nuxtjs/apollo/dist/runtime/composables')['useApollo']>
-    readonly useApolloClient: UnwrapRef<typeof import('../../node_modules/@vue/apollo-composable')['useApolloClient']>
+    readonly useApolloClient: UnwrapRef<typeof import('@vue/apollo-composable')['useApolloClient']>
     readonly useAppConfig: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useAppConfig']>
     readonly useAsyncData: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useAsyncData']>
+    readonly useAsyncMeiliSearch: UnwrapRef<typeof import('../../node_modules/nuxt-meilisearch/dist/runtime/composables/useAsyncMeiliSearch')['useAsyncMeiliSearch']>
     readonly useAsyncQuery: UnwrapRef<typeof import('../../node_modules/@nuxtjs/apollo/dist/runtime/composables')['useAsyncQuery']>
     readonly useAttrs: UnwrapRef<typeof import('../../node_modules/vue')['useAttrs']>
+    readonly useBrowserLocale: UnwrapRef<typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['useBrowserLocale']>
     readonly useContent: UnwrapRef<typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/utils')['useContentDisabled']>
     readonly useContentHead: UnwrapRef<typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/head')['useContentHead']>
     readonly useContentHelpers: UnwrapRef<typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/helpers')['useContentHelpers']>
+    readonly useContentPreview: UnwrapRef<typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/preview')['useContentPreview']>
     readonly useContentState: UnwrapRef<typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/utils')['useContentDisabled']>
     readonly useCookie: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useCookie']>
+    readonly useCookieLocale: UnwrapRef<typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['useCookieLocale']>
     readonly useCssModule: UnwrapRef<typeof import('../../node_modules/vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('../../node_modules/vue')['useCssVars']>
     readonly useDirectus: UnwrapRef<typeof import('../../node_modules/nuxt-directus/dist/runtime/composables/useDirectus')['useDirectus']>
@@ -289,29 +324,40 @@ declare module 'vue' {
     readonly useDirectusUsers: UnwrapRef<typeof import('../../node_modules/nuxt-directus/dist/runtime/composables/useDirectusUsers')['useDirectusUsers']>
     readonly useError: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useError']>
     readonly useFetch: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useFetch']>
-    readonly useGlobalMutationLoading: UnwrapRef<typeof import('../../node_modules/@vue/apollo-composable')['useGlobalMutationLoading']>
-    readonly useGlobalQueryLoading: UnwrapRef<typeof import('../../node_modules/@vue/apollo-composable')['useGlobalQueryLoading']>
-    readonly useGlobalSubscriptionLoading: UnwrapRef<typeof import('../../node_modules/@vue/apollo-composable')['useGlobalSubscriptionLoading']>
+    readonly useGlobalMutationLoading: UnwrapRef<typeof import('@vue/apollo-composable')['useGlobalMutationLoading']>
+    readonly useGlobalQueryLoading: UnwrapRef<typeof import('@vue/apollo-composable')['useGlobalQueryLoading']>
+    readonly useGlobalSubscriptionLoading: UnwrapRef<typeof import('@vue/apollo-composable')['useGlobalSubscriptionLoading']>
+    readonly useGtag: UnwrapRef<typeof import('../../node_modules/nuxt-gtag/dist/runtime/composables/useGtag')['useGtag']>
     readonly useHead: UnwrapRef<typeof import('../../node_modules/@unhead/vue')['useHead']>
     readonly useHeadSafe: UnwrapRef<typeof import('../../node_modules/@unhead/vue')['useHeadSafe']>
+    readonly useI18n: UnwrapRef<typeof import('../../node_modules/vue-i18n/dist/vue-i18n')['useI18n']>
+    readonly useImage: UnwrapRef<typeof import('../../node_modules/@nuxt/image/dist/runtime/composables')['useImage']>
+    readonly useInstantSearch: UnwrapRef<typeof import('../../node_modules/nuxt-meilisearch/dist/runtime/composables/useInstantSearch')['useInstantSearch']>
     readonly useLazyAsyncData: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useLazyAsyncData']>
     readonly useLazyAsyncQuery: UnwrapRef<typeof import('../../node_modules/@nuxtjs/apollo/dist/runtime/composables')['useLazyAsyncQuery']>
     readonly useLazyFetch: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useLazyFetch']>
-    readonly useLazyQuery: UnwrapRef<typeof import('../../node_modules/@vue/apollo-composable')['useLazyQuery']>
-    readonly useLink: UnwrapRef<typeof import('../vue-router')['useLink']>
-    readonly useMeilisearchClient: UnwrapRef<typeof import('../../node_modules/nuxt-meilisearch/dist/runtime/composables/useMeilisearchClient')['useMeilisearchClient']>
+    readonly useLazyQuery: UnwrapRef<typeof import('@vue/apollo-composable')['useLazyQuery']>
+    readonly useLink: UnwrapRef<typeof import('../vue-router-stub')['useLink']>
+    readonly useLocaleHead: UnwrapRef<typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['useLocaleHead']>
+    readonly useLocalePath: UnwrapRef<typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['useLocalePath']>
+    readonly useLocaleRoute: UnwrapRef<typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['useLocaleRoute']>
+    readonly useMedusaClient: UnwrapRef<typeof import('../../node_modules/nuxt-medusa/dist/runtime/composables/useMedusaClient')['useMedusaClient']>
+    readonly useMeiliSearch: UnwrapRef<typeof import('../../node_modules/nuxt-meilisearch/dist/runtime/composables/useMeiliSearch')['useMeiliSearch']>
+    readonly useMeiliSearchRef: UnwrapRef<typeof import('../../node_modules/nuxt-meilisearch/dist/runtime/composables/useMeiliSearchRef')['useMeiliSearchRef']>
     readonly useModel: UnwrapRef<typeof import('../../node_modules/vue')['useModel']>
-    readonly useMutation: UnwrapRef<typeof import('../../node_modules/@vue/apollo-composable')['useMutation']>
-    readonly useMutationLoading: UnwrapRef<typeof import('../../node_modules/@vue/apollo-composable')['useMutationLoading']>
+    readonly useMutation: UnwrapRef<typeof import('@vue/apollo-composable')['useMutation']>
+    readonly useMutationLoading: UnwrapRef<typeof import('@vue/apollo-composable')['useMutationLoading']>
     readonly useNuxtApp: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useNuxtApp']>
     readonly useNuxtData: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useNuxtData']>
-    readonly useQuery: UnwrapRef<typeof import('../../node_modules/@vue/apollo-composable')['useQuery']>
-    readonly useQueryLoading: UnwrapRef<typeof import('../../node_modules/@vue/apollo-composable')['useQueryLoading']>
+    readonly usePaypalButton: UnwrapRef<typeof import('../../node_modules/nuxt-paypal/dist/runtime/composables/usePaypal')['usePaypalButton']>
+    readonly useQuery: UnwrapRef<typeof import('@vue/apollo-composable')['useQuery']>
+    readonly useQueryLoading: UnwrapRef<typeof import('@vue/apollo-composable')['useQueryLoading']>
     readonly useRequestEvent: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useRequestEvent']>
     readonly useRequestFetch: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useRequestFetch']>
     readonly useRequestHeaders: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useRequestHeaders']>
     readonly useRequestURL: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useRequestURL']>
     readonly useRoute: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useRoute']>
+    readonly useRouteBaseName: UnwrapRef<typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['useRouteBaseName']>
     readonly useRouter: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useRouter']>
     readonly useRuntimeConfig: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useRuntimeConfig']>
     readonly useSeoMeta: UnwrapRef<typeof import('../../node_modules/@unhead/vue')['useSeoMeta']>
@@ -320,10 +366,12 @@ declare module 'vue' {
     readonly useServerSeoMeta: UnwrapRef<typeof import('../../node_modules/@unhead/vue')['useServerSeoMeta']>
     readonly useSlots: UnwrapRef<typeof import('../../node_modules/vue')['useSlots']>
     readonly useState: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useState']>
-    readonly useSubscription: UnwrapRef<typeof import('../../node_modules/@vue/apollo-composable')['useSubscription']>
-    readonly useSubscriptionLoading: UnwrapRef<typeof import('../../node_modules/@vue/apollo-composable')['useSubscriptionLoading']>
+    readonly useSubscription: UnwrapRef<typeof import('@vue/apollo-composable')['useSubscription']>
+    readonly useSubscriptionLoading: UnwrapRef<typeof import('@vue/apollo-composable')['useSubscriptionLoading']>
+    readonly useSwitchLocalePath: UnwrapRef<typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['useSwitchLocalePath']>
+    readonly useTrackEvent: UnwrapRef<typeof import('../../node_modules/nuxt-gtag/dist/runtime/composables/useTrackEvent')['useTrackEvent']>
     readonly useTransitionState: UnwrapRef<typeof import('../../node_modules/vue')['useTransitionState']>
-    readonly useUnwrap: UnwrapRef<typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/utils')['useUnwrap']>
+    readonly useUnwrap: UnwrapRef<typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/useUnwrap')['useUnwrap']>
     readonly watch: UnwrapRef<typeof import('../../node_modules/vue')['watch']>
     readonly watchEffect: UnwrapRef<typeof import('../../node_modules/vue')['watchEffect']>
     readonly watchPostEffect: UnwrapRef<typeof import('../../node_modules/vue')['watchPostEffect']>
@@ -351,6 +399,9 @@ declare module '@vue/runtime-core' {
     readonly defineAppConfig: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['defineAppConfig']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('../../node_modules/vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('../../node_modules/vue')['defineComponent']>
+    readonly defineI18nConfig: UnwrapRef<typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['defineI18nConfig']>
+    readonly defineI18nLocale: UnwrapRef<typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['defineI18nLocale']>
+    readonly defineI18nRoute: UnwrapRef<typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['defineI18nRoute']>
     readonly defineModel: UnwrapRef<typeof import('../../node_modules/vue')['defineModel']>
     readonly defineNuxtComponent: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['defineNuxtComponent']>
     readonly defineNuxtLink: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['defineNuxtLink']>
@@ -364,9 +415,11 @@ declare module '@vue/runtime-core' {
     readonly defineSlots: UnwrapRef<typeof import('../../node_modules/vue')['defineSlots']>
     readonly effect: UnwrapRef<typeof import('../../node_modules/vue')['effect']>
     readonly effectScope: UnwrapRef<typeof import('../../node_modules/vue')['effectScope']>
-    readonly fetchContentNavigation: UnwrapRef<typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/navigation')['fetchContentNavigation']>
+    readonly fetchContentNavigation: UnwrapRef<typeof import('../../node_modules/@nuxt/content/dist/runtime/legacy/composables/navigation')['fetchContentNavigation']>
+    readonly getAppManifest: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['getAppManifest']>
     readonly getCurrentInstance: UnwrapRef<typeof import('../../node_modules/vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('../../node_modules/vue')['getCurrentScope']>
+    readonly getRouteRules: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['getRouteRules']>
     readonly gql: UnwrapRef<typeof import('../../node_modules/graphql-tag/main')['gql']>
     readonly h: UnwrapRef<typeof import('../../node_modules/vue')['h']>
     readonly hasInjectionContext: UnwrapRef<typeof import('../../node_modules/vue')['hasInjectionContext']>
@@ -388,8 +441,8 @@ declare module '@vue/runtime-core' {
     readonly nextTick: UnwrapRef<typeof import('../../node_modules/vue')['nextTick']>
     readonly onActivated: UnwrapRef<typeof import('../../node_modules/vue')['onActivated']>
     readonly onBeforeMount: UnwrapRef<typeof import('../../node_modules/vue')['onBeforeMount']>
-    readonly onBeforeRouteLeave: UnwrapRef<typeof import('../vue-router')['onBeforeRouteLeave']>
-    readonly onBeforeRouteUpdate: UnwrapRef<typeof import('../vue-router')['onBeforeRouteUpdate']>
+    readonly onBeforeRouteLeave: UnwrapRef<typeof import('../vue-router-stub')['onBeforeRouteLeave']>
+    readonly onBeforeRouteUpdate: UnwrapRef<typeof import('../vue-router-stub')['onBeforeRouteUpdate']>
     readonly onBeforeUnmount: UnwrapRef<typeof import('../../node_modules/vue')['onBeforeUnmount']>
     readonly onBeforeUpdate: UnwrapRef<typeof import('../../node_modules/vue')['onBeforeUpdate']>
     readonly onDeactivated: UnwrapRef<typeof import('../../node_modules/vue')['onDeactivated']>
@@ -406,9 +459,10 @@ declare module '@vue/runtime-core' {
     readonly preloadComponents: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['preloadComponents']>
     readonly preloadPayload: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['preloadPayload']>
     readonly preloadRouteComponents: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['preloadRouteComponents']>
+    readonly prerenderRoutes: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['prerenderRoutes']>
     readonly provide: UnwrapRef<typeof import('../../node_modules/vue')['provide']>
     readonly proxyRefs: UnwrapRef<typeof import('../../node_modules/vue')['proxyRefs']>
-    readonly queryContent: UnwrapRef<typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/query')['queryContent']>
+    readonly queryContent: UnwrapRef<typeof import('../../node_modules/@nuxt/content/dist/runtime/legacy/composables/query')['queryContent']>
     readonly reactive: UnwrapRef<typeof import('../../node_modules/vue')['reactive']>
     readonly readonly: UnwrapRef<typeof import('../../node_modules/vue')['readonly']>
     readonly ref: UnwrapRef<typeof import('../../node_modules/vue')['ref']>
@@ -428,18 +482,23 @@ declare module '@vue/runtime-core' {
     readonly toValue: UnwrapRef<typeof import('../../node_modules/vue')['toValue']>
     readonly triggerRef: UnwrapRef<typeof import('../../node_modules/vue')['triggerRef']>
     readonly unref: UnwrapRef<typeof import('../../node_modules/vue')['unref']>
+    readonly unwrapSlot: UnwrapRef<typeof import('../../node_modules/@nuxtjs/mdc/dist/runtime/utils/node')['flatUnwrap']>
     readonly updateAppConfig: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['updateAppConfig']>
     readonly useApollo: UnwrapRef<typeof import('../../node_modules/@nuxtjs/apollo/dist/runtime/composables')['useApollo']>
-    readonly useApolloClient: UnwrapRef<typeof import('../../node_modules/@vue/apollo-composable')['useApolloClient']>
+    readonly useApolloClient: UnwrapRef<typeof import('@vue/apollo-composable')['useApolloClient']>
     readonly useAppConfig: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useAppConfig']>
     readonly useAsyncData: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useAsyncData']>
+    readonly useAsyncMeiliSearch: UnwrapRef<typeof import('../../node_modules/nuxt-meilisearch/dist/runtime/composables/useAsyncMeiliSearch')['useAsyncMeiliSearch']>
     readonly useAsyncQuery: UnwrapRef<typeof import('../../node_modules/@nuxtjs/apollo/dist/runtime/composables')['useAsyncQuery']>
     readonly useAttrs: UnwrapRef<typeof import('../../node_modules/vue')['useAttrs']>
+    readonly useBrowserLocale: UnwrapRef<typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['useBrowserLocale']>
     readonly useContent: UnwrapRef<typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/utils')['useContentDisabled']>
     readonly useContentHead: UnwrapRef<typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/head')['useContentHead']>
     readonly useContentHelpers: UnwrapRef<typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/helpers')['useContentHelpers']>
+    readonly useContentPreview: UnwrapRef<typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/preview')['useContentPreview']>
     readonly useContentState: UnwrapRef<typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/utils')['useContentDisabled']>
     readonly useCookie: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useCookie']>
+    readonly useCookieLocale: UnwrapRef<typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['useCookieLocale']>
     readonly useCssModule: UnwrapRef<typeof import('../../node_modules/vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('../../node_modules/vue')['useCssVars']>
     readonly useDirectus: UnwrapRef<typeof import('../../node_modules/nuxt-directus/dist/runtime/composables/useDirectus')['useDirectus']>
@@ -455,29 +514,40 @@ declare module '@vue/runtime-core' {
     readonly useDirectusUsers: UnwrapRef<typeof import('../../node_modules/nuxt-directus/dist/runtime/composables/useDirectusUsers')['useDirectusUsers']>
     readonly useError: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useError']>
     readonly useFetch: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useFetch']>
-    readonly useGlobalMutationLoading: UnwrapRef<typeof import('../../node_modules/@vue/apollo-composable')['useGlobalMutationLoading']>
-    readonly useGlobalQueryLoading: UnwrapRef<typeof import('../../node_modules/@vue/apollo-composable')['useGlobalQueryLoading']>
-    readonly useGlobalSubscriptionLoading: UnwrapRef<typeof import('../../node_modules/@vue/apollo-composable')['useGlobalSubscriptionLoading']>
+    readonly useGlobalMutationLoading: UnwrapRef<typeof import('@vue/apollo-composable')['useGlobalMutationLoading']>
+    readonly useGlobalQueryLoading: UnwrapRef<typeof import('@vue/apollo-composable')['useGlobalQueryLoading']>
+    readonly useGlobalSubscriptionLoading: UnwrapRef<typeof import('@vue/apollo-composable')['useGlobalSubscriptionLoading']>
+    readonly useGtag: UnwrapRef<typeof import('../../node_modules/nuxt-gtag/dist/runtime/composables/useGtag')['useGtag']>
     readonly useHead: UnwrapRef<typeof import('../../node_modules/@unhead/vue')['useHead']>
     readonly useHeadSafe: UnwrapRef<typeof import('../../node_modules/@unhead/vue')['useHeadSafe']>
+    readonly useI18n: UnwrapRef<typeof import('../../node_modules/vue-i18n/dist/vue-i18n')['useI18n']>
+    readonly useImage: UnwrapRef<typeof import('../../node_modules/@nuxt/image/dist/runtime/composables')['useImage']>
+    readonly useInstantSearch: UnwrapRef<typeof import('../../node_modules/nuxt-meilisearch/dist/runtime/composables/useInstantSearch')['useInstantSearch']>
     readonly useLazyAsyncData: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useLazyAsyncData']>
     readonly useLazyAsyncQuery: UnwrapRef<typeof import('../../node_modules/@nuxtjs/apollo/dist/runtime/composables')['useLazyAsyncQuery']>
     readonly useLazyFetch: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useLazyFetch']>
-    readonly useLazyQuery: UnwrapRef<typeof import('../../node_modules/@vue/apollo-composable')['useLazyQuery']>
-    readonly useLink: UnwrapRef<typeof import('../vue-router')['useLink']>
-    readonly useMeilisearchClient: UnwrapRef<typeof import('../../node_modules/nuxt-meilisearch/dist/runtime/composables/useMeilisearchClient')['useMeilisearchClient']>
+    readonly useLazyQuery: UnwrapRef<typeof import('@vue/apollo-composable')['useLazyQuery']>
+    readonly useLink: UnwrapRef<typeof import('../vue-router-stub')['useLink']>
+    readonly useLocaleHead: UnwrapRef<typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['useLocaleHead']>
+    readonly useLocalePath: UnwrapRef<typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['useLocalePath']>
+    readonly useLocaleRoute: UnwrapRef<typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['useLocaleRoute']>
+    readonly useMedusaClient: UnwrapRef<typeof import('../../node_modules/nuxt-medusa/dist/runtime/composables/useMedusaClient')['useMedusaClient']>
+    readonly useMeiliSearch: UnwrapRef<typeof import('../../node_modules/nuxt-meilisearch/dist/runtime/composables/useMeiliSearch')['useMeiliSearch']>
+    readonly useMeiliSearchRef: UnwrapRef<typeof import('../../node_modules/nuxt-meilisearch/dist/runtime/composables/useMeiliSearchRef')['useMeiliSearchRef']>
     readonly useModel: UnwrapRef<typeof import('../../node_modules/vue')['useModel']>
-    readonly useMutation: UnwrapRef<typeof import('../../node_modules/@vue/apollo-composable')['useMutation']>
-    readonly useMutationLoading: UnwrapRef<typeof import('../../node_modules/@vue/apollo-composable')['useMutationLoading']>
+    readonly useMutation: UnwrapRef<typeof import('@vue/apollo-composable')['useMutation']>
+    readonly useMutationLoading: UnwrapRef<typeof import('@vue/apollo-composable')['useMutationLoading']>
     readonly useNuxtApp: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useNuxtApp']>
     readonly useNuxtData: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useNuxtData']>
-    readonly useQuery: UnwrapRef<typeof import('../../node_modules/@vue/apollo-composable')['useQuery']>
-    readonly useQueryLoading: UnwrapRef<typeof import('../../node_modules/@vue/apollo-composable')['useQueryLoading']>
+    readonly usePaypalButton: UnwrapRef<typeof import('../../node_modules/nuxt-paypal/dist/runtime/composables/usePaypal')['usePaypalButton']>
+    readonly useQuery: UnwrapRef<typeof import('@vue/apollo-composable')['useQuery']>
+    readonly useQueryLoading: UnwrapRef<typeof import('@vue/apollo-composable')['useQueryLoading']>
     readonly useRequestEvent: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useRequestEvent']>
     readonly useRequestFetch: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useRequestFetch']>
     readonly useRequestHeaders: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useRequestHeaders']>
     readonly useRequestURL: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useRequestURL']>
     readonly useRoute: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useRoute']>
+    readonly useRouteBaseName: UnwrapRef<typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['useRouteBaseName']>
     readonly useRouter: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useRouter']>
     readonly useRuntimeConfig: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useRuntimeConfig']>
     readonly useSeoMeta: UnwrapRef<typeof import('../../node_modules/@unhead/vue')['useSeoMeta']>
@@ -486,10 +556,12 @@ declare module '@vue/runtime-core' {
     readonly useServerSeoMeta: UnwrapRef<typeof import('../../node_modules/@unhead/vue')['useServerSeoMeta']>
     readonly useSlots: UnwrapRef<typeof import('../../node_modules/vue')['useSlots']>
     readonly useState: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useState']>
-    readonly useSubscription: UnwrapRef<typeof import('../../node_modules/@vue/apollo-composable')['useSubscription']>
-    readonly useSubscriptionLoading: UnwrapRef<typeof import('../../node_modules/@vue/apollo-composable')['useSubscriptionLoading']>
+    readonly useSubscription: UnwrapRef<typeof import('@vue/apollo-composable')['useSubscription']>
+    readonly useSubscriptionLoading: UnwrapRef<typeof import('@vue/apollo-composable')['useSubscriptionLoading']>
+    readonly useSwitchLocalePath: UnwrapRef<typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables')['useSwitchLocalePath']>
+    readonly useTrackEvent: UnwrapRef<typeof import('../../node_modules/nuxt-gtag/dist/runtime/composables/useTrackEvent')['useTrackEvent']>
     readonly useTransitionState: UnwrapRef<typeof import('../../node_modules/vue')['useTransitionState']>
-    readonly useUnwrap: UnwrapRef<typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/utils')['useUnwrap']>
+    readonly useUnwrap: UnwrapRef<typeof import('../../node_modules/@nuxt/content/dist/runtime/composables/useUnwrap')['useUnwrap']>
     readonly watch: UnwrapRef<typeof import('../../node_modules/vue')['watch']>
     readonly watchEffect: UnwrapRef<typeof import('../../node_modules/vue')['watchEffect']>
     readonly watchPostEffect: UnwrapRef<typeof import('../../node_modules/vue')['watchPostEffect']>

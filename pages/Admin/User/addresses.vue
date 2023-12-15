@@ -1,44 +1,40 @@
 <template>
     <div>
-    <profilebar />
-      <v-toolbar color="transparent">
-        <v-row>
-            <v-col cols="9">
-                <h5>My Addresses</h5>
-            </v-col>
-            <v-col cols="2">
-                <addAddress />
-            </v-col>
-        </v-row>
-      </v-toolbar>
-      <v-table fixed-header>
-        <thead>
-            <tr>
-                <th class="text-left">
-                    Name
-                </th>
-                <th class="text-left">
-                    Addresses
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="item in desserts" :key="item.name">
-                <td>{{ item.name }}</td>
-                <td>{{ item.Addresses }}</td>
-            </tr>
-        </tbody>
-    </v-table>  
+        <profilebar />
+        <v-toolbar color="transparent" density="compact" title="My Addresses">
+            <addAddress />
+        </v-toolbar>
+        <v-table fixed-header>
+            <thead>
+                <tr>
+                    <th class="text-left">
+                        Name
+                    </th>
+                    <th class="text-left">
+                        Addresses
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in desserts" :key="item.name">
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.Addresses }}</td>
+                </tr>
+            </tbody>
+        </v-table>
     </div>
-    
+
 </template>
 
 <script>
-import addAddress from './addAccount/add-address.vue'
-import profilebar from '../../../components/Menus/profilebar.vue'
+    import addAddress from './addAccount/add-address.vue'
+    import profilebar from '../../../components/Menus/profilebar.vue'
 
     export default {
-        components: { profilebar, addAddress },
+        components: {
+            profilebar,
+            addAddress
+        },
         data() {
             return {
                 desserts: [{

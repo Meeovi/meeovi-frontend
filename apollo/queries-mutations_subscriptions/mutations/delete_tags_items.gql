@@ -1,0 +1,5 @@
+mutation delete_tags_items($ids: [ID]!){
+    delete_tags_items(ids: $ids){
+        ids
+    }
+}

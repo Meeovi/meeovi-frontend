@@ -1,15 +1,15 @@
 <template>
   <v-app :theme="theme">
-    <v-app-bar id="topnav" density="compact">
+    <v-app-bar id="topnav">
       <template v-slot:prepend>
-        <v-btn variant="flat" @click="drawer = !drawer">
+        <v-btn variant="flat" color="transparent" @click="drawer = !drawer">
           <v-icon start icon="fas fa-bars"></v-icon> Menu
         </v-btn>
       </template>
 
       <v-app-bar-title><a class="logobrand" href="/">
           <v-icon start>
-            <v-img src="../assets/images/logo512alpha-192x192.png"></v-img>
+            <img src="../assets/images/logo512alpha-192x192.png" />
           </v-icon>Meeovi
         </a></v-app-bar-title>
 
@@ -44,15 +44,13 @@
         </v-col>
 
         <v-col>
-          <a variant="flat" href="/commerce/cart">
+          <a variant="flat" href="/cart">
             <v-icon class="shopping-cart" start icon="fas fa-shopping-cart"></v-icon>
           </a>
         </v-col>
       </div>
     </v-app-bar>
-    
-    
-    
+
     <v-main>
       <v-card>
         <v-layout>
@@ -63,11 +61,11 @@
               </template>
             </v-list-item>
 
-            <v-list density="compact" nav>
-              <h5>Trending</h5>
-              <v-list-item title="What's New" prepend-icon="fas fa-cart-plus" href="/categories/new"></v-list-item>
+            <v-list nav>
+              <h5 class="trendingh5">Trending</h5>
+              <v-list-item title="Explore" prepend-icon="fas fa-cart-plus" href="/explore"></v-list-item>
               <v-list-item title="Deals" prepend-icon="fas fa-money-bill" href="/deals"></v-list-item>
-              <v-list-item title="Exclusives" prepend-icon="fas fa-key" href="/categories/exclusives"></v-list-item>
+              <v-list-item title="Exclusives" prepend-icon="fas fa-key" href="/departments/exclusives"></v-list-item>
               <v-divider></v-divider>
               <h5>Social</h5>
               <v-row>
@@ -81,19 +79,20 @@
                 </v-col>
                 <v-col cols="4">
                   <v-btn variant="text" stacked title="Meeovi Live" prepend-icon="fas fa-video" size="x-small"
-                    href="/categories/live">Live</v-btn>
+                    href="/departments/live">Live</v-btn>
                 </v-col>
               </v-row>
 
               <departmentsmenu />
               <v-divider></v-divider>
 
-              <luxurystoresmenu />
+              <meeovistoresmenu />
               <v-divider></v-divider>
 
               <myaccountmenu />
               <v-divider></v-divider>
 
+              <bottomsidebarmenu />
               <v-row>
                 <v-col cols="4">
                   <v-btn variant="text" stacked title="Help" prepend-icon="fas fa-question-circle" size="x-small"
@@ -111,14 +110,17 @@
               </v-row>
             </v-list>
           </v-navigation-drawer>
-          
+
           <v-main id="sidebarNav"></v-main>
           <main id="mainSection">
             <live />
-            <slot />
+            <div>
+              <slot />
+            </div>
           </main>
         </v-layout>
       </v-card>
+      <!--<AboveFooter />-->
       <BottomFooter />
       <FooterNav />
     </v-main>
@@ -130,9 +132,10 @@
   import ecosystemmenu from '../components/Menus/ecosystemmenu.vue'
   import live from '../components/Catbar/live.vue'
   import departmentsmenu from '../components/Menus/Sidebar/departmentsmenu.vue'
-  import luxurystoresmenu from '../components/Menus/Sidebar/meeovistoresmenu.vue'
+  import meeovistoresmenu from '../components/Menus/Sidebar/meeovistoresmenu.vue'
   import myaccountmenu from '../components/Menus/Sidebar/myaccountmenu.vue'
   import myaccounttopmenu from '../components/Menus/TopMenu/myaccounttopmenu.vue'
+  import bottomsidebarmenu from '../components/Menus/Sidebar/bottomsidebarmenu.vue'
 
   export default {
     data() {
@@ -142,9 +145,10 @@
           ecosystemmenu,
           live,
           departmentsmenu,
-          luxurystoresmenu,
+          meeovistoresmenu,
           myaccountmenu,
-          myaccounttopmenu
+          myaccounttopmenu,
+          bottomsidebarmenu
         },
         drawer: null,
         rail: true,

@@ -1,0 +1,38 @@
+query cities_states_aggregated($groupBy: [String], $filter: cities_states_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
+    cities_states_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
+        group
+        countAll
+        count{
+            id
+            cities_id
+        }
+        countDistinct{
+            id
+            cities_id
+        }
+        avg{
+            id
+            cities_id
+        }
+        sum{
+            id
+            cities_id
+        }
+        avgDistinct{
+            id
+            cities_id
+        }
+        sumDistinct{
+            id
+            cities_id
+        }
+        min{
+            id
+            cities_id
+        }
+        max{
+            id
+            cities_id
+        }
+    }
+}

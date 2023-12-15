@@ -1,0 +1,5 @@
+mutation delete_Space_items($ids: [ID]!){
+    delete_Space_items(ids: $ids){
+        ids
+    }
+}

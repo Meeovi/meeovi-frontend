@@ -1,0 +1,46 @@
+query musicchart_products_aggregated($groupBy: [String], $filter: musicchart_products_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
+    musicchart_products_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
+        group
+        countAll
+        count{
+            id
+            musicchart_id
+            products_id
+        }
+        countDistinct{
+            id
+            musicchart_id
+            products_id
+        }
+        avg{
+            id
+            musicchart_id
+            products_id
+        }
+        sum{
+            id
+            musicchart_id
+            products_id
+        }
+        avgDistinct{
+            id
+            musicchart_id
+            products_id
+        }
+        sumDistinct{
+            id
+            musicchart_id
+            products_id
+        }
+        min{
+            id
+            musicchart_id
+            products_id
+        }
+        max{
+            id
+            musicchart_id
+            products_id
+        }
+    }
+}

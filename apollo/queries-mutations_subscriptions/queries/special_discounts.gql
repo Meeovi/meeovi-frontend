@@ -1,0 +1,35 @@
+query special_discounts($filter: special_discounts_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
+    special_discounts(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
+        id
+        name
+        excerpt
+        discount
+        image
+        published
+        published_func{
+            year
+            month
+            week
+            day
+            weekday
+            hour
+            minute
+            second
+        }
+        rewards
+        coupons
+        expiration
+        expiration_func{
+            year
+            month
+            week
+            day
+            weekday
+        }
+        categories
+        articles
+        products
+        customers
+        users
+    }
+}

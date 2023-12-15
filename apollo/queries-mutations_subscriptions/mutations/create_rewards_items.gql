@@ -1,0 +1,26 @@
+mutation create_rewards_items($filter: rewards_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String, $data: [create_rewards_input!]){
+    create_rewards_items(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search, data: $data){
+        id
+        name
+        slug
+        level
+        created_at
+        created_at_func{
+            year
+            month
+            week
+            day
+            weekday
+            hour
+            minute
+            second
+        }
+        coupons
+        expiration
+        categories
+        articles
+        products
+        customers
+        users
+    }
+}

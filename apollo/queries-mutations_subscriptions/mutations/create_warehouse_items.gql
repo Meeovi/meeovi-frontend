@@ -1,0 +1,27 @@
+mutation create_warehouse_items($filter: warehouse_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String, $data: [create_warehouse_input!]){
+    create_warehouse_items(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search, data: $data){
+        id
+        created_at
+        created_at_func{
+            year
+            month
+            week
+            day
+            weekday
+            hour
+            minute
+            second
+        }
+        name
+        description
+        city
+        state
+        country
+        postal
+        status
+        image
+        products
+        category
+        isPublic
+    }
+}

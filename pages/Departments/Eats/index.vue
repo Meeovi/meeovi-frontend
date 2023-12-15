@@ -1,23 +1,27 @@
 <template>
     <div>
-        <eatsbar />
         <v-row class="contentSection">
-            <v-col cols="12">
-                <v-card class="mx-auto" height="620" width="350">
+            <v-col cols="12" v-for="eats in data.categories" :key="eats.id">
+                <v-card class="mx-auto" height="620" width="450">
                     <v-row>
-                        <v-col cols="8"><v-toolbar density="compact" title="Content Creator Name" color="transparent"></v-toolbar></v-col>
-                        <v-col class="feedFollowBtn" cols="4"><v-btn variant="text" title="Follow" href="" size="medium">Follow</v-btn></v-col>
+                        <v-col cols="8">
+                            <v-toolbar density="compact" title="Content Creator Name" color="transparent"></v-toolbar>
+                        </v-col>
+                        <v-col class="feedFollowBtn" cols="4">
+                            <v-btn variant="text" title="Follow" href="" size="medium">Follow</v-btn>
+                        </v-col>
                     </v-row>
-                    <video class="align-end text-white" height="400" controls src="https://cdn.vuetifyjs.com/images/cards/docks.jpg" cover></video>
+                    <video class="align-end text-white" height="400" controls
+                        :src="`${url}assets/${shorts.video.filename_disk}`" cover></video>
 
                     <v-card-subtitle class="pt-4">
-                        Number 10
+                        {{shorts.name}}
                     </v-card-subtitle>
 
                     <v-card-text>
-                        <div>Whitehaven Beach</div>
+                        <div>{{ shorts.date_created }}</div>
 
-                        <div>Whitsunday Island, Whitsunday Islands</div>
+                        <div>{{ shorts.description }}</div>
                     </v-card-text>
 
                     <v-card-actions>
@@ -45,14 +49,85 @@
 </template>
 
 <script>
-import eatsbar from '../../../components/Menus/eatsbar.vue'
-
     export default {
-        components: { eatsbar }
+        components: {
+            data() {
+                return {
+                    url: process.env.DIRECTUS_URL,
+                }
+            },
+        }
     }
 </script>
 
 <script setup>
+    const query = gql `
+query {
+  categories (search: "eats") {
+    id
+    name
+    description
+    content
+    image {
+      filename_disk
+    }
+    meeovistores {
+      id
+    }
+    products {
+      id
+      products_id {
+        id
+        name
+        price
+        content
+        image {
+          filename_disk
+        }
+        country
+      }
+    }
+    Space {
+      id
+      Space_id {
+        id
+        Name
+        newsfeed
+        date_created
+        Description
+        Image {
+          filename_disk
+        }
+        product_id {
+          id
+          products_id {
+            price
+            name
+            image {
+              filename_disk
+            }
+            short_description
+            content
+            country
+          }
+        }
+      }
+    }
+    shorts {
+      id
+        name
+        description
+        date_created
+        video {
+          filename_disk
+        }
+    }
+  }
+}`
+    const {
+        data
+    } = await useAsyncQuery(query)
+
     useHead({
         title: 'Meeovi Eats'
     })

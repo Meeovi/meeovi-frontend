@@ -1,0 +1,46 @@
+query comments_shorts_aggregated($groupBy: [String], $filter: comments_shorts_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
+    comments_shorts_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
+        group
+        countAll
+        count{
+            id
+            comments_id
+            shorts_id
+        }
+        countDistinct{
+            id
+            comments_id
+            shorts_id
+        }
+        avg{
+            id
+            comments_id
+            shorts_id
+        }
+        sum{
+            id
+            comments_id
+            shorts_id
+        }
+        avgDistinct{
+            id
+            comments_id
+            shorts_id
+        }
+        sumDistinct{
+            id
+            comments_id
+            shorts_id
+        }
+        min{
+            id
+            comments_id
+            shorts_id
+        }
+        max{
+            id
+            comments_id
+            shorts_id
+        }
+    }
+}

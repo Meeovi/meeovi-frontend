@@ -1,6 +1,6 @@
 <template>
-    <div class="contentPage" v-for="legal in legal" :key="legal.id">
-        <v-card :title="legal.name" :subtitle="legal.date_created" :text="legal.description" variant="tonal"></v-card>
+    <div class="contentPage" v-for="pages in data.pages" :key="pages.id">
+        <v-card :title="pages.name" :subtitle="pages.date_created"><div v-html="pages.content"></div></v-card>
     </div>
 </template>
 
@@ -15,9 +15,26 @@
         title: 'Press',
     })
 
-    const {
+const query = gql`
+    query {
+    pages (filter: {name: {_starts_with: "Press"}}) {
+      id
+      status
+      sort
+      name
+      content
+      link
+      list
+      type
+      date_created
+    }
+  }
+`
+const { data } = await useAsyncQuery(query)
+
+   /* const {
         getItems
     } = useDirectusItems()
 
-    const legal = await getItems({ collection: "legal", params: {filter: {name: {_eq: "Press"}}}});
+    const pages = await getItems({ collection: "pages", params: {filter: {name: {_eq: "Terms and Conditions"}}}});*/
 </script>

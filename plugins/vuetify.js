@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
+import { mdi } from 'vuetify/iconsets/mdi'
 
 const app = createApp()
 
@@ -22,6 +23,7 @@ export default defineNuxtPlugin(nuxtApp => {
       aliases,
       sets: {
         fa,
+        mdi
       },
     },
   })

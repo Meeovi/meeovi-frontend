@@ -1,0 +1,46 @@
+query customers_shorts_aggregated($groupBy: [String], $filter: customers_shorts_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
+    customers_shorts_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
+        group
+        countAll
+        count{
+            id
+            customers_id
+            shorts_id
+        }
+        countDistinct{
+            id
+            customers_id
+            shorts_id
+        }
+        avg{
+            id
+            customers_id
+            shorts_id
+        }
+        sum{
+            id
+            customers_id
+            shorts_id
+        }
+        avgDistinct{
+            id
+            customers_id
+            shorts_id
+        }
+        sumDistinct{
+            id
+            customers_id
+            shorts_id
+        }
+        min{
+            id
+            customers_id
+            shorts_id
+        }
+        max{
+            id
+            customers_id
+            shorts_id
+        }
+    }
+}

@@ -2,10 +2,10 @@
   <v-sheet class="mx-auto sliderProducts">
     <h4>Deals under $20</h4>
     <v-slide-group v-model="model" class="pa-4" center-active show-arrows>
-      <v-slide-group-item v-for="products in data.products.items" :key="products.id" v-slot="{ isSelected, toggle }">
+      <v-slide-group-item v-for="products in data.products" :key="products.id" v-slot="{ isSelected, toggle }">
         <a :href="`/product/${products.id}`">
-          <v-card class="ma-4" height="380" width="250" @click="toggle">
-            <img class="align-end text-white" height="200" :src="`${products.featuredAsset.preview}`"
+          <v-card class="ma-4" height="580" width="250" @click="toggle">
+            <img class="align-end text-white" height="280" :src="`${url}assets/${products.image.filename_disk}`"
               :alt="products.name" cover />
 
             <v-card-title class="pt-4">
@@ -13,16 +13,26 @@
             </v-card-title>
 
             <v-card-text>
-              <div>Sku: {{ products.variants.sku }}</div>
+              <div>Sku: {{ products.sku }}</div>
+              <div>Category: {{ products.categories.name }}</div>
+              <div>Seller: {{ products.customers.username }}</div>
             </v-card-text>
 
+            <div class="productcardrating">
+              <v-rating hover :length="5" :size="32" :model-value="products.rating" active-color="orange" />
+            </div>
+
             <v-card-actions>
-              <v-card-title>$ {{ products.variants.price }}
-              </v-card-title>
+              <v-card-title>Price: $ {{ products.price }}</v-card-title>
             </v-card-actions>
+
+            <div class="align-center">
+              <v-btn class="align-center" color="orange" href="">Add to Cart</v-btn>
+            </div>
+
             <div class="d-flex fill-height align-center justify-center">
               <v-scale-transition>
-                <v-icon v-if="isSelected" color="white" size="48" icon="mdi-close-circle-outline"></v-icon>
+                <v-icon v-if="isSelected" color="white" size="48" icon="fas fa-circle-xmark"></v-icon>
               </v-scale-transition>
             </div>
           </v-card>
@@ -36,25 +46,64 @@
   export default {
     data: () => ({
       model: null,
-      url: 'http://meeovicms.com:8011'
+      url: process.env.DIRECTUS_URL,
     }),
   }
 </script>
 
 <script setup>
   const query = gql `
- query {
-  products (options: {take: 6}) {
-    items {
-      id
-      name
-      featuredAsset {
-        id
-        preview
+query {
+  products (limit: 12, filter: {price: {_lte: "20"}}) {
+    id
+    name
+    price
+    sku
+    image {
+      filename_disk
+    }
+    rating
+    tax_class
+    stock_status
+    websites {
+      websites_id {
+        name
+        url
       }
-      variants {
-        price
-        sku
+    }
+    weight
+    height
+    content
+    part_number
+    format
+    file {
+      filename_disk
+    }
+    type
+    visibility
+    size
+    attributes {
+      attributes_id {
+        id
+        default_label
+      }
+    }
+    categories {
+      categories_id {
+        id
+        name
+      }
+    }
+    customers {
+      customers_id {
+        id
+        username
+      }
+    }
+    shops {
+      shops_id {
+        id
+        name
       }
     }
   }

@@ -1,0 +1,46 @@
+query departments_categories_aggregated($groupBy: [String], $filter: departments_categories_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
+    departments_categories_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
+        group
+        countAll
+        count{
+            id
+            departments_id
+            categories_id
+        }
+        countDistinct{
+            id
+            departments_id
+            categories_id
+        }
+        avg{
+            id
+            departments_id
+            categories_id
+        }
+        sum{
+            id
+            departments_id
+            categories_id
+        }
+        avgDistinct{
+            id
+            departments_id
+            categories_id
+        }
+        sumDistinct{
+            id
+            departments_id
+            categories_id
+        }
+        min{
+            id
+            departments_id
+            categories_id
+        }
+        max{
+            id
+            departments_id
+            categories_id
+        }
+    }
+}

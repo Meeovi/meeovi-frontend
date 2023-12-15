@@ -1,0 +1,26 @@
+mutation create_rewards_item($data: create_rewards_input!){
+    create_rewards_item(data: $data){
+        id
+        name
+        slug
+        level
+        created_at
+        created_at_func{
+            year
+            month
+            week
+            day
+            weekday
+            hour
+            minute
+            second
+        }
+        coupons
+        expiration
+        categories
+        articles
+        products
+        customers
+        users
+    }
+}

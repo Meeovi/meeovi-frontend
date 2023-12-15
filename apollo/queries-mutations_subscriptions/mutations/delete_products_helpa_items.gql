@@ -1,0 +1,5 @@
+mutation delete_products_helpa_items($ids: [ID]!){
+    delete_products_helpa_items(ids: $ids){
+        ids
+    }
+}

@@ -1,0 +1,46 @@
+query translations_products_aggregated($groupBy: [String], $filter: translations_products_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
+    translations_products_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
+        group
+        countAll
+        count{
+            id
+            translations_id
+            products_id
+        }
+        countDistinct{
+            id
+            translations_id
+            products_id
+        }
+        avg{
+            id
+            translations_id
+            products_id
+        }
+        sum{
+            id
+            translations_id
+            products_id
+        }
+        avgDistinct{
+            id
+            translations_id
+            products_id
+        }
+        sumDistinct{
+            id
+            translations_id
+            products_id
+        }
+        min{
+            id
+            translations_id
+            products_id
+        }
+        max{
+            id
+            translations_id
+            products_id
+        }
+    }
+}

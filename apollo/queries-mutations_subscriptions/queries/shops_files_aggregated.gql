@@ -1,0 +1,40 @@
+query shops_files_aggregated($groupBy: [String], $filter: shops_files_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
+    shops_files_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
+        group
+        countAll
+        count{
+            id
+            shops_id
+            directus_files_id
+        }
+        countDistinct{
+            id
+            shops_id
+            directus_files_id
+        }
+        avg{
+            id
+            shops_id
+        }
+        sum{
+            id
+            shops_id
+        }
+        avgDistinct{
+            id
+            shops_id
+        }
+        sumDistinct{
+            id
+            shops_id
+        }
+        min{
+            id
+            shops_id
+        }
+        max{
+            id
+            shops_id
+        }
+    }
+}

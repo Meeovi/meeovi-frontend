@@ -1,0 +1,46 @@
+query digiboard_categories_aggregated($groupBy: [String], $filter: digiboard_categories_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
+    digiboard_categories_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
+        group
+        countAll
+        count{
+            id
+            digiboard_id
+            categories_id
+        }
+        countDistinct{
+            id
+            digiboard_id
+            categories_id
+        }
+        avg{
+            id
+            digiboard_id
+            categories_id
+        }
+        sum{
+            id
+            digiboard_id
+            categories_id
+        }
+        avgDistinct{
+            id
+            digiboard_id
+            categories_id
+        }
+        sumDistinct{
+            id
+            digiboard_id
+            categories_id
+        }
+        min{
+            id
+            digiboard_id
+            categories_id
+        }
+        max{
+            id
+            digiboard_id
+            categories_id
+        }
+    }
+}

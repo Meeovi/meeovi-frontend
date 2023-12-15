@@ -1,0 +1,27 @@
+mutation update_warehouse_item($id: ID!, $data: update_warehouse_input!){
+    update_warehouse_item(id: $id, data: $data){
+        id
+        created_at
+        created_at_func{
+            year
+            month
+            week
+            day
+            weekday
+            hour
+            minute
+            second
+        }
+        name
+        description
+        city
+        state
+        country
+        postal
+        status
+        image
+        products
+        category
+        isPublic
+    }
+}

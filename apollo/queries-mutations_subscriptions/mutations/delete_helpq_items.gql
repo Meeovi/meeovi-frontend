@@ -1,0 +1,5 @@
+mutation delete_helpq_items($ids: [ID]!){
+    delete_helpq_items(ids: $ids){
+        ids
+    }
+}

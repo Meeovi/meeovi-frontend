@@ -1,0 +1,5 @@
+mutation delete_newsletters_item($id: ID!){
+    delete_newsletters_item(id: $id){
+        id
+    }
+}

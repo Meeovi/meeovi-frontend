@@ -3,22 +3,40 @@ html {
     overflow-y: scroll;
     font-family: 'Inter', sans-serif !important;
 }
+
 body {
     margin: 0;
 }
 
 #topnav {
     width: 100% !important;
+    color: white;
+    background-color: steelblue;
+}
+
+#topnav a {
+    color: white;
 }
 
 .lowernav {
-    top: 50px;
+    top: 60px;
     position: relative;
-    background-color: crimson !important;
+    background-color: steelblue !important;
+}
+
+.livebar {
+    width: 100%;
+    position: relative;
+    padding-top: 10px;
+    top: 55px;
+}
+
+.livebar>.v-avatar {
+    border: 2px solid #6592e6;
 }
 
 .shopping-cart {
-    color: crimson;
+    color: white;
 }
 
 .lowernav a {
@@ -27,10 +45,6 @@ body {
 
 .logobrand {
     text-decoration: none;
-}
-
-.ais-InstantSearch {
-    position: relative;
 }
 
 .pa-2 {
@@ -43,13 +57,19 @@ body {
     border: black;
 }
 
-.section-content, .section-name, .pricing1 {
+.section-content,
+.section-name,
+.pricing1 {
     background-color: transparent !important;
 }
 
 .accountDropdown h6 {
     padding-left: 15px;
     padding-top: 10px;
+}
+
+.lowerbar {
+    top: 55px;
 }
 
 .lowerbar h5 {
@@ -63,6 +83,20 @@ body {
 
 .rightnav li {
     display: inline-block;
+}
+
+.trendingh5 {
+    padding-top: 10px;
+}
+
+.videoPage video {
+    width: 100%;
+}
+
+.rightvideoviews {
+    position: relative;
+    float: right;
+    right: 5px;
 }
 
 /******************* Main Section CSS *********/
@@ -80,8 +114,11 @@ body {
     --v-layout-top: 0px !important;
 }
 
-.homeSection, .contentPage, .contentPage404 {
-    padding: 45px !important;
+.homeSection,
+.contentPage,
+.contentPage404 {
+    padding: 50px !important;
+    padding-top: 60px !important;
 }
 
 .contentPage h2 {
@@ -97,7 +134,8 @@ body {
     text-decoration: none;
 }
 
-.homeTitle, .homeDescription {
+.homeTitle,
+.homeDescription {
     padding: 5px;
 }
 
@@ -137,16 +175,12 @@ body {
     padding-left: 5%;
 }
 
-.sliderProducts h4, .sliderCreators h4 {
+.sliderProducts h4,
+.sliderCreators h4 {
     padding-top: 30px;
     padding-left: 30px;
 }
 
-.productPage {
-    padding-top: 20px;
-    padding-left: 5%;
-    padding-right: 5%;
-}
 
 .examplecolor {
     background-color: pale;
@@ -206,7 +240,8 @@ body {
     padding-top: 15%;
 }
 
-[data-content-type='products'] .product-item, .pagebuilder-products .product-item {
+[data-content-type='products'] .product-item,
+.pagebuilder-products .product-item {
     display: inline-block;
     max-width: 100%;
     min-width: 50px;
@@ -224,11 +259,114 @@ body {
     .pagebuilder-mobile-only {
         display: block;
     }
+
     .pagebuilder-desktop-only {
         display: none;
     }
 }
 
+/**************** Product Page *******************/
+
+.sizelist {
+    width: 50%;
+}
+
+.sizelist p {
+    padding-left: 18px;
+}
+
+.productPage {
+    padding: 5%;
+}
+
+.productPage>.v-rating {
+    padding-left: 15px;
+}
+
+.rating-values {
+    width: 25px;
+}
+
+.commentfield p,
+.videocommentfield p {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 20px;
+    font-size: 20px;
+}
+
+.videocommentlist {
+    padding-left: 15px;
+}
+
+.productprice {
+    padding-left: 18px;
+    font-size: 25px;
+}
+
+.productseller {
+    padding-left: 18px;
+}
+
+.productstock {
+    display: inline-block;
+    padding-left: 15px;
+    font-size: 20px;
+    color: steelblue;
+}
+
+.productdescription {
+    font-size: 18px;
+}
+
+.productpage .v-btn {
+    background-color: steelblue;
+}
+
+.productcardrating {
+    padding-left: 10px;
+}
+
+#videocommentbtn {
+    float: right;
+    margin-right: 5px;
+    background-color: #6592e6;
+    color: white;
+}
+
+.videotags {
+    padding: 10px;
+    padding-left: 25px;
+}
+
+.chartnumber {
+    background-color: black;
+    color: white;
+    text-align: center;
+    border-bottom: 1px solid white;
+}
+
+.charttable thead {
+    background-color: steelblue;
+}
+
+.charttable th {
+    color: white !important;
+}
+
+/******************* Upload Center ************/
+
+.uploadHeader,
+.uploadDescription {
+    position: relative;
+    top: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.uploadHeader {
+    font-size: 25px;
+}
 
 /******************** Sidebar CSS *************/
 
@@ -254,8 +392,6 @@ body {
 
 .centralfeed {
     padding-top: 15px;
-    padding-left: 25%;
-    padding-right: 25%;
     padding-bottom: 5%;
 }
 
@@ -268,7 +404,7 @@ body {
 }
 
 .postbtn {
-    background-color: crimson !important;
+    background-color: steelblue !important;
     color: white !important;
 }
 
@@ -283,13 +419,78 @@ body {
     text-align: center;
 }
 
-.people5, .people1, .features10, .features12, .teams1, .features19, .flip-card, .features13, .pricing2, .plan, .content2, .mbr-gallery, .mbr-section, .shop2, .cid-txYTqgVHsB, .cid-txYTqgVHsB blockquote {
+.people5,
+.people1,
+.features10,
+.features12,
+.teams1,
+.features19,
+.flip-card,
+.features13,
+.pricing2,
+.plan,
+.content2,
+.mbr-gallery,
+.mbr-section,
+.shop2,
+.cid-txYTqgVHsB,
+.cid-tApxFdIkda,
+.cid-tApxFdIkda .mbr-text .cid-txYTqgVHsB blockquote {
     background-color: transparent !important;
+}
+
+/*************** Search *****************/
+.searchResults p {
+    top: 7px;
+    position: relative;
+}
+
+.searchResults .v-btn:hover {
+    color: orange;
+}
+
+.searchResults .v-btn:active {
+    color: orange;
+}
+
+.searchfilter p {
+    font-weight: bold;
+}
+
+.ais-Hits-list {
+    margin-top: 0;
+    margin-bottom: 1em;
+}
+
+.ais-InstantSearch {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-gap: 1em;
+}
+
+.ais-Hits-item img {
+    margin-right: 1em;
+}
+
+.hit-name {
+    margin-bottom: 0.5em;
+}
+
+.hit-description {
+    color: #888;
+    font-size: 0.8em;
+    margin-bottom: 0.5em;
 }
 
 /***************** Footer ********************/
 .topfooter {
     background-color: #232323;
+}
+
+.footertotopbtn {
+    width: 100% !important;
+    background-color: steelblue !important;
+    color: white !important;
 }
 
 footer {
@@ -303,4 +504,10 @@ footer a {
 
 footer a:hover {
     color: white !important;
+}
+
+.translatebar {
+    width: 100%;
+    left: 40%;
+    position: relative;
 }

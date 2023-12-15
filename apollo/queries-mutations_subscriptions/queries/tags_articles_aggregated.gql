@@ -1,0 +1,46 @@
+query tags_articles_aggregated($groupBy: [String], $filter: tags_articles_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
+    tags_articles_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
+        group
+        countAll
+        count{
+            id
+            tags_id
+            articles_id
+        }
+        countDistinct{
+            id
+            tags_id
+            articles_id
+        }
+        avg{
+            id
+            tags_id
+            articles_id
+        }
+        sum{
+            id
+            tags_id
+            articles_id
+        }
+        avgDistinct{
+            id
+            tags_id
+            articles_id
+        }
+        sumDistinct{
+            id
+            tags_id
+            articles_id
+        }
+        min{
+            id
+            tags_id
+            articles_id
+        }
+        max{
+            id
+            tags_id
+            articles_id
+        }
+    }
+}

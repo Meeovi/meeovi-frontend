@@ -1,0 +1,26 @@
+mutation update_rewards_item($id: ID!, $data: update_rewards_input!){
+    update_rewards_item(id: $id, data: $data){
+        id
+        name
+        slug
+        level
+        created_at
+        created_at_func{
+            year
+            month
+            week
+            day
+            weekday
+            hour
+            minute
+            second
+        }
+        coupons
+        expiration
+        categories
+        articles
+        products
+        customers
+        users
+    }
+}

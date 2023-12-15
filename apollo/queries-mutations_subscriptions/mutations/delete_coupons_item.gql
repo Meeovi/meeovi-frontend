@@ -1,0 +1,5 @@
+mutation delete_coupons_item($id: ID!){
+    delete_coupons_item(id: $id){
+        id
+    }
+}

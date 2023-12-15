@@ -1,0 +1,31 @@
+subscription warehouse_mutated($event: EventEnum){
+    warehouse_mutated(event: $event){
+        key
+        event
+        data{
+            id
+            created_at
+            created_at_func{
+                year
+                month
+                week
+                day
+                weekday
+                hour
+                minute
+                second
+            }
+            name
+            description
+            city
+            state
+            country
+            postal
+            status
+            image
+            products
+            category
+            isPublic
+        }
+    }
+}

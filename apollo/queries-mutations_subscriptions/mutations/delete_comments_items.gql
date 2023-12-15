@@ -1,0 +1,5 @@
+mutation delete_comments_items($ids: [ID]!){
+    delete_comments_items(ids: $ids){
+        ids
+    }
+}

@@ -1,0 +1,44 @@
+query digiboard_aggregated($groupBy: [String], $filter: digiboard_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
+    digiboard_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
+        group
+        countAll
+        count{
+            id
+            name
+            board
+            created_at
+            image
+            categories
+            customers
+            comments
+        }
+        countDistinct{
+            id
+            name
+            board
+            created_at
+            image
+            categories
+            customers
+            comments
+        }
+        avg{
+            id
+        }
+        sum{
+            id
+        }
+        avgDistinct{
+            id
+        }
+        sumDistinct{
+            id
+        }
+        min{
+            id
+        }
+        max{
+            id
+        }
+    }
+}

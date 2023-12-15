@@ -1,0 +1,30 @@
+subscription rewards_mutated($event: EventEnum){
+    rewards_mutated(event: $event){
+        key
+        event
+        data{
+            id
+            name
+            slug
+            level
+            created_at
+            created_at_func{
+                year
+                month
+                week
+                day
+                weekday
+                hour
+                minute
+                second
+            }
+            coupons
+            expiration
+            categories
+            articles
+            products
+            customers
+            users
+        }
+    }
+}

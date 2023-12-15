@@ -1,0 +1,26 @@
+query rewards_by_id($id: ID!, $version: String){
+    rewards_by_id(id: $id, version: $version){
+        id
+        name
+        slug
+        level
+        created_at
+        created_at_func{
+            year
+            month
+            week
+            day
+            weekday
+            hour
+            minute
+            second
+        }
+        coupons
+        expiration
+        categories
+        articles
+        products
+        customers
+        users
+    }
+}

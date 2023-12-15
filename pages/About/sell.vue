@@ -174,7 +174,7 @@
     export default {
         data: () => ({
             model: null,
-            url: 'http://meeovicms.com:8011'
+            url: process.env.DIRECTUS_URL,
         }),
     }
 </script>

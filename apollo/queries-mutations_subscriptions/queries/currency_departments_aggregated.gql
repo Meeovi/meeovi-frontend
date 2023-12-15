@@ -1,0 +1,46 @@
+query currency_departments_aggregated($groupBy: [String], $filter: currency_departments_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
+    currency_departments_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
+        group
+        countAll
+        count{
+            id
+            currency_id
+            departments_id
+        }
+        countDistinct{
+            id
+            currency_id
+            departments_id
+        }
+        avg{
+            id
+            currency_id
+            departments_id
+        }
+        sum{
+            id
+            currency_id
+            departments_id
+        }
+        avgDistinct{
+            id
+            currency_id
+            departments_id
+        }
+        sumDistinct{
+            id
+            currency_id
+            departments_id
+        }
+        min{
+            id
+            currency_id
+            departments_id
+        }
+        max{
+            id
+            currency_id
+            departments_id
+        }
+    }
+}

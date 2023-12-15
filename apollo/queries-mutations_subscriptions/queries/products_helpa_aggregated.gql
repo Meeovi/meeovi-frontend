@@ -1,0 +1,46 @@
+query products_helpa_aggregated($groupBy: [String], $filter: products_helpa_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
+    products_helpa_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
+        group
+        countAll
+        count{
+            id
+            products_id
+            helpa_id
+        }
+        countDistinct{
+            id
+            products_id
+            helpa_id
+        }
+        avg{
+            id
+            products_id
+            helpa_id
+        }
+        sum{
+            id
+            products_id
+            helpa_id
+        }
+        avgDistinct{
+            id
+            products_id
+            helpa_id
+        }
+        sumDistinct{
+            id
+            products_id
+            helpa_id
+        }
+        min{
+            id
+            products_id
+            helpa_id
+        }
+        max{
+            id
+            products_id
+            helpa_id
+        }
+    }
+}

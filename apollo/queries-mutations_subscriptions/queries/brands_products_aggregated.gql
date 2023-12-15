@@ -1,0 +1,46 @@
+query brands_products_aggregated($groupBy: [String], $filter: brands_products_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
+    brands_products_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
+        group
+        countAll
+        count{
+            id
+            brands_id
+            products_id
+        }
+        countDistinct{
+            id
+            brands_id
+            products_id
+        }
+        avg{
+            id
+            brands_id
+            products_id
+        }
+        sum{
+            id
+            brands_id
+            products_id
+        }
+        avgDistinct{
+            id
+            brands_id
+            products_id
+        }
+        sumDistinct{
+            id
+            brands_id
+            products_id
+        }
+        min{
+            id
+            brands_id
+            products_id
+        }
+        max{
+            id
+            brands_id
+            products_id
+        }
+    }
+}

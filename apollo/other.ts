@@ -1,7 +1,7 @@
 import { defineApolloClient } from '@nuxtjs/apollo'
 
 export default defineApolloClient({
-  httpEndpoint: 'http://meeovicms.com:8011/graphql',
+  httpEndpoint: 'http://67.207.71.123:8011/graphql',
   browserHttpEndpoint: '',
   wsEndpoint: '',
   httpLinkOptions: {},

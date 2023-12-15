@@ -1,0 +1,5 @@
+mutation delete_shorts_item($id: ID!){
+    delete_shorts_item(id: $id){
+        id
+    }
+}

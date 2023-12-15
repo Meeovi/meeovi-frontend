@@ -1,0 +1,46 @@
+query shops_newsfeed_aggregated($groupBy: [String], $filter: shops_newsfeed_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
+    shops_newsfeed_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
+        group
+        countAll
+        count{
+            id
+            shops_id
+            newsfeed_id
+        }
+        countDistinct{
+            id
+            shops_id
+            newsfeed_id
+        }
+        avg{
+            id
+            shops_id
+            newsfeed_id
+        }
+        sum{
+            id
+            shops_id
+            newsfeed_id
+        }
+        avgDistinct{
+            id
+            shops_id
+            newsfeed_id
+        }
+        sumDistinct{
+            id
+            shops_id
+            newsfeed_id
+        }
+        min{
+            id
+            shops_id
+            newsfeed_id
+        }
+        max{
+            id
+            shops_id
+            newsfeed_id
+        }
+    }
+}

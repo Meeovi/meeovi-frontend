@@ -1,0 +1,28 @@
+query manufacturer_aggregated($groupBy: [String], $filter: manufacturer_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
+    manufacturer_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
+        group
+        countAll
+        count{
+            id
+            created_at
+            code
+            name
+            description
+            isPublic
+            image
+            brands
+            products
+        }
+        countDistinct{
+            id
+            created_at
+            code
+            name
+            description
+            isPublic
+            image
+            brands
+            products
+        }
+    }
+}

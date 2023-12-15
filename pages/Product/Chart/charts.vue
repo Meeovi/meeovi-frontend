@@ -1,164 +1,80 @@
 <template>
     <div>
-        <section data-bs-version="5.1" class="slider1 cid-sBY233VxUT" id="slider1-2n">
-    
-    <div class="carousel slide carousel-fade" id="twaOAgR2Jl" data-ride="carousel" data-bs-ride="carousel" data-interval="5000" data-bs-interval="5000">
-        <ol class="carousel-indicators">
-            <li data-slide-to="0" data-bs-slide-to="0" class="active" data-target="#twaOAgR2Jl" data-bs-target="#twaOAgR2Jl"></li>
-            <li data-slide-to="1" data-bs-slide-to="1" data-target="#twaOAgR2Jl" data-bs-target="#twaOAgR2Jl"></li>
-            <li data-slide-to="2" data-bs-slide-to="2" data-target="#twaOAgR2Jl" data-bs-target="#twaOAgR2Jl"></li>
-        </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item slider-image item active">
-                <div class="item-wrapper">
-                    <img class="d-block w-100" src="../../../assets/images/mbr-1900x1266.jpg">
-                    
-                    <div class="carousel-caption">
-                        <h5 class="mbr-section-subtitle mbr-fonts-style display-5">
-                            <strong>Clothes-A-Lot</strong></h5>
-                        <p class="mbr-section-text mbr-fonts-style display-7">There are many variations of passages of Lorem Ipsum available</p>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item slider-image item">
-                <div class="item-wrapper">
-                    <img class="d-block w-100" src="../../../assets/images/mbr-1900x1069.jpg">
-                    
-                    <div class="carousel-caption">
-                        <h5 class="mbr-section-subtitle mbr-fonts-style display-5">
-                            <strong>Cadillac Lounge</strong></h5>
-                        <p class="mbr-section-text mbr-fonts-style display-7">There are many variations of passages of Lorem Ipsum available</p>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item slider-image item">
-                <div class="item-wrapper">
-                    <img class="d-block w-100" src="../../../assets/images/mbr-1900x1268.jpg">
-                    
-                    <div class="carousel-caption">
-                        <h5 class="mbr-section-subtitle mbr-fonts-style display-5">
-                            <strong>Navy Surplus</strong></h5>
-                        <p class="mbr-section-text mbr-fonts-style display-7">There are many variations of passages of Lorem Ipsum available</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <a class="carousel-control carousel-control-prev" role="button" data-slide="prev" data-bs-slide="prev" href="#twaOAgR2Jl">
-            <span class="mobi-mbri mobi-mbri-arrow-prev" aria-hidden="true"></span>
-            <span class="sr-only visually-hidden">Previous</span>
-        </a>
-        <a class="carousel-control carousel-control-next" role="button" data-slide="next" data-bs-slide="next" href="#twaOAgR2Jl">
-            <span class="mobi-mbri mobi-mbri-arrow-next" aria-hidden="true"></span>
-            <span class="sr-only visually-hidden">Next</span>
-        </a>
-    </div>
-</section>
+        <v-card class="lowerbar">
+            <v-tabs center-active>
+                <h5>Meeovi Charts</h5>
+                <v-tab><a :href="`/Product/Chart/charts/`">All</a></v-tab>
+                <v-tab><a :href="`/categories/`"></a></v-tab>
+            </v-tabs>
+        </v-card>
+        <v-row class="contentPage">
+            <v-col cols="4">
+                <v-container>
+                    <v-row justify="space-around">
+                        <v-card width="400">
+                            <v-img height="200" src="https://cdn.vuetifyjs.com/docs/images/cards/purple-flowers.jpg"
+                                cover class="text-white">
+                                <v-toolbar color="rgba(0, 0, 0, 0)" theme="dark">
+                                    <v-toolbar-title class="text-h6">
+                                        Chart Name
+                                    </v-toolbar-title>
+                                </v-toolbar>
+                            </v-img>
 
-<section data-bs-version="5.1" class="features19 cid-twaHSeAj36" id="features19-44">
+                            <v-card-text>
+                                <div class="font-weight-bold ms-1 mb-2">
+                                    Today
+                                </div>
 
-    
-
-    
-    <div class="container">
-        <h2 class="mbr-section-title align-left mbr-fonts-style display-2">
-            Сheck out these galleries</h2>
-
-        
-        <div class="row justify-content-center align-items-start">
-            
-            <div class="card px-3 py-4 col-md-6 col-lg-3">
-                <div class="card-wrapper flip-card">
-                    <div class="card-img">
-                        <img src="../../../assets/images/03.jpg" alt="">
-                        <div class="img-text mbr-text mbr-fonts-style align-left mbr-white display-4">
-                             HEADPHONES
-                        </div>
-                    </div>
-                    <div class="card-box">
-                        <h3 class="mbr-title mbr-fonts-style mbr-bold mbr-black display-5">
-                            HEADPHONES
-                        </h3>
-                        <p class="mbr-card-text mbr-fonts-style align-left display-7">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        </p>
-                        
-                    </div>
-                </div>
-            </div>
-
-            <div class="card px-3 py-4 col-md-6 col-lg-3">
-                <div class="card-wrapper flip-card">
-                    <div class="card-img">
-                        <img src="../../../assets/images/04.jpg" alt="">
-                        <div class="img-text mbr-text mbr-fonts-style align-left mbr-white display-4">
-                             HEADPHONES
-                        </div>
-                    </div>
-                    <div class="card-box">
-                        <h3 class="mbr-title mbr-fonts-style mbr-bold mbr-black display-5">
-                            HEADPHONES
-                        </h3>
-                        <p class="mbr-card-text mbr-fonts-style align-left display-7">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        </p>
-                        
-                    </div>
-                </div>
-            </div>
-
-            <div class="card px-3 py-4 col-md-6 col-lg-3">
-                <div class="card-wrapper flip-card">
-                    <div class="card-img">
-                        <img src="../../../assets/images/05.jpg" alt="">
-                        <div class="img-text mbr-text mbr-fonts-style align-left mbr-white display-4">
-                             HEADPHONES
-                        </div>
-                    </div>
-                    <div class="card-box">
-                        <h3 class="mbr-title mbr-fonts-style mbr-bold mbr-black display-5">
-                            HEADPHONES
-                        </h3>
-                        <p class="mbr-card-text mbr-fonts-style align-left display-7">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        </p>
-                        
-                    </div>
-                </div>
-            </div>
-
-            <div class="card px-3 py-4 col-md-6 col-lg-3">
-                <div class="card-wrapper flip-card">
-                    <div class="card-img">
-                        <img src="../../../assets/images/06.jpg" alt="">
-                        <div class="img-text mbr-text mbr-fonts-style align-left mbr-white display-4">
-                             HEADPHONES
-                        </div>
-                    </div>
-                    <div class="card-box">
-                        <h3 class="mbr-title mbr-fonts-style mbr-bold mbr-black display-5">
-                            HEADPHONES
-                        </h3>
-                        <p class="mbr-card-text mbr-fonts-style align-left display-7">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        </p>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+                                <v-timeline density="compact" align="start">
+                                    <v-timeline-item v-for="message in messages" :key="message.time"
+                                        :dot-color="message.color" size="x-small">
+                                        <div class="mb-4">
+                                            <div class="font-weight-normal">
+                                                <strong>{{ message.from }}</strong> @{{ message.time }}
+                                            </div>
+                                            <div>{{ message.message }}</div>
+                                        </div>
+                                    </v-timeline-item>
+                                </v-timeline>
+                            </v-card-text>
+                        </v-card>
+                    </v-row>
+                </v-container>
+            </v-col>
+        </v-row>
     </div>
 </template>
 
 <script>
-export default {
-    
-}
+  export default {
+    data: () => ({
+      messages: [
+        {
+          from: 'You',
+          message: `Sure, I'll see you later.`,
+          time: '10:42am',
+          color: 'deep-purple-lighten-1',
+        },
+        {
+          from: 'John Doe',
+          message: 'Yeah, sure. Does 1:00pm work?',
+          time: '10:37am',
+          color: 'green',
+        },
+        {
+          from: 'You',
+          message: 'Did you still want to grab lunch today?',
+          time: '9:47am',
+          color: 'deep-purple-lighten-1',
+        },
+      ],
+    }),
+  }
 </script>
 
 <script setup>
     useHead({
-        title: 'Galleries',
+        title: 'Charts',
     })
 </script>

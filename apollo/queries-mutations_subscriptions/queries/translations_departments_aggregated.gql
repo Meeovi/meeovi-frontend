@@ -1,0 +1,46 @@
+query translations_departments_aggregated($groupBy: [String], $filter: translations_departments_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
+    translations_departments_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
+        group
+        countAll
+        count{
+            id
+            translations_id
+            departments_id
+        }
+        countDistinct{
+            id
+            translations_id
+            departments_id
+        }
+        avg{
+            id
+            translations_id
+            departments_id
+        }
+        sum{
+            id
+            translations_id
+            departments_id
+        }
+        avgDistinct{
+            id
+            translations_id
+            departments_id
+        }
+        sumDistinct{
+            id
+            translations_id
+            departments_id
+        }
+        min{
+            id
+            translations_id
+            departments_id
+        }
+        max{
+            id
+            translations_id
+            departments_id
+        }
+    }
+}

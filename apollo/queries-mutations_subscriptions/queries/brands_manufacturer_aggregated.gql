@@ -1,0 +1,46 @@
+query brands_manufacturer_aggregated($groupBy: [String], $filter: brands_manufacturer_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
+    brands_manufacturer_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
+        group
+        countAll
+        count{
+            id
+            brands_id
+            manufacturer_id
+        }
+        countDistinct{
+            id
+            brands_id
+            manufacturer_id
+        }
+        avg{
+            id
+            brands_id
+            manufacturer_id
+        }
+        sum{
+            id
+            brands_id
+            manufacturer_id
+        }
+        avgDistinct{
+            id
+            brands_id
+            manufacturer_id
+        }
+        sumDistinct{
+            id
+            brands_id
+            manufacturer_id
+        }
+        min{
+            id
+            brands_id
+            manufacturer_id
+        }
+        max{
+            id
+            brands_id
+            manufacturer_id
+        }
+    }
+}
