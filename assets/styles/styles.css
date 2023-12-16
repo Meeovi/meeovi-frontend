@@ -175,12 +175,27 @@ body {
     padding-left: 5%;
 }
 
+.sliderProducts {
+    min-width: 100%;
+}
+
 .sliderProducts h4,
 .sliderCreators h4 {
     padding-top: 30px;
     padding-left: 30px;
 }
 
+.features19 {
+    padding-top: 240px !important;
+    padding-bottom: 220px !important;
+}
+
+.features19 h2 {
+    position: relative;
+    text-align: left !important;
+    width: 100% !important;
+    left: 0px !important;
+}
 
 .examplecolor {
     background-color: pale;

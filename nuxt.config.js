@@ -4,12 +4,7 @@
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: true },
   extends: ['@sidebase/core'],
-
-  typescript: {
-    typeCheck: true,
-  },
   app: {
     head: {
       viewport: 'minimum-scale=1, initial-scale=1, width=device-width',
@@ -55,50 +50,13 @@ export default defineNuxtConfig({
     'assets/style.scss'
   ],
 
-  image: {
-    screens: {
-      '4xl': 1920,
-      '3xl': 1536,
-      '2xl': 1366,
-      xl: 1280,
-      lg: 1024,
-      md: 768,
-      sm: 640,
-      xs: 376,
-      '2xs': 360,
-    },
-  },
-
   modules: [
     '@nuxt/content',
     'nuxt-meilisearch',
     'nuxt-directus',
     '@nuxtjs/apollo',
     'nuxt-gtag',
-    [
-      '@nuxtjs/google-fonts',
-      {
-        families: {
-          'Red Hat Display': [400, 500, 700],
-          'Red Hat Text': [300, 400, 500, 700],
-        },
-      },
-    ],
-    [
-      '@nuxtjs/i18n',
-      {
-        locales: [
-          {
-            code: 'en',
-            file: 'en.json',
-          },
-        ],
-        lazy: true,
-        langDir: 'lang',
-        defaultLocale: 'en',
-      },
-    ],
-    '@nuxt/image',
+    //'@sidebase/nuxt-auth',
     'nuxt-paypal',
     'nuxt-medusa',
   ],
@@ -138,47 +96,30 @@ export default defineNuxtConfig({
     id: process.env.NUXT_PUBLIC_GTAG_ID
   },
   
-  /*auth: {
+ /* auth: {
+    provider: {
+      type: 'authjs'
+    },
     strategies: {
-      local: false,
       keycloak: {
-        scheme: "oauth2",
+        scheme: 'oauth2',
         endpoints: {
-          authorization:
-            process.env.KEYCLOAK_API_URL +
-            "auth/realms/test-realm/protocol/openid-connect/auth",
-          token:
-            process.env.KEYCLOAK_API_URL +
-            "auth/realms/test-realm/protocol/openid-connect/token",
-          userInfo:
-            process.env.KEYCLOAK_API_URL +
-            "auth/realms/test-realm/protocol/openid-connect/userinfo",
-          logout:
-            process.env.KEYCLOAK_API_URL +
-            "auth/realms/test-realm/protocol/openid-connect/logout?redirect_uri=" +
-            encodeURIComponent("127.0.0.1"),
+          authorization: process.env.KEYCLOAK_AUTHORIZATION_URL,
+          token: process.env.KEYCLOAK_TOKEN_URL,
+          userInfo: process.env.KEYCLOAK_USER_INFO_URL,
+          logout: process.env.KEYCLOAK_LOGOUT_URL,
         },
-        token: {
-          property: "access_token",
-          type: "Bearer",
-          name: "Authorization",
-          maxAge: 300,
-        },
-        refreshToken: {
-          property: "refresh_token",
-          maxAge: 60 * 60 * 24 * 30,
-        },
-        responseType: "code",
-        grantType: "authorization_code",
-        clientId: process.env.KEYCLOAK_CLIENTID,
-        scope: ["openid", "profile", "email"],
-        codeChallengeMethod: "S256",
+        responseType: 'token id_token',
+        tokenType: 'Bearer',
+        redirectUri: process.env.BASE_URL || '/',
+        clientId: process.env.KEYCLOAK_CLIENT_ID,
       },
     },
     redirect: {
-      login: "/Admin/Auth/login",
-      // logout: "/login",
-      home: "/index.vue",
+      login: '/login',
+      logout: '/',
+      callback: '/login',
+      home: '/',
     },
   }, 
 
@@ -221,8 +162,6 @@ export default defineNuxtConfig({
       "@fortawesome/pro-solid-svg-icons",
       "@fortawesome/pro-regular-svg-icons",
       "@fortawesome/free-brands-svg-icons",
-      'vue-instantsearch',
-      'instantsearch.js/es'
     ],
   },
 

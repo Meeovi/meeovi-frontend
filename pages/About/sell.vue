@@ -137,7 +137,7 @@
         </section>
 
         <v-sheet class="mx-auto sliderProducts">
-            <v-slide-group v-model="model" class="pa-4" center-active show-arrows>
+            <v-slide-group v-model="model" class="pa-4" center-active="true">
                 <v-slide-group-item v-for="products in products" :key="products.id" v-slot="{ isSelected, toggle }">
                     <a :href="`/product/${products.id}`">
                         <v-card class="ma-4" height="380" width="250" @click="toggle">

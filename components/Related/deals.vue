@@ -1,7 +1,7 @@
 <template>
   <v-sheet class="mx-auto sliderProducts">
     <h4>Deals under $20</h4>
-    <v-slide-group v-model="model" class="pa-4" center-active show-arrows>
+    <v-slide-group v-model="model" class="pa-4" center-active>
       <v-slide-group-item v-for="products in data.products" :key="products.id" v-slot="{ isSelected, toggle }">
         <a :href="`/product/${products.id}`">
           <v-card class="ma-4" height="580" width="250" @click="toggle">

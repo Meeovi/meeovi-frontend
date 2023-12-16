@@ -84,6 +84,8 @@
 </script>
 
 <script setup>
+
+
     useHead({
         title: 'Addresses',
     });

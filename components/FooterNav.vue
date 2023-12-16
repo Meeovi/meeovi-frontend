@@ -22,7 +22,7 @@
                 <v-col class="text-center mt-4" cols="3">
                     <h5><strong>MEEOVI</strong></h5>
                     <v-list-item title="About Us" value="about us" href="/about/"></v-list-item>
-                    <v-list-item v-for="pages in data.aboutquery" :key="pages.id" :title="pages.name" :value="pages.name"
+                    <v-list-item v-for="pages in data.aboutquery" :key="pages.id" :title="pages.name" value="pages.name"
                         :href="pages.link"></v-list-item>
                     <v-list-item title="Buyers" value="Buyers" href="/about/buyers"></v-list-item>
                 </v-col>
@@ -30,13 +30,13 @@
                 <v-col class="text-center mt-4" cols="3">
                     <h5><strong>HELP</strong></h5>
                     <v-list-item v-for="pages in data.pages" :key="pages.id"
-                        :title="pages.name" :value="pages.name" :href="pages.link">
+                        :title="pages.name" value="pages.name" :href="pages.link">
                     </v-list-item>
                 </v-col>
 
                 <v-col class="text-center mt-4" cols="3">
                     <h5><strong>The Meeovi Company</strong></h5>
-                    <v-list-item v-for="pages in data.companyquery" :key="pages.id" :title="pages.name" :value="pages.name"
+                    <v-list-item v-for="pages in data.companyquery" :key="pages.id" :title="pages.name" value="pages.name"
                         :href="pages.link"></v-list-item>
                 </v-col>
 

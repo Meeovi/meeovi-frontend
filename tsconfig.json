@@ -16,6 +16,6 @@
     "noUnusedParameters": true,
     "importHelpers": true,
     "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true,
+    "allowSyntheticDefaultImports": true
   }
 }

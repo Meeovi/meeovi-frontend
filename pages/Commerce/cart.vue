@@ -184,6 +184,7 @@
 </script>
 
 <script setup>
+
 	useHead({
 		title: 'Shopping Cart',
 	})

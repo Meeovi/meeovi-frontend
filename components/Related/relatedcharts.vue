@@ -1,7 +1,7 @@
 <template>
   <v-sheet class="mx-auto sliderProducts">
     <h4>Related Charts</h4>
-    <v-slide-group v-model="model" class="pa-4" center-active show-arrows>
+    <v-slide-group v-model="model" class="pa-4" center-active>
       <v-slide-group-item v-slot="{ isSelected, toggle }" v-for="chart in data.musicchart" :key="chart.id">
           <v-card width="300px" @click="toggle" :href="`/chart/${chart.id}`">
             <v-img :src="`${url}assets/${chart.image.filename_disk}`" :alt="chart.name" class="align-end"

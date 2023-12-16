@@ -61,6 +61,11 @@
 
 <script setup>
     import query from '../../apollo/Queries/space.js'
+    import { definePageMeta } from '#imports'
+
+    definePageMeta({
+    middleware: 'auth'
+    })
 
     const {
         data

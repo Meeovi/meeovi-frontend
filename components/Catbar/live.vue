@@ -1,7 +1,7 @@
 <template>
     <div class="livebar">
         <v-card height="75" variant="text">
-            <v-tabs v-model="tab" center-active height="75" show-arrows>
+            <v-tabs v-model="tab" center-active height="75">
                 <v-tab>
                     <div class="text-center">
                         <v-dialog v-model="dialog" width="auto">

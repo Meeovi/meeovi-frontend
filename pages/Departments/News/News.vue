@@ -13,7 +13,7 @@
             <v-col cols="12">
                 <h4 style="color: black">Latest News</h4>
                 <v-sheet class="mx-auto categorySheet">
-                    <v-slide-group v-model="model" class="pa-4" center-active show-arrows>
+                    <v-slide-group v-model="model" class="pa-4" center-active="true">
                         <v-slide-group-item v-for="articles in data.departments.articles" :key="articles"
                             v-slot="{ isSelected, toggle }">
                             <v-card :color="isSelected ? 'primary' : 'grey-lighten-1'" class="ma-4" height="200"
@@ -67,7 +67,7 @@
 
             <v-col cols="12">
             <h4>Magazines</h4>
-            <v-slide-group v-model="model" class="pa-4" center-active show-arrows>
+            <v-slide-group v-model="model" class="pa-4" center-active="true">
                 <v-slide-group-item v-for="products in data.departments.products" :key="products.id"
                     v-slot="{ isSelected, toggle }">
                     <a :href="`/product/${products.id}`">
@@ -112,7 +112,7 @@
 
         <v-col cols="12">
             <h4>Newstands</h4>
-            <v-slide-group v-model="model" class="pa-4" center-active show-arrows>
+            <v-slide-group v-model="model" class="pa-4" center-active="true">
                 <v-slide-group-item v-for="shops in data.departments.shops" :key="shops.id"
                     v-slot="{ isSelected, toggle }">
                     <a :href="`/product/${shops.id}`">

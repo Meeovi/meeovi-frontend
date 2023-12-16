@@ -86,7 +86,7 @@
               <departmentsmenu />
               <v-divider></v-divider>
 
-              <meeovistoresmenu />
+              <!----><meeovistoresmenu />
               <v-divider></v-divider>
 
               <myaccountmenu />

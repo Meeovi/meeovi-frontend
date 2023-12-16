@@ -4,7 +4,7 @@
             <v-expansion-panel title="Departments" expand-icon="fas fa-plus" collapse-icon="fas fa-minus" elevation="0">
                 <v-expansion-panel-text>
                     <div v-for="departments in data.departments" :key="departments.id">
-                        <v-list-item :title="departments.name" :value="departments.name"
+                        <v-list-item :title="departments.name" value="departments.name"
                             :href="`/departments/${departments.id}`">
                         </v-list-item>
                     </div>

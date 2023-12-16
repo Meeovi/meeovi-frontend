@@ -7,14 +7,11 @@ declare module 'nuxt/schema' {
     ["directus"]?: typeof import("nuxt-directus").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
     ["apollo"]?: typeof import("@nuxtjs/apollo").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
     ["gtag"]?: typeof import("nuxt-gtag").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
-    ["googleFonts"]?: typeof import("@nuxtjs/google-fonts").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
-    ["i18n"]?: typeof import("@nuxtjs/i18n").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
-    ["image"]?: typeof import("@nuxt/image").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
     ["paypal"]?: typeof import("nuxt-paypal").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
     ["medusa"]?: typeof import("nuxt-medusa").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
     ["devtools"]?: typeof import("C:/Users/Basti/AppData/Roaming/npm/node_modules/@nuxt/devtools/module").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
     ["telemetry"]?: typeof import("@nuxt/telemetry").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
-    modules?: (undefined | null | false | NuxtModule | string | [NuxtModule | string, Record<string, any>] | ["@nuxtjs/mdc", Exclude<NuxtConfig["mdc"], boolean>] | ["@nuxt/content", Exclude<NuxtConfig["content"], boolean>] | ["nuxt-meilisearch", Exclude<NuxtConfig["meilisearch"], boolean>] | ["nuxt-directus", Exclude<NuxtConfig["directus"], boolean>] | ["@nuxtjs/apollo", Exclude<NuxtConfig["apollo"], boolean>] | ["nuxt-gtag", Exclude<NuxtConfig["gtag"], boolean>] | ["@nuxtjs/google-fonts", Exclude<NuxtConfig["googleFonts"], boolean>] | ["@nuxtjs/i18n", Exclude<NuxtConfig["i18n"], boolean>] | ["@nuxt/image", Exclude<NuxtConfig["image"], boolean>] | ["nuxt-paypal", Exclude<NuxtConfig["paypal"], boolean>] | ["nuxt-medusa", Exclude<NuxtConfig["medusa"], boolean>] | ["C:/Users/Basti/AppData/Roaming/npm/node_modules/@nuxt/devtools/module", Exclude<NuxtConfig["devtools"], boolean>] | ["@nuxt/telemetry", Exclude<NuxtConfig["telemetry"], boolean>])[],
+    modules?: (undefined | null | false | NuxtModule | string | [NuxtModule | string, Record<string, any>] | ["@nuxtjs/mdc", Exclude<NuxtConfig["mdc"], boolean>] | ["@nuxt/content", Exclude<NuxtConfig["content"], boolean>] | ["nuxt-meilisearch", Exclude<NuxtConfig["meilisearch"], boolean>] | ["nuxt-directus", Exclude<NuxtConfig["directus"], boolean>] | ["@nuxtjs/apollo", Exclude<NuxtConfig["apollo"], boolean>] | ["nuxt-gtag", Exclude<NuxtConfig["gtag"], boolean>] | ["nuxt-paypal", Exclude<NuxtConfig["paypal"], boolean>] | ["nuxt-medusa", Exclude<NuxtConfig["medusa"], boolean>] | ["C:/Users/Basti/AppData/Roaming/npm/node_modules/@nuxt/devtools/module", Exclude<NuxtConfig["devtools"], boolean>] | ["@nuxt/telemetry", Exclude<NuxtConfig["telemetry"], boolean>])[],
   }
   interface RuntimeConfig {
    app: {
@@ -152,6 +149,8 @@ declare module 'nuxt/schema' {
          stripQueryParameters: boolean,
 
          advanceQuery: boolean,
+
+         search: any,
       },
    },
 
@@ -162,11 +161,11 @@ declare module 'nuxt/schema' {
 
       serverSideUsage: boolean,
 
+      adminApiKey: string,
+
       instantSearch: {
          theme: string,
       },
-
-      adminApiKey: string,
 
       clientOptions: {
          placeholderSearch: boolean,
@@ -347,6 +346,8 @@ declare module 'nuxt/schema' {
 
       trailingSlash: boolean,
 
+      search: any,
+
       contentHead: boolean,
 
       anchorLinks: {
@@ -414,14 +415,6 @@ declare module 'nuxt/schema' {
       initialConsent: boolean,
 
       loadingStrategy: string,
-   },
-
-   i18n: {
-      experimental: {
-         jsTsFormatResource: boolean,
-      },
-
-      baseUrl: string,
    },
 
    medusa: {

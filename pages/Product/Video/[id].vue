@@ -32,14 +32,14 @@
                         </div>
                     </div>
                     <v-tabs v-model="tab">
-                        <v-tab :value="one">Description</v-tab>
-                        <v-tab :value="two">Share</v-tab>
-                        <v-tab :value="three">Other Content by User</v-tab>
+                        <v-tab value="one">Description</v-tab>
+                        <v-tab value="two">Share</v-tab>
+                        <v-tab value="three">Other Content by User</v-tab>
                     </v-tabs>
 
                     <v-card-text>
                         <v-window v-model="tab">
-                            <v-window-item :value="one">
+                            <v-window-item value="one">
                                 <v-list lines="one">
                                     <v-list-item title="Published: December 9, 2023"
                                         subtitle="Lorem ipsum dolor sit amet consectetur adipisicing elit">
@@ -47,11 +47,11 @@
                                 </v-list>
                             </v-window-item>
 
-                            <v-window-item :value="two">
+                            <v-window-item value="two">
                                 <share />
                             </v-window-item>
 
-                            <v-window-item :value="three">
+                            <v-window-item value="three">
                                 <!--<relatedproducts />-->
                             </v-window-item>
                         </v-window>

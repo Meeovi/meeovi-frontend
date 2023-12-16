@@ -25,21 +25,21 @@
             <v-col cols="12">
                 <v-card variant="text">
                     <v-tabs v-model="tab" bg-color="crimson">
-                        <v-tab :value="one">About</v-tab>
-                        <v-tab :value="two">Comments</v-tab>
-                        <v-tab :value="three">FAQS</v-tab>
-                        <v-tab :value="four">Also from Seller</v-tab>
+                        <v-tab value="one">About</v-tab>
+                        <v-tab value="two">Comments</v-tab>
+                        <v-tab value="three">FAQS</v-tab>
+                        <v-tab value="four">Also from Seller</v-tab>
                     </v-tabs>
 
                     <v-card-text>
                         <v-window v-model="tab">
                             <!--About Product-->
-                            <v-window-item :value="one">
+                            <v-window-item value="one">
                                 <v-card title="Card title" subtitle="Subtitle" text="..." variant="text"></v-card>
                             </v-window-item>
 
                             <!--Comments-->
-                            <v-window-item :value="two">
+                            <v-window-item value="two">
                                 <v-list lines="two">
                                     <v-list-item v-for="n in 3" :key="n" :title="'Item ' + n"
                                         subtitle="Lorem ipsum dolor sit amet consectetur adipisicing elit"
@@ -48,7 +48,7 @@
                             </v-window-item>
 
                             <!--FAQS-->
-                            <v-window-item :value="three">
+                            <v-window-item value="three">
                                 <v-expansion-panels variant="accordion">
                                     <v-expansion-panel v-for="i in 3" :key="i" title="Item"
                                         text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.">
@@ -57,7 +57,7 @@
                             </v-window-item>
 
                             <!--Also from Seller-->
-                            <v-window-item :value="four">
+                            <v-window-item value="four">
                                 Four
                             </v-window-item>
                         </v-window>

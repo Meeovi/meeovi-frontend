@@ -12,6 +12,11 @@ export default {
 </script>
 
 <script setup>
+import { definePageMeta } from '#imports'
+definePageMeta({
+  auth: false
+})
+
     useHead({
         title: 'You are Offline'
     })

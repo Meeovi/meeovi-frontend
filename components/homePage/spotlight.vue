@@ -7,7 +7,7 @@
         <h2 class="mbr-section-title align-left mbr-fonts-style mbr-bold display-2">Spotlight</h2>
         <v-sheet class="mx-auto" elevation="0" color="transparent">
           <v-slide-group v-model="model" class="pa-4" prev-icon="fas fa-arrow-left" next-icon="fas fa-arrow-right"
-            selected-class="bg-primary" show-arrows>
+            selected-class="bg-primary">
             <v-slide-group-item v-for="products in data.products" :key="products.id"
               v-slot="{ isSelected, toggle, selectedClass }">
               <v-card :class="['ma-4', selectedClass]" height="580" width="250" @click="toggle"

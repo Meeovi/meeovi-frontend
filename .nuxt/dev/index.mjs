@@ -3,13 +3,13 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { mkdirSync } from 'node:fs';
 import { parentPort, threadId } from 'node:worker_threads';
-import { defineEventHandler, handleCacheHeaders, splitCookiesString, isEvent, createEvent, getRequestHeader, eventHandler, setHeaders, sendRedirect, proxyRequest, setResponseHeader, send, getResponseStatus, setResponseStatus, setResponseHeaders, getRequestHeaders, getQuery as getQuery$1, getCookie, createError, lazyEventHandler, useBase, createApp, createRouter as createRouter$1, toNodeListener, fetchWithEvent, getResponseStatusText } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/h3/dist/index.mjs';
+import { defineEventHandler, handleCacheHeaders, splitCookiesString, isEvent, createEvent, getRequestHeader, eventHandler, setHeaders, sendRedirect, proxyRequest, setResponseHeader, send, getResponseStatus, setResponseStatus, setResponseHeaders, getRequestHeaders, getQuery as getQuery$1, getCookie, createError, createApp, createRouter as createRouter$1, toNodeListener, fetchWithEvent, lazyEventHandler, getResponseStatusText } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/h3/dist/index.mjs';
 import { getRequestDependencies, getPreloadLinks, getPrefetchLinks, createRenderer } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/vue-bundle-renderer/dist/runtime.mjs';
-import { stringify, uneval } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/nuxt/node_modules/devalue/index.js';
+import { stringify, uneval } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/devalue/index.js';
 import { renderToString } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/vue/server-renderer/index.mjs';
 import { renderSSRHead } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/@unhead/ssr/dist/index.mjs';
 import { createFetch as createFetch$1, Headers as Headers$1 } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/ofetch/dist/node.mjs';
-import destr from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/destr/dist/index.mjs';
+import destr, { destr as destr$1 } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/destr/dist/index.mjs';
 import { createCall, createFetch } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/unenv/runtime/fetch/index.mjs';
 import { createHooks } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/hookable/dist/index.mjs';
 import { snakeCase, kebabCase, pascalCase, camelCase } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/scule/dist/index.mjs';
@@ -20,7 +20,7 @@ import { parseURL, withoutBase, joinURL, getQuery, withQuery, withLeadingSlash, 
 import { createStorage, prefixStorage } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/unstorage/dist/index.mjs';
 import unstorage_47drivers_47fs from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/unstorage/drivers/fs.mjs';
 import { toRouteMatcher, createRouter } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/radix3/dist/index.mjs';
-import { extname, isAbsolute } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/pathe/dist/index.mjs';
+import { extname } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/pathe/dist/index.mjs';
 import { unified } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/unified/index.js';
 import { toString } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/mdast-util-to-string/index.js';
 import { postprocess, preprocess } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/micromark/dev/index.js';
@@ -42,19 +42,16 @@ import rehypeExternalLinks from 'file://C:/Users/Basti/OneDrive/Documents/My%20W
 import rehypeSortAttributeValues from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/rehype-sort-attribute-values/index.js';
 import rehypeSortAttributes from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/rehype-sort-attributes/index.js';
 import rehypeRaw from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/rehype-raw/index.js';
-import { visit } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/unist-util-visit/index.js';
-import { fileURLToPath } from 'node:url';
-import { ipxFSStorage, ipxHttpStorage, createIPX, createIPXH3Handler } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/ipx/dist/index.mjs';
 import { version, unref } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/vue/index.mjs';
 import { createServerHead as createServerHead$1 } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/unhead/dist/index.mjs';
 import { defineHeadPlugin } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/@unhead/shared/dist/index.mjs';
 
-const r=Object.create(null),t=e=>globalThis.process?.env||globalThis._importMeta_.env||globalThis.Deno?.env.toObject()||globalThis.__env__||(e?r:globalThis),s=new Proxy(r,{get(e,o){return t()[o]??r[o]},has(e,o){const i=t();return o in i||o in r},set(e,o,i){const p=t(!0);return p[o]=i,!0},deleteProperty(e,o){if(!o)return !1;const i=t(!0);return delete i[o],!0},ownKeys(){const e=t(!0);return Object.keys(e)}}),E=typeof process<"u"&&process.env&&"development"||"",d=[["APPVEYOR"],["AZURE_PIPELINES","SYSTEM_TEAMFOUNDATIONCOLLECTIONURI"],["AZURE_STATIC","INPUT_AZURE_STATIC_WEB_APPS_API_TOKEN"],["APPCIRCLE","AC_APPCIRCLE"],["BAMBOO","bamboo_planKey"],["BITBUCKET","BITBUCKET_COMMIT"],["BITRISE","BITRISE_IO"],["BUDDY","BUDDY_WORKSPACE_ID"],["BUILDKITE"],["CIRCLE","CIRCLECI"],["CIRRUS","CIRRUS_CI"],["CLOUDFLARE_PAGES","CF_PAGES",{ci:!0}],["CODEBUILD","CODEBUILD_BUILD_ARN"],["CODEFRESH","CF_BUILD_ID"],["DRONE"],["DRONE","DRONE_BUILD_EVENT"],["DSARI"],["GITHUB_ACTIONS"],["GITLAB","GITLAB_CI"],["GITLAB","CI_MERGE_REQUEST_ID"],["GOCD","GO_PIPELINE_LABEL"],["LAYERCI"],["HUDSON","HUDSON_URL"],["JENKINS","JENKINS_URL"],["MAGNUM"],["NETLIFY"],["NETLIFY","NETLIFY_LOCAL",{ci:!1}],["NEVERCODE"],["RENDER"],["SAIL","SAILCI"],["SEMAPHORE"],["SCREWDRIVER"],["SHIPPABLE"],["SOLANO","TDDIUM"],["STRIDER"],["TEAMCITY","TEAMCITY_VERSION"],["TRAVIS"],["VERCEL","NOW_BUILDER"],["VERCEL","VERCEL",{ci:!1}],["VERCEL","VERCEL_ENV",{ci:!1}],["APPCENTER","APPCENTER_BUILD_ID"],["CODESANDBOX","CODESANDBOX_SSE",{ci:!1}],["STACKBLITZ"],["STORMKIT"],["CLEAVR"]];function B(){if(globalThis.process?.env)for(const e of d){const o=e[1]||e[0];if(globalThis.process?.env[o])return {name:e[0].toLowerCase(),...e[2]}}return globalThis.process?.env?.SHELL==="/bin/jsh"&&globalThis.process?.versions?.webcontainer?{name:"stackblitz",ci:!1}:{name:"",ci:!1}}const I=B(),U=I.name;function n(e){return e?e!=="false":!1}const l=globalThis.process?.platform||"",T=n(s.CI)||I.ci!==!1,a=n(globalThis.process?.stdout&&globalThis.process?.stdout.isTTY);n(s.DEBUG);const c=E==="test"||n(s.TEST);n(s.MINIMAL)||T||c||!a;const C=/^win/i.test(l);!n(s.NO_COLOR)&&(n(s.FORCE_COLOR)||C&&s.TERM!=="dumb"||a&&s.TERM&&s.TERM==="dumb"||T);const R=(globalThis.process?.versions?.node||"").replace(/^v/,"")||null;Number(R?.split(".")[0])||null;const Y=globalThis.process||Object.create(null),L={versions:{}};new Proxy(Y,{get(e,o){if(o==="env")return s;if(o in e)return e[o];if(o in L)return L[o]}});const _=!!globalThis.Netlify,O=!!globalThis.EdgeRuntime,D=globalThis.navigator?.userAgent==="Cloudflare-Workers",A=!!globalThis.Deno,u=!!globalThis.__lagon__,N=globalThis.process?.release?.name==="node",S=!!globalThis.Bun||!!globalThis.process?.versions?.bun,b=!!globalThis.fastly,K=[[_,"netlify"],[O,"edge-light"],[D,"workerd"],[A,"deno"],[u,"lagon"],[N,"node"],[S,"bun"],[b,"fastly"]];function F(){const e=K.find(o=>o[0]);if(e)return {name:e[1]}}const g=F();g?.name||"";
+const r=Object.create(null),E=e=>globalThis.process?.env||globalThis._importMeta_.env||globalThis.Deno?.env.toObject()||globalThis.__env__||(e?r:globalThis),s=new Proxy(r,{get(e,o){return E()[o]??r[o]},has(e,o){const i=E();return o in i||o in r},set(e,o,i){const P=E(!0);return P[o]=i,!0},deleteProperty(e,o){if(!o)return !1;const i=E(!0);return delete i[o],!0},ownKeys(){const e=E(!0);return Object.keys(e)}}),t=typeof process<"u"&&process.env&&"development"||"",p=[["APPVEYOR"],["AWS_AMPLIFY","AWS_APP_ID",{ci:!0}],["AZURE_PIPELINES","SYSTEM_TEAMFOUNDATIONCOLLECTIONURI"],["AZURE_STATIC","INPUT_AZURE_STATIC_WEB_APPS_API_TOKEN"],["APPCIRCLE","AC_APPCIRCLE"],["BAMBOO","bamboo_planKey"],["BITBUCKET","BITBUCKET_COMMIT"],["BITRISE","BITRISE_IO"],["BUDDY","BUDDY_WORKSPACE_ID"],["BUILDKITE"],["CIRCLE","CIRCLECI"],["CIRRUS","CIRRUS_CI"],["CLOUDFLARE_PAGES","CF_PAGES",{ci:!0}],["CODEBUILD","CODEBUILD_BUILD_ARN"],["CODEFRESH","CF_BUILD_ID"],["DRONE"],["DRONE","DRONE_BUILD_EVENT"],["DSARI"],["GITHUB_ACTIONS"],["GITLAB","GITLAB_CI"],["GITLAB","CI_MERGE_REQUEST_ID"],["GOCD","GO_PIPELINE_LABEL"],["LAYERCI"],["HUDSON","HUDSON_URL"],["JENKINS","JENKINS_URL"],["MAGNUM"],["NETLIFY"],["NETLIFY","NETLIFY_LOCAL",{ci:!1}],["NEVERCODE"],["RENDER"],["SAIL","SAILCI"],["SEMAPHORE"],["SCREWDRIVER"],["SHIPPABLE"],["SOLANO","TDDIUM"],["STRIDER"],["TEAMCITY","TEAMCITY_VERSION"],["TRAVIS"],["VERCEL","NOW_BUILDER"],["VERCEL","VERCEL",{ci:!1}],["VERCEL","VERCEL_ENV",{ci:!1}],["APPCENTER","APPCENTER_BUILD_ID"],["CODESANDBOX","CODESANDBOX_SSE",{ci:!1}],["STACKBLITZ"],["STORMKIT"],["CLEAVR"],["ZEABUR"],["CODESPHERE","CODESPHERE_APP_ID",{ci:!0}]];function B(){if(globalThis.process?.env)for(const e of p){const o=e[1]||e[0];if(globalThis.process?.env[o])return {name:e[0].toLowerCase(),...e[2]}}return globalThis.process?.env?.SHELL==="/bin/jsh"&&globalThis.process?.versions?.webcontainer?{name:"stackblitz",ci:!1}:{name:"",ci:!1}}const I=B(),d=I.name;function n(e){return e?e!=="false":!1}const l=globalThis.process?.platform||"",T=n(s.CI)||I.ci!==!1,a=n(globalThis.process?.stdout&&globalThis.process?.stdout.isTTY);n(s.DEBUG);const c=t==="test"||n(s.TEST);n(s.MINIMAL)||T||c||!a;const C=/^win/i.test(l);!n(s.NO_COLOR)&&(n(s.FORCE_COLOR)||(a||C)&&s.TERM!=="dumb"||T);const R=(globalThis.process?.versions?.node||"").replace(/^v/,"")||null;Number(R?.split(".")[0])||null;const w=globalThis.process||Object.create(null),_={versions:{}};new Proxy(w,{get(e,o){if(o==="env")return s;if(o in e)return e[o];if(o in _)return _[o]}});const L=!!globalThis.Netlify,A=!!globalThis.EdgeRuntime,D=globalThis.navigator?.userAgent==="Cloudflare-Workers",O=!!globalThis.Deno,S=!!globalThis.__lagon__,N=globalThis.process?.release?.name==="node",u=!!globalThis.Bun||!!globalThis.process?.versions?.bun,b=!!globalThis.fastly,G=[[L,"netlify"],[A,"edge-light"],[D,"workerd"],[O,"deno"],[S,"lagon"],[N,"node"],[u,"bun"],[b,"fastly"]];function K(){const e=G.find(o=>o[0]);if(e)return {name:e[1]}}const g=K();g?.name||"";
 
 const inlineAppConfig = {
   "titleSuffix": "Meeovi",
   "nuxt": {
-    "buildId": "test"
+    "buildId": "dev"
   }
 };
 
@@ -178,6 +175,7 @@ const _inlineRuntimeConfig = {
       "documentDriven": false,
       "host": "",
       "trailingSlash": false,
+      "search": "",
       "contentHead": true,
       "anchorLinks": {
         "depth": 4,
@@ -220,12 +218,6 @@ const _inlineRuntimeConfig = {
       "config": {},
       "initialConsent": true,
       "loadingStrategy": "defer"
-    },
-    "i18n": {
-      "experimental": {
-        "jsTsFormatResource": false
-      },
-      "baseUrl": ""
     },
     "medusa": {
       "baseUrl": "<YOUR_MEDUSA_URL>",
@@ -313,17 +305,18 @@ const _inlineRuntimeConfig = {
     "experimental": {
       "clientDB": false,
       "stripQueryParameters": false,
-      "advanceQuery": false
+      "advanceQuery": false,
+      "search": ""
     }
   },
   "serverMeilisearchClient": {
     "hostUrl": "https://meeovicms.com:7700/",
     "searchApiKey": "pi5jKwSuDO",
     "serverSideUsage": false,
+    "adminApiKey": "VQbf6LzVAi",
     "instantSearch": {
       "theme": "algolia"
     },
-    "adminApiKey": "VQbf6LzVAi",
     "clientOptions": {
       "placeholderSearch": true,
       "paginationTotalHits": 50,
@@ -334,16 +327,6 @@ const _inlineRuntimeConfig = {
   },
   "private": {
     "apiKey": ""
-  },
-  "ipx": {
-    "baseURL": "/_ipx",
-    "alias": {},
-    "fs": {
-      "dir": "C:/Users/Basti/OneDrive/Documents/My Websites/Handmade Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/public"
-    },
-    "http": {
-      "domains": []
-    }
   }
 };
 const ENV_PREFIX = "NITRO_";
@@ -557,6 +540,9 @@ function defineCachedEventHandler(handler, opts = defaultCacheOptions) {
       if (entry.value.body === void 0) {
         return false;
       }
+      if (entry.value.headers.etag === "undefined" || entry.value.headers["last-modified"] === "undefined") {
+        return false;
+      }
       return true;
     },
     group: opts.group || "nitro/handlers",
@@ -636,8 +622,12 @@ function defineCachedEventHandler(handler, opts = defaultCacheOptions) {
       event.context = incomingEvent.context;
       const body = await handler(event) || _resSendBody;
       const headers = event.node.res.getHeaders();
-      headers.etag = String(headers.Etag || headers.etag) || `W/"${hash(body)}"`;
-      headers["last-modified"] = String(headers["Last-Modified"] || headers["last-modified"]) || (/* @__PURE__ */ new Date()).toUTCString();
+      headers.etag = String(
+        headers.Etag || headers.etag || `W/"${hash(body)}"`
+      );
+      headers["last-modified"] = String(
+        headers["Last-Modified"] || headers["last-modified"] || (/* @__PURE__ */ new Date()).toUTCString()
+      );
       const cacheControl = [];
       if (opts.swr) {
         if (opts.maxAge) {
@@ -720,6 +710,9 @@ function hasReqHeader(event, name, includes) {
   return value && typeof value === "string" && value.toLowerCase().includes(includes);
 }
 function isJsonRequest(event) {
+  if (hasReqHeader(event, "accept", "text/html")) {
+    return false;
+  }
   return hasReqHeader(event, "accept", "application/json") || hasReqHeader(event, "user-agent", "curl/") || hasReqHeader(event, "user-agent", "httpie/") || hasReqHeader(event, "sec-fetch-mode", "cors") || event.path.startsWith("/api/") || event.path.endsWith(".json");
 }
 function normalizeError(error) {
@@ -2225,9 +2218,12 @@ const handlers$1 = {
   containerComponent
 };
 
-const defaults$1 = {
+const defaults = {
   remark: {
     plugins: {
+      "remark-mdc": {
+        instance: remarkMDC
+      },
       "remark-emoji": {
         instance: remarkEmoji
       },
@@ -2265,67 +2261,6 @@ const defaults$1 = {
     searchDepth: 2,
     depth: 2
   }
-};
-
-const defaults = {
-  theme: {
-    default: "github-light",
-    dark: "github-dark"
-  },
-  highlighter: (code, lang, theme, highlights) => {
-    return $fetch("/api/_mdc/highlight", {
-      params: {
-        code,
-        lang,
-        theme: JSON.stringify(theme),
-        highlights: JSON.stringify(highlights)
-      }
-    });
-  }
-};
-function rehypeShiki(opts = {}) {
-  const options = { ...defaults, ...opts };
-  return async (tree) => {
-    const tasks = [];
-    const styles = [];
-    visit(
-      tree,
-      (node) => ["pre", "code"].includes(node.tagName) && !!node.properties?.language,
-      (node) => {
-        const _node = node;
-        const task = options.highlighter(
-          toString$1(node),
-          _node.properties.language,
-          options.theme,
-          _node.properties.highlights ?? []
-        ).then(({ tree: tree2, className, style, inlineStyle }) => {
-          _node.properties.className = ((_node.properties.className || "") + " " + className).trim();
-          _node.properties.style = ((_node.properties.style || "") + " " + inlineStyle).trim();
-          if (_node.children[0]?.tagName === "code") {
-            _node.children[0].children = tree2;
-          } else {
-            _node.children = tree2[0].children;
-          }
-          if (style)
-            styles.push(style);
-        });
-        tasks.push(task);
-      }
-    );
-    if (tasks.length) {
-      await Promise.all(tasks);
-      tree.children.push({
-        type: "element",
-        tagName: "style",
-        children: [{ type: "text", value: cleanCSS(styles.join("")) }],
-        properties: {}
-      });
-    }
-  };
-}
-const cleanCSS = (css) => {
-  const styles = css.split("}").filter((s) => Boolean(s.trim())).map((s) => s.trim() + "}");
-  return Array.from(new Set(styles)).join("");
 };
 
 function flattenNodeText(node) {
@@ -2459,16 +2394,15 @@ const parseMarkdown = async (md, opts = {}) => {
     remark: { plugins: moduleOptions?.remarkPlugins },
     rehype: { plugins: moduleOptions?.rehypePlugins },
     highlight: moduleOptions?.highlight
-  }, defaults$1);
+  }, defaults);
+  if (options.rehype?.plugins?.highlight) {
+    options.rehype.plugins.highlight.options = options.highlight || {};
+  }
   const { content, data: frontmatter } = await parseFrontMatter(md);
   const processor = unified();
   processor.use(remarkParse);
-  processor.use(remarkMDC);
   await useProcessorPlugins(processor, options.remark?.plugins);
   processor.use(remark2rehype, options.rehype?.options);
-  if (options.highlight) {
-    processor.use(rehypeShiki, options.highlight);
-  }
   await useProcessorPlugins(processor, options.rehype?.plugins);
   processor.use(compileHast);
   const processedFile = await processor.process({ value: content, data: frontmatter });
@@ -2509,11 +2443,13 @@ function contentHeading(body) {
 }
 
 const SEMVER_REGEX = /^(\d+)(\.\d+)*(\.x)?$/;
-const describeId = (_id) => {
-  const [_source, ...parts] = _id.split(":");
-  const [, filename, _extension] = parts[parts.length - 1].match(/(.*)\.([^.]+)$/);
-  parts[parts.length - 1] = filename;
-  const _path = parts.join("/");
+const describeId = (id) => {
+  const [_source, ...parts] = id.split(":");
+  const [, filename, _extension] = parts[parts.length - 1]?.match(/(.*)\.([^.]+)$/) || [];
+  if (filename) {
+    parts[parts.length - 1] = filename;
+  }
+  const _path = (parts || []).join("/");
   return {
     _source,
     _path,
@@ -2667,7 +2603,7 @@ const json = defineTransformer({
       if (_id.endsWith("json5")) {
         parsed = (await import('file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/json5/lib/index.js').then((m) => m.default || m)).parse(content);
       } else if (_id.endsWith("json")) {
-        parsed = destr(content);
+        parsed = destr$1(content);
       }
     } else {
       parsed = content;
@@ -2916,9 +2852,11 @@ function createPipelineFetcher(getContentsList) {
     function fetchDirConfig(state, params, db) {
       if (params.dirConfig) {
         const path = state.result[0]?._path || params.where?.find((w) => w._path)?._path;
-        const dirConfig = db.find((item) => item._path === joinURL(path, "_dir"));
-        if (dirConfig) {
-          state.dirConfig = { _path: dirConfig._path, ...withoutKeys(["_"])(dirConfig) };
+        if (typeof path === "string") {
+          const dirConfig = db.find((item) => item._path === joinURL(path, "_dir"));
+          if (dirConfig) {
+            state.dirConfig = { _path: dirConfig._path, ...withoutKeys(["_"])(dirConfig) };
+          }
         }
       }
       return state;
@@ -3099,18 +3037,20 @@ const getContent = async (event, id) => {
   if (cached?.hash === hash$1) {
     return cached.parsed;
   }
-  const promise = pendingPromises[hash$1] || new Promise(async (resolve) => {
-    const body = await sourceStorage.getItem(id);
-    if (body === null) {
-      return resolve({ _id: contentId, body: null });
-    }
-    const parsed = await parseContent(contentId, body);
-    await cacheParsedStorage.setItem(id, { parsed, hash: hash$1 }).catch(() => {
+  if (!pendingPromises[id + hash$1]) {
+    pendingPromises[id + hash$1] = new Promise(async (resolve) => {
+      const body = await sourceStorage.getItem(id);
+      if (body === null) {
+        return resolve({ _id: contentId, body: null });
+      }
+      const parsed = await parseContent(contentId, body);
+      await cacheParsedStorage.setItem(id, { parsed, hash: hash$1 }).catch(() => {
+      });
+      resolve(parsed);
+      delete pendingPromises[id + hash$1];
     });
-    resolve(parsed);
-    delete pendingPromises[hash$1];
-  });
-  return promise;
+  }
+  return pendingPromises[id + hash$1];
 };
 const parseContent = async (id, content, opts = {}) => {
   const nitroApp = useNitroApp();
@@ -3422,24 +3362,6 @@ const _okHXL1 = defineEventHandler(async (event) => {
   return createNav(contents?.result || contents, configs);
 });
 
-const _40I7OP = lazyEventHandler(() => {
-  const opts = useRuntimeConfig().ipx || {};
-  const fsDir = opts.fs?.dir ? isAbsolute(opts.fs.dir) ? opts.fs.dir : fileURLToPath(new URL(opts.fs.dir, globalThis._importMeta_.url)) : void 0;
-  const fsStorage = opts.fs?.dir ? ipxFSStorage({ ...opts.fs, dir: fsDir }) : void 0;
-  const httpStorage = opts.http?.domains ? ipxHttpStorage({ ...opts.http }) : void 0;
-  if (!fsStorage && !httpStorage) {
-    throw new Error("IPX storage is not configured!");
-  }
-  const ipxOptions = {
-    ...opts,
-    storage: fsStorage || httpStorage,
-    httpStorage
-  };
-  const ipx = createIPX(ipxOptions);
-  const ipxHandler = createIPXH3Handler(ipx);
-  return useBase(opts.baseURL, ipxHandler);
-});
-
 const _lazy_0bm7Da = () => Promise.resolve().then(function () { return renderer$1; });
 
 const handlers = [
@@ -3451,7 +3373,6 @@ const handlers = [
   { route: '/api/_content/navigation/:qid/**:params', handler: _okHXL1, lazy: false, middleware: false, method: "get" },
   { route: '/api/_content/navigation/:qid', handler: _okHXL1, lazy: false, middleware: false, method: "get" },
   { route: '/api/_content/navigation', handler: _okHXL1, lazy: false, middleware: false, method: "get" },
-  { route: '/_ipx/**', handler: _40I7OP, lazy: false, middleware: false, method: undefined },
   { route: '/**', handler: _lazy_0bm7Da, lazy: true, middleware: false, method: undefined }
 ];
 
@@ -3579,7 +3500,7 @@ const useNitroApp = () => nitroApp;
 
 const server = new Server(toNodeListener(nitroApp.h3App));
 function getAddress() {
-  if (U === "stackblitz" || process.env.NITRO_NO_UNIX_SOCKET || process.versions.bun) {
+  if (d === "stackblitz" || process.env.NITRO_NO_UNIX_SOCKET || process.versions.bun) {
     return 0;
   }
   const socketName = `worker-${process.pid}-${threadId}.sock`;

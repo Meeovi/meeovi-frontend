@@ -41,6 +41,7 @@
 </script>
 
 <script setup>
+
     useHead({
         title: 'Recommendations',
     })

@@ -14,6 +14,8 @@ export default {
 </script>
 
 <script setup>
+
+
     useHead({
         title: 'Order Failed'
     })

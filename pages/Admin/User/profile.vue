@@ -106,6 +106,7 @@
 </script>
 
 <script setup>
+
     useHead({
         title: 'My Profile',
     })

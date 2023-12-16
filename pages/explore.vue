@@ -50,6 +50,7 @@ import challenges from '../components/Explore/challenges.vue'
 </script>
 
 <script setup>
+
     useHead({
         title: 'Explore'
     })

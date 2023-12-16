@@ -59,6 +59,7 @@ import profilebar from '../../../components/Menus/profilebar.vue'
 </script>
 
 <script setup>
+
     useHead({
         title: 'Order History',
     })

@@ -40,6 +40,8 @@
 </script>
 
 <script setup>
+
+
     useHead({
         title: 'Followers / Following',
     })

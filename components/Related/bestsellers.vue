@@ -3,7 +3,7 @@
     <h4>Best Sellers</h4>
     <v-sheet class="mx-auto" elevation="0" color="transparent">
           <v-slide-group v-model="model" class="pa-4" prev-icon="fas fa-arrow-left" next-icon="fas fa-arrow-right"
-            selected-class="bg-primary" show-arrows>
+            selected-class="bg-primary">
             <v-slide-group-item v-for="products in data.products" :key="products.id"
               v-slot="{ isSelected, toggle, selectedClass }">
               <v-card :class="['ma-4', selectedClass]" height="580" width="250" @click="toggle"
@@ -18,7 +18,7 @@
                 <v-card-text>
                   <div>Sku: {{ products.sku }}</div>
                     <div>Category: {{ products.categories.name }}</div>
-                    <div v-for="products in data.products.customers" :key="products">Seller: {{ products.customers_id.username }}</div>
+                    <div>Seller: {{ products.customers.username }}</div>
                 </v-card-text>
 
                 <div class="productcardrating">

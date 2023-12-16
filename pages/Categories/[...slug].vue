@@ -12,7 +12,7 @@
             <v-col cols="12">
                 <h4 style="color: black">Popular </h4>
                 <v-sheet class="mx-auto categorySheet">
-                    <v-slide-group v-model="model" class="pa-4" center-active show-arrows>
+                    <v-slide-group v-model="model" class="pa-4" center-active="true">
                         <v-slide-group-item v-for="n in 15" :key="n" v-slot="{ isSelected, toggle }">
                             <v-card :color="isSelected ? 'primary' : 'grey-lighten-1'" class="ma-4" height="200"
                                 width="100" @click="toggle">

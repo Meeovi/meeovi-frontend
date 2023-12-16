@@ -141,6 +141,8 @@
 </script>
 
 <script setup>
+   
+
     useHead({
         title: 'Receipts',
     })

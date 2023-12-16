@@ -9,10 +9,12 @@
         <featuredproducts />
         <musiccallout />
         <bestsellers />
-        <pixanomycallout />
+        <!----><pixanomycallout />
+        <recentlyviewed />
         <spotlight />
+        <relatedcreators />
         <yardsale />
-        <blogposts /><!---->
+        <blogposts />
     </div><!---->
 </template>
 
@@ -28,6 +30,8 @@
     import bestsellers from '../components/Related/bestsellers.vue'
     import exclusives from '../components/Related/exclusives.vue'
     import deals from '../components/Related/deals.vue'
+    import recentlyviewed from '../components/Related/recentlyviewed.vue'
+    import relatedcreators from '../components/Related/relatedcreators.vue'
     import yardsale from '../components/homePage/yardsale.vue'
     import blogposts from '../components/homePage/blogposts.vue'
 
@@ -44,6 +48,8 @@
             bestsellers,
             exclusives,
             deals,
+            recentlyviewed,
+            relatedcreators,
             yardsale,
             blogposts
         }
@@ -51,6 +57,11 @@
 </script>
 
 <script setup>
+import { definePageMeta } from '#imports'
+definePageMeta({
+  auth: false
+})
+
     useHead({
         title: 'Meeovi',
     })
