@@ -3,11 +3,12 @@
         <v-sheet class="mx-auto sliderCreators">
             <h4>Check out these Creators</h4>
             <v-slide-group v-model="model" class="pa-4" center-active>
-                <v-slide-group-item v-for="customers in data.customers" :key="customers.id" v-slot="{ isSelected, toggle }">
+                <v-slide-group-item v-for="customers in data.customers" :key="customers.id" v-slot="{ isSelected, toggle, selectedClass }">
                     <a :href="`/Admin/User/${customers.id}`">
-                        <v-card class="ma-4" @click="toggle">
-                            <img class="align-end text-white" :src="`${url}assets/${customers.image.filename_disk}`" :alt="customers.name"
-                                cover />
+                        <v-card :class="['ma-4', selectedClass]" height="340" width="320" @click="toggle" elevation="0">
+                            <img class="align-end text-white" height="300" :src="`${url}assets/${customers.image.filename_disk}`" :alt="customers.username" cover />
+                            <v-card-title>{{ customers.username }}</v-card-title>
+
                             <div class="d-flex fill-height align-center justify-center">
                                 <v-scale-transition>
                                     <v-icon v-if="isSelected" color="white" size="48" icon="fas fa-circle-xmark"></v-icon>

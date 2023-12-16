@@ -8,7 +8,7 @@
             <v-slide-group v-model="productModel" class="pa-4">
               <v-slide-group-item v-for="(product, productIndex) in collection.products" :key="product.id"
                 v-slot="{ isSelected, toggle }">
-                <v-card class="ma-4" height="580" width="350" @click="toggle">
+                <v-card class="ma-4" height="580" width="250" @click="toggle">
                   <img class="align-end text-white" height="280"
                     :src="`${url}assets/${product.products_id.image.filename_disk}`" :alt="product.products_id.name"
                     cover />
