@@ -22,17 +22,15 @@
 </script>
 
 <script setup>
-import meeovistores from '../../../apollo/queries-mutations_subscriptions/queries/meeovistores.gql'
+/*import meeovistores from '../../../apollo/queries-mutations_subscriptions/queries/meeovistores.gql'
 
-const { data, loading, error } = useAsyncQuery(meeovistores);
+const { data } = useAsyncQuery(meeovistores);*/
 
-const stores = data ? data.meeovistores : [];
-
-  /*  const {
+    const {
         getItems
     } = useDirectusItems()
 
     const stores = await getItems({
-        collection: "stores"
-    });*/    
+        collection: "meeovistores"
+    });    
 </script>

@@ -16,107 +16,17 @@
                             <h2 class="align-center pb-3 mbr-fonts-style display-2">
                                 Coupons</h2>
                         </div>
-                        <div class="card px-3 py-4 col-12 col-md-6 col-lg-4 col-xl-3">
+                        <div class="card px-3 py-4 col-12 col-md-6 col-lg-4 col-xl-3" v-for="coupons in coupons" :key="coupons">
                             <div class="card-wrapper">
                                 <div class="card-img">
-                                    <img src="../../assets/images/01.jpg" alt="">
+                                    <img :src="`${url}assets/${coupons.image.filename_disk}`" :alt="coupons.name" />
                                 </div>
                                 <div class="card-box">
                                     <p class="mbr-text mbr-fonts-style align-center display-7">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                        {{coupons.excerpt}}
                                     </p>
                                     <div class="mbr-section-btn card-btn align-center">
-                                        <a href="#" class="btn btn-secondary display-4">
-                                            BUY
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card px-3 py-4 col-12 col-md-6 col-lg-4 col-xl-3">
-                            <div class="card-wrapper">
-                                <div class="card-img">
-                                    <img src="../../assets/images/02.jpg" alt="">
-                                </div>
-                                <div class="card-box">
-                                    <p class="mbr-text mbr-fonts-style align-center display-7">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    </p>
-                                    <div class="mbr-section-btn card-btn align-center">
-                                        <a href="#" class="btn btn-secondary display-4">
-                                            BUY
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card px-3 py-4 col-12 col-md-6 col-lg-4 col-xl-3">
-                            <div class="card-wrapper">
-                                <div class="card-img">
-                                    <img src="../../assets/images/03.jpg" alt="">
-                                </div>
-                                <div class="card-box">
-                                    <p class="mbr-text mbr-fonts-style align-center display-7">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    </p>
-                                    <div class="mbr-section-btn card-btn align-center">
-                                        <a href="#" class="btn btn-secondary display-4">
-                                            BUY
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card px-3 py-4 col-12 col-md-6 col-lg-4 col-xl-3">
-                            <div class="card-wrapper">
-                                <div class="card-img">
-                                    <img src="../../assets/images/04.jpg" alt="">
-                                </div>
-                                <div class="card-box">
-                                    <p class="mbr-text mbr-fonts-style align-center display-7">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    </p>
-                                    <div class="mbr-section-btn card-btn align-center">
-                                        <a href="#" class="btn btn-secondary display-4">
-                                            BUY
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card px-3 py-4 col-12 col-md-6 col-lg-4 col-xl-3">
-                            <div class="card-wrapper">
-                                <div class="card-img">
-                                    <img src="../../assets/images/05.jpg" alt="">
-                                </div>
-                                <div class="card-box">
-                                    <p class="mbr-text mbr-fonts-style align-center display-7">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    </p>
-                                    <div class="mbr-section-btn card-btn align-center">
-                                        <a href="#" class="btn btn-secondary display-4">
-                                            BUY
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card px-3 py-4 col-12 col-md-6 col-lg-4 col-xl-3">
-                            <div class="card-wrapper">
-                                <div class="card-img">
-                                    <img src="../../assets/images/06.jpg" alt="">
-                                </div>
-                                <div class="card-box">
-                                    <p class="mbr-text mbr-fonts-style align-center display-7">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    </p>
-                                    <div class="mbr-section-btn card-btn align-center">
-                                        <a href="#" class="btn btn-secondary display-4">
+                                        <a :href="`/lists/${coupons.id}`" class="btn btn-secondary display-4">
                                             BUY
                                         </a>
                                     </div>
@@ -141,6 +51,14 @@
 </script>
 
 <script setup>
+const {
+        getItems
+    } = useDirectusItems()
+
+    const coupons = await getItems({
+        collection: "coupons"
+    });    
+
     useHead({
         title: 'Coupons',
     })

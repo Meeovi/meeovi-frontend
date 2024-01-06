@@ -36,8 +36,6 @@ export { useDirectusToken } from '../node_modules/nuxt-directus/dist/runtime/com
 export { useDirectusUrl } from '../node_modules/nuxt-directus/dist/runtime/composables/useDirectusUrl';
 export { useDirectusUser } from '../node_modules/nuxt-directus/dist/runtime/composables/useDirectusUser';
 export { useDirectusUsers } from '../node_modules/nuxt-directus/dist/runtime/composables/useDirectusUsers';
-export { usePaypalButton } from '../node_modules/nuxt-paypal/dist/runtime/composables/usePaypal';
-export { useMedusaClient } from '../node_modules/nuxt-medusa/dist/runtime/composables/useMedusaClient';
 export { queryContent } from '../node_modules/@nuxt/content/dist/runtime/legacy/composables/query';
 export { useContentHelpers } from '../node_modules/@nuxt/content/dist/runtime/composables/helpers';
 export { useContentHead } from '../node_modules/@nuxt/content/dist/runtime/composables/head';
@@ -52,4 +50,7 @@ export { useApollo, useAsyncQuery, useLazyAsyncQuery } from '../node_modules/@nu
 export { useQuery, useLazyQuery, useMutation, useSubscription, useApolloClient, useQueryLoading, useMutationLoading, useSubscriptionLoading, useGlobalQueryLoading, useGlobalMutationLoading, useGlobalSubscriptionLoading } from '@vue/apollo-composable';
 export { useGtag } from '../node_modules/nuxt-gtag/dist/runtime/composables/useGtag';
 export { useTrackEvent } from '../node_modules/nuxt-gtag/dist/runtime/composables/useTrackEvent';
+export { useDayjs } from '../node_modules/dayjs-nuxt/dist/runtime/composables/dayjs';
+export { useI18n } from '../node_modules/@nuxtjs/i18n/node_modules/vue-i18n/dist/vue-i18n';
+export { useRouteBaseName, useLocalePath, useLocaleRoute, useSwitchLocalePath, useLocaleHead, useBrowserLocale, useCookieLocale, defineI18nRoute, defineI18nLocale, defineI18nConfig } from '../node_modules/@nuxtjs/i18n/dist/runtime/composables';
 export { definePageMeta } from '../node_modules/nuxt/dist/pages/runtime/composables';

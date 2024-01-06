@@ -1,0 +1,5 @@
+query comments_newsfeed($filter: comments_newsfeed_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
+    comments_newsfeed(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
+        id
+    }
+}

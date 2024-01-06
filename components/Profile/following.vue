@@ -14,12 +14,12 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-sm-6 col-lg-3">
+            <div class="col-12 col-sm-6 col-lg-3" v-for="following in following" :key="following.id">
                 <div class="wrap-img item-img">
-                    <img src="../../assets/images/team1.jpg" class="inner">
+                    <img :src="`${url}assets/${following.image.filename_disk}`" :alt="following.name" class="inner">
                 </div>
                 <h5 class="card-title mbr-fonts-style display-7">
-                    <strong>Video 6: Learn more about marketing and sales</strong></h5>
+                    <a :href="`/admin/user/${following.username}`">{{ following.name }}</a></h5>
                 
                 
             </div>
@@ -33,11 +33,18 @@
     //import profilebar from '../../../components/Menus/profilebar'
 
     export default {
-
+        data: () => ({
+            url: process.env.DIRECTUS_URL,
+        }),
     }
 </script>
 
 <script setup>
+import customer from '../../../apollo/queries-mutations_subscriptions/queries/customers.gql'
+
+const { data } = useAsyncQuery(customer);
+const following = data ? data.customer : [];
+
     useHead({
         title: 'Following',
     })

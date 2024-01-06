@@ -1,0 +1,12 @@
+query comments_by_version($version: String!, $id: ID!){
+    comments_by_version(version: $version, id: $id){
+        id
+        response
+        media
+        name
+        created_at
+        updated_at
+        helpful
+        feedback
+    }
+}

@@ -1,0 +1,5 @@
+query Receipts_orders_by_id($id: ID!){
+    Receipts_orders_by_id(id: $id){
+        id
+    }
+}

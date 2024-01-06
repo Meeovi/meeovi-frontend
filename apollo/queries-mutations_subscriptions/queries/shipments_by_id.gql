@@ -1,18 +1,8 @@
-query shipments_by_id($id: ID!, $version: String){
-    shipments_by_id(id: $id, version: $version){
+query shipments_by_id($id: ID!){
+    shipments_by_id(id: $id){
         product
         speed_grade
         ship_date
-        ship_date_func{
-            year
-            month
-            week
-            day
-            weekday
-            hour
-            minute
-            second
-        }
         carrier_name
         transit_time
         tracking_url

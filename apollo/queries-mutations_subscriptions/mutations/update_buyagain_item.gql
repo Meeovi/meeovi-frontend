@@ -1,0 +1,6 @@
+mutation update_buyagain_item($id: ID!, $data: update_buyagain_input!){
+    update_buyagain_item(id: $id, data: $data){
+        id
+        date_created
+    }
+}

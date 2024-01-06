@@ -1,39 +1,35 @@
 <template>
-    <div>
+    <div class="contentPage">
         <profilebar />
         <v-toolbar color="transparent" density="compact" title="My Lists">
             <addList />
         </v-toolbar>
-        <v-table fixed-header>
-            <thead>
-                <tr>
-                    <th class="text-left">
-                        Name
-                    </th>
-                    <th class="text-left">
-                        Description
-                    </th>
-                    <th class="text-left">
-                        Type
-                    </th>
-                    <th class="text-left">
-                        # of Products
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="list in data.lists" :key="list">
-                    <td>{{ list.name }}</td>
-                    <td>{{ list.description }}</td>
-                    <td>{{ list.type }}</td>
-                    <td></td>
-                    <td><v-btn icon="fas fa-x" variant="flat" :href="list.id"></v-btn></td>
-                </tr>
-            </tbody>
-        </v-table>
-    </div>
+        <v-row>
+            <v-col cols="3" v-for="list in lists" :key="list">
+                <v-card class="mx-auto" max-width="400">
+                    <img class="align-end text-white" height="200"
+                        :src="`${url}assets/${list.image.filename_disk}`" :alt="list.name" contain />
+                        <v-card-title>{{ list.name }}</v-card-title>
 
+                    <v-card-subtitle class="pt-4">
+                        <time :datetime="$dayjs('2023-01-01').utc().toString()">{{ list.user_created }}</time>
+                    </v-card-subtitle>
+
+                    <v-card-text>
+                        <div>{{ list.name }}</div>
+
+                        <div>{{ list.type }}</div>
+                    </v-card-text>
+
+                    <v-card-actions>
+                        <v-btn color="orange" :href="`/commerce/lists/${list.id}`">
+                            View
+                        </v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-col>
+        </v-row>
+    </div>
 </template>
 
 <script>
@@ -47,16 +43,26 @@
         },
         data() {
             return {
-
+                url: process.env.DIRECTUS_URL,
             }
         },
     }
 </script>
 
 <script setup>
-import query from '../../apollo/Queries/Lists.js'
+const {
+        getItems
+    } = useDirectusItems()
 
-const { data } = await useAsyncQuery(query)
+    const lists = await getItems({
+        collection: "lists"
+    });    
+
+/*import lists from '../../../apollo/queries-mutations_subscriptions/queries/lists.gql'
+
+const {
+    data
+} = useAsyncQuery(lists);*/
 
     useHead({
         title: 'Lists',

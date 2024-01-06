@@ -1,0 +1,7 @@
+query brands_manufacturer_by_version($version: String!, $id: ID!){
+    brands_manufacturer_by_version(version: $version, id: $id){
+        id
+        brands_id
+        manufacturer_id
+    }
+}

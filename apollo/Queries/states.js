@@ -1,37 +1,22 @@
 import gql from 'graphql-tag'
 
 export const query = gql`
-query {
+query MyQuery {
   states {
+    country_code
+    country_id
+    created_at
+    fips_code
+    flag
     id
+    iso2
+    latitude
+    longitude
     name
-    description
-    country
-    image
-    customers {
-      id
-      customers_id {
-        name_prefix
-        first_name
-        middle_name
-        last_name
-        name_suffix
-        email
-        phone
-        zipcode
-        websites
-        dateofbirth
-        description
-        Address
-        address_two
-        username
-        password
-        payment
-        gender
-        type
-      }
-    }
+    updated_at
+    wikiDataId
   }
-}`
+}
+`
 
 export default { query }

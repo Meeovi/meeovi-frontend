@@ -2,16 +2,6 @@ mutation create_warehouse_items($filter: warehouse_filter, $sort: [String], $lim
     create_warehouse_items(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search, data: $data){
         id
         created_at
-        created_at_func{
-            year
-            month
-            week
-            day
-            weekday
-            hour
-            minute
-            second
-        }
         name
         description
         city

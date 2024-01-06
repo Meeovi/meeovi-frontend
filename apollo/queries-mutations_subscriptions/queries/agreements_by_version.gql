@@ -1,0 +1,14 @@
+query agreements_by_version($version: String!, $id: ID!){
+    agreements_by_version(version: $version, id: $id){
+        id
+        created
+        content
+        name
+        excerpt
+        image
+        type
+        customers
+        products
+        shops
+    }
+}

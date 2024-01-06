@@ -1,18 +1,18 @@
 import gql from 'graphql-tag'
 
 export const query = gql`
-query {
-    helpq {
-      id
-      status
-      sort
-      user_created
-      user_updated
-      date_created
-      date_updated
-      subject
-      answer_id
-    }
-  }`
+query MyQuery {
+  helpq {
+    date_created
+    date_updated
+    id
+    sort
+    status
+    subject
+    user_created
+    user_updated
+  }
+}
+`
 
 export default { query }

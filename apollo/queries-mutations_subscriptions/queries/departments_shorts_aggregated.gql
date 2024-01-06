@@ -2,45 +2,5 @@ query departments_shorts_aggregated($groupBy: [String], $filter: departments_sho
     departments_shorts_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
         group
         countAll
-        count{
-            id
-            departments_id
-            shorts_id
-        }
-        countDistinct{
-            id
-            departments_id
-            shorts_id
-        }
-        avg{
-            id
-            departments_id
-            shorts_id
-        }
-        sum{
-            id
-            departments_id
-            shorts_id
-        }
-        avgDistinct{
-            id
-            departments_id
-            shorts_id
-        }
-        sumDistinct{
-            id
-            departments_id
-            shorts_id
-        }
-        min{
-            id
-            departments_id
-            shorts_id
-        }
-        max{
-            id
-            departments_id
-            shorts_id
-        }
     }
 }

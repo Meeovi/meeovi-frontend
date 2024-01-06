@@ -1,14 +1,17 @@
 import gql from 'graphql-tag'
 
 export const query = gql`
-query {
+query MyQuery {
   comments {
+    created_at
+    helpful
     id
-    customer_name
-    image
+    media
+    name
     response
-    published
+    updated_at
   }
-}`
+}
+`
 
 export default { query }

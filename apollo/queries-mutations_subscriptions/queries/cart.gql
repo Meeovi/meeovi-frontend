@@ -1,0 +1,10 @@
+query cart($filter: cart_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
+    cart(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
+        id
+        date_created
+        user_updated
+        date_updated
+        session_id
+        total_price
+    }
+}

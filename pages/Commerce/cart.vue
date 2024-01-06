@@ -62,11 +62,11 @@
 								<v-card-text>
 									<v-window v-model="tab">
 										<v-window-item value="one">
-											<billingaddress />
+											<billingAddress />
 										</v-window-item>
 
 										<v-window-item value="two">
-											<shippingaddress />
+											<shippingAddress />
 										</v-window-item>
 									</v-window>
 								</v-card-text>
@@ -79,35 +79,7 @@
 					<v-row>
 						<v-card min-width="500px" style="padding-left: 15px; padding-bottom: 15px;">
 							<v-col cols="12">
-								<v-toolbar color="transparent" density="compact" title="Order Summary"></v-toolbar>
-								<v-table fixed-header>
-									<tr>
-										<th>
-											<h5>Subtotal</h5>
-										</th>
-										<td>$ </td>
-									</tr>
-									<br>
-									<tr>
-										<th>
-											<h5>Discount</h5>
-										</th>
-										<td>- ( $ )</td>
-									</tr>
-									<tr>
-										<th>
-											<h5>Shipping</h5>
-										</th>
-										<td></td>
-									</tr>
-									<v-divider></v-divider>
-									<tr>
-										<th>
-											<h4 style="color: orange;">Total Price</h4>
-										</th>
-										<td>$ </td>
-									</tr>
-								</v-table>
+								<shippingMethods />
 							</v-col>
 
 							<v-divider></v-divider>
@@ -119,11 +91,9 @@
 										<v-text-field label="Cardholder Name"></v-text-field>
 									</v-col>
 									<v-col cols="12">
-										<div class="d-flex justify-space-around">
-											<v-avatar v-for="{ value, logo } in paymentMethods" :key="value" rounded="0"
-												size="x-large"><img :src="logo" :alt="value"></v-avatar>
-										</div>
+										<paymentMethods />
 									</v-col>
+									
 									<v-col cols="12">
 										<v-text-field type="number" label="Card Number"></v-text-field>
 									</v-col>
@@ -134,29 +104,8 @@
 										<v-text-field type="number" label="CVC"></v-text-field>
 									</v-col>
 
-									<v-col cols="8">
-										<v-text-field clearable label="Add Coupon"></v-text-field>
-									</v-col>
-
-									<v-col cols="4">
-										<v-btn color="orange" size="x-large">Apply</v-btn>
-									</v-col>
-
-									<v-col cols="8">
-										<v-text-field clearable label="Add Gift Card or Voucher"></v-text-field>
-									</v-col>
-
-									<v-col cols="4">
-										<v-btn color="orange" size="x-large">Apply</v-btn>
-									</v-col>
-
 									<v-col cols="12">
-										<v-btn width="100%" color="orange" size="x-large">Pay Now</v-btn>
-									</v-col>
-									<v-col cols="12">
-										<p>By placing this order, you agree to our <a href="/legal/terms"
-												target="_blank">Terms and Conditions</a> and our <a
-												href="/legal/privacy" target="_blank">Privacy Policy</a>.</p>
+										<orderSummary />
 									</v-col>
 								</v-row>
 							</v-col>
@@ -169,13 +118,21 @@
 </template>
 
 <script>
-	import billingaddress from '../../components/Commerce/billingaddress.vue'
-	import shippingaddress from '../../components/Commerce/shippingaddress.vue'
+	import contactForm from '../../components/Pages/commerce/contactForm.vue'
+	import orderSummary from '../../components/Pages/commerce/orderSummary.vue'
+	import paymentMethods from '../../components/Pages/commerce/paymentMethods.vue'
+	import shippingMethods from '../../components/Pages/commerce/shippingMethods.vue'
+	import billingAddress from '../../components/Pages/commerce/billingAddress.vue'
+	import shippingAddress from '../../components/Pages/commerce/shippingAddress.vue'
 
 	export default {
 		components: {
-			billingaddress,
-			shippingaddress
+			contactForm,
+			orderSummary,
+			paymentMethods,
+			shippingMethods,
+			billingAddress,
+			shippingAddress
 		},
 		data: () => ({
 			tab: null,

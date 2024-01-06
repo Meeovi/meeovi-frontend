@@ -1,0 +1,10 @@
+query collections_by_version($version: String!, $id: ID!){
+    collections_by_version(version: $version, id: $id){
+        id
+        created_at
+        name
+        description
+        image
+        type
+    }
+}

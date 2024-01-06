@@ -1,0 +1,6 @@
+query headline_aggregated($groupBy: [String], $filter: headline_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
+    headline_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
+        group
+        countAll
+    }
+}

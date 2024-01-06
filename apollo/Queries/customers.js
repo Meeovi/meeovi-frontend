@@ -2,36 +2,7 @@ import gql from 'graphql-tag'
 
 export const query = gql`
 query {
-  customers {
-    id
-    name_prefix
-    first_name
-    middle_name
-    last_name
-    name_suffix
-    username
-    email
-    phone
-    zipcode
-    websites
-    tax_vat_number
-    description
-    Address
-    address_two
-    password
-    payment
-    dateofbirth
-    image {
-      filename_disk
-    }
-    gender
-    type
-  }
-}`
-
-export const custid = gql`
-query {
-    customers (filter: {type: {_contains: "Customer"}}){
+    customers{
         id
         name_prefix
         first_name
@@ -42,11 +13,19 @@ query {
         email
         phone
         zipcode
-        websites
+        websites {
+          websites_id {
+            id
+            name
+            url
+            image {
+              filename_disk
+            }
+          }
+        }
         tax_vat_number
         description
         Address
-        address_two
         password
         payment
         dateofbirth
@@ -55,7 +34,17 @@ query {
         }
         gender
         type
+      products {
+        products_id {
+          id
+          name
+          price
+          image {
+            filename_disk
+          }
+          content
+        }
+      }
     }
-  }`
-
-export default { query, custid }
+  }
+`

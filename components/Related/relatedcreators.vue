@@ -1,21 +1,43 @@
 <template>
     <div>
         <v-sheet class="mx-auto sliderCreators">
-            <h4>Check out these Creators</h4>
             <v-slide-group v-model="model" class="pa-4" center-active>
-                <v-slide-group-item v-for="customers in data.customers" :key="customers.id" v-slot="{ isSelected, toggle, selectedClass }">
-                    <a :href="`/Admin/User/${customers.id}`">
-                        <v-card :class="['ma-4', selectedClass]" height="340" width="320" @click="toggle" elevation="0">
-                            <img class="align-end text-white" height="300" :src="`${url}assets/${customers.image.filename_disk}`" :alt="customers.username" cover />
-                            <v-card-title>{{ customers.username }}</v-card-title>
+                <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }">
 
-                            <div class="d-flex fill-height align-center justify-center">
-                                <v-scale-transition>
-                                    <v-icon v-if="isSelected" color="white" size="48" icon="fas fa-circle-xmark"></v-icon>
-                                </v-scale-transition>
+                    <section data-bs-version="5.1" class="formulam5 team1 cid-tZPI5c3cTr" id="people1-6b"
+                        data-sortbtn="btn-primary">
+
+
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-12 col-lg-12">
+                                    <div class="mbr-section-head mb-3">
+                                        <h4 class="mbr-section-title mbr-fonts-style align-center mb-0 display-5">
+                                            <strong>Check out these Creators</strong></h4>
+                                    </div>
+                                </div>
                             </div>
-                        </v-card>
-                    </a>
+                            <div class="row">
+                                <div class="item features-image col-12 col-md-6 col-lg-2" v-for="customers in customers"
+                                    :key="customers.id">
+                                    <a :href="`/Admin/User/${customers.id}`">
+                                        <div class="item-wrapper">
+                                            <div class="item-img">
+                                                <div class="img-wrap">
+                                                    <img :src="`${url}assets/${customers.image.filename_disk}`"
+                                                        :alt="customers.name" />
+                                                </div>
+                                            </div>
+                                            <div class="item-content">
+                                                <h5 class="item-title mbr-fonts-style display-4">
+                                                    <strong>{{ customers.username }}</strong></h5>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                 </v-slide-group-item>
             </v-slide-group>
         </v-sheet>
@@ -26,34 +48,36 @@
     export default {
         data: () => ({
             model: null,
-            url: process.env.DIRECTUS_URL,
+            url: 'http://67.207.71.123:8011/',
         }),
     }
 </script>
 
 <script setup>
-const query = gql `
-query {
-    customers (filter: {type: {_contains: "Seller"}}){
-        id
-        first_name
-        last_name
-        username
-        image {
-        filename_disk
-        }
-    }
-  }
-`
+    /* import query from '../../apollo/Custom/Queries/relatedcreators'
 
   const {
     data
   } = useAsyncQuery(query)
-    //const { data } = await useAsyncQuery(customers)
+    //const { data } = await useAsyncQuery(customers)*/
 
-    /*   const {
-           getItems
-       } = useDirectusItems()
+    const {
+        getItems
+    } = useDirectusItems()
 
-       const customers = await getItems({ collection: "customers", params: {filter: {type: {_eq: "Seller"}}}});*/
+    const customers = await getItems({
+        collection: "customers",
+        limit: 6,
+        params: {
+            filter: {
+                tags: {
+                  tags_id: {
+                    name: {
+                        _eq: "Seller"
+                    }
+                  }
+                }
+            }
+        }
+    });
 </script>

@@ -1,0 +1,10 @@
+mutation create_orders_item($data: create_orders_input!){
+    create_orders_item(data: $data){
+        id
+        status
+        date_created
+        date_updated
+        order_number
+        total_price
+    }
+}

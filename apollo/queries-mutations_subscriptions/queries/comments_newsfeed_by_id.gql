@@ -1,0 +1,5 @@
+query comments_newsfeed_by_id($id: ID!){
+    comments_newsfeed_by_id(id: $id){
+        id
+    }
+}

@@ -1,0 +1,6 @@
+subscription customers_tags_mutated($event: EventEnum){
+    customers_tags_mutated(event: $event){
+        key
+        event
+    }
+}

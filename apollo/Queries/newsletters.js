@@ -1,17 +1,14 @@
 import gql from 'graphql-tag'
 
 export const query = gql`
-query {
+query MyQuery {
   newsletters {
-    id
-    email
-    customer_first_name
-    customer_last_name
-    store
-    status
-    websites
     created_at
+    email
+    id
+    optin
   }
-}`
+}
+`
 
 export default { query }

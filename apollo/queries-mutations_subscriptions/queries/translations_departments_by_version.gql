@@ -1,0 +1,7 @@
+query translations_departments_by_version($version: String!, $id: ID!){
+    translations_departments_by_version(version: $version, id: $id){
+        id
+        translations_id
+        departments_id
+    }
+}

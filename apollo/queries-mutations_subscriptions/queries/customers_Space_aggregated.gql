@@ -2,45 +2,5 @@ query customers_Space_aggregated($groupBy: [String], $filter: customers_Space_fi
     customers_Space_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
         group
         countAll
-        count{
-            id
-            customers_id
-            Space_id
-        }
-        countDistinct{
-            id
-            customers_id
-            Space_id
-        }
-        avg{
-            id
-            customers_id
-            Space_id
-        }
-        sum{
-            id
-            customers_id
-            Space_id
-        }
-        avgDistinct{
-            id
-            customers_id
-            Space_id
-        }
-        sumDistinct{
-            id
-            customers_id
-            Space_id
-        }
-        min{
-            id
-            customers_id
-            Space_id
-        }
-        max{
-            id
-            customers_id
-            Space_id
-        }
     }
 }

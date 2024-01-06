@@ -1,0 +1,11 @@
+query subscriptions_by_id($id: ID!){
+    subscriptions_by_id(id: $id){
+        id
+        status
+        date_created
+        date_updated
+        subscription_number
+        start_date
+        end_date
+    }
+}

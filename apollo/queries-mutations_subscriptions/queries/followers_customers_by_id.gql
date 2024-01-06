@@ -1,0 +1,5 @@
+query followers_customers_by_id($id: ID!){
+    followers_customers_by_id(id: $id){
+        id
+    }
+}

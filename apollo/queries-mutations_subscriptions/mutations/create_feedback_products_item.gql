@@ -1,0 +1,5 @@
+mutation create_feedback_products_item($data: create_feedback_products_input!){
+    create_feedback_products_item(data: $data){
+        id
+    }
+}

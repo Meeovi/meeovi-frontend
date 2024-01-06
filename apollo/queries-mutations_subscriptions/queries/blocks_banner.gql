@@ -1,0 +1,8 @@
+query blocks_banner($filter: blocks_banner_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
+    blocks_banner(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
+        id
+        title
+        text
+        buttons
+    }
+}

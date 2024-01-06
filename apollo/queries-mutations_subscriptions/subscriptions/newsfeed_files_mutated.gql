@@ -1,0 +1,6 @@
+subscription newsfeed_files_mutated($event: EventEnum){
+    newsfeed_files_mutated(event: $event){
+        key
+        event
+    }
+}

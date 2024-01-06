@@ -1,0 +1,6 @@
+subscription advertising_products_mutated($event: EventEnum){
+    advertising_products_mutated(event: $event){
+        key
+        event
+    }
+}

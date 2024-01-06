@@ -1,57 +1,44 @@
 <template>
-    <div>
-        <form action="" role="search" novalidate="" class="ais-SearchBox-form">
-            <input type="search" autocorrect="off" autocomplete="on" autocapitalize="off" spellcheck required="" maxlength="512" aria-label="Search" placeholder="Search Meeovi" class="ais-SearchBox-input">
-            <v-btn type="submit" title="Search" class="fas fa-search ais-SearchBox-submit"></v-btn>
-            <v-btn type="reset" title="Clear" class="fas fa-reset ais-SearchBox-reset" hidden=""></v-btn>
-        </form>
-    </div>
+  <div id="search">
+    <!--<v-text-field density="compact" variant="solo" label="Search Meeovi" append-inner-icon="fas fa-search" single-line
+        hide-details @click:append-inner="onClick"></v-text-field>-->
+    <ais-instant-search :search-client="client" index-name="steam-video-games">
+      <ais-search-box></ais-search-box>
+      <ais-hits>
+        <template v-slot:item="{ item }">
+          <ul>
+            <li v-for="{ id,title,poster } in items" :key="id">
+              <h1>{{ title }}</h1>
+              <img :src="poster" :alt="`Poster from ${title}`">
+            </li>
+          </ul>
+        </template>
+      </ais-hits>
+    </ais-instant-search>
+  </div>
 </template>
 
 <script>
-/*import { connectSearchBox } from "instantsearch.js/es/connectors";
-import { createWidgetMixin } from "vue-instantsearch/vue3/es";
+  export default {
+    methods: {
+      onClick() {
+        this.loading = true
 
-export default {
-  mixins: [createWidgetMixin({ connector: connectSearchBox })],
-  props: {
-    delay: {
-      type: Number,
-      default: 200,
-      required: false,
-    },
-  },
-  data() {
-    return {
-      timerId: null,
-      localQuery: "",
-    };
-  },
-  destroyed() {
-    if (this.timerId) {
-      clearTimeout(this.timerId);
-    }
-  },
-  computed: {
-    query: {
-      get() {
-        return this.localQuery;
-      },
-      set(val) {
-        this.localQuery = val;
-        if (this.timerId) {
-          clearTimeout(this.timerId);
-        }
-        this.timerId = setTimeout(() => {
-          this.state.refine(this.localQuery);
-        }, this.delay);
+        setTimeout(() => {
+          this.loading = false
+          this.loaded = true
+        }, 2000)
       },
     },
-  },
-};*/
+  }
 </script>
 
 <script setup>
+  import {
+    AisInstantSearch,
+    AisHits,
+    AisSearchBox,
+  } from 'vue-instantsearch/vue3/es'
 
-
+  const client = useInstantSearch()
 </script>

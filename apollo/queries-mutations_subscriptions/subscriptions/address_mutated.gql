@@ -1,0 +1,6 @@
+subscription address_mutated($event: EventEnum){
+    address_mutated(event: $event){
+        key
+        event
+    }
+}

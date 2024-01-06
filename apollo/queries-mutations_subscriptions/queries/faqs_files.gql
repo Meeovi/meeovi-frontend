@@ -1,0 +1,5 @@
+query faqs_files($filter: faqs_files_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
+    faqs_files(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
+        id
+    }
+}

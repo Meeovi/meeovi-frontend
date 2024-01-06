@@ -1,0 +1,11 @@
+query feedback_by_version($version: String!, $id: ID!){
+    feedback_by_version(version: $version, id: $id){
+        id
+        date_created
+        url
+        rating
+        title
+        comments
+        products
+    }
+}

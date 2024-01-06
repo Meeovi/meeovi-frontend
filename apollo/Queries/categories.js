@@ -1,70 +1,38 @@
 import gql from 'graphql-tag'
 
 export const query = gql`
-query {
+query MyQuery {
   categories {
-    id
-    name
-    description
     content
-    image {
-      filename_disk
-    }
-    meeovistores {
-      id
-    }
-    products {
-      id
-      products_id {
-        id
-        name
-        price
+    description
+    id
+    image
+    name
+    products_categories {
+      product {
         content
-        image {
-          filename_disk
-        }
-        country
-      }
-    }
-    Space {
-      id
-      Space_id {
+        created_at
+        file
+        format
+        height
         id
-        Name
-        newsfeed
-        date_created
-        Description
-        Image {
-          filename_disk
-        }
-        product_id {
-          id
-          products_id {
-            price
-            name
-            image {
-              filename_disk
-            }
-            short_description
-            content
-            country
-          }
-        }
-      }
-    }
-    shorts {
-      id
-      shorts_id {
-        id
+        image
+        like
         name
-        description
-        date_created
-        video {
-          filename_disk
-        }
+        part_number
+        price
+        rating
+        size
+        sku
+        stock_status
+        tax_class
+        type
+        visibility
+        weight
       }
     }
   }
-}`
+}
+`
 
 export default { query }

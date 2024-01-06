@@ -1,0 +1,25 @@
+query products_by_version($version: String!, $id: ID!){
+    products_by_version(version: $version, id: $id){
+        id
+        sku
+        name
+        tax_class
+        stock_status
+        weight
+        created_at
+        height
+        content
+        part_number
+        format
+        file
+        image
+        type
+        visibility
+        price
+        size
+        rating
+        like
+        stock
+        faqsa
+    }
+}

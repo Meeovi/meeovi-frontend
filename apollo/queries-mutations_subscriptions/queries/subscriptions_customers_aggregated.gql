@@ -1,0 +1,6 @@
+query subscriptions_customers_aggregated($groupBy: [String], $filter: subscriptions_customers_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
+    subscriptions_customers_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
+        group
+        countAll
+    }
+}

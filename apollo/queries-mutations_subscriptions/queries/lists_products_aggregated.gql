@@ -2,45 +2,5 @@ query lists_products_aggregated($groupBy: [String], $filter: lists_products_filt
     lists_products_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
         group
         countAll
-        count{
-            id
-            lists_id
-            products_id
-        }
-        countDistinct{
-            id
-            lists_id
-            products_id
-        }
-        avg{
-            id
-            lists_id
-            products_id
-        }
-        sum{
-            id
-            lists_id
-            products_id
-        }
-        avgDistinct{
-            id
-            lists_id
-            products_id
-        }
-        sumDistinct{
-            id
-            lists_id
-            products_id
-        }
-        min{
-            id
-            lists_id
-            products_id
-        }
-        max{
-            id
-            lists_id
-            products_id
-        }
     }
 }

@@ -1,0 +1,6 @@
+subscription block_hero_mutated($event: EventEnum){
+    block_hero_mutated(event: $event){
+        key
+        event
+    }
+}

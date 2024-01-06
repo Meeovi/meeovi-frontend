@@ -1,0 +1,6 @@
+subscription connections_customers_mutated($event: EventEnum){
+    connections_customers_mutated(event: $event){
+        key
+        event
+    }
+}

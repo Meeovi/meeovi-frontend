@@ -2,45 +2,5 @@ query comments_customers_aggregated($groupBy: [String], $filter: comments_custom
     comments_customers_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
         group
         countAll
-        count{
-            id
-            comments_id
-            customers_id
-        }
-        countDistinct{
-            id
-            comments_id
-            customers_id
-        }
-        avg{
-            id
-            comments_id
-            customers_id
-        }
-        sum{
-            id
-            comments_id
-            customers_id
-        }
-        avgDistinct{
-            id
-            comments_id
-            customers_id
-        }
-        sumDistinct{
-            id
-            comments_id
-            customers_id
-        }
-        min{
-            id
-            comments_id
-            customers_id
-        }
-        max{
-            id
-            comments_id
-            customers_id
-        }
     }
 }

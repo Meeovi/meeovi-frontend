@@ -1,11 +1,11 @@
 <template>
-    <div>
+    <div class="contentPage">
         <profilebar />
         <v-row class="centralfeed">
             <v-col cols="3"></v-col>
             <v-col cols="5">
                 <postform />
-                <v-col cols="12" v-for="newsfeed in data.newsfeed" :key="newsfeed">
+                <v-col cols="12" v-for="newsfeed in newsfeed" :key="newsfeed">
                     <v-card class="mx-auto">
                         <img class="align-end text-white" height="350"
                             :src="`${url}assets/${newsfeed.image.filesdisk}`" :alt="newsfeed.name" cover />
@@ -67,26 +67,17 @@
                 url: process.env.DIRECTUS_URL,
             }
         },
-
-        computed: {
-            currentTitle() {
-                switch (this.step) {
-                    case 1:
-                        return 'Sign-up'
-                    case 2:
-                        return 'Create a password'
-                    default:
-                        return 'Account created'
-                }
-            },
-        },
     }
 </script>
 
 <script setup>
-import query from '../../apollo/Queries/newsfeed.js'
+const {
+        getItems
+    } = useDirectusItems()
 
-const { data } = await useAsyncQuery(query)
+    const newsfeed = await getItems({
+        collection: "newsfeed"
+    });    
 
     useHead({
         title: 'Social Feed',

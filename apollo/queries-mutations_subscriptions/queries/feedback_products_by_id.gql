@@ -1,0 +1,5 @@
+query feedback_products_by_id($id: ID!){
+    feedback_products_by_id(id: $id){
+        id
+    }
+}

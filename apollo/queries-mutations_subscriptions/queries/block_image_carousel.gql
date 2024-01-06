@@ -1,0 +1,8 @@
+query block_image_carousel($filter: block_image_carousel_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
+    block_image_carousel(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
+        id
+        title
+        text
+        url
+    }
+}

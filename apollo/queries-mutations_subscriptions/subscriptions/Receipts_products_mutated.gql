@@ -1,0 +1,6 @@
+subscription Receipts_products_mutated($event: EventEnum){
+    Receipts_products_mutated(event: $event){
+        key
+        event
+    }
+}

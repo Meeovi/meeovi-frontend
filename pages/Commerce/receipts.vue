@@ -1,131 +1,57 @@
 <template>
-    <div>
+    <div class="contentPage">
         <profilebar />
-        <v-row class="profilePage">
-            <section data-bs-version="5.1" class="mbr-section features13 cid-txNjPsul0g mbr-parallax-background"
-                id="features13-4p">
+        <v-row>
+            <v-col cols="12" v-for="receipts in receipts" :key="receipts">
+                <v-sheet class="mx-auto sliderProducts">
+                    <v-toolbar color="transparent">
+                        <v-toolbar-title>Receipt ID {{ receipts.id }}</v-toolbar-title>
+                        <p>Total Price: {{ receipts.total_price }}</p>
+                    </v-toolbar>
+                    <v-slide-group v-model="model" class="pa-4">
+                        <v-slide-group-item v-for="receipts in receipts.order" :key="receipts.id"
+                            v-slot="{ isSelected, toggle }">
+                            <h2>{{ orders_id.order_number }}</h2>
+                            <v-card @click="toggle">
+                                <v-slide-group v-model="productModel" class="pa-4">
+                                    <v-slide-group-item v-for="(product, productIndex) in receipts.items"
+                                        :key="productIndex" v-slot="{ isSelected, toggle }">
+                                        <v-card class="ma-4" height="580" @click="toggle">
+                                            <img class="align-end text-white" height="280"
+                                                :src="`${url}assets/${product.products_id.image.filename_disk}`"
+                                                :alt="product.products_id.name" cover />
 
+                                            <v-card-title class="pt-4">
+                                                {{ product.products_id.name }}
+                                            </v-card-title>
 
+                                            <v-card-text>
+                                                <div>Sku: {{ product.products_id.sku }}</div>
+                                                <div>Category: {{ receipts.categories[0].categories_id.name }}</div>
+                                            </v-card-text>
 
-                <div class="mbr-overlay" style="opacity: 0.8; background-color: rgb(255, 255, 255);">
-                </div>
+                                            <v-card-actions>
+                                                <v-card-title>$ {{ product.products_id.price }}</v-card-title>
+                                            </v-card-actions>
 
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-12 text-row col-md-6">
-                            <h2 class="align-center pb-3 mbr-fonts-style display-2">
-                                Receipts</h2>
-                        </div>
-                        <div class="card px-3 py-4 col-12 col-md-6 col-lg-4 col-xl-3">
-                            <div class="card-wrapper">
-                                <div class="card-img">
-                                    <img src="../../assets/images/01.jpg" alt="">
-                                </div>
-                                <div class="card-box">
-                                    <p class="mbr-text mbr-fonts-style align-center display-7">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    </p>
-                                    <div class="mbr-section-btn card-btn align-center">
-                                        <a href="#" class="btn btn-secondary display-4">
-                                            BUY
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                            <div class="align-center">
+                                                <v-btn class="align-center" color="orange" href="">Add to Cart</v-btn>
+                                            </div>
 
-                        <div class="card px-3 py-4 col-12 col-md-6 col-lg-4 col-xl-3">
-                            <div class="card-wrapper">
-                                <div class="card-img">
-                                    <img src="../../assets/images/02.jpg" alt="">
-                                </div>
-                                <div class="card-box">
-                                    <p class="mbr-text mbr-fonts-style align-center display-7">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    </p>
-                                    <div class="mbr-section-btn card-btn align-center">
-                                        <a href="#" class="btn btn-secondary display-4">
-                                            BUY
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card px-3 py-4 col-12 col-md-6 col-lg-4 col-xl-3">
-                            <div class="card-wrapper">
-                                <div class="card-img">
-                                    <img src="../../assets/images/03.jpg" alt="">
-                                </div>
-                                <div class="card-box">
-                                    <p class="mbr-text mbr-fonts-style align-center display-7">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    </p>
-                                    <div class="mbr-section-btn card-btn align-center">
-                                        <a href="#" class="btn btn-secondary display-4">
-                                            BUY
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card px-3 py-4 col-12 col-md-6 col-lg-4 col-xl-3">
-                            <div class="card-wrapper">
-                                <div class="card-img">
-                                    <img src="../../assets/images/04.jpg" alt="">
-                                </div>
-                                <div class="card-box">
-                                    <p class="mbr-text mbr-fonts-style align-center display-7">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    </p>
-                                    <div class="mbr-section-btn card-btn align-center">
-                                        <a href="#" class="btn btn-secondary display-4">
-                                            BUY
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card px-3 py-4 col-12 col-md-6 col-lg-4 col-xl-3">
-                            <div class="card-wrapper">
-                                <div class="card-img">
-                                    <img src="../../assets/images/05.jpg" alt="">
-                                </div>
-                                <div class="card-box">
-                                    <p class="mbr-text mbr-fonts-style align-center display-7">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    </p>
-                                    <div class="mbr-section-btn card-btn align-center">
-                                        <a href="#" class="btn btn-secondary display-4">
-                                            BUY
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card px-3 py-4 col-12 col-md-6 col-lg-4 col-xl-3">
-                            <div class="card-wrapper">
-                                <div class="card-img">
-                                    <img src="../../assets/images/06.jpg" alt="">
-                                </div>
-                                <div class="card-box">
-                                    <p class="mbr-text mbr-fonts-style align-center display-7">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    </p>
-                                    <div class="mbr-section-btn card-btn align-center">
-                                        <a href="#" class="btn btn-secondary display-4">
-                                            BUY
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+                                            <div class="d-flex fill-height align-center justify-center">
+                                                <v-scale-transition>
+                                                    <v-icon v-if="isSelected" color="white" size="48"
+                                                        icon="fas fa-circle-xmark"></v-icon>
+                                                </v-scale-transition>
+                                            </div>
+                                        </v-card>
+                                    </v-slide-group-item>
+                                </v-slide-group>
+                            </v-card>
+                        </v-slide-group-item>
+                    </v-slide-group>
+                </v-sheet>
+            </v-col>
         </v-row>
     </div>
 </template>
@@ -137,11 +63,21 @@
         components: {
             profilebar
         },
+        data: () => ({
+            model: null,
+            url: process.env.DIRECTUS_URL,
+        }),
     }
 </script>
 
 <script setup>
-   
+  const {
+        getItems
+    } = useDirectusItems()
+
+    const receipts = await getItems({
+        collection: "Receipts",
+    });
 
     useHead({
         title: 'Receipts',

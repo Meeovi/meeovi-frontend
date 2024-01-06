@@ -1,0 +1,5 @@
+query newsfeed_files_by_id($id: ID!){
+    newsfeed_files_by_id(id: $id){
+        id
+    }
+}

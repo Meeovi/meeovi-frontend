@@ -1,0 +1,6 @@
+query blocks_products_deals_products_aggregated($groupBy: [String], $filter: blocks_products_deals_products_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
+    blocks_products_deals_products_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
+        group
+        countAll
+    }
+}

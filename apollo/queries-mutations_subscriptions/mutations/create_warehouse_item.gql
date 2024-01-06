@@ -2,16 +2,6 @@ mutation create_warehouse_item($data: create_warehouse_input!){
     create_warehouse_item(data: $data){
         id
         created_at
-        created_at_func{
-            year
-            month
-            week
-            day
-            weekday
-            hour
-            minute
-            second
-        }
         name
         description
         city

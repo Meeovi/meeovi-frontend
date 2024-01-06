@@ -5,16 +5,6 @@ query rewards($filter: rewards_filter, $sort: [String], $limit: Int, $offset: In
         slug
         level
         created_at
-        created_at_func{
-            year
-            month
-            week
-            day
-            weekday
-            hour
-            minute
-            second
-        }
         coupons
         expiration
         categories

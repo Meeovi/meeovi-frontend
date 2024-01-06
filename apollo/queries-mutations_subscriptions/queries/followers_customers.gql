@@ -1,0 +1,5 @@
+query followers_customers($filter: followers_customers_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
+    followers_customers(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
+        id
+    }
+}

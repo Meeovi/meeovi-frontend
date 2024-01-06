@@ -1,0 +1,9 @@
+query followers($filter: followers_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
+    followers(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
+        id
+        status
+        sort
+        date_created
+        date_updated
+    }
+}

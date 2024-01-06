@@ -1,0 +1,6 @@
+subscription feedback_mutated($event: EventEnum){
+    feedback_mutated(event: $event){
+        key
+        event
+    }
+}

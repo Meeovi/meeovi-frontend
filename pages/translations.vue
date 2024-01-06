@@ -1,14 +1,12 @@
 <template>
     <div class="contentPage">
-        <v-row>
+        <v-row v-for="pages in pages" :key="pages">
             <v-col cols="6">
                 <h5><b> Website (Country/Region)</b></h5>
 
-                <h6>Select your preferred country.</h6>
-
                 <div class="d-flex">
                     <v-btn color="primary">
-                        Parent activator
+                        Select your preferred country
 
                         <v-menu activator="parent">
                             <v-list>
@@ -29,9 +27,7 @@
             </v-col>
 
             <v-col cols="6">
-                <h5><b>Changing country/region website</b></h5>
-
-                <p>Changing the country/region you shop from may affect factors including price, shipping options and product availability.</p>
+                <p v-html="pages.content"></p>
             </v-col>
 
             <v-col cols="12">
@@ -63,6 +59,12 @@
     }
 </script>
 
-<script>
+<script setup>
+const { getItems } = useDirectusItems()
 
+const pages = await getItems({ collection: "pages", params: {filter: {name: {_eq: "Translations"}}}});
+
+    useHead({
+        title: 'Change Meeovi to your country'
+    })
 </script>

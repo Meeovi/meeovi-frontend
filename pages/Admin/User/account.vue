@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="contentPage">
         <profilebar />
         <h2 class="accountFormH2">Account Details</h2>
         <form class="accountForm" method="post" @v-on:submit.prevent="addAccessToken()">

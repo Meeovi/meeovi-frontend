@@ -1,0 +1,5 @@
+query faqs_products_by_id($id: ID!){
+    faqs_products_by_id(id: $id){
+        id
+    }
+}

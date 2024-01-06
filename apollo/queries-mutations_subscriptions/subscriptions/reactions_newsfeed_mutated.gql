@@ -1,0 +1,6 @@
+subscription reactions_newsfeed_mutated($event: EventEnum){
+    reactions_newsfeed_mutated(event: $event){
+        key
+        event
+    }
+}

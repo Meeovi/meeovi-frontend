@@ -1,0 +1,7 @@
+query musicchart_customers_by_version($version: String!, $id: ID!){
+    musicchart_customers_by_version(version: $version, id: $id){
+        id
+        musicchart_id
+        customers_id
+    }
+}

@@ -1,0 +1,5 @@
+mutation delete_address_cart_items($ids: [ID]!){
+    delete_address_cart_items(ids: $ids){
+        ids
+    }
+}

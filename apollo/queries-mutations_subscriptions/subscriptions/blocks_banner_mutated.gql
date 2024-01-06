@@ -1,0 +1,6 @@
+subscription blocks_banner_mutated($event: EventEnum){
+    blocks_banner_mutated(event: $event){
+        key
+        event
+    }
+}

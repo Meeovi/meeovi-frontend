@@ -1,0 +1,6 @@
+subscription block_icon_mutated($event: EventEnum){
+    block_icon_mutated(event: $event){
+        key
+        event
+    }
+}

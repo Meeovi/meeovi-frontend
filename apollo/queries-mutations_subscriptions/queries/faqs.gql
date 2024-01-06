@@ -1,0 +1,11 @@
+query faqs($filter: faqs_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
+    faqs(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
+        id
+        status
+        sort
+        user_created
+        user_updated
+        question
+        answer
+    }
+}

@@ -1,0 +1,6 @@
+subscription faqs_files_mutated($event: EventEnum){
+    faqs_files_mutated(event: $event){
+        key
+        event
+    }
+}

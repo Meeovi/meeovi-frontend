@@ -1,0 +1,12 @@
+mutation update_report_items($filter: report_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String, $ids: [ID]!, $data: update_report_input!){
+    update_report_items(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search, ids: $ids, data: $data){
+        id
+        sort
+        user_created
+        date_created
+        user_updated
+        date_updated
+        title
+        content
+    }
+}

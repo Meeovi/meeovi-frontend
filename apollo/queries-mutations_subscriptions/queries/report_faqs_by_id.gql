@@ -1,0 +1,5 @@
+query report_faqs_by_id($id: ID!){
+    report_faqs_by_id(id: $id){
+        id
+    }
+}

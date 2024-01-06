@@ -1,0 +1,6 @@
+query reviews_customers_by_version($version: String!, $id: ID!){
+    reviews_customers_by_version(version: $version, id: $id){
+        id
+        customers_id
+    }
+}

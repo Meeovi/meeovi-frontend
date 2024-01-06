@@ -1,0 +1,5 @@
+query report_faqs($filter: report_faqs_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
+    report_faqs(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
+        id
+    }
+}

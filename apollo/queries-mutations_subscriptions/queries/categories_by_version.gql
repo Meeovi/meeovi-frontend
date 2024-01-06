@@ -1,0 +1,20 @@
+query categories_by_version($version: String!, $id: ID!){
+    categories_by_version(version: $version, id: $id){
+        id
+        name
+        description
+        content
+        image
+        brands
+        digiboard
+        products
+        shorts
+        customers
+        articles
+        departments
+        tags
+        meeovistores
+        musicchart
+        shops
+    }
+}

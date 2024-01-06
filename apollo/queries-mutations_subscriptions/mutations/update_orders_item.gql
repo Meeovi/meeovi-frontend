@@ -1,0 +1,10 @@
+mutation update_orders_item($id: ID!, $data: update_orders_input!){
+    update_orders_item(id: $id, data: $data){
+        id
+        status
+        date_created
+        date_updated
+        order_number
+        total_price
+    }
+}

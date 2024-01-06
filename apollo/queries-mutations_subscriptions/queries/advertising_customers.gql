@@ -1,0 +1,5 @@
+query advertising_customers($filter: advertising_customers_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
+    advertising_customers(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
+        id
+    }
+}

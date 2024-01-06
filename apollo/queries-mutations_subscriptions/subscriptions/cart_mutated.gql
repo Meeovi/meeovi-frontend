@@ -1,0 +1,6 @@
+subscription cart_mutated($event: EventEnum){
+    cart_mutated(event: $event){
+        key
+        event
+    }
+}

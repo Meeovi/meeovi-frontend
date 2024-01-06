@@ -55,6 +55,7 @@
 						</v-col>-->
 					</v-row>
 				</v-container>
+				<v-pagination v-model="currentPage" :length="totalPages" @input="changePage" />
 			</v-col>
 		</v-row>
 	</div>
@@ -72,23 +73,38 @@
 </script>
 
 <script setup>
-/*const query = gql`
- query {
-  products (options: {take: 6 sort: {createdAt: DESC}}) {
-    items {
-      id
-      name
-      featuredAsset {
-        id
-        preview
-      }
-      variants {
-        price
-        sku
-      }
-    }
-  }
+// Import Apollo composition function
+import { useQuery } from '@nuxt/apollo';
+import { ref } from 'vue';
+
+// Use the SearchQuery GraphQL query
+const { data, loading, error } = useQuery(SearchQuery, {
+  variables: {
+    query: searchQuery,
+    sortField,
+    sortOrder: 'ASC', // or 'DESC' based on user preference
+    page: currentPage,
+    perPage: 10, // Adjust perPage based on your preference
+  },
+});
+
+// Extract search results and pageInfo from the Apollo response
+const results = data?.search?.results || [];
+const currentPage = ref(data?.search?.pageInfo?.currentPage || 1);
+const totalPages = ref(data?.search?.pageInfo?.totalPages || 1);
+
+// Handle page change
+const changePage = (page) => {
+  currentPage.value = page;
+  // Implement Apollo query to search with updated page variable
+};
+
+// Show error feedback
+if (error) {
+  feedback.value = {
+    show: true,
+    message: 'Error occurred during search.',
+    color: 'error',
+  };
 }
-`
-const { data } = await useAsyncQuery(query)*/
 </script>

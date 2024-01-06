@@ -1,0 +1,10 @@
+query orders_by_version($version: String!, $id: ID!){
+    orders_by_version(version: $version, id: $id){
+        id
+        status
+        date_created
+        date_updated
+        order_number
+        total_price
+    }
+}

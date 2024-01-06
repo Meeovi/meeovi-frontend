@@ -1,0 +1,6 @@
+subscription report_comments_mutated($event: EventEnum){
+    report_comments_mutated(event: $event){
+        key
+        event
+    }
+}

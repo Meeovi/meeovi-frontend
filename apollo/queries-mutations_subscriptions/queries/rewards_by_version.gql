@@ -1,0 +1,16 @@
+query rewards_by_version($version: String!, $id: ID!){
+    rewards_by_version(version: $version, id: $id){
+        id
+        name
+        slug
+        level
+        created_at
+        coupons
+        expiration
+        categories
+        articles
+        products
+        customers
+        users
+    }
+}

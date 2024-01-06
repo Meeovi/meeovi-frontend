@@ -1,0 +1,5 @@
+mutation delete_reactions_item($id: ID!){
+    delete_reactions_item(id: $id){
+        id
+    }
+}

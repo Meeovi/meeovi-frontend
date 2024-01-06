@@ -1,0 +1,5 @@
+query subscriptions_customers_by_id($id: ID!){
+    subscriptions_customers_by_id(id: $id){
+        id
+    }
+}

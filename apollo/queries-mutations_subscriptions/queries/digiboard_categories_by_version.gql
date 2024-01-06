@@ -1,0 +1,7 @@
+query digiboard_categories_by_version($version: String!, $id: ID!){
+    digiboard_categories_by_version(version: $version, id: $id){
+        id
+        digiboard_id
+        categories_id
+    }
+}

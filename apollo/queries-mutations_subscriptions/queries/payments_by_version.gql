@@ -1,0 +1,9 @@
+query payments_by_version($version: String!, $id: ID!){
+    payments_by_version(version: $version, id: $id){
+        id
+        status
+        payment_method
+        amount
+        transaction_id
+    }
+}

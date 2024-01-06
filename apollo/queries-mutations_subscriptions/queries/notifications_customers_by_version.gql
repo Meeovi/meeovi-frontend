@@ -1,0 +1,7 @@
+query notifications_customers_by_version($version: String!, $id: ID!){
+    notifications_customers_by_version(version: $version, id: $id){
+        id
+        notifications_id
+        customers_id
+    }
+}

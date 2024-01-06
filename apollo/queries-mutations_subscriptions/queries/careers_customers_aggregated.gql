@@ -2,45 +2,5 @@ query careers_customers_aggregated($groupBy: [String], $filter: careers_customer
     careers_customers_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
         group
         countAll
-        count{
-            id
-            careers_id
-            customers_id
-        }
-        countDistinct{
-            id
-            careers_id
-            customers_id
-        }
-        avg{
-            id
-            careers_id
-            customers_id
-        }
-        sum{
-            id
-            careers_id
-            customers_id
-        }
-        avgDistinct{
-            id
-            careers_id
-            customers_id
-        }
-        sumDistinct{
-            id
-            careers_id
-            customers_id
-        }
-        min{
-            id
-            careers_id
-            customers_id
-        }
-        max{
-            id
-            careers_id
-            customers_id
-        }
     }
 }

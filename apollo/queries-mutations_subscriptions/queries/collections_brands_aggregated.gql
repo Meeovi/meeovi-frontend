@@ -2,45 +2,5 @@ query collections_brands_aggregated($groupBy: [String], $filter: collections_bra
     collections_brands_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
         group
         countAll
-        count{
-            id
-            collections_id
-            brands_id
-        }
-        countDistinct{
-            id
-            collections_id
-            brands_id
-        }
-        avg{
-            id
-            collections_id
-            brands_id
-        }
-        sum{
-            id
-            collections_id
-            brands_id
-        }
-        avgDistinct{
-            id
-            collections_id
-            brands_id
-        }
-        sumDistinct{
-            id
-            collections_id
-            brands_id
-        }
-        min{
-            id
-            collections_id
-            brands_id
-        }
-        max{
-            id
-            collections_id
-            brands_id
-        }
     }
 }

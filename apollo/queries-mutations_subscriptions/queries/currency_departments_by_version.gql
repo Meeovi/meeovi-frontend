@@ -1,0 +1,7 @@
+query currency_departments_by_version($version: String!, $id: ID!){
+    currency_departments_by_version(version: $version, id: $id){
+        id
+        currency_id
+        departments_id
+    }
+}

@@ -1,17 +1,20 @@
 import gql from 'graphql-tag'
 
 export const query = gql`
-query {
+query MyQuery {
   shorts {
-    id
-    status
     date_created
-    name
+    date_updated
     description
-    video {
-      filename_disk
-    }
+    id
+    name
+    sort
+    status
+    user_created
+    user_updated
+    video
   }
-}`
+}
+`
 
 export default { query }

@@ -2,59 +2,5 @@ query careers_aggregated($groupBy: [String], $filter: careers_filter, $limit: In
     careers_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
         group
         countAll
-        count{
-            id
-            status
-            sort
-            date_created
-            date_updated
-            name
-            url
-            description
-            type
-            image
-            degree_level
-            experience
-            customers
-        }
-        countDistinct{
-            id
-            status
-            sort
-            date_created
-            date_updated
-            name
-            url
-            description
-            type
-            image
-            degree_level
-            experience
-            customers
-        }
-        avg{
-            id
-            sort
-        }
-        sum{
-            id
-            sort
-        }
-        avgDistinct{
-            id
-            sort
-        }
-        sumDistinct{
-            id
-            sort
-        }
-        min{
-            id
-            sort
-        }
-        max{
-            id
-            sort
-        }
     }
 }

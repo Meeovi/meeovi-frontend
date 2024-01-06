@@ -1,0 +1,7 @@
+query cities_customers_by_version($version: String!, $id: ID!){
+    cities_customers_by_version(version: $version, id: $id){
+        id
+        cities_id
+        customers_id
+    }
+}

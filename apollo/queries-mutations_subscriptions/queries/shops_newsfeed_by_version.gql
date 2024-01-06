@@ -1,0 +1,7 @@
+query shops_newsfeed_by_version($version: String!, $id: ID!){
+    shops_newsfeed_by_version(version: $version, id: $id){
+        id
+        shops_id
+        newsfeed_id
+    }
+}

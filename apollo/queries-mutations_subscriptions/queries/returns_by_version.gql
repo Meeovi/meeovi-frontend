@@ -1,0 +1,10 @@
+query returns_by_version($version: String!, $id: ID!){
+    returns_by_version(version: $version, id: $id){
+        id
+        status
+        date_created
+        date_updated
+        return_number
+        reason
+    }
+}

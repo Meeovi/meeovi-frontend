@@ -1,0 +1,7 @@
+query currency_customers_by_version($version: String!, $id: ID!){
+    currency_customers_by_version(version: $version, id: $id){
+        id
+        currency_id
+        customers_id
+    }
+}

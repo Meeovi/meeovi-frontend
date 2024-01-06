@@ -1,0 +1,7 @@
+query brands_categories_by_version($version: String!, $id: ID!){
+    brands_categories_by_version(version: $version, id: $id){
+        id
+        brands_id
+        categories_id
+    }
+}

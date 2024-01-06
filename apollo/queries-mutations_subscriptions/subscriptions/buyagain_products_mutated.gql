@@ -1,0 +1,6 @@
+subscription buyagain_products_mutated($event: EventEnum){
+    buyagain_products_mutated(event: $event){
+        key
+        event
+    }
+}

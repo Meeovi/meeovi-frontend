@@ -1,0 +1,10 @@
+query brands_by_version($version: String!, $id: ID!){
+    brands_by_version(version: $version, id: $id){
+        id
+        created_at
+        code
+        name
+        description
+        image
+    }
+}

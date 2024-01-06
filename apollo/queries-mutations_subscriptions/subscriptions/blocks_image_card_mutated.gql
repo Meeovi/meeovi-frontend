@@ -1,0 +1,6 @@
+subscription blocks_image_card_mutated($event: EventEnum){
+    blocks_image_card_mutated(event: $event){
+        key
+        event
+    }
+}

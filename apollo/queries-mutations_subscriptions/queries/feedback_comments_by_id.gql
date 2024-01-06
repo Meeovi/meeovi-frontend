@@ -1,0 +1,7 @@
+query feedback_comments_by_id($id: ID!){
+    feedback_comments_by_id(id: $id){
+        id
+        feedback_id
+        comments_id
+    }
+}

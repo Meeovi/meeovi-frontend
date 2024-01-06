@@ -2,57 +2,5 @@ query tags_aggregated($groupBy: [String], $filter: tags_filter, $limit: Int, $of
     tags_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
         group
         countAll
-        count{
-            id
-            status
-            sort
-            date_created
-            name
-            description
-            image
-            articles
-            categories
-            products
-            departments
-            shorts
-        }
-        countDistinct{
-            id
-            status
-            sort
-            date_created
-            name
-            description
-            image
-            articles
-            categories
-            products
-            departments
-            shorts
-        }
-        avg{
-            id
-            sort
-        }
-        sum{
-            id
-            sort
-        }
-        avgDistinct{
-            id
-            sort
-        }
-        sumDistinct{
-            id
-            sort
-        }
-        min{
-            id
-            sort
-        }
-        max{
-            id
-            sort
-        }
     }
 }

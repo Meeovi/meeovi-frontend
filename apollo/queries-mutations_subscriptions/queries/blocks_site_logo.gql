@@ -1,0 +1,7 @@
+query blocks_site_logo($filter: blocks_site_logo_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
+    blocks_site_logo(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
+        id
+        title
+        url
+    }
+}

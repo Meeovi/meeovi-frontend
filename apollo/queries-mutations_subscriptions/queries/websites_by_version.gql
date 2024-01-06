@@ -1,0 +1,10 @@
+query websites_by_version($version: String!, $id: ID!){
+    websites_by_version(version: $version, id: $id){
+        id
+        created_at
+        name
+        url
+        image
+        type
+    }
+}

@@ -1,0 +1,7 @@
+query categories_meeovistores_by_version($version: String!, $id: ID!){
+    categories_meeovistores_by_version(version: $version, id: $id){
+        id
+        categories_id
+        meeovistores_id
+    }
+}

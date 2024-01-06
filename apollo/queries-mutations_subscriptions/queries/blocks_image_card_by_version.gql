@@ -1,0 +1,8 @@
+query blocks_image_card_by_version($version: String!, $id: ID!){
+    blocks_image_card_by_version(version: $version, id: $id){
+        id
+        title
+        content
+        image
+    }
+}

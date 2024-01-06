@@ -1,0 +1,6 @@
+subscription faqs_customers_mutated($event: EventEnum){
+    faqs_customers_mutated(event: $event){
+        key
+        event
+    }
+}

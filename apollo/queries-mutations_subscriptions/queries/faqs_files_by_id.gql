@@ -1,0 +1,5 @@
+query faqs_files_by_id($id: ID!){
+    faqs_files_by_id(id: $id){
+        id
+    }
+}

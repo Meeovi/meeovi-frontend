@@ -1,0 +1,17 @@
+query states_by_version($version: String!, $id: ID!){
+    states_by_version(version: $version, id: $id){
+        id
+        name
+        country_code
+        fips_code
+        iso2
+        latitude
+        longitude
+        flag
+        wikiDataId
+        country_id
+        created_at
+        updated_at
+        cities
+    }
+}

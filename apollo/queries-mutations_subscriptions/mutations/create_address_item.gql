@@ -1,0 +1,15 @@
+mutation create_address_item($data: create_address_input!){
+    create_address_item(data: $data){
+        id
+        status
+        sort
+        user_created
+        date_created
+        user_updated
+        date_updated
+        name
+        description
+        type
+        address
+    }
+}

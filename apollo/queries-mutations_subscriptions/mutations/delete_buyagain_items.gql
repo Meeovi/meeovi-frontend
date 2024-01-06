@@ -1,0 +1,5 @@
+mutation delete_buyagain_items($ids: [ID]!){
+    delete_buyagain_items(ids: $ids){
+        ids
+    }
+}

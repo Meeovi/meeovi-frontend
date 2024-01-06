@@ -13,26 +13,12 @@
           </v-icon>Meeovi
         </a></v-app-bar-title>
 
-      <v-text-field density="compact" variant="solo" label="Search Meeovi" append-inner-icon="fas fa-search" single-line
-        hide-details @click:append-inner="onClick"></v-text-field>
+      <search /><!---->
       <v-spacer></v-spacer>
 
       <div class="d-flex align-center flex-column flex-sm-row fill-height">
         <v-col>
-          <v-menu :location="location" transition="slide-y-transition">
-            <template v-slot:activator="{ props }">
-              <a variant="flat" v-bind="props">
-                <v-icon start icon="fas fa-bell"></v-icon>
-              </a>
-            </template>
-            <v-list>
-              <v-list-item title="" value="" href="/"></v-list-item>
-              <v-divider></v-divider>
-              <v-list-item title="All Notifications" value="notifications" append-icon="fas fa-bell"
-                href="/admin/user/notifications">
-              </v-list-item>
-            </v-list>
-          </v-menu>
+          <LayoutNotifications />
         </v-col>
 
         <v-col>
@@ -44,7 +30,7 @@
         </v-col>
 
         <v-col>
-          <a variant="flat" href="/cart">
+          <a variant="flat" href="/commerce/cart">
             <v-icon class="shopping-cart" start icon="fas fa-shopping-cart"></v-icon>
           </a>
         </v-col>
@@ -62,12 +48,13 @@
             </v-list-item>
 
             <v-list nav>
-              <h5 class="trendingh5">Trending</h5>
+              <h5 class="menuh5">Trending</h5>
               <v-list-item title="Explore" prepend-icon="fas fa-cart-plus" href="/explore"></v-list-item>
               <v-list-item title="Deals" prepend-icon="fas fa-money-bill" href="/deals"></v-list-item>
               <v-list-item title="Exclusives" prepend-icon="fas fa-key" href="/departments/exclusives"></v-list-item>
               <v-divider></v-divider>
-              <h5>Social</h5>
+
+              <h5 class="menuh5">Social</h5>
               <v-row>
                 <v-col cols="4">
                   <v-btn variant="text" stacked title="Social Feed" prepend-icon="fas fa-feed" size="x-small"
@@ -96,7 +83,7 @@
               <v-row>
                 <v-col cols="4">
                   <v-btn variant="text" stacked title="Help" prepend-icon="fas fa-question-circle" size="x-small"
-                    href="https://help.meeovi.com">Help</v-btn>
+                    href="/help/">Help</v-btn>
                 </v-col>
                 <v-col cols="4">
                   <v-btn variant="text" stacked title="Change Background"
@@ -113,16 +100,20 @@
 
           <v-main id="sidebarNav"></v-main>
           <main id="mainSection">
-            <live />
+            <v-row>
+              <v-col><live /></v-col>
+              <v-col cols="11"><livebubbles /></v-col>
+            </v-row>
             <div>
               <slot />
             </div>
           </main>
         </v-layout>
       </v-card>
-      <!--<AboveFooter />-->
+      <AboveFooter /><!---->
       <BottomFooter />
-      <FooterNav />
+      <FooterNav /><!---->
+      <CopyrightFooter />
     </v-main>
   </v-app>
 </template>
@@ -130,10 +121,12 @@
 <script>
   import search from '../components/Search/search.vue'
   import ecosystemmenu from '../components/Menus/ecosystemmenu.vue'
-  import live from '../components/Catbar/live.vue'
+  import live from '../components/Menus/Livebar/live.vue'
+  import livebubbles from '../components/Menus/Livebar/livebubbles.vue'
   import departmentsmenu from '../components/Menus/Sidebar/departmentsmenu.vue'
   import meeovistoresmenu from '../components/Menus/Sidebar/meeovistoresmenu.vue'
   import myaccountmenu from '../components/Menus/Sidebar/myaccountmenu.vue'
+  import LayoutNotifications from '../components/Menus/LayoutNotifications.vue'
   import myaccounttopmenu from '../components/Menus/TopMenu/myaccounttopmenu.vue'
   import bottomsidebarmenu from '../components/Menus/Sidebar/bottomsidebarmenu.vue'
 
@@ -144,9 +137,11 @@
           search,
           ecosystemmenu,
           live,
+          livebubbles,
           departmentsmenu,
           meeovistoresmenu,
           myaccountmenu,
+          LayoutNotifications,
           myaccounttopmenu,
           bottomsidebarmenu
         },
@@ -157,19 +152,6 @@
         loading: false,
       }
     },
-
-    methods: {
-      onClick() {
-        this.loading = true
-
-        setTimeout(() => {
-          this.loading = false
-          this.loaded = true
-        }, 2000)
-      },
-    },
-
-
   }
 </script>
 

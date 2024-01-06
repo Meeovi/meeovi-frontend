@@ -1,0 +1,18 @@
+query translations_by_version($version: String!, $id: ID!){
+    translations_by_version(version: $version, id: $id){
+        id
+        status
+        sort
+        date_created
+        date_updated
+        name
+        url
+        image
+        code
+        websites
+        products
+        customers
+        departments
+        meeovistores
+    }
+}

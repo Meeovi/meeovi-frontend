@@ -1,0 +1,10 @@
+mutation update_cart_batch($filter: cart_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String, $data: [update_cart_input!]){
+    update_cart_batch(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search, data: $data){
+        id
+        date_created
+        user_updated
+        date_updated
+        session_id
+        total_price
+    }
+}

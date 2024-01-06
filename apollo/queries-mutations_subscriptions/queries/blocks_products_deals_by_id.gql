@@ -1,0 +1,11 @@
+query blocks_products_deals_by_id($id: ID!){
+    blocks_products_deals_by_id(id: $id){
+        id
+        sort
+        user_created
+        date_created
+        headline
+        content
+        products_card_type
+    }
+}

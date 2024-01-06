@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="contentPage">
         <profilebar />
         <section class="info3 cid-sBXUmXiOq3" id="info3-2h">
             <div class="mbr-overlay" style="opacity: 0.6; background-color: rgb(68, 121, 217);">
@@ -22,7 +22,7 @@
         <section class="features4 cid-sBXUicXM4E" id="features5-2g">
             <div class="container">
                 <div class="row">
-                    <div class="col-12 col-lg-6" v-for="spaces in data.Space" :key="spaces">
+                    <div class="col-12 col-lg-6" v-for="spaces in spaces" :key="spaces">
                         <div class="card-wrapper">
                             <div class="row">
                                 <div class="col-12 col-md-7">
@@ -55,21 +55,29 @@
     export default {
         components: {
             profilebar
-        }
+        },
+        data() {
+            return {
+                url: process.env.DIRECTUS_URL,
+            }
+        },
     }
 </script>
 
 <script setup>
-    import query from '../../apollo/Queries/space.js'
-    import { definePageMeta } from '#imports'
+const {
+        getItems
+    } = useDirectusItems()
 
-    definePageMeta({
-    middleware: 'auth'
-    })
+    const spaces = await getItems({
+        collection: "Space"
+    });    
+
+ /*   import query from '../../apollo/queries-mutations_subscriptions/queries/space.js'
 
     const {
         data
-    } = await useAsyncQuery(query)
+    } = await useAsyncQuery(query)*/
 
     useHead({
         title: 'Spaces',

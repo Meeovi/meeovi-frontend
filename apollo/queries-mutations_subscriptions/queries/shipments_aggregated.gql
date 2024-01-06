@@ -2,33 +2,5 @@ query shipments_aggregated($groupBy: [String], $filter: shipments_filter, $limit
     shipments_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
         group
         countAll
-        count{
-            product
-            speed_grade
-            ship_date
-            carrier_name
-            transit_time
-            tracking_url
-            image
-            id
-            client_id
-            client_secret
-            country
-            website
-        }
-        countDistinct{
-            product
-            speed_grade
-            ship_date
-            carrier_name
-            transit_time
-            tracking_url
-            image
-            id
-            client_id
-            client_secret
-            country
-            website
-        }
     }
 }

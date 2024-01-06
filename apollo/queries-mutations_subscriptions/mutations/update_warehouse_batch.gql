@@ -2,16 +2,6 @@ mutation update_warehouse_batch($filter: warehouse_filter, $sort: [String], $lim
     update_warehouse_batch(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search, data: $data){
         id
         created_at
-        created_at_func{
-            year
-            month
-            week
-            day
-            weekday
-            hour
-            minute
-            second
-        }
         name
         description
         city

@@ -1,0 +1,7 @@
+mutation create_feedback_comments_items($filter: feedback_comments_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String, $data: [create_feedback_comments_input!]){
+    create_feedback_comments_items(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search, data: $data){
+        id
+        feedback_id
+        comments_id
+    }
+}

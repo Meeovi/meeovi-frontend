@@ -1,0 +1,15 @@
+query address($filter: address_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
+    address(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
+        id
+        status
+        sort
+        user_created
+        date_created
+        user_updated
+        date_updated
+        name
+        description
+        type
+        address
+    }
+}

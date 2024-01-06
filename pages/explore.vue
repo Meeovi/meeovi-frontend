@@ -1,5 +1,5 @@
 <template>
-    <v-card class="contentPage">
+    <v-card class="contentPage" variant="text">
         <v-tabs v-model="tab" bg-color="primary">
             <v-tab value="one">Explore</v-tab>
             <v-tab value="two">Leaderboard</v-tab>
@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import explore from '../components/Explore/explore.vue'
+import explore from '../components/Pages/homepage/Explore/explore.vue'
 import leaderboard from '../components/Explore/leaderboard.vue'
 import collections from '../components/Explore/collections.vue'
 import journals from '../components/Explore/journals.vue'

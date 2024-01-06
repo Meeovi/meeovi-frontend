@@ -1,0 +1,6 @@
+query blocks_site_logo_aggregated($groupBy: [String], $filter: blocks_site_logo_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
+    blocks_site_logo_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
+        group
+        countAll
+    }
+}

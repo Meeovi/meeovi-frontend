@@ -1,0 +1,9 @@
+query payments($filter: payments_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
+    payments(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
+        id
+        status
+        payment_method
+        amount
+        transaction_id
+    }
+}

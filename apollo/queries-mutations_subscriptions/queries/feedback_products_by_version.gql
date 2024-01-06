@@ -1,0 +1,7 @@
+query feedback_products_by_version($version: String!, $id: ID!){
+    feedback_products_by_version(version: $version, id: $id){
+        id
+        feedback_id
+        products_id
+    }
+}

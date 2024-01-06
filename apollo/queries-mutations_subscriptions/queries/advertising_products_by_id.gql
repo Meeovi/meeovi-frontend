@@ -1,0 +1,5 @@
+query advertising_products_by_id($id: ID!){
+    advertising_products_by_id(id: $id){
+        id
+    }
+}

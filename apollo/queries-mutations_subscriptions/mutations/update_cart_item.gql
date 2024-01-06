@@ -1,0 +1,10 @@
+mutation update_cart_item($id: ID!, $data: update_cart_input!){
+    update_cart_item(id: $id, data: $data){
+        id
+        date_created
+        user_updated
+        date_updated
+        session_id
+        total_price
+    }
+}

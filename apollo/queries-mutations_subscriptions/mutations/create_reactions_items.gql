@@ -1,0 +1,8 @@
+mutation create_reactions_items($filter: reactions_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String, $data: [create_reactions_input!]){
+    create_reactions_items(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search, data: $data){
+        id
+        date_created
+        date_updated
+        reaction_type
+    }
+}

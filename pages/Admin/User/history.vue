@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="contentPage">
         <profilebar />
         <section data-bs-version="5.1" class="info1 cid-tuzvvh2C2A" id="info1-3m">
     
@@ -8,7 +8,7 @@
         <div class="row justify-content-center">
             <div class="col-12 col-lg-8">
                 <h3 class="mbr-section-title mb-4 mbr-fonts-style display-1">
-                    <strong>Order History</strong></h3>
+                    <strong>History on Meeovi</strong></h3>
                 
                 
             </div>

@@ -1,0 +1,15 @@
+sources:
+  - name: eCommerce
+    handler:
+      mysql:
+        # You can use environment variables like
+         host: "{env.DB_HOST}"
+         port: 3306
+         user: "{env.DB_USER}"
+         password: "{env.DB_PASSWORD}"
+         database: "{env.DB_DATABASE}"
+        # host: localhost
+        # port: 3306
+        # user: root
+        # password: passwd
+        # database: employees

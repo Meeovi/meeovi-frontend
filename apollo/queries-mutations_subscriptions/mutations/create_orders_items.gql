@@ -1,0 +1,10 @@
+mutation create_orders_items($filter: orders_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String, $data: [create_orders_input!]){
+    create_orders_items(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search, data: $data){
+        id
+        status
+        date_created
+        date_updated
+        order_number
+        total_price
+    }
+}

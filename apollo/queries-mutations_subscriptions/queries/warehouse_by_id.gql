@@ -1,17 +1,7 @@
-query warehouse_by_id($id: ID!, $version: String){
-    warehouse_by_id(id: $id, version: $version){
+query warehouse_by_id($id: ID!){
+    warehouse_by_id(id: $id){
         id
         created_at
-        created_at_func{
-            year
-            month
-            week
-            day
-            weekday
-            hour
-            minute
-            second
-        }
         name
         description
         city

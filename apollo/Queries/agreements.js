@@ -1,16 +1,17 @@
 import gql from 'graphql-tag'
 
 export const query = gql`
-query {
+query MyQuery {
   agreements {
-    id
-    name
-    excerpt
     content
     created
+    excerpt
+    id
     image
+    name
     type
   }
-}`
+}
+`
 
 export default { query }

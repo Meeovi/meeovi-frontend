@@ -1,0 +1,7 @@
+query comments_customers_by_version($version: String!, $id: ID!){
+    comments_customers_by_version(version: $version, id: $id){
+        id
+        comments_id
+        customers_id
+    }
+}

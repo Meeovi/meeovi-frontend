@@ -1,0 +1,6 @@
+subscription notifications_mutated($event: EventEnum){
+    notifications_mutated(event: $event){
+        key
+        event
+    }
+}

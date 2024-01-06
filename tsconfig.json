@@ -1,21 +1,4 @@
 {
-  "compilerOptions": {
-    "jsx": "preserve",
-    "target": "ES6",
-    "lib": ["es2018", "esnext.asynciterable", "DOM"],
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "strict": true,
-    "moduleResolution": "node",
-    "allowJs": false,
-    "sourceMap": true,
-    "inlineSources": true,
-    "declaration": true,
-    "esModuleInterop": true,
-    "noImplicitAny": false,
-    "noUnusedParameters": true,
-    "importHelpers": true,
-    "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true
-  }
+  // https://v3.nuxtjs.org/concepts/typescript
+  "extends": "./.nuxt/tsconfig.json"
 }

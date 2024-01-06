@@ -2,7 +2,7 @@ import gql from 'graphql-tag'
 
 const query = gql`
 query {
-  departments {
+  departments{
     id
     Active
     name
@@ -95,6 +95,7 @@ query {
     }
     websites
   }
-}`
+}
+`
 
 export default { query }

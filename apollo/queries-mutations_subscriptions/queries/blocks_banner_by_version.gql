@@ -1,0 +1,9 @@
+query blocks_banner_by_version($version: String!, $id: ID!){
+    blocks_banner_by_version(version: $version, id: $id){
+        id
+        title
+        text
+        image
+        buttons
+    }
+}

@@ -69,7 +69,7 @@
 </script>
 
 <script setup>
-  /*  import singleItem from '../../apollo/Queries/Single/meeovistores.js'
+  /*  import singleItem from '../../apollo/queries-mutations_subscriptions/queries/Single/meeovistores.js'
 
     const {
         data

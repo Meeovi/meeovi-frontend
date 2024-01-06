@@ -1,0 +1,10 @@
+query feedback($filter: feedback_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
+    feedback(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
+        id
+        date_created
+        url
+        rating
+        title
+        comments
+    }
+}

@@ -1,0 +1,6 @@
+subscription blocks_products_deals_products_mutated($event: EventEnum){
+    blocks_products_deals_products_mutated(event: $event){
+        key
+        event
+    }
+}

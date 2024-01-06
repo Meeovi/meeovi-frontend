@@ -2,29 +2,5 @@ query websites_aggregated($groupBy: [String], $filter: websites_filter, $limit: 
     websites_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
         group
         countAll
-        count{
-            id
-            created_at
-            name
-            url
-            image
-            type
-            customers
-            products
-            meeovistores
-            translations
-        }
-        countDistinct{
-            id
-            created_at
-            name
-            url
-            image
-            type
-            customers
-            products
-            meeovistores
-            translations
-        }
     }
 }

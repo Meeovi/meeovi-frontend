@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="contentPage">
     <profilebar />
     <v-card>
         <v-tabs v-model="tab" bg-color="primary" fixed-tabs center-active>

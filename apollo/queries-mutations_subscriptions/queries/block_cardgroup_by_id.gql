@@ -1,0 +1,9 @@
+query block_cardgroup_by_id($id: ID!){
+    block_cardgroup_by_id(id: $id){
+        id
+        headline
+        content
+        group_type
+        cards
+    }
+}

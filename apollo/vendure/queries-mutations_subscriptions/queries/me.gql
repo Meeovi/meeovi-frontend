@@ -1,0 +1,12 @@
+query me{
+    me{
+        id
+        identifier
+        channels{
+            id
+            token
+            code
+            permissions
+        }
+    }
+}

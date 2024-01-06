@@ -1,0 +1,10 @@
+mutation update_returns_item($id: ID!, $data: update_returns_input!){
+    update_returns_item(id: $id, data: $data){
+        id
+        status
+        date_created
+        date_updated
+        return_number
+        reason
+    }
+}

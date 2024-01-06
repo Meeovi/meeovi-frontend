@@ -1,0 +1,12 @@
+query messages_by_id($id: ID!){
+    messages_by_id(id: $id){
+        id
+        sort
+        user_created
+        date_created
+        user_updated
+        date_updated
+        title
+        content
+    }
+}

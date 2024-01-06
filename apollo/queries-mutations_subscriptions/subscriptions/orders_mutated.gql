@@ -1,0 +1,6 @@
+subscription orders_mutated($event: EventEnum){
+    orders_mutated(event: $event){
+        key
+        event
+    }
+}

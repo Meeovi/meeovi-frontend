@@ -1,0 +1,11 @@
+mutation create_faqs_item($data: create_faqs_input!){
+    create_faqs_item(data: $data){
+        id
+        status
+        sort
+        user_created
+        user_updated
+        question
+        answer
+    }
+}

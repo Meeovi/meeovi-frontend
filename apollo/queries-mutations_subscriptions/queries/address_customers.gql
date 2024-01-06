@@ -1,0 +1,5 @@
+query address_customers($filter: address_customers_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
+    address_customers(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
+        id
+    }
+}

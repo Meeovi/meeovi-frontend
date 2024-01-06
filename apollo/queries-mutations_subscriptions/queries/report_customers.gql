@@ -1,0 +1,5 @@
+query report_customers($filter: report_customers_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
+    report_customers(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
+        id
+    }
+}

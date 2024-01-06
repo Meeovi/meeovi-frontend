@@ -1,0 +1,13 @@
+query coupons_by_version($version: String!, $id: ID!){
+    coupons_by_version(version: $version, id: $id){
+        id
+        name
+        excerpt
+        image
+        code
+        discount_percent
+        valid_from
+        valid_until
+        max_redemptions
+    }
+}

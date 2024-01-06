@@ -1,0 +1,5 @@
+query advertising_newsfeed_by_id($id: ID!){
+    advertising_newsfeed_by_id(id: $id){
+        id
+    }
+}

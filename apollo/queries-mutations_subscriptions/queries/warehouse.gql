@@ -2,16 +2,6 @@ query warehouse($filter: warehouse_filter, $sort: [String], $limit: Int, $offset
     warehouse(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
         id
         created_at
-        created_at_func{
-            year
-            month
-            week
-            day
-            weekday
-            hour
-            minute
-            second
-        }
         name
         description
         city

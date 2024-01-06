@@ -1,11 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 /********************** Main CSS *************/
 html {
-    overflow-y: scroll;
     font-family: 'Inter', sans-serif !important;
 }
 
 body {
     margin: 0;
+    overflow-x: unset !important;
 }
 
 #topnav {
@@ -85,7 +88,7 @@ body {
     display: inline-block;
 }
 
-.trendingh5 {
+.menuh5 {
     padding-top: 10px;
 }
 
@@ -117,8 +120,10 @@ body {
 .homeSection,
 .contentPage,
 .contentPage404 {
-    padding: 50px !important;
-    padding-top: 60px !important;
+    padding: 10px !important;
+    margin-bottom: 1% !important;
+    top: 60px !important;
+    position: relative;
 }
 
 .contentPage h2 {
@@ -145,11 +150,6 @@ body {
 
 .homeRight {
     padding: 15px;
-}
-
-.emailTemplates {
-    padding-top: 10px;
-    padding-bottom: 10px;
 }
 
 .dialog-bottom-transition-enter-active,
@@ -211,10 +211,6 @@ body {
 
 .feedDialog {
     padding: 10px !important;
-}
-
-.contentSection {
-    padding: 10px;
 }
 
 .feedFollowBtn {
@@ -280,6 +276,22 @@ body {
     }
 }
 
+.sliderProducts h4 {
+    font-size: 20px;
+}
+
+.productCard {
+    margin: 5px;
+    max-width: 400px;
+}
+
+.skuclass {
+    font-size: 15px;
+}
+
+.productCardPrice {
+    display: flex;
+}
 /**************** Product Page *******************/
 
 .sizelist {
@@ -450,6 +462,8 @@ body {
 .shop2,
 .cid-txYTqgVHsB,
 .cid-tApxFdIkda,
+.features6,
+.content2,
 .cid-tApxFdIkda .mbr-text .cid-txYTqgVHsB blockquote {
     background-color: transparent !important;
 }
@@ -509,7 +523,7 @@ body {
 }
 
 footer {
-    background-color: #6592e6 !important;
+    background-color: steelblue !important;
     color: white !important;
 }
 
@@ -521,8 +535,21 @@ footer a:hover {
     color: white !important;
 }
 
+.copyrightFooter {
+    background-color: #222222;
+    color: white;
+}
+
 .translatebar {
-    width: 100%;
-    left: 40%;
+    float: left;
+    left: 5px;
     position: relative;
+}
+
+.copyrightText {
+    float: right;
+    right: 5px;
+    top: 20px;
+    position: relative;
+    font-size: 18px;
 }

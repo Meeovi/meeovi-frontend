@@ -1,0 +1,5 @@
+mutation delete_payments_items($ids: [ID]!){
+    delete_payments_items(ids: $ids){
+        ids
+    }
+}

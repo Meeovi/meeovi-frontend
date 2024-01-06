@@ -1,0 +1,7 @@
+query blocks_site_logo_by_id($id: ID!){
+    blocks_site_logo_by_id(id: $id){
+        id
+        title
+        url
+    }
+}

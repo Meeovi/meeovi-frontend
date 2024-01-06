@@ -1,0 +1,14 @@
+query Space_by_version($version: String!, $id: ID!){
+    Space_by_version(version: $version, id: $id){
+        id
+        status
+        sort
+        user_created
+        date_created
+        user_updated
+        date_updated
+        Name
+        Description
+        Image
+    }
+}

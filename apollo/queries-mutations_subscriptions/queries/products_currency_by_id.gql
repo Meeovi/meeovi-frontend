@@ -1,0 +1,5 @@
+query products_currency_by_id($id: ID!){
+    products_currency_by_id(id: $id){
+        id
+    }
+}

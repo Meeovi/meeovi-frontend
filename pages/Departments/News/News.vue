@@ -157,111 +157,17 @@
 </script>
 
 <script setup>
+import query from '../../../apollo/Custom/Queries/news'
+
+    const {
+        data
+    } = await useAsyncQuery(query)
+
     useHead({
         title: 'Meeovi News'
     });
 
-    const query = gql `
-query {
-  departments (filter: {name: {_eq: "News"}}){
-    id
-    Active
-    name
-    color
-    colortext
-    description
-    content
-    brands {
-      id
-      brands_id {
-        name
-        image
-      }
-    }
-    articles (search: "News") {
-      articles_id {
-        id
-        created_at
-        name
-        excerpt
-        content
-        categories {
-          categories_id {
-            id
-            name
-          }
-        }
-      }
-    }
-    image {
-      filename_disk
-    }
-    customers {
-      customers_id {
-        id
-        first_name
-        last_name
-        image {
-          filename_disk
-        }
-      }
-    }
-    categories {
-      categories_id {
-        id
-        name
-        image {
-          filename_disk
-        }
-      }
-    }
-    products(search: "Magazines") {
-      id
-      products_id {
-        id
-        name
-        price
-        image {
-          filename_disk
-        }
-        sku
-        Space {
-          id
-          Space_id {
-            id
-            Name
-          }
-        }
-      }
-    }
-    shorts {
-      shorts_id {
-        id
-        name
-        video {
-          filename_disk
-        }
-      }
-    }
-    shops(search: "Newstand") {
-      shops_id {
-        id
-        name
-      }
-    }
-    collections {
-      collections_id {
-        id
-        name
-      }
-    }
-    websites
-  }
-}
-`
-    const {
-        data
-    } = await useAsyncQuery(query)
+
 
     /*
     const { getItems } = useDirectusItems()

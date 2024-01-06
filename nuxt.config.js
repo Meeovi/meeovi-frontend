@@ -4,32 +4,38 @@
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  extends: ['@sidebase/core'],
+  extends: [
+    "@shopware-pwa/composables-next/nuxt-layer",
+    
+  ],
   app: {
     head: {
       viewport: 'minimum-scale=1, initial-scale=1, width=device-width',
       htmlAttrs: {
         lang: 'en',
       },
-      meta: [
-        { name: 'description', content: 'Social Marketplace for Creators' },
-        { name: 'theme-color', content: '#018937' },
+      meta: [{
+          name: 'description',
+          content: 'Social Marketplace for Creators'
+        },
       ],
-      link: [
-        { rel: 'icon', href: '/favicon.ico' },
-        { rel: 'apple-touch-icon', href: '/icons/apple-touch-icon-180x180.png' },
+      link: [{
+          rel: 'icon',
+          href: '/favicon.ico'
+        },
+        {
+          rel: 'apple-touch-icon',
+          href: '/icons/apple-touch-icon-180x180.png'
+        },
       ],
-      script: [
-        { src: 'https://platform-api.sharethis.com/js/sharethis.js#property=63155c574a688f00124a59c2&product=sticky-share-buttons', async: 'async'},
-        { src: 'http://free-website-translation.com/scripts/fwt.js', async: 'async'}
-      ],
+      script: [{
+        src: 'https://platform-api.sharethis.com/js/sharethis.js#property=63155c574a688f00124a59c2&product=sticky-share-buttons',
+        async: 'async'
+      }, ],
     },
   },
   appConfig: {
     titleSuffix: 'Meeovi',
-  },
-  imports: {
-    dirs: ['composables/**', 'utils/**'],
   },
   css: [
     'assets/web/assets/mobirise-icons2/mobirise2.css',
@@ -45,10 +51,64 @@ export default defineNuxtConfig({
     'vuetify/lib/styles/main.sass',
     //'@mdi/font/css/materialdesignicons.min.css',
     '@fortawesome/fontawesome-svg-core/styles.css',
-    //'assets/commerce/css/magento.css',
     'assets/styles/styles.css',
-    'assets/style.scss'
   ],
+
+  runtimeConfig: {
+    public: {
+      shopware: {
+        shopwareEndpoint: process.env.NUXT_SHOPWARE_SHOPWARE_ENDPOINT,
+        shopwareAccessToken: process.env.NUXT_PUBLIC_SHOPWARE_SHOPWARE_ACCESS_TOKEN,
+      },
+    },
+  },
+
+  routeRules: {
+    "/": {
+      isr: 60 * 60 * 24,
+    },
+    "/commerce/cart": {
+      ssr: false,
+      headers: {
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+      },
+    },
+    "/commerce/checkout/**": {
+      ssr: false,
+    },
+    "/admin/auth/login": {
+      ssr: false,
+    },
+    "/admin/auth/register": {
+      ssr: false,
+    },
+    "/admin/auth/reset-password": {
+      ssr: false,
+    },
+    "/commerce/wishlist": {
+      ssr: false,
+    },
+    "/admin/user/account": {
+      ssr: false,
+    },
+    "/admin/user/account/**": {
+      ssr: false,
+    },
+    "/search": {
+      ssr: false,
+    },
+    "/search/**": {
+      ssr: false,
+    },
+    "/**": {
+      isr: 60 * 60 * 24,
+    },
+  },
+
+  typescript: {
+    // typeCheck: true,
+    strict: true,
+  },
 
   modules: [
     '@nuxt/content',
@@ -57,12 +117,21 @@ export default defineNuxtConfig({
     '@nuxtjs/apollo',
     'nuxt-gtag',
     //'@sidebase/nuxt-auth',
-    'nuxt-paypal',
-    'nuxt-medusa',
+    'dayjs-nuxt',
+    '@nuxtjs/tailwindcss',
+    "@nuxtjs/i18n",
+    //"@shopware-pwa/nuxt3-module",
+    "@shopware-pwa/cms-base",
   ],
 
-  paypal: {
-    clientId: process.env.PAYPAL_CLIENT_ID,
+  devtools: { enabled: true },
+
+  vueuse: {
+    ssrHandlers: true,
+  },
+
+  nitro: {
+    compressPublicAssets: true,
   },
 
   directus: {
@@ -95,38 +164,38 @@ export default defineNuxtConfig({
   gtag: {
     id: process.env.NUXT_PUBLIC_GTAG_ID
   },
-  
- /* auth: {
-    provider: {
-      type: 'authjs'
-    },
-    strategies: {
-      keycloak: {
-        scheme: 'oauth2',
-        endpoints: {
-          authorization: process.env.KEYCLOAK_AUTHORIZATION_URL,
-          token: process.env.KEYCLOAK_TOKEN_URL,
-          userInfo: process.env.KEYCLOAK_USER_INFO_URL,
-          logout: process.env.KEYCLOAK_LOGOUT_URL,
-        },
-        responseType: 'token id_token',
-        tokenType: 'Bearer',
-        redirectUri: process.env.BASE_URL || '/',
-        clientId: process.env.KEYCLOAK_CLIENT_ID,
-      },
-    },
-    redirect: {
-      login: '/login',
-      logout: '/',
-      callback: '/login',
-      home: '/',
-    },
-  }, 
 
-  runtimeConfig: {
-    websiteURL: process.env.GQL_HOST,
-    websiteToken: process.env.WEBSITE_TOKEN,
-  },*/
+  /* auth: {
+     provider: {
+       type: 'authjs'
+     },
+     strategies: {
+       keycloak: {
+         scheme: 'oauth2',
+         endpoints: {
+           authorization: process.env.KEYCLOAK_AUTHORIZATION_URL,
+           token: process.env.KEYCLOAK_TOKEN_URL,
+           userInfo: process.env.KEYCLOAK_USER_INFO_URL,
+           logout: process.env.KEYCLOAK_LOGOUT_URL,
+         },
+         responseType: 'token id_token',
+         tokenType: 'Bearer',
+         redirectUri: process.env.BASE_URL || '/',
+         clientId: process.env.KEYCLOAK_CLIENT_ID,
+       },
+     },
+     redirect: {
+       login: '/login',
+       logout: '/',
+       callback: '/login',
+       home: '/',
+     },
+   }, 
+
+   runtimeConfig: {
+     websiteURL: process.env.GQL_HOST,
+     websiteToken: process.env.WEBSITE_TOKEN,
+   },*/
 
   apollo: {
     authType: "Bearer",
@@ -136,24 +205,52 @@ export default defineNuxtConfig({
       default: {
         tokenName: "apollo-token",
         httpEndpoint: process.env.DIRECTUS_GRAPHQL,
-      /*  httpLinkOptions: {
-          headers: {
-            'x-hasura-admin-secret': process.env.GQL_KEY,
-          }
-        } */
       },
-      //other: './apollo/other.ts'
       vendure: {
+        httpEndpoint: process.env.SHOP_API,
+      },
+      hasura: {
         httpEndpoint: process.env.GQL_HOST,
-      /*  httpLinkOptions: {
-          headers: {
-            'x-hasura-admin-secret': process.env.GQL_KEY,
-          }
-        } */
+        httpLinkOptions: {
+            headers: {
+              'x-hasura-admin-secret': process.env.GQL_KEY,
+            }
+          }/**/
       }
     },
-  },/**/
+  },
 
+  i18n: {
+    strategy: "prefix_except_default",
+    defaultLocale: "en-GB",
+    detectBrowserLanguage: false,
+    langDir: "./i18n/src/langs/",
+    vueI18n: "./i18n/config",
+    compilation: {
+      jit: false,
+    },
+    locales: [
+      {
+        code: "en-GB",
+        iso: "en-GB",
+        file: "en-GB.ts",
+      },
+      {
+        code: "pl-PL",
+        iso: "pl-PL",
+        file: "pl-PL.ts",
+      },
+      {
+        code: "de-DE",
+        iso: "de-DE",
+        file: "de-DE.ts",
+      },
+    ],
+    experimental: {
+      jsTsFormatResource: true,
+    },
+  },
+  
   build: {
     transpile: [
       'vuetify',

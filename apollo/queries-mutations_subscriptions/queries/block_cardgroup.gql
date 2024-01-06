@@ -1,0 +1,9 @@
+query block_cardgroup($filter: block_cardgroup_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
+    block_cardgroup(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
+        id
+        headline
+        content
+        group_type
+        cards
+    }
+}

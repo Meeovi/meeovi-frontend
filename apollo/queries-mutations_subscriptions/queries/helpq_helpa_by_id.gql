@@ -1,0 +1,5 @@
+query helpq_helpa_by_id($id: ID!){
+    helpq_helpa_by_id(id: $id){
+        id
+    }
+}

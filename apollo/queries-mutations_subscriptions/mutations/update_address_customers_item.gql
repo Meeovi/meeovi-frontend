@@ -1,0 +1,5 @@
+mutation update_address_customers_item($id: ID!, $data: update_address_customers_input!){
+    update_address_customers_item(id: $id, data: $data){
+        id
+    }
+}

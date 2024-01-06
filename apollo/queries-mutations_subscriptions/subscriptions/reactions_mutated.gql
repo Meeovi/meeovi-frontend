@@ -1,0 +1,6 @@
+subscription reactions_mutated($event: EventEnum){
+    reactions_mutated(event: $event){
+        key
+        event
+    }
+}

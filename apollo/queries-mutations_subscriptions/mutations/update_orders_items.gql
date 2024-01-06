@@ -1,0 +1,10 @@
+mutation update_orders_items($filter: orders_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String, $ids: [ID]!, $data: update_orders_input!){
+    update_orders_items(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search, ids: $ids, data: $data){
+        id
+        status
+        date_created
+        date_updated
+        order_number
+        total_price
+    }
+}

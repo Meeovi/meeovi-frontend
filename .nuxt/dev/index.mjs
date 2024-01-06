@@ -4,6 +4,7 @@ import { join } from 'node:path';
 import { mkdirSync } from 'node:fs';
 import { parentPort, threadId } from 'node:worker_threads';
 import { defineEventHandler, handleCacheHeaders, splitCookiesString, isEvent, createEvent, getRequestHeader, eventHandler, setHeaders, sendRedirect, proxyRequest, setResponseHeader, send, getResponseStatus, setResponseStatus, setResponseHeaders, getRequestHeaders, getQuery as getQuery$1, getCookie, createError, createApp, createRouter as createRouter$1, toNodeListener, fetchWithEvent, lazyEventHandler, getResponseStatusText } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/h3/dist/index.mjs';
+import { createDirectus } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/@directus/sdk/dist/index.js';
 import { getRequestDependencies, getPreloadLinks, getPrefetchLinks, createRenderer } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/vue-bundle-renderer/dist/runtime.mjs';
 import { stringify, uneval } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/devalue/index.js';
 import { renderToString } from 'file://C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/node_modules/vue/server-renderer/index.mjs';
@@ -71,6 +72,45 @@ const _inlineRuntimeConfig = {
       "/__nuxt_error": {
         "cache": false
       },
+      "/": {
+        "isr": 86400
+      },
+      "/commerce/cart": {
+        "ssr": false,
+        "headers": {
+          "Cache-Control": "no-cache, no-store, must-revalidate"
+        }
+      },
+      "/commerce/checkout/**": {
+        "ssr": false
+      },
+      "/admin/auth/login": {
+        "ssr": false
+      },
+      "/admin/auth/register": {
+        "ssr": false
+      },
+      "/admin/auth/reset-password": {
+        "ssr": false
+      },
+      "/commerce/wishlist": {
+        "ssr": false
+      },
+      "/admin/user/account": {
+        "ssr": false
+      },
+      "/admin/user/account/**": {
+        "ssr": false
+      },
+      "/search": {
+        "ssr": false
+      },
+      "/search/**": {
+        "ssr": false
+      },
+      "/**": {
+        "isr": 86400
+      },
       "/_nuxt/builds/meta/**": {
         "headers": {
           "cache-control": "public, max-age=31536000, immutable"
@@ -84,8 +124,9 @@ const _inlineRuntimeConfig = {
     }
   },
   "public": {
-    "paypal": {
-      "clientId": "YOUR_CLIENT_ID"
+    "shopware": {
+      "shopwareEndpoint": "http://67.207.71.123:8030",
+      "shopwareAccessToken": "SWSCV21IEUU2UG9NVG02QWPIDW"
     },
     "mdc": {
       "components": {
@@ -185,7 +226,7 @@ const _inlineRuntimeConfig = {
       }
     },
     "meilisearchClient": {
-      "hostUrl": "https://meeovicms.com:7700/",
+      "hostUrl": "http://67.207.71.123:7700/",
       "searchApiKey": "pi5jKwSuDO",
       "serverSideUsage": false,
       "instantSearch": {
@@ -219,11 +260,11 @@ const _inlineRuntimeConfig = {
       "initialConsent": true,
       "loadingStrategy": "defer"
     },
-    "medusa": {
-      "baseUrl": "<YOUR_MEDUSA_URL>",
-      "maxRetries": 3,
-      "publishableApiKey": "",
-      "global": true
+    "i18n": {
+      "experimental": {
+        "jsTsFormatResource": true
+      },
+      "baseUrl": ""
     }
   },
   "mdc": {
@@ -310,7 +351,7 @@ const _inlineRuntimeConfig = {
     }
   },
   "serverMeilisearchClient": {
-    "hostUrl": "https://meeovicms.com:7700/",
+    "hostUrl": "http://67.207.71.123:7700/",
     "searchApiKey": "pi5jKwSuDO",
     "serverSideUsage": false,
     "adminApiKey": "VQbf6LzVAi",
@@ -324,9 +365,6 @@ const _inlineRuntimeConfig = {
       "primaryKey": "",
       "keepZeroFacets": false
     }
-  },
-  "private": {
-    "apiKey": ""
   }
 };
 const ENV_PREFIX = "NITRO_";
@@ -3362,9 +3400,49 @@ const _okHXL1 = defineEventHandler(async (event) => {
   return createNav(contents?.result || contents, configs);
 });
 
+const _lazy_QKOCpi = () => Promise.resolve().then(function () { return directus$1; });
+const _lazy_Drc9kh = () => Promise.resolve().then(function () { return addresses; });
+const _lazy_a1sf8S = () => Promise.resolve().then(function () { return cart; });
+const _lazy_rTkjRO = () => Promise.resolve().then(function () { return categories; });
+const _lazy_nF6S4F = () => Promise.resolve().then(function () { return countries; });
+const _lazy_RXJAWO = () => Promise.resolve().then(function () { return crossSelling; });
+const _lazy_d8MbIQ = () => Promise.resolve().then(function () { return currencies; });
+const _lazy_RLkNw3 = () => Promise.resolve().then(function () { return navigation; });
+const _lazy_E1i1IN = () => Promise.resolve().then(function () { return newsletter; });
+const _lazy_VIfDiN = () => Promise.resolve().then(function () { return orders; });
+const _lazy_8X6oUZ = () => Promise.resolve().then(function () { return pages; });
+const _lazy_XxSz1Q = () => Promise.resolve().then(function () { return productListingCategory; });
+const _lazy_ygHkNd = () => Promise.resolve().then(function () { return products; });
+const _lazy_ff5bb5 = () => Promise.resolve().then(function () { return reviews; });
+const _lazy_RPwPgS = () => Promise.resolve().then(function () { return salutations; });
+const _lazy_iqKozI = () => Promise.resolve().then(function () { return seo; });
+const _lazy_BKDrzN = () => Promise.resolve().then(function () { return shippingMethods; });
+const _lazy_NILZDi = () => Promise.resolve().then(function () { return sitemaps; });
+const _lazy_VTGeJe = () => Promise.resolve().then(function () { return states; });
+const _lazy_1KAS5M = () => Promise.resolve().then(function () { return wishlist; });
 const _lazy_0bm7Da = () => Promise.resolve().then(function () { return renderer$1; });
 
 const handlers = [
+  { route: '/api/directus', handler: _lazy_QKOCpi, lazy: true, middleware: false, method: undefined },
+  { route: '/api/read/addresses', handler: _lazy_Drc9kh, lazy: true, middleware: false, method: undefined },
+  { route: '/api/read/cart', handler: _lazy_a1sf8S, lazy: true, middleware: false, method: undefined },
+  { route: '/api/read/categories', handler: _lazy_rTkjRO, lazy: true, middleware: false, method: undefined },
+  { route: '/api/read/countries', handler: _lazy_nF6S4F, lazy: true, middleware: false, method: undefined },
+  { route: '/api/read/crossSelling', handler: _lazy_RXJAWO, lazy: true, middleware: false, method: undefined },
+  { route: '/api/read/currencies', handler: _lazy_d8MbIQ, lazy: true, middleware: false, method: undefined },
+  { route: '/api/read/navigation', handler: _lazy_RLkNw3, lazy: true, middleware: false, method: undefined },
+  { route: '/api/read/newsletter', handler: _lazy_E1i1IN, lazy: true, middleware: false, method: undefined },
+  { route: '/api/read/orders', handler: _lazy_VIfDiN, lazy: true, middleware: false, method: undefined },
+  { route: '/api/read/pages', handler: _lazy_8X6oUZ, lazy: true, middleware: false, method: undefined },
+  { route: '/api/read/productListingCategory', handler: _lazy_XxSz1Q, lazy: true, middleware: false, method: undefined },
+  { route: '/api/read/products', handler: _lazy_ygHkNd, lazy: true, middleware: false, method: undefined },
+  { route: '/api/read/reviews', handler: _lazy_ff5bb5, lazy: true, middleware: false, method: undefined },
+  { route: '/api/read/salutations', handler: _lazy_RPwPgS, lazy: true, middleware: false, method: undefined },
+  { route: '/api/read/seo', handler: _lazy_iqKozI, lazy: true, middleware: false, method: undefined },
+  { route: '/api/read/shippingMethods', handler: _lazy_BKDrzN, lazy: true, middleware: false, method: undefined },
+  { route: '/api/read/sitemaps', handler: _lazy_NILZDi, lazy: true, middleware: false, method: undefined },
+  { route: '/api/read/states', handler: _lazy_VTGeJe, lazy: true, middleware: false, method: undefined },
+  { route: '/api/read/wishlist', handler: _lazy_1KAS5M, lazy: true, middleware: false, method: undefined },
   { route: '/__nuxt_error', handler: _lazy_0bm7Da, lazy: true, middleware: false, method: undefined },
   { route: '/api/_content/query/:qid/**:params', handler: _PUrSVM, lazy: false, middleware: false, method: "get" },
   { route: '/api/_content/query/:qid', handler: _PUrSVM, lazy: false, middleware: false, method: "get" },
@@ -3557,6 +3635,104 @@ const errorDev = /*#__PURE__*/Object.freeze({
   template: template$1
 });
 
+createDirectus(process.env.DIRECTUS_URL);
+const url = process.env.DIRECTUS_URL;
+const directus = { url };
+
+const directus$1 = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  default: directus,
+  url: url
+});
+
+const addresses = /*#__PURE__*/Object.freeze({
+  __proto__: null
+});
+
+const cart = /*#__PURE__*/Object.freeze({
+  __proto__: null
+});
+
+const categories = /*#__PURE__*/Object.freeze({
+  __proto__: null
+});
+
+const countries = /*#__PURE__*/Object.freeze({
+  __proto__: null
+});
+
+const crossSelling = /*#__PURE__*/Object.freeze({
+  __proto__: null
+});
+
+const currencies = /*#__PURE__*/Object.freeze({
+  __proto__: null
+});
+
+const navigation = /*#__PURE__*/Object.freeze({
+  __proto__: null
+});
+
+const newsletter = /*#__PURE__*/Object.freeze({
+  __proto__: null
+});
+
+const orders = /*#__PURE__*/Object.freeze({
+  __proto__: null
+});
+
+const pages = /*#__PURE__*/Object.freeze({
+  __proto__: null
+});
+
+const productListingCategory = /*#__PURE__*/Object.freeze({
+  __proto__: null
+});
+
+async function getProducts() {
+  try {
+    const response = await fetch(process.env.SHOPWARE_ENDPOINT + "/product");
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching products", error);
+    throw error;
+  }
+}
+
+const products = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  getProducts: getProducts
+});
+
+const reviews = /*#__PURE__*/Object.freeze({
+  __proto__: null
+});
+
+const salutations = /*#__PURE__*/Object.freeze({
+  __proto__: null
+});
+
+const seo = /*#__PURE__*/Object.freeze({
+  __proto__: null
+});
+
+const shippingMethods = /*#__PURE__*/Object.freeze({
+  __proto__: null
+});
+
+const sitemaps = /*#__PURE__*/Object.freeze({
+  __proto__: null
+});
+
+const states = /*#__PURE__*/Object.freeze({
+  __proto__: null
+});
+
+const wishlist = /*#__PURE__*/Object.freeze({
+  __proto__: null
+});
+
 const Vue3 = version.startsWith("3");
 
 function resolveUnref(r) {
@@ -3613,7 +3789,7 @@ function createServerHead(options = {}) {
 
 const unheadPlugins = [];
 
-const appHead = {"meta":[{"name":"viewport","content":"minimum-scale=1, initial-scale=1, width=device-width"},{"charset":"utf-8"},{"name":"description","content":"Social Marketplace for Creators"},{"name":"theme-color","content":"#018937"}],"link":[{"rel":"icon","href":"/favicon.ico"},{"rel":"apple-touch-icon","href":"/icons/apple-touch-icon-180x180.png"}],"style":[],"script":[{"src":"https://platform-api.sharethis.com/js/sharethis.js#property=63155c574a688f00124a59c2&product=sticky-share-buttons","async":"async"},{"src":"http://free-website-translation.com/scripts/fwt.js","async":"async"}],"noscript":[],"viewport":"minimum-scale=1, initial-scale=1, width=device-width","htmlAttrs":{"lang":"en"}};
+const appHead = {"meta":[{"name":"viewport","content":"minimum-scale=1, initial-scale=1, width=device-width"},{"charset":"utf-8"},{"name":"description","content":"Social Marketplace for Creators"}],"link":[{"rel":"icon","href":"/favicon.ico"},{"rel":"apple-touch-icon","href":"/icons/apple-touch-icon-180x180.png"}],"style":[],"script":[{"src":"https://platform-api.sharethis.com/js/sharethis.js#property=63155c574a688f00124a59c2&product=sticky-share-buttons","async":"async"}],"noscript":[],"viewport":"minimum-scale=1, initial-scale=1, width=device-width","htmlAttrs":{"lang":"en"}};
 
 const appRootId = "__nuxt";
 

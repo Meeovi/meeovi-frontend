@@ -1,0 +1,7 @@
+query articles_categories_by_version($version: String!, $id: ID!){
+    articles_categories_by_version(version: $version, id: $id){
+        id
+        articles_id
+        categories_id
+    }
+}

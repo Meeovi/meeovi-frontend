@@ -1,0 +1,7 @@
+query subscriptions_products_by_version($version: String!, $id: ID!){
+    subscriptions_products_by_version(version: $version, id: $id){
+        id
+        subscriptions_id
+        products_id
+    }
+}

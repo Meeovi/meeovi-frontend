@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="contentPage">
         <profilebar />
         <section data-bs-version="5.1" class="people5 cid-tApxFdIkda" id="people5-5q">
             <div class="container">
@@ -7,38 +7,28 @@
                     <div class="col-12 col-lg-6">
                         <div class="right-side">
                             <h5 class="mbr-section-title mbr-fonts-style display-2">
-                                <strong>About the host</strong></h5>
-                            <p class="mbr-text mbr-fonts-style display-4">Lorem ipsum dolor sit amet,
-                                consectetur adipiscing elit. Dignissim arcu cursus tincidunt et odio enim aliquam.
-                                Gravida augue
-                                arcu duis turpis nisl. Sed tellus quis nisl, est ridiculus. Gravida faucibus in ut
-                                hendrerit.
-                                Eget sed sit.
-                                <br>
-                                <br>Egestas pretium aenean pharetra magna ac placerat vestibulum. Nulla pharetra diam
-                                sit amet
-                                nisl suscipit adipiscing bibendum.</p>
+                                <strong>{{ profile.username }}</strong></h5>
+                            <p class="mbr-text mbr-fonts-style display-4">{{ profile.description }}</p>
                             <div class="button-align">
                                 <div class="mbr-section-btn"><a class="btn btn-primary display-4" href=""><span
                                             class="mobi-mbri mobi-mbri-plus mbr-iconfont mbr-iconfont-btn"></span>Follow</a>
 
-                                    <a class="btn btn-secondary display-4" href="">Edit Profile</a></div>
+                                    <a class="btn btn-secondary display-4" :href="`/admin/user/account`">Edit Profile</a></div>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 col-lg-6">
                         <div class="left-side">
                             <div class="shadow">
-                                <img src="../../../assets/images/team1.jpg" alt="" class="align">
+                                <img :src="`${url}assets/${profile.image.filename_disk}`" :alt="profile.name" class="align">
                                 <h5 class="card-title mbr-fonts-style display-2">
-                                    <strong>Johanna Carter</strong></h5>
+                                    <strong>{{ profile.first_name }} {{ profile.last_name}}</strong></h5>
                                 <h5 class="card-subtitle mbr-fonts-style display-4">
-                                    @Creator</h5>
-                                <h5 class="card-text mbr-fonts-style display-4">London, England&nbsp; <a href="/"
-                                        class="text-primary">meeovi.com</a>&nbsp; Joined October 1, 1986<br><a href="/"
+                                    @{{profile.username}}</h5>
+                                <h5 class="card-text mbr-fonts-style display-4">{{profile.cities.cities_id.name}}&nbsp; <a :href="`${profile.websites.websites_id.url}`"
+                                        class="text-primary">{{ profile.websites.websites_id.name}}</a>&nbsp; Joined {{ profile.created_at }}<br><a href="/"
                                         class="text-primary">43</a> Following <a href="/" class="text-primary">19</a>
                                     Followers</h5>
-
                             </div>
                         </div>
                     </div>
@@ -101,11 +91,16 @@
         },
         data: () => ({
             tab: null,
+            url: process.env.DIRECTUS_URL,
         }),
     }
 </script>
 
 <script setup>
+import customer from '../../../apollo/queries-mutations_subscriptions/queries/customers_by_id.gql'
+
+const { data } = useAsyncQuery(customer);
+const profile = data ? data.customer : [];
 
     useHead({
         title: 'My Profile',

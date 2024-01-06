@@ -1,0 +1,6 @@
+subscription buyagain_mutated($event: EventEnum){
+    buyagain_mutated(event: $event){
+        key
+        event
+    }
+}

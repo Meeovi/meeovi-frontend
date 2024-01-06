@@ -1,15 +1,15 @@
 import gql from 'graphql-tag'
 
 export const query = gql`
-query {
+query MyQuery {
   digiboard {
-    id
-    name
     board
     created_at
-    student
-    course
+    id
+    image
+    name
   }
-}`
+}
+`
 
 export default { query }

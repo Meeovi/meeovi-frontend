@@ -1,19 +1,39 @@
 import gql from 'graphql-tag'
 
 export const query = gql`
-query {
+query MyQuery {
   brands {
-    id
-    created_at
     code
-    name
-    country
-    state
-    isPublic
-    city
+    created_at
     description
-    media
+    id
+    image
+    name
+    brands_products {
+      product {
+        content
+        created_at
+        file
+        format
+        height
+        id
+        image
+        like
+        name
+        part_number
+        price
+        rating
+        size
+        sku
+        stock_status
+        tax_class
+        type
+        visibility
+        weight
+      }
+    }
   }
-}`
+}
+`
 
 export default { query }

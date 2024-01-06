@@ -1,0 +1,5 @@
+mutation delete_faqs_items($ids: [ID]!){
+    delete_faqs_items(ids: $ids){
+        ids
+    }
+}

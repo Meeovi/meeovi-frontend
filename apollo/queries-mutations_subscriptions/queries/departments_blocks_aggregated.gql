@@ -1,0 +1,6 @@
+query departments_blocks_aggregated($groupBy: [String], $filter: departments_blocks_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
+    departments_blocks_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
+        group
+        countAll
+    }
+}

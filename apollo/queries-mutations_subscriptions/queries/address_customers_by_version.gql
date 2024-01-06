@@ -1,0 +1,7 @@
+query address_customers_by_version($version: String!, $id: ID!){
+    address_customers_by_version(version: $version, id: $id){
+        id
+        address_id
+        customers_id
+    }
+}

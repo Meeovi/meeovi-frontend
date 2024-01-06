@@ -1,0 +1,8 @@
+query blocks_site_logo_by_version($version: String!, $id: ID!){
+    blocks_site_logo_by_version(version: $version, id: $id){
+        id
+        title
+        image
+        url
+    }
+}

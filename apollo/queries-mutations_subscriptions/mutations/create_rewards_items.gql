@@ -5,16 +5,6 @@ mutation create_rewards_items($filter: rewards_filter, $sort: [String], $limit: 
         slug
         level
         created_at
-        created_at_func{
-            year
-            month
-            week
-            day
-            weekday
-            hour
-            minute
-            second
-        }
         coupons
         expiration
         categories

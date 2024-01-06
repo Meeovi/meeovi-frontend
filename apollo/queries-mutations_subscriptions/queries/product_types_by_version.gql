@@ -1,0 +1,8 @@
+query product_types_by_version($version: String!, $id: ID!){
+    product_types_by_version(version: $version, id: $id){
+        id
+        name
+        isShippable
+        products
+    }
+}

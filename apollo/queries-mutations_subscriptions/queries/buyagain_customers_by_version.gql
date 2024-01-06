@@ -1,0 +1,7 @@
+query buyagain_customers_by_version($version: String!, $id: ID!){
+    buyagain_customers_by_version(version: $version, id: $id){
+        id
+        buyagain_id
+        customers_id
+    }
+}

@@ -1,0 +1,5 @@
+mutation delete_Receipts_items($ids: [ID]!){
+    delete_Receipts_items(ids: $ids){
+        ids
+    }
+}

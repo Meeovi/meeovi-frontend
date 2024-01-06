@@ -1,0 +1,8 @@
+query blocks_banner_by_id($id: ID!){
+    blocks_banner_by_id(id: $id){
+        id
+        title
+        text
+        buttons
+    }
+}

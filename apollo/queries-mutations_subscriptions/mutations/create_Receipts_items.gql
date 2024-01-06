@@ -1,0 +1,7 @@
+mutation create_Receipts_items($filter: Receipts_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String, $data: [create_Receipts_input!]){
+    create_Receipts_items(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search, data: $data){
+        id
+        date_created
+        total_price
+    }
+}

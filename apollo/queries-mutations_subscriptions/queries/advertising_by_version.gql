@@ -1,0 +1,18 @@
+query advertising_by_version($version: String!, $id: ID!){
+    advertising_by_version(version: $version, id: $id){
+        id
+        status
+        sort
+        date_created
+        date_updated
+        name
+        description
+        link
+        start_date
+        end_time
+        media
+        products
+        customers
+        newsfeed
+    }
+}

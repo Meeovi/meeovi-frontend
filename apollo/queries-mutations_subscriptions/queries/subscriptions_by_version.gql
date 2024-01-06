@@ -1,0 +1,13 @@
+query subscriptions_by_version($version: String!, $id: ID!){
+    subscriptions_by_version(version: $version, id: $id){
+        id
+        status
+        date_created
+        date_updated
+        subscription_number
+        start_date
+        end_date
+        product
+        customer
+    }
+}

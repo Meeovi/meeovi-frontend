@@ -1,0 +1,10 @@
+mutation create_feedback_items($filter: feedback_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String, $data: [create_feedback_input!]){
+    create_feedback_items(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search, data: $data){
+        id
+        date_created
+        url
+        rating
+        title
+        comments
+    }
+}

@@ -1,0 +1,7 @@
+mutation update_Receipts_item($id: ID!, $data: update_Receipts_input!){
+    update_Receipts_item(id: $id, data: $data){
+        id
+        date_created
+        total_price
+    }
+}

@@ -1,0 +1,7 @@
+query cities_countries_by_version($version: String!, $id: ID!){
+    cities_countries_by_version(version: $version, id: $id){
+        id
+        cities_id
+        countries_id
+    }
+}

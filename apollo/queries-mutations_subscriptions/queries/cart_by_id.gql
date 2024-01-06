@@ -1,0 +1,10 @@
+query cart_by_id($id: ID!){
+    cart_by_id(id: $id){
+        id
+        date_created
+        user_updated
+        date_updated
+        session_id
+        total_price
+    }
+}

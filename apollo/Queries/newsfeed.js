@@ -1,23 +1,19 @@
 import gql from 'graphql-tag'
 
 export const query = gql`
-query {
+query MyQuery {
   newsfeed {
-    user_created
-    user_updated
     date_created
     date_updated
+    id
+    image
     post
-    image {
-      filename_disk
-    }
-    files {
-      directus_files_id {
-        id
-        filename_disk
-      }
-    }
+    sort
+    status
+    user_created
+    user_updated
   }
-}`
+}
+`
 
 export default { query }

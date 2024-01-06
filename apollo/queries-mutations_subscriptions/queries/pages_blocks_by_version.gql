@@ -1,0 +1,9 @@
+query pages_blocks_by_version($version: String!, $id: ID!){
+    pages_blocks_by_version(version: $version, id: $id){
+        id
+        pages_id
+        item
+        sort
+        collection
+    }
+}

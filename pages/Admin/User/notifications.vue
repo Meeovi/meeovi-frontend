@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="contentPage">
         <profilebar />
         <v-toolbar title="Notification Center" color="transparent"></v-toolbar>
     <v-table fixed-header height="300px">
@@ -11,12 +11,16 @@
                 <th class="text-left">
                     Notifications
                 </th>
+                <th class="text-left">
+                    Status
+                </th>
             </tr>
         </thead>
         <tbody>
-            <tr v-for="item in desserts" :key="item.name">
-                <td>{{ item.name }}</td>
-                <td>{{ item.Notifications }}</td>
+            <tr v-for="notifications in notifications" :key="notifications.name">
+                <td>{{ notifications.id }}</td>
+                <td>{{ notifications.content }}</td>
+                <td>{{ notifications.is_read }}</td>
             </tr>
         </tbody>
     </v-table>
@@ -35,7 +39,18 @@ import profilebar from '../../../components/Menus/profilebar.vue'
 </script>
 
 <script setup>
+const {
+        getItems
+    } = useDirectusItems()
 
+    const notifications = await getItems({
+        collection: "notifications"
+    });    
+/*import notifications from '../../../apollo/queries-mutations_subscriptions/queries/notifications.gql'
+
+const {
+    data
+} = useAsyncQuery(notifications);*/
 
     useHead({
         title: 'Notifications',

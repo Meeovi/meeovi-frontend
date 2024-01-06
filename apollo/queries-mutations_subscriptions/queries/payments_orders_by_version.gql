@@ -1,0 +1,7 @@
+query payments_orders_by_version($version: String!, $id: ID!){
+    payments_orders_by_version(version: $version, id: $id){
+        id
+        payments_id
+        orders_id
+    }
+}

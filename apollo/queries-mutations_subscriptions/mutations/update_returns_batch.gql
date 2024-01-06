@@ -1,0 +1,10 @@
+mutation update_returns_batch($filter: returns_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String, $data: [update_returns_input!]){
+    update_returns_batch(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search, data: $data){
+        id
+        status
+        date_created
+        date_updated
+        return_number
+        reason
+    }
+}

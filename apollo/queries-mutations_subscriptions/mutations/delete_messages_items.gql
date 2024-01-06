@@ -1,0 +1,5 @@
+mutation delete_messages_items($ids: [ID]!){
+    delete_messages_items(ids: $ids){
+        ids
+    }
+}

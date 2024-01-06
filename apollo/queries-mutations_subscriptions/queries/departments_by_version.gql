@@ -1,0 +1,25 @@
+query departments_by_version($version: String!, $id: ID!){
+    departments_by_version(version: $version, id: $id){
+        id
+        name
+        websites
+        description
+        content
+        color
+        image
+        colortext
+        Active
+        brands
+        articles
+        customers
+        collections
+        shops
+        products
+        currency
+        tags
+        categories
+        shorts
+        translations
+        blocks
+    }
+}
