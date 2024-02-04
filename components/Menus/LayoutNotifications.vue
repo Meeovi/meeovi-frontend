@@ -17,6 +17,13 @@
     </div>
 </template>
 
+<script>
+  export default {
+    data: () => ({
+      location: 'bottom',
+    }),
+  }
+</script>
 <script setup>
     
 </script>

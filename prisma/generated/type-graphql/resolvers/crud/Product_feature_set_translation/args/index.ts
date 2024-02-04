@@ -1,0 +1,14 @@
+export { AggregateProduct_feature_set_translationArgs } from "./AggregateProduct_feature_set_translationArgs";
+export { CreateManyProduct_feature_set_translationArgs } from "./CreateManyProduct_feature_set_translationArgs";
+export { CreateOneProduct_feature_set_translationArgs } from "./CreateOneProduct_feature_set_translationArgs";
+export { DeleteManyProduct_feature_set_translationArgs } from "./DeleteManyProduct_feature_set_translationArgs";
+export { DeleteOneProduct_feature_set_translationArgs } from "./DeleteOneProduct_feature_set_translationArgs";
+export { FindFirstProduct_feature_set_translationArgs } from "./FindFirstProduct_feature_set_translationArgs";
+export { FindFirstProduct_feature_set_translationOrThrowArgs } from "./FindFirstProduct_feature_set_translationOrThrowArgs";
+export { FindManyProduct_feature_set_translationArgs } from "./FindManyProduct_feature_set_translationArgs";
+export { FindUniqueProduct_feature_set_translationArgs } from "./FindUniqueProduct_feature_set_translationArgs";
+export { FindUniqueProduct_feature_set_translationOrThrowArgs } from "./FindUniqueProduct_feature_set_translationOrThrowArgs";
+export { GroupByProduct_feature_set_translationArgs } from "./GroupByProduct_feature_set_translationArgs";
+export { UpdateManyProduct_feature_set_translationArgs } from "./UpdateManyProduct_feature_set_translationArgs";
+export { UpdateOneProduct_feature_set_translationArgs } from "./UpdateOneProduct_feature_set_translationArgs";
+export { UpsertOneProduct_feature_set_translationArgs } from "./UpsertOneProduct_feature_set_translationArgs";

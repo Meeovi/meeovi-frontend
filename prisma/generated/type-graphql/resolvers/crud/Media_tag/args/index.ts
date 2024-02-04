@@ -1,0 +1,14 @@
+export { AggregateMedia_tagArgs } from "./AggregateMedia_tagArgs";
+export { CreateManyMedia_tagArgs } from "./CreateManyMedia_tagArgs";
+export { CreateOneMedia_tagArgs } from "./CreateOneMedia_tagArgs";
+export { DeleteManyMedia_tagArgs } from "./DeleteManyMedia_tagArgs";
+export { DeleteOneMedia_tagArgs } from "./DeleteOneMedia_tagArgs";
+export { FindFirstMedia_tagArgs } from "./FindFirstMedia_tagArgs";
+export { FindFirstMedia_tagOrThrowArgs } from "./FindFirstMedia_tagOrThrowArgs";
+export { FindManyMedia_tagArgs } from "./FindManyMedia_tagArgs";
+export { FindUniqueMedia_tagArgs } from "./FindUniqueMedia_tagArgs";
+export { FindUniqueMedia_tagOrThrowArgs } from "./FindUniqueMedia_tagOrThrowArgs";
+export { GroupByMedia_tagArgs } from "./GroupByMedia_tagArgs";
+export { UpdateManyMedia_tagArgs } from "./UpdateManyMedia_tagArgs";
+export { UpdateOneMedia_tagArgs } from "./UpdateOneMedia_tagArgs";
+export { UpsertOneMedia_tagArgs } from "./UpsertOneMedia_tagArgs";

@@ -1,0 +1,14 @@
+export { AggregateProduct_downloadArgs } from "./AggregateProduct_downloadArgs";
+export { CreateManyProduct_downloadArgs } from "./CreateManyProduct_downloadArgs";
+export { CreateOneProduct_downloadArgs } from "./CreateOneProduct_downloadArgs";
+export { DeleteManyProduct_downloadArgs } from "./DeleteManyProduct_downloadArgs";
+export { DeleteOneProduct_downloadArgs } from "./DeleteOneProduct_downloadArgs";
+export { FindFirstProduct_downloadArgs } from "./FindFirstProduct_downloadArgs";
+export { FindFirstProduct_downloadOrThrowArgs } from "./FindFirstProduct_downloadOrThrowArgs";
+export { FindManyProduct_downloadArgs } from "./FindManyProduct_downloadArgs";
+export { FindUniqueProduct_downloadArgs } from "./FindUniqueProduct_downloadArgs";
+export { FindUniqueProduct_downloadOrThrowArgs } from "./FindUniqueProduct_downloadOrThrowArgs";
+export { GroupByProduct_downloadArgs } from "./GroupByProduct_downloadArgs";
+export { UpdateManyProduct_downloadArgs } from "./UpdateManyProduct_downloadArgs";
+export { UpdateOneProduct_downloadArgs } from "./UpdateOneProduct_downloadArgs";
+export { UpsertOneProduct_downloadArgs } from "./UpsertOneProduct_downloadArgs";

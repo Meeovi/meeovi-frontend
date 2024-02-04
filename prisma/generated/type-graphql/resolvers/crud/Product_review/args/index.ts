@@ -1,0 +1,14 @@
+export { AggregateProduct_reviewArgs } from "./AggregateProduct_reviewArgs";
+export { CreateManyProduct_reviewArgs } from "./CreateManyProduct_reviewArgs";
+export { CreateOneProduct_reviewArgs } from "./CreateOneProduct_reviewArgs";
+export { DeleteManyProduct_reviewArgs } from "./DeleteManyProduct_reviewArgs";
+export { DeleteOneProduct_reviewArgs } from "./DeleteOneProduct_reviewArgs";
+export { FindFirstProduct_reviewArgs } from "./FindFirstProduct_reviewArgs";
+export { FindFirstProduct_reviewOrThrowArgs } from "./FindFirstProduct_reviewOrThrowArgs";
+export { FindManyProduct_reviewArgs } from "./FindManyProduct_reviewArgs";
+export { FindUniqueProduct_reviewArgs } from "./FindUniqueProduct_reviewArgs";
+export { FindUniqueProduct_reviewOrThrowArgs } from "./FindUniqueProduct_reviewOrThrowArgs";
+export { GroupByProduct_reviewArgs } from "./GroupByProduct_reviewArgs";
+export { UpdateManyProduct_reviewArgs } from "./UpdateManyProduct_reviewArgs";
+export { UpdateOneProduct_reviewArgs } from "./UpdateOneProduct_reviewArgs";
+export { UpsertOneProduct_reviewArgs } from "./UpsertOneProduct_reviewArgs";

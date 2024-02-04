@@ -1,0 +1,14 @@
+export { AggregateOrder_tagArgs } from "./AggregateOrder_tagArgs";
+export { CreateManyOrder_tagArgs } from "./CreateManyOrder_tagArgs";
+export { CreateOneOrder_tagArgs } from "./CreateOneOrder_tagArgs";
+export { DeleteManyOrder_tagArgs } from "./DeleteManyOrder_tagArgs";
+export { DeleteOneOrder_tagArgs } from "./DeleteOneOrder_tagArgs";
+export { FindFirstOrder_tagArgs } from "./FindFirstOrder_tagArgs";
+export { FindFirstOrder_tagOrThrowArgs } from "./FindFirstOrder_tagOrThrowArgs";
+export { FindManyOrder_tagArgs } from "./FindManyOrder_tagArgs";
+export { FindUniqueOrder_tagArgs } from "./FindUniqueOrder_tagArgs";
+export { FindUniqueOrder_tagOrThrowArgs } from "./FindUniqueOrder_tagOrThrowArgs";
+export { GroupByOrder_tagArgs } from "./GroupByOrder_tagArgs";
+export { UpdateManyOrder_tagArgs } from "./UpdateManyOrder_tagArgs";
+export { UpdateOneOrder_tagArgs } from "./UpdateOneOrder_tagArgs";
+export { UpsertOneOrder_tagArgs } from "./UpsertOneOrder_tagArgs";

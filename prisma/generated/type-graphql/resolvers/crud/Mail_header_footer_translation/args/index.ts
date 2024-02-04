@@ -1,0 +1,14 @@
+export { AggregateMail_header_footer_translationArgs } from "./AggregateMail_header_footer_translationArgs";
+export { CreateManyMail_header_footer_translationArgs } from "./CreateManyMail_header_footer_translationArgs";
+export { CreateOneMail_header_footer_translationArgs } from "./CreateOneMail_header_footer_translationArgs";
+export { DeleteManyMail_header_footer_translationArgs } from "./DeleteManyMail_header_footer_translationArgs";
+export { DeleteOneMail_header_footer_translationArgs } from "./DeleteOneMail_header_footer_translationArgs";
+export { FindFirstMail_header_footer_translationArgs } from "./FindFirstMail_header_footer_translationArgs";
+export { FindFirstMail_header_footer_translationOrThrowArgs } from "./FindFirstMail_header_footer_translationOrThrowArgs";
+export { FindManyMail_header_footer_translationArgs } from "./FindManyMail_header_footer_translationArgs";
+export { FindUniqueMail_header_footer_translationArgs } from "./FindUniqueMail_header_footer_translationArgs";
+export { FindUniqueMail_header_footer_translationOrThrowArgs } from "./FindUniqueMail_header_footer_translationOrThrowArgs";
+export { GroupByMail_header_footer_translationArgs } from "./GroupByMail_header_footer_translationArgs";
+export { UpdateManyMail_header_footer_translationArgs } from "./UpdateManyMail_header_footer_translationArgs";
+export { UpdateOneMail_header_footer_translationArgs } from "./UpdateOneMail_header_footer_translationArgs";
+export { UpsertOneMail_header_footer_translationArgs } from "./UpsertOneMail_header_footer_translationArgs";

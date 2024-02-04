@@ -1,0 +1,14 @@
+export { AggregateProduct_cross_selling_assigned_productsArgs } from "./AggregateProduct_cross_selling_assigned_productsArgs";
+export { CreateManyProduct_cross_selling_assigned_productsArgs } from "./CreateManyProduct_cross_selling_assigned_productsArgs";
+export { CreateOneProduct_cross_selling_assigned_productsArgs } from "./CreateOneProduct_cross_selling_assigned_productsArgs";
+export { DeleteManyProduct_cross_selling_assigned_productsArgs } from "./DeleteManyProduct_cross_selling_assigned_productsArgs";
+export { DeleteOneProduct_cross_selling_assigned_productsArgs } from "./DeleteOneProduct_cross_selling_assigned_productsArgs";
+export { FindFirstProduct_cross_selling_assigned_productsArgs } from "./FindFirstProduct_cross_selling_assigned_productsArgs";
+export { FindFirstProduct_cross_selling_assigned_productsOrThrowArgs } from "./FindFirstProduct_cross_selling_assigned_productsOrThrowArgs";
+export { FindManyProduct_cross_selling_assigned_productsArgs } from "./FindManyProduct_cross_selling_assigned_productsArgs";
+export { FindUniqueProduct_cross_selling_assigned_productsArgs } from "./FindUniqueProduct_cross_selling_assigned_productsArgs";
+export { FindUniqueProduct_cross_selling_assigned_productsOrThrowArgs } from "./FindUniqueProduct_cross_selling_assigned_productsOrThrowArgs";
+export { GroupByProduct_cross_selling_assigned_productsArgs } from "./GroupByProduct_cross_selling_assigned_productsArgs";
+export { UpdateManyProduct_cross_selling_assigned_productsArgs } from "./UpdateManyProduct_cross_selling_assigned_productsArgs";
+export { UpdateOneProduct_cross_selling_assigned_productsArgs } from "./UpdateOneProduct_cross_selling_assigned_productsArgs";
+export { UpsertOneProduct_cross_selling_assigned_productsArgs } from "./UpsertOneProduct_cross_selling_assigned_productsArgs";

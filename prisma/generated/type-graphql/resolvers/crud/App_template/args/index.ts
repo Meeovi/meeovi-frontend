@@ -1,0 +1,14 @@
+export { AggregateApp_templateArgs } from "./AggregateApp_templateArgs";
+export { CreateManyApp_templateArgs } from "./CreateManyApp_templateArgs";
+export { CreateOneApp_templateArgs } from "./CreateOneApp_templateArgs";
+export { DeleteManyApp_templateArgs } from "./DeleteManyApp_templateArgs";
+export { DeleteOneApp_templateArgs } from "./DeleteOneApp_templateArgs";
+export { FindFirstApp_templateArgs } from "./FindFirstApp_templateArgs";
+export { FindFirstApp_templateOrThrowArgs } from "./FindFirstApp_templateOrThrowArgs";
+export { FindManyApp_templateArgs } from "./FindManyApp_templateArgs";
+export { FindUniqueApp_templateArgs } from "./FindUniqueApp_templateArgs";
+export { FindUniqueApp_templateOrThrowArgs } from "./FindUniqueApp_templateOrThrowArgs";
+export { GroupByApp_templateArgs } from "./GroupByApp_templateArgs";
+export { UpdateManyApp_templateArgs } from "./UpdateManyApp_templateArgs";
+export { UpdateOneApp_templateArgs } from "./UpdateOneApp_templateArgs";
+export { UpsertOneApp_templateArgs } from "./UpsertOneApp_templateArgs";

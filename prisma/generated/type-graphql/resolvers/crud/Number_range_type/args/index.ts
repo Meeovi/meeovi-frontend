@@ -1,0 +1,14 @@
+export { AggregateNumber_range_typeArgs } from "./AggregateNumber_range_typeArgs";
+export { CreateManyNumber_range_typeArgs } from "./CreateManyNumber_range_typeArgs";
+export { CreateOneNumber_range_typeArgs } from "./CreateOneNumber_range_typeArgs";
+export { DeleteManyNumber_range_typeArgs } from "./DeleteManyNumber_range_typeArgs";
+export { DeleteOneNumber_range_typeArgs } from "./DeleteOneNumber_range_typeArgs";
+export { FindFirstNumber_range_typeArgs } from "./FindFirstNumber_range_typeArgs";
+export { FindFirstNumber_range_typeOrThrowArgs } from "./FindFirstNumber_range_typeOrThrowArgs";
+export { FindManyNumber_range_typeArgs } from "./FindManyNumber_range_typeArgs";
+export { FindUniqueNumber_range_typeArgs } from "./FindUniqueNumber_range_typeArgs";
+export { FindUniqueNumber_range_typeOrThrowArgs } from "./FindUniqueNumber_range_typeOrThrowArgs";
+export { GroupByNumber_range_typeArgs } from "./GroupByNumber_range_typeArgs";
+export { UpdateManyNumber_range_typeArgs } from "./UpdateManyNumber_range_typeArgs";
+export { UpdateOneNumber_range_typeArgs } from "./UpdateOneNumber_range_typeArgs";
+export { UpsertOneNumber_range_typeArgs } from "./UpsertOneNumber_range_typeArgs";

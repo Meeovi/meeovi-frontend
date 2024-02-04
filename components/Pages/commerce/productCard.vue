@@ -1,39 +1,35 @@
 <template>
-    <div class="productCard border border-neutral-200 rounded-md hover:shadow-lg"
-      v-for="(products, index) in data.products" :key="index">
-      <div class="relative">
-        <SfLink :href="`/product/${products.id}`" class="block">
-          <img :src="`${url}assets/${products.image.filename_disk}`" :alt="products.name"
-            class="block object-cover h-auto rounded-md aspect-square" width="300" height="300" />
-        </SfLink>
-        <SfButton variant="tertiary" size="sm" square
-          class="absolute bottom-0 right-0 mr-2 mb-2 bg-white ring-1 ring-inset ring-neutral-200 !rounded-full"
-          aria-label="Add to wishlist">
-          <SfIconFavorite size="sm" />
-        </SfButton>
-      </div>
-      <div class="p-4 border-t border-neutral-200">
-        <SfLink href="#" variant="secondary" class="no-underline"> {{ products.name }} </SfLink>
-        <div class="items-center pt-1">
-          <p class="skuclass" v-for="customers in data.products[0].customers">By: {{ customers.customers_id.username }}
-          </p>
-
-          <SfRating size="xs" :value="products.rating" :max="5" />
+  <div class="productCard">
+    <section data-bs-version="5.1" class="features3 cid-u2ZnbOWSjB" id="features3-7e" data-sortbtn="btn-primary">
+      <div class="container">
+        <div class="row mt-4">
+          <div class="item features-image сol-12 col-md-6 col-lg-4" v-for="(products, index) in data?.products?.items" :key="index">
+            <div class="item-wrapper">
+              <div class="item-img">
+                <img :src="products?.image?.url" :alt="products?.name">
+              </div>
+              <div class="item-content">
+                <h5 class="item-title mbr-fonts-style display-7"><strong>{{ products?.name }}</strong></h5>
+                <h6 class="item-subtitle mbr-fonts-style mt-1 display-7">
+                  <em>Category: {{ products?.categories?.name }}</em>
+                </h6>
+                <p class="mbr-text mbr-fonts-style mt-3 display-7">
+                  <v-rating hover :length="5" :size="32" :model-value="3" active-color="primary" />
+                  ({{ products?.rating_summary }})</p>
+                <p class="mbr-text mbr-fonts-style mt-3 display-7">
+                  {{ products?.price_range?.maximum_price?.regular_price?.currency }}
+                  {{ products?.price_range?.maximum_price?.regular_price?.value }}</p>
+              </div>
+              <div class="mbr-section-btn item-footer mt-2">
+                <a href="" class="btn btn-primary item-btn display-7">Add to Cart</a>
+                <a href="" class="btn btn-primary item-btn display-7">Buy Now</a>
+              </div>
+            </div>
+          </div>
         </div>
-        <p class="block py-2 font-normal leading-5 typography-text-sm text-neutral-700">
-          {{ products.description }}
-        </p>
-        <span class="block pb-2 font-bold typography-text-lg productCardPrice">
-          <div v-for="products in data.products[0].currency">{{ products.currency_id.symbol }}</div>{{ products.price }}
-        </span>
-        <SfButton size="sm">
-          <template #prefix>
-            <SfIconShoppingCart size="sm" />
-          </template>
-          Add to cart
-        </SfButton>
       </div>
-    </div>
+    </section>
+  </div>
 </template>
 
 <script>
@@ -44,41 +40,32 @@
   }
 </script>
 <script setup>
-  import {
-    SfRating,
-    SfLink,
-    SfButton,
-    SfIconShoppingCart,
-    SfIconFavorite
-  } from '@storefront-ui/vue';
   const query = gql `
-query {
-  products (limit: 6) {
-    id
-    name
-    price
-    currency {
-      currency_id {
-        symbol
+  query {
+    products(filter: {price: {from: "0"}}){
+    items {
+      uid
+      name
+      categories {
+        name
       }
-    }
-    sku
-    image {
-      filename_disk
-    }
-    rating
-    tax_class
-    stock_status
-    customers {
-      customers_id {
-        id
-        username
+      price_range {
+        maximum_price {
+          regular_price {
+            currency
+            value
+          }
+        }
       }
+      image {
+        url
+      }
+      rating_summary
     }
   }
-}
-`
+}`
+
   const {
     data
-  } = await useAsyncQuery(query)
+  } = useAsyncQuery(query);
 </script>

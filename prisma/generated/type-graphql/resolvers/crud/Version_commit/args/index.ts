@@ -1,0 +1,14 @@
+export { AggregateVersion_commitArgs } from "./AggregateVersion_commitArgs";
+export { CreateManyVersion_commitArgs } from "./CreateManyVersion_commitArgs";
+export { CreateOneVersion_commitArgs } from "./CreateOneVersion_commitArgs";
+export { DeleteManyVersion_commitArgs } from "./DeleteManyVersion_commitArgs";
+export { DeleteOneVersion_commitArgs } from "./DeleteOneVersion_commitArgs";
+export { FindFirstVersion_commitArgs } from "./FindFirstVersion_commitArgs";
+export { FindFirstVersion_commitOrThrowArgs } from "./FindFirstVersion_commitOrThrowArgs";
+export { FindManyVersion_commitArgs } from "./FindManyVersion_commitArgs";
+export { FindUniqueVersion_commitArgs } from "./FindUniqueVersion_commitArgs";
+export { FindUniqueVersion_commitOrThrowArgs } from "./FindUniqueVersion_commitOrThrowArgs";
+export { GroupByVersion_commitArgs } from "./GroupByVersion_commitArgs";
+export { UpdateManyVersion_commitArgs } from "./UpdateManyVersion_commitArgs";
+export { UpdateOneVersion_commitArgs } from "./UpdateOneVersion_commitArgs";
+export { UpsertOneVersion_commitArgs } from "./UpsertOneVersion_commitArgs";

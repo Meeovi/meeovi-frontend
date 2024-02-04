@@ -1,0 +1,47 @@
+import * as TypeGraphQL from "type-graphql";
+import * as GraphQLScalars from "graphql-scalars";
+import { Prisma } from "@prisma/client";
+import { DecimalJSScalar } from "../scalars";
+
+@TypeGraphQL.ObjectType("Klarna_payment_request_log", {})
+export class Klarna_payment_request_log {
+  @TypeGraphQL.Field(_type => GraphQLScalars.ByteResolver, {
+    nullable: false
+  })
+  id!: Buffer;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  klarna_order_id!: string;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  call_type!: string;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  request!: string;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  response!: string;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  idempotency_key!: string;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: false
+  })
+  created_at!: Date;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
+  updated_at?: Date | null;
+}

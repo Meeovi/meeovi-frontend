@@ -1,0 +1,14 @@
+export { AggregateCustomer_addressArgs } from "./AggregateCustomer_addressArgs";
+export { CreateManyCustomer_addressArgs } from "./CreateManyCustomer_addressArgs";
+export { CreateOneCustomer_addressArgs } from "./CreateOneCustomer_addressArgs";
+export { DeleteManyCustomer_addressArgs } from "./DeleteManyCustomer_addressArgs";
+export { DeleteOneCustomer_addressArgs } from "./DeleteOneCustomer_addressArgs";
+export { FindFirstCustomer_addressArgs } from "./FindFirstCustomer_addressArgs";
+export { FindFirstCustomer_addressOrThrowArgs } from "./FindFirstCustomer_addressOrThrowArgs";
+export { FindManyCustomer_addressArgs } from "./FindManyCustomer_addressArgs";
+export { FindUniqueCustomer_addressArgs } from "./FindUniqueCustomer_addressArgs";
+export { FindUniqueCustomer_addressOrThrowArgs } from "./FindUniqueCustomer_addressOrThrowArgs";
+export { GroupByCustomer_addressArgs } from "./GroupByCustomer_addressArgs";
+export { UpdateManyCustomer_addressArgs } from "./UpdateManyCustomer_addressArgs";
+export { UpdateOneCustomer_addressArgs } from "./UpdateOneCustomer_addressArgs";
+export { UpsertOneCustomer_addressArgs } from "./UpsertOneCustomer_addressArgs";

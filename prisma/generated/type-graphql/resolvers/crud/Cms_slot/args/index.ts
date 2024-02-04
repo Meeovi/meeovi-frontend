@@ -1,0 +1,14 @@
+export { AggregateCms_slotArgs } from "./AggregateCms_slotArgs";
+export { CreateManyCms_slotArgs } from "./CreateManyCms_slotArgs";
+export { CreateOneCms_slotArgs } from "./CreateOneCms_slotArgs";
+export { DeleteManyCms_slotArgs } from "./DeleteManyCms_slotArgs";
+export { DeleteOneCms_slotArgs } from "./DeleteOneCms_slotArgs";
+export { FindFirstCms_slotArgs } from "./FindFirstCms_slotArgs";
+export { FindFirstCms_slotOrThrowArgs } from "./FindFirstCms_slotOrThrowArgs";
+export { FindManyCms_slotArgs } from "./FindManyCms_slotArgs";
+export { FindUniqueCms_slotArgs } from "./FindUniqueCms_slotArgs";
+export { FindUniqueCms_slotOrThrowArgs } from "./FindUniqueCms_slotOrThrowArgs";
+export { GroupByCms_slotArgs } from "./GroupByCms_slotArgs";
+export { UpdateManyCms_slotArgs } from "./UpdateManyCms_slotArgs";
+export { UpdateOneCms_slotArgs } from "./UpdateOneCms_slotArgs";
+export { UpsertOneCms_slotArgs } from "./UpsertOneCms_slotArgs";

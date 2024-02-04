@@ -1,0 +1,14 @@
+export { AggregateRule_tagArgs } from "./AggregateRule_tagArgs";
+export { CreateManyRule_tagArgs } from "./CreateManyRule_tagArgs";
+export { CreateOneRule_tagArgs } from "./CreateOneRule_tagArgs";
+export { DeleteManyRule_tagArgs } from "./DeleteManyRule_tagArgs";
+export { DeleteOneRule_tagArgs } from "./DeleteOneRule_tagArgs";
+export { FindFirstRule_tagArgs } from "./FindFirstRule_tagArgs";
+export { FindFirstRule_tagOrThrowArgs } from "./FindFirstRule_tagOrThrowArgs";
+export { FindManyRule_tagArgs } from "./FindManyRule_tagArgs";
+export { FindUniqueRule_tagArgs } from "./FindUniqueRule_tagArgs";
+export { FindUniqueRule_tagOrThrowArgs } from "./FindUniqueRule_tagOrThrowArgs";
+export { GroupByRule_tagArgs } from "./GroupByRule_tagArgs";
+export { UpdateManyRule_tagArgs } from "./UpdateManyRule_tagArgs";
+export { UpdateOneRule_tagArgs } from "./UpdateOneRule_tagArgs";
+export { UpsertOneRule_tagArgs } from "./UpsertOneRule_tagArgs";

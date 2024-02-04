@@ -1,0 +1,14 @@
+export { AggregateLocale_translationArgs } from "./AggregateLocale_translationArgs";
+export { CreateManyLocale_translationArgs } from "./CreateManyLocale_translationArgs";
+export { CreateOneLocale_translationArgs } from "./CreateOneLocale_translationArgs";
+export { DeleteManyLocale_translationArgs } from "./DeleteManyLocale_translationArgs";
+export { DeleteOneLocale_translationArgs } from "./DeleteOneLocale_translationArgs";
+export { FindFirstLocale_translationArgs } from "./FindFirstLocale_translationArgs";
+export { FindFirstLocale_translationOrThrowArgs } from "./FindFirstLocale_translationOrThrowArgs";
+export { FindManyLocale_translationArgs } from "./FindManyLocale_translationArgs";
+export { FindUniqueLocale_translationArgs } from "./FindUniqueLocale_translationArgs";
+export { FindUniqueLocale_translationOrThrowArgs } from "./FindUniqueLocale_translationOrThrowArgs";
+export { GroupByLocale_translationArgs } from "./GroupByLocale_translationArgs";
+export { UpdateManyLocale_translationArgs } from "./UpdateManyLocale_translationArgs";
+export { UpdateOneLocale_translationArgs } from "./UpdateOneLocale_translationArgs";
+export { UpsertOneLocale_translationArgs } from "./UpsertOneLocale_translationArgs";

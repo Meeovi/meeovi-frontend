@@ -1,0 +1,14 @@
+export { AggregatePromotion_order_ruleArgs } from "./AggregatePromotion_order_ruleArgs";
+export { CreateManyPromotion_order_ruleArgs } from "./CreateManyPromotion_order_ruleArgs";
+export { CreateOnePromotion_order_ruleArgs } from "./CreateOnePromotion_order_ruleArgs";
+export { DeleteManyPromotion_order_ruleArgs } from "./DeleteManyPromotion_order_ruleArgs";
+export { DeleteOnePromotion_order_ruleArgs } from "./DeleteOnePromotion_order_ruleArgs";
+export { FindFirstPromotion_order_ruleArgs } from "./FindFirstPromotion_order_ruleArgs";
+export { FindFirstPromotion_order_ruleOrThrowArgs } from "./FindFirstPromotion_order_ruleOrThrowArgs";
+export { FindManyPromotion_order_ruleArgs } from "./FindManyPromotion_order_ruleArgs";
+export { FindUniquePromotion_order_ruleArgs } from "./FindUniquePromotion_order_ruleArgs";
+export { FindUniquePromotion_order_ruleOrThrowArgs } from "./FindUniquePromotion_order_ruleOrThrowArgs";
+export { GroupByPromotion_order_ruleArgs } from "./GroupByPromotion_order_ruleArgs";
+export { UpdateManyPromotion_order_ruleArgs } from "./UpdateManyPromotion_order_ruleArgs";
+export { UpdateOnePromotion_order_ruleArgs } from "./UpdateOnePromotion_order_ruleArgs";
+export { UpsertOnePromotion_order_ruleArgs } from "./UpsertOnePromotion_order_ruleArgs";

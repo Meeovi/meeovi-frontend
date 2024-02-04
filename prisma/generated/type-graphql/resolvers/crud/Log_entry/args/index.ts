@@ -1,0 +1,14 @@
+export { AggregateLog_entryArgs } from "./AggregateLog_entryArgs";
+export { CreateManyLog_entryArgs } from "./CreateManyLog_entryArgs";
+export { CreateOneLog_entryArgs } from "./CreateOneLog_entryArgs";
+export { DeleteManyLog_entryArgs } from "./DeleteManyLog_entryArgs";
+export { DeleteOneLog_entryArgs } from "./DeleteOneLog_entryArgs";
+export { FindFirstLog_entryArgs } from "./FindFirstLog_entryArgs";
+export { FindFirstLog_entryOrThrowArgs } from "./FindFirstLog_entryOrThrowArgs";
+export { FindManyLog_entryArgs } from "./FindManyLog_entryArgs";
+export { FindUniqueLog_entryArgs } from "./FindUniqueLog_entryArgs";
+export { FindUniqueLog_entryOrThrowArgs } from "./FindUniqueLog_entryOrThrowArgs";
+export { GroupByLog_entryArgs } from "./GroupByLog_entryArgs";
+export { UpdateManyLog_entryArgs } from "./UpdateManyLog_entryArgs";
+export { UpdateOneLog_entryArgs } from "./UpdateOneLog_entryArgs";
+export { UpsertOneLog_entryArgs } from "./UpsertOneLog_entryArgs";

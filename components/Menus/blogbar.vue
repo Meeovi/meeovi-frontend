@@ -8,10 +8,8 @@
         <div class="row justify-content-center">
           <div class="card col-12 col-lg-10">
             <div class="card-wrapper">
-              <div class="card-box align-center" v-for="pages in data.pages" :key="pages.id">
-                <h4 class="card-title mbr-fonts-style align-center mb-4 display-1">
-                  <strong>{{ pages.name }}</strong></h4>
-                <p class="mbr-text mbr-fonts-style mb-4 display-7" v-html="pages.content"></p>
+              <div class="card-box align-center" v-for="cmspage in data" :key="cmspage">
+                <div v-html="cmspage.content"></div>
               </div>
             </div>
           </div>
@@ -19,12 +17,11 @@
       </div>
     </section>
 
-    <div v-for="(categories, index) in categories" :key="index">
+    <div>
       <v-card>
         <v-tabs bg-color="blue-lighten-4" center-active>
           <v-tab><a href="/blog/">All</a></v-tab>
-          <v-tab v-for="(categories, index) in categories[0].tags" :key="index"><a
-              :href="`/blog/category/${categories.tags_id.name}`">{{ categories.tags_id.name }}</a></v-tab>
+          <v-tab v-for="(categories, index) in data.mpBlogCategories.items" :key="index"><a :href="`/blog/category/${categories.name}`">{{ categories.name }}</a></v-tab>
         </v-tabs>
       </v-card>
     </div>
@@ -43,58 +40,22 @@
 </script>
 
 <script setup>
-  const query = gql `
-query {
-    pages (filter: {name: {_eq: "Meeovi Notes"}}) {
-      name
-      content
-      link
-      } 
-  }
-`
-  const {
-    data
-  } = await useAsyncQuery(query)
-
-  const category = gql `
-query {
-  categories (filter: {name: {_eq: "Notes"}}){
-    id
-    name
-    description
-    content
-    tags {
-      id
-      tags_id{
-        id
-        name
-        description
-        image {
-          filename_disk
-        }
-      }
-    } 
-    articles {
-      articles_id {
-        id
-        name
-        excerpt
+const query = gql `
+    query {
+    cmsPage(identifier: "Blog") {
+        title
         content
-        categories {
-          categories_id {
-            id
-            name
-          }
-        }
+        relative_url
+    }
+    mpBlogCategories(action: "get_category_list") {
+      items {
+        name
+        path
       }
     }
-    image {
-      filename_disk
-    }
-  }
-}
-`
-  const {
-    data: categories
-  } = await useAsyncQuery(category)
+  }`
+
+    const {
+        data
+    } = useAsyncQuery(query);
 </script>

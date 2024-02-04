@@ -1,0 +1,14 @@
+export { AggregateSalutationArgs } from "./AggregateSalutationArgs";
+export { CreateManySalutationArgs } from "./CreateManySalutationArgs";
+export { CreateOneSalutationArgs } from "./CreateOneSalutationArgs";
+export { DeleteManySalutationArgs } from "./DeleteManySalutationArgs";
+export { DeleteOneSalutationArgs } from "./DeleteOneSalutationArgs";
+export { FindFirstSalutationArgs } from "./FindFirstSalutationArgs";
+export { FindFirstSalutationOrThrowArgs } from "./FindFirstSalutationOrThrowArgs";
+export { FindManySalutationArgs } from "./FindManySalutationArgs";
+export { FindUniqueSalutationArgs } from "./FindUniqueSalutationArgs";
+export { FindUniqueSalutationOrThrowArgs } from "./FindUniqueSalutationOrThrowArgs";
+export { GroupBySalutationArgs } from "./GroupBySalutationArgs";
+export { UpdateManySalutationArgs } from "./UpdateManySalutationArgs";
+export { UpdateOneSalutationArgs } from "./UpdateOneSalutationArgs";
+export { UpsertOneSalutationArgs } from "./UpsertOneSalutationArgs";

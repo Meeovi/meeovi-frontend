@@ -32,6 +32,7 @@ body {
     position: relative;
     padding-top: 10px;
     top: 55px;
+    display: flex;
 }
 
 .livebar>.v-avatar {
@@ -408,7 +409,7 @@ body {
 
 .sidebarSection {
     height: 100% !important;
-    width: 290px !important;
+    min-width: 430px !important;
 }
 
 /********************* Social CSS **************/
@@ -441,6 +442,53 @@ body {
     padding: 10px;
 }
 
+.profileBanner {
+    z-index: 999 !important;
+}
+
+.avatarBorder {
+    border: 5px white solid;
+    position: relative;
+    float: left;
+    left: 20px;
+    top: -60px;
+    z-index: 9999 !important;
+}
+
+.profileInfo {
+    position: relative;
+    float: left;
+    left: 3%;
+    top: 18px;
+}
+
+.profileInfo li{
+    display: block;
+    padding-right: 10px;
+}
+
+.profileUsername {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.profileActions {
+    position: relative;
+    float: right;
+    right: 15px;
+    top: 18px;
+}
+
+.profileActions li {
+    display: inline-block;
+    padding: 10px;
+}
+
+.profileActions .v-btn {
+    background-color: steelblue;
+    color: white;
+}
+
 .profilePage h4 {
     width: 100%;
     text-align: center;
@@ -464,6 +512,7 @@ body {
 .cid-tApxFdIkda,
 .features6,
 .content2,
+.cid-u1nHNN1e0D,
 .cid-tApxFdIkda .mbr-text .cid-txYTqgVHsB blockquote {
     background-color: transparent !important;
 }

@@ -1,0 +1,14 @@
+export { AggregateMedia_translationArgs } from "./AggregateMedia_translationArgs";
+export { CreateManyMedia_translationArgs } from "./CreateManyMedia_translationArgs";
+export { CreateOneMedia_translationArgs } from "./CreateOneMedia_translationArgs";
+export { DeleteManyMedia_translationArgs } from "./DeleteManyMedia_translationArgs";
+export { DeleteOneMedia_translationArgs } from "./DeleteOneMedia_translationArgs";
+export { FindFirstMedia_translationArgs } from "./FindFirstMedia_translationArgs";
+export { FindFirstMedia_translationOrThrowArgs } from "./FindFirstMedia_translationOrThrowArgs";
+export { FindManyMedia_translationArgs } from "./FindManyMedia_translationArgs";
+export { FindUniqueMedia_translationArgs } from "./FindUniqueMedia_translationArgs";
+export { FindUniqueMedia_translationOrThrowArgs } from "./FindUniqueMedia_translationOrThrowArgs";
+export { GroupByMedia_translationArgs } from "./GroupByMedia_translationArgs";
+export { UpdateManyMedia_translationArgs } from "./UpdateManyMedia_translationArgs";
+export { UpdateOneMedia_translationArgs } from "./UpdateOneMedia_translationArgs";
+export { UpsertOneMedia_translationArgs } from "./UpsertOneMedia_translationArgs";

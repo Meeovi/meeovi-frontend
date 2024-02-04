@@ -11,7 +11,7 @@
                             <div class="card-box align-center">
                                 <h4 class="card-title mbr-fonts-style align-center mb-4 display-1">
                                     <strong>Spaces</strong></h4>
-                                <p class="mbr-text mbr-fonts-style mb-4 display-7">Join or create a space about any topic you can think of.</p>
+                                <p class="mbr-text mbr-fonts-style mb-4 display-7">Join or create a space about any topic.</p>
                             </div>
                         </div>
                     </div>
@@ -22,23 +22,23 @@
         <section class="features4 cid-sBXUicXM4E" id="features5-2g">
             <div class="container">
                 <div class="row">
-                    <div class="col-12 col-lg-6" v-for="spaces in spaces" :key="spaces">
+                    <div class="col-12 col-lg-6" v-for="(spaces, index) in data.groups.edges" :key="index">
                         <div class="card-wrapper">
                             <div class="row">
                                 <div class="col-12 col-md-7">
                                     <div class="text-wrapper">
                                         <h6 class="card-subtitle mbr-fonts-style mb-2 display-4">
-                                            {{spaces.date_created}}</h6>
+                                            {{spaces.node.dateCreated}}</h6>
                                         <h5 class="card-title mbr-fonts-style display-5">
-                                            <strong>{{ spaces.Name }}</strong></h5>
-                                        <p class="mbr-text mbr-fonts-style mb-5 display-4">{{ spaces.Description }}</p>
-                                        <div class="mbr-section-btn"><a :href="`/group/${spaces.id}`"
+                                            <strong>{{ spaces.node.name }}</strong></h5>
+                                        <p class="mbr-text mbr-fonts-style mb-5 display-4">{{ spaces.node.description }}</p>
+                                        <div class="mbr-section-btn"><a :href="`/group/${spaces.node.slug}`"
                                                 class="btn btn-warning display-4">Learn more</a></div>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-5">
                                     <div class="img-wrapper">
-                                        <img :src="`${spaces.Image.filename_disk}`" :alt="spaces.Name">
+                                        <img :src="`${spaces.node.attachmentAvatar.full}`" :alt="spaces.node.name">
                                     </div>
                                 </div>
                             </div>
@@ -65,19 +65,33 @@
 </script>
 
 <script setup>
-const {
-        getItems
-    } = useDirectusItems()
+const query = gql `
+query {
+  groups {
+    edges {
+      node {
+        name
+        description
+        dateCreated
+        creator {
+          name
+          username
+        }
+        lastActivity
+        status
+        totalMemberCount
+        slug
+        attachmentAvatar {
+          full
+        }
+      }
+    }
+  }
+}`
 
-    const spaces = await getItems({
-        collection: "Space"
-    });    
-
- /*   import query from '../../apollo/queries-mutations_subscriptions/queries/space.js'
-
-    const {
-        data
-    } = await useAsyncQuery(query)*/
+  const {
+    data
+  } = useAsyncQuery(query);
 
     useHead({
         title: 'Spaces',

@@ -1,0 +1,14 @@
+export { AggregatePromotion_discount_pricesArgs } from "./AggregatePromotion_discount_pricesArgs";
+export { CreateManyPromotion_discount_pricesArgs } from "./CreateManyPromotion_discount_pricesArgs";
+export { CreateOnePromotion_discount_pricesArgs } from "./CreateOnePromotion_discount_pricesArgs";
+export { DeleteManyPromotion_discount_pricesArgs } from "./DeleteManyPromotion_discount_pricesArgs";
+export { DeleteOnePromotion_discount_pricesArgs } from "./DeleteOnePromotion_discount_pricesArgs";
+export { FindFirstPromotion_discount_pricesArgs } from "./FindFirstPromotion_discount_pricesArgs";
+export { FindFirstPromotion_discount_pricesOrThrowArgs } from "./FindFirstPromotion_discount_pricesOrThrowArgs";
+export { FindManyPromotion_discount_pricesArgs } from "./FindManyPromotion_discount_pricesArgs";
+export { FindUniquePromotion_discount_pricesArgs } from "./FindUniquePromotion_discount_pricesArgs";
+export { FindUniquePromotion_discount_pricesOrThrowArgs } from "./FindUniquePromotion_discount_pricesOrThrowArgs";
+export { GroupByPromotion_discount_pricesArgs } from "./GroupByPromotion_discount_pricesArgs";
+export { UpdateManyPromotion_discount_pricesArgs } from "./UpdateManyPromotion_discount_pricesArgs";
+export { UpdateOnePromotion_discount_pricesArgs } from "./UpdateOnePromotion_discount_pricesArgs";
+export { UpsertOnePromotion_discount_pricesArgs } from "./UpsertOnePromotion_discount_pricesArgs";

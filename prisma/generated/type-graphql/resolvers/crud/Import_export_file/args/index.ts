@@ -1,0 +1,14 @@
+export { AggregateImport_export_fileArgs } from "./AggregateImport_export_fileArgs";
+export { CreateManyImport_export_fileArgs } from "./CreateManyImport_export_fileArgs";
+export { CreateOneImport_export_fileArgs } from "./CreateOneImport_export_fileArgs";
+export { DeleteManyImport_export_fileArgs } from "./DeleteManyImport_export_fileArgs";
+export { DeleteOneImport_export_fileArgs } from "./DeleteOneImport_export_fileArgs";
+export { FindFirstImport_export_fileArgs } from "./FindFirstImport_export_fileArgs";
+export { FindFirstImport_export_fileOrThrowArgs } from "./FindFirstImport_export_fileOrThrowArgs";
+export { FindManyImport_export_fileArgs } from "./FindManyImport_export_fileArgs";
+export { FindUniqueImport_export_fileArgs } from "./FindUniqueImport_export_fileArgs";
+export { FindUniqueImport_export_fileOrThrowArgs } from "./FindUniqueImport_export_fileOrThrowArgs";
+export { GroupByImport_export_fileArgs } from "./GroupByImport_export_fileArgs";
+export { UpdateManyImport_export_fileArgs } from "./UpdateManyImport_export_fileArgs";
+export { UpdateOneImport_export_fileArgs } from "./UpdateOneImport_export_fileArgs";
+export { UpsertOneImport_export_fileArgs } from "./UpsertOneImport_export_fileArgs";

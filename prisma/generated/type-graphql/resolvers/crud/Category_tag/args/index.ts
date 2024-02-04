@@ -1,0 +1,14 @@
+export { AggregateCategory_tagArgs } from "./AggregateCategory_tagArgs";
+export { CreateManyCategory_tagArgs } from "./CreateManyCategory_tagArgs";
+export { CreateOneCategory_tagArgs } from "./CreateOneCategory_tagArgs";
+export { DeleteManyCategory_tagArgs } from "./DeleteManyCategory_tagArgs";
+export { DeleteOneCategory_tagArgs } from "./DeleteOneCategory_tagArgs";
+export { FindFirstCategory_tagArgs } from "./FindFirstCategory_tagArgs";
+export { FindFirstCategory_tagOrThrowArgs } from "./FindFirstCategory_tagOrThrowArgs";
+export { FindManyCategory_tagArgs } from "./FindManyCategory_tagArgs";
+export { FindUniqueCategory_tagArgs } from "./FindUniqueCategory_tagArgs";
+export { FindUniqueCategory_tagOrThrowArgs } from "./FindUniqueCategory_tagOrThrowArgs";
+export { GroupByCategory_tagArgs } from "./GroupByCategory_tagArgs";
+export { UpdateManyCategory_tagArgs } from "./UpdateManyCategory_tagArgs";
+export { UpdateOneCategory_tagArgs } from "./UpdateOneCategory_tagArgs";
+export { UpsertOneCategory_tagArgs } from "./UpsertOneCategory_tagArgs";

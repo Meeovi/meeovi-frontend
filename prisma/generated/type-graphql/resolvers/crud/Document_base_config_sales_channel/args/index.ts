@@ -1,0 +1,14 @@
+export { AggregateDocument_base_config_sales_channelArgs } from "./AggregateDocument_base_config_sales_channelArgs";
+export { CreateManyDocument_base_config_sales_channelArgs } from "./CreateManyDocument_base_config_sales_channelArgs";
+export { CreateOneDocument_base_config_sales_channelArgs } from "./CreateOneDocument_base_config_sales_channelArgs";
+export { DeleteManyDocument_base_config_sales_channelArgs } from "./DeleteManyDocument_base_config_sales_channelArgs";
+export { DeleteOneDocument_base_config_sales_channelArgs } from "./DeleteOneDocument_base_config_sales_channelArgs";
+export { FindFirstDocument_base_config_sales_channelArgs } from "./FindFirstDocument_base_config_sales_channelArgs";
+export { FindFirstDocument_base_config_sales_channelOrThrowArgs } from "./FindFirstDocument_base_config_sales_channelOrThrowArgs";
+export { FindManyDocument_base_config_sales_channelArgs } from "./FindManyDocument_base_config_sales_channelArgs";
+export { FindUniqueDocument_base_config_sales_channelArgs } from "./FindUniqueDocument_base_config_sales_channelArgs";
+export { FindUniqueDocument_base_config_sales_channelOrThrowArgs } from "./FindUniqueDocument_base_config_sales_channelOrThrowArgs";
+export { GroupByDocument_base_config_sales_channelArgs } from "./GroupByDocument_base_config_sales_channelArgs";
+export { UpdateManyDocument_base_config_sales_channelArgs } from "./UpdateManyDocument_base_config_sales_channelArgs";
+export { UpdateOneDocument_base_config_sales_channelArgs } from "./UpdateOneDocument_base_config_sales_channelArgs";
+export { UpsertOneDocument_base_config_sales_channelArgs } from "./UpsertOneDocument_base_config_sales_channelArgs";

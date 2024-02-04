@@ -1,0 +1,14 @@
+export { AggregateLanding_page_translationArgs } from "./AggregateLanding_page_translationArgs";
+export { CreateManyLanding_page_translationArgs } from "./CreateManyLanding_page_translationArgs";
+export { CreateOneLanding_page_translationArgs } from "./CreateOneLanding_page_translationArgs";
+export { DeleteManyLanding_page_translationArgs } from "./DeleteManyLanding_page_translationArgs";
+export { DeleteOneLanding_page_translationArgs } from "./DeleteOneLanding_page_translationArgs";
+export { FindFirstLanding_page_translationArgs } from "./FindFirstLanding_page_translationArgs";
+export { FindFirstLanding_page_translationOrThrowArgs } from "./FindFirstLanding_page_translationOrThrowArgs";
+export { FindManyLanding_page_translationArgs } from "./FindManyLanding_page_translationArgs";
+export { FindUniqueLanding_page_translationArgs } from "./FindUniqueLanding_page_translationArgs";
+export { FindUniqueLanding_page_translationOrThrowArgs } from "./FindUniqueLanding_page_translationOrThrowArgs";
+export { GroupByLanding_page_translationArgs } from "./GroupByLanding_page_translationArgs";
+export { UpdateManyLanding_page_translationArgs } from "./UpdateManyLanding_page_translationArgs";
+export { UpdateOneLanding_page_translationArgs } from "./UpdateOneLanding_page_translationArgs";
+export { UpsertOneLanding_page_translationArgs } from "./UpsertOneLanding_page_translationArgs";

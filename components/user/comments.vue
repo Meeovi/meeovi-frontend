@@ -1,75 +1,72 @@
 <template>
-    <div>
+  <div>
     <article class="w-full p-4 border rounded-md">
-    <v-row>
-        <v-col cols="6"><createcomment /></v-col>
-        <v-col cols="6"><ratingoverview /></v-col>
-    </v-row>
-    <header class="flex flex-col items-start pb-4 md:flex-row md:justify-between">
-      <div class="flex items-start">
-        <img src="https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/review_avatar.png" alt="Review avatar" class="p-0.5" />
-        <div class="flex-col pl-2">
-          <span class="text-sm text-neutral-900">Karla</span>
-          <span class="flex items-center pr-2 text-xs text-neutral-500">
-            <SfRating :value="5" :max="5" size="xs" class="mr-2" />
-            2 days ago
-          </span>
-        </div>
-      </div>
-      <p class="flex items-center text-xs truncate text-primary-700">
-        <SfIconCheck size="xs" class="mr-1" /> Verified purchase
-      </p>
-    </header>
-      <div class="pb-2 text-sm text-neutral-900">{{ truncatedContent }}</div>
-      <button
-        v-if="isButtonVisible"
-        type="button"
-        class="inline-block mb-2 text-sm font-normal border-b-2 border-black cursor-pointer w-fit hover:text-primary-700 hover:border-primary-800"
-        @click="isCollapsed = !isCollapsed"
-      >
-        {{ isCollapsed ? 'Read more' : 'Read less' }}
-      </button>
-      <footer class="flex items-center justify-between">
-        <div class="text-sm text-neutral-500">
-          <button type="button" class="mr-6 hover:text-primary-800">
-            <SfIconThumbUp size="sm" class="mr-2.5" />
-            <SfCounter size="sm" class="text-inherit">6</SfCounter>
-          </button>
-          <button type="button" class="hover:text-primary-800">
-            <SfIconThumbDown size="sm" class="mr-2.5" />
-            <SfCounter size="sm" class="text-inherit">2</SfCounter>
-          </button>
-        </div>
-  
-        <button class="px-3 py-1.5 text-neutral-500 font-medium text-sm hover:text-primary-800" type="button">
-          Report abuse
-        </button>
-      </footer>
-    </article>
-</div>
-</template>
-  
-<script lang="ts">
-import createcomment from './comments/createcomment.vue'
-import ratingoverview from './comments/ratingoverview.vue'
+      <v-row>
+        <v-col cols="6">
+          <createcomment />
+        </v-col>
+        <v-col cols="6">
+          <ratingoverview />
+        </v-col>
+      </v-row>
+      <section data-bs-version="5.1" class="people1 cid-u1nHNN1e0D" id="people1-6m">
+        <div class="container">
 
-    export default {
-        components: { createcomment, ratingoverview },
-    }
+          <div class="user-card">
+            <div class="row">
+              <div class="col-md-6 col-lg-3">
+                <v-avatar size="120">
+                  <img src="../../assets/images/team7.jpg" />
+                </v-avatar>
+                <div class="user_name mbr-fonts-style display-7">
+                  <strong>Alexa</strong>
+                </div>
+                <p class="commentPublishedDate">Date</p>
+              </div>
+
+              <div class="col-12 col-md-6 col-lg-9">
+                <div class="description">
+                  <div class="user_text">
+                    <p class="mbr-fonts-style small display-4">
+                      Themes in the Mobirise website builder offer multiple blocks: intros, sliders, galleries, forms,
+                      articles, and so on. Start a project and click on the red plus buttons to see the blocks available
+                      for your theme.
+                    </p>
+                  </div>
+
+
+                  <div class="user_desk mbr-fonts-style display-4">
+                    <span>
+                      <v-rating half-increments hover :length="5" :size="32" :model-value="3" color="warning"
+                        active-color="warning" /></span>
+                  </div>
+
+                  <div class="user_desk mbr-fonts-style display-4">
+                    <span>Was this comment helpful? <v-btn prepend-icon="fas fa-thumbs-up" variant="text">()</v-btn>
+                      &bull; <v-btn prepend-icon="fas fa-thumbs-down" variant="text">()</v-btn></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+  </div>
+</template>
+
+<script lang="ts">
+  import createcomment from './comments/createcomment.vue'
+  import ratingoverview from './comments/ratingoverview.vue'
+
+  export default {
+    components: {
+      createcomment,
+      ratingoverview
+    },
+  }
 </script>
 
-  <script lang="ts" setup>
-  import { computed, ref } from 'vue';
-  import { SfRating, SfIconCheck, SfIconThumbUp, SfIconThumbDown, SfCounter } from '@storefront-ui/vue';
-  
-  const content =
-    "I recently purchased a pair of sneakers and I am thoroughly impressed with their quality and comfort. The design is sleek and modern, and the shoes are available in a variety of colors to suit anyone's style preferences. The upper is made of a breathable and durable material that allows my feet to stay cool and dry during long walks or runs. The sole is also very comfortable and provides great support for my feet, making it easy for me to wear them all day without experiencing any discomfort or fatigue. One of my favorite features of these sneakers is the excellent traction they provide, even on slippery surfaces. I feel confident wearing them in any weather condition or terrain. Additionally, the shoes have held up well over time and have not shown any signs of wear and tear, even after frequent use. Overall, I highly recommend these sneakers to anyone in the market for a comfortable and stylish shoe that can handle any activity. They are definitely worth the investment!";
-  
-  const charLimit = 400;
-  const isCollapsed = ref(true);
-  const isButtonVisible = computed(() => content.length > charLimit);
-  const truncatedContent = computed(() =>
-    isButtonVisible.value && isCollapsed.value ? `${content.substring(0, charLimit)}...` : content,
-  );
-  </script>
-  
+<script lang="ts" setup>
+
+</script>

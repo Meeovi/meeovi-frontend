@@ -1,0 +1,14 @@
+export { AggregateNumber_range_type_translationArgs } from "./AggregateNumber_range_type_translationArgs";
+export { CreateManyNumber_range_type_translationArgs } from "./CreateManyNumber_range_type_translationArgs";
+export { CreateOneNumber_range_type_translationArgs } from "./CreateOneNumber_range_type_translationArgs";
+export { DeleteManyNumber_range_type_translationArgs } from "./DeleteManyNumber_range_type_translationArgs";
+export { DeleteOneNumber_range_type_translationArgs } from "./DeleteOneNumber_range_type_translationArgs";
+export { FindFirstNumber_range_type_translationArgs } from "./FindFirstNumber_range_type_translationArgs";
+export { FindFirstNumber_range_type_translationOrThrowArgs } from "./FindFirstNumber_range_type_translationOrThrowArgs";
+export { FindManyNumber_range_type_translationArgs } from "./FindManyNumber_range_type_translationArgs";
+export { FindUniqueNumber_range_type_translationArgs } from "./FindUniqueNumber_range_type_translationArgs";
+export { FindUniqueNumber_range_type_translationOrThrowArgs } from "./FindUniqueNumber_range_type_translationOrThrowArgs";
+export { GroupByNumber_range_type_translationArgs } from "./GroupByNumber_range_type_translationArgs";
+export { UpdateManyNumber_range_type_translationArgs } from "./UpdateManyNumber_range_type_translationArgs";
+export { UpdateOneNumber_range_type_translationArgs } from "./UpdateOneNumber_range_type_translationArgs";
+export { UpsertOneNumber_range_type_translationArgs } from "./UpsertOneNumber_range_type_translationArgs";

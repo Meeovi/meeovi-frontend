@@ -1,0 +1,14 @@
+export { AggregateProduct_tagArgs } from "./AggregateProduct_tagArgs";
+export { CreateManyProduct_tagArgs } from "./CreateManyProduct_tagArgs";
+export { CreateOneProduct_tagArgs } from "./CreateOneProduct_tagArgs";
+export { DeleteManyProduct_tagArgs } from "./DeleteManyProduct_tagArgs";
+export { DeleteOneProduct_tagArgs } from "./DeleteOneProduct_tagArgs";
+export { FindFirstProduct_tagArgs } from "./FindFirstProduct_tagArgs";
+export { FindFirstProduct_tagOrThrowArgs } from "./FindFirstProduct_tagOrThrowArgs";
+export { FindManyProduct_tagArgs } from "./FindManyProduct_tagArgs";
+export { FindUniqueProduct_tagArgs } from "./FindUniqueProduct_tagArgs";
+export { FindUniqueProduct_tagOrThrowArgs } from "./FindUniqueProduct_tagOrThrowArgs";
+export { GroupByProduct_tagArgs } from "./GroupByProduct_tagArgs";
+export { UpdateManyProduct_tagArgs } from "./UpdateManyProduct_tagArgs";
+export { UpdateOneProduct_tagArgs } from "./UpdateOneProduct_tagArgs";
+export { UpsertOneProduct_tagArgs } from "./UpsertOneProduct_tagArgs";

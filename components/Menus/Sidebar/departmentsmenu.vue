@@ -3,9 +3,9 @@
         <v-expansion-panels variant="accordion">
             <v-expansion-panel title="Departments" expand-icon="fas fa-plus" collapse-icon="fas fa-minus" elevation="0">
                 <v-expansion-panel-text>
-                    <div v-for="departments in departments" :key="departments.id">
-                        <v-list-item :title="departments.name" value="departments.name"
-                            :href="`/departments/${departments.id}`">
+                    <div v-for="(categories, index) in data?.categories?.items" :key="index">
+                        <v-list-item :title="categories?.children?.name" :value="categories?.children.name"
+                            :href="`/departments/${categories?.children?.name}`">
                         </v-list-item>
                     </div>
                 </v-expansion-panel-text>
@@ -19,15 +19,21 @@
 </script>
 
 <script setup>
-/*import departments from '../../../apollo/queries-mutations_subscriptions/queries/departments.gql'
-
-const { data } = useAsyncQuery(departments);*/ 
+const query = gql`
+query MyQuery {
+  categories {
+    items {
+      id
+      name
+      children {
+        name
+      }
+    }
+  }
+}
+`
 
     const {
-        getItems
-    } = useDirectusItems()
-
-    const departments = await getItems({
-        collection: "departments"
-    });   
+        data
+    } = useAsyncQuery(query);
 </script>

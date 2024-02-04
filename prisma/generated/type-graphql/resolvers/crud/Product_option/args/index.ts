@@ -1,0 +1,14 @@
+export { AggregateProduct_optionArgs } from "./AggregateProduct_optionArgs";
+export { CreateManyProduct_optionArgs } from "./CreateManyProduct_optionArgs";
+export { CreateOneProduct_optionArgs } from "./CreateOneProduct_optionArgs";
+export { DeleteManyProduct_optionArgs } from "./DeleteManyProduct_optionArgs";
+export { DeleteOneProduct_optionArgs } from "./DeleteOneProduct_optionArgs";
+export { FindFirstProduct_optionArgs } from "./FindFirstProduct_optionArgs";
+export { FindFirstProduct_optionOrThrowArgs } from "./FindFirstProduct_optionOrThrowArgs";
+export { FindManyProduct_optionArgs } from "./FindManyProduct_optionArgs";
+export { FindUniqueProduct_optionArgs } from "./FindUniqueProduct_optionArgs";
+export { FindUniqueProduct_optionOrThrowArgs } from "./FindUniqueProduct_optionOrThrowArgs";
+export { GroupByProduct_optionArgs } from "./GroupByProduct_optionArgs";
+export { UpdateManyProduct_optionArgs } from "./UpdateManyProduct_optionArgs";
+export { UpdateOneProduct_optionArgs } from "./UpdateOneProduct_optionArgs";
+export { UpsertOneProduct_optionArgs } from "./UpsertOneProduct_optionArgs";

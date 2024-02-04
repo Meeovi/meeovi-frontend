@@ -48,27 +48,10 @@
             </v-list-item>
 
             <v-list nav>
-              <h5 class="menuh5">Trending</h5>
-              <v-list-item title="Explore" prepend-icon="fas fa-cart-plus" href="/explore"></v-list-item>
-              <v-list-item title="Deals" prepend-icon="fas fa-money-bill" href="/deals"></v-list-item>
-              <v-list-item title="Exclusives" prepend-icon="fas fa-key" href="/departments/exclusives"></v-list-item>
+              <topmenu />
               <v-divider></v-divider>
 
-              <h5 class="menuh5">Social</h5>
-              <v-row>
-                <v-col cols="4">
-                  <v-btn variant="text" stacked title="Social Feed" prepend-icon="fas fa-feed" size="x-small"
-                    href="/social/newsfeed">Feed</v-btn>
-                </v-col>
-                <v-col cols="4">
-                  <v-btn variant="text" stacked title="Spaces" prepend-icon="fas fa-people-group" size="x-small"
-                    href="/social/spaces">Spaces</v-btn>
-                </v-col>
-                <v-col cols="4">
-                  <v-btn variant="text" stacked title="Meeovi Live" prepend-icon="fas fa-video" size="x-small"
-                    href="/departments/live">Live</v-btn>
-                </v-col>
-              </v-row>
+              <socialmenu />
 
               <departmentsmenu />
               <v-divider></v-divider>
@@ -123,6 +106,8 @@
   import ecosystemmenu from '../components/Menus/ecosystemmenu.vue'
   import live from '../components/Menus/Livebar/live.vue'
   import livebubbles from '../components/Menus/Livebar/livebubbles.vue'
+  import topmenu from '../components/Menus/Sidebar/topmenu.vue'
+  import socialmenu from '../components/Menus/Sidebar/socialmenu.vue'
   import departmentsmenu from '../components/Menus/Sidebar/departmentsmenu.vue'
   import meeovistoresmenu from '../components/Menus/Sidebar/meeovistoresmenu.vue'
   import myaccountmenu from '../components/Menus/Sidebar/myaccountmenu.vue'
@@ -138,6 +123,8 @@
           ecosystemmenu,
           live,
           livebubbles,
+          topmenu,
+          socialmenu,
           departmentsmenu,
           meeovistoresmenu,
           myaccountmenu,

@@ -1,0 +1,14 @@
+export { AggregateLanding_page_sales_channelArgs } from "./AggregateLanding_page_sales_channelArgs";
+export { CreateManyLanding_page_sales_channelArgs } from "./CreateManyLanding_page_sales_channelArgs";
+export { CreateOneLanding_page_sales_channelArgs } from "./CreateOneLanding_page_sales_channelArgs";
+export { DeleteManyLanding_page_sales_channelArgs } from "./DeleteManyLanding_page_sales_channelArgs";
+export { DeleteOneLanding_page_sales_channelArgs } from "./DeleteOneLanding_page_sales_channelArgs";
+export { FindFirstLanding_page_sales_channelArgs } from "./FindFirstLanding_page_sales_channelArgs";
+export { FindFirstLanding_page_sales_channelOrThrowArgs } from "./FindFirstLanding_page_sales_channelOrThrowArgs";
+export { FindManyLanding_page_sales_channelArgs } from "./FindManyLanding_page_sales_channelArgs";
+export { FindUniqueLanding_page_sales_channelArgs } from "./FindUniqueLanding_page_sales_channelArgs";
+export { FindUniqueLanding_page_sales_channelOrThrowArgs } from "./FindUniqueLanding_page_sales_channelOrThrowArgs";
+export { GroupByLanding_page_sales_channelArgs } from "./GroupByLanding_page_sales_channelArgs";
+export { UpdateManyLanding_page_sales_channelArgs } from "./UpdateManyLanding_page_sales_channelArgs";
+export { UpdateOneLanding_page_sales_channelArgs } from "./UpdateOneLanding_page_sales_channelArgs";
+export { UpsertOneLanding_page_sales_channelArgs } from "./UpsertOneLanding_page_sales_channelArgs";

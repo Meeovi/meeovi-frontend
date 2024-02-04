@@ -1,0 +1,14 @@
+export { AggregatePayment_method_translationArgs } from "./AggregatePayment_method_translationArgs";
+export { CreateManyPayment_method_translationArgs } from "./CreateManyPayment_method_translationArgs";
+export { CreateOnePayment_method_translationArgs } from "./CreateOnePayment_method_translationArgs";
+export { DeleteManyPayment_method_translationArgs } from "./DeleteManyPayment_method_translationArgs";
+export { DeleteOnePayment_method_translationArgs } from "./DeleteOnePayment_method_translationArgs";
+export { FindFirstPayment_method_translationArgs } from "./FindFirstPayment_method_translationArgs";
+export { FindFirstPayment_method_translationOrThrowArgs } from "./FindFirstPayment_method_translationOrThrowArgs";
+export { FindManyPayment_method_translationArgs } from "./FindManyPayment_method_translationArgs";
+export { FindUniquePayment_method_translationArgs } from "./FindUniquePayment_method_translationArgs";
+export { FindUniquePayment_method_translationOrThrowArgs } from "./FindUniquePayment_method_translationOrThrowArgs";
+export { GroupByPayment_method_translationArgs } from "./GroupByPayment_method_translationArgs";
+export { UpdateManyPayment_method_translationArgs } from "./UpdateManyPayment_method_translationArgs";
+export { UpdateOnePayment_method_translationArgs } from "./UpdateOnePayment_method_translationArgs";
+export { UpsertOnePayment_method_translationArgs } from "./UpsertOnePayment_method_translationArgs";

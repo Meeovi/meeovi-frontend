@@ -1,0 +1,31 @@
+import * as TypeGraphQL from "type-graphql";
+import * as GraphQLScalars from "graphql-scalars";
+import { Prisma } from "@prisma/client";
+import { DecimalJSScalar } from "../../scalars";
+import { Order_transaction_capture_refundCreateManyOrder_transaction_captureInputEnvelope } from "../inputs/Order_transaction_capture_refundCreateManyOrder_transaction_captureInputEnvelope";
+import { Order_transaction_capture_refundCreateOrConnectWithoutOrder_transaction_captureInput } from "../inputs/Order_transaction_capture_refundCreateOrConnectWithoutOrder_transaction_captureInput";
+import { Order_transaction_capture_refundCreateWithoutOrder_transaction_captureInput } from "../inputs/Order_transaction_capture_refundCreateWithoutOrder_transaction_captureInput";
+import { Order_transaction_capture_refundWhereUniqueInput } from "../inputs/Order_transaction_capture_refundWhereUniqueInput";
+
+@TypeGraphQL.InputType("Order_transaction_capture_refundCreateNestedManyWithoutOrder_transaction_captureInput", {})
+export class Order_transaction_capture_refundCreateNestedManyWithoutOrder_transaction_captureInput {
+  @TypeGraphQL.Field(_type => [Order_transaction_capture_refundCreateWithoutOrder_transaction_captureInput], {
+    nullable: true
+  })
+  create?: Order_transaction_capture_refundCreateWithoutOrder_transaction_captureInput[] | undefined;
+
+  @TypeGraphQL.Field(_type => [Order_transaction_capture_refundCreateOrConnectWithoutOrder_transaction_captureInput], {
+    nullable: true
+  })
+  connectOrCreate?: Order_transaction_capture_refundCreateOrConnectWithoutOrder_transaction_captureInput[] | undefined;
+
+  @TypeGraphQL.Field(_type => Order_transaction_capture_refundCreateManyOrder_transaction_captureInputEnvelope, {
+    nullable: true
+  })
+  createMany?: Order_transaction_capture_refundCreateManyOrder_transaction_captureInputEnvelope | undefined;
+
+  @TypeGraphQL.Field(_type => [Order_transaction_capture_refundWhereUniqueInput], {
+    nullable: true
+  })
+  connect?: Order_transaction_capture_refundWhereUniqueInput[] | undefined;
+}

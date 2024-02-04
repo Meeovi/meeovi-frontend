@@ -1,0 +1,14 @@
+export { AggregateSales_channel_api_contextArgs } from "./AggregateSales_channel_api_contextArgs";
+export { CreateManySales_channel_api_contextArgs } from "./CreateManySales_channel_api_contextArgs";
+export { CreateOneSales_channel_api_contextArgs } from "./CreateOneSales_channel_api_contextArgs";
+export { DeleteManySales_channel_api_contextArgs } from "./DeleteManySales_channel_api_contextArgs";
+export { DeleteOneSales_channel_api_contextArgs } from "./DeleteOneSales_channel_api_contextArgs";
+export { FindFirstSales_channel_api_contextArgs } from "./FindFirstSales_channel_api_contextArgs";
+export { FindFirstSales_channel_api_contextOrThrowArgs } from "./FindFirstSales_channel_api_contextOrThrowArgs";
+export { FindManySales_channel_api_contextArgs } from "./FindManySales_channel_api_contextArgs";
+export { FindUniqueSales_channel_api_contextArgs } from "./FindUniqueSales_channel_api_contextArgs";
+export { FindUniqueSales_channel_api_contextOrThrowArgs } from "./FindUniqueSales_channel_api_contextOrThrowArgs";
+export { GroupBySales_channel_api_contextArgs } from "./GroupBySales_channel_api_contextArgs";
+export { UpdateManySales_channel_api_contextArgs } from "./UpdateManySales_channel_api_contextArgs";
+export { UpdateOneSales_channel_api_contextArgs } from "./UpdateOneSales_channel_api_contextArgs";
+export { UpsertOneSales_channel_api_contextArgs } from "./UpsertOneSales_channel_api_contextArgs";

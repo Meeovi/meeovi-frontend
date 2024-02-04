@@ -27,18 +27,5 @@
 </script>
 
 <script setup>
-  /*import query from '../../apollo/Custom/Queries/bestsellers'
 
-  const {
-    data
-  } = await useAsyncQuery(query)*/
-
-  const {
-    getItems
-  } = useDirectusItems()
-
-  const products = await getItems({
-    collection: "products",
-    limit: 6
-  });
 </script>

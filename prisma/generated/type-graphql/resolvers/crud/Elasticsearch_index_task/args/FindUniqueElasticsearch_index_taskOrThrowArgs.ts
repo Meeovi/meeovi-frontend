@@ -1,0 +1,11 @@
+import * as TypeGraphQL from "type-graphql";
+import * as GraphQLScalars from "graphql-scalars";
+import { Elasticsearch_index_taskWhereUniqueInput } from "../../../inputs/Elasticsearch_index_taskWhereUniqueInput";
+
+@TypeGraphQL.ArgsType()
+export class FindUniqueElasticsearch_index_taskOrThrowArgs {
+  @TypeGraphQL.Field(_type => Elasticsearch_index_taskWhereUniqueInput, {
+    nullable: false
+  })
+  where!: Elasticsearch_index_taskWhereUniqueInput;
+}

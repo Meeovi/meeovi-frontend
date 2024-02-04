@@ -1,0 +1,14 @@
+export { AggregateMail_template_mediaArgs } from "./AggregateMail_template_mediaArgs";
+export { CreateManyMail_template_mediaArgs } from "./CreateManyMail_template_mediaArgs";
+export { CreateOneMail_template_mediaArgs } from "./CreateOneMail_template_mediaArgs";
+export { DeleteManyMail_template_mediaArgs } from "./DeleteManyMail_template_mediaArgs";
+export { DeleteOneMail_template_mediaArgs } from "./DeleteOneMail_template_mediaArgs";
+export { FindFirstMail_template_mediaArgs } from "./FindFirstMail_template_mediaArgs";
+export { FindFirstMail_template_mediaOrThrowArgs } from "./FindFirstMail_template_mediaOrThrowArgs";
+export { FindManyMail_template_mediaArgs } from "./FindManyMail_template_mediaArgs";
+export { FindUniqueMail_template_mediaArgs } from "./FindUniqueMail_template_mediaArgs";
+export { FindUniqueMail_template_mediaOrThrowArgs } from "./FindUniqueMail_template_mediaOrThrowArgs";
+export { GroupByMail_template_mediaArgs } from "./GroupByMail_template_mediaArgs";
+export { UpdateManyMail_template_mediaArgs } from "./UpdateManyMail_template_mediaArgs";
+export { UpdateOneMail_template_mediaArgs } from "./UpdateOneMail_template_mediaArgs";
+export { UpsertOneMail_template_mediaArgs } from "./UpsertOneMail_template_mediaArgs";

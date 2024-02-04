@@ -1,0 +1,14 @@
+export { AggregateOrder_addressArgs } from "./AggregateOrder_addressArgs";
+export { CreateManyOrder_addressArgs } from "./CreateManyOrder_addressArgs";
+export { CreateOneOrder_addressArgs } from "./CreateOneOrder_addressArgs";
+export { DeleteManyOrder_addressArgs } from "./DeleteManyOrder_addressArgs";
+export { DeleteOneOrder_addressArgs } from "./DeleteOneOrder_addressArgs";
+export { FindFirstOrder_addressArgs } from "./FindFirstOrder_addressArgs";
+export { FindFirstOrder_addressOrThrowArgs } from "./FindFirstOrder_addressOrThrowArgs";
+export { FindManyOrder_addressArgs } from "./FindManyOrder_addressArgs";
+export { FindUniqueOrder_addressArgs } from "./FindUniqueOrder_addressArgs";
+export { FindUniqueOrder_addressOrThrowArgs } from "./FindUniqueOrder_addressOrThrowArgs";
+export { GroupByOrder_addressArgs } from "./GroupByOrder_addressArgs";
+export { UpdateManyOrder_addressArgs } from "./UpdateManyOrder_addressArgs";
+export { UpdateOneOrder_addressArgs } from "./UpdateOneOrder_addressArgs";
+export { UpsertOneOrder_addressArgs } from "./UpsertOneOrder_addressArgs";

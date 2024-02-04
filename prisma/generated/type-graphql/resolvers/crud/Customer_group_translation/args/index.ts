@@ -1,0 +1,14 @@
+export { AggregateCustomer_group_translationArgs } from "./AggregateCustomer_group_translationArgs";
+export { CreateManyCustomer_group_translationArgs } from "./CreateManyCustomer_group_translationArgs";
+export { CreateOneCustomer_group_translationArgs } from "./CreateOneCustomer_group_translationArgs";
+export { DeleteManyCustomer_group_translationArgs } from "./DeleteManyCustomer_group_translationArgs";
+export { DeleteOneCustomer_group_translationArgs } from "./DeleteOneCustomer_group_translationArgs";
+export { FindFirstCustomer_group_translationArgs } from "./FindFirstCustomer_group_translationArgs";
+export { FindFirstCustomer_group_translationOrThrowArgs } from "./FindFirstCustomer_group_translationOrThrowArgs";
+export { FindManyCustomer_group_translationArgs } from "./FindManyCustomer_group_translationArgs";
+export { FindUniqueCustomer_group_translationArgs } from "./FindUniqueCustomer_group_translationArgs";
+export { FindUniqueCustomer_group_translationOrThrowArgs } from "./FindUniqueCustomer_group_translationOrThrowArgs";
+export { GroupByCustomer_group_translationArgs } from "./GroupByCustomer_group_translationArgs";
+export { UpdateManyCustomer_group_translationArgs } from "./UpdateManyCustomer_group_translationArgs";
+export { UpdateOneCustomer_group_translationArgs } from "./UpdateOneCustomer_group_translationArgs";
+export { UpsertOneCustomer_group_translationArgs } from "./UpsertOneCustomer_group_translationArgs";

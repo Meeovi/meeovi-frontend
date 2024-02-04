@@ -1,0 +1,14 @@
+export { AggregateTax_provider_translationArgs } from "./AggregateTax_provider_translationArgs";
+export { CreateManyTax_provider_translationArgs } from "./CreateManyTax_provider_translationArgs";
+export { CreateOneTax_provider_translationArgs } from "./CreateOneTax_provider_translationArgs";
+export { DeleteManyTax_provider_translationArgs } from "./DeleteManyTax_provider_translationArgs";
+export { DeleteOneTax_provider_translationArgs } from "./DeleteOneTax_provider_translationArgs";
+export { FindFirstTax_provider_translationArgs } from "./FindFirstTax_provider_translationArgs";
+export { FindFirstTax_provider_translationOrThrowArgs } from "./FindFirstTax_provider_translationOrThrowArgs";
+export { FindManyTax_provider_translationArgs } from "./FindManyTax_provider_translationArgs";
+export { FindUniqueTax_provider_translationArgs } from "./FindUniqueTax_provider_translationArgs";
+export { FindUniqueTax_provider_translationOrThrowArgs } from "./FindUniqueTax_provider_translationOrThrowArgs";
+export { GroupByTax_provider_translationArgs } from "./GroupByTax_provider_translationArgs";
+export { UpdateManyTax_provider_translationArgs } from "./UpdateManyTax_provider_translationArgs";
+export { UpdateOneTax_provider_translationArgs } from "./UpdateOneTax_provider_translationArgs";
+export { UpsertOneTax_provider_translationArgs } from "./UpsertOneTax_provider_translationArgs";

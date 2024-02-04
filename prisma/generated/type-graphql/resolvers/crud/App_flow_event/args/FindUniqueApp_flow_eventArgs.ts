@@ -1,0 +1,11 @@
+import * as TypeGraphQL from "type-graphql";
+import * as GraphQLScalars from "graphql-scalars";
+import { App_flow_eventWhereUniqueInput } from "../../../inputs/App_flow_eventWhereUniqueInput";
+
+@TypeGraphQL.ArgsType()
+export class FindUniqueApp_flow_eventArgs {
+  @TypeGraphQL.Field(_type => App_flow_eventWhereUniqueInput, {
+    nullable: false
+  })
+  where!: App_flow_eventWhereUniqueInput;
+}

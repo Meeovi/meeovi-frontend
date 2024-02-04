@@ -4,7 +4,6 @@
             <v-tab><a href="/Admin/User/profile">Profile</a></v-tab>
             <v-tab><a href="/Social/newsfeed">Feed</a></v-tab>
             <v-tab><a href="/Social/spaces">Spaces</a></v-tab>
-            <v-tab><a href="/Admin/User/followersfollowing">Followers / Following</a></v-tab>
             <v-tab><a href="/Admin/User/lists">Lists</a></v-tab>
             <v-tab><a href="/Commerce/orders">Orders</a></v-tab>
             <v-tab><a href="/Commerce/returns">Returns</a></v-tab>
@@ -14,6 +13,7 @@
             <v-tab><a href="/Admin/User/addresses">Addresses</a></v-tab>
             <v-tab><a href="/Admin/User/history">History</a></v-tab>
             <v-tab><a href="/Admin/User/my-uploads">My Uploads</a></v-tab>
+            <v-tab><a href="/Admin/User/recommendations">Recommendations</a></v-tab>
         </v-tabs>
     </v-card>
 </template>

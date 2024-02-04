@@ -1,0 +1,14 @@
+export { AggregateApp_action_button_translationArgs } from "./AggregateApp_action_button_translationArgs";
+export { CreateManyApp_action_button_translationArgs } from "./CreateManyApp_action_button_translationArgs";
+export { CreateOneApp_action_button_translationArgs } from "./CreateOneApp_action_button_translationArgs";
+export { DeleteManyApp_action_button_translationArgs } from "./DeleteManyApp_action_button_translationArgs";
+export { DeleteOneApp_action_button_translationArgs } from "./DeleteOneApp_action_button_translationArgs";
+export { FindFirstApp_action_button_translationArgs } from "./FindFirstApp_action_button_translationArgs";
+export { FindFirstApp_action_button_translationOrThrowArgs } from "./FindFirstApp_action_button_translationOrThrowArgs";
+export { FindManyApp_action_button_translationArgs } from "./FindManyApp_action_button_translationArgs";
+export { FindUniqueApp_action_button_translationArgs } from "./FindUniqueApp_action_button_translationArgs";
+export { FindUniqueApp_action_button_translationOrThrowArgs } from "./FindUniqueApp_action_button_translationOrThrowArgs";
+export { GroupByApp_action_button_translationArgs } from "./GroupByApp_action_button_translationArgs";
+export { UpdateManyApp_action_button_translationArgs } from "./UpdateManyApp_action_button_translationArgs";
+export { UpdateOneApp_action_button_translationArgs } from "./UpdateOneApp_action_button_translationArgs";
+export { UpsertOneApp_action_button_translationArgs } from "./UpsertOneApp_action_button_translationArgs";

@@ -1,79 +1,50 @@
 <template>
   <div>
-    <section data-bs-version="5.1" class="features12 cid-txNt5tuPrc" id="features12-4y" data-sortbtn="btn-primary">
-      <div class="container-fluid">
-        <h2 class="mbr-section-title align-left mbr-fonts-style display-2">
-          Latest Radio Stations</h2>
-        <div class="underline align-left pb-3">
-          <div class="line"></div>
-        </div>
+    <v-sheet class="mx-auto" elevation="8" max-width="800">
+      <h4>Related Stations</h4>
+      <v-slide-group v-model="model" class="pa-4" selected-class="bg-success" show-arrows>
+        <v-slide-group-item v-for="n in 15" :key="n" v-slot="{ isSelected, toggle, selectedClass }">
+          <v-card color="grey-lighten-1" :class="['ma-4', selectedClass]" height="200" width="100" @click="toggle">
+            <div class="d-flex fill-height align-center justify-center">
+              <v-card max-width="400" class="mx-auto">
+                <v-container>
+                  <v-row dense>
+                    <v-col cols="3">
+                      <v-card color="#1F7087" theme="dark">
+                        <div class="d-flex flex-no-wrap justify-space-between">
+                          <div>
+                            <v-card-title class="text-h5">
+                              Supermodel
+                            </v-card-title>
 
-        <div class="row justify-content-center align-items-start pt-5">
-          <div class="card px-3 py-4 col-12 col-md-6 col-lg-4">
-            <div class="card-wrapper flip-card">
-              <div class="card-img">
-                <img src="assets/images/01.jpg" alt="">
-                <div class="img-text mbr-text mbr-fonts-style align-center mbr-white display-7">
-                  Outerwear
-                </div>
-              </div>
-              <div class="card-box">
-                <p class="mbr-card-text mbr-fonts-style align-center display-7">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                </p>
-                <div class="mbr-section-btn align-center">
-                  <a href="#" class="btn btn-secondary display-4">
-                    VIEW ALL
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card px-3 py-4 col-12 col-md-6 col-lg-4">
-            <div class="card-wrapper flip-card">
-              <div class="card-img">
-                <img src="assets/images/02.jpg" alt="">
-                <div class="img-text mbr-text mbr-fonts-style align-center mbr-white display-7">
-                  Shirts
-                </div>
-              </div>
-              <div class="card-box">
-                <p class="mbr-card-text mbr-fonts-style align-center display-7">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                </p>
-                <div class="mbr-section-btn align-center">
-                  <a href="#" class="btn btn-secondary display-4">
-                    VIEW ALL
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+                            <v-card-subtitle>Foster the People</v-card-subtitle>
 
-          <div class="card px-3 py-4 col-12 col-md-6 col-lg-4">
-            <div class="card-wrapper flip-card">
-              <div class="card-img">
-                <img src="assets/images/03.jpg" alt="">
-                <div class="img-text mbr-text mbr-fonts-style align-center mbr-white display-7">
-                  Sweatshirts
-                </div>
-              </div>
-              <div class="card-box">
-                <p class="mbr-card-text mbr-fonts-style align-center display-7">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                </p>
-                <div class="mbr-section-btn align-center">
-                  <a href="#" class="btn btn-secondary display-4">
-                    VIEW ALL
-                  </a>
-                </div>
-              </div>
+                            <v-card-actions>
+                              <v-btn class="ms-2" variant="outlined" size="small">
+                                START RADIO
+                              </v-btn>
+                            </v-card-actions>
+                          </div>
+
+                          <v-avatar class="ma-3" size="125" rounded="0">
+                            <v-img src="https://cdn.vuetifyjs.com/images/cards/foster.jpg"></v-img>
+                          </v-avatar>
+                        </div>
+                      </v-card>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-card>
+              <v-scale-transition>
+                <v-icon v-if="isSelected" color="white" size="48" icon="mdi-close-circle-outline"></v-icon>
+              </v-scale-transition>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
+          </v-card>
+        </v-slide-group-item>
+      </v-slide-group>
+    </v-sheet>
   </div>
+
 </template>
 
 <script>
@@ -91,18 +62,5 @@
 </script>
 
 <script setup>
-  /*import query from '../../apollo/Custom/Queries/bestsellers'
 
-  const {
-    data
-  } = await useAsyncQuery(query)*/
-
-  const {
-    getItems
-  } = useDirectusItems()
-
-  const products = await getItems({
-    collection: "products",
-    limit: 6
-  });
 </script>

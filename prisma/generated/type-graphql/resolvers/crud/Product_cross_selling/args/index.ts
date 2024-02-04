@@ -1,0 +1,14 @@
+export { AggregateProduct_cross_sellingArgs } from "./AggregateProduct_cross_sellingArgs";
+export { CreateManyProduct_cross_sellingArgs } from "./CreateManyProduct_cross_sellingArgs";
+export { CreateOneProduct_cross_sellingArgs } from "./CreateOneProduct_cross_sellingArgs";
+export { DeleteManyProduct_cross_sellingArgs } from "./DeleteManyProduct_cross_sellingArgs";
+export { DeleteOneProduct_cross_sellingArgs } from "./DeleteOneProduct_cross_sellingArgs";
+export { FindFirstProduct_cross_sellingArgs } from "./FindFirstProduct_cross_sellingArgs";
+export { FindFirstProduct_cross_sellingOrThrowArgs } from "./FindFirstProduct_cross_sellingOrThrowArgs";
+export { FindManyProduct_cross_sellingArgs } from "./FindManyProduct_cross_sellingArgs";
+export { FindUniqueProduct_cross_sellingArgs } from "./FindUniqueProduct_cross_sellingArgs";
+export { FindUniqueProduct_cross_sellingOrThrowArgs } from "./FindUniqueProduct_cross_sellingOrThrowArgs";
+export { GroupByProduct_cross_sellingArgs } from "./GroupByProduct_cross_sellingArgs";
+export { UpdateManyProduct_cross_sellingArgs } from "./UpdateManyProduct_cross_sellingArgs";
+export { UpdateOneProduct_cross_sellingArgs } from "./UpdateOneProduct_cross_sellingArgs";
+export { UpsertOneProduct_cross_sellingArgs } from "./UpsertOneProduct_cross_sellingArgs";

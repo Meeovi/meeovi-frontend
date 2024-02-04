@@ -1,0 +1,14 @@
+export { AggregateSnippet_setArgs } from "./AggregateSnippet_setArgs";
+export { CreateManySnippet_setArgs } from "./CreateManySnippet_setArgs";
+export { CreateOneSnippet_setArgs } from "./CreateOneSnippet_setArgs";
+export { DeleteManySnippet_setArgs } from "./DeleteManySnippet_setArgs";
+export { DeleteOneSnippet_setArgs } from "./DeleteOneSnippet_setArgs";
+export { FindFirstSnippet_setArgs } from "./FindFirstSnippet_setArgs";
+export { FindFirstSnippet_setOrThrowArgs } from "./FindFirstSnippet_setOrThrowArgs";
+export { FindManySnippet_setArgs } from "./FindManySnippet_setArgs";
+export { FindUniqueSnippet_setArgs } from "./FindUniqueSnippet_setArgs";
+export { FindUniqueSnippet_setOrThrowArgs } from "./FindUniqueSnippet_setOrThrowArgs";
+export { GroupBySnippet_setArgs } from "./GroupBySnippet_setArgs";
+export { UpdateManySnippet_setArgs } from "./UpdateManySnippet_setArgs";
+export { UpdateOneSnippet_setArgs } from "./UpdateOneSnippet_setArgs";
+export { UpsertOneSnippet_setArgs } from "./UpsertOneSnippet_setArgs";

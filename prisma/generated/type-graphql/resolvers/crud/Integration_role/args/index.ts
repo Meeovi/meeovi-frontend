@@ -1,0 +1,14 @@
+export { AggregateIntegration_roleArgs } from "./AggregateIntegration_roleArgs";
+export { CreateManyIntegration_roleArgs } from "./CreateManyIntegration_roleArgs";
+export { CreateOneIntegration_roleArgs } from "./CreateOneIntegration_roleArgs";
+export { DeleteManyIntegration_roleArgs } from "./DeleteManyIntegration_roleArgs";
+export { DeleteOneIntegration_roleArgs } from "./DeleteOneIntegration_roleArgs";
+export { FindFirstIntegration_roleArgs } from "./FindFirstIntegration_roleArgs";
+export { FindFirstIntegration_roleOrThrowArgs } from "./FindFirstIntegration_roleOrThrowArgs";
+export { FindManyIntegration_roleArgs } from "./FindManyIntegration_roleArgs";
+export { FindUniqueIntegration_roleArgs } from "./FindUniqueIntegration_roleArgs";
+export { FindUniqueIntegration_roleOrThrowArgs } from "./FindUniqueIntegration_roleOrThrowArgs";
+export { GroupByIntegration_roleArgs } from "./GroupByIntegration_roleArgs";
+export { UpdateManyIntegration_roleArgs } from "./UpdateManyIntegration_roleArgs";
+export { UpdateOneIntegration_roleArgs } from "./UpdateOneIntegration_roleArgs";
+export { UpsertOneIntegration_roleArgs } from "./UpsertOneIntegration_roleArgs";

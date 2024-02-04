@@ -1,0 +1,14 @@
+export { AggregateKlarna_order_extensionArgs } from "./AggregateKlarna_order_extensionArgs";
+export { CreateManyKlarna_order_extensionArgs } from "./CreateManyKlarna_order_extensionArgs";
+export { CreateOneKlarna_order_extensionArgs } from "./CreateOneKlarna_order_extensionArgs";
+export { DeleteManyKlarna_order_extensionArgs } from "./DeleteManyKlarna_order_extensionArgs";
+export { DeleteOneKlarna_order_extensionArgs } from "./DeleteOneKlarna_order_extensionArgs";
+export { FindFirstKlarna_order_extensionArgs } from "./FindFirstKlarna_order_extensionArgs";
+export { FindFirstKlarna_order_extensionOrThrowArgs } from "./FindFirstKlarna_order_extensionOrThrowArgs";
+export { FindManyKlarna_order_extensionArgs } from "./FindManyKlarna_order_extensionArgs";
+export { FindUniqueKlarna_order_extensionArgs } from "./FindUniqueKlarna_order_extensionArgs";
+export { FindUniqueKlarna_order_extensionOrThrowArgs } from "./FindUniqueKlarna_order_extensionOrThrowArgs";
+export { GroupByKlarna_order_extensionArgs } from "./GroupByKlarna_order_extensionArgs";
+export { UpdateManyKlarna_order_extensionArgs } from "./UpdateManyKlarna_order_extensionArgs";
+export { UpdateOneKlarna_order_extensionArgs } from "./UpdateOneKlarna_order_extensionArgs";
+export { UpsertOneKlarna_order_extensionArgs } from "./UpsertOneKlarna_order_extensionArgs";

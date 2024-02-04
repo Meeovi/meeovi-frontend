@@ -1,0 +1,14 @@
+export { AggregateApp_translationArgs } from "./AggregateApp_translationArgs";
+export { CreateManyApp_translationArgs } from "./CreateManyApp_translationArgs";
+export { CreateOneApp_translationArgs } from "./CreateOneApp_translationArgs";
+export { DeleteManyApp_translationArgs } from "./DeleteManyApp_translationArgs";
+export { DeleteOneApp_translationArgs } from "./DeleteOneApp_translationArgs";
+export { FindFirstApp_translationArgs } from "./FindFirstApp_translationArgs";
+export { FindFirstApp_translationOrThrowArgs } from "./FindFirstApp_translationOrThrowArgs";
+export { FindManyApp_translationArgs } from "./FindManyApp_translationArgs";
+export { FindUniqueApp_translationArgs } from "./FindUniqueApp_translationArgs";
+export { FindUniqueApp_translationOrThrowArgs } from "./FindUniqueApp_translationOrThrowArgs";
+export { GroupByApp_translationArgs } from "./GroupByApp_translationArgs";
+export { UpdateManyApp_translationArgs } from "./UpdateManyApp_translationArgs";
+export { UpdateOneApp_translationArgs } from "./UpdateOneApp_translationArgs";
+export { UpsertOneApp_translationArgs } from "./UpsertOneApp_translationArgs";

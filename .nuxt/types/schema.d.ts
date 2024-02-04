@@ -3,17 +3,13 @@ declare module 'nuxt/schema' {
   interface NuxtConfig {
     ["mdc"]?: typeof import("@nuxtjs/mdc").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
     ["content"]?: typeof import("@nuxt/content").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
-    ["meilisearch"]?: typeof import("nuxt-meilisearch").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
     ["directus"]?: typeof import("nuxt-directus").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
     ["apollo"]?: typeof import("@nuxtjs/apollo").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
     ["gtag"]?: typeof import("nuxt-gtag").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
-    ["dayjs"]?: typeof import("dayjs-nuxt").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
     ["tailwindcss"]?: typeof import("@nuxtjs/tailwindcss").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
-    ["i18n"]?: typeof import("@nuxtjs/i18n").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
-    ["shopware-cms"]?: typeof import("@shopware-pwa/cms-base").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
     ["devtools"]?: typeof import("C:/Users/Basti/AppData/Roaming/npm/node_modules/@nuxt/devtools/module").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
     ["telemetry"]?: typeof import("@nuxt/telemetry").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
-    modules?: (undefined | null | false | NuxtModule | string | [NuxtModule | string, Record<string, any>] | ["@nuxtjs/mdc", Exclude<NuxtConfig["mdc"], boolean>] | ["@nuxt/content", Exclude<NuxtConfig["content"], boolean>] | ["nuxt-meilisearch", Exclude<NuxtConfig["meilisearch"], boolean>] | ["nuxt-directus", Exclude<NuxtConfig["directus"], boolean>] | ["@nuxtjs/apollo", Exclude<NuxtConfig["apollo"], boolean>] | ["nuxt-gtag", Exclude<NuxtConfig["gtag"], boolean>] | ["dayjs-nuxt", Exclude<NuxtConfig["dayjs"], boolean>] | ["@nuxtjs/tailwindcss", Exclude<NuxtConfig["tailwindcss"], boolean>] | ["@nuxtjs/i18n", Exclude<NuxtConfig["i18n"], boolean>] | ["@shopware-pwa/cms-base", Exclude<NuxtConfig["shopware-cms"], boolean>] | ["C:/Users/Basti/AppData/Roaming/npm/node_modules/@nuxt/devtools/module", Exclude<NuxtConfig["devtools"], boolean>] | ["@nuxt/telemetry", Exclude<NuxtConfig["telemetry"], boolean>])[],
+    modules?: (undefined | null | false | NuxtModule | string | [NuxtModule | string, Record<string, any>] | ["@nuxtjs/mdc", Exclude<NuxtConfig["mdc"], boolean>] | ["@nuxt/content", Exclude<NuxtConfig["content"], boolean>] | ["nuxt-directus", Exclude<NuxtConfig["directus"], boolean>] | ["@nuxtjs/apollo", Exclude<NuxtConfig["apollo"], boolean>] | ["nuxt-gtag", Exclude<NuxtConfig["gtag"], boolean>] | ["@nuxtjs/tailwindcss", Exclude<NuxtConfig["tailwindcss"], boolean>] | ["C:/Users/Basti/AppData/Roaming/npm/node_modules/@nuxt/devtools/module", Exclude<NuxtConfig["devtools"], boolean>] | ["@nuxt/telemetry", Exclude<NuxtConfig["telemetry"], boolean>])[],
   }
   interface RuntimeConfig {
    app: {
@@ -23,6 +19,10 @@ declare module 'nuxt/schema' {
 
       cdnURL: string,
    },
+
+   websiteURL: string,
+
+   websiteToken: string,
 
    mdc: {
       highlight: any,
@@ -155,40 +155,8 @@ declare module 'nuxt/schema' {
          search: any,
       },
    },
-
-   serverMeilisearchClient: {
-      hostUrl: string,
-
-      searchApiKey: string,
-
-      serverSideUsage: boolean,
-
-      adminApiKey: string,
-
-      instantSearch: {
-         theme: string,
-      },
-
-      clientOptions: {
-         placeholderSearch: boolean,
-
-         paginationTotalHits: number,
-
-         finitePagination: boolean,
-
-         primaryKey: any,
-
-         keepZeroFacets: boolean,
-      },
-   },
   }
   interface PublicRuntimeConfig {
-   shopware: {
-      shopwareEndpoint: string,
-
-      shopwareAccessToken: string,
-   },
-
    mdc: {
       components: {
          prose: boolean,
@@ -357,30 +325,6 @@ declare module 'nuxt/schema' {
       },
    },
 
-   meilisearchClient: {
-      hostUrl: string,
-
-      searchApiKey: string,
-
-      serverSideUsage: boolean,
-
-      instantSearch: {
-         theme: string,
-      },
-
-      clientOptions: {
-         placeholderSearch: boolean,
-
-         paginationTotalHits: number,
-
-         finitePagination: boolean,
-
-         primaryKey: any,
-
-         keepZeroFacets: boolean,
-      },
-   },
-
    directus: {
       url: string,
 
@@ -415,14 +359,6 @@ declare module 'nuxt/schema' {
       initialConsent: boolean,
 
       loadingStrategy: string,
-   },
-
-   i18n: {
-      experimental: {
-         jsTsFormatResource: boolean,
-      },
-
-      baseUrl: string,
    },
   }
 }

@@ -1,0 +1,14 @@
+export { AggregateWebhook_event_logArgs } from "./AggregateWebhook_event_logArgs";
+export { CreateManyWebhook_event_logArgs } from "./CreateManyWebhook_event_logArgs";
+export { CreateOneWebhook_event_logArgs } from "./CreateOneWebhook_event_logArgs";
+export { DeleteManyWebhook_event_logArgs } from "./DeleteManyWebhook_event_logArgs";
+export { DeleteOneWebhook_event_logArgs } from "./DeleteOneWebhook_event_logArgs";
+export { FindFirstWebhook_event_logArgs } from "./FindFirstWebhook_event_logArgs";
+export { FindFirstWebhook_event_logOrThrowArgs } from "./FindFirstWebhook_event_logOrThrowArgs";
+export { FindManyWebhook_event_logArgs } from "./FindManyWebhook_event_logArgs";
+export { FindUniqueWebhook_event_logArgs } from "./FindUniqueWebhook_event_logArgs";
+export { FindUniqueWebhook_event_logOrThrowArgs } from "./FindUniqueWebhook_event_logOrThrowArgs";
+export { GroupByWebhook_event_logArgs } from "./GroupByWebhook_event_logArgs";
+export { UpdateManyWebhook_event_logArgs } from "./UpdateManyWebhook_event_logArgs";
+export { UpdateOneWebhook_event_logArgs } from "./UpdateOneWebhook_event_logArgs";
+export { UpsertOneWebhook_event_logArgs } from "./UpsertOneWebhook_event_logArgs";

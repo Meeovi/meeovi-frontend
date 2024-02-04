@@ -1,0 +1,14 @@
+export { AggregateImport_export_profile_translationArgs } from "./AggregateImport_export_profile_translationArgs";
+export { CreateManyImport_export_profile_translationArgs } from "./CreateManyImport_export_profile_translationArgs";
+export { CreateOneImport_export_profile_translationArgs } from "./CreateOneImport_export_profile_translationArgs";
+export { DeleteManyImport_export_profile_translationArgs } from "./DeleteManyImport_export_profile_translationArgs";
+export { DeleteOneImport_export_profile_translationArgs } from "./DeleteOneImport_export_profile_translationArgs";
+export { FindFirstImport_export_profile_translationArgs } from "./FindFirstImport_export_profile_translationArgs";
+export { FindFirstImport_export_profile_translationOrThrowArgs } from "./FindFirstImport_export_profile_translationOrThrowArgs";
+export { FindManyImport_export_profile_translationArgs } from "./FindManyImport_export_profile_translationArgs";
+export { FindUniqueImport_export_profile_translationArgs } from "./FindUniqueImport_export_profile_translationArgs";
+export { FindUniqueImport_export_profile_translationOrThrowArgs } from "./FindUniqueImport_export_profile_translationOrThrowArgs";
+export { GroupByImport_export_profile_translationArgs } from "./GroupByImport_export_profile_translationArgs";
+export { UpdateManyImport_export_profile_translationArgs } from "./UpdateManyImport_export_profile_translationArgs";
+export { UpdateOneImport_export_profile_translationArgs } from "./UpdateOneImport_export_profile_translationArgs";
+export { UpsertOneImport_export_profile_translationArgs } from "./UpsertOneImport_export_profile_translationArgs";

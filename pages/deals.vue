@@ -1,91 +1,79 @@
 <template>
-    <div class="contentPage">
-        <section v-for="departments in departments" :key="departments" data-bs-version="5.1"
-            class="header3 cid-sqn8aWIxpX" id="header3-15"
-            :style="`background-image: url(${url}assets/${departments.image.filename_disk});`">
-            <div class="mbr-overlay" style="opacity: 0.3; background-color: rgb(187, 187, 187);"></div>
-            <div class="align-center container">
-                <div class="row justify-content-center">
-                    <div class="col-12 col-lg-6">
-                        <h1 class="mbr-section-title mbr-fonts-style mb-3 display-1">
-                            <strong>{{ departments.name }}</strong>
-                        </h1>
-                        <p class="mbr-text mbr-fonts-style display-7" style="background-color: transparent;"
-                            v-html="departments.content">
-                        </p>
+    <div>
+        <div class="contentPage" v-for="cmspage in data" :key="cmspage">
+            <div v-html="cmspage.content"></div>
+            <section data-bs-version="5.1" class="features3 cid-u2ZnbOWSjB" id="features3-7e" data-sortbtn="btn-primary">
+                <div class="container">
+                    <div class="row mt-4">
+                        <div class="item features-image сol-12 col-md-6 col-lg-4" v-for="(products, index) in data.products.items" :key="index">
+                            <div class="item-wrapper">
+                                <div class="item-img">
+                                    <img :src="products.image.url" :alt="products.name">
+                                </div>
+                                <div class="item-content">
+                                    <h5 class="item-title mbr-fonts-style display-7"><strong>{{ products.name }}</strong></h5>
+                                    <h6 class="item-subtitle mbr-fonts-style mt-1 display-7">
+                                        <em>Category: {{ products.categories.name }}</em>
+                                    </h6>
+                                    <p class="mbr-text mbr-fonts-style mt-3 display-7"><v-rating hover :length="5" :size="32" :model-value="3" active-color="primary" />({{ products.rating_summary }})</p>
+                                    <p class="mbr-text mbr-fonts-style mt-3 display-7">{{ products.price_range.maximum_price.regular_price.currency }} {{ products.price_range.maximum_price.regular_price.value }}</p>
+                                </div>
+                                <div class="mbr-section-btn item-footer mt-2">
+                                    <a href="" class="btn btn-primary item-btn display-7">Add to Cart</a>
+                                    <a href="" class="btn btn-primary item-btn display-7">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
-        <v-row>
-            <v-col v-for="products in products" :key="products.id" cols="2">
-                <a :href="`/product/${products.id}`">
-                    <v-card class="ma-4" height="580" width="250" @click="toggle">
-                        <img class="align-end text-white" height="280"
-                            :src="`${url}assets/${products.image.directus_files_id}`" cover />
-
-                        <v-card-title class="pt-4">
-                            {{ products.name }}
-                        </v-card-title>
-
-                        <v-card-text>
-                            <div>Tags: {{ products.tags }}</div>
-                            <div>Category: {{ products.categories }}</div>
-                        </v-card-text>
-
-                        <v-card-actions>
-                            <v-card-title>$ {{ products.price }}</v-card-title>
-                        </v-card-actions>
-                    </v-card>
-                </a>
-            </v-col>
-        </v-row>
+            </section>
+        </div>
         <!---->
     </div>
 </template>
 
 <script>
     export default {
-        data: () => ({
-            url: process.env.DIRECTUS_URL,
-        }),
+
     }
 </script>
 
 <script setup>
-    const {
-        getItems
-    } = useDirectusItems()
+    useHead({
+        title: 'Deals',
+    })
 
-    const departments = await getItems({
-        collection: "departments",
-        params: {
-            filter: {
-                name: {
-                    _eq: "Deals"
-                }
-            }
+    const query = gql `
+    query {
+    cmsPage(identifier: "deals") {
+        title
+        content
+        relative_url
+    }
+    products(filter: {price: {to: "20"}}){
+    items {
+      uid
+      name
+      categories {
+        name
+      }
+      price_range {
+        maximum_price {
+          regular_price {
+            currency
+            value
+          }
         }
-    });
-    const products = await getItems({
-        collection: "products",
-        params: {
-            limit: 50,
-            filter: {
-                price: {
-                    _lte: 20
-                }
-            }
-        },
-    });
-
-    /*import query from '../apollo/Custom/Queries/deals'
+      }
+      image {
+        url
+      }
+      rating_summary
+    }
+  }
+}`
 
     const {
         data
-    } = await useAsyncQuery(query) */
-
-    useHead({
-        title: 'Deals'
-    })
+    } = useAsyncQuery(query);
 </script>

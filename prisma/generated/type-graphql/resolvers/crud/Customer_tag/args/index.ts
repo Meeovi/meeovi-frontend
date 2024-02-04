@@ -1,0 +1,14 @@
+export { AggregateCustomer_tagArgs } from "./AggregateCustomer_tagArgs";
+export { CreateManyCustomer_tagArgs } from "./CreateManyCustomer_tagArgs";
+export { CreateOneCustomer_tagArgs } from "./CreateOneCustomer_tagArgs";
+export { DeleteManyCustomer_tagArgs } from "./DeleteManyCustomer_tagArgs";
+export { DeleteOneCustomer_tagArgs } from "./DeleteOneCustomer_tagArgs";
+export { FindFirstCustomer_tagArgs } from "./FindFirstCustomer_tagArgs";
+export { FindFirstCustomer_tagOrThrowArgs } from "./FindFirstCustomer_tagOrThrowArgs";
+export { FindManyCustomer_tagArgs } from "./FindManyCustomer_tagArgs";
+export { FindUniqueCustomer_tagArgs } from "./FindUniqueCustomer_tagArgs";
+export { FindUniqueCustomer_tagOrThrowArgs } from "./FindUniqueCustomer_tagOrThrowArgs";
+export { GroupByCustomer_tagArgs } from "./GroupByCustomer_tagArgs";
+export { UpdateManyCustomer_tagArgs } from "./UpdateManyCustomer_tagArgs";
+export { UpdateOneCustomer_tagArgs } from "./UpdateOneCustomer_tagArgs";
+export { UpsertOneCustomer_tagArgs } from "./UpsertOneCustomer_tagArgs";

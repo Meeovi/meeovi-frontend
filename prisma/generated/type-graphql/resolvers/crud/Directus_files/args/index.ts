@@ -1,0 +1,14 @@
+export { AggregateDirectus_filesArgs } from "./AggregateDirectus_filesArgs";
+export { CreateManyDirectus_filesArgs } from "./CreateManyDirectus_filesArgs";
+export { CreateOneDirectus_filesArgs } from "./CreateOneDirectus_filesArgs";
+export { DeleteManyDirectus_filesArgs } from "./DeleteManyDirectus_filesArgs";
+export { DeleteOneDirectus_filesArgs } from "./DeleteOneDirectus_filesArgs";
+export { FindFirstDirectus_filesArgs } from "./FindFirstDirectus_filesArgs";
+export { FindFirstDirectus_filesOrThrowArgs } from "./FindFirstDirectus_filesOrThrowArgs";
+export { FindManyDirectus_filesArgs } from "./FindManyDirectus_filesArgs";
+export { FindUniqueDirectus_filesArgs } from "./FindUniqueDirectus_filesArgs";
+export { FindUniqueDirectus_filesOrThrowArgs } from "./FindUniqueDirectus_filesOrThrowArgs";
+export { GroupByDirectus_filesArgs } from "./GroupByDirectus_filesArgs";
+export { UpdateManyDirectus_filesArgs } from "./UpdateManyDirectus_filesArgs";
+export { UpdateOneDirectus_filesArgs } from "./UpdateOneDirectus_filesArgs";
+export { UpsertOneDirectus_filesArgs } from "./UpsertOneDirectus_filesArgs";

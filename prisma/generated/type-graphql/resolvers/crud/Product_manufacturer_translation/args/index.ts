@@ -1,0 +1,14 @@
+export { AggregateProduct_manufacturer_translationArgs } from "./AggregateProduct_manufacturer_translationArgs";
+export { CreateManyProduct_manufacturer_translationArgs } from "./CreateManyProduct_manufacturer_translationArgs";
+export { CreateOneProduct_manufacturer_translationArgs } from "./CreateOneProduct_manufacturer_translationArgs";
+export { DeleteManyProduct_manufacturer_translationArgs } from "./DeleteManyProduct_manufacturer_translationArgs";
+export { DeleteOneProduct_manufacturer_translationArgs } from "./DeleteOneProduct_manufacturer_translationArgs";
+export { FindFirstProduct_manufacturer_translationArgs } from "./FindFirstProduct_manufacturer_translationArgs";
+export { FindFirstProduct_manufacturer_translationOrThrowArgs } from "./FindFirstProduct_manufacturer_translationOrThrowArgs";
+export { FindManyProduct_manufacturer_translationArgs } from "./FindManyProduct_manufacturer_translationArgs";
+export { FindUniqueProduct_manufacturer_translationArgs } from "./FindUniqueProduct_manufacturer_translationArgs";
+export { FindUniqueProduct_manufacturer_translationOrThrowArgs } from "./FindUniqueProduct_manufacturer_translationOrThrowArgs";
+export { GroupByProduct_manufacturer_translationArgs } from "./GroupByProduct_manufacturer_translationArgs";
+export { UpdateManyProduct_manufacturer_translationArgs } from "./UpdateManyProduct_manufacturer_translationArgs";
+export { UpdateOneProduct_manufacturer_translationArgs } from "./UpdateOneProduct_manufacturer_translationArgs";
+export { UpsertOneProduct_manufacturer_translationArgs } from "./UpsertOneProduct_manufacturer_translationArgs";

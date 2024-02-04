@@ -1,19 +1,30 @@
 <template>
     <div>
         <v-expansion-panels variant="accordion">
-            <v-expansion-panel v-for="i in 3" :key="i" title="Item"
-                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.">
+            <v-expansion-panel :title="data?.products_by_id?.faqs?.faqs_id?.question">
+                {{data?.products_by_id?.faqs?.faqs_id?.answer}}
             </v-expansion-panel>
         </v-expansion-panels>
     </div>
 </template>
 
-<script>
-    export default {
-
+<script setup lang="ts">
+const query = gql `
+  query products_by_id($id: ID!){
+    products_by_id(id: $id){
+        id
+        faqs {
+            faqs_id {
+                id
+                question
+                answer
+            }
+        }
     }
-</script>
+}
+`
 
-<script setup>
-
+    const {
+        data
+    } = await useAsyncQuery(query)
 </script>

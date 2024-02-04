@@ -1,0 +1,41 @@
+import * as TypeGraphQL from "type-graphql";
+
+export enum OrderScalarFieldEnum {
+  id = "id",
+  version_id = "version_id",
+  state_id = "state_id",
+  auto_increment = "auto_increment",
+  order_number = "order_number",
+  currency_id = "currency_id",
+  language_id = "language_id",
+  currency_factor = "currency_factor",
+  sales_channel_id = "sales_channel_id",
+  billing_address_id = "billing_address_id",
+  billing_address_version_id = "billing_address_version_id",
+  price = "price",
+  order_date_time = "order_date_time",
+  order_date = "order_date",
+  amount_total = "amount_total",
+  amount_net = "amount_net",
+  position_price = "position_price",
+  tax_status = "tax_status",
+  shipping_costs = "shipping_costs",
+  shipping_total = "shipping_total",
+  deep_link_code = "deep_link_code",
+  custom_fields = "custom_fields",
+  affiliate_code = "affiliate_code",
+  campaign_code = "campaign_code",
+  customer_comment = "customer_comment",
+  created_at = "created_at",
+  updated_at = "updated_at",
+  item_rounding = "item_rounding",
+  total_rounding = "total_rounding",
+  rule_ids = "rule_ids",
+  created_by_id = "created_by_id",
+  updated_by_id = "updated_by_id",
+  source = "source"
+}
+TypeGraphQL.registerEnumType(OrderScalarFieldEnum, {
+  name: "OrderScalarFieldEnum",
+  description: undefined,
+});

@@ -1,0 +1,14 @@
+export { AggregateCustomer_wishlistArgs } from "./AggregateCustomer_wishlistArgs";
+export { CreateManyCustomer_wishlistArgs } from "./CreateManyCustomer_wishlistArgs";
+export { CreateOneCustomer_wishlistArgs } from "./CreateOneCustomer_wishlistArgs";
+export { DeleteManyCustomer_wishlistArgs } from "./DeleteManyCustomer_wishlistArgs";
+export { DeleteOneCustomer_wishlistArgs } from "./DeleteOneCustomer_wishlistArgs";
+export { FindFirstCustomer_wishlistArgs } from "./FindFirstCustomer_wishlistArgs";
+export { FindFirstCustomer_wishlistOrThrowArgs } from "./FindFirstCustomer_wishlistOrThrowArgs";
+export { FindManyCustomer_wishlistArgs } from "./FindManyCustomer_wishlistArgs";
+export { FindUniqueCustomer_wishlistArgs } from "./FindUniqueCustomer_wishlistArgs";
+export { FindUniqueCustomer_wishlistOrThrowArgs } from "./FindUniqueCustomer_wishlistOrThrowArgs";
+export { GroupByCustomer_wishlistArgs } from "./GroupByCustomer_wishlistArgs";
+export { UpdateManyCustomer_wishlistArgs } from "./UpdateManyCustomer_wishlistArgs";
+export { UpdateOneCustomer_wishlistArgs } from "./UpdateOneCustomer_wishlistArgs";
+export { UpsertOneCustomer_wishlistArgs } from "./UpsertOneCustomer_wishlistArgs";

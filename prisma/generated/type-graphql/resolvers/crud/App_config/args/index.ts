@@ -1,0 +1,14 @@
+export { AggregateApp_configArgs } from "./AggregateApp_configArgs";
+export { CreateManyApp_configArgs } from "./CreateManyApp_configArgs";
+export { CreateOneApp_configArgs } from "./CreateOneApp_configArgs";
+export { DeleteManyApp_configArgs } from "./DeleteManyApp_configArgs";
+export { DeleteOneApp_configArgs } from "./DeleteOneApp_configArgs";
+export { FindFirstApp_configArgs } from "./FindFirstApp_configArgs";
+export { FindFirstApp_configOrThrowArgs } from "./FindFirstApp_configOrThrowArgs";
+export { FindManyApp_configArgs } from "./FindManyApp_configArgs";
+export { FindUniqueApp_configArgs } from "./FindUniqueApp_configArgs";
+export { FindUniqueApp_configOrThrowArgs } from "./FindUniqueApp_configOrThrowArgs";
+export { GroupByApp_configArgs } from "./GroupByApp_configArgs";
+export { UpdateManyApp_configArgs } from "./UpdateManyApp_configArgs";
+export { UpdateOneApp_configArgs } from "./UpdateOneApp_configArgs";
+export { UpsertOneApp_configArgs } from "./UpsertOneApp_configArgs";

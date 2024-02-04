@@ -1,0 +1,14 @@
+export { AggregateShipping_method_tagArgs } from "./AggregateShipping_method_tagArgs";
+export { CreateManyShipping_method_tagArgs } from "./CreateManyShipping_method_tagArgs";
+export { CreateOneShipping_method_tagArgs } from "./CreateOneShipping_method_tagArgs";
+export { DeleteManyShipping_method_tagArgs } from "./DeleteManyShipping_method_tagArgs";
+export { DeleteOneShipping_method_tagArgs } from "./DeleteOneShipping_method_tagArgs";
+export { FindFirstShipping_method_tagArgs } from "./FindFirstShipping_method_tagArgs";
+export { FindFirstShipping_method_tagOrThrowArgs } from "./FindFirstShipping_method_tagOrThrowArgs";
+export { FindManyShipping_method_tagArgs } from "./FindManyShipping_method_tagArgs";
+export { FindUniqueShipping_method_tagArgs } from "./FindUniqueShipping_method_tagArgs";
+export { FindUniqueShipping_method_tagOrThrowArgs } from "./FindUniqueShipping_method_tagOrThrowArgs";
+export { GroupByShipping_method_tagArgs } from "./GroupByShipping_method_tagArgs";
+export { UpdateManyShipping_method_tagArgs } from "./UpdateManyShipping_method_tagArgs";
+export { UpdateOneShipping_method_tagArgs } from "./UpdateOneShipping_method_tagArgs";
+export { UpsertOneShipping_method_tagArgs } from "./UpsertOneShipping_method_tagArgs";

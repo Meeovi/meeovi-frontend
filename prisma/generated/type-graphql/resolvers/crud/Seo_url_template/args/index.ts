@@ -1,0 +1,14 @@
+export { AggregateSeo_url_templateArgs } from "./AggregateSeo_url_templateArgs";
+export { CreateManySeo_url_templateArgs } from "./CreateManySeo_url_templateArgs";
+export { CreateOneSeo_url_templateArgs } from "./CreateOneSeo_url_templateArgs";
+export { DeleteManySeo_url_templateArgs } from "./DeleteManySeo_url_templateArgs";
+export { DeleteOneSeo_url_templateArgs } from "./DeleteOneSeo_url_templateArgs";
+export { FindFirstSeo_url_templateArgs } from "./FindFirstSeo_url_templateArgs";
+export { FindFirstSeo_url_templateOrThrowArgs } from "./FindFirstSeo_url_templateOrThrowArgs";
+export { FindManySeo_url_templateArgs } from "./FindManySeo_url_templateArgs";
+export { FindUniqueSeo_url_templateArgs } from "./FindUniqueSeo_url_templateArgs";
+export { FindUniqueSeo_url_templateOrThrowArgs } from "./FindUniqueSeo_url_templateOrThrowArgs";
+export { GroupBySeo_url_templateArgs } from "./GroupBySeo_url_templateArgs";
+export { UpdateManySeo_url_templateArgs } from "./UpdateManySeo_url_templateArgs";
+export { UpdateOneSeo_url_templateArgs } from "./UpdateOneSeo_url_templateArgs";
+export { UpsertOneSeo_url_templateArgs } from "./UpsertOneSeo_url_templateArgs";

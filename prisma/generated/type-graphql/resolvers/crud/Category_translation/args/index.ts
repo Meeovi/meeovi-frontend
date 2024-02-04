@@ -1,0 +1,14 @@
+export { AggregateCategory_translationArgs } from "./AggregateCategory_translationArgs";
+export { CreateManyCategory_translationArgs } from "./CreateManyCategory_translationArgs";
+export { CreateOneCategory_translationArgs } from "./CreateOneCategory_translationArgs";
+export { DeleteManyCategory_translationArgs } from "./DeleteManyCategory_translationArgs";
+export { DeleteOneCategory_translationArgs } from "./DeleteOneCategory_translationArgs";
+export { FindFirstCategory_translationArgs } from "./FindFirstCategory_translationArgs";
+export { FindFirstCategory_translationOrThrowArgs } from "./FindFirstCategory_translationOrThrowArgs";
+export { FindManyCategory_translationArgs } from "./FindManyCategory_translationArgs";
+export { FindUniqueCategory_translationArgs } from "./FindUniqueCategory_translationArgs";
+export { FindUniqueCategory_translationOrThrowArgs } from "./FindUniqueCategory_translationOrThrowArgs";
+export { GroupByCategory_translationArgs } from "./GroupByCategory_translationArgs";
+export { UpdateManyCategory_translationArgs } from "./UpdateManyCategory_translationArgs";
+export { UpdateOneCategory_translationArgs } from "./UpdateOneCategory_translationArgs";
+export { UpsertOneCategory_translationArgs } from "./UpsertOneCategory_translationArgs";

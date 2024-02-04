@@ -1,0 +1,14 @@
+export { AggregatePromotion_persona_customerArgs } from "./AggregatePromotion_persona_customerArgs";
+export { CreateManyPromotion_persona_customerArgs } from "./CreateManyPromotion_persona_customerArgs";
+export { CreateOnePromotion_persona_customerArgs } from "./CreateOnePromotion_persona_customerArgs";
+export { DeleteManyPromotion_persona_customerArgs } from "./DeleteManyPromotion_persona_customerArgs";
+export { DeleteOnePromotion_persona_customerArgs } from "./DeleteOnePromotion_persona_customerArgs";
+export { FindFirstPromotion_persona_customerArgs } from "./FindFirstPromotion_persona_customerArgs";
+export { FindFirstPromotion_persona_customerOrThrowArgs } from "./FindFirstPromotion_persona_customerOrThrowArgs";
+export { FindManyPromotion_persona_customerArgs } from "./FindManyPromotion_persona_customerArgs";
+export { FindUniquePromotion_persona_customerArgs } from "./FindUniquePromotion_persona_customerArgs";
+export { FindUniquePromotion_persona_customerOrThrowArgs } from "./FindUniquePromotion_persona_customerOrThrowArgs";
+export { GroupByPromotion_persona_customerArgs } from "./GroupByPromotion_persona_customerArgs";
+export { UpdateManyPromotion_persona_customerArgs } from "./UpdateManyPromotion_persona_customerArgs";
+export { UpdateOnePromotion_persona_customerArgs } from "./UpdateOnePromotion_persona_customerArgs";
+export { UpsertOnePromotion_persona_customerArgs } from "./UpsertOnePromotion_persona_customerArgs";

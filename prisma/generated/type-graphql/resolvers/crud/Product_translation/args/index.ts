@@ -1,0 +1,14 @@
+export { AggregateProduct_translationArgs } from "./AggregateProduct_translationArgs";
+export { CreateManyProduct_translationArgs } from "./CreateManyProduct_translationArgs";
+export { CreateOneProduct_translationArgs } from "./CreateOneProduct_translationArgs";
+export { DeleteManyProduct_translationArgs } from "./DeleteManyProduct_translationArgs";
+export { DeleteOneProduct_translationArgs } from "./DeleteOneProduct_translationArgs";
+export { FindFirstProduct_translationArgs } from "./FindFirstProduct_translationArgs";
+export { FindFirstProduct_translationOrThrowArgs } from "./FindFirstProduct_translationOrThrowArgs";
+export { FindManyProduct_translationArgs } from "./FindManyProduct_translationArgs";
+export { FindUniqueProduct_translationArgs } from "./FindUniqueProduct_translationArgs";
+export { FindUniqueProduct_translationOrThrowArgs } from "./FindUniqueProduct_translationOrThrowArgs";
+export { GroupByProduct_translationArgs } from "./GroupByProduct_translationArgs";
+export { UpdateManyProduct_translationArgs } from "./UpdateManyProduct_translationArgs";
+export { UpdateOneProduct_translationArgs } from "./UpdateOneProduct_translationArgs";
+export { UpsertOneProduct_translationArgs } from "./UpsertOneProduct_translationArgs";

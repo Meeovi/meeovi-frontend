@@ -1,0 +1,14 @@
+export { AggregateSwag_paypal_pos_sales_channel_productArgs } from "./AggregateSwag_paypal_pos_sales_channel_productArgs";
+export { CreateManySwag_paypal_pos_sales_channel_productArgs } from "./CreateManySwag_paypal_pos_sales_channel_productArgs";
+export { CreateOneSwag_paypal_pos_sales_channel_productArgs } from "./CreateOneSwag_paypal_pos_sales_channel_productArgs";
+export { DeleteManySwag_paypal_pos_sales_channel_productArgs } from "./DeleteManySwag_paypal_pos_sales_channel_productArgs";
+export { DeleteOneSwag_paypal_pos_sales_channel_productArgs } from "./DeleteOneSwag_paypal_pos_sales_channel_productArgs";
+export { FindFirstSwag_paypal_pos_sales_channel_productArgs } from "./FindFirstSwag_paypal_pos_sales_channel_productArgs";
+export { FindFirstSwag_paypal_pos_sales_channel_productOrThrowArgs } from "./FindFirstSwag_paypal_pos_sales_channel_productOrThrowArgs";
+export { FindManySwag_paypal_pos_sales_channel_productArgs } from "./FindManySwag_paypal_pos_sales_channel_productArgs";
+export { FindUniqueSwag_paypal_pos_sales_channel_productArgs } from "./FindUniqueSwag_paypal_pos_sales_channel_productArgs";
+export { FindUniqueSwag_paypal_pos_sales_channel_productOrThrowArgs } from "./FindUniqueSwag_paypal_pos_sales_channel_productOrThrowArgs";
+export { GroupBySwag_paypal_pos_sales_channel_productArgs } from "./GroupBySwag_paypal_pos_sales_channel_productArgs";
+export { UpdateManySwag_paypal_pos_sales_channel_productArgs } from "./UpdateManySwag_paypal_pos_sales_channel_productArgs";
+export { UpdateOneSwag_paypal_pos_sales_channel_productArgs } from "./UpdateOneSwag_paypal_pos_sales_channel_productArgs";
+export { UpsertOneSwag_paypal_pos_sales_channel_productArgs } from "./UpsertOneSwag_paypal_pos_sales_channel_productArgs";

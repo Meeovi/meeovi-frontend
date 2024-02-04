@@ -1,0 +1,17 @@
+import * as TypeGraphQL from "type-graphql";
+import * as GraphQLScalars from "graphql-scalars";
+import { Custom_fieldUpdateManyMutationInput } from "../../../inputs/Custom_fieldUpdateManyMutationInput";
+import { Custom_fieldWhereInput } from "../../../inputs/Custom_fieldWhereInput";
+
+@TypeGraphQL.ArgsType()
+export class UpdateManyCustom_fieldArgs {
+  @TypeGraphQL.Field(_type => Custom_fieldUpdateManyMutationInput, {
+    nullable: false
+  })
+  data!: Custom_fieldUpdateManyMutationInput;
+
+  @TypeGraphQL.Field(_type => Custom_fieldWhereInput, {
+    nullable: true
+  })
+  where?: Custom_fieldWhereInput | undefined;
+}

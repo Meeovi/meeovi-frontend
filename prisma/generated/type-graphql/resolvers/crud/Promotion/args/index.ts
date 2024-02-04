@@ -1,0 +1,14 @@
+export { AggregatePromotionArgs } from "./AggregatePromotionArgs";
+export { CreateManyPromotionArgs } from "./CreateManyPromotionArgs";
+export { CreateOnePromotionArgs } from "./CreateOnePromotionArgs";
+export { DeleteManyPromotionArgs } from "./DeleteManyPromotionArgs";
+export { DeleteOnePromotionArgs } from "./DeleteOnePromotionArgs";
+export { FindFirstPromotionArgs } from "./FindFirstPromotionArgs";
+export { FindFirstPromotionOrThrowArgs } from "./FindFirstPromotionOrThrowArgs";
+export { FindManyPromotionArgs } from "./FindManyPromotionArgs";
+export { FindUniquePromotionArgs } from "./FindUniquePromotionArgs";
+export { FindUniquePromotionOrThrowArgs } from "./FindUniquePromotionOrThrowArgs";
+export { GroupByPromotionArgs } from "./GroupByPromotionArgs";
+export { UpdateManyPromotionArgs } from "./UpdateManyPromotionArgs";
+export { UpdateOnePromotionArgs } from "./UpdateOnePromotionArgs";
+export { UpsertOnePromotionArgs } from "./UpsertOnePromotionArgs";

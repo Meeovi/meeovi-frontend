@@ -1,12 +1,11 @@
 <template>
     <div class="contentPage">
         <profilebar />
-        <v-row class="centralfeed">
-            <v-col cols="3"></v-col>
-            <v-col cols="5">
-                <postform />
-                <v-col cols="12" v-for="newsfeed in newsfeed" :key="newsfeed">
-                    <v-card class="mx-auto">
+        <v-row>
+            <v-col cols="12">
+                <v-toolbar color="orange" title="Your Social Feed" subtitle="Posts of people you follow."></v-toolbar>
+                <v-col cols="3" v-for="newsfeed in newsfeed" :key="newsfeed">
+                    <v-card class="mx-auto" :href="`/social/feed/${newsfeed.id}`">
                         <img class="align-end text-white" height="350"
                             :src="`${url}assets/${newsfeed.image.filesdisk}`" :alt="newsfeed.name" cover />
                             <v-card-title>{{ newsfeed.name }}</v-card-title>
@@ -26,8 +25,7 @@
                         <v-card-actions>
                             <v-row>
                                 <v-col cols="3">
-                                    <v-btn title="Comments" prepend-icon="fas fa-comment" variant="plain"
-                                        href="/social/feed/id.vue">()</v-btn>
+                                    <v-btn title="Comments" prepend-icon="fas fa-comment" variant="plain">()</v-btn>
                                 </v-col>
                                 <v-col cols="3">
                                     <v-btn title="Repost" prepend-icon="fas fa-repeat" variant="plain">()</v-btn>
@@ -44,9 +42,6 @@
                     </v-card>
                 </v-col>
             </v-col>
-            <v-col cols="4">
-
-            </v-col>
         </v-row>
     </div>
 </template>
@@ -54,13 +49,11 @@
 <script>
     import Editor from '../../components/Editors/editor.vue'
     import profilebar from '../../components/Menus/profilebar.vue'
-    import postform from '../../components/user/postform.vue'
 
     export default {
         components: {
             Editor,
             profilebar,
-            postform
         },
         data() {
             return {

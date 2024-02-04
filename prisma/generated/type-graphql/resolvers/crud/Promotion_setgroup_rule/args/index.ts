@@ -1,0 +1,14 @@
+export { AggregatePromotion_setgroup_ruleArgs } from "./AggregatePromotion_setgroup_ruleArgs";
+export { CreateManyPromotion_setgroup_ruleArgs } from "./CreateManyPromotion_setgroup_ruleArgs";
+export { CreateOnePromotion_setgroup_ruleArgs } from "./CreateOnePromotion_setgroup_ruleArgs";
+export { DeleteManyPromotion_setgroup_ruleArgs } from "./DeleteManyPromotion_setgroup_ruleArgs";
+export { DeleteOnePromotion_setgroup_ruleArgs } from "./DeleteOnePromotion_setgroup_ruleArgs";
+export { FindFirstPromotion_setgroup_ruleArgs } from "./FindFirstPromotion_setgroup_ruleArgs";
+export { FindFirstPromotion_setgroup_ruleOrThrowArgs } from "./FindFirstPromotion_setgroup_ruleOrThrowArgs";
+export { FindManyPromotion_setgroup_ruleArgs } from "./FindManyPromotion_setgroup_ruleArgs";
+export { FindUniquePromotion_setgroup_ruleArgs } from "./FindUniquePromotion_setgroup_ruleArgs";
+export { FindUniquePromotion_setgroup_ruleOrThrowArgs } from "./FindUniquePromotion_setgroup_ruleOrThrowArgs";
+export { GroupByPromotion_setgroup_ruleArgs } from "./GroupByPromotion_setgroup_ruleArgs";
+export { UpdateManyPromotion_setgroup_ruleArgs } from "./UpdateManyPromotion_setgroup_ruleArgs";
+export { UpdateOnePromotion_setgroup_ruleArgs } from "./UpdateOnePromotion_setgroup_ruleArgs";
+export { UpsertOnePromotion_setgroup_ruleArgs } from "./UpsertOnePromotion_setgroup_ruleArgs";

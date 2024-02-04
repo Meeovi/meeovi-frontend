@@ -1,0 +1,14 @@
+export { AggregateMail_template_typeArgs } from "./AggregateMail_template_typeArgs";
+export { CreateManyMail_template_typeArgs } from "./CreateManyMail_template_typeArgs";
+export { CreateOneMail_template_typeArgs } from "./CreateOneMail_template_typeArgs";
+export { DeleteManyMail_template_typeArgs } from "./DeleteManyMail_template_typeArgs";
+export { DeleteOneMail_template_typeArgs } from "./DeleteOneMail_template_typeArgs";
+export { FindFirstMail_template_typeArgs } from "./FindFirstMail_template_typeArgs";
+export { FindFirstMail_template_typeOrThrowArgs } from "./FindFirstMail_template_typeOrThrowArgs";
+export { FindManyMail_template_typeArgs } from "./FindManyMail_template_typeArgs";
+export { FindUniqueMail_template_typeArgs } from "./FindUniqueMail_template_typeArgs";
+export { FindUniqueMail_template_typeOrThrowArgs } from "./FindUniqueMail_template_typeOrThrowArgs";
+export { GroupByMail_template_typeArgs } from "./GroupByMail_template_typeArgs";
+export { UpdateManyMail_template_typeArgs } from "./UpdateManyMail_template_typeArgs";
+export { UpdateOneMail_template_typeArgs } from "./UpdateOneMail_template_typeArgs";
+export { UpsertOneMail_template_typeArgs } from "./UpsertOneMail_template_typeArgs";

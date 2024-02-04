@@ -1,0 +1,14 @@
+export { AggregatePromotion_individual_codeArgs } from "./AggregatePromotion_individual_codeArgs";
+export { CreateManyPromotion_individual_codeArgs } from "./CreateManyPromotion_individual_codeArgs";
+export { CreateOnePromotion_individual_codeArgs } from "./CreateOnePromotion_individual_codeArgs";
+export { DeleteManyPromotion_individual_codeArgs } from "./DeleteManyPromotion_individual_codeArgs";
+export { DeleteOnePromotion_individual_codeArgs } from "./DeleteOnePromotion_individual_codeArgs";
+export { FindFirstPromotion_individual_codeArgs } from "./FindFirstPromotion_individual_codeArgs";
+export { FindFirstPromotion_individual_codeOrThrowArgs } from "./FindFirstPromotion_individual_codeOrThrowArgs";
+export { FindManyPromotion_individual_codeArgs } from "./FindManyPromotion_individual_codeArgs";
+export { FindUniquePromotion_individual_codeArgs } from "./FindUniquePromotion_individual_codeArgs";
+export { FindUniquePromotion_individual_codeOrThrowArgs } from "./FindUniquePromotion_individual_codeOrThrowArgs";
+export { GroupByPromotion_individual_codeArgs } from "./GroupByPromotion_individual_codeArgs";
+export { UpdateManyPromotion_individual_codeArgs } from "./UpdateManyPromotion_individual_codeArgs";
+export { UpdateOnePromotion_individual_codeArgs } from "./UpdateOnePromotion_individual_codeArgs";
+export { UpsertOnePromotion_individual_codeArgs } from "./UpsertOnePromotion_individual_codeArgs";

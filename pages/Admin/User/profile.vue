@@ -1,70 +1,97 @@
 <template>
     <div class="contentPage">
         <profilebar />
-        <section data-bs-version="5.1" class="people5 cid-tApxFdIkda" id="people5-5q">
-            <div class="container">
-                <div class="row justify-content-between">
-                    <div class="col-12 col-lg-6">
-                        <div class="right-side">
-                            <h5 class="mbr-section-title mbr-fonts-style display-2">
-                                <strong>{{ profile.username }}</strong></h5>
-                            <p class="mbr-text mbr-fonts-style display-4">{{ profile.description }}</p>
-                            <div class="button-align">
-                                <div class="mbr-section-btn"><a class="btn btn-primary display-4" href=""><span
-                                            class="mobi-mbri mobi-mbri-plus mbr-iconfont mbr-iconfont-btn"></span>Follow</a>
+        <v-row>
+            <v-col cols="12">
+                <v-card max-height="500" variant="text" class="profileBanner"><img
+                        src="../../../assets/images/jumbotron.jpg" alt="User Cover" cover /></v-card>
 
-                                    <a class="btn btn-secondary display-4" :href="`/admin/user/account`">Edit Profile</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6">
-                        <div class="left-side">
-                            <div class="shadow">
-                                <img :src="`${url}assets/${profile.image.filename_disk}`" :alt="profile.name" class="align">
-                                <h5 class="card-title mbr-fonts-style display-2">
-                                    <strong>{{ profile.first_name }} {{ profile.last_name}}</strong></h5>
-                                <h5 class="card-subtitle mbr-fonts-style display-4">
-                                    @{{profile.username}}</h5>
-                                <h5 class="card-text mbr-fonts-style display-4">{{profile.cities.cities_id.name}}&nbsp; <a :href="`${profile.websites.websites_id.url}`"
-                                        class="text-primary">{{ profile.websites.websites_id.name}}</a>&nbsp; Joined {{ profile.created_at }}<br><a href="/"
-                                        class="text-primary">43</a> Following <a href="/" class="text-primary">19</a>
-                                    Followers</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+                <v-card variant="text" class="profileAvatar">
+                    <v-avatar size="180" class="avatarBorder"><img src="../../../assets/images/face6.jpg"
+                            alt="User Avatar"></v-avatar>
+                    <ul class="profileInfo">
+                        <li class="profileUsername">Lorem Ipusm (@Lorem)</li>
+                        <li>4.5M Followers &bull; 35k Following</li>
+                        <li><a href="">www.website.com</a></li>
+                    </ul>
 
-        <v-card>
-            <v-tabs v-model="tab" bg-color="transparent" fixed-tabs center-active>
-                <v-tab value="one">Products</v-tab>
-                <v-tab value="two">Comments</v-tab>
-                <v-tab value="three">Media</v-tab>
-                <v-tab value="four">Likes</v-tab>
-                <v-tab value="five">Recommendations</v-tab>
+                    <ul class="profileActions">
+                        <li>
+                            <v-btn>Follow</v-btn>
+                        </li>
+                        <li>
+                            <v-btn prepend-icon="fas fa-plus">Add a Story</v-btn>
+                        </li>
+                        <li>
+                            <v-menu>
+                                <template v-slot:activator="{ props }">
+                                    <v-btn v-bind="props">
+                                        <v-icon icon="fas fa-caret-down"></v-icon>
+                                    </v-btn>
+                                </template>
+                                <v-list>
+                                    <v-list-item>
+                                        <v-list-item-title><a href="">Edit Profile</a></v-list-item-title>
+                                    </v-list-item>
+                                </v-list>
+                            </v-menu>
+                        </li>
+                    </ul>
+
+                   <v-border></v-border> 
+                </v-card>
+
+            </v-col>
+
+            <v-col cols="12">
+
+            </v-col>
+        </v-row>
+
+        <v-card variant="text">
+            <v-tabs v-model="tab" bg-color="transparent">
+                <v-tab value="one">Posts</v-tab>
+                <v-tab value="two">About</v-tab>
+                <v-tab value="three">Followers</v-tab>
+                <v-tab value="four">Products</v-tab>
+                <v-tab value="five">Comments</v-tab>
+                <v-tab value="six">Media</v-tab>
+                <v-tab value="seven">Likes</v-tab>
+                <v-tab value="eight">Bookmarks</v-tab>
             </v-tabs>
 
             <v-card-text>
                 <v-window v-model="tab">
                     <v-window-item value="one">
-                        <products />
+                        <posts />
                     </v-window-item>
 
                     <v-window-item value="two">
-                        <replies />
+                        <about />
                     </v-window-item>
 
-                    <v-window-item value="three">
-                        <media />
+                    <v-window-item value="two">
+                        <followers />
                     </v-window-item>
 
                     <v-window-item value="four">
-                        <likes />
+                        <products />
                     </v-window-item>
 
                     <v-window-item value="five">
-                        <recommendations />
+                        <comments />
+                    </v-window-item>
+
+                    <v-window-item value="six">
+                        <media />
+                    </v-window-item>
+
+                    <v-window-item value="seven">
+                        <likes />
+                    </v-window-item>
+
+                    <v-window-item value="eight">
+                        <bookmarks />
                     </v-window-item>
                 </v-window>
             </v-card-text>
@@ -74,20 +101,26 @@
 
 <script>
     import profilebar from '../../../components/Menus/profilebar.vue'
-    import products from '../../../components/Profile/products.vue'
-    import replies from '../../../components/Profile/replies.vue'
-    import media from '../../../components/Profile/media.vue'
-    import likes from '../../../components/Profile/likes.vue'
-    import recommendations from './recommendations.vue'
-    
+    import posts from '../../../components/Pages/Profile/posts.vue'
+    import about from '../../../components/Pages/Profile/aboutProfile.vue'
+    import followersfollowing from '../../../components/Pages/Profile/followersfollowing.vue'
+    import products from '../../../components/Pages/Profile/products.vue'
+    import comments from '../../../components/user/comments.vue'
+    import media from '../../../components/Pages/Profile/media.vue'
+    import likes from '../../../components/Pages/Profile/likes.vue'
+    import bookmarks from '../../../components/Pages/Profile/bookmarks.vue'
+
     export default {
         components: {
             profilebar,
+            posts,
+            about,
+            followersfollowing,
             products,
-            replies,
+            comments,
             media,
             likes,
-            recommendations
+            bookmarks
         },
         data: () => ({
             tab: null,
@@ -97,10 +130,12 @@
 </script>
 
 <script setup>
-import customer from '../../../apollo/queries-mutations_subscriptions/queries/customers_by_id.gql'
+    import customer from '../../../apollo/queries-mutations_subscriptions/queries/customers_by_id.gql'
 
-const { data } = useAsyncQuery(customer);
-const profile = data ? data.customer : [];
+    const {
+        data
+    } = useAsyncQuery(customer);
+    const profile = data ? data.customer : [];
 
     useHead({
         title: 'My Profile',

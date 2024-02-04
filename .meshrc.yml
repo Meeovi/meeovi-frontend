@@ -1,15 +1,11 @@
 sources:
   - name: eCommerce
     handler:
-      mysql:
-        # You can use environment variables like
-         host: "{env.DB_HOST}"
-         port: 3306
-         user: "{env.DB_USER}"
-         password: "{env.DB_PASSWORD}"
-         database: "{env.DB_DATABASE}"
-        # host: localhost
-        # port: 3306
-        # user: root
-        # password: passwd
-        # database: employees
+      openapi:
+        source: http://153.92.1.142:8020/api/
+        operationHeaders:
+          Authorization: Bearer {sw-access-key['SWSCBVFHCNZQR2R1YKYXAFBYAW']}
+
+serve:
+  playground: true
+  playgroundTitle: 'Meeovi Graphql'

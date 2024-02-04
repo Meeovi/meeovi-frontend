@@ -1,0 +1,14 @@
+export { AggregateProduct_priceArgs } from "./AggregateProduct_priceArgs";
+export { CreateManyProduct_priceArgs } from "./CreateManyProduct_priceArgs";
+export { CreateOneProduct_priceArgs } from "./CreateOneProduct_priceArgs";
+export { DeleteManyProduct_priceArgs } from "./DeleteManyProduct_priceArgs";
+export { DeleteOneProduct_priceArgs } from "./DeleteOneProduct_priceArgs";
+export { FindFirstProduct_priceArgs } from "./FindFirstProduct_priceArgs";
+export { FindFirstProduct_priceOrThrowArgs } from "./FindFirstProduct_priceOrThrowArgs";
+export { FindManyProduct_priceArgs } from "./FindManyProduct_priceArgs";
+export { FindUniqueProduct_priceArgs } from "./FindUniqueProduct_priceArgs";
+export { FindUniqueProduct_priceOrThrowArgs } from "./FindUniqueProduct_priceOrThrowArgs";
+export { GroupByProduct_priceArgs } from "./GroupByProduct_priceArgs";
+export { UpdateManyProduct_priceArgs } from "./UpdateManyProduct_priceArgs";
+export { UpdateOneProduct_priceArgs } from "./UpdateOneProduct_priceArgs";
+export { UpsertOneProduct_priceArgs } from "./UpsertOneProduct_priceArgs";

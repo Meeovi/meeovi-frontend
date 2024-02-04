@@ -1,0 +1,14 @@
+export { AggregateCustomer_wishlist_productArgs } from "./AggregateCustomer_wishlist_productArgs";
+export { CreateManyCustomer_wishlist_productArgs } from "./CreateManyCustomer_wishlist_productArgs";
+export { CreateOneCustomer_wishlist_productArgs } from "./CreateOneCustomer_wishlist_productArgs";
+export { DeleteManyCustomer_wishlist_productArgs } from "./DeleteManyCustomer_wishlist_productArgs";
+export { DeleteOneCustomer_wishlist_productArgs } from "./DeleteOneCustomer_wishlist_productArgs";
+export { FindFirstCustomer_wishlist_productArgs } from "./FindFirstCustomer_wishlist_productArgs";
+export { FindFirstCustomer_wishlist_productOrThrowArgs } from "./FindFirstCustomer_wishlist_productOrThrowArgs";
+export { FindManyCustomer_wishlist_productArgs } from "./FindManyCustomer_wishlist_productArgs";
+export { FindUniqueCustomer_wishlist_productArgs } from "./FindUniqueCustomer_wishlist_productArgs";
+export { FindUniqueCustomer_wishlist_productOrThrowArgs } from "./FindUniqueCustomer_wishlist_productOrThrowArgs";
+export { GroupByCustomer_wishlist_productArgs } from "./GroupByCustomer_wishlist_productArgs";
+export { UpdateManyCustomer_wishlist_productArgs } from "./UpdateManyCustomer_wishlist_productArgs";
+export { UpdateOneCustomer_wishlist_productArgs } from "./UpdateOneCustomer_wishlist_productArgs";
+export { UpsertOneCustomer_wishlist_productArgs } from "./UpsertOneCustomer_wishlist_productArgs";

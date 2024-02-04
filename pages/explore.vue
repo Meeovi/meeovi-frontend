@@ -3,9 +3,8 @@
         <v-tabs v-model="tab" bg-color="primary">
             <v-tab value="one">Explore</v-tab>
             <v-tab value="two">Leaderboard</v-tab>
-            <v-tab value="three">Collections</v-tab>
-            <v-tab value="four">Journals</v-tab>
-            <v-tab value="five">Challenges</v-tab>
+            <v-tab value="three">Brands</v-tab>
+            <v-tab value="four">Challenges</v-tab>
         </v-tabs>
 
         <v-card-text>
@@ -19,14 +18,10 @@
                 </v-window-item>
 
                 <v-window-item value="three">
-                    <collections />
+                    <brands />
                 </v-window-item>
 
                 <v-window-item value="four">
-                    <journals />
-                </v-window-item>
-
-                <v-window-item value="five">
                     <challenges />
                 </v-window-item>
             </v-window>
@@ -35,14 +30,13 @@
 </template>
 
 <script>
-import explore from '../components/Pages/homepage/Explore/explore.vue'
-import leaderboard from '../components/Explore/leaderboard.vue'
-import collections from '../components/Explore/collections.vue'
-import journals from '../components/Explore/journals.vue'
-import challenges from '../components/Explore/challenges.vue'
+import explore from '../components/Pages/Explore/explore.vue'
+import leaderboard from '../components/Pages/Explore/leaderboard.vue'
+import brands from '../components/Pages/Explore/brands.vue'
+import challenges from '../components/Pages/Explore/challenges.vue'
 
     export default {
-        components: { explore, leaderboard, collections, journals, challenges },
+        components: { explore, leaderboard, brands, challenges },
         data: () => ({
             tab: null,
         }),

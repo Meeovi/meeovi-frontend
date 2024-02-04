@@ -1,0 +1,14 @@
+export { AggregateTheme_translationArgs } from "./AggregateTheme_translationArgs";
+export { CreateManyTheme_translationArgs } from "./CreateManyTheme_translationArgs";
+export { CreateOneTheme_translationArgs } from "./CreateOneTheme_translationArgs";
+export { DeleteManyTheme_translationArgs } from "./DeleteManyTheme_translationArgs";
+export { DeleteOneTheme_translationArgs } from "./DeleteOneTheme_translationArgs";
+export { FindFirstTheme_translationArgs } from "./FindFirstTheme_translationArgs";
+export { FindFirstTheme_translationOrThrowArgs } from "./FindFirstTheme_translationOrThrowArgs";
+export { FindManyTheme_translationArgs } from "./FindManyTheme_translationArgs";
+export { FindUniqueTheme_translationArgs } from "./FindUniqueTheme_translationArgs";
+export { FindUniqueTheme_translationOrThrowArgs } from "./FindUniqueTheme_translationOrThrowArgs";
+export { GroupByTheme_translationArgs } from "./GroupByTheme_translationArgs";
+export { UpdateManyTheme_translationArgs } from "./UpdateManyTheme_translationArgs";
+export { UpdateOneTheme_translationArgs } from "./UpdateOneTheme_translationArgs";
+export { UpsertOneTheme_translationArgs } from "./UpsertOneTheme_translationArgs";

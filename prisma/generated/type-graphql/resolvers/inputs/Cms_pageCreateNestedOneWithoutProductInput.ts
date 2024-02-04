@@ -1,0 +1,25 @@
+import * as TypeGraphQL from "type-graphql";
+import * as GraphQLScalars from "graphql-scalars";
+import { Prisma } from "@prisma/client";
+import { DecimalJSScalar } from "../../scalars";
+import { Cms_pageCreateOrConnectWithoutProductInput } from "../inputs/Cms_pageCreateOrConnectWithoutProductInput";
+import { Cms_pageCreateWithoutProductInput } from "../inputs/Cms_pageCreateWithoutProductInput";
+import { Cms_pageWhereUniqueInput } from "../inputs/Cms_pageWhereUniqueInput";
+
+@TypeGraphQL.InputType("Cms_pageCreateNestedOneWithoutProductInput", {})
+export class Cms_pageCreateNestedOneWithoutProductInput {
+  @TypeGraphQL.Field(_type => Cms_pageCreateWithoutProductInput, {
+    nullable: true
+  })
+  create?: Cms_pageCreateWithoutProductInput | undefined;
+
+  @TypeGraphQL.Field(_type => Cms_pageCreateOrConnectWithoutProductInput, {
+    nullable: true
+  })
+  connectOrCreate?: Cms_pageCreateOrConnectWithoutProductInput | undefined;
+
+  @TypeGraphQL.Field(_type => Cms_pageWhereUniqueInput, {
+    nullable: true
+  })
+  connect?: Cms_pageWhereUniqueInput | undefined;
+}

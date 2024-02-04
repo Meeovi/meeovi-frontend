@@ -1,0 +1,14 @@
+export { AggregateSales_channel_translationArgs } from "./AggregateSales_channel_translationArgs";
+export { CreateManySales_channel_translationArgs } from "./CreateManySales_channel_translationArgs";
+export { CreateOneSales_channel_translationArgs } from "./CreateOneSales_channel_translationArgs";
+export { DeleteManySales_channel_translationArgs } from "./DeleteManySales_channel_translationArgs";
+export { DeleteOneSales_channel_translationArgs } from "./DeleteOneSales_channel_translationArgs";
+export { FindFirstSales_channel_translationArgs } from "./FindFirstSales_channel_translationArgs";
+export { FindFirstSales_channel_translationOrThrowArgs } from "./FindFirstSales_channel_translationOrThrowArgs";
+export { FindManySales_channel_translationArgs } from "./FindManySales_channel_translationArgs";
+export { FindUniqueSales_channel_translationArgs } from "./FindUniqueSales_channel_translationArgs";
+export { FindUniqueSales_channel_translationOrThrowArgs } from "./FindUniqueSales_channel_translationOrThrowArgs";
+export { GroupBySales_channel_translationArgs } from "./GroupBySales_channel_translationArgs";
+export { UpdateManySales_channel_translationArgs } from "./UpdateManySales_channel_translationArgs";
+export { UpdateOneSales_channel_translationArgs } from "./UpdateOneSales_channel_translationArgs";
+export { UpsertOneSales_channel_translationArgs } from "./UpsertOneSales_channel_translationArgs";

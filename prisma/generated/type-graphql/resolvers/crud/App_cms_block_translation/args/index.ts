@@ -1,0 +1,14 @@
+export { AggregateApp_cms_block_translationArgs } from "./AggregateApp_cms_block_translationArgs";
+export { CreateManyApp_cms_block_translationArgs } from "./CreateManyApp_cms_block_translationArgs";
+export { CreateOneApp_cms_block_translationArgs } from "./CreateOneApp_cms_block_translationArgs";
+export { DeleteManyApp_cms_block_translationArgs } from "./DeleteManyApp_cms_block_translationArgs";
+export { DeleteOneApp_cms_block_translationArgs } from "./DeleteOneApp_cms_block_translationArgs";
+export { FindFirstApp_cms_block_translationArgs } from "./FindFirstApp_cms_block_translationArgs";
+export { FindFirstApp_cms_block_translationOrThrowArgs } from "./FindFirstApp_cms_block_translationOrThrowArgs";
+export { FindManyApp_cms_block_translationArgs } from "./FindManyApp_cms_block_translationArgs";
+export { FindUniqueApp_cms_block_translationArgs } from "./FindUniqueApp_cms_block_translationArgs";
+export { FindUniqueApp_cms_block_translationOrThrowArgs } from "./FindUniqueApp_cms_block_translationOrThrowArgs";
+export { GroupByApp_cms_block_translationArgs } from "./GroupByApp_cms_block_translationArgs";
+export { UpdateManyApp_cms_block_translationArgs } from "./UpdateManyApp_cms_block_translationArgs";
+export { UpdateOneApp_cms_block_translationArgs } from "./UpdateOneApp_cms_block_translationArgs";
+export { UpsertOneApp_cms_block_translationArgs } from "./UpsertOneApp_cms_block_translationArgs";

@@ -4,10 +4,6 @@
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  extends: [
-    "@shopware-pwa/composables-next/nuxt-layer",
-    
-  ],
   app: {
     head: {
       viewport: 'minimum-scale=1, initial-scale=1, width=device-width',
@@ -54,57 +50,6 @@ export default defineNuxtConfig({
     'assets/styles/styles.css',
   ],
 
-  runtimeConfig: {
-    public: {
-      shopware: {
-        shopwareEndpoint: process.env.NUXT_SHOPWARE_SHOPWARE_ENDPOINT,
-        shopwareAccessToken: process.env.NUXT_PUBLIC_SHOPWARE_SHOPWARE_ACCESS_TOKEN,
-      },
-    },
-  },
-
-  routeRules: {
-    "/": {
-      isr: 60 * 60 * 24,
-    },
-    "/commerce/cart": {
-      ssr: false,
-      headers: {
-        "Cache-Control": "no-cache, no-store, must-revalidate",
-      },
-    },
-    "/commerce/checkout/**": {
-      ssr: false,
-    },
-    "/admin/auth/login": {
-      ssr: false,
-    },
-    "/admin/auth/register": {
-      ssr: false,
-    },
-    "/admin/auth/reset-password": {
-      ssr: false,
-    },
-    "/commerce/wishlist": {
-      ssr: false,
-    },
-    "/admin/user/account": {
-      ssr: false,
-    },
-    "/admin/user/account/**": {
-      ssr: false,
-    },
-    "/search": {
-      ssr: false,
-    },
-    "/search/**": {
-      ssr: false,
-    },
-    "/**": {
-      isr: 60 * 60 * 24,
-    },
-  },
-
   typescript: {
     // typeCheck: true,
     strict: true,
@@ -112,16 +57,12 @@ export default defineNuxtConfig({
 
   modules: [
     '@nuxt/content',
-    'nuxt-meilisearch',
     'nuxt-directus',
     '@nuxtjs/apollo',
     'nuxt-gtag',
     //'@sidebase/nuxt-auth',
-    'dayjs-nuxt',
     '@nuxtjs/tailwindcss',
-    "@nuxtjs/i18n",
-    //"@shopware-pwa/nuxt3-module",
-    "@shopware-pwa/cms-base",
+    //"@nuxtjs/i18n",
   ],
 
   devtools: { enabled: true },
@@ -141,24 +82,6 @@ export default defineNuxtConfig({
       password: process.env.DIRECTUS_PASSWORD,
       token: process.env.DIRECTUS_TOKEN,
     }
-  },
-
-  meilisearch: {
-    hostUrl: process.env.HOSTURL,
-    searchApiKey: process.env.SEARCH_APIKEY,
-    adminApiKey: process.env.ADMIN_APIKEY,
-    instantSearch: true,
-    serverSideUsage: false,
-    instantSearch: {
-      theme: 'algolia'
-    },
-    clientOptions: {
-      placeholderSearch: true, // default
-      paginationTotalHits: 50, // default
-      finitePagination: true, // default
-      primaryKey: undefined, // default
-      keepZeroFacets: false, // default
-    },
   },
 
   gtag: {
@@ -190,12 +113,12 @@ export default defineNuxtConfig({
        callback: '/login',
        home: '/',
      },
-   }, 
+   }, */
 
    runtimeConfig: {
-     websiteURL: process.env.GQL_HOST,
-     websiteToken: process.env.WEBSITE_TOKEN,
-   },*/
+    websiteURL: process.env.GQL_HOST,
+    websiteToken: process.env.WEBSITE_TOKEN,
+  },
 
   apollo: {
     authType: "Bearer",
@@ -204,23 +127,24 @@ export default defineNuxtConfig({
     clients: {
       default: {
         tokenName: "apollo-token",
-        httpEndpoint: process.env.DIRECTUS_GRAPHQL,
-      },
-      vendure: {
-        httpEndpoint: process.env.SHOP_API,
-      },
-      hasura: {
-        httpEndpoint: process.env.GQL_HOST,
+        httpEndpoint: process.env.GRAPHQL_HOST,
         httpLinkOptions: {
-            headers: {
-              'x-hasura-admin-secret': process.env.GQL_KEY,
-            }
-          }/**/
+          headers: {
+            'x-hasura-admin-secret': process.env.GRAPHQL_TOKEN,
+            'content-type': 'application/json'
+          }
+        } /**/
+      },
+      cms: {
+        httpEndpoint: process.env.DIRECTUS_GRAPHQL
+      },
+      wordpress: {
+        httpEndpoint: process.env.CMS_GRAPHQL
       }
     },
   },
 
-  i18n: {
+  /*i18n: {
     strategy: "prefix_except_default",
     defaultLocale: "en-GB",
     detectBrowserLanguage: false,
@@ -249,7 +173,7 @@ export default defineNuxtConfig({
     experimental: {
       jsTsFormatResource: true,
     },
-  },
+  },*/
   
   build: {
     transpile: [

@@ -1,8 +1,8 @@
 <template>
   <div id="search">
-    <!--<v-text-field density="compact" variant="solo" label="Search Meeovi" append-inner-icon="fas fa-search" single-line
-        hide-details @click:append-inner="onClick"></v-text-field>-->
-    <ais-instant-search :search-client="client" index-name="steam-video-games">
+   <v-text-field density="compact" variant="solo" label="Search Meeovi" append-inner-icon="fas fa-search" single-line
+        hide-details @click:append-inner="onClick"></v-text-field>
+     <!--<ais-instant-search :search-client="client" index-name="steam-video-games">
       <ais-search-box></ais-search-box>
       <ais-hits>
         <template v-slot:item="{ item }">
@@ -14,7 +14,7 @@
           </ul>
         </template>
       </ais-hits>
-    </ais-instant-search>
+    </ais-instant-search>-->
   </div>
 </template>
 
@@ -34,11 +34,5 @@
 </script>
 
 <script setup>
-  import {
-    AisInstantSearch,
-    AisHits,
-    AisSearchBox,
-  } from 'vue-instantsearch/vue3/es'
 
-  const client = useInstantSearch()
 </script>

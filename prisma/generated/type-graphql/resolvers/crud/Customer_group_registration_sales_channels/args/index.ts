@@ -1,0 +1,14 @@
+export { AggregateCustomer_group_registration_sales_channelsArgs } from "./AggregateCustomer_group_registration_sales_channelsArgs";
+export { CreateManyCustomer_group_registration_sales_channelsArgs } from "./CreateManyCustomer_group_registration_sales_channelsArgs";
+export { CreateOneCustomer_group_registration_sales_channelsArgs } from "./CreateOneCustomer_group_registration_sales_channelsArgs";
+export { DeleteManyCustomer_group_registration_sales_channelsArgs } from "./DeleteManyCustomer_group_registration_sales_channelsArgs";
+export { DeleteOneCustomer_group_registration_sales_channelsArgs } from "./DeleteOneCustomer_group_registration_sales_channelsArgs";
+export { FindFirstCustomer_group_registration_sales_channelsArgs } from "./FindFirstCustomer_group_registration_sales_channelsArgs";
+export { FindFirstCustomer_group_registration_sales_channelsOrThrowArgs } from "./FindFirstCustomer_group_registration_sales_channelsOrThrowArgs";
+export { FindManyCustomer_group_registration_sales_channelsArgs } from "./FindManyCustomer_group_registration_sales_channelsArgs";
+export { FindUniqueCustomer_group_registration_sales_channelsArgs } from "./FindUniqueCustomer_group_registration_sales_channelsArgs";
+export { FindUniqueCustomer_group_registration_sales_channelsOrThrowArgs } from "./FindUniqueCustomer_group_registration_sales_channelsOrThrowArgs";
+export { GroupByCustomer_group_registration_sales_channelsArgs } from "./GroupByCustomer_group_registration_sales_channelsArgs";
+export { UpdateManyCustomer_group_registration_sales_channelsArgs } from "./UpdateManyCustomer_group_registration_sales_channelsArgs";
+export { UpdateOneCustomer_group_registration_sales_channelsArgs } from "./UpdateOneCustomer_group_registration_sales_channelsArgs";
+export { UpsertOneCustomer_group_registration_sales_channelsArgs } from "./UpsertOneCustomer_group_registration_sales_channelsArgs";

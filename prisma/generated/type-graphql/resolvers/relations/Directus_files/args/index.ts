@@ -1,0 +1,3 @@
+export { Directus_filesDirectus_foldersArgs } from "./Directus_filesDirectus_foldersArgs";
+export { Directus_filesDirectus_users_directus_files_modified_byTodirectus_usersArgs } from "./Directus_filesDirectus_users_directus_files_modified_byTodirectus_usersArgs";
+export { Directus_filesDirectus_users_directus_files_uploaded_byTodirectus_usersArgs } from "./Directus_filesDirectus_users_directus_files_uploaded_byTodirectus_usersArgs";

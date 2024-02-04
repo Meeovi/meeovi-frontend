@@ -1,0 +1,14 @@
+export { AggregateApp_shipping_methodArgs } from "./AggregateApp_shipping_methodArgs";
+export { CreateManyApp_shipping_methodArgs } from "./CreateManyApp_shipping_methodArgs";
+export { CreateOneApp_shipping_methodArgs } from "./CreateOneApp_shipping_methodArgs";
+export { DeleteManyApp_shipping_methodArgs } from "./DeleteManyApp_shipping_methodArgs";
+export { DeleteOneApp_shipping_methodArgs } from "./DeleteOneApp_shipping_methodArgs";
+export { FindFirstApp_shipping_methodArgs } from "./FindFirstApp_shipping_methodArgs";
+export { FindFirstApp_shipping_methodOrThrowArgs } from "./FindFirstApp_shipping_methodOrThrowArgs";
+export { FindManyApp_shipping_methodArgs } from "./FindManyApp_shipping_methodArgs";
+export { FindUniqueApp_shipping_methodArgs } from "./FindUniqueApp_shipping_methodArgs";
+export { FindUniqueApp_shipping_methodOrThrowArgs } from "./FindUniqueApp_shipping_methodOrThrowArgs";
+export { GroupByApp_shipping_methodArgs } from "./GroupByApp_shipping_methodArgs";
+export { UpdateManyApp_shipping_methodArgs } from "./UpdateManyApp_shipping_methodArgs";
+export { UpdateOneApp_shipping_methodArgs } from "./UpdateOneApp_shipping_methodArgs";
+export { UpsertOneApp_shipping_methodArgs } from "./UpsertOneApp_shipping_methodArgs";

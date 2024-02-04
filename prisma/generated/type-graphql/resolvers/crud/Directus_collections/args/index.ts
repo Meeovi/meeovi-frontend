@@ -1,0 +1,14 @@
+export { AggregateDirectus_collectionsArgs } from "./AggregateDirectus_collectionsArgs";
+export { CreateManyDirectus_collectionsArgs } from "./CreateManyDirectus_collectionsArgs";
+export { CreateOneDirectus_collectionsArgs } from "./CreateOneDirectus_collectionsArgs";
+export { DeleteManyDirectus_collectionsArgs } from "./DeleteManyDirectus_collectionsArgs";
+export { DeleteOneDirectus_collectionsArgs } from "./DeleteOneDirectus_collectionsArgs";
+export { FindFirstDirectus_collectionsArgs } from "./FindFirstDirectus_collectionsArgs";
+export { FindFirstDirectus_collectionsOrThrowArgs } from "./FindFirstDirectus_collectionsOrThrowArgs";
+export { FindManyDirectus_collectionsArgs } from "./FindManyDirectus_collectionsArgs";
+export { FindUniqueDirectus_collectionsArgs } from "./FindUniqueDirectus_collectionsArgs";
+export { FindUniqueDirectus_collectionsOrThrowArgs } from "./FindUniqueDirectus_collectionsOrThrowArgs";
+export { GroupByDirectus_collectionsArgs } from "./GroupByDirectus_collectionsArgs";
+export { UpdateManyDirectus_collectionsArgs } from "./UpdateManyDirectus_collectionsArgs";
+export { UpdateOneDirectus_collectionsArgs } from "./UpdateOneDirectus_collectionsArgs";
+export { UpsertOneDirectus_collectionsArgs } from "./UpsertOneDirectus_collectionsArgs";

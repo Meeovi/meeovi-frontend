@@ -6,19 +6,20 @@
       <SfIconSell size="sm" class="mr-1.5" />
       Sale
     </div>
-    <h1 class="mb-1 font-bold typography-headline-4">Mini Foldable Drone with HD Camera FPV Wifi RC Quadcopter</h1>
-    <strong class="block font-bold typography-headline-3">$2,345.99</strong>
+    <h1 class="mb-1 font-bold typography-headline-4">{{data?.products_by_id?.name}}</h1>
+    <h3 class="mb-1 font-bold typography-headline-4">By: {{data?.products_by_id?.customers.customers_by_id.username}}</h3>
+    <h3 class="mb-1 font-bold typography-headline-4">Shop: {{data?.products_by_id?.shops.shops_by_id.username}}</h3>
+    <h3 class="mb-1 font-bold typography-headline-4">Category: {{data?.products_by_id?.categories.categories_by_id.name}}</h3>
+    <strong class="block font-bold typography-headline-3">{{data?.products_by_id?.currency?.currency_id?.symbol}}{{data?.products_by_id?.price}} </strong>
     <div class="inline-flex items-center mt-4 mb-2">
-      <SfRating size="xs" :value="3" :max="5" />
-      <SfCounter class="ml-1" size="xs">123</SfCounter>
-      <SfLink href="#" variant="secondary" class="ml-2 text-xs text-neutral-500"> 123 reviews </SfLink>
+      <v-rating hover :size="28" :model-value="data?.products_by_id?.rating" :length="5" active-color="orange" />
+      <SfCounter class="ml-1" size="xs"><SfLink href="#" variant="secondary" class="ml-2 text-xs text-neutral-500"> 123 reviews </SfLink></SfCounter>
     </div>
     <ul class="mb-4 font-normal typography-text-sm">
-      <li>HD Pictures & Videos and FPV Function</li>
-      <li>Intelligent Voice Control</li>
-      <li>Multiple Fun Flights</li>
-      <li>Easy to Use</li>
-      <li>Foldable Design & Double Flight Time</li>
+      <li>Sku: {{data?.products_by_id?.sku}}</li>
+      <li>
+        Size:  
+        <v-btn :title="data?.products_by_id?.size">{{data?.products_by_id?.size}}</v-btn></li>
     </ul>
     <div class="py-4 mb-4 border-gray-200 border-y">
       <div
@@ -63,12 +64,12 @@
             </SfButton>
           </div>
           <p class="self-center mt-1 mb-4 text-xs text-neutral-500 xs:mb-0">
-            <strong class="text-neutral-900">{{ max }}</strong> in stock
+            <strong class="text-neutral-900">{{data?.products_by_id?.stock_status}}</strong> in stock
           </p>
         </div>
         <SfButton size="lg" class="w-full xs:ml-4">
           <template #prefix>
-            <SfIconShoppingCart size="sm" />
+            <SfIconShoppingCart size="lg" />
           </template>
           Add to cart
         </SfButton>
@@ -142,4 +143,51 @@ function handleOnChange(event: Event) {
   const nextValue = parseFloat(currentValue);
   set(clamp(nextValue, min.value, max.value));
 }
+
+const query = gql `
+  query products_by_id($id: ID!){
+    products_by_id(id: $id){
+      id
+    name
+    price
+    sku
+    rating
+    stock_status
+    size
+    attributes {
+      attributes_id {
+        id
+        default_label
+      }
+    }
+    categories {
+      categories_id {
+        id
+        name
+      }
+    }
+    customers {
+      customers_id {
+        id
+        username
+      }
+    }
+    currency {
+      currency_id {
+        symbol
+      }
+    }
+    shops {
+      shops_id {
+        id
+        name
+      }
+    }
+  }
+}
+`
+
+    const {
+        data
+    } = await useAsyncQuery(query)
 </script>

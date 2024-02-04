@@ -1,0 +1,14 @@
+export { AggregateCustom_field_set_relationArgs } from "./AggregateCustom_field_set_relationArgs";
+export { CreateManyCustom_field_set_relationArgs } from "./CreateManyCustom_field_set_relationArgs";
+export { CreateOneCustom_field_set_relationArgs } from "./CreateOneCustom_field_set_relationArgs";
+export { DeleteManyCustom_field_set_relationArgs } from "./DeleteManyCustom_field_set_relationArgs";
+export { DeleteOneCustom_field_set_relationArgs } from "./DeleteOneCustom_field_set_relationArgs";
+export { FindFirstCustom_field_set_relationArgs } from "./FindFirstCustom_field_set_relationArgs";
+export { FindFirstCustom_field_set_relationOrThrowArgs } from "./FindFirstCustom_field_set_relationOrThrowArgs";
+export { FindManyCustom_field_set_relationArgs } from "./FindManyCustom_field_set_relationArgs";
+export { FindUniqueCustom_field_set_relationArgs } from "./FindUniqueCustom_field_set_relationArgs";
+export { FindUniqueCustom_field_set_relationOrThrowArgs } from "./FindUniqueCustom_field_set_relationOrThrowArgs";
+export { GroupByCustom_field_set_relationArgs } from "./GroupByCustom_field_set_relationArgs";
+export { UpdateManyCustom_field_set_relationArgs } from "./UpdateManyCustom_field_set_relationArgs";
+export { UpdateOneCustom_field_set_relationArgs } from "./UpdateOneCustom_field_set_relationArgs";
+export { UpsertOneCustom_field_set_relationArgs } from "./UpsertOneCustom_field_set_relationArgs";

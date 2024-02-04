@@ -1,0 +1,14 @@
+export { AggregateProduct_mediaArgs } from "./AggregateProduct_mediaArgs";
+export { CreateManyProduct_mediaArgs } from "./CreateManyProduct_mediaArgs";
+export { CreateOneProduct_mediaArgs } from "./CreateOneProduct_mediaArgs";
+export { DeleteManyProduct_mediaArgs } from "./DeleteManyProduct_mediaArgs";
+export { DeleteOneProduct_mediaArgs } from "./DeleteOneProduct_mediaArgs";
+export { FindFirstProduct_mediaArgs } from "./FindFirstProduct_mediaArgs";
+export { FindFirstProduct_mediaOrThrowArgs } from "./FindFirstProduct_mediaOrThrowArgs";
+export { FindManyProduct_mediaArgs } from "./FindManyProduct_mediaArgs";
+export { FindUniqueProduct_mediaArgs } from "./FindUniqueProduct_mediaArgs";
+export { FindUniqueProduct_mediaOrThrowArgs } from "./FindUniqueProduct_mediaOrThrowArgs";
+export { GroupByProduct_mediaArgs } from "./GroupByProduct_mediaArgs";
+export { UpdateManyProduct_mediaArgs } from "./UpdateManyProduct_mediaArgs";
+export { UpdateOneProduct_mediaArgs } from "./UpdateOneProduct_mediaArgs";
+export { UpsertOneProduct_mediaArgs } from "./UpsertOneProduct_mediaArgs";

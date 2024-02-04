@@ -21,10 +21,6 @@ export { useRequestURL } from '#app/composables/url';
 export { onBeforeRouteLeave, onBeforeRouteUpdate, useLink } from '#vue-router';
 export { withCtx, withDirectives, withKeys, withMemo, withModifiers, withScopeId, onActivated, onBeforeMount, onBeforeUnmount, onBeforeUpdate, onDeactivated, onErrorCaptured, onMounted, onRenderTracked, onRenderTriggered, onServerPrefetch, onUnmounted, onUpdated, computed, customRef, isProxy, isReactive, isReadonly, isRef, markRaw, proxyRefs, reactive, readonly, ref, shallowReactive, shallowReadonly, shallowRef, toRaw, toRef, toRefs, triggerRef, unref, watch, watchEffect, watchPostEffect, watchSyncEffect, isShallow, effect, effectScope, getCurrentScope, onScopeDispose, defineComponent, defineAsyncComponent, resolveComponent, getCurrentInstance, h, inject, hasInjectionContext, nextTick, provide, defineModel, defineOptions, defineSlots, mergeModels, toValue, useModel, useAttrs, useCssModule, useCssVars, useSlots, useTransitionState, Component, ComponentPublicInstance, ComputedRef, ExtractPropTypes, ExtractPublicPropTypes, InjectionKey, PropType, Ref, MaybeRef, MaybeRefOrGetter, VNode } from 'vue';
 export { injectHead, useHead, useSeoMeta, useHeadSafe, useServerHead, useServerSeoMeta, useServerHeadSafe } from '@unhead/vue';
-export { useAsyncMeiliSearch } from '../node_modules/nuxt-meilisearch/dist/runtime/composables/useAsyncMeiliSearch';
-export { useInstantSearch } from '../node_modules/nuxt-meilisearch/dist/runtime/composables/useInstantSearch';
-export { useMeiliSearch } from '../node_modules/nuxt-meilisearch/dist/runtime/composables/useMeiliSearch';
-export { useMeiliSearchRef } from '../node_modules/nuxt-meilisearch/dist/runtime/composables/useMeiliSearchRef';
 export { useDirectus } from '../node_modules/nuxt-directus/dist/runtime/composables/useDirectus';
 export { useDirectusAuth } from '../node_modules/nuxt-directus/dist/runtime/composables/useDirectusAuth';
 export { useDirectusCollections } from '../node_modules/nuxt-directus/dist/runtime/composables/useDirectusCollections';
@@ -50,7 +46,4 @@ export { useApollo, useAsyncQuery, useLazyAsyncQuery } from '../node_modules/@nu
 export { useQuery, useLazyQuery, useMutation, useSubscription, useApolloClient, useQueryLoading, useMutationLoading, useSubscriptionLoading, useGlobalQueryLoading, useGlobalMutationLoading, useGlobalSubscriptionLoading } from '@vue/apollo-composable';
 export { useGtag } from '../node_modules/nuxt-gtag/dist/runtime/composables/useGtag';
 export { useTrackEvent } from '../node_modules/nuxt-gtag/dist/runtime/composables/useTrackEvent';
-export { useDayjs } from '../node_modules/dayjs-nuxt/dist/runtime/composables/dayjs';
-export { useI18n } from '../node_modules/@nuxtjs/i18n/node_modules/vue-i18n/dist/vue-i18n';
-export { useRouteBaseName, useLocalePath, useLocaleRoute, useSwitchLocalePath, useLocaleHead, useBrowserLocale, useCookieLocale, defineI18nRoute, defineI18nLocale, defineI18nConfig } from '../node_modules/@nuxtjs/i18n/dist/runtime/composables';
 export { definePageMeta } from '../node_modules/nuxt/dist/pages/runtime/composables';

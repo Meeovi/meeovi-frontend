@@ -1,0 +1,14 @@
+export { AggregateNumber_range_stateArgs } from "./AggregateNumber_range_stateArgs";
+export { CreateManyNumber_range_stateArgs } from "./CreateManyNumber_range_stateArgs";
+export { CreateOneNumber_range_stateArgs } from "./CreateOneNumber_range_stateArgs";
+export { DeleteManyNumber_range_stateArgs } from "./DeleteManyNumber_range_stateArgs";
+export { DeleteOneNumber_range_stateArgs } from "./DeleteOneNumber_range_stateArgs";
+export { FindFirstNumber_range_stateArgs } from "./FindFirstNumber_range_stateArgs";
+export { FindFirstNumber_range_stateOrThrowArgs } from "./FindFirstNumber_range_stateOrThrowArgs";
+export { FindManyNumber_range_stateArgs } from "./FindManyNumber_range_stateArgs";
+export { FindUniqueNumber_range_stateArgs } from "./FindUniqueNumber_range_stateArgs";
+export { FindUniqueNumber_range_stateOrThrowArgs } from "./FindUniqueNumber_range_stateOrThrowArgs";
+export { GroupByNumber_range_stateArgs } from "./GroupByNumber_range_stateArgs";
+export { UpdateManyNumber_range_stateArgs } from "./UpdateManyNumber_range_stateArgs";
+export { UpdateOneNumber_range_stateArgs } from "./UpdateOneNumber_range_stateArgs";
+export { UpsertOneNumber_range_stateArgs } from "./UpsertOneNumber_range_stateArgs";

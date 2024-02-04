@@ -1,79 +1,46 @@
 <template>
-  <div class="relative">
-    <div class="bg-sky-200 p-4 sm:p-10 text-center">
-      <p class="typography-headline-4 sm:typography-headline-3 font-bold" style="color: black;">
-        Subscribe and get discount on your first purchase!
-      </p>
-      <p class="typography-text-sm sm:typography-text-base my-2 mb-4" style="color: black;">
-        Be aware of upcoming sales and events. Receive gifts and special offers!
-      </p>
-      <form class="mb-4 flex flex-col sm:flex-row gap-4 max-w-[688px] mx-auto"
-        @submit.prevent="subscribeNewsletter(inputValue)">
-        <SfInput v-model="inputValue" type="email" wrapper-class="grow" placeholder="Type your email" />
-        <SfButton style="background: steelblue;" type="submit" size="lg"> Subscribe to Newsletter </SfButton>
-      </form>
-      <div class="typography-text-xs text-neutral-600">
-        To learn how we process your data, visit our <SfLink href="/legal/policies" class="!text-neutral-600">Privacy Notice</SfLink>.
-        You can <SfLink href="#" class="!text-neutral-600">unsubscribe</SfLink> at any time without costs.
+  <div>
+    <section data-bs-version="5.1" class="formulam5 form1 cid-tZRUOapGTD" id="form1-6c">
+      <div class="container-fluid">
+        <div class="row content-wrapper justify-content-center">
+          <div class="col-lg-7 mbr-form">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+              <h5 class="mbr-section-title mbr-fonts-style mb-5 display-7"><strong>Yes! Send me exclusive offers, unique
+                  gift ideas, and personalised tips for shopping and selling on Meeovi.</strong></h5>
+            </div>
+
+            <div class="text-wrapper align-left" data-form-type="formoid">
+              <!--Formbuilder Form-->
+              <form action="https://mobirise.eu/" method="POST" class="mbr-form form-with-styler"
+                data-form-title="Form Name"><input type="hidden" name="email" data-form-email="true"
+                  value="6I7akA6i9MqAtcrs6sPJhXXSIqbgZSO/+zLPH21nlmABaiYJfRfGwekCGBF0sFLTHiqtOyG7VyFWuH5xmaTPTVoAAFCJMGg+CBbxYV5/p2VPTYiO58tojfkQ2CfFV67Y.uf5WSp6rmPGK86tL/BJVmCK5vycJNpwpGbaj8NCEyaArDBj19Kv6DpUE/WefG50P/NxPCItIpabdV4aB9TJJsTZHcoRrh9HHr65flQWuJwXCc4tqxp112DvDASlH2hee">
+                <div class="row">
+                  <div hidden="hidden" data-form-alert="" class="alert alert-success col-12">Thanks for filling
+                    out the form!</div>
+                  <div hidden="hidden" data-form-alert-danger="" class="alert alert-danger col-12">
+                    Oops...! some problem!
+                  </div>
+                </div>
+                <div class="dragArea row p-0 wrapper">
+                  <div data-for="email" class="col-lg-6 col-md-6 p-0 col-sm-12 form-group">
+                    <input type="email" name="email" placeholder="Add your email..." data-form-field="email"
+                      class="form-control display-7" value="" id="email-form1-6c">
+                  </div>
+                  <div class="col-auto mbr-section-btn p-0 m-0"><button type="submit"
+                      class="w-100 w-100 w-100 w-100 w-100 w-100 btn btn-primary display-4">SUBSCRIBE<span
+                        class="mobi-mbri mobi-mbri-right mbr-iconfont mbr-iconfont-btn"></span></button>
+                  </div>
+                </div>
+              </form>
+              <!--Formbuilder Form-->
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="absolute top-0 right-0 mx-2 mt-2 sm:mr-6">
-      <div v-if="showPositiveAlert" role="alert"
-        class="flex items-start md:items-center shadow-md max-w-[600px] bg-positive-100 pr-2 pl-4 mb-2 ring-1 ring-positive-200 typography-text-sm md:typography-text-base py-1 rounded-md">
-        <SfIconCheckCircle class="mr-2 my-2 text-positive-700" />
-        <p class="py-2 mr-2">Your email has been added to the newsletter subscription.</p>
-        <button type="button"
-          class="p-1.5 md:p-2 ml-auto rounded-md text-positive-700 hover:bg-positive-200 active:bg-positive-300 hover:text-positive-800 active:text-positive-900"
-          aria-label="Close positive alert" @click="showPositiveAlert = false">
-          <SfIconClose class="hidden md:block" />
-          <SfIconClose size="sm" class="md:hidden block" />
-        </button>
-      </div>
-      <div v-if="showErrorAlert" role="alert"
-        class="flex items-start md:items-center max-w-[600px] shadow-md bg-negative-100 pr-2 pl-4 ring-1 ring-negative-300 typography-text-sm md:typography-text-base py-1 rounded-md">
-        <p class="py-2 mr-2">This email is already subscribed for our newsletter.</p>
-        <button type="button"
-          class="p-1.5 md:p-2 ml-auto rounded-md text-negative-700 hover:bg-negative-200 active:bg-negative-300 hover:text-negative-800 active:text-negative-900"
-          aria-label="Close error alert" @click="showErrorAlert = false">
-          <SfIconClose class="hidden md:block" />
-          <SfIconClose size="sm" class="md:hidden block" />
-        </button>
-      </div>
-    </div>
+    </section>
   </div>
 </template>
 
 <script lang="ts" setup>
-  import {
-    ref,
-    type Ref
-  } from 'vue';
-  import {
-    SfButton,
-    SfInput,
-    SfLink,
-    SfIconCheckCircle,
-    SfIconClose
-  } from '@storefront-ui/vue';
 
-  const inputValue = ref('');
-  const showPositiveAlert = ref(false);
-  const showErrorAlert = ref(false);
-  const emailDataBase: Ref < string[] > = ref([]);
-
-  const checkEmailDataBase = (email: string) => emailDataBase.value.find((element) => element === email);
-
-  const subscribeNewsletter = (email: string) => {
-    if (!email) return;
-    if (checkEmailDataBase(email)) {
-      showErrorAlert.value = true;
-      setTimeout(() => (showErrorAlert.value = false), 5000);
-    } else {
-      showPositiveAlert.value = true;
-      emailDataBase.value.push(email);
-      setTimeout(() => (showPositiveAlert.value = false), 5000);
-    }
-    console.log(email);
-    inputValue.value = '';
-  };
 </script>

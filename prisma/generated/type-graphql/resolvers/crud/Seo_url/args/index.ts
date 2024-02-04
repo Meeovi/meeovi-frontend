@@ -1,0 +1,14 @@
+export { AggregateSeo_urlArgs } from "./AggregateSeo_urlArgs";
+export { CreateManySeo_urlArgs } from "./CreateManySeo_urlArgs";
+export { CreateOneSeo_urlArgs } from "./CreateOneSeo_urlArgs";
+export { DeleteManySeo_urlArgs } from "./DeleteManySeo_urlArgs";
+export { DeleteOneSeo_urlArgs } from "./DeleteOneSeo_urlArgs";
+export { FindFirstSeo_urlArgs } from "./FindFirstSeo_urlArgs";
+export { FindFirstSeo_urlOrThrowArgs } from "./FindFirstSeo_urlOrThrowArgs";
+export { FindManySeo_urlArgs } from "./FindManySeo_urlArgs";
+export { FindUniqueSeo_urlArgs } from "./FindUniqueSeo_urlArgs";
+export { FindUniqueSeo_urlOrThrowArgs } from "./FindUniqueSeo_urlOrThrowArgs";
+export { GroupBySeo_urlArgs } from "./GroupBySeo_urlArgs";
+export { UpdateManySeo_urlArgs } from "./UpdateManySeo_urlArgs";
+export { UpdateOneSeo_urlArgs } from "./UpdateOneSeo_urlArgs";
+export { UpsertOneSeo_urlArgs } from "./UpsertOneSeo_urlArgs";

@@ -1,0 +1,14 @@
+export { AggregateSalutation_translationArgs } from "./AggregateSalutation_translationArgs";
+export { CreateManySalutation_translationArgs } from "./CreateManySalutation_translationArgs";
+export { CreateOneSalutation_translationArgs } from "./CreateOneSalutation_translationArgs";
+export { DeleteManySalutation_translationArgs } from "./DeleteManySalutation_translationArgs";
+export { DeleteOneSalutation_translationArgs } from "./DeleteOneSalutation_translationArgs";
+export { FindFirstSalutation_translationArgs } from "./FindFirstSalutation_translationArgs";
+export { FindFirstSalutation_translationOrThrowArgs } from "./FindFirstSalutation_translationOrThrowArgs";
+export { FindManySalutation_translationArgs } from "./FindManySalutation_translationArgs";
+export { FindUniqueSalutation_translationArgs } from "./FindUniqueSalutation_translationArgs";
+export { FindUniqueSalutation_translationOrThrowArgs } from "./FindUniqueSalutation_translationOrThrowArgs";
+export { GroupBySalutation_translationArgs } from "./GroupBySalutation_translationArgs";
+export { UpdateManySalutation_translationArgs } from "./UpdateManySalutation_translationArgs";
+export { UpdateOneSalutation_translationArgs } from "./UpdateOneSalutation_translationArgs";
+export { UpsertOneSalutation_translationArgs } from "./UpsertOneSalutation_translationArgs";

@@ -1,0 +1,14 @@
+export { AggregateNewsletter_recipient_tagArgs } from "./AggregateNewsletter_recipient_tagArgs";
+export { CreateManyNewsletter_recipient_tagArgs } from "./CreateManyNewsletter_recipient_tagArgs";
+export { CreateOneNewsletter_recipient_tagArgs } from "./CreateOneNewsletter_recipient_tagArgs";
+export { DeleteManyNewsletter_recipient_tagArgs } from "./DeleteManyNewsletter_recipient_tagArgs";
+export { DeleteOneNewsletter_recipient_tagArgs } from "./DeleteOneNewsletter_recipient_tagArgs";
+export { FindFirstNewsletter_recipient_tagArgs } from "./FindFirstNewsletter_recipient_tagArgs";
+export { FindFirstNewsletter_recipient_tagOrThrowArgs } from "./FindFirstNewsletter_recipient_tagOrThrowArgs";
+export { FindManyNewsletter_recipient_tagArgs } from "./FindManyNewsletter_recipient_tagArgs";
+export { FindUniqueNewsletter_recipient_tagArgs } from "./FindUniqueNewsletter_recipient_tagArgs";
+export { FindUniqueNewsletter_recipient_tagOrThrowArgs } from "./FindUniqueNewsletter_recipient_tagOrThrowArgs";
+export { GroupByNewsletter_recipient_tagArgs } from "./GroupByNewsletter_recipient_tagArgs";
+export { UpdateManyNewsletter_recipient_tagArgs } from "./UpdateManyNewsletter_recipient_tagArgs";
+export { UpdateOneNewsletter_recipient_tagArgs } from "./UpdateOneNewsletter_recipient_tagArgs";
+export { UpsertOneNewsletter_recipient_tagArgs } from "./UpsertOneNewsletter_recipient_tagArgs";

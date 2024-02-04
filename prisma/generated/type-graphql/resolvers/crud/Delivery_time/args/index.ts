@@ -1,0 +1,14 @@
+export { AggregateDelivery_timeArgs } from "./AggregateDelivery_timeArgs";
+export { CreateManyDelivery_timeArgs } from "./CreateManyDelivery_timeArgs";
+export { CreateOneDelivery_timeArgs } from "./CreateOneDelivery_timeArgs";
+export { DeleteManyDelivery_timeArgs } from "./DeleteManyDelivery_timeArgs";
+export { DeleteOneDelivery_timeArgs } from "./DeleteOneDelivery_timeArgs";
+export { FindFirstDelivery_timeArgs } from "./FindFirstDelivery_timeArgs";
+export { FindFirstDelivery_timeOrThrowArgs } from "./FindFirstDelivery_timeOrThrowArgs";
+export { FindManyDelivery_timeArgs } from "./FindManyDelivery_timeArgs";
+export { FindUniqueDelivery_timeArgs } from "./FindUniqueDelivery_timeArgs";
+export { FindUniqueDelivery_timeOrThrowArgs } from "./FindUniqueDelivery_timeOrThrowArgs";
+export { GroupByDelivery_timeArgs } from "./GroupByDelivery_timeArgs";
+export { UpdateManyDelivery_timeArgs } from "./UpdateManyDelivery_timeArgs";
+export { UpdateOneDelivery_timeArgs } from "./UpdateOneDelivery_timeArgs";
+export { UpsertOneDelivery_timeArgs } from "./UpsertOneDelivery_timeArgs";

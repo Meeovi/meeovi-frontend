@@ -1,0 +1,14 @@
+export { AggregateAcl_roleArgs } from "./AggregateAcl_roleArgs";
+export { CreateManyAcl_roleArgs } from "./CreateManyAcl_roleArgs";
+export { CreateOneAcl_roleArgs } from "./CreateOneAcl_roleArgs";
+export { DeleteManyAcl_roleArgs } from "./DeleteManyAcl_roleArgs";
+export { DeleteOneAcl_roleArgs } from "./DeleteOneAcl_roleArgs";
+export { FindFirstAcl_roleArgs } from "./FindFirstAcl_roleArgs";
+export { FindFirstAcl_roleOrThrowArgs } from "./FindFirstAcl_roleOrThrowArgs";
+export { FindManyAcl_roleArgs } from "./FindManyAcl_roleArgs";
+export { FindUniqueAcl_roleArgs } from "./FindUniqueAcl_roleArgs";
+export { FindUniqueAcl_roleOrThrowArgs } from "./FindUniqueAcl_roleOrThrowArgs";
+export { GroupByAcl_roleArgs } from "./GroupByAcl_roleArgs";
+export { UpdateManyAcl_roleArgs } from "./UpdateManyAcl_roleArgs";
+export { UpdateOneAcl_roleArgs } from "./UpdateOneAcl_roleArgs";
+export { UpsertOneAcl_roleArgs } from "./UpsertOneAcl_roleArgs";
