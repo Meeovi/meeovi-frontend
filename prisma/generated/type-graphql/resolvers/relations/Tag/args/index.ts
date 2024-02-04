@@ -1,9 +1,0 @@
-export { TagCategory_tagArgs } from "./TagCategory_tagArgs";
-export { TagCustomer_tagArgs } from "./TagCustomer_tagArgs";
-export { TagLanding_page_tagArgs } from "./TagLanding_page_tagArgs";
-export { TagMedia_tagArgs } from "./TagMedia_tagArgs";
-export { TagNewsletter_recipient_tagArgs } from "./TagNewsletter_recipient_tagArgs";
-export { TagOrder_tagArgs } from "./TagOrder_tagArgs";
-export { TagProduct_tagArgs } from "./TagProduct_tagArgs";
-export { TagRule_tagArgs } from "./TagRule_tagArgs";
-export { TagShipping_method_tagArgs } from "./TagShipping_method_tagArgs";
