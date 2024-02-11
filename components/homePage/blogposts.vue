@@ -3,37 +3,30 @@
     <h4 style="padding: 10px;">Articles and Journals from the community</h4>
     <v-sheet class="mx-auto" elevation="0" color="transparent">
       <v-slide-group v-model="productModel" class="pa-4">
-        <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }" v-for="articles in data.articles"
-          :key="articles">
-          <v-card :class="['ma-4', selectedClass]" height="580" width="350" @click="toggle" elevation="0"
-            color="transparent">
-            <img class="align-end text-white" height="280" :src="`${url}assets/${articles.image.filename_disk}`" :alt="articles.name" cover>
-              <v-card-title>{{ articles.name }}</v-card-title>
-
-            <v-card-subtitle class="pt-4">
-              Published: {{articles.created_at}}
-            </v-card-subtitle>
-
-            <v-card-text>
-              <div>Type: <div style="display: inline-block;" v-html="articles.type"></div></div>
-              <div v-for="(customer, productIndex) in articles.customers" :key="customer.id">Author: {{ customer.customers_id.username }}</div>
-
-              <div>{{ articles.excerpt }}</div>
-            </v-card-text>
-
-            <v-card-actions>
-              <v-btn color="orange" :href="`/blog/${articles.id}`">
-                Read More
-              </v-btn>
-            </v-card-actions>
-
-            <div class="d-flex fill-height align-center justify-center">
-              <v-scale-transition>
-                <v-icon v-if="isSelected" color="white" size="48" icon="fas fa-circle-xmark">
-                </v-icon>
-              </v-scale-transition>
+        <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }"
+          v-for="(articles, index) in data.mpBlogPosts.items" :key="index">
+          <div class="item features-image сol-12 col-md-6 col-lg-4">
+            <div class="item-wrapper">
+              <div class="item-img">
+                <img :src="articles.image" :alt="articles.name" cover />
+              </div>
+              <div class="item-content">
+                <h5 class="item-title mbr-fonts-style display-7">
+                  <strong>{{ articles.name }}</strong>
+                </h5>
+                <h6 class="item-subtitle mbr-fonts-style mt-1 display-7">
+                  <em>{{ articles.created_at }}</em>
+                </h6>
+                <h6 class="item-subtitle mbr-fonts-style mt-1 display-7">
+                  <em>Author: {{ articles.author_name }}</em>
+                </h6>
+                <p class="mbr-text mbr-fonts-style mt-3 display-7">{{ articles.short_description }}
+                </p>
+              </div>
+              <div class="mbr-section-btn item-footer mt-2"><a :href="`/blog/${articles.name}`"
+                  class="btn btn-primary item-btn display-7">Read More&gt;</a></div>
             </div>
-          </v-card>
+          </div>
         </v-slide-group-item>
       </v-slide-group>
     </v-sheet>
@@ -45,7 +38,6 @@
   export default {
     data: () => ({
       model: null,
-      url: process.env.DIRECTUS_URL,
     }),
     setup() {
       return {
@@ -59,28 +51,27 @@
 </script>
 
 <script setup>
-const query = gql `
-query {
-  articles (filter: {isPublic: {_eq: true}}) {
-    id
-    name
-    excerpt
-    content
-    image {
-      filename_disk
-    }
-    customers {
-      customers_id {
-        id
-        username
+  const query = gql `
+query
+{
+  mpBlogPosts(action: "get_post_list") {
+    items {
+      image
+      name
+      author_name
+      categories {
+        items {
+          name
+        }
       }
+      created_at
+      short_description
+      view_traffic
     }
-    created_at
-    type
   }
-}
-`
+}`
+
   const {
     data
-  } = await useAsyncQuery(query)
+  } = useAsyncQuery(query);
 </script>

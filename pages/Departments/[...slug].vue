@@ -3,12 +3,34 @@
     <v-card class="lowerbar">
       <v-tabs center-active>
         <h5>Meeovi {{ department.name }}</h5>
-        <v-tab><a :href="`/departments/${department.id}`">All</a></v-tab>
-        <v-tab><a :href="`/categories/${department.categories.categories_id.id}`">{{ department.categories.categories_id.name }}</a>
+        <v-tab><a :href="`/departments/${department.uid}`">All</a></v-tab>
+        <v-tab><a :href="`/departments/categories/${department.categories.uid}`">{{ department.categories.name }}</a>
         </v-tab>
       </v-tabs>
     </v-card>
 
+    <!--Department Creators Slider-->
+    <section data-bs-version="5.1" class="formulam5 team1 cid-tZY2FlPq3D" id="people1-6f">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="item features-image col-12 col-md-6 col-lg-2">
+            <div class="item-wrapper">
+              <div class="item-img">
+                <div class="img-wrap">
+                  <img src="assets/images/team1.jpg" alt="">
+                </div>
+              </div>
+              <div class="item-content">
+                <h5 class="item-title mbr-fonts-style display-4"><strong>Ashley W. Wheeler</strong></h5>
+                <h6 class="item-subtitle mbr-fonts-style display-4">Director</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--Best Seller Product Slider-->
     <v-row class="productPage">
       <v-col cols="12">
         <h4>Best Sellers</h4>
@@ -17,7 +39,8 @@
             <v-slide-group-item v-for="n in 15" :key="n" v-slot="{ isSelected, toggle }">
               <v-card :color="isSelected ? 'primary' : 'grey-lighten-1'" class="ma-4" height="200" width="100"
                 @click="toggle">
-                <img class="align-end text-white" height="200" :src="`${department.products.products_id.image.filename_disk}`" :alt="department.products.product_id.name" cover />
+                <img class="align-end text-white" height="200" :src="`${department.products.image.url}`"
+                  :alt="department.products.name" cover />
                 <div class="d-flex fill-height align-center justify-center">
                   <v-scale-transition>
                     <v-icon v-if="isSelected" color="white" size="48" icon="mdi-close-circle-outline"></v-icon>
@@ -29,28 +52,31 @@
         </v-sheet>
       </v-col>
 
+      <!--List of products in the department-->
       <div class="productPage">
         <v-col cols="3">
-          <a :href="`/product/${department.products.products_id.id}`">
+          <a :href="`/product/${department.products.uid}`">
             <v-card class="ma-4" height="380" width="250">
-              <img class="align-end text-white" height="200" :src="`${department.products.products_id.image.filename_disk}`" :alt="department.products.product_id.name" cover />
+              <img class="align-end text-white" height="200" :src="`${department.products.image.url}`"
+                :alt="department.products.name" cover />
 
               <v-card-title class="pt-4">
-                {{ department.products.products_id.name }}
+                {{ department.products.name }}
               </v-card-title>
 
               <v-card-subtitle>
-                Sku: <div v-html="department.products.products_id.sku"></div>
+                Sku: <div v-html="department.products.sku"></div>
               </v-card-subtitle>
 
               <v-card-actions>
-                <v-card-title>$ {{ department.products.products_id.price }}</v-card-title>
+                <v-card-title>$ {{ department.products.price }}</v-card-title>
               </v-card-actions>
             </v-card>
           </a>
         </v-col>
-      </div><!---->
-    </v-row>  
+      </div>
+      <!---->
+    </v-row>
     <latestproducts />
     <bestsellers />
     <relatedcreators />
@@ -82,16 +108,23 @@
 </script>
 
 <script setup>
-const { $directus, $readItem } = useNuxtApp()
-const route = useRoute()
+  const {
+    $directus,
+    $readItem
+  } = useNuxtApp()
+  const route = useRoute()
 
-const { data: department } = await useAsyncData('departments', () => {
-  return $directus.request(
-    $readItem('departments', route.params.slug, {
-      fields: ['*', { '*': ['*'] }]
-    })
-  )
-})/*; */
+  const {
+    data: department
+  } = await useAsyncData('departments', () => {
+    return $directus.request(
+      $readItem('departments', route.params.slug, {
+        fields: ['*', {
+          '*': ['*']
+        }]
+      })
+    )
+  }) /*; */
 
   useHead({
     title: 'collection.name',

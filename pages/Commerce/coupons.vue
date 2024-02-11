@@ -1,63 +1,132 @@
 <template>
-    <div>
+    <div class="contentPage">
         <profilebar />
-        <v-row class="profilePage">
-            <section data-bs-version="5.1" class="mbr-section features13 cid-txNjPsul0g mbr-parallax-background"
-                id="features13-4p">
+        <v-row>
+            <v-col cols="12">
+                <v-toolbar title="Your Coupons" subtitle=""></v-toolbar>
+                <v-row class="accountRow">
+                    <v-col cols="3" v-for="(products, index) in data?.products?.items" :key="index">
+                        <v-card class="mx-auto" max-width="400">
+                            <v-img class="align-end text-white" height="200"
+                            :src="products?.image?.url" :alt="products?.name" cover>
+                                <v-card-title>Top 10 Australian beaches</v-card-title>
+                            </v-img>
 
+                            <v-card-subtitle class="pt-4">
+                                Category: {{ products?.categories?.name }}
+                            </v-card-subtitle>
 
+                            <v-card-text>
+                                <div>Manufacturer: {{ products?.manufacturer }}</div>
 
-                <div class="mbr-overlay" style="opacity: 0.8; background-color: rgb(255, 255, 255);">
-                </div>
+                                <div>{{ products?.regularPrice?.amount?.currency }} {{ products?.regularPrice?.amount?.value }}</div>
+                            </v-card-text>
 
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-12 text-row col-md-6">
-                            <h2 class="align-center pb-3 mbr-fonts-style display-2">
-                                Coupons</h2>
-                        </div>
-                        <div class="card px-3 py-4 col-12 col-md-6 col-lg-4 col-xl-3" v-for="coupons in coupons" :key="coupons">
-                            <div class="card-wrapper">
-                                <div class="card-img">
-                                    <img :src="`${url}assets/${coupons.image.filename_disk}`" :alt="coupons.name" />
-                                </div>
-                                <div class="card-box">
-                                    <p class="mbr-text mbr-fonts-style align-center display-7">
-                                        {{coupons.excerpt}}
-                                    </p>
-                                    <div class="mbr-section-btn card-btn align-center">
-                                        <a :href="`/lists/${coupons.id}`" class="btn btn-secondary display-4">
-                                            BUY
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+                            <v-card-actions>
+                                <v-btn color="orange">
+                                    Archive Order
+                                </v-btn>
+
+                                <v-btn color="red" href="`/commerce/coupons/`">
+                                    Manage subscription
+                                </v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-col>
+                </v-row>
+            </v-col>
+
+            <v-col cols="12">
+                <v-toolbar title="Coupons" subtitle=""></v-toolbar>
+                <v-row class="accountRow">
+                    <v-col cols="3" v-for="(products, index) in data?.products?.items" :key="index">
+                        <v-card class="mx-auto" max-width="400">
+                            <v-img class="align-end text-white" height="200"
+                                :src="products?.image?.url" cover>
+                                <v-card-title>{{ products?.name }}</v-card-title>
+                            </v-img>
+
+                            <v-card-subtitle class="pt-4">
+                                Category: {{ products?.categories?.name }}
+                            </v-card-subtitle>
+
+                            <v-card-text>
+                                <div>Manufacturer: {{ products?.manufacturer }}</div>
+
+                                <div>{{ products?.regularPrice?.amount?.currency }} {{ products?.regularPrice?.amount?.value }}</div>
+                            </v-card-text>
+
+                            <v-card-actions>
+                                <v-btn color="orange">
+                                    Subscribe
+                                </v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-col>
+                </v-row>
+            </v-col>
         </v-row>
     </div>
 </template>
 
 <script>
     import profilebar from '../../components/Menus/profilebar.vue'
+    const productModel = ref(null)
 
     export default {
         components: {
             profilebar
         },
+        data: () => ({
+            model: null,
+            url: process.env.DIRECTUS_URL,
+        }),
+        setup() {
+            return {
+                productModel,
+            }
+        },
     }
 </script>
 
 <script setup>
-const {
-        getItems
-    } = useDirectusItems()
+const query = gql`
+query MyQuery {
+  products(filter: {price: {from: "0"}, format: {eq: "Subscription"}}) {
+    items {
+      categories {
+        name
+        image
+      }
+      format
+      id
+      is_featured
+      name
+      only_x_left_in_stock
+      price {
+        regularPrice {
+          amount {
+            currency
+            value
+          }
+        }
+      }
+      sale
+      sku
+      image {
+        url
+      }
+      manufacturer
+      special_price
+      size
+    }
+  }
+}
 
-    const coupons = await getItems({
-        collection: "coupons"
-    });    
+`
+  const {
+    data
+  } = await useAsyncQuery(query)
 
     useHead({
         title: 'Coupons',

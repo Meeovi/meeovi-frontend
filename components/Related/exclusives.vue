@@ -1,14 +1,9 @@
 <template>
   <v-sheet class="mx-auto sliderProducts row align-items-stretch items-row justify-content-center">
-    <h4>Exclusives on Meeovi</h4>
-    <v-sheet class="mx-auto" elevation="0" color="transparent">
-      <v-slide-group v-model="model" class="pa-4" prev-icon="fas fa-arrow-left" next-icon="fas fa-arrow-right"
-        selected-class="bg-primary">
-        <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }">
-          <productCard />
-        </v-slide-group-item>
-      </v-slide-group>
-    </v-sheet>
+    <h4>Exclusives</h4>
+    <div v-for="cmsblock in data" :key="cmsblock">
+      <div v-html="cmsblock.content"></div>
+    </div>
   </v-sheet>
 </template>
 
@@ -27,5 +22,17 @@
 </script>
 
 <script setup>
+const query = gql `
+query MyQuery {
+  cmsBlocks(identifiers: "sale-block") {
+    items {
+      content
+    }
+  }
+}
+`
 
+  const {
+    data
+  } = useAsyncQuery(query);
 </script>

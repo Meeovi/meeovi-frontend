@@ -1,15 +1,10 @@
 <template>
-  <v-sheet class="mx-auto sliderProducts">
+  <div>
     <h4>Related Products</h4>
-    <v-sheet class="mx-auto" elevation="0" color="transparent">
-      <v-slide-group v-model="model" class="pa-4" prev-icon="fas fa-arrow-left" next-icon="fas fa-arrow-right"
-        selected-class="bg-primary">
-        <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }">
-          <productCard />
-        </v-slide-group-item>
-      </v-slide-group>
-    </v-sheet>
-  </v-sheet>
+    <div v-for="cmsblock in data" :key="cmsblock">
+      <div v-html="cmsblock.content"></div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -27,5 +22,17 @@
 </script>
 
 <script setup>
+const query = gql `
+query MyQuery {
+  cmsBlocks(identifiers: "product-block") {
+    items {
+      content
+    }
+  }
+}
+`
 
+  const {
+    data
+  } = useAsyncQuery(query);
 </script>

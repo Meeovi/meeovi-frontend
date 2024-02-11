@@ -1,110 +1,25 @@
 <template>
-	<div class="contentPage">
-		<v-toolbar color="transparent">
-			<v-toolbar-title>Search Results</v-toolbar-title>
-			<v-breadcrumbs :items="['Home', 'Bar', 'Fizz']"></v-breadcrumbs>
-		</v-toolbar>
-		<v-row class="searchResults">
-
-			<v-col cols="2">
-				<searchfilters />
-			</v-col>
-			<v-col cols="10">
-				<v-toolbar color="transparent">
-					<p>Sort by:</p>
-
-					<v-btn variant="text">Featured</v-btn>
-					<v-btn variant="text">Rating</v-btn>
-					<v-btn variant="text">Price</v-btn>
-					<v-btn variant="text">Newest Arrivals</v-btn>
-					<v-spacer></v-spacer>
-
-					<p>View</p>
-
-					<v-btn variant="text" icon="fas fa-th"></v-btn>
-					<v-btn variant="text" icon="fas fa-list"></v-btn>
-				</v-toolbar>
-
-				<v-container>
-					<v-row>
-						<!--<v-col v-for="product in data.products" :key="product.id" cols="12" sm="6" md="4" lg="3">
-							<a :href="`/product/${products.id}`">
-                            <v-card class="ma-4" height="380" width="250" @click="toggle">
-                                <img class="align-end text-white" height="200" :src="`${products.featuredAsset.preview}`" :alt="products.name" cover />
+	<NuxtLayout name="default">
+	  <CategoryPageContent
+		v-if="productsCatalog"
+		:title="$t('resultsFor', { phrase: query.search })"
+		:total-products="productsCatalog.pagination.totalResults"
+		:products="productsCatalog.products"
+	  >
+		<template #sidebar>
+		  <CategorySorting />
+		  <CategoryFilters :facets="productsCatalog.facets" />
+		</template>
+	  </CategoryPageContent>
+	</NuxtLayout>
+  </template>
   
-                                <v-card-title class="pt-4">
-                                    {{ products.name }}
-                                </v-card-title>
+<script setup lang="ts">
+import { useProducts } from '../../composables/useProducts/useProducts';
+
+  const { query } = useRoute();
+  const { fetchProducts, data: productsCatalog } = useProducts();
   
-                                <v-card-text>
-                                    <div>Sku: {{ products.variants.sku }}</div>
-                                </v-card-text>
-  
-                                <v-card-actions>
-                                    <v-card-title>$ {{ products.variants.price }}
-                                    </v-card-title>
-                                </v-card-actions>
-                                <div class="d-flex fill-height align-center justify-center">
-                                    <v-scale-transition>
-                                        <v-icon v-if="isSelected" color="white" size="48"
-                                            icon="mdi-close-circle-outline"></v-icon>
-                                    </v-scale-transition>
-                                </div>
-                            </v-card>
-                        </a>
-						</v-col>-->
-					</v-row>
-				</v-container>
-				<v-pagination v-model="currentPage" :length="totalPages" @input="changePage" />
-			</v-col>
-		</v-row>
-	</div>
-</template>
-
-<script>
-	import searchfilters from '../../components/Search/searchfilters.vue'
-
-	export default {
-		components: {
-			searchfilters
-		},
-
-	}
+  await fetchProducts();
 </script>
-
-<script setup>
-// Import Apollo composition function
-import { useQuery } from '@nuxt/apollo';
-import { ref } from 'vue';
-
-// Use the SearchQuery GraphQL query
-const { data, loading, error } = useQuery(SearchQuery, {
-  variables: {
-    query: searchQuery,
-    sortField,
-    sortOrder: 'ASC', // or 'DESC' based on user preference
-    page: currentPage,
-    perPage: 10, // Adjust perPage based on your preference
-  },
-});
-
-// Extract search results and pageInfo from the Apollo response
-const results = data?.search?.results || [];
-const currentPage = ref(data?.search?.pageInfo?.currentPage || 1);
-const totalPages = ref(data?.search?.pageInfo?.totalPages || 1);
-
-// Handle page change
-const changePage = (page) => {
-  currentPage.value = page;
-  // Implement Apollo query to search with updated page variable
-};
-
-// Show error feedback
-if (error) {
-  feedback.value = {
-    show: true,
-    message: 'Error occurred during search.',
-    color: 'error',
-  };
-}
-</script>
+  

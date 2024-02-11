@@ -85,7 +85,6 @@
           <main id="mainSection">
             <v-row>
               <v-col><live /></v-col>
-              <v-col cols="11"><livebubbles /></v-col>
             </v-row>
             <div>
               <slot />
@@ -105,7 +104,6 @@
   import search from '../components/Search/search.vue'
   import ecosystemmenu from '../components/Menus/ecosystemmenu.vue'
   import live from '../components/Menus/Livebar/live.vue'
-  import livebubbles from '../components/Menus/Livebar/livebubbles.vue'
   import topmenu from '../components/Menus/Sidebar/topmenu.vue'
   import socialmenu from '../components/Menus/Sidebar/socialmenu.vue'
   import departmentsmenu from '../components/Menus/Sidebar/departmentsmenu.vue'
@@ -122,7 +120,6 @@
           search,
           ecosystemmenu,
           live,
-          livebubbles,
           topmenu,
           socialmenu,
           departmentsmenu,

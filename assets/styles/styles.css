@@ -32,7 +32,7 @@ body {
     position: relative;
     padding-top: 10px;
     top: 55px;
-    display: flex;
+    display: inline-flex;
 }
 
 .livebar>.v-avatar {
@@ -107,10 +107,12 @@ body {
 
 #mainSection {
     top: 0px !important;
+    bottom: 50px !important;
     position: relative !important;
     left: 0px;
     max-width: 100% !important;
-    height: 100% !important;
+    min-height: 100% !important;
+    padding-bottom: 150px;
 }
 
 .v-main {
@@ -293,6 +295,36 @@ body {
 .productCardPrice {
     display: flex;
 }
+
+.orderRow {
+    padding-left: 10px;
+}
+
+.orderToolbar {
+    background: transparent !important;
+}
+
+.accountRow {
+    padding-top: 5px;
+}
+
+.giftcardfield, .giftcardbtn {
+    display: inline-block;
+}
+
+.giftCardSection {
+    width: 100%;
+    padding-top: 20px;
+    padding-left: 20%;
+    padding-right: 20%;
+    padding-bottom: 20%;
+}
+
+.giftCardSection h2 {
+    left: 0px;
+    text-align: left;
+    font-size: 25px;
+}
 /**************** Product Page *******************/
 
 .sizelist {
@@ -431,9 +463,23 @@ body {
     padding-top: 10px;
 }
 
+.avatarBorder {
+    border-right: 5px green solid;
+    border-bottom: 5px blue solid;
+    border-left: 5px orange solid;
+    border-top: 5px red solid;
+    position: relative;
+    border-radius: 50%;
+}
+
 .postbtn {
     background-color: steelblue !important;
     color: white !important;
+}
+
+.liveVideo, .createVideo{
+    width: 100%;
+    height: 100%;
 }
 
 /****************** Social Profile ****************/
@@ -444,15 +490,6 @@ body {
 
 .profileBanner {
     z-index: 999 !important;
-}
-
-.avatarBorder {
-    border: 5px white solid;
-    position: relative;
-    float: left;
-    left: 20px;
-    top: -60px;
-    z-index: 9999 !important;
 }
 
 .profileInfo {
@@ -518,6 +555,12 @@ body {
 }
 
 /*************** Search *****************/
+
+#search {
+    max-width: 40%;
+    min-width: 20%;
+}
+
 .searchResults p {
     top: 7px;
     position: relative;

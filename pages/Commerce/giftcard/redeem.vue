@@ -1,0 +1,68 @@
+<template>
+    <div class="contentPage">
+        <profilebar />
+        <v-row class="giftCardSection">
+            <v-col cols="12">
+                <h2>Redeem a gift card</h2>
+            </v-col>
+
+            <v-col cols="12">
+                <v-row>
+                    <v-col cols="6"><v-text-field class="giftcardfield" label="Enter code"></v-text-field></v-col>
+                    <v-col cols="6"><v-btn class="giftcardbtn" color="orange" size="x-large" type="submit" variant="elevated">Apply to your balance</v-btn></v-col>
+                </v-row>
+                
+                
+                <v-expansion-panels>
+                    <v-expansion-panel title="How do I find the claim code?"
+                        text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, ratione debitis quis est labore voluptatibus! Eaque cupiditate minima">
+                    </v-expansion-panel>
+                </v-expansion-panels>
+            </v-col>
+
+            <v-col cols="12">
+                <h2>Current Gift Card Balance: </h2>
+                <a href="/commerce/giftcard/">View balance history</a>
+            </v-col>
+            <v-divider></v-divider>
+
+            <v-col cols="12">
+                <p></p>
+            </v-col>
+            <v-divider></v-divider>
+
+            <v-col cols="12" v-for="cmsblocks in data" :key="cmsblocks">
+                <p v-html="cmsblocks.content"></p>
+            </v-col>
+        </v-row>
+    </div>
+</template>
+
+<script>
+    import profilebar from '../../../components/Menus/profilebar.vue'
+
+    export default {
+        components: {
+            profilebar
+        },
+    }
+</script>
+
+<script setup>
+const query = gql`
+query MyQuery {
+    cmsBlocks(identifiers: "redeemtextbox") {
+    items {
+      content
+    }
+  }
+}
+`
+  const {
+    data
+  } = await useAsyncQuery(query)
+
+    useHead({
+        title: 'Redeem an Meeovi Gift Card'
+    })
+</script>

@@ -2,59 +2,68 @@
     <div class="contentPage">
         <profilebar />
         <v-row>
-            <v-col cols="12" v-for="subscriptions in subscriptions" :key="subscriptions">
-                <v-sheet class="mx-auto sliderProducts">
-                    <v-toolbar color="transparent">
-                        <v-toolbar-title>Receipt ID {{ subscriptions.id }}</v-toolbar-title>
-                        <p>Subscription Number: {{ subscriptions.subscription_number }}</p>
-                        <v-spacer></v-spacer>
-                        <p>Start Date: {{ subscriptions.start_date }}</p>
-                        <v-spacer></v-spacer>
-                        <p>End Date: {{ subscriptions.end_date }}</p>
-                    </v-toolbar>
-                    <v-slide-group v-model="model" class="pa-4">
-                        <v-slide-group-item v-slot="{ toggle }">
-                            <h2>{{ subscriptions.status }}</h2>
-                            <v-card @click="toggle">
-                                <v-slide-group v-model="productModel" class="pa-4">
-                                    <v-slide-group-item v-for="(product, productIndex) in subscriptions.products"
-                                        :key="productIndex" v-slot="{ isSelected, toggle }">
-                                        <v-card class="ma-4" height="580" @click="toggle">
-                                            <img class="align-end text-white" height="280"
-                                                :src="`${url}assets/${product.products_id.image.filename_disk}`"
-                                                :alt="product.products_id.name" cover />
+            <v-col cols="12">
+                <v-toolbar title="Your Subscriptions" subtitle=""></v-toolbar>
+                <v-row class="accountRow">
+                    <v-col cols="3" v-for="(products, index) in data?.products?.items" :key="index">
+                        <v-card class="mx-auto" max-width="400">
+                            <v-img class="align-end text-white" height="200"
+                            :src="products?.image?.url" :alt="products?.name" cover>
+                                <v-card-title>Top 10 Australian beaches</v-card-title>
+                            </v-img>
 
-                                            <v-card-title class="pt-4">
-                                                {{ product.products_id.name }}
-                                            </v-card-title>
+                            <v-card-subtitle class="pt-4">
+                                Category: {{ products?.categories?.name }}
+                            </v-card-subtitle>
 
-                                            <v-card-text>
-                                                <div>Sku: {{ product.products_id.sku }}</div>
-                                                <div>Category: {{ subscriptions.categories[0].categories_id.name }}
-                                                </div>
-                                            </v-card-text>
+                            <v-card-text>
+                                <div>Manufacturer: {{ products?.manufacturer }}</div>
 
-                                            <v-card-actions>
-                                                <v-card-title>$ {{ product.products_id.price }}</v-card-title>
-                                            </v-card-actions>
+                                <div>{{ products?.regularPrice?.amount?.currency }} {{ products?.regularPrice?.amount?.value }}</div>
+                            </v-card-text>
 
-                                            <div class="align-center">
-                                                <v-btn class="align-center" color="orange" href="">Add to Cart</v-btn>
-                                            </div>
+                            <v-card-actions>
+                                <v-btn color="orange">
+                                    Archive Order
+                                </v-btn>
 
-                                            <div class="d-flex fill-height align-center justify-center">
-                                                <v-scale-transition>
-                                                    <v-icon v-if="isSelected" color="white" size="48"
-                                                        icon="fas fa-circle-xmark"></v-icon>
-                                                </v-scale-transition>
-                                            </div>
-                                        </v-card>
-                                    </v-slide-group-item>
-                                </v-slide-group>
-                            </v-card>
-                        </v-slide-group-item>
-                    </v-slide-group>
-                </v-sheet>
+                                <v-btn color="red" href="`/commerce/subscriptions/`">
+                                    Manage subscription
+                                </v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-col>
+                </v-row>
+            </v-col>
+
+            <v-col cols="12">
+                <v-toolbar title="Subscriptions" subtitle=""></v-toolbar>
+                <v-row class="accountRow">
+                    <v-col cols="3" v-for="(products, index) in data?.products?.items" :key="index">
+                        <v-card class="mx-auto" max-width="400">
+                            <v-img class="align-end text-white" height="200"
+                                :src="products?.image?.url" cover>
+                                <v-card-title>{{ products?.name }}</v-card-title>
+                            </v-img>
+
+                            <v-card-subtitle class="pt-4">
+                                Category: {{ products?.categories?.name }}
+                            </v-card-subtitle>
+
+                            <v-card-text>
+                                <div>Manufacturer: {{ products?.manufacturer }}</div>
+
+                                <div>{{ products?.regularPrice?.amount?.currency }} {{ products?.regularPrice?.amount?.value }}</div>
+                            </v-card-text>
+
+                            <v-card-actions>
+                                <v-btn color="orange">
+                                    Subscribe
+                                </v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-col>
+                </v-row>
             </v-col>
         </v-row>
     </div>
@@ -81,13 +90,43 @@
 </script>
 
 <script setup>
-    const {
-        getItems
-    } = useDirectusItems()
+const query = gql`
+query MyQuery {
+  products(filter: {price: {from: "0"}, format: {eq: "Subscription"}}) {
+    items {
+      categories {
+        name
+        image
+      }
+      format
+      id
+      is_featured
+      name
+      only_x_left_in_stock
+      price {
+        regularPrice {
+          amount {
+            currency
+            value
+          }
+        }
+      }
+      sale
+      sku
+      image {
+        url
+      }
+      manufacturer
+      special_price
+      size
+    }
+  }
+}
 
-    const subscriptions = await getItems({
-        collection: "subscriptions",
-    });
+`
+  const {
+    data
+  } = await useAsyncQuery(query)
 
     useHead({
         title: 'Subscriptions',

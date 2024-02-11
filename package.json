@@ -1,7 +1,8 @@
 {
    "name": "meeovi",
-   "version": "0.0.5",
-   "description": "This is a template for the Meeovi.",
+   "type": "module",
+   "version": "0.0.6",
+   "description": "This is a storefront for Meeovi.",
    "author": "Sebastian Hilton (https://www.sebastianhilton.com)",
    "homepage": "https://www.meeovi.com",
    "repository": {
@@ -14,7 +15,7 @@
    "license": "MIT",
    "private": true,
    "scripts": {
-      "start": "mesh start",
+      "start": "node middleware/middleware.js",
       "alternate-commit": "git add . && git commit -m \"ready for update\"",
       "alternate-update": "git pull \"https://github.com/Meeovi/meeovi-frontend\"",
       "prebuild": "mesh build",
@@ -22,20 +23,18 @@
       "dev": "nuxt dev --port 3011",
       "ts-node": "ts-node -r tsconfig-paths/register --compiler-options '{\"module\":\"CommonJS\"}'",
       "generate": "nuxt generate",
-      "codegen": "graphql-codegen --config ./packages/gateway/codegen.ts",
-      "get-graphql-schema": "npx get-graphql-schema http://67.207.71.123:8011/graphql > apollo/schema.graphql",
-      "gql-generate": "npx gqlg --schemaFilePath apollo/schema.graphql --destDirPath apollo/queries-mutations_subscriptions --depthLimit 1",
       "preview": "nuxt preview",
       "analyze": "nuxi analyze",
-      "all": "npm-run-all --parallel dev yoga"
+      "all": "npm-run-all --parallel dev start"
    },
    "devDependencies": {
       "@nuxt/content": "latest",
       "@nuxt/types": "^2.15.8",
       "@nuxtjs/apollo": "next",
+      "@nuxtjs/i18n": "8.0.0-rc.3",
       "@nuxtjs/tailwindcss": "^6.10.3",
       "@sidebase/nuxt-auth": "latest",
-      "@storefront-ui/vue": "^2.6.0",
+      "@storefront-ui/vue": "canary",
       "@tinymce/tinymce-vue": "latest",
       "@types/graphql": "^14.5.0",
       "@types/node": "^20.11.13",
@@ -43,6 +42,7 @@
       "js-cookie": "^3.0.5",
       "npm-run-all": "^4.1.5",
       "nuxt": "latest",
+      "sass": "^1.64.1",
       "ts-node": "^10.9.2",
       "typescript": "^5.3.3"
    },
@@ -51,18 +51,17 @@
       "@fortawesome/fontawesome-svg-core": "^6.2.1",
       "@fortawesome/free-solid-svg-icons": "^6.2.1",
       "@fortawesome/vue-fontawesome": "^3.0.2",
-      "@graphql-mesh/cli": "^0.88.5",
-      "@graphql-mesh/graphql": "^0.96.3",
-      "@graphql-mesh/mysql": "^0.96.4",
       "@types/js-cookie": "^3.0.6",
-      "@vue-storefront/sdk": "^1.2.0",
-      "@whatwg-node/fetch": "^0.9.16",
+      "@vue-storefront/magento-api": "^2.4.3",
+      "@vue-storefront/magento-sdk": "^2.1.0",
+      "@vue-storefront/middleware": "^3.8.0",
+      "@vue-storefront/nuxt": "^3.0.1",
+      "@vue-storefront/sdk": "^1.2.2",
       "cors": "^2.8.5",
       "cross-var": "^1.1.0",
       "dotenv": "^16.3.1",
       "dotenv-cli": "^7.3.0",
       "fastify": "^4.26.0",
-      "instantsearch.css": "^8.1.0",
       "jquery": "latest",
       "nuxt-directus": "^5.6.0",
       "nuxt-gtag": "^1.1.2",
@@ -71,7 +70,6 @@
       "videojs-contrib-ads": "^7.1.0",
       "videojs-contrib-quality-levels": "latest",
       "videojs-share": "^3.2.1",
-      "vue-instantsearch": "^4.13.2",
       "vuetify": "latest"
    }
 }

@@ -30,10 +30,10 @@
 </template>
 
 <script>
-import explore from '../components/Pages/Explore/explore.vue'
-import leaderboard from '../components/Pages/Explore/leaderboard.vue'
-import brands from '../components/Pages/Explore/brands.vue'
-import challenges from '../components/Pages/Explore/challenges.vue'
+import explore from '../components/Pages/explore/explore.vue'
+import leaderboard from '../components/Pages/explore/leaderboard.vue'
+import brands from '../components/Pages/explore/brands.vue'
+import challenges from '../components/Pages/explore/challenges.vue'
 
     export default {
         components: { explore, leaderboard, brands, challenges },

@@ -4,7 +4,7 @@
       <h4>Related Stations</h4>
       <v-slide-group v-model="model" class="pa-4" selected-class="bg-success" show-arrows>
         <v-slide-group-item v-for="n in 15" :key="n" v-slot="{ isSelected, toggle, selectedClass }">
-          <v-card color="grey-lighten-1" :class="['ma-4', selectedClass]" height="200" width="100" @click="toggle">
+          <v-card color="grey-lighten-1" :class="['ma-4', selectedClass]" height="200" width="100"  v-for="(products, index) in data.products?.items" :key="index" @click="toggle" :href="products?.uid">
             <div class="d-flex fill-height align-center justify-center">
               <v-card max-width="400" class="mx-auto">
                 <v-container>
@@ -14,10 +14,10 @@
                         <div class="d-flex flex-no-wrap justify-space-between">
                           <div>
                             <v-card-title class="text-h5">
-                              Supermodel
+                              {{ products?.name }}
                             </v-card-title>
 
-                            <v-card-subtitle>Foster the People</v-card-subtitle>
+                            <v-card-subtitle>{{ products?.categories?.name }}</v-card-subtitle>
 
                             <v-card-actions>
                               <v-btn class="ms-2" variant="outlined" size="small">
@@ -27,7 +27,7 @@
                           </div>
 
                           <v-avatar class="ma-3" size="125" rounded="0">
-                            <v-img src="https://cdn.vuetifyjs.com/images/cards/foster.jpg"></v-img>
+                            <img :src="products?.image?.url" :alt="products?.name" cover />
                           </v-avatar>
                         </div>
                       </v-card>
@@ -62,5 +62,33 @@
 </script>
 
 <script setup>
+  const query = gql `
+query{
+  products(filter: {price: {from: "0"}, format: {eq: "Radio Stations"}}) {
+    items {
+      uid
+      name
+      categories {
+        name
+      }
+      price_range {
+        maximum_price {
+          regular_price {
+            currency
+            value
+          }
+        }
+      }
+      image {
+        url
+      }
+      rating_summary
+    }
+  }
+}
+`
 
+  const {
+    data
+  } = useAsyncQuery(query);
 </script>

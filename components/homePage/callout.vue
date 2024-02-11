@@ -1,34 +1,60 @@
 <template>
   <div>
-    <v-row>
-      <v-col v-for="products in data.products" :key="products.id" cols="3">
-        <a :href="`/product/${products.id}`">
-              <v-card class="ma-4" height="580" width="250" @click="toggle">
-                <img class="align-end text-white" height="280" :src="`${url}assets/${products.image.filename_disk}`"
-                  :alt="products.name" cover />
-
-                <v-card-title class="pt-4">
-                  {{ products.name }}
-                </v-card-title>
-
-                <v-card-text>
-                  <div>Sku: {{ products.sku }}</div>
-                </v-card-text>
-
-                <v-card-actions>
-                  <v-card-title>$ {{ products.price }}</v-card-title>
-                  <v-card-title>Category: {{ products.categories.categories_id.name }}</v-card-title>
-                  <v-card-title>Seller: {{ products.customers.customers_id.name }}</v-card-title>
-                </v-card-actions>
-                <div class="d-flex fill-height align-center justify-center">
-                  <v-scale-transition>
-                    <v-icon v-if="isSelected" color="white" size="48" icon="mdi-close-circle-outline"></v-icon>
-                  </v-scale-transition>
+    <section data-bs-version="5.1" class="mbr-gallery cid-tAGTtsX7dT" once="shops" id="shop2-5w">
+      <div>
+        <div class="mbr-shop">
+          <!-- Shop Gallery -->
+          <div class="row mbr-shop__row col-md-12">
+            <div class="wrapper-shop-items col-md-12">
+              <div class="mbr-gallery-row">
+                <div>
+                  <div class="shop-items">
+                    <div class="mbr-gallery-item" data-tags="Awesome" data-seller="true" data-slide-to="0"
+                      data-bs-slide-to="0" data-price="39" data-oldprice="78" v-for="(products, index) in data?.products?.items" :key="index">
+                      <div class="item_overlay" data-toggle="modal" data-bs-toggle="modal"></div>
+                      <div class="galleryItem" data-toggle="modal" data-bs-toggle="modal">
+                        <div class="style_overlay"></div>
+                        <div class="img_wraper"><img :src="products.image.url" /></div><span
+                          class="onsale mbr-fonts-style display-7" data-onsale="true">-50%</span>
+                        <div class="sidebar_wraper">
+                          <h4 class="item-title mbr-fonts-style mbr-text display-5">{{ products.name }}
+                          </h4>
+                          <div class="price-block"><span
+                              class="shop-item-price mbr-fonts-style display-5">{{products.regularPrice.amount.currency}} {{ products.regularPrice.amount.value }}</span><span
+                              class="oldprice mbr-fonts-style display-7">$ {{ products.special_price }}</span></div>
+                          <div class="card-description">Category: {{ products.categories.name }}<br><br>
+                            <ul>
+                              <li>Manufacturer: {{ products.manufacturer }}</li>
+                              <li>Product Code: <strong>{{ products.sku }}</strong></li>
+                              <li>Featured: {{ products.is_featured }}</li>
+                              <li>Size: {{ products.size }}</li>
+                            </ul> <br>{{ products.description }}<br><br>
+                          </div>
+                          <div class="mbr-section-btn" buttons="0" style="display: none;"><a
+                              class="btn btn-black display-7" href="#">Buy now</a></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </v-card>
-            </a>
-      </v-col>
-    </v-row>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </div><!-- Lightbox -->
+          <div class="shopItemsModal_wraper" style="z-index: 2500;">
+            <div class="shopItemsModalBg"></div>
+            <div class="shopItemsModal row">
+              <div class="col-md-6 image-modal"></div>
+              <div class="col-md-6 text-modal"></div>
+              <div class="closeModal">
+                <div class="close-modal-wrapper"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
   </div>
 </template>
 
@@ -41,100 +67,36 @@
 </script>
 
 <script setup>
-  const query = gql `
-query {
-  departments (limit: 6){
-    id
-    Active
-    name
-    color
-    colortext
-    description
-    content
-    brands {
-      id
-      brands_id {
+const query = gql`
+query MyQuery {
+  products(filter: {price: {from: "0"}}) {
+    items {
+      categories {
         name
         image
       }
-    }
-    articles {
-      articles_id {
-        id
-        name
-        excerpt
-        content
-        categories {
-          categories_id {
-            id
-            name
-          }
-        }
-      }
-    }
-    image {
-      filename_disk
-    }
-    customers {
-      customers_id {
-        id
-        first_name
-        last_name
-        image {
-          filename_disk
-        }
-      }
-    }
-    categories {
-      categories_id {
-        id
-        name
-        image {
-          filename_disk
-        }
-      }
-    }
-    products {
+      format
       id
-      products_id {
-        id
-        name
-        price
-        image {
-          filename_disk
-        }
-        sku
-        Space {
-          id
-          Space_id {
-            id
-            Name
+      is_featured
+      name
+      only_x_left_in_stock
+      price {
+        regularPrice {
+          amount {
+            currency
+            value
           }
         }
       }
-    }
-    shorts {
-      shorts_id {
-        id
-        name
-        video {
-          filename_disk
-        }
+      sale
+      sku
+      image {
+        url
       }
+      manufacturer
+      special_price
+      size
     }
-    shops {
-      shops_id {
-        id
-        name
-      }
-    }
-    collections {
-      collections_id {
-        id
-        name
-      }
-    }
-    websites
   }
 }
 `

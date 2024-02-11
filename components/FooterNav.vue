@@ -30,6 +30,10 @@
                         <v-btn color="orange" href="/applications" title="Download the Meeovi App">Get the App</v-btn>
                     </v-card>
                 </v-col>
+
+                <v-col class="text-center mt-4" cols="12">
+                    2017 — {{ new Date().getFullYear() }} <strong><a href="https://www.meeovi.com">&copy; Meeovi LLC</a></strong>
+                </v-col>
             </v-row>
         </v-footer>
     </div>

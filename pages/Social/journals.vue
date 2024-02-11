@@ -1,6 +1,6 @@
 <template>
     <div class="contentPage">
-        <v-toolbar title="Journals" color="green"></v-toolbar>
+        <v-toolbar color="orange" title="Journals"></v-toolbar>
         <section class="features3 cid-so8Ntjy8wX" id="features3-29">
             <div class="container">
                 <div class="row mt-4">

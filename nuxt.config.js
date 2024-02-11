@@ -30,6 +30,7 @@ export default defineNuxtConfig({
       }, ],
     },
   },
+
   appConfig: {
     titleSuffix: 'Meeovi',
   },
@@ -51,29 +52,32 @@ export default defineNuxtConfig({
   ],
 
   typescript: {
-    // typeCheck: true,
-    strict: true,
+    typeCheck: true,
   },
 
   modules: [
+    [
+      '@nuxtjs/i18n',
+      {
+        locales: [
+          {
+            code: 'en',
+            file: 'en.json',
+          },
+        ],
+        lazy: true,
+        langDir: 'lang',
+        defaultLocale: 'en',
+      },
+    ],
+    '@vue-storefront/nuxt',
     '@nuxt/content',
     'nuxt-directus',
     '@nuxtjs/apollo',
     'nuxt-gtag',
     //'@sidebase/nuxt-auth',
     '@nuxtjs/tailwindcss',
-    //"@nuxtjs/i18n",
   ],
-
-  devtools: { enabled: true },
-
-  vueuse: {
-    ssrHandlers: true,
-  },
-
-  nitro: {
-    compressPublicAssets: true,
-  },
 
   directus: {
     url: process.env.DIRECTUS_URL,
@@ -144,36 +148,11 @@ export default defineNuxtConfig({
     },
   },
 
-  /*i18n: {
-    strategy: "prefix_except_default",
-    defaultLocale: "en-GB",
-    detectBrowserLanguage: false,
-    langDir: "./i18n/src/langs/",
-    vueI18n: "./i18n/config",
-    compilation: {
-      jit: false,
+  vsf: {
+    middleware: {
+      apiUrl: 'http://localhost:4000',
     },
-    locales: [
-      {
-        code: "en-GB",
-        iso: "en-GB",
-        file: "en-GB.ts",
-      },
-      {
-        code: "pl-PL",
-        iso: "pl-PL",
-        file: "pl-PL.ts",
-      },
-      {
-        code: "de-DE",
-        iso: "de-DE",
-        file: "de-DE.ts",
-      },
-    ],
-    experimental: {
-      jsTsFormatResource: true,
-    },
-  },*/
+  },
   
   build: {
     transpile: [

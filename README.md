@@ -1,52 +1,46 @@
-## This Application is in Alpha Release ##
+## This Website is in Alpha Release ##
 
-# Alternate Framework
+# What is Meeovi?
 
-A powerful, consistent, and flexible headless content management framework. Built using the Nuxtjs framework, Alternate Framework provides headless content management system capabilities for sites of all types. 
+Meeovi is a social marketplace for sellers to interact with their customers. 
 
 https://app.netlify.com/start/deploy?repository=https://github.com/meeovi/AlternateFramework
 
 ## Features include:
 
-- Alternate Framework supports MySQL, SQlite, Postgres, Supabase, SQL Server, CockroachDB
-- Extendible system that supports Nuxtjs, Vuejs modules, and Fastify extensions
-- Per page & entire system SEO
-- Graphql support & Rest Apis with Rest Documentation
-- Integrated reporting tools with Sentry integration
-- Easily deploy with Netlify
-- Enhanced Security with monthly updates
-- Designed with Bootstrap and Fontawesome
-- Multi-lingual support
-- Dashboard sneek peak with your data
-- Customer management features including creating & managing customers.
-- Flexible Media Manager with Visual Previews, expiration date, and comments (coming soon).
-- Filterable datatables with export functionality
-- PWA Support with push notifications, desktop notifications, and offline caching
-- Mobile, Desktop, and Docker support (coming soon)
+- Marketplace functionality for selling and buying products across numerous departments and categories.
+- Social Networking functionality that allows sellers and customers to interact with one another in an environment similar to Facebook, X, Linkedin, and others.
 
-and much more. Take a look at www.Alternate Framework.com 
+- Newsfeed or the Social Feed functions like a traditional feed of content created and followed by the user.
+- Spaces are groups where users can create or join for topics that shares their interest.
+- Meeovi Live allows for users to create 60 second videos to promote their ideas, products, or anything they would like.
+- Departments are large categories focusing on particular topic of products, they function like Department stores and consists of live videos, products for that particular department, and filtering capabilities.
 
-## Prerequisites:
+- Categories function as traditional categories that are based on particular product types. They are found within each Department and have subcategories of their own.
 
-You will need:
+- Soundstage is a category within Meeovi Music department that focuses on live performances, music related live videos.
+- Charts is a category within Meeovi Music department that provides a charting system for music related products.
+- Radio a category within Meeovi Music department for radio stations both predefined and customer created with music related products.
 
-Git = https://git-scm.com/
+- Showcase consists of product galleries designed by customers and sellers to showcase products and product bundles.
 
-Nodejs = https://nodejs.org/en/
+and much more. Take a look at www.meeovi.com 
 
-We recommend postgres as the database 
+## Frontend:
 
-rename .sample.env file to .env 
+- Built on Nuxt 3
+- Integrates with Sentry, Graphql, Vitest, i18n for Internalization, Cypress for testing, and Google Fonts
+- Netlify and Docker Integration for deployment
+- Vuetify and TailwindCSS for frontend styling
+- Fontawesome for icons
 
-Add your database type to DATABASE_PROVIDER, example is DATABASE_PROVIDER="postgresql" (" " are required)
+## Middleware
 
-Add your database credentials to DATABASE_URL, example is DATABASE_URL=postgresql://databaseusername:databasepassword@databasehost:5432/databasename
+- Integrates with Elasticsearch for search functionality
+- Authentication provided by Keycloak with integration with Magento installation
 
-## Steps to Install - 10 Minute Install
+## Backend:
 
-1. git clone https://github.com/meeovi/AlternateFramework
-2. cd Alternate Framework
-3. npm install
-4. npm run all
-
-Alternate Framework will be at: http://localhost:3001
+- Integrates with Magento 2.4+ for ecommerce and marketplace functionality
+- Integrates with Fastify and Express for server implementation
+- Integrates with Wordpress for content management system functionality

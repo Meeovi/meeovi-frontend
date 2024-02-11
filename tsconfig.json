@@ -1,4 +1,9 @@
 {
   // https://v3.nuxtjs.org/concepts/typescript
+  "compilerOptions": {
+    "moduleResolution": "Node",
+    "resolveJsonModule": false,
+    "types": ["jest"],
+  },
   "extends": "./.nuxt/tsconfig.json"
 }

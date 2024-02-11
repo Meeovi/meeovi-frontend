@@ -22,23 +22,23 @@
         <section class="features4 cid-sBXUicXM4E" id="features5-2g">
             <div class="container">
                 <div class="row">
-                    <div class="col-12 col-lg-6" v-for="(spaces, index) in data.groups.edges" :key="index">
+                    <div class="col-12 col-lg-6" v-for="(spaces, index) in data?.groups?.nodes" :key="index">
                         <div class="card-wrapper">
                             <div class="row">
                                 <div class="col-12 col-md-7">
                                     <div class="text-wrapper">
                                         <h6 class="card-subtitle mbr-fonts-style mb-2 display-4">
-                                            {{spaces.node.dateCreated}}</h6>
+                                            {{spaces?.dateCreated}}</h6>
                                         <h5 class="card-title mbr-fonts-style display-5">
-                                            <strong>{{ spaces.node.name }}</strong></h5>
-                                        <p class="mbr-text mbr-fonts-style mb-5 display-4">{{ spaces.node.description }}</p>
-                                        <div class="mbr-section-btn"><a :href="`/group/${spaces.node.slug}`"
+                                            <strong>{{ spaces?.name }}</strong></h5>
+                                        <p class="mbr-text mbr-fonts-style mb-5 display-4">{{ spaces?.description }}</p>
+                                        <div class="mbr-section-btn"><a :href="`/group/${spaces?.slug}`"
                                                 class="btn btn-warning display-4">Learn more</a></div>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-5">
                                     <div class="img-wrapper">
-                                        <img :src="`${spaces.node.attachmentAvatar.full}`" :alt="spaces.node.name">
+                                        <img :src="`${spaces?.attachmentAvatar?.full}`" :alt="spaces?.name" cover />
                                     </div>
                                 </div>
                             </div>
@@ -68,8 +68,7 @@
 const query = gql `
 query {
   groups {
-    edges {
-      node {
+      nodes {
         name
         description
         dateCreated
@@ -86,7 +85,6 @@ query {
         }
       }
     }
-  }
 }`
 
   const {

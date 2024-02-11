@@ -4,22 +4,22 @@
         <v-row>
             <v-col cols="12">
                 <v-toolbar color="orange" title="Your Social Feed" subtitle="Posts of people you follow."></v-toolbar>
-                <v-col cols="3" v-for="newsfeed in newsfeed" :key="newsfeed">
+                <v-col cols="3" v-for="(newsfeed, index) in data?.activies?.edges" :key="index">
                     <v-card class="mx-auto" :href="`/social/feed/${newsfeed.id}`">
                         <img class="align-end text-white" height="350"
-                            :src="`${url}assets/${newsfeed.image.filesdisk}`" :alt="newsfeed.name" cover />
-                            <v-card-title>{{ newsfeed.name }}</v-card-title>
+                            :src="newsfeed?.image.filesdisk" :alt="newsfeed?.title" cover />
+                            <v-card-title>{{ newsfeed?.title }}</v-card-title>
 
                         <v-list lines="two">
-                            <v-list-item title="Paul Bot" :subtitle="newsfeed.date_created"
-                                prepend-avatar="https://cdn.vuetifyjs.com/images/john.png">
+                            <v-list-item :title="newsfeed?.creator?.username" :subtitle="newsfeed?.status"
+                                :prepend-avatar="newsfeed?.creator?.mediaItems?.edges?.node?.url">
                             </v-list-item>
                         </v-list>
 
                         <v-card-text>
-                            <div>{{ newsfeed.date_updated }}</div>
+                            <div>{{ newsfeed?.type }}</div>
 
-                            <div>{{ newsfeed.post }}</div>
+                            <div>{{ newsfeed?.content }}</div>
                         </v-card-text>
 
                         <v-card-actions>
@@ -64,13 +64,37 @@
 </script>
 
 <script setup>
-const {
-        getItems
-    } = useDirectusItems()
+const query = gql `
+query {
+  activities {
+    edges {
+      node {
+        id
+        title
+        type
+        content
+        dateGmt
+        isFavorited
+        status
+        component
+        creator {
+          username
+          mediaItems {
+            edges {
+              node {
+                uri
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}`
 
-    const newsfeed = await getItems({
-        collection: "newsfeed"
-    });    
+  const {
+    data
+  } = useAsyncQuery(query);
 
     useHead({
         title: 'Social Feed',

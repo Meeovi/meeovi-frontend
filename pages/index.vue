@@ -1,8 +1,8 @@
 <template>
     <div class="contentPage">
         <intro />
-        <!----><exclusives />
-        <relatedstations />
+        <exclusives />
+        <!--<relatedstations />-->
         <!----><deals />
         <bookcallout />
         <!----><latestproducts />

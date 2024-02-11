@@ -1,59 +1,33 @@
 <template>
   <div>
-    <a v-for="departments in data.departments" :key="departments.id" :href="`/departments/${departments.id}`">
-      <section data-bs-version="5.1" class="features19 cid-tAGUZsWaoz mbr-parallax-background" id="features12-62"
-        :style="`background-image: url(${url}assets/${departments.image.filename_disk});`">
+    <section data-bs-version="5.1" class="features1 cid-tAGUEKoXKD" id="features1-5y">
 
-        <!--<div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(255, 255, 255);">
-      </div>
       <div class="container">
-        <h2 class="mbr-section-title align-left mbr-fonts-style mbr-bold display-2">
-          <strong>Latest Reads in Meeovi {{ departments.name }}</strong></h2>
-        <v-sheet class="mx-auto" elevation="0" color="transparent">
-          <v-slide-group v-model="model" class="pa-4">
-            <v-slide-group-item v-for="department in data.departments" :key="department.id"
-              v-slot="{ toggle }">
-              <v-card @click="toggle" elevation="0" color="transparent">
-                <v-slide-group v-model="productModel" class="pa-4">
-                  <v-slide-group-item v-for="(product, productIndex) in department.products" :key="product.id"
-                    v-slot="{ isSelected, toggle }">
-                    <v-card class="ma-4" height="580" width="350" @click="toggle">
-                      <img class="align-end text-white" height="280"
-                        :src="`${url}assets/${product.products_id.image.filename_disk}`" :alt="product.products_id.name"
-                        cover />
+        <div class="row main align-items-center">
+          <div class="col-md-6 image-element ">
+            <div class="img-wrap">
+              <img src="../../assets/images/mbr-1920x1102.jpg" alt="">
+            </div>
+          </div>
+          <div class="col-md-6 text-element">
+            <div class="text-content">
 
-                      <v-card-title class="pt-4">
-                        {{ product.products_id.name }}
-                      </v-card-title>
-
-                      <v-card-text>
-                        <div>Sku: {{ product.products_id.sku }}</div>
-                        <div v-for="(category, productIndex) in department.categories" :key="category.id">Category: {{ category.categories_id.name }}</div>
-                      </v-card-text>
-
-                      <v-card-actions>
-                        <v-card-title>$ {{ product.products_id.price }}</v-card-title>
-                      </v-card-actions>
-
-                      <div class="align-center">
-                        <v-btn class="align-center" color="orange" href="">Add to Cart</v-btn>
-                      </div>
-
-                      <div class="d-flex fill-height align-center justify-center">
-                        <v-scale-transition>
-                          <v-icon v-if="isSelected" color="white" size="48" icon="fas fa-circle-xmark"></v-icon>
-                        </v-scale-transition>
-                      </div>
-                    </v-card>
-                  </v-slide-group-item>
-                </v-slide-group>
-              </v-card>
-            </v-slide-group-item>
-          </v-slide-group>
-        </v-sheet>
-      </div>-->
-      </section>
-    </a>
+              <h2 class="mbr-title pt-2 mbr-fonts-style align-center mbr-white display-2">Meeovi Books</h2>
+              <div class="mbr-section-text">
+                <p class="mbr-text pt-3 mbr-light mbr-fonts-style align-center mbr-white display-7">Self
+                  Published authors are some of the most creative people in the world. Unchained by their
+                  everflowing creatism and no company telling them what story to write or how it should be
+                  told. Now Meeovi Books provides a place where their sales can be unchained too.
+                  <br>
+                  <br></p>
+              </div>
+              <div class="mbr-section-btn pt-3 align-center"><a class="btn btn-md btn-white display-4"
+                  href="/categories/books">Start Reading</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
