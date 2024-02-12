@@ -1,5 +1,0 @@
-query Receipts_orders($filter: Receipts_orders_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    Receipts_orders(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-    }
-}

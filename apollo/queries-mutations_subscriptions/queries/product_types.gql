@@ -1,7 +1,0 @@
-query product_types($filter: product_types_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    product_types(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-        name
-        isShippable
-    }
-}

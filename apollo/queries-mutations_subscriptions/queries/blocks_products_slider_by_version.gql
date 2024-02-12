@@ -1,7 +1,0 @@
-query blocks_products_slider_by_version($version: String!, $id: ID!){
-    blocks_products_slider_by_version(version: $version, id: $id){
-        id
-        title
-        products
-    }
-}

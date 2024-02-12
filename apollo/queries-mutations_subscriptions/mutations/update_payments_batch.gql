@@ -1,9 +1,0 @@
-mutation update_payments_batch($filter: payments_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String, $data: [update_payments_input!]){
-    update_payments_batch(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search, data: $data){
-        id
-        status
-        payment_method
-        amount
-        transaction_id
-    }
-}

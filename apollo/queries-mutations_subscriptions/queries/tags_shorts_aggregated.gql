@@ -1,6 +1,0 @@
-query tags_shorts_aggregated($groupBy: [String], $filter: tags_shorts_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
-    tags_shorts_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
-        group
-        countAll
-    }
-}

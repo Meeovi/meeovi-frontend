@@ -1,6 +1,0 @@
-subscription block_image_carousel_mutated($event: EventEnum){
-    block_image_carousel_mutated(event: $event){
-        key
-        event
-    }
-}

@@ -1,5 +1,0 @@
-query customers_tags($filter: customers_tags_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    customers_tags(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-    }
-}

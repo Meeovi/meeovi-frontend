@@ -1,6 +1,0 @@
-query helpq_helpa_aggregated($groupBy: [String], $filter: helpq_helpa_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
-    helpq_helpa_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
-        group
-        countAll
-    }
-}

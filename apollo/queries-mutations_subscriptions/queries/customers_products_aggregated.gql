@@ -1,6 +1,0 @@
-query customers_products_aggregated($groupBy: [String], $filter: customers_products_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
-    customers_products_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
-        group
-        countAll
-    }
-}

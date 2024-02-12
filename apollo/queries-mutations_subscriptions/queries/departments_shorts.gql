@@ -1,5 +1,0 @@
-query departments_shorts($filter: departments_shorts_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    departments_shorts(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-    }
-}

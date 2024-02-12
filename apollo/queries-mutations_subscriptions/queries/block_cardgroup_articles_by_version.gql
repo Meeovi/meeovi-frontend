@@ -1,7 +1,0 @@
-query block_cardgroup_articles_by_version($version: String!, $id: ID!){
-    block_cardgroup_articles_by_version(version: $version, id: $id){
-        id
-        block_cardgroup_id
-        articles_id
-    }
-}

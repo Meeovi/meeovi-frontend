@@ -1,6 +1,0 @@
-query currencies_countries_by_version($version: String!, $id: ID!){
-    currencies_countries_by_version(version: $version, id: $id){
-        id
-        countries_id
-    }
-}

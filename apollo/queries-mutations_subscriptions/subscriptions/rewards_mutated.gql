@@ -1,6 +1,0 @@
-subscription rewards_mutated($event: EventEnum){
-    rewards_mutated(event: $event){
-        key
-        event
-    }
-}

@@ -1,6 +1,0 @@
-subscription block_cardgroup_articles_mutated($event: EventEnum){
-    block_cardgroup_articles_mutated(event: $event){
-        key
-        event
-    }
-}

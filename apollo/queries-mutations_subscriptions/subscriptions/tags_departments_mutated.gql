@@ -1,6 +1,0 @@
-subscription tags_departments_mutated($event: EventEnum){
-    tags_departments_mutated(event: $event){
-        key
-        event
-    }
-}

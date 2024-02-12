@@ -1,5 +1,0 @@
-query states_countries_by_id($id: ID!){
-    states_countries_by_id(id: $id){
-        id
-    }
-}

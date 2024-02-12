@@ -1,9 +1,0 @@
-query attributes_by_version($version: String!, $id: ID!){
-    attributes_by_version(version: $version, id: $id){
-        id
-        default_label
-        attribute_code
-        isPublic
-        products
-    }
-}

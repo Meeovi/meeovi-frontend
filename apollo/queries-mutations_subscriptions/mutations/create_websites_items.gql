@@ -1,9 +1,0 @@
-mutation create_websites_items($filter: websites_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String, $data: [create_websites_input!]){
-    create_websites_items(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search, data: $data){
-        id
-        created_at
-        name
-        url
-        type
-    }
-}

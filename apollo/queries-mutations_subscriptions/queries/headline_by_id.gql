@@ -1,6 +1,0 @@
-query headline_by_id($id: ID!){
-    headline_by_id(id: $id){
-        id
-        title
-    }
-}

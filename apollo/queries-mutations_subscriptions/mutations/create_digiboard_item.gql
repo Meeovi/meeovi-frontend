@@ -1,8 +1,0 @@
-mutation create_digiboard_item($data: create_digiboard_input!){
-    create_digiboard_item(data: $data){
-        id
-        name
-        board
-        created_at
-    }
-}

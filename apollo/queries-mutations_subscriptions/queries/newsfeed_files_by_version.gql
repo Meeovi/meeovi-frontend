@@ -1,7 +1,0 @@
-query newsfeed_files_by_version($version: String!, $id: ID!){
-    newsfeed_files_by_version(version: $version, id: $id){
-        id
-        newsfeed_id
-        directus_files_id
-    }
-}

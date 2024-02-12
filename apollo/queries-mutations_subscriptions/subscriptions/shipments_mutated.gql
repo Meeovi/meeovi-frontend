@@ -1,6 +1,0 @@
-subscription shipments_mutated($event: EventEnum){
-    shipments_mutated(event: $event){
-        key
-        event
-    }
-}

@@ -1,6 +1,0 @@
-subscription products_countries_mutated($event: EventEnum){
-    products_countries_mutated(event: $event){
-        key
-        event
-    }
-}

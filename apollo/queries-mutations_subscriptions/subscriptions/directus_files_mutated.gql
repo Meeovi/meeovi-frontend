@@ -1,6 +1,0 @@
-subscription directus_files_mutated($event: EventEnum){
-    directus_files_mutated(event: $event){
-        key
-        event
-    }
-}

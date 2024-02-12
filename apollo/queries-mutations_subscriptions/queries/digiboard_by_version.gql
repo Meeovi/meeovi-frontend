@@ -1,9 +1,0 @@
-query digiboard_by_version($version: String!, $id: ID!){
-    digiboard_by_version(version: $version, id: $id){
-        id
-        name
-        board
-        created_at
-        image
-    }
-}

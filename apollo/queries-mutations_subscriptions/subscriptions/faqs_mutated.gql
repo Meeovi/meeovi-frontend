@@ -1,6 +1,0 @@
-subscription faqs_mutated($event: EventEnum){
-    faqs_mutated(event: $event){
-        key
-        event
-    }
-}

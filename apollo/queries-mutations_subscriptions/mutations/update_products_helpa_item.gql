@@ -1,5 +1,0 @@
-mutation update_products_helpa_item($id: ID!, $data: update_products_helpa_input!){
-    update_products_helpa_item(id: $id, data: $data){
-        id
-    }
-}

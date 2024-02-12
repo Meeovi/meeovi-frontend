@@ -1,5 +1,0 @@
-query tags_shorts_by_id($id: ID!){
-    tags_shorts_by_id(id: $id){
-        id
-    }
-}

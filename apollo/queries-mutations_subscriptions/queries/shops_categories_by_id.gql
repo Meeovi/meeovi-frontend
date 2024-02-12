@@ -1,5 +1,0 @@
-query shops_categories_by_id($id: ID!){
-    shops_categories_by_id(id: $id){
-        id
-    }
-}

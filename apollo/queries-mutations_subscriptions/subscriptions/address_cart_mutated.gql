@@ -1,6 +1,0 @@
-subscription address_cart_mutated($event: EventEnum){
-    address_cart_mutated(event: $event){
-        key
-        event
-    }
-}

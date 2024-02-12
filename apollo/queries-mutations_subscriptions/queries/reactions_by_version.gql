@@ -1,8 +1,0 @@
-query reactions_by_version($version: String!, $id: ID!){
-    reactions_by_version(version: $version, id: $id){
-        id
-        date_created
-        date_updated
-        reaction_type
-    }
-}

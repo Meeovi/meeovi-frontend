@@ -1,5 +1,0 @@
-mutation update_address_customers_items($filter: address_customers_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String, $ids: [ID]!, $data: update_address_customers_input!){
-    update_address_customers_items(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search, ids: $ids, data: $data){
-        id
-    }
-}

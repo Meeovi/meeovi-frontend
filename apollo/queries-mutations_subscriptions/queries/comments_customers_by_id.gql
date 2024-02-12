@@ -1,5 +1,0 @@
-query comments_customers_by_id($id: ID!){
-    comments_customers_by_id(id: $id){
-        id
-    }
-}

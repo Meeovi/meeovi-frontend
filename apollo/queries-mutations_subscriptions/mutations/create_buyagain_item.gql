@@ -1,6 +1,0 @@
-mutation create_buyagain_item($data: create_buyagain_input!){
-    create_buyagain_item(data: $data){
-        id
-        date_created
-    }
-}

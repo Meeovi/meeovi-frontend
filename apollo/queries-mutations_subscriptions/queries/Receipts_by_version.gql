@@ -1,7 +1,0 @@
-query Receipts_by_version($version: String!, $id: ID!){
-    Receipts_by_version(version: $version, id: $id){
-        id
-        date_created
-        total_price
-    }
-}

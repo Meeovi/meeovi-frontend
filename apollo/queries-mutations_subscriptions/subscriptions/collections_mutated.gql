@@ -1,6 +1,0 @@
-subscription collections_mutated($event: EventEnum){
-    collections_mutated(event: $event){
-        key
-        event
-    }
-}

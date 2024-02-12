@@ -1,9 +1,0 @@
-mutation update_websites_item($id: ID!, $data: update_websites_input!){
-    update_websites_item(id: $id, data: $data){
-        id
-        created_at
-        name
-        url
-        type
-    }
-}

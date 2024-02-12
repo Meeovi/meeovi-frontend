@@ -1,5 +1,0 @@
-query digiboard_customers($filter: digiboard_customers_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    digiboard_customers(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-    }
-}

@@ -1,9 +1,0 @@
-query block_hero_by_version($version: String!, $id: ID!){
-    block_hero_by_version(version: $version, id: $id){
-        id
-        headline
-        content
-        buttons
-        image
-    }
-}

@@ -1,5 +1,0 @@
-query coupons_customers($filter: coupons_customers_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    coupons_customers(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-    }
-}

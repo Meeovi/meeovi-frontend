@@ -1,6 +1,0 @@
-subscription pages_mutated($event: EventEnum){
-    pages_mutated(event: $event){
-        key
-        event
-    }
-}

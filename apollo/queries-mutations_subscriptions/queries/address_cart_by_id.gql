@@ -1,5 +1,0 @@
-query address_cart_by_id($id: ID!){
-    address_cart_by_id(id: $id){
-        id
-    }
-}

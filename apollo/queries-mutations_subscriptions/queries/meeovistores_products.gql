@@ -1,5 +1,0 @@
-query meeovistores_products($filter: meeovistores_products_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    meeovistores_products(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-    }
-}

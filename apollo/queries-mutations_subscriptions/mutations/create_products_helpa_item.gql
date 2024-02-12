@@ -1,5 +1,0 @@
-mutation create_products_helpa_item($data: create_products_helpa_input!){
-    create_products_helpa_item(data: $data){
-        id
-    }
-}

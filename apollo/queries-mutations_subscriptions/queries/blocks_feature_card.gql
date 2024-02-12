@@ -1,8 +1,0 @@
-query blocks_feature_card($filter: blocks_feature_card_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    blocks_feature_card(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-        title
-        subtitle
-        content
-    }
-}

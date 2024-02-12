@@ -1,5 +1,0 @@
-query helpq_helpa_by_version($version: String!, $id: ID!){
-    helpq_helpa_by_version(version: $version, id: $id){
-        id
-    }
-}

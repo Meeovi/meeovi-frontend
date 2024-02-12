@@ -1,5 +1,0 @@
-query products_countries_by_id($id: ID!){
-    products_countries_by_id(id: $id){
-        id
-    }
-}

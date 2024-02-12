@@ -1,6 +1,0 @@
-query digiboard_comments_aggregated($groupBy: [String], $filter: digiboard_comments_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
-    digiboard_comments_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
-        group
-        countAll
-    }
-}

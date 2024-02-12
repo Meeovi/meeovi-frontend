@@ -1,8 +1,0 @@
-mutation update_reactions_item($id: ID!, $data: update_reactions_input!){
-    update_reactions_item(id: $id, data: $data){
-        id
-        date_created
-        date_updated
-        reaction_type
-    }
-}

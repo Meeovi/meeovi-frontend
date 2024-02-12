@@ -1,8 +1,0 @@
-query block_hero_by_id($id: ID!){
-    block_hero_by_id(id: $id){
-        id
-        headline
-        content
-        buttons
-    }
-}

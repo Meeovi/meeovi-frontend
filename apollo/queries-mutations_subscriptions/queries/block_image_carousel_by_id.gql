@@ -1,8 +1,0 @@
-query block_image_carousel_by_id($id: ID!){
-    block_image_carousel_by_id(id: $id){
-        id
-        title
-        text
-        url
-    }
-}

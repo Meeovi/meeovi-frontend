@@ -1,7 +1,0 @@
-query products_categories_by_version($version: String!, $id: ID!){
-    products_categories_by_version(version: $version, id: $id){
-        id
-        products_id
-        categories_id
-    }
-}

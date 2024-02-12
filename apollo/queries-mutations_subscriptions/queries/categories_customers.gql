@@ -1,5 +1,0 @@
-query categories_customers($filter: categories_customers_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    categories_customers(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-    }
-}

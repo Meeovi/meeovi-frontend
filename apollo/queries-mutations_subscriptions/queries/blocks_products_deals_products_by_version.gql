@@ -1,7 +1,0 @@
-query blocks_products_deals_products_by_version($version: String!, $id: ID!){
-    blocks_products_deals_products_by_version(version: $version, id: $id){
-        id
-        blocks_products_deals_id
-        products_id
-    }
-}

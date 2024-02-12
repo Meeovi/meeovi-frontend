@@ -1,6 +1,0 @@
-subscription blocks_site_logo_mutated($event: EventEnum){
-    blocks_site_logo_mutated(event: $event){
-        key
-        event
-    }
-}

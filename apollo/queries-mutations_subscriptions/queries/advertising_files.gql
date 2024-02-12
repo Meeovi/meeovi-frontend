@@ -1,5 +1,0 @@
-query advertising_files($filter: advertising_files_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    advertising_files(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-    }
-}

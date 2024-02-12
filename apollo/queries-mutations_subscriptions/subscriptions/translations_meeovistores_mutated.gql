@@ -1,6 +1,0 @@
-subscription translations_meeovistores_mutated($event: EventEnum){
-    translations_meeovistores_mutated(event: $event){
-        key
-        event
-    }
-}

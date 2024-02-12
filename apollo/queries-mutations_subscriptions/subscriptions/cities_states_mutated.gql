@@ -1,6 +1,0 @@
-subscription cities_states_mutated($event: EventEnum){
-    cities_states_mutated(event: $event){
-        key
-        event
-    }
-}

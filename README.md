@@ -4,8 +4,6 @@
 
 Meeovi is a social marketplace for sellers to interact with their customers. 
 
-https://app.netlify.com/start/deploy?repository=https://github.com/meeovi/AlternateFramework
-
 ## Features include:
 
 - Marketplace functionality for selling and buying products across numerous departments and categories.

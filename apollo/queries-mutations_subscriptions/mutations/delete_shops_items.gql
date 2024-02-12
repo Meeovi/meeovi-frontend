@@ -1,5 +1,0 @@
-mutation delete_shops_items($ids: [ID]!){
-    delete_shops_items(ids: $ids){
-        ids
-    }
-}

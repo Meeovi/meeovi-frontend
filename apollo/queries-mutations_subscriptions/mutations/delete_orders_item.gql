@@ -1,5 +1,0 @@
-mutation delete_orders_item($id: ID!){
-    delete_orders_item(id: $id){
-        id
-    }
-}

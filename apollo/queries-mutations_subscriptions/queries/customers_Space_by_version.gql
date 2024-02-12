@@ -1,7 +1,0 @@
-query customers_Space_by_version($version: String!, $id: ID!){
-    customers_Space_by_version(version: $version, id: $id){
-        id
-        customers_id
-        Space_id
-    }
-}

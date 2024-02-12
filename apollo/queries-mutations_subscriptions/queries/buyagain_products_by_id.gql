@@ -1,5 +1,0 @@
-query buyagain_products_by_id($id: ID!){
-    buyagain_products_by_id(id: $id){
-        id
-    }
-}

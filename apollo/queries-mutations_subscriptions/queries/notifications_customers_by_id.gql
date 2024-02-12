@@ -1,5 +1,0 @@
-query notifications_customers_by_id($id: ID!){
-    notifications_customers_by_id(id: $id){
-        id
-    }
-}

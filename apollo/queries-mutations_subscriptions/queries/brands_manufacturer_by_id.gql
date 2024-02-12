@@ -1,5 +1,0 @@
-query brands_manufacturer_by_id($id: ID!){
-    brands_manufacturer_by_id(id: $id){
-        id
-    }
-}

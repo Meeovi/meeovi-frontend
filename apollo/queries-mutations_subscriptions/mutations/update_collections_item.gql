@@ -1,9 +1,0 @@
-mutation update_collections_item($id: ID!, $data: update_collections_input!){
-    update_collections_item(id: $id, data: $data){
-        id
-        created_at
-        name
-        description
-        type
-    }
-}

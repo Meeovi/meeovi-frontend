@@ -1,6 +1,0 @@
-subscription customers_shorts_mutated($event: EventEnum){
-    customers_shorts_mutated(event: $event){
-        key
-        event
-    }
-}

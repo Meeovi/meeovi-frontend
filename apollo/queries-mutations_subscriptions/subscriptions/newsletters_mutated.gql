@@ -1,6 +1,0 @@
-subscription newsletters_mutated($event: EventEnum){
-    newsletters_mutated(event: $event){
-        key
-        event
-    }
-}

@@ -1,6 +1,0 @@
-subscription blocks_products_slider_mutated($event: EventEnum){
-    blocks_products_slider_mutated(event: $event){
-        key
-        event
-    }
-}

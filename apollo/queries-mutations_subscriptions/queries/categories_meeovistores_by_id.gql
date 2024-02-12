@@ -1,5 +1,0 @@
-query categories_meeovistores_by_id($id: ID!){
-    categories_meeovistores_by_id(id: $id){
-        id
-    }
-}

@@ -1,6 +1,0 @@
-query categories_departments_aggregated($groupBy: [String], $filter: categories_departments_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
-    categories_departments_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
-        group
-        countAll
-    }
-}

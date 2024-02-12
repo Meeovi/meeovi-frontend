@@ -1,6 +1,0 @@
-query shops_files_aggregated($groupBy: [String], $filter: shops_files_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
-    shops_files_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
-        group
-        countAll
-    }
-}

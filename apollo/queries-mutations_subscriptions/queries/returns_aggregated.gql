@@ -1,6 +1,0 @@
-query returns_aggregated($groupBy: [String], $filter: returns_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
-    returns_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
-        group
-        countAll
-    }
-}

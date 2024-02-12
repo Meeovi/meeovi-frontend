@@ -1,5 +1,0 @@
-query reactions_newsfeed_by_id($id: ID!){
-    reactions_newsfeed_by_id(id: $id){
-        id
-    }
-}

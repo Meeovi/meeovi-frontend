@@ -1,6 +1,0 @@
-subscription newsfeed_mutated($event: EventEnum){
-    newsfeed_mutated(event: $event){
-        key
-        event
-    }
-}

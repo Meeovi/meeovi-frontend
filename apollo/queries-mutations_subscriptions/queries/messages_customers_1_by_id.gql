@@ -1,5 +1,0 @@
-query messages_customers_1_by_id($id: ID!){
-    messages_customers_1_by_id(id: $id){
-        id
-    }
-}

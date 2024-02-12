@@ -1,6 +1,0 @@
-subscription helpq_helpa_mutated($event: EventEnum){
-    helpq_helpa_mutated(event: $event){
-        key
-        event
-    }
-}

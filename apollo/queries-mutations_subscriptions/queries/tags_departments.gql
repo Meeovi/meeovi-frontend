@@ -1,5 +1,0 @@
-query tags_departments($filter: tags_departments_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    tags_departments(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-    }
-}

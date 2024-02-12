@@ -1,6 +1,0 @@
-subscription translations_departments_mutated($event: EventEnum){
-    translations_departments_mutated(event: $event){
-        key
-        event
-    }
-}

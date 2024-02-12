@@ -1,8 +1,0 @@
-mutation update_reactions_batch($filter: reactions_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String, $data: [update_reactions_input!]){
-    update_reactions_batch(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search, data: $data){
-        id
-        date_created
-        date_updated
-        reaction_type
-    }
-}

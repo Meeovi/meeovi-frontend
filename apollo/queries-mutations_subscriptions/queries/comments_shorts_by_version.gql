@@ -1,7 +1,0 @@
-query comments_shorts_by_version($version: String!, $id: ID!){
-    comments_shorts_by_version(version: $version, id: $id){
-        id
-        comments_id
-        shorts_id
-    }
-}

@@ -1,8 +1,0 @@
-mutation update_digiboard_batch($filter: digiboard_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String, $data: [update_digiboard_input!]){
-    update_digiboard_batch(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search, data: $data){
-        id
-        name
-        board
-        created_at
-    }
-}

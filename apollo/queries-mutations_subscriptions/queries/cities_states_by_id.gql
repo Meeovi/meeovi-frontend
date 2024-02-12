@@ -1,5 +1,0 @@
-query cities_states_by_id($id: ID!){
-    cities_states_by_id(id: $id){
-        id
-    }
-}

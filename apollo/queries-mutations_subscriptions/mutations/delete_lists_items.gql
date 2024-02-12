@@ -1,5 +1,0 @@
-mutation delete_lists_items($ids: [ID]!){
-    delete_lists_items(ids: $ids){
-        ids
-    }
-}

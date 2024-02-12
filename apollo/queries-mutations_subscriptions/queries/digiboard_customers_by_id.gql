@@ -1,5 +1,0 @@
-query digiboard_customers_by_id($id: ID!){
-    digiboard_customers_by_id(id: $id){
-        id
-    }
-}

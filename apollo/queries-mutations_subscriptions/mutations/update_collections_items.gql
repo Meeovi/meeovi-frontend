@@ -1,9 +1,0 @@
-mutation update_collections_items($filter: collections_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String, $ids: [ID]!, $data: update_collections_input!){
-    update_collections_items(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search, ids: $ids, data: $data){
-        id
-        created_at
-        name
-        description
-        type
-    }
-}

@@ -1,5 +1,0 @@
-query meeovistores_websites($filter: meeovistores_websites_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    meeovistores_websites(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-    }
-}

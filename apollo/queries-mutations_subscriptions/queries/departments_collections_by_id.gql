@@ -1,5 +1,0 @@
-query departments_collections_by_id($id: ID!){
-    departments_collections_by_id(id: $id){
-        id
-    }
-}

@@ -1,8 +1,0 @@
-query reactions_by_id($id: ID!){
-    reactions_by_id(id: $id){
-        id
-        date_created
-        date_updated
-        reaction_type
-    }
-}

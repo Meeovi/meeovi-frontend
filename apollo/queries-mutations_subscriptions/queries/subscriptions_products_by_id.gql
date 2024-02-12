@@ -1,5 +1,0 @@
-query subscriptions_products_by_id($id: ID!){
-    subscriptions_products_by_id(id: $id){
-        id
-    }
-}

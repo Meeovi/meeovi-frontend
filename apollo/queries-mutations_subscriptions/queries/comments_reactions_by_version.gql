@@ -1,7 +1,0 @@
-query comments_reactions_by_version($version: String!, $id: ID!){
-    comments_reactions_by_version(version: $version, id: $id){
-        id
-        comments_id
-        reactions_id
-    }
-}

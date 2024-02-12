@@ -1,5 +1,0 @@
-query reviews_products_by_id($id: ID!){
-    reviews_products_by_id(id: $id){
-        id
-    }
-}

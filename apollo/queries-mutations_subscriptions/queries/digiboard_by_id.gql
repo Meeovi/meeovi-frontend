@@ -1,8 +1,0 @@
-query digiboard_by_id($id: ID!){
-    digiboard_by_id(id: $id){
-        id
-        name
-        board
-        created_at
-    }
-}

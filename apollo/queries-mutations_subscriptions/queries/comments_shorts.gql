@@ -1,5 +1,0 @@
-query comments_shorts($filter: comments_shorts_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    comments_shorts(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-    }
-}

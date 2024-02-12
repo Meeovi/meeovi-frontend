@@ -1,7 +1,0 @@
-query Receipts_products_by_version($version: String!, $id: ID!){
-    Receipts_products_by_version(version: $version, id: $id){
-        id
-        Receipts_id
-        products_id
-    }
-}

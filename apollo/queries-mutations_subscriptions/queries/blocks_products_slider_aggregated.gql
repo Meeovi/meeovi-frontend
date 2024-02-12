@@ -1,6 +1,0 @@
-query blocks_products_slider_aggregated($groupBy: [String], $filter: blocks_products_slider_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
-    blocks_products_slider_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
-        group
-        countAll
-    }
-}

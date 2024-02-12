@@ -1,5 +1,0 @@
-query Receipts_customers_by_id($id: ID!){
-    Receipts_customers_by_id(id: $id){
-        id
-    }
-}

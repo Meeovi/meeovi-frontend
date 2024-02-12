@@ -1,5 +1,0 @@
-query shorts_products_by_id($id: ID!){
-    shorts_products_by_id(id: $id){
-        id
-    }
-}

@@ -1,6 +1,0 @@
-query faqs_files_aggregated($groupBy: [String], $filter: faqs_files_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
-    faqs_files_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
-        group
-        countAll
-    }
-}

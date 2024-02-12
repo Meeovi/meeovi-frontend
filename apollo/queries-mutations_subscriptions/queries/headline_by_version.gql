@@ -1,6 +1,0 @@
-query headline_by_version($version: String!, $id: ID!){
-    headline_by_version(version: $version, id: $id){
-        id
-        title
-    }
-}

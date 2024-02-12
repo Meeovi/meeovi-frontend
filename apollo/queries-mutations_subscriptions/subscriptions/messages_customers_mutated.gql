@@ -1,6 +1,0 @@
-subscription messages_customers_mutated($event: EventEnum){
-    messages_customers_mutated(event: $event){
-        key
-        event
-    }
-}

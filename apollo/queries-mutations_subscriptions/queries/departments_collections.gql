@@ -1,5 +1,0 @@
-query departments_collections($filter: departments_collections_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    departments_collections(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-    }
-}

@@ -1,6 +1,0 @@
-query departments_collections_aggregated($groupBy: [String], $filter: departments_collections_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
-    departments_collections_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
-        group
-        countAll
-    }
-}

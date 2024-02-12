@@ -1,6 +1,0 @@
-subscription articles_comments_mutated($event: EventEnum){
-    articles_comments_mutated(event: $event){
-        key
-        event
-    }
-}

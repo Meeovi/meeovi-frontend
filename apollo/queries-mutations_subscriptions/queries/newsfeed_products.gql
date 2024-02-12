@@ -1,5 +1,0 @@
-query newsfeed_products($filter: newsfeed_products_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    newsfeed_products(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-    }
-}

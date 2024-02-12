@@ -1,7 +1,0 @@
-query Receipts($filter: Receipts_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    Receipts(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-        date_created
-        total_price
-    }
-}

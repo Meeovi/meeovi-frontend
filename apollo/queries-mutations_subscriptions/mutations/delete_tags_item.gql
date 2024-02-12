@@ -1,5 +1,0 @@
-mutation delete_tags_item($id: ID!){
-    delete_tags_item(id: $id){
-        id
-    }
-}

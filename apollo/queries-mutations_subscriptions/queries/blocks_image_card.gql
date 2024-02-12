@@ -1,7 +1,0 @@
-query blocks_image_card($filter: blocks_image_card_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    blocks_image_card(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-        title
-        content
-    }
-}

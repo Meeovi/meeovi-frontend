@@ -1,6 +1,0 @@
-subscription directus_folders_mutated($event: EventEnum){
-    directus_folders_mutated(event: $event){
-        key
-        event
-    }
-}

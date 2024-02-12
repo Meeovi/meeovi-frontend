@@ -1,5 +1,0 @@
-query customers_products_by_id($id: ID!){
-    customers_products_by_id(id: $id){
-        id
-    }
-}

@@ -1,5 +1,0 @@
-query products_departments_by_id($id: ID!){
-    products_departments_by_id(id: $id){
-        id
-    }
-}

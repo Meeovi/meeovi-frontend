@@ -1,5 +1,0 @@
-query customers_tags_by_id($id: ID!){
-    customers_tags_by_id(id: $id){
-        id
-    }
-}

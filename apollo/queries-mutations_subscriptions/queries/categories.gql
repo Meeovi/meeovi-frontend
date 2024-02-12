@@ -1,8 +1,0 @@
-query categories($filter: categories_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    categories(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-        name
-        description
-        content
-    }
-}

@@ -1,7 +1,0 @@
-query shops_agreements_by_version($version: String!, $id: ID!){
-    shops_agreements_by_version(version: $version, id: $id){
-        id
-        shops_id
-        agreements_id
-    }
-}

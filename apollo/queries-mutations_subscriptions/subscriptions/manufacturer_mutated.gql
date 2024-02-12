@@ -1,6 +1,0 @@
-subscription manufacturer_mutated($event: EventEnum){
-    manufacturer_mutated(event: $event){
-        key
-        event
-    }
-}

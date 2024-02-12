@@ -1,5 +1,0 @@
-query comments_reactions_by_id($id: ID!){
-    comments_reactions_by_id(id: $id){
-        id
-    }
-}

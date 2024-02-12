@@ -1,6 +1,0 @@
-subscription comments_reactions_mutated($event: EventEnum){
-    comments_reactions_mutated(event: $event){
-        key
-        event
-    }
-}

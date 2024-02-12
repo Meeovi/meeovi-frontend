@@ -1,7 +1,0 @@
-query meeovistores_products_by_version($version: String!, $id: ID!){
-    meeovistores_products_by_version(version: $version, id: $id){
-        id
-        meeovistores_id
-        products_id
-    }
-}

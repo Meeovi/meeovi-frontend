@@ -1,6 +1,0 @@
-subscription block_richtext_mutated($event: EventEnum){
-    block_richtext_mutated(event: $event){
-        key
-        event
-    }
-}

@@ -1,5 +1,0 @@
-query collections_brands_by_id($id: ID!){
-    collections_brands_by_id(id: $id){
-        id
-    }
-}

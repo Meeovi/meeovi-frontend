@@ -1,7 +1,0 @@
-query Receipts_by_id($id: ID!){
-    Receipts_by_id(id: $id){
-        id
-        date_created
-        total_price
-    }
-}

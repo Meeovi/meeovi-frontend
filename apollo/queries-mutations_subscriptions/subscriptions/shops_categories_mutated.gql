@@ -1,6 +1,0 @@
-subscription shops_categories_mutated($event: EventEnum){
-    shops_categories_mutated(event: $event){
-        key
-        event
-    }
-}

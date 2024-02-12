@@ -1,6 +1,0 @@
-subscription buyagain_customers_mutated($event: EventEnum){
-    buyagain_customers_mutated(event: $event){
-        key
-        event
-    }
-}

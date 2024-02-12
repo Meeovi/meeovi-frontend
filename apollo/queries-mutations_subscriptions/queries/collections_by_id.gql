@@ -1,9 +1,0 @@
-query collections_by_id($id: ID!){
-    collections_by_id(id: $id){
-        id
-        created_at
-        name
-        description
-        type
-    }
-}

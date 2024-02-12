@@ -1,5 +1,0 @@
-query collections_products($filter: collections_products_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    collections_products(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-    }
-}

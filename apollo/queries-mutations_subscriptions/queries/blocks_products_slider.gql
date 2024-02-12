@@ -1,6 +1,0 @@
-query blocks_products_slider($filter: blocks_products_slider_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    blocks_products_slider(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-        title
-    }
-}

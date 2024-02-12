@@ -1,6 +1,0 @@
-subscription headline_mutated($event: EventEnum){
-    headline_mutated(event: $event){
-        key
-        event
-    }
-}

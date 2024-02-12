@@ -1,7 +1,0 @@
-query faqs_files_by_version($version: String!, $id: ID!){
-    faqs_files_by_version(version: $version, id: $id){
-        id
-        faqs_id
-        directus_files_id
-    }
-}

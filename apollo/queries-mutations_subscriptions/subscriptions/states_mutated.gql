@@ -1,6 +1,0 @@
-subscription states_mutated($event: EventEnum){
-    states_mutated(event: $event){
-        key
-        event
-    }
-}

@@ -1,5 +1,0 @@
-query payments_orders_by_id($id: ID!){
-    payments_orders_by_id(id: $id){
-        id
-    }
-}

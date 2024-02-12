@@ -1,5 +1,0 @@
-query websites_customers($filter: websites_customers_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    websites_customers(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-    }
-}

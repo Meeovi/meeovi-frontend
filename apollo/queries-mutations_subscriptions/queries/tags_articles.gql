@@ -1,5 +1,0 @@
-query tags_articles($filter: tags_articles_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    tags_articles(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-    }
-}

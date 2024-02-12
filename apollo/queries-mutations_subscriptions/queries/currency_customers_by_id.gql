@@ -1,5 +1,0 @@
-query currency_customers_by_id($id: ID!){
-    currency_customers_by_id(id: $id){
-        id
-    }
-}

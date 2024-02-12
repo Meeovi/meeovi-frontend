@@ -1,5 +1,0 @@
-query comments_shorts_by_id($id: ID!){
-    comments_shorts_by_id(id: $id){
-        id
-    }
-}

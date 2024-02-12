@@ -1,5 +1,0 @@
-query report_comments($filter: report_comments_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    report_comments(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-    }
-}

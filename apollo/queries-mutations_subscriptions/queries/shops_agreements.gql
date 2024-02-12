@@ -1,5 +1,0 @@
-query shops_agreements($filter: shops_agreements_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    shops_agreements(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-    }
-}

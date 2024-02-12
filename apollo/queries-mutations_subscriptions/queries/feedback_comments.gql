@@ -1,7 +1,0 @@
-query feedback_comments($filter: feedback_comments_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    feedback_comments(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-        feedback_id
-        comments_id
-    }
-}

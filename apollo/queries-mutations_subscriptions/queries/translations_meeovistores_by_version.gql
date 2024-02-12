@@ -1,7 +1,0 @@
-query translations_meeovistores_by_version($version: String!, $id: ID!){
-    translations_meeovistores_by_version(version: $version, id: $id){
-        id
-        translations_id
-        meeovistores_id
-    }
-}

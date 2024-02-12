@@ -1,5 +1,0 @@
-query followers_customers_1($filter: followers_customers_1_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    followers_customers_1(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-    }
-}

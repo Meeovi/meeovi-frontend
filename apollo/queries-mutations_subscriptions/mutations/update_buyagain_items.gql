@@ -1,6 +1,0 @@
-mutation update_buyagain_items($filter: buyagain_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String, $ids: [ID]!, $data: update_buyagain_input!){
-    update_buyagain_items(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search, ids: $ids, data: $data){
-        id
-        date_created
-    }
-}

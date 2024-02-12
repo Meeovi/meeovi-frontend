@@ -1,6 +1,0 @@
-query faqs_customers_aggregated($groupBy: [String], $filter: faqs_customers_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
-    faqs_customers_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
-        group
-        countAll
-    }
-}

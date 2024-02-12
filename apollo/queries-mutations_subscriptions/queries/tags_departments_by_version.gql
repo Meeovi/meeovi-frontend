@@ -1,7 +1,0 @@
-query tags_departments_by_version($version: String!, $id: ID!){
-    tags_departments_by_version(version: $version, id: $id){
-        id
-        tags_id
-        departments_id
-    }
-}

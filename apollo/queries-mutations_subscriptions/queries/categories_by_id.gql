@@ -1,8 +1,0 @@
-query categories_by_id($id: ID!){
-    categories_by_id(id: $id){
-        id
-        name
-        description
-        content
-    }
-}

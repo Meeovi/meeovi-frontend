@@ -1,8 +1,0 @@
-query attributes($filter: attributes_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    attributes(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-        default_label
-        attribute_code
-        isPublic
-    }
-}

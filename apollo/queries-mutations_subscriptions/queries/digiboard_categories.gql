@@ -1,5 +1,0 @@
-query digiboard_categories($filter: digiboard_categories_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    digiboard_categories(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-    }
-}

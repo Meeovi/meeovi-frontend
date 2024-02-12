@@ -1,5 +1,0 @@
-query products_currency($filter: products_currency_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    products_currency(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-    }
-}

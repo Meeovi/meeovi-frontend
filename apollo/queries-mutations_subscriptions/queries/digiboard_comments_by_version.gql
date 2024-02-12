@@ -1,7 +1,0 @@
-query digiboard_comments_by_version($version: String!, $id: ID!){
-    digiboard_comments_by_version(version: $version, id: $id){
-        id
-        digiboard_id
-        comments_id
-    }
-}

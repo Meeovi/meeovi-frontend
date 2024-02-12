@@ -1,5 +1,0 @@
-query advertising_files_by_id($id: ID!){
-    advertising_files_by_id(id: $id){
-        id
-    }
-}

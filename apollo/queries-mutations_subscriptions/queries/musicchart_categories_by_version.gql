@@ -1,7 +1,0 @@
-query musicchart_categories_by_version($version: String!, $id: ID!){
-    musicchart_categories_by_version(version: $version, id: $id){
-        id
-        musicchart_id
-        categories_id
-    }
-}

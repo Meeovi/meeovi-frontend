@@ -1,5 +1,0 @@
-query currencies_countries_by_id($id: ID!){
-    currencies_countries_by_id(id: $id){
-        id
-    }
-}

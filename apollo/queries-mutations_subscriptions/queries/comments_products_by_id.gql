@@ -1,5 +1,0 @@
-query comments_products_by_id($id: ID!){
-    comments_products_by_id(id: $id){
-        id
-    }
-}

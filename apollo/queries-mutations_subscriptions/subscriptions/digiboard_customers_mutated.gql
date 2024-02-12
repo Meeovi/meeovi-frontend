@@ -1,6 +1,0 @@
-subscription digiboard_customers_mutated($event: EventEnum){
-    digiboard_customers_mutated(event: $event){
-        key
-        event
-    }
-}

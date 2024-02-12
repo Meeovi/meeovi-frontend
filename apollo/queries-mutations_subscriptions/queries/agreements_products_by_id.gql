@@ -1,5 +1,0 @@
-query agreements_products_by_id($id: ID!){
-    agreements_products_by_id(id: $id){
-        id
-    }
-}

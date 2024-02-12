@@ -1,5 +1,0 @@
-query currency_departments_by_id($id: ID!){
-    currency_departments_by_id(id: $id){
-        id
-    }
-}

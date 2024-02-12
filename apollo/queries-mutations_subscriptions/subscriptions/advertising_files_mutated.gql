@@ -1,6 +1,0 @@
-subscription advertising_files_mutated($event: EventEnum){
-    advertising_files_mutated(event: $event){
-        key
-        event
-    }
-}

@@ -1,5 +1,0 @@
-query digiboard_comments_by_id($id: ID!){
-    digiboard_comments_by_id(id: $id){
-        id
-    }
-}

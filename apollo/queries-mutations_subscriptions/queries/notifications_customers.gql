@@ -1,5 +1,0 @@
-query notifications_customers($filter: notifications_customers_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    notifications_customers(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-    }
-}

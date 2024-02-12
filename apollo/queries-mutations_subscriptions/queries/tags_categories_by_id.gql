@@ -1,5 +1,0 @@
-query tags_categories_by_id($id: ID!){
-    tags_categories_by_id(id: $id){
-        id
-    }
-}

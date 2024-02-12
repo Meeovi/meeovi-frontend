@@ -1,8 +1,0 @@
-mutation update_digiboard_item($id: ID!, $data: update_digiboard_input!){
-    update_digiboard_item(id: $id, data: $data){
-        id
-        name
-        board
-        created_at
-    }
-}

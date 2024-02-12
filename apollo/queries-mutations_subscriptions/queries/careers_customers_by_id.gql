@@ -1,5 +1,0 @@
-query careers_customers_by_id($id: ID!){
-    careers_customers_by_id(id: $id){
-        id
-    }
-}

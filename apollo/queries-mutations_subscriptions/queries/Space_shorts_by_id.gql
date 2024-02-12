@@ -1,5 +1,0 @@
-query Space_shorts_by_id($id: ID!){
-    Space_shorts_by_id(id: $id){
-        id
-    }
-}

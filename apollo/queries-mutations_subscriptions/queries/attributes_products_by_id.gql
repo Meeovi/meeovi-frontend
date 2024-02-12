@@ -1,5 +1,0 @@
-query attributes_products_by_id($id: ID!){
-    attributes_products_by_id(id: $id){
-        id
-    }
-}

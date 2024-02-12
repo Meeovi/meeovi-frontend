@@ -1,6 +1,0 @@
-query headline($filter: headline_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    headline(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-        title
-    }
-}

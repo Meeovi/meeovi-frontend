@@ -1,6 +1,0 @@
-query countries_aggregated($groupBy: [String], $filter: countries_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
-    countries_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
-        group
-        countAll
-    }
-}

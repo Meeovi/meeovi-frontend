@@ -1,6 +1,0 @@
-subscription attributes_mutated($event: EventEnum){
-    attributes_mutated(event: $event){
-        key
-        event
-    }
-}

@@ -1,6 +1,0 @@
-subscription customers_Space_mutated($event: EventEnum){
-    customers_Space_mutated(event: $event){
-        key
-        event
-    }
-}

@@ -1,7 +1,0 @@
-mutation create_feedback_comments_item($data: create_feedback_comments_input!){
-    create_feedback_comments_item(data: $data){
-        id
-        feedback_id
-        comments_id
-    }
-}

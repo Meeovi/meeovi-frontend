@@ -1,6 +1,0 @@
-mutation create_buyagain_items($filter: buyagain_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String, $data: [create_buyagain_input!]){
-    create_buyagain_items(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search, data: $data){
-        id
-        date_created
-    }
-}

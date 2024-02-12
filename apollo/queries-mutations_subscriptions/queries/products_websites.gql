@@ -1,5 +1,0 @@
-query products_websites($filter: products_websites_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    products_websites(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-    }
-}

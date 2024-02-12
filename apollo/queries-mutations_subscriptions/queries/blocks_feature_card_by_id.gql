@@ -1,8 +1,0 @@
-query blocks_feature_card_by_id($id: ID!){
-    blocks_feature_card_by_id(id: $id){
-        id
-        title
-        subtitle
-        content
-    }
-}

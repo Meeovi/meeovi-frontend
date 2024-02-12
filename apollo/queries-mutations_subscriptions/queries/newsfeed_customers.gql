@@ -1,5 +1,0 @@
-query newsfeed_customers($filter: newsfeed_customers_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    newsfeed_customers(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-    }
-}

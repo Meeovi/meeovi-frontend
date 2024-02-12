@@ -1,9 +1,0 @@
-mutation create_collections_item($data: create_collections_input!){
-    create_collections_item(data: $data){
-        id
-        created_at
-        name
-        description
-        type
-    }
-}

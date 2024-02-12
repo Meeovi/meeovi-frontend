@@ -1,5 +1,0 @@
-query Space_newsfeed($filter: Space_newsfeed_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    Space_newsfeed(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-    }
-}

@@ -1,8 +1,0 @@
-mutation create_digiboard_items($filter: digiboard_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String, $data: [create_digiboard_input!]){
-    create_digiboard_items(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search, data: $data){
-        id
-        name
-        board
-        created_at
-    }
-}

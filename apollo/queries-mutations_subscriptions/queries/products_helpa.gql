@@ -1,5 +1,0 @@
-query products_helpa($filter: products_helpa_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    products_helpa(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-    }
-}

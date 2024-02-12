@@ -1,5 +1,0 @@
-query musicchart_categories_by_id($id: ID!){
-    musicchart_categories_by_id(id: $id){
-        id
-    }
-}

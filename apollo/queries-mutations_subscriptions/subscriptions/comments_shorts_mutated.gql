@@ -1,6 +1,0 @@
-subscription comments_shorts_mutated($event: EventEnum){
-    comments_shorts_mutated(event: $event){
-        key
-        event
-    }
-}

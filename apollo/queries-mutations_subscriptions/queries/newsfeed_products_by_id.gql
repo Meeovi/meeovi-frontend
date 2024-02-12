@@ -1,5 +1,0 @@
-query newsfeed_products_by_id($id: ID!){
-    newsfeed_products_by_id(id: $id){
-        id
-    }
-}

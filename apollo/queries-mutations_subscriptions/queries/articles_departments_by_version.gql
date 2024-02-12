@@ -1,7 +1,0 @@
-query articles_departments_by_version($version: String!, $id: ID!){
-    articles_departments_by_version(version: $version, id: $id){
-        id
-        articles_id
-        departments_id
-    }
-}

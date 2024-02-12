@@ -1,6 +1,0 @@
-subscription currencies_countries_mutated($event: EventEnum){
-    currencies_countries_mutated(event: $event){
-        key
-        event
-    }
-}

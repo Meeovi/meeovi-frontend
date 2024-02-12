@@ -1,5 +1,0 @@
-query articles_comments($filter: articles_comments_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    articles_comments(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-    }
-}

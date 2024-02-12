@@ -1,5 +1,0 @@
-query brands_departments($filter: brands_departments_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    brands_departments(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-    }
-}

@@ -1,6 +1,0 @@
-query blocks_products_slider_products_by_id($id: ID!){
-    blocks_products_slider_products_by_id(id: $id){
-        id
-        sort
-    }
-}

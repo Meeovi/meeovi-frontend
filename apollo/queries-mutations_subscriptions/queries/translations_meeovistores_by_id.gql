@@ -1,5 +1,0 @@
-query translations_meeovistores_by_id($id: ID!){
-    translations_meeovistores_by_id(id: $id){
-        id
-    }
-}

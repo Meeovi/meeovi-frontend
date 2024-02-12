@@ -1,6 +1,0 @@
-subscription currency_mutated($event: EventEnum){
-    currency_mutated(event: $event){
-        key
-        event
-    }
-}

@@ -1,5 +1,0 @@
-query customers_Space($filter: customers_Space_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    customers_Space(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-    }
-}

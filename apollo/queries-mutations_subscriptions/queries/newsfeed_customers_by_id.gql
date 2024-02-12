@@ -1,5 +1,0 @@
-query newsfeed_customers_by_id($id: ID!){
-    newsfeed_customers_by_id(id: $id){
-        id
-    }
-}

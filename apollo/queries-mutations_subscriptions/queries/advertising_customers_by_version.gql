@@ -1,7 +1,0 @@
-query advertising_customers_by_version($version: String!, $id: ID!){
-    advertising_customers_by_version(version: $version, id: $id){
-        id
-        advertising_id
-        customers_id
-    }
-}

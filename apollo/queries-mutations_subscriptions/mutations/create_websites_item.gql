@@ -1,9 +1,0 @@
-mutation create_websites_item($data: create_websites_input!){
-    create_websites_item(data: $data){
-        id
-        created_at
-        name
-        url
-        type
-    }
-}

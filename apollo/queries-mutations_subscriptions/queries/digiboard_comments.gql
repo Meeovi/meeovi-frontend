@@ -1,5 +1,0 @@
-query digiboard_comments($filter: digiboard_comments_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    digiboard_comments(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-    }
-}

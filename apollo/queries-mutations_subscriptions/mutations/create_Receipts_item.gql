@@ -1,7 +1,0 @@
-mutation create_Receipts_item($data: create_Receipts_input!){
-    create_Receipts_item(data: $data){
-        id
-        date_created
-        total_price
-    }
-}

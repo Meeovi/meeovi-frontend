@@ -1,8 +1,0 @@
-query digiboard($filter: digiboard_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    digiboard(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-        name
-        board
-        created_at
-    }
-}

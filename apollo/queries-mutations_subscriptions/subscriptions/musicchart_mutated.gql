@@ -1,6 +1,0 @@
-subscription musicchart_mutated($event: EventEnum){
-    musicchart_mutated(event: $event){
-        key
-        event
-    }
-}

@@ -1,5 +1,0 @@
-query newsletters_customers_by_id($id: ID!){
-    newsletters_customers_by_id(id: $id){
-        id
-    }
-}

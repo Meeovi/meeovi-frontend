@@ -1,5 +1,0 @@
-query translations_customers_by_id($id: ID!){
-    translations_customers_by_id(id: $id){
-        id
-    }
-}

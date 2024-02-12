@@ -1,5 +1,0 @@
-query articles_categories($filter: articles_categories_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    articles_categories(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-    }
-}

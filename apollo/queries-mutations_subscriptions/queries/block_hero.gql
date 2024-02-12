@@ -1,8 +1,0 @@
-query block_hero($filter: block_hero_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    block_hero(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-        headline
-        content
-        buttons
-    }
-}

@@ -1,5 +1,0 @@
-query states_cities($filter: states_cities_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    states_cities(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-    }
-}

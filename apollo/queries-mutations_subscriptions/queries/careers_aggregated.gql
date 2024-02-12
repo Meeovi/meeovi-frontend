@@ -1,6 +1,0 @@
-query careers_aggregated($groupBy: [String], $filter: careers_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
-    careers_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
-        group
-        countAll
-    }
-}

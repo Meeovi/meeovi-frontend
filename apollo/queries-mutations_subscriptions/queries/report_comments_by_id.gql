@@ -1,5 +1,0 @@
-query report_comments_by_id($id: ID!){
-    report_comments_by_id(id: $id){
-        id
-    }
-}

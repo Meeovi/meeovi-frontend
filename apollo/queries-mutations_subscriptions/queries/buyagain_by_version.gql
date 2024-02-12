@@ -1,6 +1,0 @@
-query buyagain_by_version($version: String!, $id: ID!){
-    buyagain_by_version(version: $version, id: $id){
-        id
-        date_created
-    }
-}

@@ -1,9 +1,0 @@
-mutation create_collections_items($filter: collections_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String, $data: [create_collections_input!]){
-    create_collections_items(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search, data: $data){
-        id
-        created_at
-        name
-        description
-        type
-    }
-}

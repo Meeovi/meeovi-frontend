@@ -1,5 +1,0 @@
-query agreements_customers($filter: agreements_customers_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    agreements_customers(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-    }
-}

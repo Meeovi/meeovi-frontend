@@ -1,7 +1,0 @@
-mutation update_Receipts_items($filter: Receipts_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String, $ids: [ID]!, $data: update_Receipts_input!){
-    update_Receipts_items(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search, ids: $ids, data: $data){
-        id
-        date_created
-        total_price
-    }
-}

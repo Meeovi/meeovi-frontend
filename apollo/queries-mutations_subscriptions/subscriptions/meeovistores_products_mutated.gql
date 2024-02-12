@@ -1,6 +1,0 @@
-subscription meeovistores_products_mutated($event: EventEnum){
-    meeovistores_products_mutated(event: $event){
-        key
-        event
-    }
-}

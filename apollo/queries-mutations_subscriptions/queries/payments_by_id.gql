@@ -1,9 +1,0 @@
-query payments_by_id($id: ID!){
-    payments_by_id(id: $id){
-        id
-        status
-        payment_method
-        amount
-        transaction_id
-    }
-}

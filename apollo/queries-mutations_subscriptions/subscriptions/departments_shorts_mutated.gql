@@ -1,6 +1,0 @@
-subscription departments_shorts_mutated($event: EventEnum){
-    departments_shorts_mutated(event: $event){
-        key
-        event
-    }
-}

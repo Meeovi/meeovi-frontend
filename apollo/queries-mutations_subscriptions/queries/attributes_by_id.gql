@@ -1,8 +1,0 @@
-query attributes_by_id($id: ID!){
-    attributes_by_id(id: $id){
-        id
-        default_label
-        attribute_code
-        isPublic
-    }
-}

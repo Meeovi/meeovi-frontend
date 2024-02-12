@@ -1,7 +1,0 @@
-query categories_customers_by_version($version: String!, $id: ID!){
-    categories_customers_by_version(version: $version, id: $id){
-        id
-        categories_id
-        customers_id
-    }
-}

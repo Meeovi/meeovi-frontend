@@ -1,5 +1,0 @@
-query Space_products_by_id($id: ID!){
-    Space_products_by_id(id: $id){
-        id
-    }
-}

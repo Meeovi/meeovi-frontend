@@ -1,6 +1,0 @@
-subscription warehouse_mutated($event: EventEnum){
-    warehouse_mutated(event: $event){
-        key
-        event
-    }
-}

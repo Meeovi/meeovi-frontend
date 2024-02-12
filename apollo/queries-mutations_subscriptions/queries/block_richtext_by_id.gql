@@ -1,7 +1,0 @@
-query block_richtext_by_id($id: ID!){
-    block_richtext_by_id(id: $id){
-        id
-        headline
-        content
-    }
-}

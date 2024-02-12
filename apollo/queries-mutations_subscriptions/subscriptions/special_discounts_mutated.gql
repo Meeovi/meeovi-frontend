@@ -1,6 +1,0 @@
-subscription special_discounts_mutated($event: EventEnum){
-    special_discounts_mutated(event: $event){
-        key
-        event
-    }
-}

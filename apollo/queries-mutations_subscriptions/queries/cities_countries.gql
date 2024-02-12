@@ -1,5 +1,0 @@
-query cities_countries($filter: cities_countries_filter, $sort: [String], $limit: Int, $offset: Int, $page: Int, $search: String){
-    cities_countries(filter: $filter, sort: $sort, limit: $limit, offset: $offset, page: $page, search: $search){
-        id
-    }
-}

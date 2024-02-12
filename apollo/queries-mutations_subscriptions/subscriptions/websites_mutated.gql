@@ -1,6 +1,0 @@
-subscription websites_mutated($event: EventEnum){
-    websites_mutated(event: $event){
-        key
-        event
-    }
-}

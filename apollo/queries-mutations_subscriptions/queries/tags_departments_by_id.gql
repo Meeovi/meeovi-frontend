@@ -1,5 +1,0 @@
-query tags_departments_by_id($id: ID!){
-    tags_departments_by_id(id: $id){
-        id
-    }
-}

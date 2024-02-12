@@ -1,7 +1,0 @@
-query address_cart_by_version($version: String!, $id: ID!){
-    address_cart_by_version(version: $version, id: $id){
-        id
-        address_id
-        cart_id
-    }
-}

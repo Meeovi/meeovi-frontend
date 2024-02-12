@@ -1,6 +1,0 @@
-subscription meeovistores_websites_mutated($event: EventEnum){
-    meeovistores_websites_mutated(event: $event){
-        key
-        event
-    }
-}

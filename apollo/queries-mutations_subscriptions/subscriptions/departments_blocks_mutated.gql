@@ -1,6 +1,0 @@
-subscription departments_blocks_mutated($event: EventEnum){
-    departments_blocks_mutated(event: $event){
-        key
-        event
-    }
-}

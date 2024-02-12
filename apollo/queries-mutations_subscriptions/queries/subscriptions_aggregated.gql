@@ -1,6 +1,0 @@
-query subscriptions_aggregated($groupBy: [String], $filter: subscriptions_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]){
-    subscriptions_aggregated(groupBy: $groupBy, filter: $filter, limit: $limit, offset: $offset, page: $page, search: $search, sort: $sort){
-        group
-        countAll
-    }
-}

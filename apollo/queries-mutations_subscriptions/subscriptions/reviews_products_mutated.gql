@@ -1,6 +1,0 @@
-subscription reviews_products_mutated($event: EventEnum){
-    reviews_products_mutated(event: $event){
-        key
-        event
-    }
-}

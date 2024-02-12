@@ -1,7 +1,0 @@
-query products_countries_by_version($version: String!, $id: ID!){
-    products_countries_by_version(version: $version, id: $id){
-        id
-        products_id
-        countries_id
-    }
-}

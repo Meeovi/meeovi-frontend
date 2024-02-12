@@ -1,7 +1,0 @@
-query states_cities_by_version($version: String!, $id: ID!){
-    states_cities_by_version(version: $version, id: $id){
-        id
-        states_id
-        cities_id
-    }
-}
