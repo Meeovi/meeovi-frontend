@@ -1,140 +1,40 @@
 <template>
-  <NuxtLayout :heading="$t('auth.signup.heading')">
-    <UiAlert class="w-full p-4 md:p-6 mb-6 !justify-start typography-text-base" variant="neutral">
-      <i18n-t keypath="auth.signup.bannerText">
-        <template #login>
-          <SfLink
-            :tag="NuxtLink"
-            :to="paths.authLogin"
-            class="focus:outline focus:outline-offset-2 focus:outline-2 outline-secondary-600 rounded"
-            data-testid="signup-page-login-button"
-          >
-            {{ $t('auth.login.heading') }}
-          </SfLink>
-        </template>
-      </i18n-t>
-    </UiAlert>
-
-    <form
-      data-testid="signup-form"
-      class="flex flex-col md:border md:border-neutral-200 rounded-md gap-4 md:p-6"
-      @submit.prevent="open"
-    >
-      <label>
-        <UiFormLabel>{{ $t('form.firstNameLabel') }} *</UiFormLabel>
-        <SfInput name="firstName" autocomplete="given-name" v-model="firstNameModel" required />
-      </label>
-      <label>
-        <UiFormLabel>{{ $t('form.lastNameLabel') }} *</UiFormLabel>
-        <SfInput name="lastName" autocomplete="family-name" v-model="lastNameModel" required />
-      </label>
-      <label>
-        <UiFormLabel>{{ $t('form.emailLabel') }} *</UiFormLabel>
-        <SfInput name="email" type="email" autocomplete="email" v-model="emailModel" required />
-      </label>
-      <div>
-        <label>
-          <UiFormLabel>{{ $t('form.passwordLabel') }} *</UiFormLabel>
-          <UiFormPasswordInput name="password" autocomplete="current-password" v-model="passwordModel" required />
-          <UiFormHelperText class="mb-2">{{ $t('form.passwordHint') }}</UiFormHelperText>
-        </label>
-      </div>
-
-      <div class="flex items-center">
-        <SfCheckbox id="terms" v-model="termsAndConditionsModel" value="value" class="peer" required />
-        <label
-          class="ml-3 text-base text-neutral-900 cursor-pointer font-body peer-disabled:text-disabled-900"
-          for="terms"
-        >
-          *
-          <i18n-t keypath="form.termsAndConditionsLabel">
-            <template #terms>
-              <SfLink
-                href="#"
-                class="focus:outline focus:outline-offset-2 focus:outline-2 outline-secondary-600 rounded"
-              >
-                {{ $t('termsAndConditions') }}
-              </SfLink>
-            </template>
-          </i18n-t>
-        </label>
-      </div>
-
-      <div class="flex mb-2">
-        <SfCheckbox id="subscription" v-model="subscriptionsModel" value="value" class="peer mt-0.5" />
-        <label
-          class="ml-3 text-base text-neutral-900 cursor-pointer font-body peer-disabled:text-disabled-900"
-          for="subscription"
-        >
-          {{ $t('form.subscriptionLabel') }}
-        </label>
-      </div>
-
-      <p class="text-sm text-neutral-500 mt-0.5 mb-2">{{ $t('form.asterixHint') }}</p>
-
-      <SfButton type="submit" size="lg" class="w-full">
-        {{ $t('auth.signup.createButton') }}
-      </SfButton>
-    </form>
-
-    <UiModal
-      v-model="isOpen"
-      class="max-w-[480px] inset-x-4 md:inset-x-0"
-      tag="section"
-      role="alertdialog"
-      disable-click-away
-      aria-labelledby="signUpModalTitle"
-      aria-describedby="signUpModalDesc"
-    >
-      <header class="flex items-center flex-col">
-        <NuxtImg
-          src="/images/signup-success.svg"
-          :alt="$t('auth.signup.modal.imageAlt')"
-          width="192"
-          height="192"
-          class="my-6"
-        />
-        <h2 id="signUpModalTitle" class="mt-6 mb-4 font-bold typography-headline-3">
-          {{ $t('auth.signup.modal.heading') }}
-        </h2>
-      </header>
-      <UiAlert class="w-full p-4 mb-6 !justify-start typography-text-base" variant="neutral">
-        <i18n-t keypath="auth.signup.modal.description" tag="p" id="signUpModalDesc">
-          <template #information>
-            <SfLink
-              :tag="NuxtLink"
-              :to="paths.account"
-              class="focus:outline focus:outline-offset-2 focus:outline-2 outline-secondary-600 rounded"
-            >
-              {{ $t('auth.signup.modal.information') }}
-            </SfLink>
-          </template>
-        </i18n-t>
-      </UiAlert>
-
-      <footer class="flex justify-end">
-        <SfButton :tag="NuxtLink" :to="paths.home" class="w-full">
-          {{ $t('auth.signup.modal.button') }}
-        </SfButton>
-      </footer>
-    </UiModal>
-  </NuxtLayout>
+  <div>
+    <v-row>
+      <v-col cols="6"><img class="authImage" src="../../../assets/images/mbr-1900x1069.jpg" alt="Register Page Image">
+      </v-col>
+      <v-col cols="6">
+        <v-form class="registerForm">
+          <h1><img src="../../../assets/images/logo512alpha-192x192.png" alt="">Meeovi</h1>
+          <v-toolbar title="Welcome to Meeovi"></v-toolbar>
+          <v-text-field v-model="username" label="Username" variant="outlined" required></v-text-field>
+          <v-text-field v-model="email" label="Email" type="email" variant="outlined" required></v-text-field>
+          <v-text-field v-model="firstName" label="First Name" variant="outlined" required></v-text-field>
+          <v-text-field v-model="lastName" label="Last Name" variant="outlined"></v-text-field>
+          <v-text-field v-model="password" label="Password" type="password" variant="outlined" required></v-text-field>
+          <v-checkbox v-model="termsAgree" label="By registering you agree to our Terms and Conditions"></v-checkbox>
+          <v-btn type="submit">Register</v-btn>
+        </v-form>
+        <v-toolbar class="authSellerBar" color="transparent">
+          <v-toolbar-title>Product By: <a href=""></a></v-toolbar-title>
+        </v-toolbar>
+      </v-col>
+    </v-row>
+  </div>
 </template>
 
-<script setup lang="ts">
-import { SfButton, SfInput, SfCheckbox, SfLink, useDisclosure } from '@storefront-ui/vue';
+<script>
+  export default {
 
-definePageMeta({
-  layout: false,
-});
+  }
+</script>
 
-const { isOpen, open } = useDisclosure();
+<script setup>
+  definePageMeta({
+    layout: false,
+  });
 
-const firstNameModel = ref('');
-const lastNameModel = ref('');
-const emailModel = ref('');
-const passwordModel = ref('');
-const termsAndConditionsModel = ref<boolean>();
-const subscriptionsModel = ref<boolean>();
-const NuxtLink = resolveComponent('NuxtLink');
+  useHead({
+    title: 'Welcome to Meeovi'
+  })
 </script>

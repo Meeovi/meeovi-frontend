@@ -1,33 +1,36 @@
 <template>
-  <NuxtLayout :heading="$t('auth.resetPassword.heading')">
-    <form class="pb-4 md:p-6 mt-10 md:border md:border-neutral-200 rounded-md" @submit.prevent="resetPassword">
-      <p class="mb-6">
-        {{ $t('auth.resetPassword.info') }}
-      </p>
-      <label>
-        <UiFormLabel>{{ $t('auth.resetPassword.email') }}</UiFormLabel>
-        <SfInput name="email" type="email" v-model="customerEmail" required />
-      </label>
-      <div class="mt-6 flex flex-col-reverse md:flex-row gap-4">
-        <SfButton :tag="NuxtLink" :to="paths.authLogin" class="flex-1" variant="tertiary">
-          {{ $t('auth.resetPassword.backToLogin') }}
-        </SfButton>
-        <SfButton type="submit" class="flex-1"> {{ $t('auth.resetPassword.continue') }} </SfButton>
-      </div>
-    </form>
-  </NuxtLayout>
+  <div>
+    <v-row>
+      <v-col cols="6"><img class="authImage" src="../../../assets/images/mbr-1900x1069.jpg" alt="Reset Password Page Image">
+      </v-col>
+      <v-col cols="6">
+        <v-form class="loginForm">
+          <h1><img src="../../../assets/images/logo512alpha-192x192.png" alt="">Meeovi</h1>
+          <v-toolbar title="Reset Password"></v-toolbar>
+          <v-text-field v-model="password" label="Password" type="password" variant="outlined"></v-text-field>
+          <v-text-field v-model="password" label="Confirm Password" type="password" variant="outlined"></v-text-field>
+          <v-btn type="submit">Reset your password</v-btn>
+        </v-form>
+        <v-toolbar class="authSellerBar" color="transparent">
+          <v-toolbar-title>Product By: <a href=""></a></v-toolbar-title>
+        </v-toolbar>
+      </v-col>
+    </v-row>
+  </div>
 </template>
 
-<script setup lang="ts">
-import { SfButton, SfInput } from '@storefront-ui/vue';
+<script>
+  export default {
 
-definePageMeta({
-  layout: false,
-});
+  }
+</script>
 
-const router = useRouter();
+<script setup>
+  definePageMeta({
+    layout: false,
+  });
 
-const customerEmail = ref('');
-const resetPassword = () => router.push(paths.authResetPasswordSuccess);
-const NuxtLink = resolveComponent('NuxtLink');
+  useHead({
+    title: 'Reset Password'
+  })
 </script>

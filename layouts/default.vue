@@ -95,7 +95,6 @@
       <AboveFooter /><!---->
       <BottomFooter />
       <FooterNav /><!---->
-      <CopyrightFooter />
     </v-main>
   </v-app>
 </template>

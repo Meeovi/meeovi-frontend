@@ -6,63 +6,6 @@ declare module 'nitropack' {
     '/api/directus': {
       'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../server/api/directus').default>>>>
     }
-    '/api/read/addresses': {
-      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../server/api/read/addresses').default>>>>
-    }
-    '/api/read/cart': {
-      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../server/api/read/cart').default>>>>
-    }
-    '/api/read/categories': {
-      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../server/api/read/categories').default>>>>
-    }
-    '/api/read/countries': {
-      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../server/api/read/countries').default>>>>
-    }
-    '/api/read/crossSelling': {
-      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../server/api/read/crossSelling').default>>>>
-    }
-    '/api/read/currencies': {
-      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../server/api/read/currencies').default>>>>
-    }
-    '/api/read/navigation': {
-      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../server/api/read/navigation').default>>>>
-    }
-    '/api/read/newsletter': {
-      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../server/api/read/newsletter').default>>>>
-    }
-    '/api/read/orders': {
-      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../server/api/read/orders').default>>>>
-    }
-    '/api/read/pages': {
-      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../server/api/read/pages').default>>>>
-    }
-    '/api/read/productListingCategory': {
-      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../server/api/read/productListingCategory').default>>>>
-    }
-    '/api/read/products': {
-      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../server/api/read/products').default>>>>
-    }
-    '/api/read/reviews': {
-      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../server/api/read/reviews').default>>>>
-    }
-    '/api/read/salutations': {
-      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../server/api/read/salutations').default>>>>
-    }
-    '/api/read/seo': {
-      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../server/api/read/seo').default>>>>
-    }
-    '/api/read/shippingMethods': {
-      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../server/api/read/shippingMethods').default>>>>
-    }
-    '/api/read/sitemaps': {
-      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../server/api/read/sitemaps').default>>>>
-    }
-    '/api/read/states': {
-      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../server/api/read/states').default>>>>
-    }
-    '/api/read/wishlist': {
-      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../server/api/read/wishlist').default>>>>
-    }
     '/__nuxt_error': {
       'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/nuxt/dist/core/runtime/nitro/renderer').default>>>>
     }

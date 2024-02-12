@@ -103,6 +103,31 @@ body {
     right: 5px;
 }
 
+/******************* Authentication CSS ********/
+
+.loginForm, .registerForm, .resetForm, .forgotPasswordForm, .resetPasswordSuccessPage {
+    width: 70%;
+    padding-top: 10%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.loginForm h1, .registerForm h1, .resetForm h1, .forgotPasswordForm h1 {
+    text-align: center;
+}
+
+.authImage {
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+}
+
+.authSellerBar {
+    position: relative;
+    bottom: 0px;
+    text-align: center;
+}
+
 /******************* Main Section CSS *********/
 
 #mainSection {

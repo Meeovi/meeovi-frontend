@@ -15,7 +15,6 @@
    "license": "MIT",
    "private": true,
    "scripts": {
-      "start": "node middleware/middleware.js",
       "alternate-commit": "git add . && git commit -m \"ready for update\"",
       "alternate-update": "git pull \"https://github.com/Meeovi/meeovi-frontend\"",
       "prebuild": "mesh build",
@@ -52,9 +51,6 @@
       "@fortawesome/free-solid-svg-icons": "^6.2.1",
       "@fortawesome/vue-fontawesome": "^3.0.2",
       "@types/js-cookie": "^3.0.6",
-      "@vue-storefront/magento-api": "^2.4.3",
-      "@vue-storefront/magento-sdk": "^2.1.0",
-      "@vue-storefront/middleware": "^3.8.0",
       "@vue-storefront/nuxt": "^3.0.1",
       "@vue-storefront/sdk": "^1.2.2",
       "cors": "^2.8.5",

@@ -1,9 +1,6 @@
-import sfTypography from '@storefront-ui/typography';
-import { tailwindConfig } from '@storefront-ui/vue/tailwind-config';
 import type { Config } from 'tailwindcss';
 
 export default {
-  presets: [tailwindConfig],
   content: ['./**/*.vue', '../../node_modules/@storefront-ui/vue/**/*.{js,mjs}'],
   theme: {
     extend: {
@@ -29,5 +26,4 @@ export default {
       },
     },
   },
-  plugins: [sfTypography],
 } as Config;

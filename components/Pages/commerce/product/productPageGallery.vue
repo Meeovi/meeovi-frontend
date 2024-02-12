@@ -6,7 +6,7 @@
       direction="vertical"
       :active-index="activeIndex"
       :previous-disabled="activeIndex === 0"
-      :next-disabled="activeIndex === data?.products_by_id?.length - 1"
+      :next-disabled="activeIndex === images.length - 1"
       buttons-placement="floating"
     >
       <template #previousButton="defaultProps">
@@ -23,7 +23,7 @@
         </SfButton>
       </template>
       <button
-        v-for="({ data, alt }, index) in data?.products_by_id"
+        v-for="({ imageThumbSrc, alt }, index) in images"
         :key="`${alt}-${index}-thumbnail`"
         :ref="(el) => assignRef(el, index)"
         type="button"
@@ -35,13 +35,13 @@
         @mouseover="activeIndex = index"
         @focus="activeIndex = index"
       >
-        <img :alt="alt" class="border border-neutral-200" width="78" height="78" :src="data?.products_by_id?.image.filename_disk" />
+        <img :alt="alt" class="border border-neutral-200" width="78" height="78" :src="imageThumbSrc" />
       </button>
       <template #nextButton="defaultProps">
         <SfButton
           v-if="!lastThumbVisible"
           v-bind="defaultProps"
-          :disabled="activeIndex === data?.products_by_id?.length"
+          :disabled="activeIndex === images.length"
           class="absolute !rounded-full z-10 bottom-4 rotate-90 bg-white"
           variant="secondary"
           size="sm"
@@ -62,7 +62,7 @@
       @on-drag-end="onDragged"
     >
       <div
-        v-for="({ data, alt }, index) in data"
+        v-for="({ imageSrc, alt }, index) in images"
         :key="`${alt}-${index}`"
         class="flex justify-center h-full basis-full shrink-0 grow snap-center"
       >
@@ -70,8 +70,8 @@
           :aria-label="alt"
           :aria-hidden="activeIndex !== index"
           class="object-cover w-auto h-full"
-          :alt="data?.products_by_id?.name"
-          :src="data?.products_by_id?.image.filename_disk"
+          :alt="alt"
+          :src="imageSrc"
         />
       </div>
     </SfScrollable>
@@ -90,6 +90,21 @@ import {
 import { unrefElement, useIntersectionObserver } from '@vueuse/core';
 import { watch, type ComponentPublicInstance } from 'vue';
 
+const withBase = (filepath: string) => `https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/gallery/${filepath}`;
+
+const images = [
+  { imageSrc: withBase('gallery_1.png'), imageThumbSrc: withBase('gallery_1_thumb.png'), alt: 'backpack1' },
+  { imageSrc: withBase('gallery_2.png'), imageThumbSrc: withBase('gallery_2_thumb.png'), alt: 'backpack2' },
+  { imageSrc: withBase('gallery_3.png'), imageThumbSrc: withBase('gallery_3_thumb.png'), alt: 'backpack3' },
+  { imageSrc: withBase('gallery_4.png'), imageThumbSrc: withBase('gallery_4_thumb.png'), alt: 'backpack4' },
+  { imageSrc: withBase('gallery_5.png'), imageThumbSrc: withBase('gallery_5_thumb.png'), alt: 'backpack5' },
+  { imageSrc: withBase('gallery_6.png'), imageThumbSrc: withBase('gallery_6_thumb.png'), alt: 'backpack6' },
+  { imageSrc: withBase('gallery_7.png'), imageThumbSrc: withBase('gallery_7_thumb.png'), alt: 'backpack7' },
+  { imageSrc: withBase('gallery_8.png'), imageThumbSrc: withBase('gallery_8_thumb.png'), alt: 'backpack8' },
+  { imageSrc: withBase('gallery_9.png'), imageThumbSrc: withBase('gallery_9_thumb.png'), alt: 'backpack9' },
+  { imageSrc: withBase('gallery_10.png'), imageThumbSrc: withBase('gallery_10_thumb.png'), alt: 'backpack10' },
+  { imageSrc: withBase('gallery_11.png'), imageThumbSrc: withBase('gallery_11_thumb.png'), alt: 'backpack11' },
+];
 const thumbsRef = ref<HTMLElement>();
 const firstThumbRef = ref<HTMLButtonElement>();
 const lastThumbRef = ref<HTMLButtonElement>();
@@ -140,33 +155,17 @@ watch(
 const onDragged = (event: SfScrollableOnDragEndData) => {
   if (event.swipeRight && activeIndex.value > 0) {
     activeIndex.value -= 1;
-  } else if (event.swipeLeft && activeIndex.value < Image.length - 1) {
+  } else if (event.swipeLeft && activeIndex.value < images.length - 1) {
     activeIndex.value += 1;
   }
 };
 
 const assignRef = (el: Element | ComponentPublicInstance | null, index: number) => {
   if (!el) return;
-  if (index === Image.length - 1) {
+  if (index === images.length - 1) {
     lastThumbRef.value = el as HTMLButtonElement;
   } else if (index === 0) {
     firstThumbRef.value = el as HTMLButtonElement;
   }
 };
-
-const query = gql `
-  query products_by_id($id: ID!){
-    products_by_id(id: $id){
-      id
-    name
-    image {
-      filename_disk
-    }
-  }
-}
-`
-
-    const {
-        data
-    } = await useAsyncQuery(query)
 </script>

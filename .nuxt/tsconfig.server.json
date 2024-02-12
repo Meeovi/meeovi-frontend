@@ -89,7 +89,6 @@
   "include": [
     "./types/nitro-nuxt.d.ts",
     "../node_modules/@nuxtjs/i18n/runtime/server",
-    "../node_modules/@vue-storefront/nuxt/runtime/server",
     "../node_modules/@nuxtjs/mdc/runtime/server",
     "../node_modules/@nuxt/content/runtime/server",
     "../node_modules/nuxt-directus/runtime/server",

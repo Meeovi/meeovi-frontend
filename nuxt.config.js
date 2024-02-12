@@ -70,7 +70,6 @@ export default defineNuxtConfig({
         defaultLocale: 'en',
       },
     ],
-    '@vue-storefront/nuxt',
     '@nuxt/content',
     'nuxt-directus',
     '@nuxtjs/apollo',
@@ -145,12 +144,6 @@ export default defineNuxtConfig({
       wordpress: {
         httpEndpoint: process.env.CMS_GRAPHQL
       }
-    },
-  },
-
-  vsf: {
-    middleware: {
-      apiUrl: 'http://localhost:4000',
     },
   },
   

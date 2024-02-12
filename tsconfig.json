@@ -3,7 +3,6 @@
   "compilerOptions": {
     "moduleResolution": "Node",
     "resolveJsonModule": false,
-    "types": ["jest"],
   },
   "extends": "./.nuxt/tsconfig.json"
 }

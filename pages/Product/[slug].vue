@@ -1,63 +1,83 @@
 <template>
-  <NuxtLayout name="default" :breadcrumbs="breadcrumbs">
-    <NarrowContainer>
-      <div class="md:grid gap-x-6 grid-areas-product-page grid-cols-product-page">
-        <section class="grid-in-left-top md:h-full xl:max-h-[700px]">
-          <NuxtLazyHydrate when-idle>
-            <Gallery :images="product?.gallery ?? []" />
-          </NuxtLazyHydrate>
-        </section>
-        <section class="mb-10 grid-in-right md:mb-0">
-          <NuxtLazyHydrate when-idle>
-            <UiPurchaseCard v-if="product" :product="product" />
-          </NuxtLazyHydrate>
-        </section>
-        <section class="grid-in-left-bottom md:mt-8">
-          <UiDivider class="mb-6" />
-          <NuxtLazyHydrate when-visible>
-            <ProductProperties v-if="product" :product="product" />
-          </NuxtLazyHydrate>
-          <UiDivider class="mt-4 mb-2 md:mt-8" />
-          <NuxtLazyHydrate when-visible>
-            <ProductAccordion v-if="product" :product="product" />
-          </NuxtLazyHydrate>
-        </section>
-        <UiDivider class="mt-4 mb-2" />
-      </div>
-      <section class="mx-4 mt-28 mb-20">
-        <NuxtLazyHydrate when-visible>
-          <RecommendedProducts v-if="recommendedProducts" :products="recommendedProducts" />
-        </NuxtLazyHydrate>
-      </section>
-    </NarrowContainer>
-  </NuxtLayout>
+  <div>
+    <v-row>
+      <v-col cols="12">
+        <v-row>
+          <v-col cols="6"><productPageGallery /></v-col>
+          <v-col cols="6"><productDetails /></v-col>
+        </v-row>
+      </v-col>
+
+      <v-col cols="12">
+        <v-card>
+          <v-tabs v-model="tab" bg-color="primary">
+            <v-tab value="one">Description</v-tab>
+            <v-tab value="two">Reviews</v-tab>
+            <v-tab value="three">Specifications</v-tab>
+            <v-tab value="four">FAQS</v-tab>
+            <v-tab value="five">Compare</v-tab>
+          </v-tabs>
+
+          <v-card-text>
+            <v-window v-model="tab">
+              <v-window-item value="one">
+                <productInfo />
+              </v-window-item>
+
+              <v-window-item value="two">
+                <comments />
+              </v-window-item>
+
+              <v-window-item value="three">
+                <productSpecs />
+              </v-window-item>
+
+              <v-window-item value="four">
+                <productFaqs />
+              </v-window-item>
+
+              <v-window-item value="five">
+                <productCompare />
+              </v-window-item>
+            </v-window>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+  </div>
 </template>
 
-<script setup lang="ts">
-import { useProductRecommended } from '../../composables/useProductRecommended/useProductRecommended';
-import { useI18n } from 'vue-i18n';
-import type { Breadcrumb } from '../../components/Pages/commerce/ui/Breadcrumbs/types';
-import { computed } from '#imports';
-import { useProduct } from '../../composables/useProduct/useProduct';
+<script>
+import productPageGallery from '../../components/Pages/commerce/product/productPageGallery.vue'
+import productDetails from '../../components/Pages/commerce/product/productDetails.vue'
+import productInfo from '../../components/Pages/commerce/product/productInfo.vue'
+import comments from '../../components/user/comments.vue'
+import productSpecs from '../../components/Pages/commerce/product/productSpecs.vue'
+import productFaqs from '../../components/Pages/commerce/product/productFaqs.vue'
+import productCompare from '../../components/Pages/commerce/product/productCompare.vue'
 
-const route = useRoute();
-const slug = route.params.slug as string;
-const { data: product, fetchProduct } = useProduct(slug);
-const { data: recommendedProducts, fetchProductRecommended } = useProductRecommended(slug);
-const { t } = useI18n();
+  export default {
+    components: {
+      productPageGallery,
+      productInfo,
+      productDetails,
+      productSpecs,
+      productFaqs,
+      productCompare
+    },
+    data: () => ({
+      tab: null,
+    }),
+  }
+</script>
 
-await fetchProduct(slug);
-await fetchProductRecommended(slug);
+<script setup>
 
-const breadcrumbs: Breadcrumb[] = [
-  { name: t('home'), link: '/' },
-  { name: t('category'), link: '/category' },
-  { name: product.value?.name as string, link: `#` },
-];
+definePageMeta({
+    layout: 'nolive',
+  });
 
-const title = computed(() => product.value?.name ?? '');
-
-useHead({
-  title,
-});
+  useHead({
+    title: ''
+  });
 </script>
