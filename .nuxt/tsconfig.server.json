@@ -94,6 +94,7 @@
     "../node_modules/nuxt-directus/runtime/server",
     "../node_modules/@nuxtjs/apollo/runtime/server",
     "../node_modules/nuxt-gtag/runtime/server",
+    "../node_modules/nuxt3-leaflet/runtime/server",
     "../node_modules/@nuxtjs/tailwindcss/runtime/server",
     "../../../../../../../../../../AppData/Roaming/npm/node_modules/@nuxt/devtools/module.cjs/runtime/server",
     "../node_modules/@nuxt/telemetry/runtime/server",

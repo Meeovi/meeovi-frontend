@@ -3,6 +3,7 @@
 /// <reference types="nuxt-directus" />
 /// <reference types="@nuxtjs/apollo" />
 /// <reference types="nuxt-gtag" />
+/// <reference types="nuxt3-leaflet" />
 /// <reference types="@nuxtjs/tailwindcss" />
 /// <reference types="@nuxt/devtools" />
 /// <reference types="@nuxt/devtools" />

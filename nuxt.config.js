@@ -74,6 +74,7 @@ export default defineNuxtConfig({
     'nuxt-directus',
     '@nuxtjs/apollo',
     'nuxt-gtag',
+    'nuxt3-leaflet',
     //'@sidebase/nuxt-auth',
     '@nuxtjs/tailwindcss',
   ],

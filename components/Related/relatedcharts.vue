@@ -2,11 +2,11 @@
   <v-sheet class="mx-auto sliderProducts">
     <h4>Related Charts</h4>
     <v-slide-group v-model="model" class="pa-4" center-active>
-      <v-slide-group-item v-slot="{ isSelected, toggle }" v-for="(chart, index) in data.products.items" :key="index">
-        <v-card width="300px" @click="toggle" :href="`/chart/${chart.uid}`">
-          <img :src="chart.image.url" :alt="chart.name" class="align-end"
+      <v-slide-group-item v-slot="{ isSelected, toggle }" v-for="(chart, index) in data?.products?.items" :key="index">
+        <v-card width="300px" @click="toggle" :href="`/chart/${chart?.uid}`">
+          <img :src="chart?.image?.url" :alt="chart?.name" class="align-end"
             gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" height="200px" cover />
-          <v-card-title class="text-white">{{ chart.name }}</v-card-title>
+          <v-card-title class="text-white">{{ chart?.name }}</v-card-title>
 
           <v-card-actions>
             <v-spacer></v-spacer>

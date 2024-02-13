@@ -2,7 +2,7 @@
   <v-sheet class="mx-auto sliderProducts row align-items-stretch items-row justify-content-center">
     <h4>Exclusives</h4>
     <div v-for="cmsblock in data?.cmsBlocks?.items" :key="cmsblock">
-      <div v-html="cmsblock.content"></div>
+      <div v-html="cmsblock?.content"></div>
     </div>
   </v-sheet>
 </template>
