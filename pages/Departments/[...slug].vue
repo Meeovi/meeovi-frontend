@@ -85,7 +85,6 @@
 
 <script>
   //import videobar from '../../components/Menus/videobar.vue'
-  import live from '../../components/Catbar/live.vue'
   import latestproducts from '../../components/Related/latestproducts.vue'
   import bestsellers from '../../components/Related/bestsellers.vue'
   import relatedcreators from '../../components/Related/relatedcreators.vue'
