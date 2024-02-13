@@ -1,8 +1,8 @@
 <template>
     <div>
       <form>
-        <label for="locale-select">{{ $t('language') }}: </label>
-        <select id="locale-select" v-model="$i18n.locale">
+        <label for="locale-select">: </label>
+        <select id="locale-select">
           <option value="en">English</option>
           <option value="fr">France</option>
           <option value="ja">Japanese</option>

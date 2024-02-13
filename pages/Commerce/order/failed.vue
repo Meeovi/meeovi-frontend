@@ -5,23 +5,23 @@
     >
       <NuxtImg
         src="/images/something-went-wrong.svg"
-        :alt="$t('somethingWentWrongImageAlt')"
+        :alt="('somethingWentWrongImageAlt')"
         width="192"
         height="192"
       />
-      <h1 class="mt-6 mb-1 text-2xl">{{ $t('failedInfoHeader') }}</h1>
-      <span class="font-medium">{{ $t('failedInfoMessage') }}</span>
+      <h1 class="mt-6 mb-1 text-2xl">{{ ('failedInfoHeader') }}</h1>
+      <span class="font-medium">{{ ('failedInfoMessage') }}</span>
       <div class="border border-1 border-neutral-200 rounded bg-neutral-100 p-4 w-full my-4 text-sm">
-        {{ $t('orderErrorMessage') }}
+        {{ ('orderErrorMessage') }}
       </div>
       <SfButton :tag="NuxtLink" href="/checkout" class="max-md:w-full" variant="secondary">
         <template #prefix>
           <SfIconArrowBack />
         </template>
-        {{ $t('backToCheckout') }}
+        {{ ('backToCheckout') }}
       </SfButton>
       <SfButton :tag="NuxtLink" href="/" class="mt-4 max-md:w-full" variant="tertiary">
-        {{ $t('continueShopping') }}
+        {{ ('continueShopping') }}
       </SfButton>
     </div>
   </div>
