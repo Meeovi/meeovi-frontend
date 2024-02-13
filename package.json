@@ -29,7 +29,6 @@
       "@nuxt/content": "latest",
       "@nuxt/types": "^2.15.8",
       "@nuxtjs/apollo": "next",
-      "@nuxtjs/i18n": "8.0.0-rc.3",
       "@nuxtjs/tailwindcss": "^6.10.3",
       "@sidebase/nuxt-auth": "latest",
       "@storefront-ui/vue": "canary",

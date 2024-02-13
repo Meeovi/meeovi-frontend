@@ -14,7 +14,6 @@
 /// <reference path="types/schema.d.ts" />
 /// <reference path="types/app.config.d.ts" />
 /// <reference types="vite/client" />
-/// <reference path="../node_modules/@nuxtjs/i18n/dist/runtime/types" />
 /// <reference path="types/content.d.ts" />
 /// <reference types="vue-router" />
 /// <reference path="types/middleware.d.ts" />

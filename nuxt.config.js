@@ -56,20 +56,6 @@ export default defineNuxtConfig({
   },
 
   modules: [
-    [
-      '@nuxtjs/i18n',
-      {
-        locales: [
-          {
-            code: 'en',
-            file: 'en.json',
-          },
-        ],
-        lazy: true,
-        langDir: 'lang',
-        defaultLocale: 'en',
-      },
-    ],
     '@nuxt/content',
     'nuxt-directus',
     '@nuxtjs/apollo',

@@ -36,8 +36,6 @@ export { useDirectusToken } from '../node_modules/nuxt-directus/dist/runtime/com
 export { useDirectusUrl } from '../node_modules/nuxt-directus/dist/runtime/composables/useDirectusUrl';
 export { useDirectusUser } from '../node_modules/nuxt-directus/dist/runtime/composables/useDirectusUser';
 export { useDirectusUsers } from '../node_modules/nuxt-directus/dist/runtime/composables/useDirectusUsers';
-export { useI18n } from '../node_modules/@nuxtjs/i18n/node_modules/vue-i18n/dist/vue-i18n';
-export { useRouteBaseName, useLocalePath, useLocaleRoute, useSwitchLocalePath, useLocaleHead, useBrowserLocale, useCookieLocale, defineI18nRoute, defineI18nLocale, defineI18nConfig } from '../node_modules/@nuxtjs/i18n/dist/runtime/composables';
 export { queryContent } from '../node_modules/@nuxt/content/dist/runtime/legacy/composables/query';
 export { useContentHelpers } from '../node_modules/@nuxt/content/dist/runtime/composables/helpers';
 export { useContentHead } from '../node_modules/@nuxt/content/dist/runtime/composables/head';
