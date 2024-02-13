@@ -445,6 +445,10 @@ body {
     color: white !important;
 }
 
+.productVCard .v-card-actions {
+    min-height: 62px;
+}
+
 /******************* Upload Center ************/
 
 .uploadHeader,
