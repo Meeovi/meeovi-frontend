@@ -1,6 +1,14 @@
 <template>
-    <div>
-        <eatsbar />
+    <div class="contentPage">
+        <v-card class="lowerbar">
+            <v-tabs center-active>
+                <h5>Meeovi {{ data?.category?.name }}</h5>
+                <v-tab><a :href="`/departments/${data?.category?.uid}`">All</a></v-tab>
+                <v-tab><a
+                        :href="`/departments/categories/${data?.category?.children?.uid}`">{{ data?.category?.children?.name }}</a>
+                </v-tab>
+            </v-tabs>
+        </v-card>
         <v-row class="contentSection">
             <v-col cols="3">
                 <v-card :loading="loading" class="mx-auto my-12" max-width="374">
@@ -67,12 +75,7 @@
 </template>
 
 <script>
-    import eatsbar from '../../../components/Menus/eatsbar.vue'
-
     export default {
-        components: {
-            eatsbar
-        },
         data: () => ({
             loading: false,
             selection: 1,
@@ -89,6 +92,55 @@
 </script>
 
 <script setup>
+const query = gql `
+query MyQuery {
+  category(id: 10) {
+    canonical_url
+    children {
+      id
+      name
+      path
+    }
+    description
+    image
+    landing_page
+    name
+    path
+    uid
+    products {
+      items {
+        image {
+          url
+        }
+        format
+        manufacturer
+        name
+        only_x_left_in_stock
+        price {
+          regularPrice {
+            amount {
+              currency
+              value
+            }
+          }
+        }
+        rating_summary
+        sale
+        size
+        sku
+        special_price
+        stock_status
+        uid
+      }
+    }
+  }
+}
+`
+
+  const {
+    data
+  } = useAsyncQuery(query);
+
     useHead({
         title: 'Meeovi Restaurants'
     })

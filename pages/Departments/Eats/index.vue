@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="contentPage">
         <v-row class="contentSection">
             <v-col cols="12" v-for="eats in data.categories" :key="eats.id">
                 <v-card class="mx-auto" height="620" width="450">

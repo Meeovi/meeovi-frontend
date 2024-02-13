@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="contentPage">
     <v-card class="lowerbar">
       <v-tabs center-active>
         <h5>Meeovi {{ data?.category?.name }}</h5>

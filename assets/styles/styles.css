@@ -445,7 +445,7 @@ body {
     color: white !important;
 }
 
-.productVCard .v-card-actions {
+.productVCard {
     min-height: 62px;
 }
 

@@ -124,8 +124,6 @@
 </template>
 
 <script>
-  import productPageGallery from '../../components/Pages/commerce/product/productPageGallery.vue'
-  import productDetails from '../../components/Pages/commerce/product/productDetails.vue'
   import productInfo from '../../components/Pages/commerce/product/productInfo.vue'
   import comments from '../../components/user/comments.vue'
   import productSpecs from '../../components/Pages/commerce/product/productSpecs.vue'
@@ -134,9 +132,8 @@
 
   export default {
     components: {
-      productPageGallery,
       productInfo,
-      productDetails,
+      comments,
       productSpecs,
       productFaqs,
       productCompare
