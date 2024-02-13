@@ -38,16 +38,15 @@
                     </v-card>
                 </a>
             </v-col>
-        </v-row>
+        </v-row>-->
         <latestproducts />
-        <bestsellers />-->
+        <bestsellers />
         <relatedcreators />
     </div>
 </template>
 
 <script>
     //import videobar from '../../components/Menus/videobar.vue'
-    import live from '../../components/Catbar/live.vue'
     import latestproducts from '../../components/Related/latestproducts.vue'
     import bestsellers from '../../components/Related/bestsellers.vue'
     import relatedcreators from '../../components/Related/relatedcreators.vue'
@@ -55,7 +54,6 @@
     export default {
         components: {
             //videobar,
-            live,
             latestproducts,
             bestsellers,
             relatedcreators

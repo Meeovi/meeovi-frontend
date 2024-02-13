@@ -55,7 +55,7 @@
         "../public/*"
       ],
       "vue-i18n": [
-        "../node_modules/@nuxtjs/i18n/node_modules/vue-i18n/dist/vue-i18n"
+        "../node_modules/@nuxtjs/i18n/node_modules/vue-i18n/dist/vue-i18n.runtime"
       ],
       "@intlify/shared": [
         "../node_modules/@nuxtjs/i18n/node_modules/@intlify/shared/dist/shared"
@@ -76,7 +76,7 @@
         "../node_modules/@nuxtjs/i18n/dist/runtime/composables"
       ],
       "#mdc-imports": [
-        "./file:/C:/Users/Basti/OneDrive/Documents/My%20Websites/Handmade%20Sites/Javascript-Projects/Nuxt-Projects/AlternateCMS-Framework/TheMeeoviCompany-Sites/meeovi-frontend/.nuxt/mdc-imports"
+        "./mdc-imports"
       ],
       "#apollo": [
         "./apollo"
