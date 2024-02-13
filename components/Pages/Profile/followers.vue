@@ -40,10 +40,7 @@
 </script>
 
 <script setup>
-import customer from '../../../apollo/queries-mutations_subscriptions/queries/customers.gql'
 
-const { data } = useAsyncQuery(customer);
-const followers = data ? data.customer : [];
 
     useHead({
         title: 'Followers',
