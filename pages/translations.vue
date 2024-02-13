@@ -78,20 +78,9 @@
 </script>
 
 <script setup>
-    const {
-        getItems
-    } = useDirectusItems()
-
-    const pages = await getItems({
-        collection: "pages",
-        params: {
-            filter: {
-                name: {
-                    _eq: "Translations"
-                }
-            }
-        }
-    });
+  definePageMeta({
+    layout: 'nolive',
+  });
 
     useHead({
         title: 'Change Meeovi to your country'

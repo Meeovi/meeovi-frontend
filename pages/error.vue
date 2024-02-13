@@ -1,7 +1,22 @@
 <template>
   <div>
-    <div class="contentPage" v-for="cmspage in data" :key="cmspage">
-      <div v-html="cmspage.content"></div>
+    <div class="contentPage">
+      <section data-bs-version="5.1" class="header4 cid-u48BYncuPn mbr-fullscreen" id="header4-87"
+        data-sortbtn="btn-primary">
+        <div class="container">
+          <div class="row">
+            <div class="content-wrap">
+              <h1 class="mbr-section-title mbr-fonts-style mbr-white mb-3 display-1">
+                <strong>Oops, 404</strong></h1>
+
+              <p class="mbr-fonts-style mbr-text mbr-white mb-3 display-7">
+                We apologies but you landed in the wrong place, please check the link and try again.</p>
+
+              <div class="mbr-section-btn"><a class="btn btn-primary display-4" href="/">Go Back</a></div>
+            </div>
+          </div>
+        </div>
+      </section>
       <section data-bs-version="5.1" class="features3 cid-u2ZnbOWSjB" id="features3-7e" data-sortbtn="btn-primary">
         <div class="container">
           <div class="row mt-4">
@@ -48,8 +63,12 @@
 </script>
 
 <script setup>
+  definePageMeta({
+    layout: 'nolive',
+  });
+
   useHead({
-    title: 'Deals',
+    title: 'Error',
   })
 
   const query = gql `

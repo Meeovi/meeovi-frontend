@@ -157,6 +157,10 @@
 </script>
 
 <script setup>
+  definePageMeta({
+    layout: 'nolive',
+  });
+  
   useHead({
     title: 'Shopping Cart',
   })
