@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <v-card class="lowerbar">
+    <div class="contentPage">
+        <v-card variant="text">
             <v-tabs center-active :style="`background-color: ${data.meeovistores_by_id.color}; color: ${data.meeovistores_by_id.colortext}`">
                 <h5>{{ data.meeovistores_by_id.name }}</h5>
                 <v-tab><a :href="`/meeovistores/${data.meeovistores_by_id.id}`">All</a></v-tab>

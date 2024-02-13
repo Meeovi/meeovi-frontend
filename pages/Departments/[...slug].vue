@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card class="lowerbar">
+    <v-card variant="text">
       <v-tabs center-active>
         <h5>Meeovi {{ data?.category?.name }}</h5>
         <v-tab><a :href="`/departments/${data?.category?.uid}`">All</a></v-tab>
