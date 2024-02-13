@@ -1,8 +1,8 @@
 <template>
   <div>
     <h4>Related Products</h4>
-    <div v-for="cmsblock in data" :key="cmsblock">
-      <div v-html="cmsblock.content"></div>
+    <div v-for="cmsblock in data?.cmsBlocks?.items" :key="cmsblock">
+      <div v-html="cmsblock?.content"></div>
     </div>
   </div>
 </template>

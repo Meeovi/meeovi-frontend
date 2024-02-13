@@ -6,11 +6,11 @@
         selected-class="bg-primary">
         <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }">
           <v-row dense>
-            <v-col v-for="(products, index) in data.products.items" :key="index" cols="4">
+            <v-col v-for="(products, index) in data?.products?.items" :key="index" cols="4">
               <v-card>
-                <img :src="products.image.url" class="align-end" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+                <img :src="products?.image?.url" class="align-end" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
                   height="200px" cover />
-                  <v-card-title class="text-white" v-text="products.name"></v-card-title>
+                  <v-card-title class="text-white" v-text="products?.name"></v-card-title>
 
                 <v-card-actions>
                   <v-spacer></v-spacer>

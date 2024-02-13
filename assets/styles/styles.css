@@ -114,6 +114,12 @@ body {
 
 .loginForm h1, .registerForm h1, .resetForm h1, .forgotPasswordForm h1 {
     text-align: center;
+    font-size: 25px;
+}
+
+.loginForm img, .registerForm img, .resetForm img, .forgotPasswordForm img {
+    width: 100px;
+    display: inline-block;
 }
 
 .authImage {
