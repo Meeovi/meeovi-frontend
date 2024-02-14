@@ -9,27 +9,24 @@
             <div class="card-wrapper">
               <div class="card-title-wrap">
                 <h5 class="card-title mbr-fonts-style mb-0 display-4">
-                  <strong>Basic</strong>
+                  <strong>{{ data?.composerList?.items?.product?.manufacturer }}</strong>
                 </h5>
                 <h6 class="card-subtitle mbr-fonts-style mb-0 display-7">
-                  The key options
+                 {{ data?.composerList?.items?.product?.name }}
                 </h6>
               </div>
               <div class="card-number-wrap">
                 <p class="price-text mbr-fonts-style mb-0 display-2">
-                  <strong>$</strong>
+                  <strong>{{ data?.composerList?.items?.product?.price?.regularPrice?.amount?.currency }}</strong>
                 </p>
                 <p class="price-number-text mbr-fonts-style mb-0 display-1">
-                  <strong>29</strong>
+                  <strong>{{ data?.composerList?.items?.product?.price?.regularPrice?.amount?.value }}</strong>
                 </p>
               </div>
               <p class="price-caption mbr-fonts-style mb-0 display-7">
-                <strong>PER MONTH</strong>
+                <strong>{{ data?.composerList?.items?.product?.stock_status }}</strong>
               </p>
-              <p class="mbr-text mbr-fonts-style mb-0 display-7">
-                With Basic payment, you can get the mailout with the newly issued furniture, discounts, and news. What
-                do you think about Online Store Template?
-              </p>
+              <p class="mbr-text mbr-fonts-style mb-0 display-7" v-html="data?.composerList?.items?.product?.short_description?.html"></p>
 
               <div class="card-list-wrap">
                 <div class="card-list-item">
@@ -37,31 +34,31 @@
                     <span class="mbr-iconfont mobi-mbri-plus mobi-mbri"></span>
                   </div>
                   <p class="list-text mbr-fonts-style mb-0 display-7">
-                    <strong> Free shipping</strong>
+                    <strong># of Ratings: {{ data?.composerList?.items?.product?.rating_summary }}</strong>
                   </p>
                 </div>
                 <div class="card-list-item">
                   <div class="iconfont-wrapper">
-                    <span class="mbr-iconfont mobi-mbri-close mobi-mbri"></span>
+                    <span class="mbr-iconfont mobi-mbri-plus mobi-mbri"></span>
                   </div>
                   <p class="list-text mbr-fonts-style mb-0 display-7">
-                    <strong>Free returns</strong>
+                    <strong>{{ data?.composerList?.items?.product?.special_price }}</strong>
                   </p>
                 </div>
                 <div class="card-list-item">
                   <div class="iconfont-wrapper">
-                    <span class="mbr-iconfont mobi-mbri-close mobi-mbri"></span>
+                    <span class="mbr-iconfont mobi-mbri-plus mobi-mbri"></span>
                   </div>
                   <p class="list-text mbr-fonts-style mb-0 display-7">
-                    <strong>Secured payments</strong>
+                    <strong>{{ data?.composerList?.items?.product?.sale }}</strong>
                   </p>
                 </div>
                 <div class="card-list-item">
                   <div class="iconfont-wrapper">
-                    <span class="mbr-iconfont mobi-mbri-close mobi-mbri"></span>
+                    <span class="mbr-iconfont mobi-mbri-plus mobi-mbri"></span>
                   </div>
                   <p class="list-text mbr-fonts-style mb-0 display-7">
-                    <strong>Customer service</strong>
+                    <strong>{{ data?.composerList?.items?.product?.only_x_left_in_stock }}</strong>
                   </p>
                 </div>
 
@@ -69,7 +66,7 @@
 
               <div class="mbr-section-btn">
                 <a href="" class="btn btn-danger display-7" target="_blank">
-                  Get Started
+                  Add to Cart
                 </a>
               </div>
             </div>
@@ -89,5 +86,62 @@
 </script>
 
 <script setup>
+const query = gql `
+query {
+  compareList(uid: "") {
+    items {
+      product {
+        categories {
+          id
+          name
+        }
+        color
+        country_of_manufacture
+        created_at
+        format
+        gift_message_available
+        image {
+          url
+        }
+        manufacturer
+        is_featured
+        name
+        media_gallery {
+          url
+        }
+        only_x_left_in_stock
+        price {
+          regularPrice {
+            amount {
+              currency
+              value
+            }
+          }
+        }
+        rating_summary
+        review_count
+        sale
+        size
+        sku
+        short_description {
+          html
+        }
+        stock_status
+        special_price
+        uid
+      }
+    }
+    item_count
+    attributes {
+      code
+      label
+    }
+  }
+}
 
+`
+
+  const {
+    data
+  } = useAsyncQuery(query);
 </script>

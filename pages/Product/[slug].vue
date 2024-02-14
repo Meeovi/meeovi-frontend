@@ -9,46 +9,36 @@
             <div class="row">
               <div class="col-12 col-md-6">
                 <v-carousel>
-                  <v-carousel-item src="https://cdn.vuetifyjs.com/images/cards/docks.jpg" cover></v-carousel-item>
-
-                  <v-carousel-item src="https://cdn.vuetifyjs.com/images/cards/hotel.jpg" cover></v-carousel-item>
-
-                  <v-carousel-item src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" cover></v-carousel-item>
+                  <v-carousel-item :src="data?.products?.image?.url" cover></v-carousel-item>
                 </v-carousel>
               </div>
               <div class="col-12 col-md-6">
                 <div class="right">
                   <div class="card">
                     <p class="mbr-fonts-style display-4">
-                      By: <a href="`/account/user/`">Seller</a></p>
+                      By: <a :href="`/account/user/`">{{ data?.products?.items?.manufacturer }}</a></p>
                   </div>
-                  <p class="name mbr-fonts-style display-2"><strong>Diamond Ring</strong></p>
+                  <p class="name mbr-fonts-style display-2"><strong>{{ data?.products?.items?.name }}</strong></p>
 
                   <div class="price-line">
-                    <p class="desc2 mbr-fonts-style display-5"><s>$145.00</s></p>
+                    <p class="desc2 mbr-fonts-style display-5"><s>${{ data?.products?.items?.special_price }}</s></p>
                     <p class="plus1 mbr-fonts-style display-5">
-                      <strong>&nbsp;</strong>$135.00</p>
+                      <strong>&nbsp;</strong>{{ data?.products?.items?.price_range?.maximum_price?.regular_price?.currency }} {{ data?.products?.items?.price_range?.maximum_price?.regular_price?.value }}</p>
                   </div>
-                  <p class="mbr-text mbr-fonts-style display-4">Dicta sunt explicabo. Nemo enim
-                    ipsam voluptatem
-                    voluptas sit odit aut fugit, sed quia consequuntur. Lorem ipsum nonum eirmod dolor.
-                    <br>
-                    <br>Aquia sit amet, elitr, sed diam nonum eirmod tempor invidunt labore et dolore magna
-                    aliquyam.erat, sed diam voluptua. At vero accusam et justo duo dolores et ea rebum. Stet clitain
-                    vidunt ut labore eirmod tempor invidunt magna aliquyam. Stet clitain vidunt ut labore.</p>
+                  <p class="mbr-text mbr-fonts-style display-4" v-html="data?.products?.items?.short_description_html"></p>
 
                   <v-card variant="text" class="productVCard">
                     <v-card-actions>
                       <v-list>
                         <v-list-item>
-                          <p class="desc mbr-fonts-style display-7"><strong>Size:</strong>&nbsp;<v-btn
-                              variant="outlined">S</v-btn>
+                          <p class="desc mbr-fonts-style display-7"><strong>Size: </strong>&nbsp;<v-btn
+                              variant="outlined">{{ data?.products?.items?.size }}</v-btn>
                           </p>
                         </v-list-item>
 
                         <v-list-item>
                           <p class="desc mbr-fonts-style display-7"><strong>Color:</strong>&nbsp;<v-btn variant="text">
-                              <v-avatar color="surface-variant"></v-avatar>
+                              <v-avatar :color="data?.products?.items?.color"></v-avatar>
                             </v-btn>
                           </p>
                         </v-list-item>
@@ -65,17 +55,17 @@
                     <p class="desc mbr-fonts-style display-7"><strong>
                         Category:</strong></p>
                     <p class="plus mbr-fonts-style display-4">
-                      &nbsp;Rings</p>
+                      &nbsp;{{ data?.products?.items?.categories?.name }}</p>
                   </div>
                   <div class="price-line1">
                     <p class="desc mbr-fonts-style display-7"><strong>
-                        Tags:</strong>&nbsp;</p>
-                    <p class="plus mbr-fonts-style display-4">ring</p>
+                        Format:</strong>&nbsp;</p>
+                    <p class="plus mbr-fonts-style display-4">{{ data?.products?.items?.format }}</p>
                   </div>
                   <div class="price-line1">
                     <p class="desc mbr-fonts-style display-7"><strong>
-                        Product ID:</strong></p>
-                    <p class="plus mbr-fonts-style display-4">2234</p>
+                        Product ID:</strong>&nbsp;</p>
+                    <p class="plus mbr-fonts-style display-4">{{ data?.products?.items?.sku }}</p>
                   </div>
                 </div>
               </div>
@@ -145,6 +135,66 @@
 </script>
 
 <script setup>
+const query = gql `
+query {
+  products(filter: {url_key: {eq: ""}}) {
+    items {
+      uid
+      name
+      categories {
+        name
+      }
+      price_range {
+        maximum_price {
+          regular_price {
+            currency
+            value
+          }
+        }
+      }
+      image {
+        url
+      }
+      rating_summary
+      color
+      created_at
+      description {
+        html
+      }
+      format
+      manufacturer
+      media_gallery {
+        url
+      }
+      only_x_left_in_stock
+      review_count
+      reviews {
+        items {
+          nickname
+          summary
+          text
+          average_rating
+          created_at
+          ratings_breakdown {
+            name
+            value
+          }
+        }
+      }
+      short_description {
+        html
+      }
+      size
+      sku
+    }
+  }
+}
+`
+
+  const {
+    data
+  } = useAsyncQuery(query);
+
   definePageMeta({
     layout: 'nolive',
   });

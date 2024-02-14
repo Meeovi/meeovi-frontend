@@ -16,12 +16,12 @@
                     </v-card-title>
                 </v-toolbar>
                 <v-row style="padding: 10px;">
-                    <v-col cols="3" v-for="websites in data.websites" :key="websites.id">
-                        <a :href="websites.url">
+                    <v-col cols="3" v-for="websites in websites" :key="websites?.id">
+                        <a :href="websites?.url">
                             <v-card class="mx-auto" width="200">
                                 <img class="align-center text-white" height="280"
-                                    :src="`${url}assets/${websites.image.filename_disk}`" :alt="websites.name" cover />
-                                <v-card-title>{{ websites.name }}</v-card-title>
+                                    :src="`${url}assets/${websites?.image?.filename_disk}`" :alt="websites?.name" cover />
+                                <v-card-title>{{ websites?.name }}</v-card-title>
                             </v-card>
                         </a>
                     </v-col>
@@ -44,20 +44,16 @@
 </script>
 
 <script setup>
-const query = gql `
-query {
-    websites (search: "ecosystemmenu") {
-      id
-      name
-      type
-      url
-      image {
-        filename_disk
-      }
-    }
-  }
-`
-    const {
-        data
-    } = await useAsyncQuery(query)
+const {
+        getItems
+    } = useDirectusItems()
+
+    const websites = await getItems({
+        collection: "websites",
+        filter: {
+            type: {
+                _eq: "ecosystemmenu"
+            }
+        }
+    });
 </script>

@@ -4,28 +4,26 @@
         <v-row>
             <v-col cols="12">
                 <v-toolbar color="orange" title="Your Social Feed" subtitle="Posts of people you follow."></v-toolbar>
-                <v-col cols="3" v-for="(newsfeed, index) in data?.activies?.edges" :key="index">
-                    <v-card class="mx-auto" :href="`/social/feed/${newsfeed.id}`">
+                <v-col cols="3" v-for="(newsfeed, index) in data?.newsfeed" :key="index">
+                    <v-card class="mx-auto" elevated="0">
                         <img class="align-end text-white" height="350"
-                            :src="newsfeed?.image.filesdisk" :alt="newsfeed?.title" cover />
-                            <v-card-title>{{ newsfeed?.title }}</v-card-title>
+                            :src="`${url}assets/${newsfeed?.image?.filename_disk}`" :alt="newsfeed?.name" cover />
+                            <v-card-title>{{ newsfeed?.name }}</v-card-title>
 
                         <v-list lines="two">
-                            <v-list-item :title="newsfeed?.creator?.username" :subtitle="newsfeed?.status"
+                            <v-list-item :title="newsfeed?.owner" :subtitle="newsfeed?.status"
                                 :prepend-avatar="newsfeed?.creator?.mediaItems?.edges?.node?.url">
                             </v-list-item>
                         </v-list>
 
                         <v-card-text>
-                            <div>{{ newsfeed?.type }}</div>
-
-                            <div>{{ newsfeed?.content }}</div>
+                            <div>{{ newsfeed?.post }}</div>
                         </v-card-text>
 
                         <v-card-actions>
                             <v-row>
                                 <v-col cols="3">
-                                    <v-btn title="Comments" prepend-icon="fas fa-comment" variant="plain">()</v-btn>
+                                    <v-btn title="Comments" prepend-icon="fas fa-comment" variant="plain" :href="`/social/feed/${newsfeed.id}`">()</v-btn>
                                 </v-col>
                                 <v-col cols="3">
                                     <v-btn title="Repost" prepend-icon="fas fa-repeat" variant="plain">()</v-btn>
@@ -66,27 +64,26 @@
 <script setup>
 const query = gql `
 query {
-  activities {
-    edges {
-      node {
+  newsfeed {
+    id
+    name
+    post
+    owner
+    status
+    user_updated
+    user_created
+    media {
+      directus_files_id {
+        filename_disk
+      }
+    }
+    image {
+      filename_disk
+    }
+    reactions {
+      reactions_id {
         id
-        title
-        type
-        content
-        dateGmt
-        isFavorited
-        status
-        component
-        creator {
-          username
-          mediaItems {
-            edges {
-              node {
-                uri
-              }
-            }
-          }
-        }
+        reaction_type
       }
     }
   }

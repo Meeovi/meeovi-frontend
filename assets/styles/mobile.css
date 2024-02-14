@@ -1,0 +1,53 @@
+/**************** Main CSS ***************/
+@media only screen and (max-width: 760px){
+    .notificationsHeader {
+        display: none;
+    }
+
+    .ecosystemMenuIcon {
+        display: none !important;
+    }
+
+    #search {
+        display: none;
+    }
+
+    #minSearch {
+        display: inline-block;
+        top: 0px;
+        position: relative;
+    }
+}
+
+@media only screen and (min-width: 761px){
+    #minSearch {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 600px){
+
+    .myaccounttopmenu {
+        left: -55px;
+        top: -1px;
+        position: relative;
+    }
+
+    .shoppingCart {
+        top: -42px;
+        position: relative;
+    }
+}
+
+
+/**************** Commerce CSS ***************/
+
+
+
+
+/**************** Social CSS ***************/
+
+
+
+
+/**************** Footer CSS ***************/

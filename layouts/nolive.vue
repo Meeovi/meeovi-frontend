@@ -17,19 +17,23 @@
       <v-spacer></v-spacer>
 
       <div class="d-flex align-center flex-column flex-sm-row fill-height">
-        <v-col>
+        <v-col class="notificationsHeader">
           <LayoutNotifications />
         </v-col>
 
-        <v-col>
+        <v-col class="ecosystemMenuIcon">
           <ecosystemmenu />
         </v-col>
-
+        
         <v-col>
+          <mobilesearch />
+        </v-col>
+
+        <v-col class="myaccounttopmenu">
           <myaccounttopmenu />
         </v-col>
 
-        <v-col>
+        <v-col class="shoppingCart">
           <a variant="flat" href="/commerce/cart">
             <v-icon class="shopping-cart" start icon="fas fa-shopping-cart"></v-icon>
           </a>
@@ -59,21 +63,27 @@
               <!----><meeovistoresmenu />
               <v-divider></v-divider>
 
+              
+
               <myaccountmenu />
               <v-divider></v-divider>
 
               <bottomsidebarmenu />
               <v-row>
-                <v-col cols="4">
+                <v-col cols="3">
                   <v-btn variant="text" stacked title="Help" prepend-icon="fas fa-question-circle" size="x-small"
-                    href="/help/">Help</v-btn>
+                    href="/help/">Help Center</v-btn>
                 </v-col>
-                <v-col cols="4">
+                <v-col cols="3">
+                  <v-btn variant="text" stacked title="Notifications" prepend-icon="fas fa-bell" size="x-small"
+                    href="/account/user/notifications">Notify Center</v-btn>
+                </v-col>
+                <v-col cols="3">
                   <v-btn variant="text" stacked title="Change Background"
                     :prepend-icon="theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon'" @click="onClick" size="x-small">Dark
                     Mode</v-btn>
                 </v-col>
-                <v-col cols="4">
+                <v-col cols="3">
                   <v-btn variant="text" stacked title="Logout" prepend-icon="fas fa-right-from-bracket" size="x-small"
                     href="/logout">Logout</v-btn>
                 </v-col>
@@ -89,7 +99,7 @@
           </main>
         </v-layout>
       </v-card>
-      <AboveFooter /><!---->
+      <!--<AboveFooter />-->
       <BottomFooter />
       <FooterNav /><!---->
     </v-main>
@@ -99,13 +109,13 @@
 <script>
   import search from '../components/Search/search.vue'
   import ecosystemmenu from '../components/Menus/ecosystemmenu.vue'
-  import live from '../components/Menus/Livebar/live.vue'
   import topmenu from '../components/Menus/Sidebar/topmenu.vue'
   import socialmenu from '../components/Menus/Sidebar/socialmenu.vue'
   import departmentsmenu from '../components/Menus/Sidebar/departmentsmenu.vue'
   import meeovistoresmenu from '../components/Menus/Sidebar/meeovistoresmenu.vue'
   import myaccountmenu from '../components/Menus/Sidebar/myaccountmenu.vue'
   import LayoutNotifications from '../components/Menus/LayoutNotifications.vue'
+  import mobilesearch from '../components/Menus/TopMenu/mobilesearch.vue'
   import myaccounttopmenu from '../components/Menus/TopMenu/myaccounttopmenu.vue'
   import bottomsidebarmenu from '../components/Menus/Sidebar/bottomsidebarmenu.vue'
 
@@ -115,13 +125,13 @@
         components: {
           search,
           ecosystemmenu,
-          live,
           topmenu,
           socialmenu,
           departmentsmenu,
           meeovistoresmenu,
           myaccountmenu,
           LayoutNotifications,
+          mobilesearch,
           myaccounttopmenu,
           bottomsidebarmenu
         },

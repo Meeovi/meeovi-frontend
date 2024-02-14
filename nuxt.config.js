@@ -4,6 +4,7 @@
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  spaLoadingTemplate: false,
   app: {
     head: {
       viewport: 'minimum-scale=1, initial-scale=1, width=device-width',
@@ -48,6 +49,7 @@ export default defineNuxtConfig({
     'vuetify/lib/styles/main.sass',
     //'@mdi/font/css/materialdesignicons.min.css',
     '@fortawesome/fontawesome-svg-core/styles.css',
+    'assets/styles/mobile.css',
     'assets/styles/styles.css',
   ],
 

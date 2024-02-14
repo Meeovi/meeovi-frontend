@@ -1,6 +1,6 @@
 <template>
     <div class="contentPage">
-        <v-toolbar color="transparent" title="Chart Name"></v-toolbar>
+        <v-toolbar color="transparent" :title="chart?.name"></v-toolbar>
         <v-table class="charttable">
             <thead>
                 <tr>
@@ -8,7 +8,7 @@
                     <th class="text-left">
                         This Week
                     </th>
-                    <th class="text-left"></th>
+                    <th class="text-left">Name</th>
                     <th class="text-left">
                         Award
                     </th>
@@ -28,29 +28,29 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr v-for="(products, index) in data?.products?.items" :key="index">
                     <td class="chartnumber">
-                        <h1>1</h1>
+                        <h1>{{ chart?.this_week }}</h1>
                     </td>
                     <td>
-                        <v-avatar image="https://cdn.vuetifyjs.com/docs/images/cards/purple-flowers.jpg" rounded="0" size="130"></v-avatar>
+                        <v-avatar :image="products?.image?.url" rounded="0" size="130"></v-avatar>
                     </td>
                     <td>
                         <v-list>
-                            <v-list-item title="Product Title" subtitle="Lorem ipsum dolor sit amet consectetur adipisicing elit"></v-list-item>
+                            <v-list-item :title="products?.name" :subtitle="products?.short_description?.html"></v-list-item>
                         </v-list>
                     </td>
                     <td>
-                        <v-avatar icon="fas fa-star" color="blue"></v-avatar>
+                        <v-avatar icon="fas fa-star" :style="`color: ${chart?.reward}`"></v-avatar>
                     </td>
                     <td>
-                        <h5>1</h5>
+                        <h5>{{ chart?.last_week }}</h5>
                     </td>
                     <td>
-                        <h5>1</h5>
+                        <h5>{{ chart?.peak_position }}</h5>
                     </td>
                     <td>
-                        <h5>1</h5>
+                        <h5>{{ chart?.weeks_on_chart }}</h5>
                     </td>
                     <td>
                         <v-btn href="" icon="fas fa-shopping-cart"></v-btn>
@@ -59,8 +59,8 @@
             </tbody>
         </v-table>
         <relatedchart />
-        <!--<relatedproducts />-->
-        <!--<recentlyviewed />-->
+        <relatedproducts /><!---->
+        <recentlyviewed /><!---->
     </div>
 </template>
 
@@ -79,6 +79,78 @@
 </script>
 
 <script setup>
+const { $directus, $readItem } = useNuxtApp()
+const route = useRoute()
+
+const { data: chart } = await useAsyncData('musicchart', () => {
+  return $directus.request(
+    $readItem('musicchart', route.params.slug, {
+      fields: ['*', { '*': ['*'] }]
+    })
+  )
+})
+
+const query = gql `
+query {
+    products(filter: {category_id: {eq: "42"}, format: {eq: "Chart"}}) {
+    items {
+      uid
+      name
+      categories {
+        name
+      }
+      price_range {
+        maximum_price {
+          regular_price {
+            currency
+            value
+          }
+        }
+      }
+      image {
+        url
+      }
+      rating_summary
+      color
+      created_at
+      description {
+        html
+      }
+      format
+      manufacturer
+      media_gallery {
+        url
+      }
+      only_x_left_in_stock
+      review_count
+      reviews {
+        items {
+          nickname
+          summary
+          text
+          average_rating
+          created_at
+          ratings_breakdown {
+            name
+            value
+          }
+        }
+      }
+      short_description {
+        html
+      }
+      size
+      sku
+    }
+  }
+}
+
+`
+
+  const {
+    data
+  } = useAsyncQuery(query);
+
     useHead({
         title: '',
     })

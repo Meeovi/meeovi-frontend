@@ -22,23 +22,23 @@
         <section class="features4 cid-sBXUicXM4E" id="features5-2g">
             <div class="container">
                 <div class="row">
-                    <div class="col-12 col-lg-6" v-for="(spaces, index) in data?.groups?.nodes" :key="index">
+                    <div class="col-12 col-lg-6" v-for="(spaces, index) in data?.Space" :key="index">
                         <div class="card-wrapper">
                             <div class="row">
                                 <div class="col-12 col-md-7">
                                     <div class="text-wrapper">
                                         <h6 class="card-subtitle mbr-fonts-style mb-2 display-4">
-                                            {{spaces?.dateCreated}}</h6>
+                                            {{spaces?.date_created}}</h6>
                                         <h5 class="card-title mbr-fonts-style display-5">
                                             <strong>{{ spaces?.name }}</strong></h5>
                                         <p class="mbr-text mbr-fonts-style mb-5 display-4">{{ spaces?.description }}</p>
-                                        <div class="mbr-section-btn"><a :href="`/group/${spaces?.slug}`"
+                                        <div class="mbr-section-btn"><a :href="`/group/${spaces?.id}`"
                                                 class="btn btn-warning display-4">Learn more</a></div>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-5">
                                     <div class="img-wrapper">
-                                        <img :src="`${spaces?.attachmentAvatar?.full}`" :alt="spaces?.name" cover />
+                                        <img :src="`${spaces?.image?.filename_disk}`" :alt="spaces?.name" cover />
                                     </div>
                                 </div>
                             </div>
@@ -67,24 +67,25 @@
 <script setup>
 const query = gql `
 query {
-  groups {
-      nodes {
+  Space {
+    id
+    Name
+    Description
+    status
+    date_created
+    Image {
+      filename_disk
+    }
+    shorts {
+      shorts_id {
+        id
         name
-        description
-        dateCreated
-        creator {
-          name
-          username
-        }
-        lastActivity
-        status
-        totalMemberCount
-        slug
-        attachmentAvatar {
-          full
+        video {
+          filename_disk
         }
       }
     }
+  }
 }`
 
   const {

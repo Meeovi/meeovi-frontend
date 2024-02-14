@@ -13,15 +13,15 @@
                             Select your preferred country/region website. This will update the products, layout, and
                             overall content to match that part of the world.</p>
                         <div class="mbr-section-btn mt-3">
-                            <v-menu>
+                            <v-menu :location="location">
                                 <template v-slot:activator="{ props }">
                                     <v-btn class="btn btn-primary display-4" color="primary" v-bind="props" size="large">
                                         United Kingdom
                                     </v-btn>
                                 </template>
                                 <v-list>
-                                    <v-list-item v-for="(item, index) in items" :key="index" :value="index">
-                                        <v-list-item-title>{{ item.title }}</v-list-item-title>
+                                    <v-list-item v-for="(translations, index) in translations" :key="index" :value="index">
+                                        <v-list-item-title><a :href="translations?.url">{{ translations?.name }}</a></v-list-item-title>
                                     </v-list-item>
                                 </v-list>
                             </v-menu>
@@ -74,10 +74,21 @@
             recentlyviewed,
             relatedcreators
         },
+        data: () => ({
+            location: 'bottom',
+            }),
     }
 </script>
 
 <script setup>
+const {
+        getItems
+    } = useDirectusItems()
+
+    const translations = await getItems({
+        collection: "translations"
+    });
+
   definePageMeta({
     layout: 'nolive',
   });
