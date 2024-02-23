@@ -457,6 +457,7 @@ body {
     top: 20px;
     width: 100%;
     text-align: center;
+    padding: 10px;
 }
 
 .uploadHeader {
@@ -488,6 +489,7 @@ body {
 .centralfeed {
     padding-top: 15px;
     padding-bottom: 5%;
+    padding-left: 25%;
 }
 
 .feedcomments {

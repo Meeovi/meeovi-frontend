@@ -1,10 +1,12 @@
 <template>
     <div class="contentPage">
-        <v-row v-for="pages in data.pages" :key="pages">
-            <p class="uploadHeader">{{ pages.name }}</p>
+        <v-row>
+            <v-col cols="12">
+             <p class="uploadHeader">{{ page.name }}</p>
 
-            <div class="uploadDescription" v-html="pages.content"></div>
-
+             <p class="uploadDescription" v-html="page.content"></p>   
+            </v-col>
+            
             <v-col cols="12">
                 <v-card>
                     <v-tabs v-model="tab" bg-color="orange">
@@ -52,20 +54,12 @@ import bookmarkvideo from '../components/Create/bookmarkvideo.vue'
         title: 'Upload Center',
     })
 
-const query = gql`
-query {
-    pages (filter: {name: {_starts_with: "Upload Center"}}) {
-      id
-      status
-      sort
-      name
-      content
-      link
-      list
-      type
-      date_created
-    }
-  }
-`
-const { data } = await useAsyncQuery(query)
+const {
+    getItemById
+  } = useDirectusItems()
+
+  const page = await getItemById({
+    collection: "pages",
+    id: 20
+  });
 </script>

@@ -1,331 +1,179 @@
 import gql from 'graphql-tag'
 
 export const query = gql`
-query {
-  products 
- {
-    id
-    sku
-    name
-    tax_class
-    stock_status
-    weight
-    created_at
-    created_at_func {
-      year
-      month
-      week
-      day
-      weekday
-      hour
-      minute
-      second
-    }
-    height
-    content
-    part_number
-    format
-    format_func {
-      count
-    }
-    file {
+query productsQuery {
+  products(filter: {name: {match: ""}}) {
+    items {
+      color
+      categories {
+        id
+        name
+      }
+      created_at
+      country_of_manufacture
+      description {
+        html
+      }
+      crosssell_products {
+        image {
+          url
+        }
+        format
+        description {
+          html
+        }
+        name
+        price {
+          regularPrice {
+            amount {
+              value
+              currency
+            }
+          }
+        }
+        rating_summary
+        sale
+        sku
+        special_price
+        uid
+        url_key
+      }
+      format
+      manufacturer
+      name
+      only_x_left_in_stock
+      price {
+        regularPrice {
+          amount {
+            value
+            currency
+          }
+        }
+      }
+      rating_summary
+      sale
+      sku
+      size
+      special_price
+      stock_status
+      uid
+      url_key
+      activity
+      attribute_set_id
+      canonical_url
+      category_gear
+      climate
+      collar
+      eco_collection
+      erin_recommends
+      features_bags
+      gender
+      gift_message_available
       id
-      storage
-      filename_disk
-      filename_download
-      title
-      type
-      folder
-      uploaded_by
-      uploaded_on
-      uploaded_on_func
-      modified_by
-      modified_on
-      modified_on_func
-      charset
-      filesize
-      width
-      height
-      duration
-      embed
-      description
-      location
-      tags
-      tags_func
-      metadata
-      metadata_func
+      is_featured
+      material
+      media_gallery {
+        disabled
+        label
+        position
+        url
+        ... on ProductImage {
+          disabled
+          label
+          position
+          url
+        }
+        ... on ProductVideo {
+          disabled
+          label
+          position
+          url
+          video_content {
+            media_type
+            video_description
+            video_metadata
+            video_provider
+            video_title
+            video_url
+          }
+        }
+      }
+      meta_description
+      meta_keyword
+      meta_title
+      new
+      new_from_date
+      new_to_date
+      options_container
+      pattern
+      performance_fabric
+      product_links {
+        link_type
+        linked_product_sku
+        linked_product_type
+        position
+        sku
+      }
+      review_count
+      related_products {
+        image {
+          url
+        }
+        description {
+          html
+        }
+        format
+        name
+        manufacturer
+        price {
+          regularPrice {
+            amount {
+              currency
+              value
+            }
+          }
+        }
+        sku
+        special_price
+      }
+      sleeve
+      special_to_date
+      strap_bags
+      style_bags
+      style_bottom
+      style_general
+      swatch_image
+      type_id
+      url_path
+      upsell_products {
+        image {
+          url
+        }
+        format
+        name
+        manufacturer
+        price {
+          regularPrice {
+            amount {
+              currency
+              value
+            }
+          }
+        }
+        sku
+        rating_summary
+        special_price
+        uid
+      }
+      updated_at
+      thumbnail {
+        url
+      }
+      url_suffix
     }
-    image {
-      id
-      storage
-      filename_disk
-      filename_download
-      title
-      type
-      folder
-      uploaded_by
-      uploaded_on
-      uploaded_on_func
-      modified_by
-      modified_on
-      modified_on_func
-      charset
-      filesize
-      width
-      height
-      duration
-      embed
-      description
-      location
-      tags
-      tags_func
-      metadata
-      metadata_func
-    }
-    type
-    visibility
-    price
-    size
-    size_func {
-      count
-    }
-    rating
-    like
-    stock
-    attributes {
-      id
-      attributes_id
-      products_id
-    }
-    attributes_func {
-      count
-    }
-    shops {
-      id
-      shops_id
-      products_id
-    }
-    shops_func {
-      count
-    }
-    product_types {
-      id
-      product_types_id
-      products_id
-    }
-    product_types_func {
-      count
-    }
-    customers {
-      id
-      customers_id
-      products_id
-    }
-    customers_func {
-      count
-    }
-    websites {
-      id
-      products_id
-      websites_id
-    }
-    websites_func {
-      count
-    }
-    cross_products {
-      id
-      products_id
-      related_products_id
-    }
-    cross_products_func {
-      count
-    }
-    musicchart {
-      id
-      musicchart_id
-      products_id
-    }
-    musicchart_func {
-      count
-    }
-    agreements {
-      id
-      agreements_id
-      products_id
-    }
-    agreements_func {
-      count
-    }
-    faqsa {
-      id
-      products_id
-    }
-    faqsa_func {
-      count
-    }
-    meeovistores {
-      id
-      meeovistores_id
-      products_id
-    }
-    meeovistores_func {
-      count
-    }
-    brands {
-      id
-      brands_id
-      products_id
-    }
-    brands_func {
-      count
-    }
-    newsfeed {
-      id
-      newsfeed_id
-      products_id
-    }
-    newsfeed_func {
-      count
-    }
-    lists {
-      id
-      lists_id
-      products_id
-    }
-    lists_func {
-      count
-    }
-    orders {
-      id
-      orders_id
-      products_id
-    }
-    orders_func {
-      count
-    }
-    subscriptions {
-      id
-      subscriptions_id
-      products_id
-    }
-    subscriptions_func {
-      count
-    }
-    shorts {
-      id
-      shorts_id
-      products_id
-    }
-    shorts_func {
-      count
-    }
-    categories {
-      id
-      products_id
-      categories_id
-    }
-    categories_func {
-      count
-    }
-    departments {
-      id
-      products_id
-      departments_id
-    }
-    departments_func {
-      count
-    }
-    coupons {
-      id
-      coupons_id
-      products_id
-    }
-    coupons_func {
-      count
-    }
-    Space {
-      id
-      Space_id
-      products_id
-    }
-    Space_func {
-      count
-    }
-    returns {
-      id
-      returns_id
-      products_id
-    }
-    returns_func {
-      count
-    }
-    comments {
-      id
-      comments_id
-      products_id
-    }
-    comments_func {
-      count
-    }
-    manufacturer {
-      id
-      products_id
-      manufacturer_id
-    }
-    manufacturer_func {
-      count
-    }
-    cart {
-      id
-      cart_id
-      products_id
-    }
-    cart_func {
-      count
-    }
-    countries {
-      id
-      products_id
-      countries_id
-    }
-    countries_func {
-      count
-    }
-    collections {
-      id
-      collections_id
-      products_id
-    }
-    collections_func {
-      count
-    }
-    translations {
-      id
-      translations_id
-      products_id
-    }
-    translations_func {
-      count
-    }
-    Receipts {
-      id
-      Receipts_id
-      products_id
-    }
-    Receipts_func {
-      count
-    }
-    buyagain {
-      id
-      buyagain_id
-      products_id
-    }
-    buyagain_func {
-      count
-    }
+    total_count
   }
 }
-
 `
 
 export default { query }

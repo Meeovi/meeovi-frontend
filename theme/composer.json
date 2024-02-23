@@ -1,0 +1,21 @@
+{
+    "name": "meeovi-frontend",
+    "description": "N/A",
+    "version": "0.0.6",
+    "config": {
+        "sort-packages": true
+    },
+    "require": {
+        "magento/framework": "*",
+        "magento/theme-frontend-blank": "*"
+    },
+    "type": "magento2-theme",
+    "license": [
+        "proprietary"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ]
+    }
+}

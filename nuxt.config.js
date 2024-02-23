@@ -65,6 +65,8 @@ export default defineNuxtConfig({
     'nuxt3-leaflet',
     //'@sidebase/nuxt-auth',
     '@nuxtjs/tailwindcss',
+    "@nuxt/image",
+    '@builder.io/sdk-vue/nuxt',
   ],
 
   directus: {

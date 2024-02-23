@@ -9,10 +9,10 @@
                                 <v-avatar icon="fas fa-plus" style="background: steelblue; color: white;" size="60"
                                     v-bind="props"></v-avatar>
                             </template>
-                            <v-card>
-                                <video class="createVideo" src="" autoplay></video>
+                            <v-card min-height="500" min-width="500">
+                                <video-player class="createVideo" src="" />
                                 <v-card-actions>
-                                    <v-btn color="primary" block @click="createdialog = false">Close Dialog</v-btn>
+                                    <v-btn color="primary" block @click="createdialog = false">Close</v-btn>
                                 </v-card-actions>
                             </v-card>
                         </v-dialog>
@@ -31,7 +31,7 @@
                                 </div>
                             </template>
 
-                            <v-card min-height="500" min-width="500">
+                            <v-card min-height="75%" min-width="75%">
                                 <v-row>
                                     <v-col cols="6"><video class="liveVideo" src="" title="" autoplay controls></video></v-col>
                                     <v-col cols="6">
@@ -54,15 +54,21 @@
 
 <script>
     import livecomments from '../../user/livecomments.vue'
+    import VideoPlayer from '../../Partials/videojs'
 
     export default {
         components: {
-            livecomments
+            livecomments,
+            VideoPlayer
         },
         data: () => ({
             tab: null,
             dialog: false,
             createdialog: false,
+            videoOptions: {
+                autoplay: true,
+                controls: true,
+            }
         }),
     }
 </script>

@@ -4,7 +4,7 @@
         <v-row>
             <v-col cols="12">
                 <v-toolbar color="orange" title="Your Social Feed" subtitle="Posts of people you follow."></v-toolbar>
-                <v-col cols="3" v-for="(newsfeed, index) in data?.newsfeed" :key="index">
+                <v-col cols="3" v-for="(newsfeed, index) in newsfeed" :key="index">
                     <v-card class="mx-auto" elevated="0">
                         <img class="align-end text-white" height="350"
                             :src="`${url}assets/${newsfeed?.image?.filename_disk}`" :alt="newsfeed?.name" cover />
@@ -17,7 +17,7 @@
                         </v-list>
 
                         <v-card-text>
-                            <div>{{ newsfeed?.post }}</div>
+                            <div><p v-text="newsfeed?.post"></p></div>
                         </v-card-text>
 
                         <v-card-actions>
@@ -26,13 +26,13 @@
                                     <v-btn title="Comments" prepend-icon="fas fa-comment" variant="plain" :href="`/social/feed/${newsfeed.id}`">()</v-btn>
                                 </v-col>
                                 <v-col cols="3">
-                                    <v-btn title="Repost" prepend-icon="fas fa-repeat" variant="plain">()</v-btn>
+                                    <v-btn title="Repost" prepend-icon="fas fa-repeat" variant="plain" @click="repost()">()</v-btn>
                                 </v-col>
                                 <v-col cols="3">
-                                    <v-btn title="Like This" prepend-icon="fas fa-heart" variant="plain">()</v-btn>
+                                    <v-btn title="Like This" prepend-icon="fas fa-heart" variant="plain" @click="addLike">()</v-btn>
                                 </v-col>
                                 <v-col cols="3">
-                                    <v-btn title="Bookmark" prepend-icon="fas fa-bookmark" variant="plain">()
+                                    <v-btn title="Bookmark" prepend-icon="fas fa-bookmark" variant="plain" @click="addBookmark">()
                                     </v-btn>
                                 </v-col>
                             </v-row>
@@ -62,36 +62,13 @@
 </script>
 
 <script setup>
-const query = gql `
-query {
-  newsfeed {
-    id
-    name
-    post
-    owner
-    status
-    user_updated
-    user_created
-    media {
-      directus_files_id {
-        filename_disk
-      }
-    }
-    image {
-      filename_disk
-    }
-    reactions {
-      reactions_id {
-        id
-        reaction_type
-      }
-    }
-  }
-}`
+const {
+    getItems
+  } = useDirectusItems()
 
-  const {
-    data
-  } = useAsyncQuery(query);
+  const newsfeed = await getItems({
+    collection: "newsfeed"
+  });
 
     useHead({
         title: 'Social Feed',

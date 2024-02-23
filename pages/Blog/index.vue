@@ -48,25 +48,7 @@
 </script>
 
 <script setup>
-const query = gql `
-query
-{
-  mpBlogPosts(action: "get_post_list") {
-    items {
-      image
-      name
-      author_name
-      categories {
-        items {
-          name
-        }
-      }
-      created_at
-      short_description
-      view_traffic
-    }
-  }
-}`
+import query from '../../apollo/Queries/articles'
 
   const {
     data

@@ -64,6 +64,8 @@
 </script>
 
 <script setup>
+import gql from 'graphql-tag'
+
 const query = gql`
 query MyQuery {
   categories(filters: {ids: {eq: "83"}}) {

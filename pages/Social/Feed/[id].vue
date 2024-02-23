@@ -1,50 +1,43 @@
 <template>
     <div class="contentPage">
         <v-row class="centralfeed">
-            <v-col cols="12">
+            <v-col cols="10">
                 <v-row>
                     <v-col cols="12">
                         <v-card class="mx-auto">
-                            <v-img class="align-end text-white" height="200"
-                                :src="`${newsfeed_by_id?.image?.filename_disk}`" :alt="newsfeed_by_id?.id" cover>
+                            <img class="align-end text-white" height="200"
+                                :src="`${url}assets/${newsfeed?.image?.filename_disk}`" :alt="newsfeed?.id" cover />
                                 <v-card-title>{{ newsfeed?.name }}</v-card-title>
-                            </v-img>
 
                             <v-list lines="two">
-                                <v-list-item :title="newsfeed?.owner" :subtitle="newsfeed?.status"
-                                    :prepend-avatar="newsfeed?.creator?.mediaItems?.edges?.node?.url">
+                                <v-list-item :title="newsfeed?.owner" :prepend-avatar="newsfeed?.creator?.mediaItems?.edges?.node?.url">
                                 </v-list-item>
                             </v-list>
 
                             <v-card-subtitle class="pt-4">
-                                {{ newsfeed_by_id?.user_created }}
+                                {{ newsfeed?.date_created }}
                             </v-card-subtitle>
 
-                            <v-card-text class="pt-4">
-                                {{ newsfeed_by_id?.post }}
-                            </v-card-text>
+                            <v-card-text class="pt-4" v-html="newsfeed?.status"></v-card-text>
 
-                            <v-row>
-                                <v-col cols="3"> Reposts</v-col>
-                                <v-col cols="3"> Likes</v-col>
-                                <v-col cols="3"> Bookmarks</v-col>
-                            </v-row>
-                            <v-row>
+                            <v-card-text class="pt-4" v-html="newsfeed?.post"></v-card-text>
+
+                            <v-row class="align-center">
                                 <v-col cols="3">
-                                    <v-btn title="Repost" prepend-icon="fas fa-repeat" variant="plain"></v-btn>
+                                    <v-btn title="Repost" stacked="" prepend-icon="fas fa-repeat" variant="plain">Repost</v-btn>
                                 </v-col>
                                 <v-col cols="3">
-                                    <v-btn title="Like This" prepend-icon="fas fa-heart" variant="plain"></v-btn>
+                                    <v-btn title="Like This" stacked="" prepend-icon="fas fa-heart" variant="plain">Like This</v-btn>
                                 </v-col>
                                 <v-col cols="3">
-                                    <v-btn title="Bookmark" prepend-icon="fas fa-bookmark" variant="plain"></v-btn>
+                                    <v-btn title="Bookmark" stacked="" prepend-icon="fas fa-bookmark" variant="plain">Bookmark</v-btn>
                                 </v-col>
                             </v-row>
                         </v-card>
                     </v-col>
 
                     <v-col cols="12">
-                        <livecomments />
+                        <comments />
                     </v-col>
                 </v-row>
             </v-col>
@@ -53,48 +46,31 @@
 </template>
 
 <script>
-    import livecomments from '../../../components/user/livecomments.vue'
+    import comments from '../../../components/user/comments.vue'
 
     export default {
         components: {
-            livecomments
-        }
+            comments
+        },
+        data() {
+            return {
+                url: process.env.DIRECTUS_URL,
+            }
+        },
     }
 </script>
 
 <script setup>
-const query = gql `
-query ($id: ID!) {
-  newsfeed_by_id (id: $id) {
-    id
-    name
-    post
-    owner
-    status
-    user_updated
-    user_created
-    media {
-      directus_files_id {
-        filename_disk
-      }
-    }
-    image {
-      filename_disk
-    }
-    reactions {
-      reactions_id {
-        id
-        reaction_type
-      }
-    }
-  }
-}`
+const {
+    getItemById
+  } = useDirectusItems()
 
-    const {
-        data
-    } = useAsyncQuery(query);
+  const newsfeed = await getItemById({
+    collection: "newsfeed",
+    id: 1
+  });
 
     useHead({
-        title: ''
+        title: 'this.params.name'
     })
 </script>

@@ -48,6 +48,8 @@
 </script>
 
 <script setup>
+import gql from 'graphql-tag'
+
 const query = gql`
 query MyQuery {
   mpBlogPosts(action: "get_post_by_tagName", tagName: "Journals") {

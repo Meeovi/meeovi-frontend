@@ -71,8 +71,8 @@
                         <v-btn variant="outlined" color="gray" prepend-icon="fas fa-globe" href="/translations" title="Change Your Store">Meeovi Global</v-btn>
                     </div>
                     <div class="col-3">
-                        <p class="mbr-text mb-0 mbr-fonts-style display-7">
-                            2017 — {{ new Date().getFullYear() }} <strong><a href="https://www.meeovi.com">&copy; Meeovi LLC</a></strong> - All Rights Reserved
+                        <p v-for="store in data?.availableStores" :key="store" class="mbr-text mb-0 mbr-fonts-style display-7">
+                            {{ store?.copyright }}
                         </p>
                     </div>
                 </div>
@@ -91,6 +91,10 @@
 </script>
 
 <script setup>
+import query from '../apollo/Queries/availableStores.js'
+
+const { data } = useAsyncQuery(query);
+
     const {
         getItems
     } = useDirectusItems()

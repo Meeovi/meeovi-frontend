@@ -35,6 +35,7 @@
 </script>
 
 <script setup>
+import gql from 'graphql-tag'
     import {
         ref
     } from 'vue'

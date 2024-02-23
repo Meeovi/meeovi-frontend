@@ -1,0 +1,17 @@
+sources:
+  - name: directus
+    handler:
+      graphql:
+        endpoint: '{DIRECTUS_GRAPHQL}'
+  - name: m2
+    handler:
+      graphql:
+        endpoint: '{VSF_MAGENTO_GRAPHQL_URL}'
+        useGETForQueries: true
+        operationHeaders:
+          Authorization: '{context.headers.authorization}'
+          X-ReCaptcha: "{context.headers['x-recaptcha']}"
+          Preview-Version: "{context.headers['preview-version']}"
+          Content-Currency: "{context.headers['content-currency']}"
+serve:
+  playground: true

@@ -4,15 +4,15 @@
       <div class="container">
         <div class="row">
           <div class="col-12">
-            <h3 class="mbr-section-title align-center mb-4 mbr-fonts-style display-2"><strong>Meeovi
-                Applications</strong></h3>
+            <h3 class="mbr-section-title align-center mb-4 mbr-fonts-style display-2"><strong>{{ page?.name }}</strong>
+            </h3>
           </div>
           <div class="card col-12 col-md-4 col-lg-2 p-3">
             <div class="card-wrapper">
               <div class="card-box align-center">
                 <span class="mbr-iconfont mobi-mbri-image-gallery mobi-mbri"></span>
                 <h4 class="card-title align-center mbr-black mbr-fonts-style display-7">
-                  <strong>Optimized Images</strong></h4>
+                  <strong>{{ page?.repeaterTextBox[0].name }}</strong></h4>
               </div>
             </div>
           </div>
@@ -21,7 +21,7 @@
               <div class="card-box align-center">
                 <span class="mbr-iconfont mobi-mbri-sites mobi-mbri"></span>
                 <h4 class="card-title align-center mbr-black mbr-fonts-style display-7">
-                  <strong>Offline Mode</strong></h4>
+                  <strong>{{ page?.repeaterTextBox[1].name }}</strong></h4>
               </div>
             </div>
           </div>
@@ -30,7 +30,7 @@
               <div class="card-box align-center">
                 <span class="mbr-iconfont mobi-mbri-lock mobi-mbri"></span>
                 <h4 class="card-title align-center mbr-black mbr-fonts-style display-7">
-                  <strong>Secure</strong></h4>
+                  <strong>{{ page?.repeaterTextBox[2].name }}</strong></h4>
               </div>
             </div>
           </div>
@@ -39,7 +39,7 @@
               <div class="card-box align-center">
                 <span class="mbr-iconfont mobi-mbri-features mobi-mbri"></span>
                 <h4 class="card-title align-center mbr-black mbr-fonts-style display-7">
-                  <strong>Shopping Everywhere</strong></h4>
+                  <strong>{{ page?.repeaterTextBox[3].name }}</strong></h4>
               </div>
             </div>
           </div>
@@ -48,7 +48,7 @@
               <div class="card-box align-center">
                 <span class="mbr-iconfont mobi-mbri-cust-feedback mobi-mbri"></span>
                 <h4 class="card-title align-center mbr-black mbr-fonts-style display-7">
-                  <strong>Push Notifications</strong></h4>
+                  <strong>{{ page?.repeaterTextBox[4].name }}</strong></h4>
               </div>
             </div>
           </div>
@@ -57,7 +57,7 @@
               <div class="card-box align-center">
                 <span class="mbr-iconfont mobi-mbri-devices mobi-mbri"></span>
                 <h4 class="card-title align-center mbr-black mbr-fonts-style display-7">
-                  <strong>Mobile-friendly</strong></h4>
+                  <strong>{{ page?.repeaterTextBox[5].name }}</strong></h4>
               </div>
             </div>
           </div>
@@ -78,7 +78,8 @@
                     <h5 class="card-title mbr-fonts-style display-5">
                       <strong>{{ app?.name }}</strong></h5>
                     <p class="mbr-text mbr-fonts-style mb-5 display-4">{{ app?.description }}</p>
-                    <div class="mbr-section-btn"><a :href="app?.url" class="btn btn-warning display-4">Get the App</a></div>
+                    <div class="mbr-section-btn"><a :href="app?.url" class="btn btn-warning display-4">Get the App</a>
+                    </div>
                   </div>
                 </div>
                 <div class="col-12 col-md-5">
@@ -96,24 +97,31 @@
 </template>
 
 <script>
-
-    export default {
-        data() {
-            return {
-                url: process.env.DIRECTUS_URL,
-            }
-        },
-    }
+  export default {
+    data() {
+      return {
+        url: process.env.DIRECTUS_URL,
+      }
+    },
+  }
 </script>
 
 <script setup>
-const {
-        getItems
-    } = useDirectusItems()
+  const {
+    getItems
+  } = useDirectusItems()
+  const {
+    getItemById
+  } = useDirectusItems()
 
-    const applications = await getItems({
-        collection: "applications"
-    });
+  const page = await getItemById({
+    collection: "pages",
+    id: 30
+  });
+
+  const applications = await getItems({
+    collection: "applications"
+  });
 
   definePageMeta({
     layout: 'nolive',

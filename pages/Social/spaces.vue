@@ -22,7 +22,7 @@
         <section class="features4 cid-sBXUicXM4E" id="features5-2g">
             <div class="container">
                 <div class="row">
-                    <div class="col-12 col-lg-6" v-for="(spaces, index) in data?.Space" :key="index">
+                    <div class="col-12 col-lg-6" v-for="(spaces, index) in spaces" :key="index">
                         <div class="card-wrapper">
                             <div class="row">
                                 <div class="col-12 col-md-7">
@@ -31,14 +31,14 @@
                                             {{spaces?.date_created}}</h6>
                                         <h5 class="card-title mbr-fonts-style display-5">
                                             <strong>{{ spaces?.name }}</strong></h5>
-                                        <p class="mbr-text mbr-fonts-style mb-5 display-4">{{ spaces?.description }}</p>
-                                        <div class="mbr-section-btn"><a :href="`/group/${spaces?.id}`"
+                                        <p class="mbr-text mbr-fonts-style mb-5 display-4" v-html="spaces?.description"></p>
+                                        <div class="mbr-section-btn"><a :href="`/social/group/${spaces?.id}`"
                                                 class="btn btn-warning display-4">Learn more</a></div>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-5">
                                     <div class="img-wrapper">
-                                        <img :src="`${spaces?.image?.filename_disk}`" :alt="spaces?.name" cover />
+                                        <img :src="`${url}assets/${spaces?.image?.filename_disk}`" :alt="spaces?.name" cover />
                                     </div>
                                 </div>
                             </div>
@@ -65,33 +65,14 @@
 </script>
 
 <script setup>
-const query = gql `
-query {
-  Space {
-    id
-    Name
-    Description
-    status
-    date_created
-    Image {
-      filename_disk
-    }
-    shorts {
-      shorts_id {
-        id
-        name
-        video {
-          filename_disk
-        }
-      }
-    }
-  }
-}`
+const {
+    getItems
+  } = useDirectusItems()
 
-  const {
-    data
-  } = useAsyncQuery(query);
-
+  const spaces = await getItems({
+    collection: "Space"
+  });
+  
     useHead({
         title: 'Spaces',
     })

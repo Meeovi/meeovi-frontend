@@ -7,13 +7,15 @@
         </v-btn>
       </template>
 
-      <v-app-bar-title><a class="logobrand" href="/">
+      <v-app-bar-title>
+        <a v-for="store in data?.availableStores" :key="store" class="logobrand" :href="store?.secure_base_url">
           <v-icon start>
-            <img src="../assets/images/logo512alpha-192x192.png" />
-          </v-icon>Meeovi
-        </a></v-app-bar-title>
+            <img :src="store?.head_shortcut_icon" :alt="store?.logo_alt" />
+          </v-icon>{{ store.default_title }}
+        </a><!---->
+      </v-app-bar-title>
 
-      <search /><!---->
+      <search />
       <v-spacer></v-spacer>
 
       <div class="d-flex align-center flex-column flex-sm-row fill-height">
@@ -24,7 +26,7 @@
         <v-col class="ecosystemMenuIcon">
           <ecosystemmenu />
         </v-col>
-        
+
         <v-col>
           <mobilesearch />
         </v-col>
@@ -63,8 +65,6 @@
               <!----><meeovistoresmenu />
               <v-divider></v-divider>
 
-              
-
               <myaccountmenu />
               <v-divider></v-divider>
 
@@ -85,7 +85,7 @@
                 </v-col>
                 <v-col cols="3">
                   <v-btn variant="text" stacked title="Logout" prepend-icon="fas fa-right-from-bracket" size="x-small"
-                    href="/logout">Logout</v-btn>
+                    href="">Logout</v-btn>
                 </v-col>
               </v-row>
             </v-list>
@@ -109,6 +109,7 @@
 <script>
   import search from '../components/Search/search.vue'
   import ecosystemmenu from '../components/Menus/ecosystemmenu.vue'
+  //import live from '../components/Menus/Livebar/live.vue'
   import topmenu from '../components/Menus/Sidebar/topmenu.vue'
   import socialmenu from '../components/Menus/Sidebar/socialmenu.vue'
   import departmentsmenu from '../components/Menus/Sidebar/departmentsmenu.vue'
@@ -125,6 +126,7 @@
         components: {
           search,
           ecosystemmenu,
+          //live,
           topmenu,
           socialmenu,
           departmentsmenu,
@@ -146,25 +148,16 @@
 </script>
 
 <script setup>
-  import {
-    ref
-  } from 'vue'
+import { ref } from 'vue'
+import query from '../apollo/Queries/availableStores.js'
 
-  const theme = ref('light')
+const { data } = useAsyncQuery(query);
 
-  function onClick() {
-    theme.value = theme.value === 'light' ? 'dark' : 'light'
-  };
+const theme = ref('light')
 
-  /*  const {
-      $directus
-    } = useNuxtApp()
+function onClick() {
+  theme.value = theme.value === 'light' ? 'dark' : 'light'
+};
 
-    const {
-      data: categories
-    } = await useAsyncData('categories', () => {
-      return $directus.items('categories').readByQuery({
-        fields: ['id', 'name']
-      })
-    }) */
+
 </script>

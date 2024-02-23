@@ -1,7 +1,7 @@
 <template>
-    <div class="contentPage" v-for="pages in pages" :key="pages">
-       <h2>{{ pages.title }}</h2>
-       <div v-html="pages.content"></div>
+    <div class="contentPage">
+       <h2>{{ page?.title }}</h2>
+       <div v-html="page?.content"></div>
     </div>
 </template>
 
@@ -13,12 +13,13 @@ export default {
 
 <script setup>
     useHead({
-        title: pages.name,
+        title: this.page?.name,
     })
 
-    const {
-        getItems
-    } = useDirectusItems()
+const { getItemById } = useDirectusItems()
 
-    const pages = await getItems({ collection: "pages", id: 4});
+  const page = await getItemById({
+    collection: "pages",
+    link: "about"
+  });
 </script>

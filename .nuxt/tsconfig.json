@@ -71,6 +71,12 @@
       "#apollo": [
         "./apollo"
       ],
+      "#image": [
+        "../node_modules/@nuxt/image/dist/runtime"
+      ],
+      "#image/*": [
+        "../node_modules/@nuxt/image/dist/runtime/*"
+      ],
       "#vue-router": [
         "./vue-router-stub"
       ],
@@ -98,6 +104,8 @@
     "../node_modules/nuxt-gtag/runtime",
     "../node_modules/nuxt3-leaflet/runtime",
     "../node_modules/@nuxtjs/tailwindcss/runtime",
+    "../node_modules/@nuxt/image/runtime",
+    "../node_modules/@builder.io/sdk-vue/nuxt/runtime",
     "../../../../../../../../../../AppData/Roaming/npm/node_modules/@nuxt/devtools/runtime",
     "../node_modules/@nuxt/telemetry/runtime",
     ".."
@@ -113,6 +121,8 @@
     "../node_modules/nuxt-gtag/runtime/server",
     "../node_modules/nuxt3-leaflet/runtime/server",
     "../node_modules/@nuxtjs/tailwindcss/runtime/server",
+    "../node_modules/@nuxt/image/runtime/server",
+    "../node_modules/@builder.io/sdk-vue/nuxt/runtime/server",
     "../../../../../../../../../../AppData/Roaming/npm/node_modules/@nuxt/devtools/runtime/server",
     "../node_modules/@nuxt/telemetry/runtime/server",
     "../dist",

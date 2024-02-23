@@ -7,11 +7,9 @@
             <div class="text-right container">
                 <div class="row">
                     <div class="col-12 col-lg-5">
-                        <h1 class="mbr-section-title mbr-fonts-style mb-3 display-1"><strong>Meeovi Global</strong></h1>
+                        <h1 class="mbr-section-title mbr-fonts-style mb-3 display-1"><strong v-text="page?.repeaterTextBox[0].name"></strong></h1>
 
-                        <p class="mbr-text mbr-fonts-style display-7">
-                            Select your preferred country/region website. This will update the products, layout, and
-                            overall content to match that part of the world.</p>
+                        <p class="mbr-text mbr-fonts-style display-7" v-text="page?.repeaterTextBox[0].description"></p>
                         <div class="mbr-section-btn mt-3">
                             <v-menu :location="location">
                                 <template v-slot:activator="{ props }">
@@ -25,7 +23,7 @@
                                     </v-list-item>
                                 </v-list>
                             </v-menu>
-                            <a class="btn btn-primary display-4" href="/">Cancel</a>
+                            <a class="btn btn-primary display-4" :href="page?.repeaterTextBox[0].url">Cancel</a>
                             <a class="btn btn-primary display-4" href="#">Go To Website</a>
                         </div>
                     </div>
@@ -39,22 +37,17 @@
                     <div class="card col-12 col-lg-6">
                         <div class="wrapper">
                             <h3 class="mbr-section-title mb-4 mbr-fonts-style display-5">
-                                <strong>Meeovi Help</strong>
+                                <strong v-text="page?.repeaterTextBox[1].name"></strong>
                             </h3>
-                            <p class="mbr-text mb-4 mbr-fonts-style display-4">
-                                Visit our <a href="/help/" class="text-black" target="_blank">Help Center</a> for more
-                                information about switching to a different Meeovi website.</p>
-
+                            <p class="mbr-text mb-4 mbr-fonts-style display-4" v-text="page?.repeaterTextBox[1].description"></p>
+                            <a class="btn btn-primary display-4" :href="page?.repeaterTextBox[1].url">Get Help</a>
                         </div>
                     </div>
                     <div class="col-12 col-lg-6">
                         <div class="wrapper">
                             <h3 class="mbr-section-title mbr-fonts-style mb-4 display-5">
-                                <strong>Changing country/region website</strong></h3>
-                            <p class="mbr-text mbr-fonts-style mb-4 display-4">Changing the country/region you shop from
-                                may affect factors including price, shipping options and product availability.&nbsp;<br>
-                            </p>
-
+                                <strong v-text="page?.repeaterTextBox[2].name"></strong></h3>
+                            <p class="mbr-text mbr-fonts-style mb-4 display-4" v-text="page?.repeaterTextBox[2].description"></p>
                         </div>
                     </div>
                 </div>
@@ -84,6 +77,15 @@
 const {
         getItems
     } = useDirectusItems()
+
+    const {
+    getItemById
+  } = useDirectusItems()
+
+  const page = await getItemById({
+    collection: "pages",
+    id: 27
+  });
 
     const translations = await getItems({
         collection: "translations"
