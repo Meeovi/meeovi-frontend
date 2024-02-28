@@ -6,16 +6,16 @@
                 </v-btn>
             </template>
 
-            <postform />
+            <createpost />
         </v-dialog>
     </div>
 </template>
 
 <script>
-import postform from './user/postform.vue'
+import createpost from './create/social/createpost.vue'
 
     export default {
-        components: { postform },
+        components: { createpost },
         data() {
             return {
                 dialog: false,

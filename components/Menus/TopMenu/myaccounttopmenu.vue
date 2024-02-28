@@ -9,44 +9,18 @@
             <v-list>
                 <v-row class="accountDropdown">
                     <v-col cols="6">
-                        <h6>My Account</h6>
-                        <v-list-item title="Account" value="Account" append-icon="fas fa-user" href="/Account/User/">
-                        </v-list-item>
-                        <v-list-item title="Profile" value="Profile" append-icon="fas fa-id-card"
-                            href="/Account/User/profile">
-                        </v-list-item>
-                        <v-list-item title="Account" value="Account" append-icon="fas fa-id-card-clip"
-                            href="/Account/User/Account">
-                        </v-list-item>
-                        <v-list-item title="Addresses" value="Addresses" append-icon="fas fa-address-card"
-                            href="/Account/User/Addresses"></v-list-item>
-                        <v-list-item title="My Uploads" value="My Uploads" append-icon="fas fa-upload"
-                            href="/Account/User/my-uploads"></v-list-item>
+                        <h6>{{ nav?.name }}</h6>
+                        <br>
+                        <v-divider></v-divider>
+                        
+                        <v-list-item v-for="(menu, index) in nav?.menus" :key="index" :title="menu?.name" :value="menu?.name" :append-icon="menu?.icon" :href="menu?.url"></v-list-item>
                     </v-col>
 
                     <v-col cols="6">
-                        <h6>My Commerce</h6>
-                        <v-list-item title="Orders" value="Orders" append-icon="fas fa-truck-fast"
-                            href="/Commerce/Orders">
-                        </v-list-item>
-                        <v-list-item title="Lists" value="Lists" append-icon="fas fa-list" href="/Account/User/Lists">
-                        </v-list-item>
-                        <v-list-item title="Coupons" value="Coupons" append-icon="fas fa-file-invoice"
-                            href="/Commerce/Coupons"></v-list-item>
-                        <v-list-item title="Returns" value="Returns" append-icon="fas fa-rotate-left"
-                            href="/Commerce/Returns"></v-list-item>
-                        <v-list-item title="Subscriptions" value="Subscriptions" append-icon="fas fa-cart-plus"
-                            href="/Commerce/Subscriptions"></v-list-item>
-                    </v-col>
-
-                    <v-col cols="12">
+                        <h6>{{ navcomm?.name }}</h6>
+                        <br>
                         <v-divider></v-divider>
-                        <v-list-item title="Upload Center" value="Upload Center"
-                            append-icon="fas fa-arrow-up-from-bracket" href="/Upload"></v-list-item>
-                        <v-divider></v-divider>
-                        <v-list-item title="Logout" value="Logout" append-icon="fas fa-right-from-bracket"
-                            href="/logout">
-                        </v-list-item>
+                        <v-list-item v-for="(menu, index) in navcomm?.menus" :key="index" :title="menu?.name" :value="menu?.name" :append-icon="menu?.icon" :href="menu?.url"></v-list-item>
                     </v-col>
                 </v-row>
             </v-list>
@@ -65,5 +39,17 @@
 </script>
 
 <script setup>
+  const {
+    getItemById
+  } = useDirectusItems()
 
+  const nav = await getItemById({
+    collection: "navigation",
+    id: 2
+  });
+
+  const navcomm = await getItemById({
+    collection: "navigation",
+    id: 3
+  });
 </script>

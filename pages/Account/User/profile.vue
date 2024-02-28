@@ -82,15 +82,15 @@
 </template>
 
 <script>
-    import profilebar from '../../../components/Menus/profilebar.vue'
-    import posts from '../../../components/Pages/Profile/posts.vue'
-    import about from '../../../components/Pages/Profile/aboutProfile.vue'
-    import followersfollowing from '../../../components/Pages/Profile/followersfollowing.vue'
-    import products from '../../../components/Pages/Profile/products.vue'
-    import comments from '../../../components/user/comments.vue'
-    import media from '../../../components/Pages/Profile/media.vue'
-    import likes from '../../../components/Pages/Profile/likes.vue'
-    import bookmarks from '../../../components/Pages/Profile/bookmarks.vue'
+    import profilebar from '../../../components/menus/profilebar.vue'
+    import posts from '../../../components/pages/profile/posts.vue'
+    import about from '../../../components/pages/profile/aboutProfile.vue'
+    import followersfollowing from '../../../components/pages/profile/followersfollowing.vue'
+    import products from '../../../components/pages/profile/products.vue'
+    import comments from '../../../composables/social/comments.vue'
+    import media from '../../../components/pages/profile/media.vue'
+    import likes from '../../../components/pages/profile/likes.vue'
+    import bookmarks from '../../../components/pages/profile/bookmarks.vue'
 
     export default {
         components: {

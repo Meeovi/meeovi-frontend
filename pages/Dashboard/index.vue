@@ -22,11 +22,11 @@
 </template>
 
 <script>
-import sellerbar from '../../components/Menus/sellerbar.vue'
-import topproducts from '../../components/Dashboard/topproducts.vue'
-import biggestcustomers from '../../components/Dashboard/biggestcustomers.vue'
-import topcategories from '../../components/Dashboard/topcategories.vue'
-import lowestselling from '../../components/Dashboard/lowestselling.vue'
+import sellerbar from '../../components/menus/sellerbar.vue'
+import topproducts from '../../components/dashboard/topproducts.vue'
+import biggestcustomers from '../../components/dashboard/biggestcustomers.vue'
+import topcategories from '../../components/dashboard/topcategories.vue'
+import lowestselling from '../../components/dashboard/lowestselling.vue'
 
 export default {
     components: { sellerbar, topproducts, biggestcustomers, topcategories, lowestselling }

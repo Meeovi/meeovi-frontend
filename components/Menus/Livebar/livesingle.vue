@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import comments from '../../user/comments.vue'
+import comments from '../../social/comments.vue'
 
 export default {
     components: { comments },

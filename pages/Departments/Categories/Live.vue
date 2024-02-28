@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import livesingle from '../../../components/Menus/Livebar/livesingle.vue'
+import livesingle from '../../../components/menus/Livebar/livesingle.vue'
 
     export default {
         components: { livesingle },

@@ -7,26 +7,31 @@
             <div class="container">
                 <div class="row align-left justify-content-center mbr-white">
                     <div class="col-md-6 col-lg-3 md-pb">
-                        <h2 class="mbr-section-title pb-2 mbr-fonts-style display-7"><strong>Meeovi</strong></h2>
-                        <h3 class="mbr-section-subtitle mbr-fonts-style mbr-lighter display-4"  v-for="pages in about" :key="pages.id"><a :href="pages.link">{{ pages.name }}</a></h3>
+                        <h2 class="mbr-section-title pb-2 mbr-fonts-style display-7">
+                            <strong>{{ navabout?.name }}</strong></h2>
+                        <h3 class="mbr-section-subtitle mbr-fonts-style mbr-lighter display-4"
+                            v-for="(menu, index) in navabout?.menus" :key="index"><a
+                                :href="menu.url">{{ menu.name }}</a></h3>
                     </div>
                     <div class="col-md-6 col-lg-3 md-pb">
-                        <h2 class="mbr-section-title pb-2 mbr-fonts-style display-7"><strong>
-                                Help</strong></h2>
-                                <h3 class="mbr-section-subtitle mbr-fonts-style mbr-lighter display-4"  v-for="pages in legal" :key="pages.id"><a :href="pages.link">{{ pages.name }}</a></h3>
+                        <h2 class="mbr-section-title pb-2 mbr-fonts-style display-7">
+                            <strong>{{ navlegal?.name }}</strong></h2>
+                        <h3 class="mbr-section-subtitle mbr-fonts-style mbr-lighter display-4"
+                            v-for="(menu, index) in navlegal?.menus" :key="index"><a
+                                :href="menu.url">{{ menu.name }}</a></h3>
 
                     </div>
                     <div class="col-md-6 col-lg-3 md-pb">
-                        <h2 class="mbr-section-title pb-2 mbr-fonts-style display-7"><strong>
-                                Stores</strong></h2>
-                                <h3 class="mbr-section-subtitle mbr-fonts-style mbr-lighter display-4"  v-for="pages in company" :key="pages.id"><a :href="pages.link">{{ pages.name }}</a></h3>
+                        <h2 class="mbr-section-title pb-2 mbr-fonts-style display-7">
+                            <strong>{{ navstores?.name }}</strong></h2>
+                        <h3 class="mbr-section-subtitle mbr-fonts-style mbr-lighter display-4"
+                            v-for="(menu, index) in navstores?.menus" :key="index"><a
+                                :href="menu.url">{{ menu.name }}</a></h3>
 
                     </div>
                     <div class="col-md-6 col-lg-3 md-pb">
-                        <h2 class="mbr-section-title pb-2 mbr-fonts-style display-7"><strong>Newsletter
-                            </strong></h2>
-                        <h3 class="mbr-section-subtitle mbr-fonts-style mbr-lighter display-4">Yes! Send me exclusive
-                            offers, unique gift ideas, and personalised tips for shopping and selling on Meeovi.</h3>
+                        <h2 class="mbr-section-title pb-2 mbr-fonts-style display-7"><strong>{{ newsletter?.name }}</strong></h2>
+                        <h3 class="mbr-section-subtitle mbr-fonts-style mbr-lighter display-4">{{ newsletter?.description }}</h3>
                         <div class="form1 px-2" data-form-type="formoid">
                             <!--Formbuilder Form-->
                             <form action="https://mobirise.eu/" method="POST" class="mbr-form form-with-styler"
@@ -57,21 +62,17 @@
             </div>
         </section>
 
+        <v-divider></v-divider>
         <section data-bs-version="5.1" class="footer7 cid-u4ccfXoeP6" once="footers" id="footer7-8c"
             data-sortbtn="btn-primary">
             <div class="container">
                 <div class="media-container-row align-center mbr-white">
-                    <div class="col-3">
-                        <v-list-item href="/applications" title="Applications"></v-list-item>
+                    <div class="col-3" v-for="(menu, index) in copyright?.menus" :key="index">
+                        <v-list-item :title="menu?.name" :value="menu?.name" :prepend-icon="menu?.icon" :href="menu?.url"></v-list-item>
                     </div>
                     <div class="col-3">
-                        <v-list-item href="/stores/pickup-locations" title="Pickup Locations"></v-list-item>
-                    </div>
-                    <div class="col-3">
-                        <v-btn variant="outlined" color="gray" prepend-icon="fas fa-globe" href="/translations" title="Change Your Store">Meeovi Global</v-btn>
-                    </div>
-                    <div class="col-3">
-                        <p v-for="store in data?.availableStores" :key="store" class="mbr-text mb-0 mbr-fonts-style display-7">
+                        <p v-for="store in data?.availableStores" :key="store"
+                            class="mbr-text mb-0 mbr-fonts-style display-7">
                             {{ store?.copyright }}
                         </p>
                     </div>
@@ -82,7 +83,6 @@
 </template>
 
 <script>
-
     export default {
         data: () => ({
             location: 'top',
@@ -91,58 +91,38 @@
 </script>
 
 <script setup>
-import query from '../apollo/Queries/availableStores.js'
-
-const { data } = useAsyncQuery(query);
+    import query from '../apollo/commerce/queries/stores/availableStores.js'
 
     const {
-        getItems
+        data
+    } = useAsyncQuery(query);
+
+    const {
+        getItemById
     } = useDirectusItems()
 
-    const about = await getItems({
-        collection: "pages",
-        params: {
-            search: "About"
-        }
+    const navabout = await getItemById({
+        collection: "navigation",
+        id: 7
     });
 
-    const legal = await getItems({
-        collection: "pages",
-        params: {
-            search: "Legal"
-        }
+    const navlegal = await getItemById({
+        collection: "navigation",
+        id: 8
     });
 
-    const company = await getItems({
-        collection: "websites",
-        params: {
-            search: "ecosystemmenu"
-        }
+    const navstores = await getItemById({
+        collection: "navigation",
+        id: 9
     });
 
-    /*import legal from '../apollo/Custom/Queries/legallinks'
-    import about from '../apollo/Custom/Queries/aboutlinks'
-    import company from '../apollo/Custom/Queries/companylinks'
+    const copyright = await getItemById({
+        collection: "navigation",
+        id: 10
+    });
 
-        const {
-            data
-        } = await useAsyncQuery(legal)
-
-        const {
-            data: aboutquery
-        } = await useAsyncQuery(about)
-
-        const {
-            data: companyquery
-        } = await useAsyncQuery(company)
-
-           const {
-               locale,
-               locales
-           } = useI18n()
-           const switchLocalePath = useSwitchLocalePath()
-
-           const availableLocales = computed(() => {
-               return (locales.value).filter(i => i.code !== locale.value)
-        })*/
+    const newsletter = await getItemById({
+        collection: "navigation",
+        id: 11
+    });
 </script>

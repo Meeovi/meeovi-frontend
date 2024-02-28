@@ -1,45 +1,157 @@
 <template>
-    <div>
-        <section data-bs-version="5.1" class="features16 cid-skeBGL5AVt" id="features17-5">
-    
+  <div>
+    <section data-bs-version="5.1" class="features2 cid-tAGUH8o3YK" id="features2-5z">
 
-    <div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(255, 255, 255);">
-    </div>
-    <div class="container">
-        <div class="content-wrapper">
-            <div class="row align-items-center" v-for="departments in departments" :key="departments">
-                <div class="col-12 col-lg-6">
-                    <div class="image-wrapper">
-                        <img src="assets/images/mbr-2-676x451.jpg" alt="">
-                    </div>
-                </div>
-                <div class="col-12 col-lg">
-                    <div class="text-wrapper">
-                        <h6 class="card-title mbr-fonts-style display-5" style="color: black;">
-                            <strong>Meeovi {{ departments.name }}</strong></h6>
-                        <p class="mbr-text mbr-fonts-style mb-4 display-4" style="color: black;">{{ departments.description }}&nbsp;<br></p>
-                        <div class="mbr-section-btn mt-3"><a class="btn btn-primary display-4" style="color: black;" :href="`/departments/${departments.name}`">
-                                Learn more
-                            </a></div>
-                    </div>
-                </div>
+      <div class="container">
+        <div class="row main align-items-center">
+          <div class="col-md-6 image-element">
+            <div class="img-wrap">
+              <img src="../../assets/images/04.jpg" alt="" title="">
             </div>
+          </div>
+          <div class="col-md-6 text-element">
+            <div class="text-content">
+
+              <h2 class="mbr-title pt-2 mbr-fonts-style align-center display-2">
+                Meeovi Music</h2>
+              <div class="mbr-section-text">
+                <p class="mbr-text pt-3 mbr-light mbr-fonts-style align-center display-7">Independent Music
+                  is growing with all types of artists and producers making the decision to release their
+                  music their way without interference of the big labels. With Meeovi Music, now they have
+                  a place where they control it all.<br></p>
+              </div>
+              <div class="mbr-section-btn pt-3 align-center"><a class="btn btn-md btn-primary display-4"
+                  href="/categories/music">Start Listening</a></div>
+            </div>
+          </div>
         </div>
-    </div>
-</section>
-    </div>
+      </div>
+    </section>
+  </div>
 </template>
 
 <script>
-    export default {
-
-    }
+  const productModel = ref(null)
+  export default {
+    data: () => ({
+      model: null,
+      url: process.env.DIRECTUS_URL,
+    }),
+    setup() {
+      return {
+        data,
+        error,
+        loading,
+        productModel,
+      }
+    },
+  }
 </script>
 
 <script setup>
-  
+  const query = gql `
+query {
+  departments (search: "music"){
+    id
+    Active
+    name
+    color
+    colortext
+    description
+    content
+    brands {
+      id
+      brands_id {
+        name
+        image
+      }
+    }
+    articles {
+      articles_id {
+        id
+        name
+        excerpt
+        content
+        categories {
+          categories_id {
+            id
+            name
+          }
+        }
+      }
+    }
+    image {
+      filename_disk
+    }
+    customers {
+      customers_id {
+        id
+        username
+        image {
+          filename_disk
+        }
+      }
+    }
+    categories {
+      categories_id {
+        id
+        name
+        image {
+          filename_disk
+        }
+      }
+    }
+    products {
+      id
+      products_id {
+        id
+        name
+        price
+        image {
+          filename_disk
+        }
+        sku
+        Space {
+          id
+          Space_id {
+            id
+            Name
+          }
+        }
+      }
+    }
+    shorts {
+      shorts_id {
+        id
+        name
+        video {
+          filename_disk
+        }
+      }
+    }
+    shops {
+      shops_id {
+        id
+        name
+      }
+    }
+    collections {
+      collections_id {
+        id
+        name
+      }
+    }
+    websites
+  }
+}
+`
+  const {
+    data
+  } = await useAsyncQuery(query)
+
+  /*
   const { getItems } = useDirectusItems()
 
-  //const products = await getItems({ collection: "products"});
-  const departments = await getItems({ collection: "departments", params: {filter: {name: {_eq: "Music"}}} });/**/
+  const products = await getItems({ collection: "products"});
+  const departments = await getItems({ collection: "departments", params: {filter: {name: {_eq: "Yardsale"}}}, limit: 6 });*/
 </script>

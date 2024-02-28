@@ -24,7 +24,7 @@
 
 <script>
 import gql from 'graphql-tag'
-import productCard from '../components/Pages/commerce/productCard.vue'
+import productCard from '../components/pages/commerce/productCard.vue'
 
 const CUSTOM_QUERY = gql`
 query {

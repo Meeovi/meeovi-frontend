@@ -65,9 +65,9 @@
 </template>
 
 <script>
-    import relatedchart from '../../../components/Related/relatedcharts.vue'
-    import relatedproducts from '../../../components/Related/relatedproducts.vue'
-    import recentlyviewed from '../../../components/Related/recentlyviewed.vue'
+    import relatedchart from '../../../components/related/relatedcharts.vue'
+    import relatedproducts from '../../../components/related/relatedproducts.vue'
+    import recentlyviewed from '../../../components/related/recentlyviewed.vue'
 
     export default {
         components: {

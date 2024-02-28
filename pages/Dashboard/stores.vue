@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import sellerbar from '../../components/Menus/sellerbar.vue'
+import sellerbar from '../../components/menus/sellerbar.vue'
 import addproduct from './Upload/add-inventory.vue'
 
 export default {

@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import sellerbar from '../../../components/Menus/sellerbar.vue'
+import sellerbar from '../../../components/menus/sellerbar.vue'
 
 export default {
     components: { sellerbar }

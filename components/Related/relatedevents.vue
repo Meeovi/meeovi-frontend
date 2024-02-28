@@ -31,7 +31,7 @@
 </template>
 
 <script>
-  import productCard from '../Pages/commerce/productCard.vue'
+  import productCard from '../commerce/product/productCard.vue'
 
   export default {
     components: {

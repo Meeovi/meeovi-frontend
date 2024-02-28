@@ -12,10 +12,11 @@
           <v-icon start>
             <img :src="store?.head_shortcut_icon" :alt="store?.logo_alt" />
           </v-icon>{{ store.default_title }}
-        </a><!---->
+        </a>
       </v-app-bar-title>
 
       <search />
+      <!--<SearchHeader v-model="searchInputValue" @submit="handleFormSubmit" />-->
       <v-spacer></v-spacer>
 
       <div class="d-flex align-center flex-column flex-sm-row fill-height">
@@ -110,23 +111,25 @@
 </template>
 
 <script>
-  import search from '../components/Search/search.vue'
-  import ecosystemmenu from '../components/Menus/ecosystemmenu.vue'
-  import live from '../components/Menus/Livebar/live.vue'
-  import topmenu from '../components/Menus/Sidebar/topmenu.vue'
-  import socialmenu from '../components/Menus/Sidebar/socialmenu.vue'
-  import departmentsmenu from '../components/Menus/Sidebar/departmentsmenu.vue'
-  import meeovistoresmenu from '../components/Menus/Sidebar/meeovistoresmenu.vue'
-  import myaccountmenu from '../components/Menus/Sidebar/myaccountmenu.vue'
-  import LayoutNotifications from '../components/Menus/LayoutNotifications.vue'
-  import mobilesearch from '../components/Menus/TopMenu/mobilesearch.vue'
-  import myaccounttopmenu from '../components/Menus/TopMenu/myaccounttopmenu.vue'
-  import bottomsidebarmenu from '../components/Menus/Sidebar/bottomsidebarmenu.vue'
+  //import SearchHeader from '../components/search/SearchHeader.vue'
+  import search from '../components/search/search.vue'
+  import ecosystemmenu from '../components/menus/ecosystemmenu.vue'
+  import live from '../components/menus/Livebar/live.vue'
+  import topmenu from '../components/menus/Sidebar/topmenu.vue'
+  import socialmenu from '../components/menus/Sidebar/socialmenu.vue'
+  import departmentsmenu from '../components/menus/Sidebar/departmentsmenu.vue'
+  import meeovistoresmenu from '../components/menus/Sidebar/meeovistoresmenu.vue'
+  import myaccountmenu from '../components/menus/Sidebar/myaccountmenu.vue'
+  import LayoutNotifications from '../components/menus/LayoutNotifications.vue'
+  import mobilesearch from '../components/menus/TopMenu/mobilesearch.vue'
+  import myaccounttopmenu from '../components/menus/TopMenu/myaccounttopmenu.vue'
+  import bottomsidebarmenu from '../components/menus/Sidebar/bottomsidebarmenu.vue'
 
   export default {
     data() {
       return {
         components: {
+          //SearchHeader,
           search,
           ecosystemmenu,
           live,
@@ -152,7 +155,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import query from '../apollo/Queries/availableStores.js'
+import query from '../apollo/commerce/queries/stores/availableStores.js'
 
 const { data } = useAsyncQuery(query);
 

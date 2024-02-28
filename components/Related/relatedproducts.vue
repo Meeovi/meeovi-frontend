@@ -1,14 +1,15 @@
 <template>
   <div>
     <h4>Related Products</h4>
-    <div v-for="cmsblock in data?.cmsBlocks?.items" :key="cmsblock">
+    <productCard />
+    <!--<div v-for="cmsblock in data?.cmsBlocks?.items" :key="cmsblock">
       <div v-html="cmsblock?.content"></div>
-    </div>
+    </div>-->
   </div>
 </template>
 
 <script>
-  import productCard from '../Pages/commerce/productCard.vue'
+  import productCard from '../commerce/product/productCard.vue'
 
   export default {
     components: {

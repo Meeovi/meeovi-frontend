@@ -146,8 +146,8 @@
     bookmark
   } from '../../utils/bookmark' */
   import comments from '../../components/user/comments.vue'
-  import productSpecs from '../../components/Pages/commerce/product/productSpecs.vue'
-  import productCompare from '../../components/Pages/commerce/product/productCompare.vue'
+  import productSpecs from '../../components/commerce/product/productSpecs.vue'
+  import productCompare from '../../components/commerce/product/productCompare.vue'
 
   export default {
     components: {

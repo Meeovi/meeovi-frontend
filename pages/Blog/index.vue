@@ -32,7 +32,7 @@
 </template>
 
 <script>
-    import blogbar from '../../components/Menus/blogbar.vue'
+    import blogbar from '../../components/menus/blogbar.vue'
 
     export default {
         components: {

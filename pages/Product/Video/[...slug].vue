@@ -73,8 +73,8 @@
 </template>
 
 <script>
-    import recentlyviewed from '../../../components/Related/recentlyviewed.vue'
-    import relatedproducts from '../../../components/Related/relatedproducts.vue'
+    import recentlyviewed from '../../../components/related/recentlyviewed.vue'
+    import relatedproducts from '../../../components/related/relatedproducts.vue'
     import editor from '../../../components/Editors/editor.vue'
     import comments from '../../../components/user/comments.vue'
     import share from '../../../components/user/share.vue'

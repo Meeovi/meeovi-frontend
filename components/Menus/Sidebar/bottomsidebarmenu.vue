@@ -1,18 +1,17 @@
 <template>
     <div>
-        <h5 class="menuh5">Try Something Different</h5>
-        <v-list-item title="News" prepend-icon="fas fa-newspaper" href="/departments/news"></v-list-item>
-        <v-list-item title="Notes" prepend-icon="fas fa-feather-pointed" href="/categories/notes"></v-list-item>
-        <v-list-item title="Bookmarks" prepend-icon="fas fa-bookmark" href="/admin/user/bookmarks"></v-list-item>
+        <h5 class="menuh5">{{ nav?.name }}</h5>
+        <v-list-item v-for="(menu, index) in nav?.menus" :key="index" :title="menu?.name" :value="menu?.name" :prepend-icon="menu?.icon" :href="menu?.url"></v-list-item>
     </div>
 </template>
 
-<script>
-    export default {
-
-    }
-</script>
-
 <script setup>
+  const {
+    getItemById
+  } = useDirectusItems()
 
+  const nav = await getItemById({
+    collection: "navigation",
+    id: 6
+  });
 </script>

@@ -1,5 +1,6 @@
 <template>
     <div class="contentPage">
+        <profilebar />
         <v-row class="centralfeed">
             <v-col cols="10">
                 <v-row>
@@ -10,7 +11,7 @@
                                 <v-card-title>{{ newsfeed?.name }}</v-card-title>
 
                             <v-list lines="two">
-                                <v-list-item :title="newsfeed?.owner" :prepend-avatar="newsfeed?.creator?.mediaItems?.edges?.node?.url">
+                                <v-list-item :title="newsfeed?.owner" :prepend-avatar="newsfeed?.customers?.customers_id?.image?.filename_disk">
                                 </v-list-item>
                             </v-list>
 
@@ -24,13 +25,16 @@
 
                             <v-row class="align-center">
                                 <v-col cols="3">
-                                    <v-btn title="Repost" stacked="" prepend-icon="fas fa-repeat" variant="plain">Repost</v-btn>
+                                    <repost />
                                 </v-col>
                                 <v-col cols="3">
-                                    <v-btn title="Like This" stacked="" prepend-icon="fas fa-heart" variant="plain">Like This</v-btn>
+                                    <reactions />
                                 </v-col>
                                 <v-col cols="3">
-                                    <v-btn title="Bookmark" stacked="" prepend-icon="fas fa-bookmark" variant="plain">Bookmark</v-btn>
+                                    <bookmark />
+                                </v-col>
+                                <v-col cols="3">
+                                    <share />
                                 </v-col>
                             </v-row>
                         </v-card>
@@ -46,21 +50,57 @@
 </template>
 
 <script>
-    import comments from '../../../components/user/comments.vue'
+    import profilebar from '../../../components/menus/profilebar'
+    import comments from '../../../composables/social/comments.vue'
+    import repost from '../../../composables/social/repost.vue'
+    import reactions from '../../../composables/social/reactions.vue'
+    import bookmark from '../../../composables/social/bookmark.vue'
+    import share from '../../../composables/social/share.vue'
 
     export default {
         components: {
-            comments
+            profilebar,
+            comments,
+            repost,
+            reactions,
+            bookmark,
+            share
         },
         data() {
             return {
                 url: process.env.DIRECTUS_URL,
+                newsfeed: []
             }
         },
+        methods: {
+            async repost(newsfeed) {
+            // Mutation to repost content
+            try {
+                await this.$apollo.mutate({
+                mutation: gql`
+                    mutation Repost($postId: ID!) {
+                    repost(postId: $postId) {
+                        id
+                        name
+                        post
+                    }
+                    }
+                `,
+                variables: {
+                    postId: newsfeed.id
+                }
+                })
+                console.log('Reposted successfully!')
+            } catch (error) {
+                console.error('Error reposting:', error)
+            }
+            }
+        }
     }
 </script>
 
 <script setup>
+const route = useRoute()
 const {
     getItemById
   } = useDirectusItems()
@@ -71,6 +111,6 @@ const {
   });
 
     useHead({
-        title: 'this.params.name'
+        title: route.params.id
     })
 </script>

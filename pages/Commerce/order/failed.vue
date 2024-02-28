@@ -3,7 +3,7 @@
     <div
       class="border border-1 border-neutral-200 mt-10 mb-20 rounded p-4 md:p-6 flex flex-col items-center max-w-2xl mx-auto"
     >
-      <NuxtImg
+      <img
         src="/images/something-went-wrong.svg"
         :alt="('somethingWentWrongImageAlt')"
         width="192"

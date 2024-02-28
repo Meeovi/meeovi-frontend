@@ -57,9 +57,9 @@
 </template>
 
 <script>
-    import relatedproducts from '../components/Related/relatedproducts.vue'
-    import recentlyviewed from '../components/Related/recentlyviewed.vue'
-    import relatedcreators from '../components/Related/relatedcreators.vue'
+    import relatedproducts from '../components/related/relatedproducts.vue'
+    import recentlyviewed from '../components/related/recentlyviewed.vue'
+    import relatedcreators from '../components/related/relatedcreators.vue'
 
     export default {
         components: {

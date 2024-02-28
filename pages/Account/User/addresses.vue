@@ -55,8 +55,8 @@
 </template>
 
 <script>
-    import addAddress from './addAccount/add-address.vue'
-    import profilebar from '../../../components/Menus/profilebar.vue'
+    import addAddress from '../../../components/create/commerce/add-address.vue'
+    import profilebar from '../../../components/menus/profilebar.vue'
 
     export default {
         components: {

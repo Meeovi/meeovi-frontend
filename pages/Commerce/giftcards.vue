@@ -70,7 +70,7 @@
 </template>
 
 <script>
-    import profilebar from '../../components/Menus/profilebar.vue'
+    import profilebar from '../../components/menus/profilebar.vue'
     const productModel = ref(null)
 
     export default {

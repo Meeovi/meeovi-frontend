@@ -30,7 +30,7 @@
 </template>
 
 <script>
-    //import profilebar from '../../../components/Menus/profilebar'
+    //import profilebar from '../../../components/menus/profilebar'
 
     export default {
         data: () => ({

@@ -84,10 +84,10 @@
 </template>
 
 <script>
-  //import videobar from '../../components/Menus/videobar.vue'
-  import latestproducts from '../../components/Related/latestproducts.vue'
-  import bestsellers from '../../components/Related/bestsellers.vue'
-  import relatedcreators from '../../components/Related/relatedcreators.vue'
+  //import videobar from '../../components/menus/videobar.vue'
+  import latestproducts from '../../components/related/latestproducts.vue'
+  import bestsellers from '../../components/related/bestsellers.vue'
+  import relatedcreators from '../../components/related/relatedcreators.vue'
 
   export default {
     components: {

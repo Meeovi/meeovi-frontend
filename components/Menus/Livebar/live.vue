@@ -35,7 +35,7 @@
                                 <v-row>
                                     <v-col cols="6"><video class="liveVideo" src="" title="" autoplay controls></video></v-col>
                                     <v-col cols="6">
-                                        <livecomments />
+                                        <comments />
                                     </v-col>
                                 </v-row>
 
@@ -53,12 +53,12 @@
 </template>
 
 <script>
-    import livecomments from '../../user/livecomments.vue'
-    import VideoPlayer from '../../Partials/videojs'
+    import comments from '../../social/comments.vue'
+    import VideoPlayer from '../../partials/videojs'
 
     export default {
         components: {
-            livecomments,
+            comments,
             VideoPlayer
         },
         data: () => ({

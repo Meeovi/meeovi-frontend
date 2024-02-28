@@ -36,7 +36,7 @@
 </template>
 
 <script>
-    import relatedpost from '../../components/homePage/blogposts.vue'
+    import relatedpost from '../../components/pages/homepage/blogposts.vue'
 
     export default {
         components: {

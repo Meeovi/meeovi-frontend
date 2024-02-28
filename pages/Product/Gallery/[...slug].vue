@@ -63,7 +63,7 @@
 </template>
 
 <script>
-    import recentlyviewed from '../../../components/Related/recentlyviewed.vue'
+    import recentlyviewed from '../../../components/related/recentlyviewed.vue'
     import comments from '../../../components/user/comments.vue'
 
     export default {

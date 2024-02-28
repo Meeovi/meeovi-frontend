@@ -66,7 +66,7 @@
 </template>
 
 <script>
-  import profilebar from '../../../components/Menus/profilebar.vue'
+  import profilebar from '../../../components/menus/profilebar.vue'
 
   export default {
     components: {

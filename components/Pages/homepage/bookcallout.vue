@@ -1,48 +1,158 @@
 <template>
-    <div>
-        <section data-bs-version="5.1" class="features11 cid-skeBBk03KK mbr-parallax-background" id="features12-3">
+  <div>
+    <section data-bs-version="5.1" class="features1 cid-tAGUEKoXKD" id="features1-5y">
 
-    
-<div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(255, 255, 255);">
-</div>
-<div class="container">
-    <div class="row align-items-center">
-        <div class="col-12 col-lg" v-for="departments in departments" :key="departments">
-            <div class="card-wrapper">
-                <div class="card-box">
-                    <h4 class="card-title mbr-fonts-style mb-4 display-2" style="color: black;">
-                        <strong>Meeovi {{ departments.name }}</strong></h4>
-                    <p class="mbr-text mbr-fonts-style mb-4 display-7" style="color: black;">{{ departments.description }}&nbsp;<br></p>
-                    <div class="mbr-text mbr-fonts-style counter-container display-7">
-                        <ul>
-                            <li><p v-html="departments.content"></p><br></li>
-                        </ul>
-                    </div>
-                    <div class="mbr-section-btn mb-4" style="color: black;"><a class="btn btn-secondary display-4" :href="`/departments/${departments.name}`">Visit the Bookstore</a></div>
-                </div>
+      <div class="container">
+        <div class="row main align-items-center">
+          <div class="col-md-6 image-element ">
+            <div class="img-wrap">
+              <img src="../../assets/images/mbr-1920x1102.jpg" alt="">
             </div>
-        </div>
-        <div class="col-12 col-lg-6 md-pb">
-            <div class="image-wrapper">
-                <img src="assets/images/mbr-676x451.jpg" alt="">
+          </div>
+          <div class="col-md-6 text-element">
+            <div class="text-content">
+
+              <h2 class="mbr-title pt-2 mbr-fonts-style align-center mbr-white display-2">Meeovi Books</h2>
+              <div class="mbr-section-text">
+                <p class="mbr-text pt-3 mbr-light mbr-fonts-style align-center mbr-white display-7">Self
+                  Published authors are some of the most creative people in the world. Unchained by their
+                  everflowing creatism and no company telling them what story to write or how it should be
+                  told. Now Meeovi Books provides a place where their sales can be unchained too.
+                  <br>
+                  <br></p>
+              </div>
+              <div class="mbr-section-btn pt-3 align-center"><a class="btn btn-md btn-white display-4"
+                  href="/categories/books">Start Reading</a></div>
             </div>
+          </div>
         </div>
-    </div>
-</div>
-</section>
-    </div>
+      </div>
+    </section>
+  </div>
 </template>
 
 <script>
-    export default {
-
-    }
+  const productModel = ref(null)
+  export default {
+    data: () => ({
+      model: null,
+      url: process.env.DIRECTUS_URL,
+    }),
+    setup() {
+      return {
+        data,
+        error,
+        loading,
+        productModel,
+      }
+    },
+  }
 </script>
 
 <script setup>
-  
+  const query = gql `
+query {
+  departments (search: "books"){
+    id
+    Active
+    name
+    color
+    colortext
+    description
+    content
+    brands {
+      id
+      brands_id {
+        name
+        image
+      }
+    }
+    articles {
+      articles_id {
+        id
+        name
+        excerpt
+        content
+        categories {
+          categories_id {
+            id
+            name
+          }
+        }
+      }
+    }
+    image {
+      filename_disk
+    }
+    customers {
+      customers_id {
+        id
+        username
+        image {
+          filename_disk
+        }
+      }
+    }
+    categories {
+      categories_id {
+        id
+        name
+        image {
+          filename_disk
+        }
+      }
+    }
+    products {
+      id
+      products_id {
+        id
+        name
+        price
+        image {
+          filename_disk
+        }
+        sku
+        Space {
+          id
+          Space_id {
+            id
+            Name
+          }
+        }
+      }
+    }
+    shorts {
+      shorts_id {
+        id
+        name
+        video {
+          filename_disk
+        }
+      }
+    }
+    shops {
+      shops_id {
+        id
+        name
+      }
+    }
+    collections {
+      collections_id {
+        id
+        name
+      }
+    }
+    websites
+  }
+}
+`
+  const {
+    data
+  } = await useAsyncQuery(query)
+
+  /*
   const { getItems } = useDirectusItems()
 
-  //const products = await getItems({ collection: "products"});
-  const departments = await getItems({ collection: "departments", params: {filter: {name: {_eq: "Books"}}} });/**/
+  const products = await getItems({ collection: "products"});
+  const departments = await getItems({ collection: "departments", params: {filter: {name: {_eq: "Yardsale"}}}, limit: 6 });*/
 </script>

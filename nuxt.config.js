@@ -28,7 +28,11 @@ export default defineNuxtConfig({
       script: [{
         src: 'https://platform-api.sharethis.com/js/sharethis.js#property=63155c574a688f00124a59c2&product=sticky-share-buttons',
         async: 'async'
-      }, ],
+      }, 
+      {
+        src: 'https://js.braintreegateway.com/web/dropin/1.42.0/js/dropin.min.js',
+      }
+    ],
     },
   },
 
@@ -49,6 +53,7 @@ export default defineNuxtConfig({
     'vuetify/lib/styles/main.sass',
     //'@mdi/font/css/materialdesignicons.min.css',
     '@fortawesome/fontawesome-svg-core/styles.css',
+    '@elastic/react-search-ui-views/lib/styles/styles.css',
     'assets/styles/mobile.css',
     'assets/styles/styles.css',
   ],
@@ -63,17 +68,19 @@ export default defineNuxtConfig({
     '@nuxtjs/apollo',
     'nuxt-gtag',
     'nuxt3-leaflet',
+    //'@nuxtus/nuxt-module',
     //'@sidebase/nuxt-auth',
     '@nuxtjs/tailwindcss',
     "@nuxt/image",
     '@builder.io/sdk-vue/nuxt',
+    //'@vue-storefront/nuxt',
   ],
 
   directus: {
     url: process.env.DIRECTUS_URL,
     auth: {
-      email: process.env.DIRECTUS_EMAIL,
-      password: process.env.DIRECTUS_PASSWORD,
+      email: process.env.NUXTUS_DIRECTUS_ADMIN_EMAIL,
+      password: process.env.NUXTUS_DIRECTUS_ADMIN_PASSWORD,
       token: process.env.DIRECTUS_TOKEN,
     }
   },
