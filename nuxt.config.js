@@ -53,7 +53,6 @@ export default defineNuxtConfig({
     'vuetify/lib/styles/main.sass',
     //'@mdi/font/css/materialdesignicons.min.css',
     '@fortawesome/fontawesome-svg-core/styles.css',
-    '@elastic/react-search-ui-views/lib/styles/styles.css',
     'assets/styles/mobile.css',
     'assets/styles/styles.css',
   ],

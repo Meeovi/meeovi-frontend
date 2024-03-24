@@ -23,44 +23,11 @@
 </template>
 
 <script>
-import gql from 'graphql-tag'
-import productCard from '../components/pages/commerce/productCard.vue'
-
-const CUSTOM_QUERY = gql`
-query {
-  products(filter: {price: {to: "999.99"}}, pageSize: 10){
-    items {
-      categories {
-        name
-      }
-      format
-      image {
-        url
-      }
-      price {
-        regularPrice {
-          amount {
-            currency
-            value
-          }
-        }
-      }
-      manufacturer
-      name
-      rating_summary
-      sale
-      special_price
-      uid
-    }
-  }
-}`
 
 export default {
-  components: { productCard },
+  components: { },
   data() {
-    return {
-      productQuery: CUSTOM_QUERY
-    }
+    return {}
   }
 }
 </script>
@@ -74,12 +41,16 @@ export default {
     title: 'Error',
   })
 
-  const {
-    getItemById
-    } = useDirectusItems()
+const query = gql`
+query MyQuery {
+cmsPage(identifier: "no-route") {
+    content
+    title
+  }
+}
+`
 
-    const page = await getItemById({
-        collection: "pages",
-        id: 16
-    });
+    const {
+        data
+    } = useAsyncQuery(query);
 </script>

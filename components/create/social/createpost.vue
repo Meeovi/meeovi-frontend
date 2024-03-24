@@ -106,7 +106,7 @@
 
 <script>
     //import video from '../../../components/partials/videojs'
-    import { CREATE_SHORT_ITEM } from "../../../apollo/Mutations/Newsfeed";
+    import { CREATE_NEWSFEED_ITEM } from "../../../apollo/Mutations/Newsfeed";
 
     export default {
         components: {
@@ -142,7 +142,7 @@
                   // eslint-disable-next-line camelcase
                   const image = this.image;
                   this.$apollo.mutate({
-                      mutation: CREATE_SHORT_ITEM,
+                      mutation: CREATE_NEWSFEED_ITEM,
                       variables: {
                           name,
                           post,

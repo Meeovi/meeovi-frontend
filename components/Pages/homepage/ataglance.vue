@@ -11,7 +11,7 @@
                     <div class="item features-image сol-12 col-md-6 col-lg-4">
                         <div class="item-wrapper">
                             <div class="item-img">
-                                <img src="assets/images/mbr-2.jpg" alt="" title="">
+                                <img src="assets/images/mbr-2.jpg" :alt="page?.repeaterTextBox[0].name" />
                             </div>
                             <div class="item-content">
                                 <h5 class="item-title mbr-fonts-style display-5" style="color: black;"><a :href="page?.repeaterTextBox[0].url"
@@ -28,7 +28,7 @@
                     <div class="item features-image сol-12 col-md-6 col-lg-4">
                         <div class="item-wrapper">
                             <div class="item-img">
-                                <img src="assets/images/mbr-1.jpg" alt="" title="">
+                                <img src="assets/images/mbr-1.jpg" :alt="page?.repeaterTextBox[1].name" />
                             </div>
                             <div class="item-content">
                                 <h5 class="item-title mbr-fonts-style display-5" style="color: black;"><a :href="page?.repeaterTextBox[1].url"
@@ -45,7 +45,7 @@
                     <div class="item features-image сol-12 col-md-6 col-lg-4">
                         <div class="item-wrapper">
                             <div class="item-img">
-                                <img src="assets/images/mbr.jpg" alt="" title="">
+                                <img src="assets/images/mbr.jpg" :alt="page?.repeaterTextBox[2].name" />
                             </div>
                             <div class="item-content">
                                 <h5 class="item-title mbr-fonts-style display-5" style="color: black;"><a :href="page?.repeaterTextBox[2].url"
