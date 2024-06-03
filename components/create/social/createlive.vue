@@ -153,7 +153,7 @@
 </script>
 
 <script setup>
-import query from '../../../apollo/Queries/categories'
+//import query from '../../../apollo/Queries/categories'
 
 const {
     data
