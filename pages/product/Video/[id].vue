@@ -77,7 +77,7 @@
     import relatedproducts from '../../../components/related/relatedproducts.vue'
     //import editor from '../../../components/Editors/editor.vue'
     import disqus from '../../../components/social/disqus.vue'
-    import share from '../../../components/user/share.vue'
+    import share from '../../../components/social/share.vue'
 
     export default {
         components: {
