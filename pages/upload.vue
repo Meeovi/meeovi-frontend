@@ -37,9 +37,9 @@
 </template>
 
 <script>
-import createproduct from '../components/create/createproduct.vue'
-import createlist from '../components/create/createlist.vue'
-import bookmarkvideo from '../components/create/bookmarkvideo.vue'
+import createproduct from '../components/create/commerce/createproduct.vue'
+import createlist from '../components/create/commerce/createlist.vue'
+import bookmarkvideo from '../components/create/social/bookmarkvideo.vue'
 
   export default {
     components: { createproduct, createlist, bookmarkvideo },
