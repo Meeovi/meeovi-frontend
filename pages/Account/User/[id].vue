@@ -77,7 +77,7 @@
     import posts from '../../../components/pages/profile/posts.vue'
     import followersfollowing from '../../../components/pages/profile/followersfollowing.vue'
     import products from '../../../components/pages/profile/products.vue'
-    import replies from '../../../composables/social/replies.vue'
+    import replies from '../../../composables/pages/profile/replies.vue'
     import media from '../../../components/pages/profile/media.vue'
     import likes from '../../../components/pages/profile/likes.vue'
 
