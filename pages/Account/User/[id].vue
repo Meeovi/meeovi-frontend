@@ -39,7 +39,6 @@
                 <v-tab value="four">Comments</v-tab>
                 <v-tab value="five">Media</v-tab>
                 <v-tab value="six">Likes</v-tab>
-                <v-tab value="seven">Bookmarks</v-tab>
             </v-tabs>
 
             <v-card-text>
@@ -57,7 +56,7 @@
                     </v-window-item>
 
                     <v-window-item value="four">
-                        <comments />
+                        <replies />
                     </v-window-item>
 
                     <v-window-item value="five">
@@ -66,10 +65,6 @@
 
                     <v-window-item value="six">
                         <likes />
-                    </v-window-item>
-
-                    <v-window-item value="seven">
-                        <bookmarks />
                     </v-window-item>
                 </v-window>
             </v-card-text>
@@ -80,25 +75,21 @@
 <script>
     import profilebar from '../../../components/menus/profilebar.vue'
     import posts from '../../../components/pages/profile/posts.vue'
-    import about from '../../../components/pages/profile/aboutProfile.vue'
     import followersfollowing from '../../../components/pages/profile/followersfollowing.vue'
     import products from '../../../components/pages/profile/products.vue'
-    import comments from '../../../composables/social/comments.vue'
+    import replies from '../../../composables/social/replies.vue'
     import media from '../../../components/pages/profile/media.vue'
     import likes from '../../../components/pages/profile/likes.vue'
-    import bookmarks from '../../../components/pages/profile/bookmarks.vue'
 
     export default {
         components: {
             profilebar,
             posts,
-            about,
             followersfollowing,
             products,
-            comments,
+            replies,
             media,
             likes,
-            bookmarks
         },
         data: () => ({
             tab: null,
