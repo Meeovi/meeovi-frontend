@@ -59,7 +59,7 @@
 </template>
 
 <script>
-    import video from '../../partials/videojs'
+    import video from '../../partials/videojs.vue'
     //import { CREATE_SHORT_ITEM } from "../../../apollo/Mutations/shorts";
 
     export default {
