@@ -75,7 +75,7 @@
 <script>
     import recentlyviewed from '../../../components/related/recentlyviewed.vue'
     import relatedproducts from '../../../components/related/relatedproducts.vue'
-    import editor from '../../../components/Editors/editor.vue'
+    //import editor from '../../../components/Editors/editor.vue'
     import disqus from '../../../components/social/disqus.vue'
     import share from '../../../components/user/share.vue'
 
@@ -83,7 +83,7 @@
         components: {
             recentlyviewed,
             relatedproducts,
-            editor,
+            //editor,
             disqus,
             share
         },
