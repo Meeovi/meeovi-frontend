@@ -1,0 +1,72 @@
+<template>
+  <v-sheet class="mx-auto sliderProducts">
+    <h4>Events you may like</h4>
+    <v-sheet class="mx-auto" elevation="0" color="transparent">
+      <v-slide-group v-model="model" class="pa-4" prev-icon="fas fa-arrow-left" next-icon="fas fa-arrow-right"
+        selected-class="bg-primary">
+        <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }">
+          <v-row dense v-for="products in data?.productTags?.nodes" :key="products">
+            <v-col v-for="products in products?.nodes" :key="products" cols="4">
+              <v-card>
+                <img :src="products?.image?.sourceUrl" :alt="products?.name" class="align-end" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" height="200px" cover />
+                  <v-card-title class="text-white" v-text="products?.name"></v-card-title>
+
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+
+                  <v-btn size="small" color="surface-variant" variant="text" icon="fas fa-heart"></v-btn>
+
+                  <v-btn size="small" color="surface-variant" variant="text" icon="fas fa-bookmark"></v-btn>
+
+                  <v-btn size="small" color="surface-variant" variant="text" icon="fas fa-share-variant"></v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-slide-group-item>
+      </v-slide-group>
+    </v-sheet>
+  </v-sheet>
+</template>
+
+<script>
+  import productCard from '../commerce/product/productCard.vue'
+
+  export default {
+    components: {
+      productCard
+    },
+    data: () => ({
+      model: null,
+      url: process.env.DIRECTUS_URL,
+    }),
+  }
+</script>
+
+<script setup>
+const query = gql`
+query NewQuery {
+  productTags(where: {name: "Event"}) {
+    nodes {
+      id
+      count
+      description
+      name
+      products {
+        nodes {
+          id
+          image {
+            sourceUrl
+          }
+          name
+        }
+      }
+    }
+  }
+}
+`
+
+  const {
+    data
+  } = useAsyncQuery(query);
+</script>

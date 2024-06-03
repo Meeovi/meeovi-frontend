@@ -1,0 +1,80 @@
+<template>
+  <div>
+    <h4>Related Showcases</h4>
+    <v-slide-group v-model="model" class="pa-4" selected-class="bg-success" show-arrows>
+      <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }"
+        v-for="(showcases, index) in data?.showcases?.nodes" :key="index">
+        <v-card class="mx-auto" max-width="400">
+          <img class="align-end text-white" height="200" :src="showcases?.showcaseFields?.image?.node?.sourceUrl" :alt="showcases?.showcaseFields?.name" cover />
+            <v-card-title>{{ showcases?.showcaseFields?.name }}</v-card-title>
+
+          <v-card-subtitle class="pt-4">
+            Created: {{ new Date(showcases?.date).toLocaleDateString() }}
+          </v-card-subtitle>
+
+          <v-card-text>
+            <div>{{ showcases?.showcaseFields?.description }}</div>
+          </v-card-text>
+
+          <v-card-actions>
+            <v-btn color="orange" text="Share"></v-btn>
+
+            <v-btn color="orange" text="Explore" :href="`/product/showcase/${showcases?.id}`"></v-btn>
+          </v-card-actions>
+        </v-card>
+        <v-scale-transition>
+          <v-icon v-if="isSelected" color="white" size="48" icon="mdi-close-circle-outline"></v-icon>
+        </v-scale-transition>
+      </v-slide-group-item>
+    </v-slide-group>
+  </div>
+</template>
+
+<script>
+  import productCard from '../commerce/product/productCard.vue'
+
+  export default {
+    components: {
+      productCard
+    },
+    data: () => ({
+      model: null,
+      //url: process.env.DIRECTUS_URL,
+    }),
+  }
+</script>
+
+<script setup>
+  const query = gql `
+query NewQuery {
+  showcases {
+    nodes {
+      author {
+        node {
+          avatar {
+            url
+          }
+          username
+        }
+      }
+      date
+      showcaseFields {
+        image {
+          node {
+            sourceUrl
+          }
+        }
+        name
+        rating
+        description
+      }
+      id
+    }
+  }
+}
+`
+
+  const {
+    data
+  } = useAsyncQuery(query);
+</script>

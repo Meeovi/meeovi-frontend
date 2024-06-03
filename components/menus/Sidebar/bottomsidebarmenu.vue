@@ -1,0 +1,45 @@
+<template>
+  <div v-for="menu in data?.navigations?.nodes" :key="menu">
+      <h5 class="menuh5">{{ menu?.title }}</h5>
+      <v-list-item v-for="(item, index) in menu?.navigationFields?.menu?.nodes" :key="index" :title="item?.title" :value="item?.title" :href="item?.websiteFields?.link"></v-list-item>
+  </div>
+</template>
+
+<script setup>
+const query = gql `
+query NewQuery {
+  navigations(where: {search: "Try Something New"}) {
+    nodes {
+      title
+      navigationFields {
+        menu {
+          nodes {
+            ... on Website {
+              id
+              websiteFields {
+                link
+                type
+                description
+              }
+              title
+            }
+          }
+        }
+      }
+    }
+  }
+}
+`
+
+  const {
+      data
+  } = useAsyncQuery(query);
+ /* const {
+    getItemById
+  } = useDirectusItems()
+
+  const nav = await getItemById({
+    collection: "navigation",
+    id: 6
+  });*/
+</script>

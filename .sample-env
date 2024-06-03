@@ -1,0 +1,61 @@
+# Information here will appear across AlternateCMS
+
+# Database URL
+
+DATABASE_URL=''
+
+TEST_URL=''
+
+MY_SQL=''
+
+SQLITE_URL='file://server/config/database/main.db'
+
+# Supabase URL and Credentials (Supabase is not required, but recommended)
+
+YOUR_SUPABASE_URL=''
+YOUR_SUPABASE_KEY=''
+
+# DATABASE DETAILS
+
+DB_HOST=''
+DB_PORT='5432'
+DB_USER=''
+DB_PASSWORD=''
+DB_DATABASE=''
+DB_SCHEMA=''
+DB_SSL=false
+
+# Directus Credentials
+
+DIRECTUS_URL=''
+DIRECTUS_TOKEN='-'
+DIRECTUS_EMAIL=
+DIRECTUS_PASSWORD=
+
+# Medusa Credentials
+
+MEDUSA_URL=<YOUR_MEDUSA_URL> 
+
+# Meilisearch Credentials
+
+HOSTURL='http://example.com:7700'
+SEARCH_APIKEY='<your_public_key>'
+ADMIN_APIKEY='<your_secret_key>'
+
+# Sentry Credentials
+
+SENTRY_DSN=''
+
+# Graphql Endpoint
+
+GRAPHQL_ENDPOINT=''
+
+# Keycloak Credentials
+
+KEYCLOAK_API_URL=
+KEYCLOAK_CLIENTID=
+
+# Umami Analytics
+
+NUXT_PUBLIC_UMAMI_HOST="https://domain.tld"
+NUXT_PUBLIC_UMAMI_ID="abc123-456def-ghi789"
