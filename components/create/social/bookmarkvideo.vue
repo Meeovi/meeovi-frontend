@@ -28,7 +28,7 @@
 
 <script>
     import video from '../../../Partials/videojs'
-    import { CREATE_SHORT_ITEM } from "../../../apollo/Mutations/shorts";
+   // import { CREATE_SHORT_ITEM } from "../../../apollo/Mutations/shorts";
 
     export default {
         components: {
@@ -40,7 +40,7 @@
                 notifications: false,
                 sound: true,
                 widgets: false,
-                          shorts: {
+                /*          shorts: {
                             name: '',
                             description: '',
                             video: {
@@ -114,8 +114,9 @@
                   this.video = ' ';
                   this.categories = ' ';
                   this.customers = ' ';
-              },
-          }, /* */
+              },*/
+          }
+        }
     }
 </script>
 

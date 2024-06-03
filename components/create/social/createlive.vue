@@ -28,7 +28,7 @@
                                     </v-textarea>
                                 </v-col>
                                 <v-col cols="6">
-                                    <div v-model="shorts.video.filename_disk"><video /></div>
+                                    <div><video /></div>
                                 </v-col>
                                 <v-col cols="6">
                                     <v-text-field v-model="customers.customers_id.username" label="Username"
@@ -59,8 +59,8 @@
 </template>
 
 <script>
-    import video from '../../../components/partials/videojs'
-    import { CREATE_SHORT_ITEM } from "../../../apollo/Mutations/shorts";
+    import video from '../../partials/videojs'
+    //import { CREATE_SHORT_ITEM } from "../../../apollo/Mutations/shorts";
 
     export default {
         components: {
@@ -72,7 +72,7 @@
                 notifications: false,
                 sound: true,
                 widgets: false,
-                          shorts: {
+                      /*    shorts: {
                             name: '',
                             description: '',
                             video: {
@@ -146,8 +146,9 @@
                   this.video = ' ';
                   this.categories = ' ';
                   this.customers = ' ';
-              },
-          }, /* */
+              },*/
+          }
+        }
     }
 </script>
 

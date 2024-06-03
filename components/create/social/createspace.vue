@@ -56,7 +56,7 @@
 </template>
 
 <script>
-    import { CREATE_SPACE_ITEM } from "../../../apollo/Mutations/space";
+    //import { CREATE_SPACE_ITEM } from "../../../apollo/Mutations/space";
 
     export default {
        data() {
@@ -65,7 +65,7 @@
                 notifications: false,
                 sound: true,
                 widgets: false,
-                newsfeed: {
+              /*  newsfeed: {
                             name: '',
                             description: '',
                             groupType: '',
@@ -119,8 +119,9 @@
                   this.media = ' ';
                   this.image = ' ';
                   this.groupType = ' ';
-              },
-          }, /* */
+              },*/
+          }
+        }
     }
 </script>
 
