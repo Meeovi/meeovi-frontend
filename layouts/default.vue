@@ -165,7 +165,6 @@ const query = gql `
 query NewQuery {
   pages(where: {name: "Meeovi"}) {
     nodes {
-      pageType
       id
       title
       featuredImage {

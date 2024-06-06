@@ -7,7 +7,7 @@
                 </v-btn>
             </template>
             <v-card>
-                <form method="post" @submit.prevent="addSpace()">
+                <form method="post" @submit.prevent="createGroup()">
                     <v-toolbar dark color="primary">
                         <v-btn icon dark @click="dialog = false">
                             <v-icon icon="fas fa-circle-xmark"></v-icon>
@@ -27,14 +27,18 @@
                                     </v-textarea>
                                 </v-col>
                                 <v-col cols="6">
-                                    <v-file-input v-model="image" clearable density="compact" prepend-icon="fas fa-image"
-                            accept="image/*" label="Photo/Video" variant="solo-inverted"></v-file-input>
+                                    <v-file-input @change="onFileChange('cover', $event)" clearable density="compact" prepend-icon="fas fa-image"
+                            accept="image/*" label="Photo" variant="solo-inverted"></v-file-input>
                                 </v-col>
                                 <v-col cols="6">
-                                    <v-select v-model="groupType" label="What type of group is this?" v-for="(space, index) in space?.items" :key="index" :items="[`${space?.groupType}`]"></v-select>
+                                    <v-file-input @change="onFileChange('avatar', $event)" clearable density="compact" prepend-icon="fas fa-image"
+                            accept="image/*" label="Photo" variant="solo-inverted"></v-file-input>
+                                </v-col>
+                                <v-col cols="6">
+                                    <v-select v-model="type" label="What type of group is this?" v-for="(spaces, index) in data?.groups?.nodes?.types?.nodes" :key="index" :items="[`${spaces?.name}`]"></v-select>
                                 </v-col>
                                 <v-col cols="12">
-                                    <v-select v-model="status" label="Is this group public or private?" v-for="(space, index) in space?.items" :key="index" :items="[`${space?.status}`]"></v-select>
+                                    <v-select v-model="status" label="Is this group public or private?" v-for="(spaces, index) in data?.groups?.nodes" :key="index" :items="[`${spaces?.status}`]"></v-select>
                                 </v-col>
                             </v-row>
                         </v-container>
@@ -56,7 +60,6 @@
 </template>
 
 <script>
-    //import { CREATE_SPACE_ITEM } from "../../../apollo/Mutations/space";
 
     export default {
        data() {
@@ -65,72 +68,121 @@
                 notifications: false,
                 sound: true,
                 widgets: false,
-              /*  newsfeed: {
-                            name: '',
-                            description: '',
-                            groupType: '',
-                            status: '',
-                            image: {
-                                filename_disk: ''
-                            },
-                        }
-                        };
-                    },
-         methods: {
-              addLive() {
-                  const name = this.name;
-                  const description = this.description;
-                  const media = this.media;
-                  // eslint-disable-next-line camelcase
-                  const groupType = this.groupType;
-                  // eslint-disable-next-line camelcase
-                  const image = this.image;
-                  this.$apollo.mutate({
-                      mutation: CREATE_SPACE_ITEM,
-                      variables: {
-                          name,
-                          description,
-                          media,
-                          image,
-                          groupType,
-                      },
-                      update: (store, {
-                          data: {
-                              addLive
-                          }
-                      }) => {
-                          // Read data from store for this query
-                          const data = store.readQuery({
-                              query: Space,
-                              variables: {
-                                  first: 5,
-                                  skip: 0,
-                                  orderBy: 'created_at'
-                              }
-                          })
-                      }
-                  }).then((_data) => {
-                      this.$router.push({
-                          path: ''
-                      })
-                  }).catch(error => console.error(error));
-                  this.name = ' ';
-                  this.description = ' ';
-                  this.media = ' ';
-                  this.image = ' ';
-                  this.groupType = ' ';
-              },*/
           }
         }
     }
 </script>
 
 <script setup>
-const {
+import { ref } from 'vue';
+
+const name = ref('')
+const description = ref('')
+const attachmentCover = ref(null)
+const attachmentAvatar = ref(null)
+const client = useApolloClient()
+
+const CREATE_GROUP_MUTATION = gql`
+  mutation CREATE_GROUP(
+    $input: CreateGroupInput!,
+    $attachmentCover: Upload!,
+    $attachmentAvatar: Upload!
+  ) {
+    createGroup(input: $input) {
+      group {
+        id
+        name
+        description
+        status
+      }
+    }
+    setGroupCover(groupId: $createGroup.group.id, file: $attachmentCover) {
+      group {
+        coverUrl
+      }
+    }
+    setGroupAvatar(groupId: $createGroup.group.id, file: $attachmentAvatar) {
+      group {
+        avatarUrl
+      }
+    }
+  }
+`
+
+const onFileChange = (type, event) => {
+  const file = event.target.files[0]
+  if (type === 'cover') {
+    attachmentCover.value = file
+  } else if (type === 'avatar') {
+    attachmentAvatar.value = file
+  }
+}
+
+const createGroup = async () => {
+  try {
+    const { data } = await client.mutate({
+      mutation: CREATE_GROUP_MUTATION,
+      variables: {
+        input: {
+          name: groupName.value,
+          description: groupDescription.value,
+          status: 'public' // or 'private', 'hidden' based on your requirement
+        },
+        attachmentCover: attachmentCover.value,
+        attachmentAvatar: attachmentAvatar.value
+      },
+      context: {
+        hasUpload: true
+      }
+    })
+    console.log('Space created successfully:', data.createGroup.group)
+    console.log('Cover URL:', data.setGroupCover.group.coverUrl)
+    console.log('Avatar URL:', data.setGroupAvatar.group.avatarUrl)
+  } catch (error) {
+    console.error('Error creating space:', error)
+  }
+};
+
+const query = gql`
+query NewQuery {
+  groups {
+    nodes {
+      creator {
+        avatar {
+          url
+        }
+        username
+      }
+      description
+      id
+      lastActivity
+      name
+      slug
+      status
+      totalMemberCount
+      dateCreated
+      attachmentCover {
+        full
+      }
+      types {
+        nodes {
+          name
+        }
+      }
+    }
+  }
+}
+`
+
+  const {
+    data
+  } = useAsyncQuery(query);
+
+/*const {
         getItems
     } = useDirectusItems()
 
     const space = await getItems({
         collection: "Space"
-    });
+    });*/
 </script>

@@ -1,17 +1,16 @@
 <template>
     <div>
-        <v-form @submit.prevent="addPost">
+        <v-form @submit.prevent="postToActivityFeed">
             <v-card ref="form">
                 <v-card-text>
-                    <v-textarea v-model="name" label="Title" variant="outlined"></v-textarea>
-                    <v-textarea v-model="post" label="What's happening?" variant="outlined"></v-textarea>
+                    <v-textarea v-model="content" label="What's happening?*" variant="outlined" required></v-textarea>
                     <v-row>
-                        <v-col cols="3">
+                        <v-col cols="12">
                             <v-file-input v-model="image" chips multiple clearable density="compact"
                                 prepend-icon="fas fa-image" accept="image/*" label="Photo/Video"
                                 variant="solo-inverted"></v-file-input>
                         </v-col>
-                        <v-col cols="3">
+                        <v-col cols="12">
                             <v-file-input v-model="media" chips multiple clearable density="compact"
                                 prepend-icon="fas fa-video" accept="video/*" label="Live Video" variant="solo-inverted">
                             </v-file-input>
@@ -99,7 +98,7 @@
                                 </v-list>
                             </v-menu>
                         </v-col>
-                        <v-col cols="4">
+                        <v-col cols="10">
                             <v-file-input v-model="image" chips clearable density="compact"
                                 prepend-icon="fas fa-sheet-plastic" label="Choose a background" variant="solo-inverted">
                             </v-file-input>
@@ -122,7 +121,7 @@
                             <span>Refresh form</span>
                         </v-tooltip>
                     </v-slide-x-reverse-transition>
-                    <v-btn color="primary" variant="text" type="submit" @click="submit">
+                    <v-btn color="primary" variant="text" type="submit">
                         Post
                     </v-btn>
                 </v-card-actions>
@@ -141,27 +140,47 @@
         data() {
             return {
                 location: 'bottom',
-                newsfeed: {
-                    name: '',
-                    post: '',
-                    media: {
-                        filename_disk: ''
-                    },
-                    reactions: {
-                        reactions_id: {
-                            reaction_type: ''
-                        }
-                    },
-                    image: {
-                        filename_disk: ''
-                    },
-                }
             };
         },
-
     }
 </script>
 
 <script setup>
+import { ref } from 'vue';
 
+const content = ref('');
+
+const CREATE_ACTIVITY = gql`
+  mutation CreateActivity($content: String!, $component: ActivityComponentEnum!, $type: ActivityTypeEnum!) {
+    createActivity(input: {
+      content: $content,
+      component: $component,
+      type: $type
+    }) {
+      activity {
+        content
+        id
+      }
+    }
+  }
+`;
+
+const { mutate } = useMutation(CREATE_ACTIVITY);
+
+const postToActivityFeed = async () => {
+  const variables = {
+    content: content.value,
+    component: "ACTIVITY", // Ensure this is the correct enum value
+    type: "ACTIVITY_UPDATE" // Ensure this is the correct enum value
+  };
+
+  console.log('Variables:', variables); // Debugging: Log variables to ensure they are correct
+
+  try {
+    const result = await mutate({ variables });
+    console.log('Activity posted:', result.data.createActivity.activity);
+  } catch (error) {
+    console.error('Error posting activity:', error);
+  }
+};
 </script>
