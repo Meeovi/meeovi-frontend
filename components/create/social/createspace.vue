@@ -20,25 +20,34 @@
                         <v-container>
                             <v-row>
                                 <v-col cols="12">
-                                    <v-text-field v-model="name" id="spaceName" label="Space Name*" required></v-text-field>
+                                    <v-text-field v-model="name" id="spaceName" label="Space Name*" required>
+                                    </v-text-field>
+                                </v-col>
+                                <v-col cols="6">
+                                    <div v-for="(spaces, index) in data?.groups?.nodes" :key="index">
+                                        <v-select v-model="type" label="What type of group is this?"
+                                            v-for="(items, index) in spaces?.types?.nodes" :key="index"
+                                            :items="[`${items?.name}`]"></v-select>
+                                    </div>
+                                </v-col>
+                                <v-col cols="6">
+                                    <v-select v-model="status" label="Is this group public or private?"
+                                        v-for="(spaces, index) in data?.groups?.nodes" :key="index"
+                                        :items="[`${spaces?.status}`]"></v-select>
                                 </v-col>
                                 <v-col cols="12">
                                     <v-textarea v-model="description" label="Description" id="spaceDescription">
                                     </v-textarea>
                                 </v-col>
                                 <v-col cols="6">
-                                    <v-file-input @change="onFileChange('cover', $event)" clearable density="compact" prepend-icon="fas fa-image"
-                            accept="image/*" label="Photo" variant="solo-inverted"></v-file-input>
+                                    <v-file-input @change="onFileChange('cover', $event)" clearable density="compact"
+                                        prepend-icon="fas fa-image" accept="image/*" label="Image for Banner"
+                                        variant="solo-inverted"></v-file-input>
                                 </v-col>
                                 <v-col cols="6">
-                                    <v-file-input @change="onFileChange('avatar', $event)" clearable density="compact" prepend-icon="fas fa-image"
-                            accept="image/*" label="Photo" variant="solo-inverted"></v-file-input>
-                                </v-col>
-                                <v-col cols="6">
-                                    <v-select v-model="type" label="What type of group is this?" v-for="(spaces, index) in data?.groups?.nodes?.types?.nodes" :key="index" :items="[`${spaces?.name}`]"></v-select>
-                                </v-col>
-                                <v-col cols="12">
-                                    <v-select v-model="status" label="Is this group public or private?" v-for="(spaces, index) in data?.groups?.nodes" :key="index" :items="[`${spaces?.status}`]"></v-select>
+                                    <v-file-input @change="onFileChange('avatar', $event)" clearable density="compact"
+                                        prepend-icon="fas fa-image" accept="image/*" label="Image for Avatar"
+                                        variant="solo-inverted"></v-file-input>
                                 </v-col>
                             </v-row>
                         </v-container>
@@ -60,27 +69,33 @@
 </template>
 
 <script>
-
     export default {
-       data() {
+        data() {
             return {
                 dialog: false,
                 notifications: false,
                 sound: true,
                 widgets: false,
-          }
+            }
         }
     }
 </script>
 
 <script setup>
-import { ref } from 'vue';
+    /*import { ref } from 'vue'
+import { useApolloClient, useQuery } from '@vue/apollo-composable'
+import gql from 'graphql-tag'
 
 const name = ref('')
 const description = ref('')
 const attachmentCover = ref(null)
 const attachmentAvatar = ref(null)
+const type = ref('')
+const status = ref('')
 const client = useApolloClient()
+
+const groupTypes = ref([])
+const groupStatuses = ref(['public', 'private', 'hidden'])
 
 const CREATE_GROUP_MUTATION = gql`
   mutation CREATE_GROUP(
@@ -124,9 +139,9 @@ const createGroup = async () => {
       mutation: CREATE_GROUP_MUTATION,
       variables: {
         input: {
-          name: groupName.value,
-          description: groupDescription.value,
-          status: 'public' // or 'private', 'hidden' based on your requirement
+          name: name.value,
+          description: description.value,
+          status: status.value
         },
         attachmentCover: attachmentCover.value,
         attachmentAvatar: attachmentAvatar.value
@@ -141,11 +156,11 @@ const createGroup = async () => {
   } catch (error) {
     console.error('Error creating space:', error)
   }
-};
+}*/
 
-const query = gql`
-query NewQuery {
-  groups {
+    const query = gql `
+  query GetGroupTypes {
+    groups {
     nodes {
       creator {
         avatar {
@@ -174,15 +189,7 @@ query NewQuery {
 }
 `
 
-  const {
-    data
-  } = useAsyncQuery(query);
-
-/*const {
-        getItems
-    } = useDirectusItems()
-
-    const space = await getItems({
-        collection: "Space"
-    });*/
+    const {
+        data
+    } = useAsyncQuery(query);
 </script>

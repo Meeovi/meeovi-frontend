@@ -19,6 +19,8 @@
             </div>
         </section>
 
+        <!----><v-toolbar color="transparent"><createspace /></v-toolbar>
+
         <section class="features4 cid-sBXUicXM4E" id="features5-2g">
             <div class="container">
                 <div class="row">
@@ -54,9 +56,12 @@
 
 <script>
     import profilebar from '../../components/menus/profilebar.vue'
+    import createspace from '../../components/create/social/createspace.vue'
+
     export default {
         components: {
-            profilebar
+            profilebar,
+            createspace
         },
         data() {
             return {

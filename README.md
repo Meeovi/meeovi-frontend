@@ -32,13 +32,16 @@ and much more. Take a look at www.meeovi.com
 - Vuetify and TailwindCSS for frontend styling
 - Fontawesome for icons
 
-## Middleware
-
-- Integrates with Elasticsearch for search functionality
-- Authentication provided by Keycloak with integration with Magento installation
-
 ## Backend:
 
-- Integrates with Magento 2.4+ for ecommerce and marketplace functionality
-- Integrates with Fastify and Express for server implementation
 - Integrates with Wordpress for content management system functionality
+
+## How to Start:
+
+- git clone https://github.com/Meeovi/meeovi-frontend
+- change .sample-env to .env
+- update wordpressUrl environment variable
+- run npm install
+- npm run dev
+
+Project will launch on localhost:3011
