@@ -7,7 +7,7 @@
                 </v-btn>
             </template>
             <v-card>
-                <form method="post" @submit.prevent="createGroup()">
+                <form method="post" @submit.prevent="createGroup">
                     <v-toolbar dark color="primary">
                         <v-btn icon dark @click="dialog = false">
                             <v-icon icon="fas fa-circle-xmark"></v-icon>
@@ -82,81 +82,63 @@
 </script>
 
 <script setup>
-    /*import { ref } from 'vue'
-import { useApolloClient, useQuery } from '@vue/apollo-composable'
-import gql from 'graphql-tag'
+import { ref } from 'vue'
+const name = ref('');
+const description = ref('');
+const status = ref('');
+const attachmentCover = ref('');
+const attachmentAvatar = ref('');
 
-const name = ref('')
-const description = ref('')
-const attachmentCover = ref(null)
-const attachmentAvatar = ref(null)
-const type = ref('')
-const status = ref('')
-const client = useApolloClient()
-
-const groupTypes = ref([])
-const groupStatuses = ref(['public', 'private', 'hidden'])
-
-const CREATE_GROUP_MUTATION = gql`
-  mutation CREATE_GROUP(
-    $input: CreateGroupInput!,
-    $attachmentCover: Upload!,
-    $attachmentAvatar: Upload!
-  ) {
-    createGroup(input: $input) {
-      group {
-        id
-        name
-        description
-        status
+const CREATE_SPACE = gql`
+  mutation CreateGroup($name: String!, $description: String!, $status: PUBLIC, $types: DEFAULT) {
+    createGroup(input: {
+      name: $name,
+      description: $description,
+      status: $status
+      type: $type
+    }) {
+    group {
+      description
+      id
+      name
+      status
+      types {
+        nodes {
+          name
+        }
+      }
+      attachmentAvatar {
+        full
+      }
+      attachmentCover {
+        full
       }
     }
-    setGroupCover(groupId: $createGroup.group.id, file: $attachmentCover) {
-      group {
-        coverUrl
-      }
-    }
-    setGroupAvatar(groupId: $createGroup.group.id, file: $attachmentAvatar) {
-      group {
-        avatarUrl
-      }
-    }
-  }
-`
-
-const onFileChange = (type, event) => {
-  const file = event.target.files[0]
-  if (type === 'cover') {
-    attachmentCover.value = file
-  } else if (type === 'avatar') {
-    attachmentAvatar.value = file
   }
 }
+`;
+
+const { mutate } = useMutation(CREATE_SPACE);
 
 const createGroup = async () => {
+  const variables = {
+    name: name.value,
+    description: description.value,
+    attachmentCover: attachmentCover.value,
+    attachmentAvatar: attachmentAvatar.value,
+    status: "PUBLIC", // Ensure this is the correct enum value
+    type: "DEFAULT" // Ensure this is the correct enum value
+  };
+
+  console.log('Variables:', variables); // Debugging: Log variables to ensure they are correct
+
   try {
-    const { data } = await client.mutate({
-      mutation: CREATE_GROUP_MUTATION,
-      variables: {
-        input: {
-          name: name.value,
-          description: description.value,
-          status: status.value
-        },
-        attachmentCover: attachmentCover.value,
-        attachmentAvatar: attachmentAvatar.value
-      },
-      context: {
-        hasUpload: true
-      }
-    })
-    console.log('Space created successfully:', data.createGroup.group)
-    console.log('Cover URL:', data.setGroupCover.group.coverUrl)
-    console.log('Avatar URL:', data.setGroupAvatar.group.avatarUrl)
+    const result = await mutate({ variables });
+    console.log('Space created:', result.data.createActivity.activity);
   } catch (error) {
-    console.error('Error creating space:', error)
+    console.error('Error creating space:', error);
   }
-}*/
+};
 
     const query = gql `
   query GetGroupTypes {

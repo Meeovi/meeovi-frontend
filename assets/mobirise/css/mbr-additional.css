@@ -11911,3 +11911,18 @@ a {
   color: #6592e6;
   padding-right: 1.5rem;
 }
+.cid-ueXph5BkCt {
+  background-image: url("../../../assets/images/background9.jpg");
+}
+.cid-ueXph5BkCt .mbr-fallback-image.disabled {
+  display: none;
+}
+.cid-ueXph5BkCt .mbr-fallback-image {
+  display: block;
+  background-size: cover;
+  background-position: center center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+}

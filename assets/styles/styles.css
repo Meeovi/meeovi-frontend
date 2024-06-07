@@ -304,6 +304,23 @@ body {
     font-size: 20px;
 }
 
+/******************** Meeovi Time CSS ************/
+
+.homeSection {
+    padding: 25px !important;
+    width: 100%;
+    float: right;
+    position: absolute;
+    right: 5px;
+    font-size: 50px;
+}
+
+
+#ww_be4a6c6ecdcf1 {
+    width: 100% !important;
+    height: 50% !important;
+}
+
 /******************** Commerce CSS ************/
 
 .cartPage {

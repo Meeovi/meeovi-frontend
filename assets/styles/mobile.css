@@ -43,7 +43,13 @@
 /**************** Commerce CSS ***************/
 
 
+/**************** Meeovi Time CSS ***************/
 
+@media all and (max-width: 500px) {
+    .homeSection {
+        padding: 1px;
+    }
+}
 
 /**************** Social CSS ***************/
 

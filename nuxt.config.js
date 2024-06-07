@@ -35,6 +35,9 @@ export default defineNuxtConfig({
         defer: true,
         crossorigin: 'anonymous'
       }*/
+      {
+        src: 'https://app2.weatherwidget.org/js/?id=ww_be4a6c6ecdcf1',
+      }
     ],
     },
   },
