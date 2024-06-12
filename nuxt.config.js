@@ -37,6 +37,7 @@ export default defineNuxtConfig({
       }*/
       {
         src: 'https://app2.weatherwidget.org/js/?id=ww_be4a6c6ecdcf1',
+        crossorigin: 'anonymous'
       }
     ],
     },
@@ -76,7 +77,6 @@ export default defineNuxtConfig({
 
   modules: [
     '@nuxt/content',
-    'nuxt-directus',
     '@nuxtjs/apollo',
     'nuxt-gtag',
     'nuxt3-leaflet',
@@ -101,6 +101,12 @@ export default defineNuxtConfig({
       token: process.env.NUXTUS_DIRECTUS_STATIC_TOKEN,
     }
   },*/
+
+  routeRules: {
+    proxy: [
+      process.env.wordpressUrl,
+    ],
+  },  
 
   algolia: {
     instantSearch: {
@@ -134,6 +140,8 @@ export default defineNuxtConfig({
       stripePk: process.env.STRIPE_PUBLIC_KEY,
       wordpressUrl: process.env.wordpressUrl,
     },
+    wpApiUsername: process.env.WP_API_USERNAME,
+    wpApiPassword: process.env.WP_API_PASSWORD,
   },
 
   apollo: {
@@ -201,11 +209,6 @@ export default defineNuxtConfig({
   vite: {
     define: {
       'process.env.DEBUG': false,
-    },
-    vue: {
-      template: {
-        transformAssetUrls,
-      },
     },
   },
 })

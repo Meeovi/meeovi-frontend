@@ -233,7 +233,7 @@ query NewQuery ($id: ID!) {
       id: route.params.id,
     }); */
 
-  useHead({
-    title: data?.product?.name,
-  })
+    useHead({
+      title: data?.value?.product?.name,
+    })
 </script>

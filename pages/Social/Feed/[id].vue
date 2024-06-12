@@ -107,7 +107,7 @@ query NewQuery ($id: ID!) {
   });*/
 
     useHead({
-        title: route.params.id,
+        title: data?.value?.activity?.title,
     })
 
     definePageMeta({

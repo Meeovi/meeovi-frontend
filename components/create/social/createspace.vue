@@ -7,7 +7,7 @@
                 </v-btn>
             </template>
             <v-card>
-                <form method="post" @submit.prevent="createGroup">
+                <form @submit.prevent="createGroup">
                     <v-toolbar dark color="primary">
                         <v-btn icon dark @click="dialog = false">
                             <v-icon icon="fas fa-circle-xmark"></v-icon>
@@ -24,16 +24,10 @@
                                     </v-text-field>
                                 </v-col>
                                 <v-col cols="6">
-                                    <div v-for="(spaces, index) in data?.groups?.nodes" :key="index">
-                                        <v-select v-model="type" label="What type of group is this?"
-                                            v-for="(items, index) in spaces?.types?.nodes" :key="index"
-                                            :items="[`${items?.name}`]"></v-select>
-                                    </div>
+                                    <v-select v-model="type" label="What type of space is this?" :items="typeItems"></v-select>
                                 </v-col>
                                 <v-col cols="6">
-                                    <v-select v-model="status" label="Is this group public or private?"
-                                        v-for="(spaces, index) in data?.groups?.nodes" :key="index"
-                                        :items="[`${spaces?.status}`]"></v-select>
+                                    <v-select v-model="status" label="Is this space public or private?" :items="statusItems"></v-select>
                                 </v-col>
                                 <v-col cols="12">
                                     <v-textarea v-model="description" label="Description" id="spaceDescription">
@@ -59,7 +53,7 @@
                             Close
                         </v-btn>
                         <v-btn color="blue-darken-1" variant="text" type="submit" @click="dialog = false">
-                            Save
+                            Create Space
                         </v-btn>
                     </v-card-actions>
                 </form>
@@ -83,95 +77,55 @@
 
 <script setup>
 import { ref } from 'vue'
+
+// Reactive data for form fields
 const name = ref('');
 const description = ref('');
-const status = ref('');
-const attachmentCover = ref('');
-const attachmentAvatar = ref('');
+const status = ref('public'); // Default value
+const type = ref('default'); // Add type if needed
 
-const CREATE_SPACE = gql`
-  mutation CreateGroup($name: String!, $description: String!, $status: PUBLIC, $types: DEFAULT) {
-    createGroup(input: {
-      name: $name,
-      description: $description,
-      status: $status
-      type: $type
-    }) {
-    group {
-      description
-      id
-      name
-      status
-      types {
-        nodes {
-          name
-        }
-      }
-      attachmentAvatar {
-        full
-      }
-      attachmentCover {
-        full
-      }
-    }
-  }
-}
-`;
+// Select items for status and type
+const statusItems = ['public', 'private', 'hidden'];
+const typeItems = ['Default', 'Audio', 'Video']; // Add actual types if needed
 
-const { mutate } = useMutation(CREATE_SPACE);
+// Using an environment variable for the API URL
+const apiUrl = 'https://meeovi.meeovicms.com';
+//const apiToken = process.env.NUXT_PUBLIC_API_TOKEN
 
 const createGroup = async () => {
-  const variables = {
-    name: name.value,
-    description: description.value,
-    attachmentCover: attachmentCover.value,
-    attachmentAvatar: attachmentAvatar.value,
-    status: "PUBLIC", // Ensure this is the correct enum value
-    type: "DEFAULT" // Ensure this is the correct enum value
-  };
-
-  console.log('Variables:', variables); // Debugging: Log variables to ensure they are correct
-
   try {
-    const result = await mutate({ variables });
-    console.log('Space created:', result.data.createActivity.activity);
-  } catch (error) {
-    console.error('Error creating space:', error);
-  }
-};
+    const response = await $fetch(`${apiUrl}/buddypress/v1/groups`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        //'Authorization': `Bearer ${apiToken}`
+      },
+      body: JSON.stringify({
+        name: name.value,
+        description: description.value,
+        status: status.value,
+        type: type.value
+        // Add any other fields as needed
+      })
+    });
 
-    const query = gql `
-  query GetGroupTypes {
-    groups {
-    nodes {
-      creator {
-        avatar {
-          url
-        }
-        username
-      }
-      description
-      id
-      lastActivity
-      name
-      slug
-      status
-      totalMemberCount
-      dateCreated
-      attachmentCover {
-        full
-      }
-      types {
-        nodes {
-          name
-        }
-      }
+    console.log('Group Created:', response);
+  } catch (error) {
+    console.error('Error creating group:', error.message);
+    if (error.response) {
+      console.error('Response data:', error.response.data);
+      console.error('Response status:', error.response.status);
+      console.error('Response headers:', error.response.headers);
     }
   }
 }
-`
 
-    const {
-        data
-    } = useAsyncQuery(query);
+// Function to handle file changes
+const onFileChange = (type, event) => {
+  const file = event.target.files[0];
+  if (file) {
+    // Handle file upload
+    console.log(`${type} file selected:`, file);
+  }
+}
 </script>

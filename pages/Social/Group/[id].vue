@@ -86,9 +86,7 @@
 
                             <div class="container">
                                 <div class="mbr-section-head">
-                                    <h4 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
-                                        <strong>{{ activities.title }}</strong></h4>
-
+                                    <h4 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2" v-html="activities?.title"></h4>
                                 </div>
                                 <div class="row mt-4">
                                     <div class="item features-image сol-12 col-md-6 col-lg-4">
@@ -165,25 +163,24 @@
                     <!--Space People-->
                     <v-window-item value="five">
                         <v-list lines="one">
-                            <v-list-item :title="`238 ${page?.repeaterTextBox[0].name}`"
-                                :subtitle="`${page?.repeaterTextBox[0].subject}`"></v-list-item>
+                            <v-list-item :title="`${data?.group?.totalMemberCount} Members`"></v-list-item>
                         </v-list>
 
                         <v-text-field label="Find a Member" prepend-inner-icon="fas fa-search" variant="solo">
                         </v-text-field>
 
                         <v-list lines="two">
-                            <h3>Creator of {{ group?.name }}</h3>
+                            <h3>Creator of {{ data?.group?.name }}</h3>
                             <v-list-item>
                                 <v-row align="center" class="spacer" no-gutters>
                                     <v-col cols="4" sm="2" md="1">
                                         <v-avatar size="50">
-                                            <img :src="`${group?.creator?.avatar?.url}`" :alt="group?.creator?.username" />
+                                            <img :src="`${data?.group?.creator?.avatar?.url}`" :alt="data?.group?.creator?.username" />
                                         </v-avatar>
                                     </v-col>
 
                                     <v-col class="hidden-xs-only text-left ms-2" sm="5" md="3">
-                                        <p>{{ group?.creator?.username }}</p>
+                                        <p>{{ data?.group?.creator?.username }}</p>
                                     </v-col>
 
                                     <v-col class="text-medium-emphasis text-truncate hidden-sm-and-down">
@@ -194,7 +191,7 @@
                         </v-list>
 
                         <v-list lines="two">
-                            <h3>Admins of {{ group?.name }}</h3>
+                            <h3>Admins of {{ data?.group?.name }}</h3>
                             <v-list-item v-for="admins in data?.group?.admins?.nodes" :key="admins">
                                 <v-row align="center" class="spacer" no-gutters>
                                     <v-col cols="4" sm="2" md="1">
@@ -219,7 +216,7 @@
                         </v-list>
 
                         <v-list lines="two">
-                            <h3>Moderators of {{ group?.name }}</h3>
+                            <h3>Moderators of {{ data?.group?.name }}</h3>
                             <v-list-item v-for="admins in data?.group?.mods?.nodes" :key="admins">
                                 <v-row align="center" class="spacer" no-gutters>
                                     <v-col cols="4" sm="2" md="1">
@@ -244,7 +241,7 @@
                         </v-list>
 
                         <v-list lines="two">
-                            <h3>All Members of {{ group?.name }}</h3>
+                            <h3>All Members of {{ data?.group?.name }}</h3>
                             <v-list-item v-for="members in data?.group?.members?.nodes" :key="members">
                                 <v-row align="center" class="spacer" no-gutters>
                                     <v-col cols="4" sm="2" md="1">
@@ -385,7 +382,7 @@ group(id: $id){
     });*/
 
     useHead({
-        title: data?.group?.name
+        title: data?.value?.group?.name
     })
 
     definePageMeta({

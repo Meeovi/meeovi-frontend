@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-form @submit.prevent="postToActivityFeed">
+        <form @submit.prevent="postToActivityFeed">
             <v-card ref="form">
                 <v-card-text>
                     <v-textarea v-model="content" label="What's happening?*" variant="outlined" required></v-textarea>
@@ -126,7 +126,7 @@
                     </v-btn>
                 </v-card-actions>
             </v-card>
-        </v-form>
+        </form>
     </div>
 </template>
 
@@ -148,8 +148,7 @@
 <script setup>
 import { ref } from 'vue';
 
-const content = ref('');
-
+// Define the GraphQL mutation
 const CREATE_ACTIVITY = gql`
   mutation CreateActivity($content: String!, $component: ActivityComponentEnum!, $type: ActivityTypeEnum!) {
     createActivity(input: {
@@ -165,8 +164,13 @@ const CREATE_ACTIVITY = gql`
   }
 `;
 
+// Set up the ref for content
+const content = ref('');
+
+// Use the useMutation hook to create a mutate function
 const { mutate } = useMutation(CREATE_ACTIVITY);
 
+// Define the function to post to the activity feed
 const postToActivityFeed = async () => {
   const variables = {
     content: content.value,
@@ -178,7 +182,12 @@ const postToActivityFeed = async () => {
 
   try {
     const result = await mutate({ variables });
-    console.log('Activity posted:', result.data.createActivity.activity);
+    console.log('Mutation result:', result);
+    if (result.errors) {
+      console.error('GraphQL Errors:', result.errors);
+    } else {
+      console.log('Activity posted:', result.data.createActivity.activity);
+    }
   } catch (error) {
     console.error('Error posting activity:', error);
   }

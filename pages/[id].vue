@@ -24,4 +24,8 @@ const { data, error } = useAsyncQuery(query, { id: route.params.id });
 if (error) {
     console.error('Error fetching page:', error);
 }
+
+useHead({
+        title: data?.value?.page?.title,
+    })
 </script>

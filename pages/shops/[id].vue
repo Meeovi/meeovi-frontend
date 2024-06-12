@@ -186,6 +186,6 @@ query NewQuery ($id: ID!) {
   });
 
   useHead({
-    title: data?.store?.name,
-  })
+        title: data?.value?.store?.title,
+    })
 </script>

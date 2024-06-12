@@ -132,6 +132,6 @@ query NewQuery ($id: ID!) {
   });
 
   useHead({
-    title: data?.productCategory?.name,
+    title: data?.value?.productCategory?.name
   })
 </script>
