@@ -1,7 +1,7 @@
 <template>
     <div>
         <form @submit.prevent="postToActivityFeed">
-            <v-card>
+            <v-card ref="form">
                 <v-card-text>
                     <v-textarea v-model="content" label="What's happening?*" variant="outlined" required></v-textarea>
                     <v-row>
@@ -107,16 +107,23 @@
                 </v-card-text>
                 <v-divider class="mt-12"></v-divider>
                 <v-card-actions>
-                    <v-btn color="blue-darken-1" variant="text" @click="dialog = false">
-                            Close
-                        </v-btn>
+                    <v-btn variant="text">
+                        Cancel
+                    </v-btn>
                     <v-spacer></v-spacer>
-                    <v-btn color="blue-darken-1" variant="text" type="submit" @click="reset = false">
-                            Reset
-                        </v-btn>
-                    <v-btn color="blue-darken-1" variant="text" type="submit" @click="dialog = false">
-                            Post
-                        </v-btn>
+                    <v-slide-x-reverse-transition>
+                        <v-tooltip location="start">
+                            <template v-slot:activator="{ on, attrs }">
+                                <v-btn icon class="my-0" v-bind="attrs" @click="reset" v-on="on">
+                                    <v-icon icon="fas fa-rotate-right"></v-icon>
+                                </v-btn>
+                            </template>
+                            <span>Refresh form</span>
+                        </v-tooltip>
+                    </v-slide-x-reverse-transition>
+                    <v-btn color="primary" variant="text" type="submit">
+                        Post
+                    </v-btn>
                 </v-card-actions>
             </v-card>
         </form>
@@ -132,65 +139,57 @@
         },
         data() {
             return {
-                dialog: false,
                 location: 'bottom',
             };
-        },
-        methods: {
-            reset () {
-                this.$refs.form.reset()
-            },
         },
     }
 </script>
 
 <script setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
 
-// Access environment variables
-const apiUrl = process.env.API_URL || 'https://meeovi.meeovicms.com'
-const wordpressToken = process.env.WORDPRESS_TOKEN || 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL21lZW92aS5tZWVvdmljbXMuY29tIiwiaWF0IjoxNzE4MjkxMTg0LCJuYmYiOjE3MTgyOTExODQsImV4cCI6MTcxODg5NTk4NCwiZGF0YSI6eyJ1c2VyIjp7ImlkIjoiMSJ9fX0.pER2LWpuRBgMUqqvD6pcZfb185nULQV_dq-ml67AFZc'
+// Define the GraphQL mutation
+const CREATE_ACTIVITY = gql`
+  mutation CreateActivity($content: String!, $component: ActivityComponentEnum!, $type: ActivityTypeEnum!) {
+    createActivity(input: {
+      content: $content,
+      component: $component,
+      type: $type
+    }) {
+      activity {
+        content
+        id
+      }
+    }
+  }
+`;
 
+// Set up the ref for content
 const content = ref('');
-const attachmentAvatar = ref('');
-const errorMessage = ref('');
-const successMessage = ref('')
 
+// Use the useMutation hook to create a mutate function
+const { mutate } = useMutation(CREATE_ACTIVITY);
+
+// Define the function to post to the activity feed
 const postToActivityFeed = async () => {
+  const variables = {
+    content: content.value,
+    component: "ACTIVITY", // Ensure this is the correct enum value
+    type: "ACTIVITY_UPDATE" // Ensure this is the correct enum value
+  };
+
+  console.log('Variables:', variables); // Debugging: Log variables to ensure they are correct
+
   try {
-    const response = await $fetch(`${apiUrl}/wp-json/buddypress/v1/activity`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${wordpressToken}`
-      },
-      body: JSON.stringify({
-        content: content.value,
-        attachmentAvatar: attachmentAvatar.value,
-      })
-    })
-
-    console.log(response);
-
-    if (response.id) {
-      successMessage.value = 'Activity created successfully!'
-      errorMessage.value = ''
+    const result = await mutate({ variables });
+    console.log('Mutation result:', result);
+    if (result.errors) {
+      console.error('GraphQL Errors:', result.errors);
     } else {
-      throw new Error('Failed to create activity')
+      console.log('Activity posted:', result.data.createActivity.activity);
     }
   } catch (error) {
-    console.error('Error creating activity:', error);
-    if (error.response) {
-      console.error('Error response:', error.response);
-      if (error.response.status === 403) {
-        errorMessage.value = 'You do not have permission to create a activity.'
-      } else {
-        errorMessage.value = `Error: ${error.response.status} ${error.response.statusText}`
-      }
-    } else {
-      errorMessage.value = error.message
-    }
-    successMessage.value = ''
+    console.error('Error posting activity:', error);
   }
-}
+};
 </script>

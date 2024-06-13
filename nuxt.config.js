@@ -138,7 +138,8 @@ export default defineNuxtConfig({
     },
     public: {
       stripePk: process.env.STRIPE_PUBLIC_KEY,
-      wordpressUrl: process.env.wordpressUrl,
+      wordpressUrl: process.env.API_URL,
+      wordpressToken: process.env.WORDPRESS_TOKEN
     },
     wpApiUsername: process.env.WP_API_USERNAME,
     wpApiPassword: process.env.WP_API_PASSWORD,
@@ -160,7 +161,7 @@ export default defineNuxtConfig({
         } 
       }, */
       cms: {
-        httpEndpoint: process.env.wordpressUrl
+        httpEndpoint: process.env.API_URL
       },
     /*  commerce: {
         httpEndpoint: process.env.VDURE_URL
