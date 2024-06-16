@@ -8,7 +8,7 @@
         <latestproducts />
         <theatercallout />
         <featuredproducts />
-        <sectionscallout />
+        <relatedspaces />
         <bestsellers />
         <recentlyviewed />
         <blogcallout />
@@ -32,7 +32,7 @@
     import theatercallout from '../components/pages/homepage/theatercallout.vue'
     import featuredproducts from '../components/related/featuredproducts.vue'
     import ataglance from '../components/pages/homepage/ataglance.vue'
-    import sectionscallout from '../components/pages/homepage/sectionscallout.vue'
+    import relatedspaces from '../components/related/relatedspaces.vue'
     import bestsellers from '../components/related/bestsellers.vue'
     import exclusives from '../components/related/exclusives.vue'
     import deals from '../components/related/deals.vue'
@@ -52,7 +52,7 @@
             theatercallout,
             featuredproducts,
             ataglance,
-            sectionscallout,
+            relatedspaces,
             bestsellers,
             exclusives,
             deals,

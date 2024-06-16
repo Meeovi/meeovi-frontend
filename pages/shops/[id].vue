@@ -1,7 +1,7 @@
 <template>
   <div class="contentPage">
     <section data-bs-version="5.1" class="info3 cid-uehYEJBGCu" id="info3-9i" data-sortbtn="btn-primary"
-      :style="`background-image: url(${data?.store?.storeFields?.image?.node?.sourceUrl})`">
+      :style="`background-image: url(${shop?.banner})`">
 
 
 
@@ -15,9 +15,14 @@
             <div class="card-wrapper">
               <div class="card-box align-center">
                 <h4 class="card-title mbr-fonts-style align-center mb-4 display-1">
-                  <strong>{{ data?.store?.title }}</strong>
+                  <strong><v-avatar icon="$vuetify" :image="shop?.gravatar" size="80"></v-avatar></strong>
                 </h4>
-                <p class="mbr-text mbr-fonts-style mb-4 display-6" v-html="data?.store?.content"></p>
+                <h4 class="card-title mbr-fonts-style align-center mb-4 display-1">
+                  <strong>{{ shop?.store_name }}</strong>
+                </h4>
+                <p class="mbr-text mbr-fonts-style mb-4 display-6" v-html="shop?.email"></p>
+                <v-rating v-model="rating" active-color="yellow-accent-4" color="white" :size="shop?.rating" half-increments>
+                </v-rating>
               </div>
             </div>
           </div>
@@ -38,7 +43,7 @@
               <span class="mbr-iconfont mobi-mbri-protect mobi-mbri m-auto"></span>
               <div class="card-box">
                 <h4 class="card-title mbr-fonts-style mb-2 display-7"><strong>Owner</strong></h4>
-                <h5 class="card-text mbr-fonts-style display-4">{{ data?.store?.customers?.customers_id?.username }}
+                <h5 class="card-text mbr-fonts-style display-4">{{ shop?.first_name }} {{ shop?.last_name }}
                 </h5>
               </div>
             </div>
@@ -48,7 +53,7 @@
               <span class="mbr-iconfont m-auto mobi-mbri-website-theme-2 mobi-mbri"></span>
               <div class="card-box">
                 <h4 class="card-title mbr-fonts-style mb-2 display-7"><strong>Launched on Meeovi</strong></h4>
-                <h5 class="card-text mbr-fonts-style display-4">{{ data?.store?.date }}</h5>
+                <h5 class="card-text mbr-fonts-style display-4">{{ new Date(shop?.registered).toLocaleDateString() }}</h5>
               </div>
             </div>
           </div>
@@ -57,9 +62,9 @@
               <span class="mbr-iconfont m-auto mobi-mbri-features mobi-mbri"></span>
               <div class="card-box">
                 <h4 class="card-title mbr-fonts-style mb-2 display-7">
-                  <strong>Status</strong>
+                  <strong>Contact</strong>
                 </h4>
-                <h5 class="card-text mbr-fonts-style display-4" v-html="data?.store?.storeFields?.ispublic"></h5>
+                <h5 class="card-text mbr-fonts-style display-4" v-html="shop?.email"></h5>
               </div>
 
             </div>
@@ -91,76 +96,22 @@
     data() {
       return {
         //url: process.env.DIRECTUS_URL,
+        rating: null,
       }
     },
   }
 </script>
 
 <script setup>
-  const route = useRoute();
-  const query = gql `
-query NewQuery ($id: ID!) {
-  store(id: $id) {
-    date
-    id
-    status
-    title
-    content
-    storeFields {
-      colortext
-      image {
-        node {
-          sourceUrl
-        }
-      }
-      ispublic
-      content
-      products {
-        nodes {
-          date
-          id
-          ... on SimpleProduct {
-            id
-            name
-            image {
-              sourceUrl
-            }
-            price
-            sku
-            status
-            type
-          }
-        }
-      }
-      showcases {
-        nodes {
-          ... on Showcase {
-            id
-            date
-            excerpt
-            showcaseFields {
-              description
-              name
-              owner
-              image {
-                node {
-                  sourceUrl
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-`
+import { useShopById } from '~/composables/getShops';
 
-  const {
-    data
-  } = useAsyncQuery(query, {
-    id: route.params.id
-  });
+const shop = ref(null);
+const route = useRoute();
+
+onMounted(async () => {
+  const id = route.params.id;
+  shop.value = await useShopById(id);
+});
 
   /*const {
       getItemById
@@ -186,6 +137,6 @@ query NewQuery ($id: ID!) {
   });
 
   useHead({
-        title: data?.value?.store?.title,
+        title: shop?.name,
     })
 </script>

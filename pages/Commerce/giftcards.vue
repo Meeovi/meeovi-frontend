@@ -5,7 +5,7 @@
             <v-col cols="12">
                 <v-toolbar title="Your Gift Cards" subtitle=""></v-toolbar>
                 <v-row class="accountRow">
-                    <v-col cols="3" v-for="(card, index) in data?.giftCards?.nodes" :key="index">
+                    <v-col cols="3" v-for="(card, index) in cards" :key="index">
                         <v-card class="mx-auto" max-width="400">
                             <img class="align-end text-white" height="200"
                             :src="card?.giftCardFields.image?.node?.sourceUrl" :alt="card?.giftCardFields.name" cover />
@@ -88,40 +88,20 @@
 </script>
 
 <script setup>
-const query = gql`
-query NewQuery {
-  giftCards {
-    nodes {
-      giftCardFields {
-        amount
-        format
-        image {
-          node {
-            sourceUrl
-          }
-        }
-        name
-        manufacturer {
-          nodes {
-            ... on Manufacturer {
-              id
-              manufacturerFields {
-                name
-              }
-            }
-          }
-        }
-      }
-      id
-      date
-    }
-  }
-}
-`
+  import {
+    ref,
+    onMounted
+  } from 'vue';
+  import {
+    getCards
+  } from '~/composables/getGiftCards';
 
-  const {
-    data
-  } = useAsyncQuery(query);
+  const cards = ref([]);
+
+  onMounted(async () => {
+    cards.value = await getCards();
+  });
+
  /* const {
     getItems
   } = useDirectusItems()

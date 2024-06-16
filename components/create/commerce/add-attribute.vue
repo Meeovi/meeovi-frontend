@@ -7,7 +7,7 @@
                 </v-btn>
             </template>
             <v-card>
-                <form method="post" @v-on:submit.prevent="addAttribute()">
+                <form>
                     <v-toolbar dark color="primary">
                         <v-btn icon dark @click="dialog = false">
                             <v-icon icon="fas fa-circle-xmark"></v-icon>
@@ -20,20 +20,13 @@
                         <v-container>
                             <v-row>
                                 <v-col cols="12">
-                                    <v-text-field v-model="name" id="addressName" label="Attribute Name*" required></v-text-field>
+                                    <v-text-field v-model="name" id="attributeName" label="Attribute Name*" required></v-text-field>
                                 </v-col>
                                 <v-col cols="12">
-                                    <v-textarea v-model="content" label="Description" id="addressDescription">
-                                    </v-textarea>
+                                    <v-text-field v-model="slug" id="attributeSlug" label="Attribute Slug*" required></v-text-field>
                                 </v-col>
                                 <v-col cols="6">
-                                    <v-text-field v-model="meta_title" label="Meta Name" id="addressName"></v-text-field>
-                                </v-col>
-                                <v-col cols="6">
-                                    <v-text-field v-model="meta_keywords" label="Meta Keywords"></v-text-field>
-                                </v-col>
-                                <v-col cols="12">
-                                    <v-textarea v-model="meta_description" label="Meta Description" id="addressDescription"></v-textarea>
+                                    <v-text-field v-model="type" label="Attribute Type" id="attributeType"></v-text-field>
                                 </v-col>
                             </v-row>
                         </v-container>
@@ -44,7 +37,7 @@
                         <v-btn color="blue-darken-1" variant="text" @click="dialog = false">
                             Close
                         </v-btn>
-                        <v-btn color="blue-darken-1" variant="text" @click="dialog = false">
+                        <v-btn color="blue-darken-1" variant="text" @click="dialog = false" @submit.prevent="createAttribute">
                             Save
                         </v-btn>
                     </v-card-actions>
@@ -55,21 +48,6 @@
 </template>
 
 <script>
- /*   import gql from "graphql-tag";
-    import findManyCategories from "../../graphql/query/findManyCategories.gql"
-
-    const ADD_CATEGORIES = gql `
-    mutation createOneCategories($name: String!, $content: String, $image: String, $meta_title: String, $meta_keywords: String, $meta_description:String){
-    createOneCategories(data: {name: $name, content: $content, image: $image, meta_description: $meta_description, meta_keywords: $meta_keywords, meta_title: $meta_title}) {
-      name
-        content
-        image
-        meta_description
-        meta_keywords
-        meta_title
-}
-    }`; */
-
     export default {
         data() {
             return {
@@ -77,72 +55,68 @@
                 notifications: false,
                 sound: true,
                 widgets: false,
-            /*    name: ' ',
-                content: ' ',
-                image: ' ',
-                meta_description: ' ',
-                meta_keywords: ' ',
-                meta_title: ' ' */
             }
         },
-      /*  methods: {
-            addAttribute() {
-                const name = this.name;
-                const content = this.content;
-                const image = this.image;
-                // eslint-disable-next-line camelcase
-                const meta_title = this.meta_title;
-                // eslint-disable-next-line camelcase
-                const meta_keywords = this.meta_keywords;
-                // eslint-disable-next-line camelcase
-                const meta_description = this.meta_description;
-                this.$apollo.mutate({
-                    mutation: ADD_CATEGORIES,
-                    variables: {
-                        name,
-                        content,
-                        image,
-                        meta_description,
-                        meta_keywords,
-                        meta_title,
-                    },
-                    update: (store, {
-                        data: {
-                            addAttribute
-                        }
-                    }) => {
-                        // Read data from store for this query
-                        const data = store.readQuery({
-                            query: findManyCategories,
-                            variables: {
-                                first: 5,
-                                skip: 0,
-                                orderBy: 'createdAt_DESC'
-                            }
-                        })
-                        data.allCategories.push(addAttribute)
-                        store.writeQuery({
-                            query: findManyCategories,
-                            variables: {
-                                first: 5,
-                                skip: 0,
-                                orderBy: 'createdAt_DESC'
-                            },
-                            data
-                        })
-                    }
-                }).then((_data) => {
-                    this.$router.push({
-                        path: '../../content/categories'
-                    })
-                }).catch(error => console.error(error));
-                this.name = ' ';
-                this.content = ' ';
-                this.image = ' ';
-                this.meta_description = ' ';
-                this.meta_keywords = ' ';
-                this.meta_title = ' ';
-            },
-        }, */
     }
+</script>
+
+<script setup>
+    import {
+        ref
+    } from 'vue'
+
+    // Access environment variables
+    const apiUrl = process.env.API_URL || 'https://meeovi.meeovicms.com'
+    const wordpressToken = process.env.WORDPRESS_TOKEN ||
+        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL21lZW92aS5tZWVvdmljbXMuY29tIiwiaWF0IjoxNzE4MjkxMTg0LCJuYmYiOjE3MTgyOTExODQsImV4cCI6MTcxODg5NTk4NCwiZGF0YSI6eyJ1c2VyIjp7ImlkIjoiMSJ9fX0.pER2LWpuRBgMUqqvD6pcZfb185nULQV_dq-ml67AFZc'
+
+    const name = ref('');
+    const slug = ref('');
+    const type = ref('');
+    const errorMessage = ref('');
+    const successMessage = ref('');
+
+    const createAttribute = async () => {
+        try {
+            const response = await $fetch(`${apiUrl}/wp-json/dokan/v1/products/attributes`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${wordpressToken}`
+                },
+                body: JSON.stringify({
+                    name: name.value,
+                    slug: slug.value,
+                    type: type.value,
+                    status: 'publish',
+                })
+            })
+
+            console.log(response);
+
+            if (response.id) {
+                successMessage.value = 'Attribute created successfully!'
+                errorMessage.value = ''
+            } else {
+                throw new Error('Failed to create attribute')
+            }
+        } catch (error) {
+            console.error('Error creating attribute:', error);
+            if (error.response) {
+                console.error('Error response:', error.response);
+                if (error.response.status === 403) {
+                    errorMessage.value = 'You do not have permission to create a attribute.'
+                } else {
+                    errorMessage.value = `Error: ${error.response.status} ${error.response.statusText}`
+                }
+            } else {
+                errorMessage.value = error.message
+            }
+            successMessage.value = ''
+        }
+    }
+
+    useHead({
+        title: 'Create Attribute',
+    })
 </script>

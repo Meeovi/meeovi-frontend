@@ -1,26 +1,26 @@
 <template>
   <div>
     <v-row class="productCard">
-      <v-col cols="3" v-for="(products, index) in data?.products?.nodes" :key="index">
-        <v-card class="mx-auto" max-width="400" :href="`/product/${products?.id}`">
-          <img class="align-end text-white" max-height="200" :src="`${products?.image?.sourceUrl}`" :alt="products?.name" cover />
+      <v-col v-for="(products, index) in products" :key="index">
+        <v-card class="mx-auto" max-width="350" :href="`/product/${products?.id}`">
+          <img class="align-end text-white" style="height: 250px;" :src="`${products?.images[0]?.src}`" :alt="products?.name" cover />
 
           <v-card-title>{{products?.name}}</v-card-title>
           <v-card-subtitle class="pt-4">
             Sku: {{ products?.sku }}
           </v-card-subtitle>
 
-          <v-card-subtitle class="pt-4" v-for="categories in data?.products?.nodes?.productCategories?.nodes" :key="categories">
+          <v-card-subtitle class="pt-4" v-for="categories in products?.nodes?.productCategories?.nodes" :key="categories">
             Category: {{ categories?.name }}
           </v-card-subtitle>
 
           <v-card-text>
             <div>
-              <v-rating v-model="rating" active-color="yellow-accent-4" color="white" :size="products?.averageRating" half-increments>
+              <v-rating v-model="rating" active-color="yellow-accent-4" color="orange" :size="products?.average_rating" half-increments>
               </v-rating>
             </div>
 
-            <div>{{products?.price}}</div>
+            <p>{{ currency }} {{ products?.price }}</p>
           </v-card-text>
 
           <v-card-actions>
@@ -47,44 +47,25 @@
   }
 </script>
 <script setup>
-const query = gql`
-query NewQuery {
-  products {
-    nodes {
-      id
-      image {
-        sourceUrl
-        id
-      }
-      name
-      onSale
-      sku
-      slug
-      type
-      ... on SimpleProduct {
-        id
-        name
-        regularPrice
-        type
-        price
-        averageRating
-        productCategories {
-          nodes {
-            name
-          }
-        }
-        image {
-          sourceUrl
-        }
-      }
-    }
-  }
-}
-`
+  import {
+    ref,
+    onMounted
+  } from 'vue';
+  import {
+    getCurrencySettings
+  } from '~/composables/getCurrencySettings';
+  import {
+    getProducts
+  } from '~/composables/getProducts';
 
-  const {
-    data
-  } = useAsyncQuery(query);
+  const products = ref([]);
+  const currency = ref('');
+
+  onMounted(async () => {
+    products.value = await getProducts();
+    const currencySettings = await getCurrencySettings();
+    currency.value = currencySettings.currency;
+  });
 
 /*  const {
     getItems

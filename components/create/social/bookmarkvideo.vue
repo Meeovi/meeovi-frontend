@@ -5,21 +5,24 @@
             <v-container>
                 <v-row>
                     <v-col cols="6">
-                        <v-text-field v-model="name" label="Video Name" required></v-text-field>
+                        <v-text-field v-model="title" label="Video Name" required></v-text-field>
                     </v-col>
                     <v-col cols="6">
-                        <v-combobox label="Category"
-                            :items="['California', 'Colorado']" hint="Choose the appropriate video category"></v-combobox>
+                        <v-combobox label="Category" :items="['California', 'Colorado']"
+                            hint="Choose the appropriate video category"></v-combobox>
                     </v-col>
                     <v-col cols="6">
                         <v-file-input clearable label="Video Image"></v-file-input>
                     </v-col>
                     <v-col cols="6">
-                        <v-text-field label="Video URL" type="url"></v-text-field>
+                        <v-text-field v-model="videoFile" label="Video URL" type="url"></v-text-field>
                     </v-col>
                     <v-col cols="12">
-                        <v-textarea label="Video Description"></v-textarea>
+                        <v-textarea v-model="content" label="Video Description"></v-textarea>
                     </v-col>
+                    <v-btn color="blue-darken-1" variant="text" type="submit" @submit="createVideo">
+                        Create
+                    </v-btn>
                 </v-row>
             </v-container>
         </v-form>
@@ -28,7 +31,6 @@
 
 <script>
     import video from '../../partials/videojs.vue'
-   // import { CREATE_SHORT_ITEM } from "../../../apollo/Mutations/shorts";
 
     export default {
         components: {
@@ -40,93 +42,67 @@
                 notifications: false,
                 sound: true,
                 widgets: false,
-                /*          shorts: {
-                            name: '',
-                            description: '',
-                            video: {
-                                filename_disk: ''
-                            },
-                            customers: {
-                                customers_id: {
-                                    username: ''
-                                }
-                            },
-                            categories: {
-                                items: {
-                                    children: {
-                                        name: ''
-                                    }
-                                }
-                            }
-                        }
-                        };
-                    },
-         methods: {
-              addLive() {
-                  const name = this.name;
-                  const description = this.description;
-                  const video = this.video;
-                  // eslint-disable-next-line camelcase
-                  const customers = this.customers;
-                  // eslint-disable-next-line camelcase
-                  const categories = this.categories;
-                  this.$apollo.mutate({
-                      mutation: CREATE_SHORT_ITEM,
-                      variables: {
-                          name,
-                          description,
-                          video,
-                          categories,
-                          customers,
-                      },
-                      update: (store, {
-                          data: {
-                              addLive
-                          }
-                      }) => {
-                          // Read data from store for this query
-                          const data = store.readQuery({
-                              query: shorts,
-                              variables: {
-                                  first: 5,
-                                  skip: 0,
-                                  orderBy: 'created_at'
-                              }
-                          })
-                          data.customers.push(addLive)
-                          store.writeQuery({
-                              query: customers,
-                              variables: {
-                                  first: 5,
-                                  skip: 0,
-                                  orderBy: 'created_at'
-                              },
-                              data
-                          })
-                      }
-                  }).then((_data) => {
-                      this.$router.push({
-                          path: ''
-                      })
-                  }).catch(error => console.error(error));
-                  this.name = ' ';
-                  this.description = ' ';
-                  this.video = ' ';
-                  this.categories = ' ';
-                  this.customers = ' ';
-              },*/
-          }
+            }
         }
     }
 </script>
 
 <script setup>
-//import query from '../../../apollo/Queries/categories'
+   import {
+        ref
+    } from 'vue'
 
-const {
-    data
-  } = await useAsyncQuery(query)
+    // Access environment variables
+    const apiUrl = process.env.API_URL || 'https://meeovi.meeovicms.com'
+    const wordpressToken = process.env.WORDPRESS_TOKEN ||
+        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL21lZW92aS5tZWVvdmljbXMuY29tIiwiaWF0IjoxNzE4MjkxMTg0LCJuYmYiOjE3MTgyOTExODQsImV4cCI6MTcxODg5NTk4NCwiZGF0YSI6eyJ1c2VyIjp7ImlkIjoiMSJ9fX0.pER2LWpuRBgMUqqvD6pcZfb185nULQV_dq-ml67AFZc'
 
+    const title = ref('');
+    const videoFile = ref('');
+    const content = ref('');
+    const featuredImage = ref('');
+    const errorMessage = ref('');
+    const successMessage = ref('');
+
+    const createVideo = async () => {
+        try {
+            const response = await $fetch(`${apiUrl}/wp-json/wp/v2/video`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${wordpressToken}`
+                },
+                body: JSON.stringify({
+                    title: title.value,
+                    content: content.value,
+                    featuredImage: featuredImage.node.sourceUrl.value,
+                    videoFile: videoFields.videoFile.node.sourceUrl.value,
+                })
+            })
+
+            console.log(response);
+
+            if (response.id) {
+                successMessage.value = 'Video created successfully!'
+                errorMessage.value = ''
+            } else {
+                throw new Error('Failed to create video')
+            }
+        } catch (error) {
+            console.error('Error creating video:', error);
+            if (error.response) {
+                console.error('Error response:', error.response);
+                if (error.response.status === 403) {
+                    errorMessage.value = 'You do not have permission to create a video.'
+                } else {
+                    errorMessage.value = `Error: ${error.response.status} ${error.response.statusText}`
+                }
+            } else {
+                errorMessage.value = error.message
+            }
+            successMessage.value = ''
+        }
+    }
     useHead({
         title: 'Bookmark a Video',
     })

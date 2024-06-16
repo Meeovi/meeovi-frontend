@@ -2,9 +2,7 @@
     <v-row justify="center">
         <v-dialog v-model="dialog" :scrim="false" transition="dialog-bottom-transition">
             <template v-slot:activator="{ props }">
-                <v-btn v-bind="props" class="rightAddBtn">
-                    <v-icon start icon="fas fa-plus"></v-icon>Create a Space
-                </v-btn>
+                <v-btn v-bind="props" stacked prepend-icon="fas fa-plus" text="Create A Space" size="150" variant="flat" style="height: 221px; margin-top: 27px;"></v-btn>
             </template>
             <v-card>
                 <form @submit.prevent="createGroup">

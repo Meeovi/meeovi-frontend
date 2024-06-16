@@ -1,94 +1,57 @@
 <template>
-    <div class="contentPage">
-        <v-toolbar title="Shops" color="transparent"></v-toolbar>
-        <v-row style="padding-top: 10px; padding-bottom: 10px;">
-            <v-col cols="3" v-for="(customers, index) in data?.members?.nodes" :key="index">
-                <v-card class="mx-auto" max-width="300">
-                    <img class="align-end text-white" height="200" :src="`${customers?.avatar?.url}`" :alt="customers?.username" cover />
+  <div class="contentPage">
+    <v-toolbar title="Shops" color="transparent"></v-toolbar>
+    <v-row style="padding-top: 10px; padding-bottom: 10px;">
+      <v-col cols="3" v-for="(shops, index) in shops" :key="index">
+        <v-card class="mx-auto" max-width="300">
+          <img class="align-end text-white" height="200" :src="`${shops?.gravatar}`" :alt="shops?.store_name" cover />
 
-                    <v-card-title>@{{ customers?.username }}</v-card-title>
+          <v-card-title>@{{ shops?.store_name }}</v-card-title>
 
-                    <v-card-subtitle class="pt-4">
-                        <span class="fas fa-globe">{{ customers?.locale }}</span> 
-                    </v-card-subtitle>
+          <v-card-subtitle class="pt-4">
+            <div class="text-center">
+              <v-rating :rating="shops?.rating" readonly></v-rating>
+            </div>
+          </v-card-subtitle>
 
-                    <v-card-text>
-                        <div># of Friends: {{ customers?.totalFriendCount }}</div>
-
-                        <div>Member Type: {{ customers?.memberTypes }}</div>
-
-                        <div>Last Update: {{ customers?.latestUpdate }}</div>
-                    </v-card-text>
-
-                    <v-card-actions>
-                      <followButton />
-                    </v-card-actions>
-                </v-card>
-            </v-col>
-        </v-row>
-    </div>
+          <v-card-actions>
+            <v-btn color="orange" text="Enter" :href="`/shops/${shops.id}`"></v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+    </v-row>
+  </div>
 </template>
 
 <script>
-import followButton from '../../components/social/followButton.vue'
+  import followButton from '../../components/social/followButton.vue'
 
-    export default {
-      components: { followButton },
-        data: () => ({
-            url: process.env.DIRECTUS_URL,
-        })
-    }
+  export default {
+    components: {
+      followButton
+    },
+    data: () => ({
+      url: process.env.DIRECTUS_URL,
+    })
+  }
 </script>
 
 <script setup>
-const query = gql`
-query NewQuery {
-  members {
-    nodes {
-      avatar {
-        url
-      }
-      description
-      id
-      memberTypes
-      url
-      username
-      totalFriendCount
-      locale
-      latestUpdate
-    }
-  }
-}
-`
+  import {
+    ref,
+    onMounted
+  } from 'vue';
+  import {
+    getShops
+  } from '~/composables/getShops';
 
-  const {
-    data
-  } = useAsyncQuery(query);
+  const shops = ref([]);
 
-/*import { createDirectus, rest, readItems, readItem } from '@directus/sdk';
-const route = useRoute()
+  onMounted(async () => {
+    shops.value = await getShops();
+  });
 
-const client = createDirectus(process.env.DIRECTUS_URL).with(rest());
-
-const members = await client.request(readItems('customers', route.params.id, {
-  fields: ['*'],
-  filter: {
-    type: {
-        _eq: "Seller"
-    }
-  }
-}));
-
-const page = await client.request(readItem('pages', route.params.id, {
-  fields: ['*'],
-  filter: {
-    id: {
-      _eq: 30,
-    }
-  }
-}));*/
-
-useHead({
-    title: 'Shops'
-})
+  useHead({
+    title: 'Shops',
+  })
 </script>

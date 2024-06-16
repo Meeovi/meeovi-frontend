@@ -19,7 +19,7 @@
                                 <v-card-text>
                                     <v-row dense>
                                         <v-col cols="12" sm="6">
-                                            <v-autocomplete :items="['Skiing']" label="Choose A List" auto-select-first
+                                            <v-autocomplete  v-for="(lists, index) in data?.lists?.nodes" :key="index" :items="[`${lists?.lists?.name}`]" label="Choose A List" auto-select-first
                                                 multiple></v-autocomplete>
                                         </v-col>
                                     </v-row>
@@ -40,38 +40,20 @@
                         </v-tabs-window-item>
 
                         <v-tabs-window-item value="two">
-                            <v-toolbar title="Create A List"></v-toolbar>
-                            <v-form>
-                                <v-container>
-                                    <v-row>
-                                        <v-col cols="12">
-                                            <v-text-field label="List Name" required></v-text-field>
-                                        </v-col>
-                                        <v-col cols="6">
-                                            <v-combobox label="Type"
-                                                :items="['California', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming']">
-                                            </v-combobox>
-                                        </v-col>
-                                        <v-col cols="6">
-                                            <v-file-input clearable label="List Image"></v-file-input>
-                                        </v-col>
-                                        <v-col cols="12">
-                                            <v-textarea label="List Description"></v-textarea>
-                                        </v-col>
-                                    </v-row>
-                                </v-container>
-                            </v-form>
+                            <createlist />
                         </v-tabs-window-item>
                     </v-tabs-window>
                 </v-card-text>
             </v-card>
-
         </v-dialog>
     </div>
 </template>
 
 <script>
+import createlist from '../create/commerce/createlist.vue'
+
     export default {
+        components: { createlist },
         data: () => ({
             dialog: false,
             tab: null,
@@ -80,5 +62,37 @@
 </script>
 
 <script setup>
+const query = gql `
+query NewQuery {
+  lists {
+    nodes {
+      author {
+        node {
+          username
+          avatar {
+            url
+          }
+        }
+      }
+      date
+      id
+      lists {
+        description
+        ispublic
+        name
+        type
+        image {
+          node {
+            sourceUrl
+          }
+        }
+      }
+    }
+  }
+}
+`
 
+    const {
+        data
+    } = useAsyncQuery(query);
 </script>

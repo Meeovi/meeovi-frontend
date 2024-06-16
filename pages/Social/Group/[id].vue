@@ -72,6 +72,7 @@
                 <v-tab value="three">Events</v-tab>
                 <v-tab value="four">Media</v-tab>
                 <v-tab value="five">Members</v-tab>
+                <v-tab value="six">Settings</v-tab>
                 <v-tab>
                     <v-btn style="padding-top: 5px; float: right; right: 5px; position: fixed;">Leave Space</v-btn>
                 </v-tab>
@@ -265,6 +266,11 @@
                             </v-list-item>
                         </v-list>
                     </v-window-item>
+
+                    <!--Settings-->
+                    <v-window-item value="six">
+                        <settings />
+                    </v-window-item>
                 </v-window>
             </v-card-text>
         </v-card>
@@ -274,6 +280,7 @@
 <script>
     import profilebar from '../../../components/menus/profilebar.vue'
     import comments from '../../../components/social/comments.vue'
+    import settings from '../../../components/social/groups/groupsettings.vue'
     import productCard from '../../../components/commerce/product/productCard.vue'
     import shorts from '../../../components/related/shorts.vue'
 
@@ -282,6 +289,7 @@
             profilebar,
             productCard,
             comments,
+            settings,
             shorts
         },
         data() {

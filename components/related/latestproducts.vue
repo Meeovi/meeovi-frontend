@@ -1,11 +1,20 @@
 <template>
-  <v-sheet class="mx-auto sliderProducts row align-items-stretch items-row justify-content-center">
-    <h4>Latest Products</h4>
-    <productCard />
-    <!--<div v-for="cmsblock in data?.cmsBlocks?.items" :key="cmsblock">
-      <div v-html="cmsblock?.content"></div>
-    </div>-->
-  </v-sheet>
+  <div>
+    <v-sheet class="mx-auto sliderProducts row align-items-stretch items-row justify-content-center">
+      <h4>Latest Products</h4>
+      <v-slide-group v-model="model" class="pa-4" selected-class="bg-success" show-arrows>
+        <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }">
+          <productCard :class="['ma-4', selectedClass]" @click="toggle" />
+
+          <div class="d-flex fill-height align-center justify-center">
+            <v-scale-transition>
+              <v-icon v-if="isSelected" color="white" icon="mdi-close-circle-outline" size="48"></v-icon>
+            </v-scale-transition>
+          </div>
+        </v-slide-group-item>
+      </v-slide-group>
+    </v-sheet>
+  </div>
 </template>
 
 <script>
@@ -17,23 +26,11 @@
     },
     data: () => ({
       model: null,
-      url: process.env.DIRECTUS_URL,
+      //url: process.env.DIRECTUS_URL,
     }),
   }
 </script>
 
 <script setup>
-const query = gql `
-query {
-  cmsBlocks(identifiers: "new-block") {
-    items {
-      content
-    }
-  }
-}
-`
 
-  const {
-    data
-  } = useAsyncQuery(query);
 </script>
