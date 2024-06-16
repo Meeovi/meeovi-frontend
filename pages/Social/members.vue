@@ -35,7 +35,7 @@ import followButton from '../../components/social/followButton.vue'
     export default {
       components: { followButton },
         data: () => ({
-            url: process.env.DIRECTUS_URL,
+            //url: process.env.DIRECTUS_URL,
         })
     }
 </script>

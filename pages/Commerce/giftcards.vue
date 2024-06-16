@@ -117,4 +117,4 @@
     definePageMeta({
 	  //middleware: ['auth-logged-in'],
 	})
-</script>
+</script>~/composables/read/getGiftCards

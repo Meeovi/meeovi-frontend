@@ -19,7 +19,7 @@ export const getProducts = async () => {
 
 export const getProductById = async () => {
   try {
-    const products = await $fetch(`${apiUrl}/wp-json/wc/v3/products`, {
+    const products = await $fetch(`${apiUrl}/wp-json/wc/v3/products/${id}`, {
       params: {
         consumer_key: consumerKey,
         consumer_secret: consumerSecret

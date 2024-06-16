@@ -6,25 +6,25 @@
     <div class="container-fluid">
         <div class="row align-items-stretch items-row justify-content-center">
 
-            <div class="item features-image item-long col-12 col-md-12 col-lg-8" v-for="departments in departments" :key="departments">
+            <div class="item features-image item-long col-12 col-md-12 col-lg-8" v-for="callout in data?.productCategories?.nodes" :key="callout">
                 <div class="item-wrapper">
                     <div class="mbr-section-head">
                         <h4 class="mbr-section-title mbr-fonts-style mb-0 display-7">
-                            {{ departments.name }}
+                            {{ callout.name }}
                         </h4>
                         <h5 class="mbr-section-subtitle mbr-fonts-style mb-0 display-2">
-                            <strong>{{ departments.description }}</strong>
+                            <strong>{{ callout.description }}</strong>
                         </h5>
                         
                         <div class="mbr-section-btn item-footer">
-                            <a :href="`/departments/${departments.name}`" class="btn btn-black-outline item-btn display-7" target="_blank">
+                            <a :href="`/departments/${callout.id}`" class="btn btn-black-outline item-btn display-7" target="_blank">
                                 <span class="mobi-mbri mobi-mbri-arrow-next mbr-iconfont mbr-iconfont-btn"></span>
                                 Read More
                             </a>
                         </div>
                     </div>
                     <div class="item-img">
-                        <img src="assets/images/011.jpg" alt="">
+                        <img :src="`${callout?.image?.sourceUrl}`" :alt="callout?.name">
                     </div>
                 </div>
             </div>
@@ -80,9 +80,26 @@
 </script>
 
 <script setup>
-  
-  const { getItems } = useDirectusItems()
+const query = gql `
+query NewQuery {
+  productCategories(where: {name: "Yardsale"}) {
+    nodes {
+      id
+      image {
+        sourceUrl
+      }
+      name
+      description
+    }
+  }
+}
+`
+
+  const {
+    data
+  } = useAsyncQuery(query);
+/*  const { getItems } = useDirectusItems()
 
   //const products = await getItems({ collection: "products"});
-  const departments = await getItems({ collection: "departments", params: {filter: {name: {_eq: "Yardsale"}}} });/**/
+  const departments = await getItems({ collection: "departments", params: {filter: {name: {_eq: "Yardsale"}}} });*/
 </script>

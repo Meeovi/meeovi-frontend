@@ -53,10 +53,10 @@
   } from 'vue';
   import {
     getCurrencySettings
-  } from '~/composables/getCurrencySettings';
+  } from '~/composables/read/getCurrencySettings';
   import {
     getProducts
-  } from '~/composables/getProducts';
+  } from '~/composables/read/getProducts';
 
   const products = ref([]);
   const currency = ref('');

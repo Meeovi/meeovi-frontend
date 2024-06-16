@@ -6,7 +6,7 @@
         <div class="row main align-items-center">
           <div class="col-md-6 image-element ">
             <div class="img-wrap">
-              <img :src="`${callout?.featuredImage?.node?.soureceUrl}`" :alt="callout?.title" />
+              <img :src="`${callout?.image?.soureceUrl}`" :alt="callout?.title" />
             </div>
           </div>
           <div class="col-md-6 text-element">
@@ -19,8 +19,8 @@
                   <br>
                   <br>
               </div>
-              <div class="mbr-section-btn pt-3 align-center"><a class="btn btn-md btn-white display-4"
-                  href="/categories/theater">Start Watching</a></div>
+              <div class="mbr-section-btn pt-3 align-center"><a class="btn btn-md btn-white display-4" v-for="(category, index) in data?.productCategories?.nodes" :key="index"
+                :href="`/departments/${category?.id}`">Start Watching</a></div>
             </div>
           </div>
         </div>
@@ -48,6 +48,15 @@ query NewQuery {
           sourceUrl
         }
       }
+    }
+  }
+  productCategories(where: {name: "Theater"}) {
+    nodes {
+      id
+      image {
+        sourceUrl
+      }
+      name
     }
   }
 }

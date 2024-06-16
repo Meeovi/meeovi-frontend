@@ -103,7 +103,7 @@
 </script>
 
 <script setup>
-import { useShopById } from '~/composables/getShops';
+import { useShopById } from '~/composables/read/getShops';
 
 const shop = ref(null);
 const route = useRoute();

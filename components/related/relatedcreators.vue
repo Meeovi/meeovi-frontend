@@ -1,42 +1,36 @@
 <template>
     <div>
-        <v-sheet class="mx-auto sliderCreators">
+        <v-sheet class="mx-auto sliderProducts row align-items-stretch items-row justify-content-center">
+            <h4>Related Creators</h4>
             <v-slide-group v-model="model" class="pa-4" center-active>
-                <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }">
-                    <section data-bs-version="5.1" class="formulam5 team1 cid-tZY2FlPq3D" id="people1-6f">
+                <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }" v-for="(customers, index) in data?.members?.nodes" :key="index">
+                    <v-card :class="['ma-4', selectedClass]" @click="toggle" max-width="300" :href="`/account/user/${customers?.id}`">
+                        <img class="align-end text-white" style="height: 250px;" :src="`${customers?.avatar?.url}`"
+                            :alt="customers?.username" cover />
 
-                        <div class="container-fluid">
-                            <div class="row justify-content-center">
-                                <div class="col-12 col-lg-12">
-                                    <div class="mbr-section-head mb-3">
-                                        <h4 class="mbr-section-title mbr-fonts-style align-center mb-0 display-5">
-                                            <strong>Check out some of our Creators</strong></h4>
+                        <v-card-title>@{{ customers?.username }}</v-card-title>
 
+                        <v-card-subtitle class="pt-4">
+                            <span class="fas fa-globe">{{ customers?.locale }}</span>
+                        </v-card-subtitle>
 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="item features-image col-12 col-md-6">
-                                    <div class="item-wrapper">
-                                        <div class="item-img">
-                                            <div class="img-wrap">
-                                                <img src="assets/images/team1.jpg" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="item-content">
-                                            <h5 class="item-title mbr-fonts-style display-4"><strong>Ashley W.
-                                                    Wheeler</strong></h5>
-                                            <h6 class="item-subtitle mbr-fonts-style display-4">Director</h6>
+                        <v-card-text>
+                            <div># of Friends: {{ customers?.totalFriendCount }}</div>
 
+                            <div>Member Type: {{ customers?.memberTypes }}</div>
 
-                                        </div>
+                            Last Update: <div v-html="customers?.latestUpdate"></div>
+                        </v-card-text>
 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                        <v-card-actions>
+                            <followButton />
+                        </v-card-actions>
+                    </v-card>
+                    <div class="d-flex fill-height align-center justify-center">
+                        <v-scale-transition>
+                            <v-icon v-if="isSelected" color="white" icon="mdi-close-circle-outline" size="48"></v-icon>
+                        </v-scale-transition>
+                    </div>
                 </v-slide-group-item>
             </v-slide-group>
         </v-sheet>
@@ -47,12 +41,35 @@
     export default {
         data: () => ({
             model: null,
-            url: 'http://67.207.71.123:8011/',
         }),
     }
 </script>
 
 <script setup>
+    const query = gql `
+query NewQuery {
+  members {
+    nodes {
+      avatar {
+        url
+      }
+      description
+      id
+      memberTypes
+      url
+      username
+      totalFriendCount
+      locale
+      latestUpdate
+    }
+  }
+}
+`
+
+    const {
+        data
+    } = useAsyncQuery(query);
+
     /* import query from '../../apollo/Custom/Queries/relatedcreators'
 
   const {

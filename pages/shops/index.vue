@@ -43,7 +43,7 @@
   } from 'vue';
   import {
     getShops
-  } from '~/composables/getShops';
+  } from '~/composables/read/getShops';
 
   const shops = ref([]);
 

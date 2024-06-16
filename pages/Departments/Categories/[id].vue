@@ -1,30 +1,50 @@
 <template>
   <div class="contentPage">
     <v-card variant="text">
-      <v-tabs center-active>
-        <h5 style="padding: 15px">Meeovi <a :href="`/departments/${data?.productCategory?.parent?.node?.id}`"></a>{{ data?.productCategory?.parent?.node?.name }} - {{ data?.productCategory?.name }}</h5>
-        <v-tab><a :href="`/categories/${data?.productCategory?.id}`">All</a></v-tab>
-          <v-tab v-for="(categories, index) in productCategory?.children?.nodes" :key="index"><a :href="`/departments/categories/${categories?.id}`">{{ categories?.name }}</a>
-          </v-tab>
-      </v-tabs>
+      <v-sheet class="mx-auto">
+        <v-slide-group show-arrows>
+          <h5 style="padding: 15px">Meeovi <a :href="`/departments/${data?.productCategory?.parent?.node?.id}`"></a>{{ data?.productCategory?.parent?.node?.name }} - {{ data?.productCategory?.name }}</h5>
+          <v-slide-group-item v-slot="{ isSelected, toggle }">
+            <v-btn :color="isSelected ? 'primary' : undefined" class="ma-2" @click="toggle" :href="`/departments/categories/${data.productCategory?.id}`">
+              All
+            </v-btn>
+          </v-slide-group-item>
+
+          <v-slide-group-item v-for="categories in data?.productCategory?.children?.nodes" :key="categories" v-slot="{ isSelected, toggle }">
+            <v-btn :color="isSelected ? 'primary' : undefined" class="ma-2" @click="toggle" :href="`/departments/categories/${categories.id}`">
+              {{ categories.name }}
+            </v-btn>
+          </v-slide-group-item>
+        </v-slide-group>
+      </v-sheet>
     </v-card>
 
     <v-row class="departmentRow">
       <!--Best Seller Product Slider-->
-      <h2>Best Sellers in {{ data.productCategory?.name }}</h2>
-      <productCard />
+      <v-col cols="12">
+        <bestsellers /> 
+      </v-col>
+      
+      <!--List of products in the category-->
+      <v-col cols="12">
+        <latestproducts /> 
+      </v-col>
 
       <!--List of products in the category-->
-      <h2>Latest in {{ data.productCategory?.name }}</h2>
-      <productCard />
+      <v-col cols="12">
+        <productCard /> 
+      </v-col>
 
-      <!--List of products in the category-->
-      <h2>Featured in {{ data.productCategory?.name }}</h2>
-      <productCard />
+      <v-col cols="12">
+        <relatedevents /> 
+      </v-col>
       <!---->
+
+      <!--List of spaces in the category-->
+      <v-col cols="12">
+        <relatedspaces /> 
+      </v-col>
     </v-row>
-    <latestproducts />
-    <bestsellers />
     <relatedcreators />
   </div>
 </template>
@@ -32,6 +52,7 @@
 <script>
   //import videobar from '../../components/menus/videobar.vue'
   import latestproducts from '../../components/related/latestproducts.vue'
+  import relatedevents from '../../components/related/relatedevents.vue'
   import bestsellers from '../../components/related/bestsellers.vue'
   import relatedcreators from '../../components/related/relatedcreators.vue'
   import productCard from '../../components/commerce/product/productCard.vue'
@@ -41,6 +62,7 @@
       //videobar,
       //live,
       latestproducts,
+      relatedevents,
       bestsellers,
       relatedcreators,
       productCard,

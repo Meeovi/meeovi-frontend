@@ -1,12 +1,12 @@
 <template>
   <div>
-    <section data-bs-version="5.1" class="features1 cid-tAGUEKoXKD" id="features1-5y" v-for="callout in data?.pages?.nodes" :key="callout">
+    <section data-bs-version="5.1" class="features1 cid-tAGUEKoXKD" id="features1-5y" v-for="(callout, index) in data?.pages?.nodes" :key="index">
 
       <div class="container">
         <div class="row main align-items-center">
           <div class="col-md-6 image-element ">
-            <div class="img-wrap">
-              <img :src="`${callout?.featuredImage?.node?.soureceUrl}`" :alt="callout?.title" />
+            <div class="img-wrap" v-for="(category, index) in data?.productCategories?.nodes" :key="index">
+              <img :src="`${category?.image?.soureceUrl}`" :alt="category?.name" />
             </div>
           </div>
           <div class="col-md-6 text-element">
@@ -19,8 +19,8 @@
                   <br>
                   <br>
               </div>
-              <div class="mbr-section-btn pt-3 align-center"><a class="btn btn-md btn-white display-4"
-                  href="/categories/books">Start Reading</a></div>
+              <div class="mbr-section-btn pt-3 align-center"><a class="btn btn-md btn-white display-4" v-for="(category, index) in data?.productCategories?.nodes" :key="index"
+                  :href="`/departments/${category?.id}`">Start Reading</a></div>
             </div>
           </div>
         </div>
@@ -48,6 +48,15 @@ query NewQuery {
           sourceUrl
         }
       }
+    }
+  }
+  productCategories(where: {name: "Books"}) {
+    nodes {
+      id
+      image {
+        sourceUrl
+      }
+      name
     }
   }
 }
