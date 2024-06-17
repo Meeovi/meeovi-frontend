@@ -48,11 +48,12 @@
     <v-main>
       <v-card>
         <v-layout>
-          <v-navigation-drawer class="sidebarSection" v-model="drawer" prominent>
+          <v-navigation-drawer class="sidebarSection" v-model="drawer" temporary>
             <accountDetails />
 
             <v-list nav>
-             <!----> <topmenu />
+             <!----> 
+              <topmenu />
               <v-divider></v-divider>
 
               <socialmenu />

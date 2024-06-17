@@ -5,6 +5,7 @@ import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  ssr: false,
   app: {
     head: {
       viewport: 'minimum-scale=1, initial-scale=1, width=device-width',

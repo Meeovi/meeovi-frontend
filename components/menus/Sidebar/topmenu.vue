@@ -8,7 +8,7 @@
 <script setup>
 const query = gql `
 query NewQuery {
-  navigations(where: {search: "Trending"}) {
+  navigations(where: {title: "Trending"}) {
     nodes {
       title
       navigationFields {

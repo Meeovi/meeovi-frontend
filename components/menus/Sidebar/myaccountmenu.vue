@@ -23,7 +23,7 @@
 <script setup>
 const query = gql `
 query NewQuery {
-  navigations(where: {search: "Account Commerce Menu"}) {
+  navigations(where: {search: "Account Commerce"}) {
     nodes {
       title
       navigationFields {
