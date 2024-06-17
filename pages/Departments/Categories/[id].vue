@@ -3,7 +3,7 @@
     <v-card variant="text">
       <v-sheet class="mx-auto">
         <v-slide-group show-arrows>
-          <h5 style="padding: 15px">Meeovi <a :href="`/departments/${data?.productCategory?.parent?.node?.id}`"></a>{{ data?.productCategory?.parent?.node?.name }} - {{ data?.productCategory?.name }}</h5>
+          <h5 style="padding: 15px">Meeovi <a :href="`/departments/${data?.productCategory?.parent?.node?.id}`">{{ data?.productCategory?.parent?.node?.name }}</a> - {{ data?.productCategory?.name }}</h5>
           <v-slide-group-item v-slot="{ isSelected, toggle }">
             <v-btn :color="isSelected ? 'primary' : undefined" class="ma-2" @click="toggle" :href="`/departments/categories/${data.productCategory?.id}`">
               All
@@ -50,21 +50,23 @@
 </template>
 
 <script>
-  //import videobar from '../../components/menus/videobar.vue'
   import latestproducts from '../../components/related/latestproducts.vue'
   import relatedevents from '../../components/related/relatedevents.vue'
   import bestsellers from '../../components/related/bestsellers.vue'
   import relatedcreators from '../../components/related/relatedcreators.vue'
+  import shorts from '../../components/related/shorts.vue'
+  import relatedspaces from '../../components/related/relatedspaces.vue'
   import productCard from '../../components/commerce/product/productCard.vue'
 
   export default {
     components: {
-      //videobar,
       //live,
       latestproducts,
       relatedevents,
       bestsellers,
       relatedcreators,
+      relatedspaces,
+      shorts,
       productCard,
     },
     data() {

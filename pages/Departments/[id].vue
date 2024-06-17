@@ -5,13 +5,13 @@
         <v-slide-group show-arrows>
           <h5 style="padding: 15px">Meeovi {{ data?.productCategory?.name }}</h5>
           <v-slide-group-item v-slot="{ isSelected, toggle }">
-            <v-btn :color="isSelected ? 'primary' : undefined" class="ma-2" @click="toggle" :href="`/departments/${data.productCategory?.id}`">
+            <v-btn :color="isSelected ? 'primary' : undefined" class="ma-2" @click="toggle" :href="`/departments/${data?.productCategory?.id}`">
               All
             </v-btn>
           </v-slide-group-item>
 
           <v-slide-group-item v-for="categories in data?.productCategory?.children?.nodes" :key="categories" v-slot="{ isSelected, toggle }">
-            <v-btn :color="isSelected ? 'primary' : undefined" class="ma-2" @click="toggle" :href="`/departments/categories/${categories.id}`">
+            <v-btn :color="isSelected ? 'primary' : undefined" class="ma-2" @click="toggle" :href="`/departments/categories/${categories?.id}`">
               {{ categories.name }}
             </v-btn>
           </v-slide-group-item>
@@ -61,6 +61,8 @@
   import relatedevents from '../../components/related/relatedevents.vue'
   import bestsellers from '../../components/related/bestsellers.vue'
   import relatedcreators from '../../components/related/relatedcreators.vue'
+  import shorts from '../../components/related/shorts.vue'
+  import relatedspaces from '../../components/related/relatedspaces.vue'
   import productCard from '../../components/commerce/product/productCard.vue'
 
   export default {
@@ -71,12 +73,14 @@
       relatedevents,
       bestsellers,
       relatedcreators,
+      relatedspaces,
+      shorts,
       productCard,
     },
     data() {
       return {
         model: null,
-        url: process.env.DIRECTUS_URL,
+        //url: process.env.DIRECTUS_URL,
       }
     },
   }

@@ -25,7 +25,7 @@
                             <template v-slot:activator="{ props }">
                                 <div class="avatarBorder" v-for="video in data?.video?.videoFields" :key="video">
                                     <v-avatar v-bind="props" size="60">
-                                        <img :src="`${video?.thumbnail?.node?.sourceUrl}`" :alt="video?.name" cover />
+                                        <img :src="`${video?.thumbnail?.node?.sourceUrl}`" :alt="video?.title" cover />
                                     </v-avatar>
                                 </div>
                             </template>
@@ -34,7 +34,8 @@
                                 <v-row>
                                     <v-col cols="6"><video class="liveVideo" :src="videoid?.video?.videoFields?.videoFile?.node?.sourceUrl" autoplay controls></video></v-col>
                                     <v-col cols="6">
-                                        <p>{{ videoid?.video?.videoFields?.description }}</p>
+                                      <p>{{ videoid?.video?.title }}</p>
+                                        <p>{{ videoid?.video?.content }}</p>
                                         <v-divider></v-divider>
                                         <disqus />
                                     </v-col>
@@ -83,18 +84,20 @@ query NewQuery {
     nodes {
       date
       id
+      content
+      title
       videoFields {
-        description
-        name
+        bookmarkVideoUrl
         type
         videoFile {
           node {
             sourceUrl
           }
         }
-        thumbnail {
-          node {
-            sourceUrl
+        media {
+          nodes {
+            id
+            name
           }
         }
       }
@@ -112,9 +115,9 @@ const queryid = gql`
 query NewQuery ($id: ID!) {
   video(id: $id){
     id
+    title
+    content
     videoFields {
-      description
-      name
       type
       videoFile {
         node {

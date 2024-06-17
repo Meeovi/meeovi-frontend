@@ -38,7 +38,10 @@
 </template>
 
 <script>
+import followButton from '../social/followButton.vue'
+
     export default {
+        components: { followButton },
         data: () => ({
             model: null,
         }),

@@ -41,7 +41,7 @@
 <script>
   export default {
     data: () => ({
-      url: process.env.DIRECTUS_URL,
+      //url: process.env.DIRECTUS_URL,
       rating: null,
     }),
   }
