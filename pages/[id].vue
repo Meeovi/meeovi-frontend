@@ -26,6 +26,6 @@ if (error) {
 }
 
 useHead({
-        title: data?.value?.page?.title,
+    title: data?.value?.page?.title,
     })
 </script>

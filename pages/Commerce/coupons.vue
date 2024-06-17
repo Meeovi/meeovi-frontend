@@ -5,28 +5,28 @@
             <v-col cols="12">
                 <v-toolbar title="Your Coupons" subtitle=""></v-toolbar>
                 <v-row class="accountRow">
-                    <v-col cols="3" v-for="(coupons, index) in data?.coupons?.nodes" :key="index">
+                    <v-col cols="3" v-for="(coupons, index) in coupons" :key="index">
                         <v-card class="mx-auto" max-width="400">
-                            <v-card-title>{{coupons?.amount}}</v-card-title>
+                            <v-card-title>{{coupons?.code}}</v-card-title>
 
                             <v-card-subtitle class="pt-4">
-                                <div>Description: {{ coupons?.description }}</div>
+                                <div>Amount: {{ coupons?.amount }}</div>
 
-                                <div>Code: {{ coupons?.code }}</div>
+                                Description: <div v-html="coupons?.description"></div>
 
-                                <div>Minimum Amount: {{ coupons?.minimumAmount }}</div>
+                                <div>Minimum Amount: {{ coupons?.minimum_amount }}</div>
 
-                                <div>Maximum Amount: {{ coupons?.maximumAmount }}</div>
+                                <div>Maximum Amount: {{ coupons?.maximum_amount }}</div>
                             </v-card-subtitle>
 
                             <v-card-text>
-                                <div>Valid From: {{ coupons?.date }}</div>
+                                <div>Date Created: {{ new Date(coupons?.date_created).toLocaleDateString() }}</div>
 
-                                <div>Valid Until: {{ coupons?.dateExpiry }}</div>
+                                <div>Valid Until: {{ new Date(coupons?.date_expires).toLocaleDateString() }}</div>
 
                                 <div>How many times can be used: {{ coupons?.usageLimit }}</div>
 
-                                <div>Discount Type: {{ coupons?.discountType }}</div>
+                                <div>Discount Type: {{ coupons?.discount_type }}</div>
                             </v-card-text>
 
                             <v-card-actions>
@@ -46,26 +46,28 @@
             <v-col cols="12">
                 <v-toolbar title="Available Coupons" subtitle=""></v-toolbar>
                 <v-row class="accountRow">
-                    <v-col cols="3" v-for="(coupons, index) in data?.coupons?.nodes" :key="index">
+                    <v-col cols="3" v-for="(coupons, index) in coupons" :key="index">
                         <v-card class="mx-auto" max-width="400">
-                            <v-card-title>{{coupons?.amount}}</v-card-title>
+                            <v-card-title>{{coupons?.code}}</v-card-title>
 
                             <v-card-subtitle class="pt-4">
-                                <div>Description: {{ coupons?.description }}</div>
+                                <div>Amount: {{ coupons?.amount }}</div>
 
-                                <div>Minimum Amount: {{ coupons?.minimumAmount }}</div>
+                                Description: <div v-html="coupons?.description"></div>
 
-                                <div>Maximum Amount: {{ coupons?.maximumAmount }}</div>
+                                <div>Minimum Amount: {{ coupons?.minimum_amount }}</div>
+
+                                <div>Maximum Amount: {{ coupons?.maximum_amount }}</div>
                             </v-card-subtitle>
 
                             <v-card-text>
-                                <div>Valid From: {{ coupons?.date }}</div>
+                                <div>Date Created: {{ new Date(coupons?.date_created).toLocaleDateString() }}</div>
 
-                                <div>Valid Until: {{ coupons?.dateExpiry }}</div>
+                                <div>Valid Until: {{ new Date(coupons?.date_expires).toLocaleDateString() }}</div>
 
                                 <div>How many times can be used: {{ coupons?.usageLimit }}</div>
 
-                                <div>Discount Type: {{ coupons?.discountType }}</div>
+                                <div>Discount Type: {{ coupons?.discount_type }}</div>
                             </v-card-text>
 
                             <v-card-actions>
@@ -102,31 +104,19 @@
 </script>
 
 <script setup>
-const route = useRoute();
-const query = gql`
-query NewQuery {
-  coupons {
-    nodes {
-      amount
-      code
-      date
-      dateExpiry
-      description
-      discountType
-      freeShipping
-      id
-      individualUse
-      minimumAmount
-      maximumAmount
-      usageLimit
-    }
-  }
-}
-`
+  import {
+    ref,
+    onMounted
+  } from 'vue';
+  import {
+    getCoupons
+  } from '~/composables/read/getCoupons';
 
-  const {
-    data
-  } = useAsyncQuery(query);
+  const coupons = ref([]);
+
+  onMounted(async () => {
+    coupons.value = await getCoupons();
+  });
 /*  const {
     getItems
   } = useDirectusItems()
@@ -140,6 +130,6 @@ query NewQuery {
     })
 
     definePageMeta({
-	  middleware: ['auth-logged-in'],
+	  //middleware: ['auth-logged-in'],
 	})
 </script>
