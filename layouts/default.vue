@@ -48,7 +48,7 @@
     <v-main>
       <v-card>
         <v-layout>
-          <v-navigation-drawer class="sidebarSection" v-model="drawer" temporary>
+          <v-navigation-drawer class="sidebarSection" v-model="drawer" prominent>
             <accountDetails />
 
             <v-list nav>

@@ -516,12 +516,11 @@ body {
     padding-right: 0px;
 }
 
-.sidebarSection {
+.v-navigation-drawer--active {
     height: 100% !important;
-    min-width: 456px !important;
-    float: left;
-    left: -220px !important
+    width: auto !important;
 }
+
 
 /********************* Social CSS **************/
 
