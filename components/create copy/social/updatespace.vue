@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-card elevation="0">
-            <form v-if="props.id">
+            <form>
                 <v-card-text>
                     <v-container>
                         <v-row>
@@ -67,7 +67,7 @@
 </script>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 const route = useRoute();
 
 // Props
@@ -78,20 +78,27 @@ const props = defineProps({
     },
   });
 
+  const {
+    id
+  } = props;
+
 // Access environment variables
 const apiUrl = process.env.API_URL || 'https://meeovi.meeovicms.com'
 const wordpressToken = process.env.WORDPRESS_TOKEN || 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL21lZW92aS5tZWVvdmljbXMuY29tIiwiaWF0IjoxNzE4ODk5NDUzLCJuYmYiOjE3MTg4OTk0NTMsImV4cCI6MTcxOTUwNDI1MywiZGF0YSI6eyJ1c2VyIjp7ImlkIjoiMSJ9fX0.LZhiDr1iYKF8qSwVZ5ZUsPfuObwCsSO3oN5tXvxGHdg'
 
 const name = ref('');
+const type = ref('');
 const description = ref('');
 const attachmentCover = ref('');
 const attachmentAvatar = ref('');
 const errorMessage = ref('');
 const successMessage = ref('')
+const typeItems = ref('Default', 'Audio', 'Video');
+const statusItems = ref('Public', 'Private', 'Hidden')
 
 const updateGroup = async () => {
   try {
-    const response = await $fetch(`${apiUrl}/wp-json/buddypress/v1/groups/${route.params.id}`, {
+    const response = await $fetch(`${apiUrl}/wp-json/buddypress/v1/groups/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -133,7 +140,7 @@ const updateGroup = async () => {
 
 const deleteGroup = async () => {
   try {
-    const response = await $fetch(`${apiUrl}/wp-json/buddypress/v1/groups/${route.params.id}`, {
+    const response = await $fetch(`${apiUrl}/wp-json/buddypress/v1/groups/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -141,7 +148,7 @@ const deleteGroup = async () => {
       },
     })
     console.log('Group deleted:', response)
-    route.push('/social/spaces');
+    router.push('/social/spaces');
   } catch (error) {
     console.error('Error deleting group:', error)
   }

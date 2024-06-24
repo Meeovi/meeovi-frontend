@@ -7,10 +7,10 @@
                     <v-sheet class="mx-auto" elevation="0" color="transparent">
                         <v-slide-group v-model="model" class="pa-4" selected-class="bg-success" show-arrows>
                             <createspace />
-                            <v-slide-group-item v-for="(spaces, index) in data?.groups?.nodes" :key="index"
+                            <v-slide-group-item v-for="(spaces, index) in groups" :key="index"
                                 v-slot="{ isSelected, toggle, selectedClass }">
-                                <v-card :class="['ma-4', selectedClass]" color="white" height="221" width="196" :href="`/social/group/${spaces?.id}`" @click="toggle">
-                                    <img :src="`${spaces?.attachmentCover?.full}`" :alt="spaces?.name" cover />
+                                <v-card :class="['ma-4', selectedClass]" color="white" height="321" width="196" :href="`/social/group/${spaces?.id}`" @click="toggle">
+                                    <img :src="`${spaces?.avatar_urls?.full}`" :alt="spaces?.name" cover />
                                     <v-card-title>{{ spaces?.name }}</v-card-title>
                                     <v-card-subtitle style="display: inline-block;">By: {{spaces?.creator?.username}}</v-card-subtitle>
                                     <div class="d-flex fill-height align-center justify-center">
@@ -28,7 +28,7 @@
                 <section class="features4 cid-sBXUicXM4E" id="features5-2g">
                     <div class="container">
                         <div class="row">
-                            <div class="col-12 col-lg-6" v-for="(spaces, index) in data?.groups?.nodes" :key="index">
+                            <div class="col-12 col-lg-6" v-for="(spaces, index) in groups" :key="index">
                                 <div class="card-wrapper">
                                     <div class="row">
                                         <div class="col-12 col-md-7">
@@ -36,22 +36,22 @@
                                                 <h5 class="card-title mbr-fonts-style display-5">
                                                     <strong>{{ spaces?.name }}</strong></h5>
                                                 <h6 class="card-subtitle mbr-fonts-style mb-2 display-4">Created:
-                                                    {{ new Date(spaces?.dateCreated).toLocaleDateString() }}</h6>
+                                                    {{ new Date(spaces?.date_created).toLocaleDateString() }}</h6>
                                                 <h6 class="card-subtitle mbr-fonts-style mb-2 display-4">Last Activity:
-                                                    {{ new Date(spaces?.lastActivity).toLocaleDateString() }}</h6>
+                                                    {{ new Date(spaces?.last_activity).toLocaleDateString() }}</h6>
                                                 <p class="mbr-text mbr-fonts-style mb-5 display-4"># of Members:
-                                                    {{spaces?.totalMemberCount}}</p>
+                                                    {{spaces?.total_member_count}}</p>
                                                 <p class="mbr-text mbr-fonts-style mb-5 display-4">Status:
                                                     {{spaces?.status}}</p>
                                                 <p class="mbr-text mbr-fonts-style mb-5 display-4"
-                                                    v-html="spaces?.description"></p>
+                                                    v-html="spaces?.description?.rendered"></p>
                                                 <div class="mbr-section-btn"><a :href="`/social/group/${spaces?.id}`"
                                                         class="btn btn-warning display-4">Learn more</a></div>
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-5">
                                             <div class="img-wrapper">
-                                                <img :src="`${spaces?.attachmentCover?.full}`" :alt="spaces?.name"
+                                                <img :src="`${spaces?.avatar_urls?.full}`" :alt="spaces?.name"
                                                     cover />
                                             </div>
                                         </div>
@@ -84,7 +84,21 @@
 </script>
 
 <script setup>
-    const query = gql `
+  import {
+    ref,
+    onMounted
+  } from 'vue';
+  import {
+    getGroups
+  } from '~/composables/read/getGroups';
+
+  const groups = ref([]);
+
+  onMounted(async () => {
+    groups.value = await getGroups();
+  });
+
+/*    const query = gql `
 query NewQuery {
 groups(where: {status: PUBLIC, type: ACTIVE}) {
     nodes {
@@ -114,7 +128,7 @@ groups(where: {status: PUBLIC, type: ACTIVE}) {
         data
     } = useAsyncQuery(query);
 
-    /*const {
+    const {
         getItems
       } = useDirectusItems()
 
