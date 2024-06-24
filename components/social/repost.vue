@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="sharethis-inline-share-buttons"></div>
+        <v-btn stacked icon="fas fa-retweet" title="Repost" variant="text"></v-btn>
     </div>
 </template>
 

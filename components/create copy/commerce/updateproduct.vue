@@ -1,7 +1,7 @@
 <template>
     <div>
         <form action="" method="post" @v-on:submit.prevent="addContent()">
-                    <v-toolbar dark color="steelblue">
+                    <v-toolbar dark color="rgb(var(--v-theme-primary))!important">
                         <v-card-title>
                             <span class="text-h6">Create new Product</span>
                         </v-card-title>

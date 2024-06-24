@@ -139,4 +139,4 @@ onMounted(async () => {
   useHead({
         title: shop?.name,
     })
-</script>
+</script>~/server/api/read/getShops

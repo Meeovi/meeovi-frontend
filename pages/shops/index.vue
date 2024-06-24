@@ -54,4 +54,4 @@
   useHead({
     title: 'Shops',
   })
-</script>
+</script>~/server/api/read/getShops

@@ -3,7 +3,7 @@
         <v-sheet class="mx-auto sliderProducts row align-items-stretch items-row justify-content-center">
             <h4>Related Creators</h4>
             <v-slide-group v-model="model" class="pa-4" center-active>
-                <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }" v-for="(customers, index) in data?.members?.nodes" :key="index">
+                <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }">
                     <v-card :class="['ma-4', selectedClass]" @click="toggle" max-width="300" :href="`/account/user/${customers?.id}`">
                         <img class="align-end text-white" style="height: 250px;" :src="`${customers?.avatar?.url}`"
                             :alt="customers?.username" cover />
@@ -49,29 +49,15 @@ import followButton from '../social/followButton.vue'
 </script>
 
 <script setup>
-    const query = gql `
-query NewQuery {
-  members {
-    nodes {
-      avatar {
-        url
-      }
-      description
-      id
-      memberTypes
-      url
-      username
-      totalFriendCount
-      locale
-      latestUpdate
-    }
-  }
-}
-`
-
-    const {
-        data
-    } = useAsyncQuery(query);
+  const props = defineProps({
+    customers: {
+      type: Object,
+      required: true,
+    },
+  });
+  const {
+    customers
+  } = props;
 
     /* import query from '../../apollo/Custom/Queries/relatedcreators'
 

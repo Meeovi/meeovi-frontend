@@ -3,7 +3,7 @@
        <!-- <section data-bs-version="5.1" class="content2 cid-skeBU2vAkT" id="content2-8">
             <div class="container-fluid">
                 <div class="mbr-section-head">
-                    <h4 class="mbr-section-title mbr-fonts-style align-left mb-0 display-2" style="color: steelblue;">
+                    <h4 class="mbr-section-title mbr-fonts-style align-left mb-0 display-2" style="color: rgb(var(--v-theme-primary))!important;">
                         <strong v-text="page?.content"></strong></h4>
 
                 </div>

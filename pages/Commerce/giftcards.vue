@@ -38,7 +38,7 @@
             <v-col cols="12">
                 <v-toolbar title="Available Gift Cards" subtitle=""></v-toolbar>
                 <v-row class="accountRow">
-                    <v-col cols="3" v-for="(card, index) in data?.giftCards?.nodes" :key="index">
+                    <v-col cols="3" v-for="(card, index) in cards" :key="index">
                         <v-card class="mx-auto" max-width="400">
                             <img class="align-end text-white" height="200"
                             :src="card?.giftCardFields.image?.node?.sourceUrl" :alt="card?.giftCardFields.name" cover />
@@ -69,7 +69,6 @@
 
 <script>
     import profilebar from '../../components/menus/profilebar.vue'
-    const productModel = ref(null)
 
     export default {
         components: {
@@ -77,13 +76,8 @@
         },
         data: () => ({
             model: null,
-            url: process.env.DIRECTUS_URL,
+            //url: process.env.DIRECTUS_URL,
         }),
-        setup() {
-            return {
-                productModel,
-            }
-        },
     }
 </script>
 
@@ -117,4 +111,4 @@
     definePageMeta({
 	  //middleware: ['auth-logged-in'],
 	})
-</script>~/composables/read/getGiftCards
+</script>

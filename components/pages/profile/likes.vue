@@ -14,11 +14,11 @@
         </v-card-text>
 
         <v-card-actions>
-            <v-btn color="steelblue">
+            <v-btn color="rgb(var(--v-theme-primary))!important">
                 Share
             </v-btn>
 
-            <v-btn color="steelblue" :href="`/social/feed/${activities?.id}`">
+            <v-btn color="rgb(var(--v-theme-primary))!important" :href="`/social/feed/${activities?.id}`">
                 Explore
             </v-btn>
         </v-card-actions>

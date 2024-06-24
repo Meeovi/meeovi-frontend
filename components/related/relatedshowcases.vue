@@ -2,8 +2,7 @@
   <div>
     <h4>Related Showcases</h4>
     <v-slide-group v-model="model" class="pa-4" selected-class="bg-success" show-arrows>
-      <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }"
-        v-for="(showcases, index) in data?.showcases?.nodes" :key="index">
+      <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }">
         <v-card class="mx-auto" max-width="400">
           <img class="align-end text-white" height="200" :src="showcases?.showcaseFields?.image?.node?.sourceUrl" :alt="showcases?.showcaseFields?.name" cover />
             <v-card-title>{{ showcases?.showcaseFields?.name }}</v-card-title>
@@ -45,36 +44,13 @@
 </script>
 
 <script setup>
-  const query = gql `
-query NewQuery {
-  showcases {
-    nodes {
-      author {
-        node {
-          avatar {
-            url
-          }
-          username
-        }
-      }
-      date
-      showcaseFields {
-        image {
-          node {
-            sourceUrl
-          }
-        }
-        name
-        rating
-        description
-      }
-      id
-    }
-  }
-}
-`
-
+  const props = defineProps({
+    showcases: {
+      type: Object,
+      required: true,
+    },
+  });
   const {
-    data
-  } = useAsyncQuery(query);
+    showcases
+  } = props;
 </script>

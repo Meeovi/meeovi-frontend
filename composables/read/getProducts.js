@@ -17,7 +17,7 @@ export const getProducts = async () => {
   }
 };
 
-export const getProductById = async () => {
+export const getProductById = async (id) => {
   try {
     const products = await $fetch(`${apiUrl}/wp-json/wc/v3/products/${id}`, {
       params: {

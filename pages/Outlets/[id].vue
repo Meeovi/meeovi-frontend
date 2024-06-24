@@ -18,10 +18,9 @@
         </v-slide-group>
       </v-sheet>
 
-      <!--Department Banner Slider
-      <img :src="`${data?.productCategory?.image?.sourceUrl}`" :alt="data?.productCategory?.name" cover />-->
+      <!--Department Banner Slider-->
+      <img :src="`${data?.productCategory?.image?.sourceUrl}`" :alt="data?.productCategory?.name" cover />
       <!--Department Creators Slider-->
-      <shorts />
     </v-card>
 
     <v-row class="departmentRow">
@@ -44,14 +43,7 @@
       <v-col cols="12" v-for="products in events?.products?.nodes" :key="products.id">
         <relatedevents :product="products" />
       </v-col>
-      <!---->
-
-      <!--List of spaces in the department-->
-      <v-col cols="12">
-        <relatedspaces /> 
-      </v-col>
     </v-row>
-    <relatedcreators />
   </div>
 </template>
 
@@ -104,7 +96,7 @@
     }
   }); */
 
-const route = useRoute();
+  const route = useRoute();
 const query = gql `
 query NewQuery ($id: ID!) {
   productCategory(id: $id) {

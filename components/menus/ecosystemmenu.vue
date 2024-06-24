@@ -6,7 +6,7 @@
                     <v-icon start icon="fas fa-bars-staggered"></v-icon>
                 </v-btn>
             </template>
-            <v-card min-height="500" min-width="500">
+            <v-card>
                 <v-toolbar dark color="primary">
                     <v-btn icon dark @click="dialog = false">
                         <v-icon icon="fas fa-circle-xmark"></v-icon>
@@ -18,10 +18,10 @@
                 <v-row style="padding: 10px;" v-for="navigation in data?.navigations?.nodes" :key="navigation?.id">
                     <v-col cols="3" v-for="menu in navigation?.navigationFields?.menu?.nodes" :key="menu?.id">
                         <a :href="menu?.websiteFields?.link">
-                            <v-card class="mx-auto" width="200">
-                                <img class="align-center text-white" min-height="280"
-                                    :src="`${menu?.websiteFields?.image?.node?.sourceUrl}`" :alt="menu?.websiteFields?.name" cover />
-                                <v-card-title>{{ menu?.websiteFields?.name }}</v-card-title>
+                            <v-card class="mx-auto" max-width="300">
+                                <img class="align-center text-white" style="height: 280px;"
+                                    :src="`${menu?.websiteFields?.image?.node?.sourceUrl}`" :alt="menu?.title" cover />
+                                <v-card-title>{{ menu?.title }}</v-card-title>
                             </v-card>
                         </a>
                     </v-col>
@@ -58,7 +58,6 @@ query NewQuery {
                 link
                 type
                 description
-                name
                 image {
                   node {
                     sourceUrl

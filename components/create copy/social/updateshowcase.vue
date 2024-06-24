@@ -1,24 +1,24 @@
 <template>
     <div>
         <v-card elevation="0">
-            <v-toolbar title="Update A List"></v-toolbar>
-            <v-form @submit.prevent="updateList">
+            <v-toolbar title="Update A Showcase"></v-toolbar>
+            <v-form @submit.prevent="updateShowcase">
                 <v-container>
                     <v-row>
                         <v-col cols="6">
-                            <v-text-field v-model="title" label="List Name" required></v-text-field>
+                            <v-text-field v-model="title" label="Showcase Name" required></v-text-field>
                         </v-col>
                         <v-col cols="6">
-                            <v-combobox v-model="type" label="Type" :items="['List', 'Registry', 'Playlist', 'Todo']"></v-combobox>
+                            <v-combobox v-model="type" label="Status" :items="['Public', 'Private']"></v-combobox>
                         </v-col>
                         <v-col cols="12">
-                            <v-file-input clearable label="List Image"></v-file-input>
+                            <v-file-input clearable label="Showcase Image"></v-file-input>
                         </v-col>
                         <v-col cols="12">
-                            <v-textarea v-model="description" label="List Description"></v-textarea>
+                            <v-textarea v-model="description" label="Showcase Description"></v-textarea>
                         </v-col>
                         <v-col cols="12">
-                            <v-card title="Choose a Product for your List">
+                            <v-card title="Choose a Product for your Showcase">
                                 <v-card-text>
                                     <v-text-field density="compact" variant="solo" label="Search Meeovi for products"
                                         append-inner-icon="fas fa-search" single-line hide-details
@@ -105,7 +105,7 @@
     const errorMessage = ref('');
     const successMessage = ref('');
 
-    const updateList = async () => {
+    const updateShowcase = async () => {
         try {
             const response = await $fetch(`${apiUrl}/wp-json/wp/v2/list`, {
                 method: 'POST',
@@ -128,7 +128,7 @@
             console.log(response);
 
             if (response.id) {
-                successMessage.value = 'List updated successfully!'
+                successMessage.value = 'Showcase updated successfully!'
                 errorMessage.value = ''
             } else {
                 throw new Error('Failed to update list')
@@ -150,6 +150,6 @@
     }
 
     useHead({
-        title: 'Update List',
+        title: 'Update Showcase',
     })
 </script>

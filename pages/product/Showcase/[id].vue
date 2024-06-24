@@ -1,5 +1,20 @@
 <template>
   <div class="contentPage">
+    <profilebar />
+    <v-toolbar :title="data?.showcase?.title"  :style="`background: ${data?.showcase?.showcaseFields?.color}`">
+      <v-dialog min-width="500">
+        <template v-slot:activator="{ props: activatorProps }">
+          <v-btn v-bind="activatorProps" prepend-icon="fas fa-plus" title="Update Showcase" variant="flat">Update Showcase
+          </v-btn>
+        </template>
+
+        <template v-slot:default="{ isActive }">
+          <updateshowcase />
+        </template>
+      </v-dialog>
+
+      <v-btn prepend-icon="fas fa-x" variant="text" title="Delete Showcase">Delete Showcase</v-btn>
+    </v-toolbar>
     <section data-bs-version="5.1" class="header7 cid-twaHyROL0Y mbr-fullscreen" id="header7-43" :style="`background: ${data?.showcase?.showcaseFields?.color}`">
       <div class="animated-text-background display-7"
         style="color: rgb(239, 239, 239); opacity: 0.2; font-size: 10rem;">
@@ -28,16 +43,20 @@
       </div>
     </section>
 
-    <productCard />
+    <div style="padding-top: 10px;" v-for="products in data?.showcase?.showcaseFields?.products?.nodes" :key="products.id"><productCard :product="products" /></div>
   </div>
 </template>
 
 <script>
   import productCard from '../../../components/commerce/product/productCard.vue'
+  import profilebar from '../../../components/menus/profilebar.vue'
+  import updateshowcase from '../../../components/create copy/social/updateshowcase.vue'
 
   export default {
     components: {
-      productCard
+      productCard,
+      profilebar,
+      updateshowcase
     }
   }
 </script>

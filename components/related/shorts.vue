@@ -1,6 +1,6 @@
 <template>
-    <div v-for="short in data?.videos?.nodes" :key="short">
-        <a :href="`/product/video/${short?.id}`">
+    <div v-for="short in videos?.nodes" :key="short">
+        <a :href="`/videos/video/${short?.id}`">
             <v-sheet class="mx-auto" elevation="0" min-width="800">
                 <v-slide-group v-model="model" class="pa-4" selected-class="bg-success" show-arrows>
                     <v-slide-group-item v-for="video in short?.videoFields" :key="video"
@@ -38,33 +38,13 @@
 </script>
 
 <script setup>
-const query = gql `
-query NewQuery {
-  videos {
-    nodes {
-      date
-      id
-      videoFields {
-        description
-        name
-        type
-        videoFile {
-          node {
-            sourceUrl
-          }
-        }
-        thumbnail {
-          node {
-            sourceUrl
-          }
-        }
-      }
-    }
-  }
-}
-`
-
-    const {
-        data
-    } = useAsyncQuery(query);
+  const props = defineProps({
+    product: {
+      type: Object,
+      required: true,
+    },
+  });
+  const {
+    product
+  } = props;
 </script>

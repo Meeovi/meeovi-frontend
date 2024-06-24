@@ -6,10 +6,30 @@
                 <v-row>
                     <v-col cols="12">
                         <v-card class="mx-auto">
-                            <v-list lines="two">
-                                <v-list-item :title="data?.activity?.creator?.username" :prepend-avatar="data?.activity?.creator?.avatar?.url">
-                                </v-list-item>
-                            </v-list>
+                            <v-row>
+                                <v-col cols="10">
+                                    <v-list lines="two">
+                                        <v-list-item :title="data?.activity?.creator?.username"
+                                            :prepend-avatar="data?.activity?.creator?.avatar?.url">
+                                        </v-list-item>
+                                    </v-list>
+                                </v-col>
+
+                                <v-col cols="1">
+                                    <v-dialog min-width="500">
+                                        <template v-slot:activator="{ props: activatorProps }">
+                                            <v-btn v-bind="activatorProps" icon="fas fa-gear" title="Update Post" class="rightAddBtn" variant="flat"></v-btn>
+                                        </template>
+
+                                        <template v-slot:default="{ isActive }">
+                                            <updatepost />
+                                        </template>
+                                    </v-dialog>
+                                </v-col>
+
+                                <v-col cols="1"><v-btn class="rightAddBtn" icon="fas fa-x" variant="text" title="Delete Post"></v-btn></v-col>
+                            </v-row>
+
 
                             <v-card-text class="pt-4" v-html="data?.activity?.content"></v-card-text>
 
@@ -20,16 +40,16 @@
                             <v-card-text class="pt-4" v-html="data?.activity?.status"></v-card-text>
 
                             <v-row class="align-center">
-                                <v-col cols="3">
-                                    <repost />
-                                </v-col>
-                                <v-col cols="3">
+                                <v-col>
                                     <reactions />
                                 </v-col>
-                                <v-col cols="3">
+                                <v-col>
+                                    <repost />
+                                </v-col>
+                                <v-col>
                                     <bookmark />
                                 </v-col>
-                                <v-col cols="3">
+                                <v-col>
                                     <share />
                                 </v-col>
                             </v-row>
@@ -53,6 +73,7 @@
     import reactions from '../../../components/social/reactions.vue'
     import bookmark from '../../../components/social/bookmark.vue'
     import share from '../../../components/social/share.vue'
+    import updatepost from '../../../components/create copy/social/updatepost.vue'
 
     export default {
         components: {
@@ -62,7 +83,8 @@
             repost,
             reactions,
             bookmark,
-            share
+            share,
+            updatepost
         },
         data() {
             return {
@@ -73,8 +95,8 @@
 </script>
 
 <script setup>
-const route = useRoute();
-const query = gql`
+    const route = useRoute();
+    const query = gql `
 query NewQuery ($id: ID!) {
   activity(id: $id) {
     content
@@ -93,24 +115,26 @@ query NewQuery ($id: ID!) {
 }
 `
 
-  const {
-    data
-  } = useAsyncQuery(query, { id: route.params.id });
+    const {
+        data
+    } = useAsyncQuery(query, {
+        id: route.params.id
+    });
 
-/*const {
-    getItemById
-  } = useDirectusItems()
+    /*const {
+        getItemById
+      } = useDirectusItems()
 
-  const newsfeed = await getItemById({
-    collection: "newsfeed",
-    id: route.params.id
-  });*/
+      const newsfeed = await getItemById({
+        collection: "newsfeed",
+        id: route.params.id
+      });*/
 
     useHead({
         title: data?.value?.activity?.title,
     })
 
     definePageMeta({
-	  //middleware: ['auth-logged-in'],
-	})
+        //middleware: ['auth-logged-in'],
+    })
 </script>

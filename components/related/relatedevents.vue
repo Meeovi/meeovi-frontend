@@ -5,7 +5,7 @@
       <v-slide-group v-model="model" class="pa-4" prev-icon="fas fa-arrow-left" next-icon="fas fa-arrow-right"
         selected-class="bg-primary">
         <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }">
-          <v-row dense v-for="products in data?.productTags?.nodes" :key="products">
+          <v-row dense v-for="products in productTags?.nodes" :key="products">
             <v-col v-for="products in products?.nodes" :key="products" cols="4">
               <v-card>
                 <img :src="products?.image?.sourceUrl" :alt="products?.name" class="align-end" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" height="200px" cover />
@@ -44,29 +44,13 @@
 </script>
 
 <script setup>
-const query = gql`
-query NewQuery {
-  productTags(where: {name: "Event"}) {
-    nodes {
-      id
-      count
-      description
-      name
-      products {
-        nodes {
-          id
-          image {
-            sourceUrl
-          }
-          name
-        }
-      }
-    }
-  }
-}
-`
-
+  const props = defineProps({
+    productTags: {
+      type: Object,
+      required: true,
+    },
+  });
   const {
-    data
-  } = useAsyncQuery(query);
+    productTags
+  } = props;
 </script>

@@ -29,7 +29,7 @@
           <ecosystemmenu />
         </v-col>
 
-        <v-col>
+        <v-col id="minSearch">
           <mobilesearch />
         </v-col>
 

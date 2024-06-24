@@ -130,11 +130,11 @@
 </script>
 
 <script setup>
-    const query = gql `
+const query = gql `
 query NewQuery {
   members {
     nodes {
-      activities(where: {order: DESC}) {
+      activities(where: {order: DESC, type: ACTIVITY_UPDATE, component: ACTIVITY}) {
         nodes {
           content
           id

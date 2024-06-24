@@ -1,9 +1,12 @@
 <template>
   <v-card variant="text">
     <v-tabs style="background-color: transparent" center-active>
-      <div v-for="(menu, index) in data?.menus?.nodes" :key="index">
-      <v-tab v-for="items in menu?.menuItems?.nodes" :key="items.id">
-        <a :href="items?.url">{{ items?.label }}</a>
+      <div v-for="(menu, index) in data?.navigations?.nodes" :key="index">
+      <v-tab>
+        <a href="/account/user/profile">Profile</a>
+      </v-tab>
+      <v-tab v-for="items in menu?.navigationFields?.menu?.nodes" :key="items.id">
+        <a :href="items?.websiteFields?.link">{{ items?.title }}</a>
       </v-tab>
       </div>
     </v-tabs>
@@ -11,19 +14,25 @@
 </template>
 
 <script setup>
-  const query = gql `
+const query = gql `
 query NewQuery {
-  menus(where: {slug: "Profile Menu"}) {
+  navigations(where: {title: "Profile Menu"}) {
     nodes {
-      id
-      name
-      slug
-      menuItems {
-        nodes {
-          id
-          label
-          title
-          url
+      title
+      navigationFields {
+        menu {
+          nodes {
+            ... on Website {
+              id
+              websiteFields {
+                link
+                type
+                icon
+                description
+              }
+              title
+            }
+          }
         }
       }
     }
@@ -32,7 +41,7 @@ query NewQuery {
 `
 
   const {
-    data
+      data
   } = useAsyncQuery(query);
 
   /* const {

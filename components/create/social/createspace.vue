@@ -1,4 +1,5 @@
 <template>
+    <div>
     <v-row justify="center">
         <v-dialog v-model="dialog" :scrim="false" transition="dialog-bottom-transition">
             <template v-slot:activator="{ props }">
@@ -60,6 +61,7 @@
             </v-card>
         </v-dialog>
     </v-row>
+    </div>
 </template>
 
 <script>
@@ -89,7 +91,9 @@ const description = ref('');
 const attachmentCover = ref('');
 const attachmentAvatar = ref('');
 const errorMessage = ref('');
-const successMessage = ref('')
+const successMessage = ref('');
+const typeItems = ref('Default', 'Audio', 'Video');
+const statusItems = ref('Public', 'Private', 'Hidden')
 
 const createGroup = async () => {
   try {

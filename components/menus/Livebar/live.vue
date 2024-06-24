@@ -4,12 +4,12 @@
             <v-tabs v-model="tab" center-active height="75">
                 <v-tab>
                     <div class="text-center">
-                        <v-dialog v-model="createdialog" width="auto">
+                        <v-dialog v-model="createdialog" width="auto" transition="dialog-bottom-transition" fullscreen>
                             <template v-slot:activator="{ props }">
-                                <v-avatar icon="fas fa-plus" style="background: steelblue; color: white;" size="60"
+                                <v-avatar icon="fas fa-plus" style="background: rgb(var(--v-theme-primary))!important; color: white;" size="60"
                                     v-bind="props"></v-avatar>
                             </template>
-                            <v-card min-height="500" min-width="500">
+                            <v-card>
                                 <video-player class="createVideo" src="" />
                                 <v-card-actions>
                                     <v-btn color="primary" block @click="createdialog = false">Close</v-btn>
@@ -21,11 +21,11 @@
 
                 <v-tab>
                     <div class="text-center">
-                        <v-dialog v-model="dialog" width="auto">
+                        <v-dialog v-model="dialog" width="auto" transition="dialog-bottom-transition" fullscreen>
                             <template v-slot:activator="{ props }">
                                 <div class="avatarBorder" v-for="video in data?.video?.videoFields" :key="video">
                                     <v-avatar v-bind="props" size="60">
-                                        <img :src="`${video?.thumbnail?.node?.sourceUrl}`" :alt="video?.title" cover />
+                                        <img :src="`${video?.featuredImage?.node?.sourceUrl}`" :alt="video?.title" cover />
                                     </v-avatar>
                                 </div>
                             </template>
@@ -68,6 +68,9 @@
         data: () => ({
             tab: null,
             dialog: false,
+            notifications: false,
+            sound: true,
+            widgets: false,
             createdialog: false,
             videoOptions: {
                 autoplay: true,
@@ -101,6 +104,11 @@ query NewQuery {
           }
         }
       }
+      featuredImage {
+        node {
+          sourceUrl
+        }
+      }
     }
   }
 }
@@ -124,7 +132,7 @@ query NewQuery ($id: ID!) {
           sourceUrl
         }
       }
-      thumbnail {
+      featuredImage {
         node {
           sourceUrl
         }

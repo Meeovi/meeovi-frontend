@@ -4,7 +4,7 @@
       <h4>Related Stations</h4>
       <v-slide-group v-model="model" class="pa-4" selected-class="bg-success" show-arrows>
         <v-slide-group-item v-for="n in 15" :key="n" v-slot="{ isSelected, toggle, selectedClass }">
-          <v-card color="grey-lighten-1" :class="['ma-4', selectedClass]" height="200" width="100"  v-for="(products, index) in data.products?.items" :key="index" @click="toggle" :href="products?.uid">
+          <v-card color="grey-lighten-1" :class="['ma-4', selectedClass]" height="200" width="100">
             <div class="d-flex fill-height align-center justify-center">
               <v-card max-width="400" class="mx-auto">
                 <v-container>
@@ -62,33 +62,13 @@
 </script>
 
 <script setup>
-  const query = gql `
-query{
-  products(filter: {price: {from: "0"}, format: {eq: "Radio Stations"}}) {
-    items {
-      uid
-      name
-      categories {
-        name
-      }
-      price_range {
-        maximum_price {
-          regular_price {
-            currency
-            value
-          }
-        }
-      }
-      image {
-        url
-      }
-      rating_summary
-    }
-  }
-}
-`
-
+  const props = defineProps({
+    products: {
+      type: Object,
+      required: true,
+    },
+  });
   const {
-    data
-  } = useAsyncQuery(query);
+    products
+  } = props;
 </script>

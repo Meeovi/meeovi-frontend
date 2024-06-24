@@ -3,8 +3,7 @@
     <v-sheet class="mx-auto sliderProducts row align-items-stretch items-row justify-content-center">
       <h4>Related Spaces</h4>
       <v-slide-group v-model="model" class="pa-4" selected-class="bg-success" show-arrows>
-        <v-slide-group-item v-for="(spaces, index) in data?.groups?.nodes" :key="index"
-          v-slot="{ isSelected, toggle, selectedClass }">
+        <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }">
           <div class="card-wrapper" :class="['ma-4', selectedClass]" @click="toggle">
             <div class="row">
               <div class="col-12 col-md-7">
@@ -58,31 +57,13 @@
 </script>
 
 <script setup>
-  const query = gql `
-query NewQuery {
-  groups {
-    nodes {
-      creator {
-        avatar {
-          url
-        }
-        username
-      }
-      id
-      name
-      totalMemberCount
-      status
-      description
-      dateCreated
-      attachmentCover {
-        full
-      }
-    }
-  }
-}
-`
-
+  const props = defineProps({
+    spaces: {
+      type: Object,
+      required: true,
+    },
+  });
   const {
-    data
-  } = useAsyncQuery(query);
+    spaces
+  } = props;
 </script>

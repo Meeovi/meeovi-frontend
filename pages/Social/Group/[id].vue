@@ -1,168 +1,164 @@
 <template>
     <div class="contentPage">
         <profilebar />
-        <section class="header6 cid-sBXV7XsZQm" id="header6-2i"
-            :style="`background-image: url(${data?.group?.attachmentCover?.full})`">
-            <div class="mbr-overlay" style="opacity: 0.2; background-color: rgb(68, 121, 217);"></div>
-        </section>
 
-        <section class="features1 cid-sBXVhMMeXw" id="features2-2k">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-12 col-lg-10">
-                        <h1 class="mbr-section-title mbr-fonts-style mbr-white mb-3 display-1" style="text-align: center !important;">
-                            <strong>{{ data?.group?.name }}</strong></h1>
+        <v-card flat>
+            <v-toolbar color="primary" dark extended flat height="250" :image="`${data?.group?.attachmentCover?.full}`">
+            </v-toolbar>
 
-                        <p class="mbr-text mbr-white mbr-fonts-style display-7 spaceDescr" v-html="data?.group?.description"></p>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-3">
-                        <div class="card-wrapper">
-                            <div class="card-box align-center">
-                                <span class="mbr-iconfont mobi-mbri-credit-card mobi-mbri"
-                                    style="color: rgb(255, 153, 102); fill: rgb(255, 153, 102);"></span>
-                                <h4 class="card-title align-center mbr-black mbr-fonts-style display-7">
-                                    <strong>Status</strong><br><br>{{ data?.group?.status }}</h4>
+                <section data-bs-version="5.1" class="features1 cid-sBXVhMMeXw" id="features2-2k">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <div class="card-wrapper">
+                                    <div class="card-box align-center">
+                                        <h4 class="card-title align-center mbr-black mbr-fonts-style display-7">
+                                            <strong>
+                                                <v-avatar size="80" rounded="0"
+                                                    :image="`${data?.group?.attachmentAvatar?.full}`"></v-avatar>
+                                            </strong><br><br>{{ data?.group?.name }}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <div class="card-wrapper">
+                                    <div class="card-box align-center">
+                                        <span class="mbr-iconfont mobi-mbri-calendar mobi-mbri"
+                                            style="color: rgb(255, 153, 102); fill: rgb(255, 153, 102);"></span>
+                                        <h4 class="card-title align-center mbr-black mbr-fonts-style display-7">
+                                            <strong>Group Created</strong><br><br>{{ new Date(data?.group?.dateCreated).toLocaleDateString() }}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <div class="card-wrapper">
+                                    <div class="card-box align-center">
+                                        <span class="mbr-iconfont mobi-mbri-users mobi-mbri"
+                                            style="color: rgb(255, 153, 102); fill: rgb(255, 153, 102);"></span>
+                                        <h4 class="card-title align-center mbr-black mbr-fonts-style display-7">
+                                            <strong># of Members</strong><br><br>{{ data?.group?.totalMemberCount }}
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <div class="card-wrapper">
+                                    <div class="card-box align-center">
+                                        <v-avatar size="50">
+                                            <img :src="`${data?.group?.creator?.avatar?.url}`"
+                                                :alt="data?.group?.creator?.username" />
+                                        </v-avatar>
+                                        <h4 class="card-title align-center mbr-black mbr-fonts-style display-7">
+                                            <strong>Created By</strong><br><br><a :href="`/account/user/${data?.group?.creator?.username}`"></a></h4>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-10">
+                                <div class="card-wrapper">
+                                    <div class="card-box align-center">
+                                        <h4 class="card-title align-center mbr-black mbr-fonts-style display-7"
+                                            v-html="data?.group?.description"></h4>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 col-lg-3">
-                        <div class="card-wrapper">
-                            <div class="card-box align-center">
-                                <span class="mbr-iconfont mobi-mbri-sites mobi-mbri"
-                                    style="color: rgb(255, 153, 102); fill: rgb(255, 153, 102);"></span>
-                                <h4 class="card-title align-center mbr-black mbr-fonts-style display-7">
-                                    <strong>Date Created</strong><br><br>{{ data?.group?.dateCreated }}
-                                </h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-3">
-                        <div class="card-wrapper">
-                            <div class="card-box align-center">
-                                <span class="mbr-iconfont mobi-mbri-users mobi-mbri"
-                                    style="color: rgb(255, 153, 102); fill: rgb(255, 153, 102);"></span>
-                                <h4 class="card-title align-center mbr-black mbr-fonts-style display-7">
-                                    <strong># of Members</strong><br><br>{{ data?.group?.totalMemberCount }}
-                                </h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-3">
-                        <div class="card-wrapper">
-                            <div class="card-box align-center">
-                                <span class="mbr-iconfont mobi-mbri-home mobi-mbri"
-                                    style="color: rgb(255, 153, 102); fill: rgb(255, 153, 102);"></span>
-                                <h4 class="card-title align-center mbr-black mbr-fonts-style display-7">
-                                    <strong>Created By</strong><br><br><a :href="`/account/user/${data?.group?.creator?.username}`"><v-avatar :image="`${data?.group?.creator?.avatar?.url}`"></v-avatar></a></h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+                </section>
+        </v-card>
 
-        <!--Shorts for Space -->
-        <shorts />
-
-        <!--Tabs for Space -->
+        <v-divider></v-divider>
         <v-card min-height="500px">
-            <v-tabs v-model="tab" bg-color="primary">
-                <v-tab value="one">Social Feed</v-tab>
-                <v-tab value="two">Products</v-tab>
-                <v-tab value="three">Events</v-tab>
-                <v-tab value="four">Media</v-tab>
-                <v-tab value="five">Members</v-tab>
-                <v-tab value="six">Settings</v-tab>
-                <v-tab>
-                    <v-btn style="padding-top: 5px; float: right; right: 5px; position: fixed;">Leave Space</v-btn>
+            <!--Shorts for Space 
+            <shorts />-->
+            <v-tabs v-model="tab" align-tabs="center" bg-color="warning" stacked>
+                <v-tab value="tab-1">
+                    <v-btn variant="text" stacked prepend-icon="fas fa-home">Home</v-btn>
+                </v-tab>
+
+                <v-tab value="tab-2">
+                    <v-btn variant="text" stacked prepend-icon="fas fa-users">Members</v-btn>
+                </v-tab>
+
+                <v-tab value="tab-3">
+                    <v-btn variant="text" stacked prepend-icon="fas fa-shop">Products</v-btn>
+                </v-tab>
+
+                <v-tab value="tab-4">
+                    <v-btn variant="text" stacked prepend-icon="fas fa-photo-film">Media</v-btn>
+                </v-tab>
+
+                <v-tab value="tab-5">
+                    <v-btn variant="text" stacked prepend-icon="fas fa-calendar-days">Events</v-btn>
+                </v-tab>
+
+                <v-tab value="tab-6">
+                    <v-btn variant="text" stacked prepend-icon="fas fa-gear">Settings</v-btn>
+                </v-tab>
+
+                <v-tab value="tab-7" align-tabs="end">
+                    <v-btn variant="text" stacked prepend-icon="fas fa-right-from-bracket">Leave Space</v-btn>
                 </v-tab>
             </v-tabs>
 
             <v-card-text>
+            <v-tabs-window v-model="tab">
                 <v-window v-model="tab">
                     <!--Space Social Feed-->
-                    <v-window-item value="one" v-for="activities in data?.group?.activities?.nodes" :key="activities">
-                        <section class="features3 cid-sBXVvu6lmJ" id="features3-2l">
+                    <v-tabs-window-item value="tab-1" v-for="activities in data?.group?.activities?.nodes"
+                        :key="activities">
+                        <v-row>
+                            <v-col cols="4">
+                                <v-card class="mx-auto" elevated="0">
+                                    <v-card-title v-html="activities?.title"></v-card-title>
 
+                                    <v-list lines="one">
+                                        <v-list-item :title="activities?.creator?.username"
+                                            :subtitle="activities?.capabilities"
+                                            :prepend-avatar="activities?.creator?.avatar?.url">
+                                        </v-list-item>
+                                    </v-list>
 
-                            <div class="container">
-                                <div class="mbr-section-head">
-                                    <h4 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2" v-html="activities?.title"></h4>
-                                </div>
-                                <div class="row mt-4">
-                                    <div class="item features-image сol-12 col-md-6 col-lg-4">
-                                        <div class="item-wrapper">
-                                            <div class="item-img">
-                                                <a :href="`/account/user/${activities?.creator?.username}`"><v-avatar :image="`${activities?.creator?.avatar?.url}`"></v-avatar></a>
-                                            </div>
-                                            <div class="item-content">
-                                                <p class="mbr-text mbr-fonts-style mt-3 display-7"
-                                                    v-html="activities?.content"></p>
-                                            </div>
-                                            <div class="mbr-section-btn item-footer mt-2"><a
-                                                    :href="`/social/feed/${activities?.id}`"
-                                                    class="btn btn-primary item-btn display-7">Learn More
-                                                    &gt;</a></div>
+                                    <v-card-text>
+                                        <div>
+                                            <p v-html="activities?.content"></p>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    </v-window-item>
+                                    </v-card-text>
 
-                    <!--Space Showcases-->
-                    <v-window-item value="two">
-                        <section class="features3 cid-sBXVblMrWB" id="features3-2j">
-                            <div class="container">
-                                <div class="mbr-section-head">
-                                    <h4 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
-                                        <strong>{{ page?.repeaterTextBox[11].name }}</strong></h4>
+                                    <v-card-subtitle><em>Posted:
+                                            {{ new Date(activities?.date).toLocaleDateString() }}</em>
+                                    </v-card-subtitle>
 
-                                </div>
-                                <productCard />
-                            </div>
-                        </section>
-                    </v-window-item>
-
-                    <!--Space Events-->
-                    <v-window-item value="three">
-                        <v-card class="mx-auto" max-width="400">
-                            <img class="align-end text-white" height="200"
-                                :src="`${data?.products?.items?.image?.url}`" :alt="data?.products?.items?.name" cover />
-                                <v-card-title>{{ data?.products?.items?.name }}</v-card-title>
-
-                            <v-card-subtitle class="pt-4">
-                                Seller: {{ data?.products?.items?.manufacturer }}
-                            </v-card-subtitle>
-
-                            <v-card-text>
-                                <div v-html="data?.products?.items?.short_description?.html"></div>
-
-                                <div>Tickets left: {{ data?.products?.items?.only_x_left_in_stock }}</div>
-                            </v-card-text>
-
-                            <v-card-actions>
-                                <v-btn color="orange">
-                                    Share
-                                </v-btn>
-
-                                <v-btn color="orange" :href="`/product/${data?.products?.items?.sku}`">
-                                    Explore
-                                </v-btn>
-                            </v-card-actions>
-                        </v-card>
-                    </v-window-item>
-
-                    <!--Space Media-->
-                    <v-window-item value="four">
-                        <v-card class="mx-auto" max-width="400">
-                            <img class="align-end text-white" height="200"
-                                :src="`${data?.group?.media?.filename_disk}`" :alt="data?.group?.name" cover />
-                        </v-card>
-                    </v-window-item>
+                                    <v-card-actions>
+                                        <v-row>
+                                            <v-col cols="3">
+                                                <v-btn title="Comments" prepend-icon="fas fa-comment" variant="plain"
+                                                    :href="`/social/feed/${activities.id}`">()</v-btn>
+                                            </v-col>
+                                            <v-col cols="3">
+                                                <v-btn title="Repost" prepend-icon="fas fa-repeat" variant="plain"
+                                                    @click="repost()">()
+                                                </v-btn>
+                                            </v-col>
+                                            <v-col cols="3">
+                                                <v-btn title="Like This" prepend-icon="fas fa-heart" variant="plain"
+                                                    @click="addLike">()
+                                                </v-btn>
+                                            </v-col>
+                                            <v-col cols="3">
+                                                <v-btn title="Bookmark" prepend-icon="fas fa-bookmark" variant="plain"
+                                                    @click="addBookmark">()
+                                                </v-btn>
+                                            </v-col>
+                                        </v-row>
+                                    </v-card-actions>
+                                </v-card>
+                            </v-col>
+                        </v-row>
+                    </v-tabs-window-item>
 
                     <!--Space People-->
-                    <v-window-item value="five">
+                    <v-tabs-window-item value="tab-2">
                         <v-list lines="one">
                             <v-list-item :title="`${data?.group?.totalMemberCount} Members`"></v-list-item>
                         </v-list>
@@ -171,12 +167,13 @@
                         </v-text-field>
 
                         <v-list lines="two">
-                            <h3>Creator of {{ data?.group?.name }}</h3>
+                            <h5>Creator of {{ data?.group?.name }}</h5>
                             <v-list-item>
                                 <v-row align="center" class="spacer" no-gutters>
                                     <v-col cols="4" sm="2" md="1">
                                         <v-avatar size="50">
-                                            <img :src="`${data?.group?.creator?.avatar?.url}`" :alt="data?.group?.creator?.username" />
+                                            <img :src="`${data?.group?.creator?.avatar?.url}`"
+                                                :alt="data?.group?.creator?.username" />
                                         </v-avatar>
                                     </v-col>
 
@@ -192,7 +189,7 @@
                         </v-list>
 
                         <v-list lines="two">
-                            <h3>Admins of {{ data?.group?.name }}</h3>
+                            <h5>Admins of {{ data?.group?.name }}</h5>
                             <v-list-item v-for="admins in data?.group?.admins?.nodes" :key="admins">
                                 <v-row align="center" class="spacer" no-gutters>
                                     <v-col cols="4" sm="2" md="1">
@@ -217,7 +214,7 @@
                         </v-list>
 
                         <v-list lines="two">
-                            <h3>Moderators of {{ data?.group?.name }}</h3>
+                            <h5>Moderators of {{ data?.group?.name }}</h5>
                             <v-list-item v-for="admins in data?.group?.mods?.nodes" :key="admins">
                                 <v-row align="center" class="spacer" no-gutters>
                                     <v-col cols="4" sm="2" md="1">
@@ -242,7 +239,7 @@
                         </v-list>
 
                         <v-list lines="two">
-                            <h3>All Members of {{ data?.group?.name }}</h3>
+                            <h5>All Members of {{ data?.group?.name }}</h5>
                             <v-list-item v-for="members in data?.group?.members?.nodes" :key="members">
                                 <v-row align="center" class="spacer" no-gutters>
                                     <v-col cols="4" sm="2" md="1">
@@ -265,14 +262,61 @@
                                 </v-row>
                             </v-list-item>
                         </v-list>
-                    </v-window-item>
+                    </v-tabs-window-item>
+
+                    <!--Space Media-->
+                    <v-tabs-window-item value="tab-3">
+                        <v-card class="mx-auto" max-width="400">
+                            <img class="align-end text-white" height="200" :src="`${data?.group?.media?.filename_disk}`"
+                                :alt="data?.group?.name" cover />
+                        </v-card>
+                    </v-tabs-window-item>
+
+                    <!--Space Products-->
+                    <v-tabs-window-item value="tab-4">
+                        <section class="features3 cid-sBXVblMrWB" id="features3-2j">
+                            <div class="container" v-for="products in data?.products?.nodes" :key="products.id">
+                                <productCard :product="products" />
+                            </div>
+                        </section>
+                    </v-tabs-window-item>
+
+                    <!--Space Events-->
+                    <v-tabs-window-item value="tab-5">
+                        <v-card class="mx-auto" max-width="400">
+                            <img class="align-end text-white" height="200" :src="`${data?.products?.items?.image?.url}`"
+                                :alt="data?.products?.items?.name" cover />
+                            <v-card-title>{{ data?.products?.items?.name }}</v-card-title>
+
+                            <v-card-subtitle class="pt-4">
+                                Seller: {{ data?.products?.items?.manufacturer }}
+                            </v-card-subtitle>
+
+                            <v-card-text>
+                                <div v-html="data?.products?.items?.short_description?.html"></div>
+
+                                <div>Tickets left: {{ data?.products?.items?.only_x_left_in_stock }}</div>
+                            </v-card-text>
+
+                            <v-card-actions>
+                                <v-btn color="orange">
+                                    Share
+                                </v-btn>
+
+                                <v-btn color="orange" :href="`/product/${data?.products?.items?.sku}`">
+                                    Explore
+                                </v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-tabs-window-item>
 
                     <!--Settings-->
-                    <v-window-item value="six">
-                        <settings />
-                    </v-window-item>
+                    <v-tabs-window-item value="tab-6">
+                        <settings :id="data?.group?.id" />
+                    </v-tabs-window-item>
                 </v-window>
-            </v-card-text>
+            </v-tabs-window>
+        </v-card-text>
         </v-card>
     </div>
 </template>
@@ -280,7 +324,7 @@
 <script>
     import profilebar from '../../../components/menus/profilebar.vue'
     import comments from '../../../components/social/comments.vue'
-    import settings from '../../../components/social/groups/groupsettings.vue'
+    import settings from '../../../components/create copy/social/updatespace.vue'
     import productCard from '../../../components/commerce/product/productCard.vue'
     import shorts from '../../../components/related/shorts.vue'
 
@@ -297,6 +341,8 @@
                 url: process.env.DIRECTUS_URL,
                 tab: null,
                 model: null,
+                data: null,
+                groupId: this.$route.params.id
                 //space: null,
             }
         },
@@ -304,8 +350,8 @@
 </script>
 
 <script setup>
-const route = useRoute();
-const query = gql`
+    const route = useRoute();
+    const query = gql `
 query NewQuery ($id: ID!) {
 group(id: $id){
     creator {
@@ -371,29 +417,31 @@ group(id: $id){
 }
 `
 
-  const {
-    data
-  } = useAsyncQuery(query, { id: route.params.id });
-
-/*    const {
-        getItemById
-    } = useDirectusItems()
-
-    const space = await getItemById({
-        collection: "Space",
+    const {
+        data
+    } = useAsyncQuery(query, {
         id: route.params.id
-    }); 
+    });
 
-    const page = await getItemById({
-        collection: "pages",
-        id: route.params.id
-    });*/
+    /*    const {
+            getItemById
+        } = useDirectusItems()
+
+        const space = await getItemById({
+            collection: "Space",
+            id: route.params.id
+        }); 
+
+        const page = await getItemById({
+            collection: "pages",
+            id: route.params.id
+        });*/
 
     useHead({
-        title: data?.value?.group?.name
+        title: data?.group?.name
     })
 
     definePageMeta({
-	  //middleware: ['auth-logged-in'],
-	})/**/
+        //middleware: ['auth-logged-in'],
+    }) /**/
 </script>

@@ -30,11 +30,7 @@
                             </v-card-text>
 
                             <v-card-actions>
-                                <v-btn color="orange">
-                                    Archive Order
-                                </v-btn>
-
-                                <v-btn color="red" :href="`/commerce/coupons/${coupons?.id}`">
+                                <v-btn color="red" :href="`/commerce/coupon/${coupons?.id}`">
                                     Manage coupon
                                 </v-btn>
                             </v-card-actions>
@@ -132,4 +128,4 @@
     definePageMeta({
 	  //middleware: ['auth-logged-in'],
 	})
-</script>
+</script>~/server/api/read/getCoupons

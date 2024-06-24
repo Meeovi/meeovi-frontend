@@ -20,7 +20,7 @@
                 </v-card-text>
 
                 <v-card-actions>
-                    <v-btn color="steelblue">
+                    <v-btn color="rgb(var(--v-theme-primary))!important">
                         Share
                     </v-btn>
                 </v-card-actions>

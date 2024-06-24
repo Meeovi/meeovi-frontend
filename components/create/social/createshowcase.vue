@@ -1,24 +1,24 @@
 <template>
     <div>
         <v-card elevation="0">
-            <v-toolbar title="Update A List"></v-toolbar>
-            <v-form @submit.prevent="updateList">
+            <v-toolbar title="Create A Showcase"></v-toolbar>
+            <v-form @submit.prevent="createShowcase">
                 <v-container>
                     <v-row>
                         <v-col cols="6">
-                            <v-text-field v-model="title" label="List Name" required></v-text-field>
+                            <v-text-field v-model="title" label="Showcase Name" required></v-text-field>
                         </v-col>
                         <v-col cols="6">
-                            <v-combobox v-model="type" label="Type" :items="['List', 'Registry', 'Playlist', 'Todo']"></v-combobox>
+                            <v-combobox v-model="type" label="Status" :items="['Public', 'Private']"></v-combobox>
                         </v-col>
                         <v-col cols="12">
-                            <v-file-input clearable label="List Image"></v-file-input>
+                            <v-file-input clearable label="Showcase Image"></v-file-input>
                         </v-col>
                         <v-col cols="12">
-                            <v-textarea v-model="description" label="List Description"></v-textarea>
+                            <v-textarea v-model="description" label="Showcase Description"></v-textarea>
                         </v-col>
                         <v-col cols="12">
-                            <v-card title="Choose a Product for your List">
+                            <v-card title="Choose a Product for your Showcase">
                                 <v-card-text>
                                     <v-text-field density="compact" variant="solo" label="Search Meeovi for products"
                                         append-inner-icon="fas fa-search" single-line hide-details
@@ -66,7 +66,7 @@
                     </v-btn>
                     <v-spacer></v-spacer>
                     <v-btn color="blue-darken-1" variant="text" type="submit">
-                        Update
+                        Create
                     </v-btn>
                 </v-card-actions>
             </v-form>
@@ -105,7 +105,7 @@
     const errorMessage = ref('');
     const successMessage = ref('');
 
-    const updateList = async () => {
+    const createShowcase = async () => {
         try {
             const response = await $fetch(`${apiUrl}/wp-json/wp/v2/list`, {
                 method: 'POST',
@@ -128,17 +128,17 @@
             console.log(response);
 
             if (response.id) {
-                successMessage.value = 'List updated successfully!'
+                successMessage.value = 'Showcase created successfully!'
                 errorMessage.value = ''
             } else {
-                throw new Error('Failed to update list')
+                throw new Error('Failed to create list')
             }
         } catch (error) {
             console.error('Error creating list:', error);
             if (error.response) {
                 console.error('Error response:', error.response);
                 if (error.response.status === 403) {
-                    errorMessage.value = 'You do not have permission to update a list.'
+                    errorMessage.value = 'You do not have permission to create a list.'
                 } else {
                     errorMessage.value = `Error: ${error.response.status} ${error.response.statusText}`
                 }
@@ -150,6 +150,6 @@
     }
 
     useHead({
-        title: 'Update List',
+        title: 'Create Showcase',
     })
 </script>

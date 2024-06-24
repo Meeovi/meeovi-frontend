@@ -3,6 +3,10 @@ html {
     font-family: 'Inter', sans-serif !important;
 }
 
+a, a:hover {
+    color: rgb(var(--v-theme-primary));
+}
+
 body {
     margin: 0;
     overflow-x: unset !important;
@@ -14,11 +18,11 @@ body {
 #topnav {
     width: 100% !important;
     color: white;
-    background-color: steelblue;
+    background-color: rgb(var(--v-theme-primary)) !important;
 }
 
 #topnav a {
-    color: white;
+    color: white !important;
 }
 
 #mainSearch {
@@ -29,7 +33,7 @@ body {
 .lowernav {
     top: 60px;
     position: relative;
-    background-color: steelblue !important;
+    background-color: rgb(var(--v-theme-primary))!important;
 }
 
 .livebar {
@@ -41,7 +45,7 @@ body {
 }
 
 .livebar>.v-avatar {
-    border: 2px solid #6592e6;
+    border: 2px solid rgb(var(--v-theme-primary)) !important;
 }
 
 .shopping-cart {
@@ -304,6 +308,10 @@ body {
     font-size: 20px;
 }
 
+.cid-twaHyROL0Y {
+    min-height: 0vh !important;
+}
+
 /******************** Meeovi Time CSS ************/
 
 .homeSection {
@@ -444,7 +452,7 @@ body {
     display: inline-block;
     padding-left: 15px;
     font-size: 20px;
-    color: steelblue;
+    color: rgb(var(--v-theme-primary)) !important;
 }
 
 .productdescription {
@@ -452,7 +460,7 @@ body {
 }
 
 .productpage .v-btn {
-    background-color: steelblue;
+    background-color: rgb(var(--v-theme-primary)) !important;
 }
 
 .productcardrating {
@@ -462,7 +470,7 @@ body {
 #videocommentbtn {
     float: right;
     margin-right: 5px;
-    background-color: #6592e6;
+    background-color: rgb(var(--v-theme-primary)) !important;
     color: white;
 }
 
@@ -479,7 +487,7 @@ body {
 }
 
 .charttable thead {
-    background-color: steelblue;
+    background-color: rgb(var(--v-theme-primary)) !important;
 }
 
 .charttable th {
@@ -552,7 +560,7 @@ body {
 }
 
 .postbtn {
-    background-color: steelblue !important;
+    background-color: rgb(var(--v-theme-primary)) !important;
     color: white !important;
 }
 
@@ -606,7 +614,7 @@ body {
 }
 
 .profileActions .v-btn {
-    background-color: steelblue;
+    background-color: rgb(var(--v-theme-primary)) !important;
     color: white;
 }
 
@@ -694,12 +702,12 @@ body {
 
 .footertotopbtn {
     width: 100% !important;
-    background-color: steelblue !important;
+    background-color: rgb(var(--v-theme-primary))!important;
     color: white !important;
 }
 
 footer {
-    background-color: steelblue !important;
+    background-color: rgb(var(--v-theme-primary))!important;
     color: white !important;
 }
 

@@ -21,29 +21,25 @@
 
     <v-row class="departmentRow">
       <!--Best Seller Product Slider-->
-      <v-col cols="12">
-        <bestsellers /> 
+      <v-col cols="12" v-for="products in best?.products?.nodes" :key="products.id">
+        <productCard :product="products" /> 
       </v-col>
       
-      <!--List of products in the category-->
-      <v-col cols="12">
-        <latestproducts /> 
+      <!--List of latest products in the department-->
+      <v-col cols="12" v-for="products in latest?.products?.nodes" :key="products.id">
+        <productCard :product="products" /> 
       </v-col>
 
-      <!--List of products in the category-->
-      <v-col cols="12">
-        <productCard /> 
+      <!--List of products in the department-->
+      <v-col cols="12" v-for="products in data?.products?.nodes" :key="products.id">
+        <productCard :product="products" /> 
+      </v-col>
+      
+      <!--List of events in this department-->
+      <v-col cols="12" v-for="products in events?.products?.nodes" :key="products.id">
+        <relatedevents :product="products" />
       </v-col>
 
-      <v-col cols="12">
-        <relatedevents /> 
-      </v-col>
-      <!---->
-
-      <!--List of spaces in the category-->
-      <v-col cols="12">
-        <relatedspaces /> 
-      </v-col>
     </v-row>
     <relatedcreators />
   </div>
@@ -80,45 +76,163 @@
 
 <script setup>
 const route = useRoute();
-const query = gql`
+const query = gql `
 query NewQuery ($id: ID!) {
   productCategory(id: $id) {
-    parent {
-      node {
-        id
-        name
-      }
-    }
-    products {
-      nodes {
-        averageRating
-        date
-        description
-        id
-        image {
-          sourceUrl
-        }
-        name
-        sku
-        status
-        type
-      }
-    }
     children {
       nodes {
         id
         name
       }
     }
-    id
+    description
+    image {
+      sourceUrl
+    }
     name
+    slug
+    uri
+    products {
+      nodes {
+        content
+        excerpt
+        id
+        image {
+          sourceUrl
+        }
+        name
+        sku
+        slug
+        status
+        title
+        type
+        uri
+      }
+    }
+    id
   }
 }
 `
 
   const {
-    data
-  } = useAsyncQuery(query, { id: route.params.id });
+    data, error, loading
+  } = useAsyncQuery(query, {
+    id: route.params.id
+  });
+
+  const bestseller = gql `
+query NewQuery ($id: ID!) {
+  productCategory(id: $id) {
+    children {
+      nodes {
+        id
+        name
+      }
+    }
+    description
+    image {
+      sourceUrl
+    }
+    name
+    slug
+    uri
+    products(where: {featured: true}) {
+      nodes {
+        content
+        excerpt
+        id
+        image {
+          sourceUrl
+        }
+        name
+        sku
+        slug
+        status
+        title
+        type
+        uri
+      }
+    }
+    id
+  }
+}
+`
+
+  const {
+    data: best
+  } = useAsyncQuery(bestseller, {
+    id: route.params.id
+  });
+
+  const latestproducts = gql`
+query NewQuery {
+  products(last: 5) {
+    nodes {
+      id
+      averageRating
+      description
+      image {
+        sourceUrl
+      }
+      name
+      sku
+      type
+      ... on SimpleProduct {
+        id
+        name
+        price
+        type
+        productCategories {
+          nodes {
+            name
+          }
+        }
+      }
+    }
+  }
+}
+`
+
+const {
+    data: latest
+  } = useAsyncQuery(latestproducts, {
+    id: route.params.id
+  });
+
+const eventproducts = gql`
+query NewQuery {
+  products(where: {category: "Events"}) {
+    nodes {
+      id
+      averageRating
+      description
+      image {
+        sourceUrl
+      }
+      name
+      sku
+      type
+      ... on SimpleProduct {
+        id
+        name
+        price
+        type
+        productCategories {
+          nodes {
+            name
+          }
+        }
+      }
+    }
+  }
+}
+`
+
+const {
+    data: events
+  } = useAsyncQuery(eventproducts, {
+    id: route.params.id
+  });
 
 /*  const {
     getItems
