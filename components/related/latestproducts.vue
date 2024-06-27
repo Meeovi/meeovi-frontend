@@ -3,7 +3,7 @@
     <v-sheet class="mx-auto sliderProducts row align-items-stretch items-row justify-content-center">
       <h4>Latest Products</h4>
       <v-slide-group v-model="model" class="pa-4" selected-class="bg-success" show-arrows>
-        <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }" v-for="products in data?.products?.nodes" :key="products.id">
+        <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }" v-for="products in data?.products?.items" :key="products.id">
           <productCard :product="products" :class="['ma-4', selectedClass]" @click="toggle" />
 
           <div class="d-flex fill-height align-center justify-center">
@@ -32,27 +32,21 @@
 </script>
 
 <script setup>
-const query = gql`
-query NewQuery {
-  products(last: 5) {
-    nodes {
-      id
-      averageRating
-      description
-      image {
-        sourceUrl
-      }
+const LATEST_PRODUCTS_QUERY = gql`
+query LatestProductsQuery {
+  products(pageSize: 5, sort: { created_at: DESC }) {
+    items {
+      uid
       name
+      image {
+        url
+      }
       sku
-      type
-      ... on SimpleProduct {
-        id
-        name
-        price
-        type
-        productCategories {
-          nodes {
-            name
+      price_range {
+        minimum_price {
+          regular_price {
+            currency
+            value
           }
         }
       }
@@ -63,5 +57,5 @@ query NewQuery {
 
   const {
     data
-  } = useAsyncQuery(query);
+  } = useAsyncQuery(LATEST_PRODUCTS_QUERY);
 </script>

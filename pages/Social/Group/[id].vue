@@ -14,8 +14,7 @@
                                     <div class="card-box align-center">
                                         <h4 class="card-title align-center mbr-black mbr-fonts-style display-7">
                                             <strong>
-                                                <v-avatar size="80" rounded="0"
-                                                    :image="`${group?.avatar_urls?.thumb}`"></v-avatar>
+                                                <v-avatar size="80" rounded="0" :image="`${group?.avatar_urls?.thumb}`"></v-avatar>
                                             </strong><br><br>{{ group?.name }}</h4>
                                     </div>
                                 </div>
@@ -110,30 +109,30 @@
                         <v-row>
                             <v-col cols="4">
                                 <v-card class="mx-auto" elevated="0">
-                                    <v-card-title v-html="activities?.title"></v-card-title>
+                                    <v-card-title v-html="activites?.title"></v-card-title>
 
                                     <v-list lines="one">
-                                        <v-list-item :title="activities?.creator?.username"
-                                            :subtitle="activities?.capabilities"
-                                            :prepend-avatar="activities?.creator?.avatar?.url">
+                                        <v-list-item :title="activites?.creator?.username"
+                                            :subtitle="activites?.capabilities"
+                                            :prepend-avatar="activites?.creator?.avatar?.url">
                                         </v-list-item>
                                     </v-list>
 
                                     <v-card-text>
                                         <div>
-                                            <p v-html="activities?.content"></p>
+                                            <p v-html="activites?.content"></p>
                                         </div>
                                     </v-card-text>
 
                                     <v-card-subtitle><em>Posted:
-                                            {{ new Date(activities?.date).toLocaleDateString() }}</em>
+                                            {{ new Date(activites?.date).toLocaleDateString() }}</em>
                                     </v-card-subtitle>
 
                                     <v-card-actions>
                                         <v-row>
                                             <v-col cols="3">
                                                 <v-btn title="Comments" prepend-icon="fas fa-comment" variant="plain"
-                                                    :href="`/social/feed/${activities.id}`">()</v-btn>
+                                                    :href="`/social/feed/${activites.id}`">()</v-btn>
                                             </v-col>
                                             <v-col cols="3">
                                                 <v-btn title="Repost" prepend-icon="fas fa-repeat" variant="plain"
@@ -160,7 +159,7 @@
                     <!--Space People-->
                     <v-tabs-window-item value="tab-2">
                         <v-list lines="one">
-                            <v-list-item :title="`${group?.totalMemberCount} Members`"></v-list-item>
+                            <v-list-item :title="`${group?.total_member_count} Members`"></v-list-item>
                         </v-list>
 
                         <v-text-field label="Find a Member" prepend-inner-icon="fas fa-search" variant="solo">
@@ -318,6 +317,7 @@
             </v-tabs-window>
         </v-card-text>
         </v-card>
+
     </div>
 </template>
 
@@ -338,7 +338,7 @@
         },
         data() {
             return {
-                url: process.env.DIRECTUS_URL,
+                //url: process.env.DIRECTUS_URL,
                 tab: null,
                 model: null,
                 data: null,
@@ -356,12 +356,16 @@ const group = ref(null);
 const route = useRoute();
 
 onMounted(async () => {
-  const id = route.params.id;
-  group.value = await getGroupById(id);
+    const id = route.params.id;
+    try {
+        group.value = await getGroupById(id);
+        console.log(group.value);  // Check the fetched data in the console
+    } catch (error) {
+        console.error("Failed to fetch group data:", error);
+    }
 });
 
-/*     const route = useRoute();
-    const query = gql `
+/*const query = gql `
 query NewQuery ($id: ID!) {
 group(id: $id){
     creator {
@@ -433,7 +437,7 @@ group(id: $id){
         id: route.params.id
     });
 
-       const {
+        const {
             getItemById
         } = useDirectusItems()
 

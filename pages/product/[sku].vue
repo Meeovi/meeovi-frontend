@@ -8,7 +8,7 @@
           <div class="container">
             <div class="row">
               <div class="col-12 col-md-6">
-                <img :src="data?.product?.image?.sourceUrl" :alt="data?.product?.name" cover />
+                <img :src="data?.product?.image?.url" :alt="data?.product?.name" cover />
               </div>
               <div class="col-12 col-md-6">
                 <div class="right">
@@ -22,9 +22,9 @@
                     <p class="desc2 mbr-fonts-style display-5">
                       <s>{{ data?.product?.productTypes?.nodes?.name }}</s></p>
                     <p class="plus1 mbr-fonts-style display-5">
-                      <strong>&nbsp;</strong>{{ data?.product?.price }}</p>
+                      <strong>{{ data?.product?.price_range?.minimum_price?.regular_price?.currency }}&nbsp;</strong>{{ data?.product?.price_range?.minimum_price?.regular_price?.value }}</p>
                   </div>
-                  <p class="mbr-text mbr-fonts-style display-4" v-html="data?.product?.excerpt"></p>
+                  <p class="mbr-text mbr-fonts-style display-4" v-html="data?.product?.short_description?.html"></p>
 
                   <v-card variant="text" class="productVCard">
                     <v-card-actions>
@@ -65,8 +65,8 @@
                   </div>
                   <div class="price-line1">
                     <p class="desc mbr-fonts-style display-7"><strong>
-                        Downloadable:</strong>&nbsp;</p>
-                    <p class="plus mbr-fonts-style display-4">{{ data?.product?.downloadable }}</p>
+                        Format:</strong>&nbsp;</p>
+                    <p class="plus mbr-fonts-style display-4">{{ data?.product?.format }}</p>
                   </div>
                   <div class="price-line1">
                     <p class="desc mbr-fonts-style display-7"><strong>
@@ -95,7 +95,7 @@
               <!--Product Description-->
               <v-window-item value="one">
                 <v-card variant="text">
-                  <v-card-text>{{data?.product?.content}}</v-card-text>
+                  <v-card-text>{{data?.product?.description?.html}}</v-card-text>
                 </v-card>
               </v-window-item>
 

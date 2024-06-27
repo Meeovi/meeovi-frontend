@@ -77,26 +77,23 @@
         },
         data() {
             return {
-                url: process.env.DIRECTUS_URL,
+                //url: process.env.DIRECTUS_URL,
             }
         },
     }
 </script>
 
 <script setup>
-  import {
-    ref,
-    onMounted
-  } from 'vue';
-  import {
-    getGroups
-  } from '~/composables/read/getGroups';
+import { ref, onMounted } from 'vue';
+import { getGroups } from '~/composables/read/getGroups';
 
-  const groups = ref([]);
+const groups = ref([]);
 
-  onMounted(async () => {
+onMounted(async () => {
+    console.log('Component mounted, fetching groups...');
     groups.value = await getGroups();
-  });
+    console.log('Fetched groups:', groups.value);
+});
 
 /*    const query = gql `
 query NewQuery {

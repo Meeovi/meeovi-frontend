@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-card elevation="0">
-            <form>
+            <form @submit.prevent="updateGroup">
                 <v-card-text>
                     <v-container>
                         <v-row>
@@ -40,7 +40,7 @@
                         Delete Space
                     </v-btn>
                     <v-spacer></v-spacer>
-                    <v-btn color="blue-darken-1" variant="text" type="submit" @click="dialog = false" @submit="updateGroup">
+                    <v-btn color="blue-darken-1" variant="text" type="submit" @click="dialog = false">
                         Update Space
                     </v-btn>
                 </v-card-actions>
@@ -109,6 +109,7 @@ const updateGroup = async () => {
         description: description.value,
         attachmentCover: attachmentCover.value,
         attachmentAvatar: attachmentAvatar.value,
+        type: type.value,
         status: 'public',  // You can set it to 'public', 'private', or 'hidden'
         enable_forum: false  // Set to true if you want to enable forums for the group
       })

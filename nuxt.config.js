@@ -140,7 +140,9 @@ export default defineNuxtConfig({
     public: {
       stripePk: process.env.STRIPE_PUBLIC_KEY,
       wordpressUrl: process.env.API_URL,
-      wordpressToken: process.env.WORDPRESS_TOKEN
+      wordpressToken: process.env.WORDPRESS_TOKEN,
+      commerceUrl: process.env.MAGE_STORE_URL,
+      commerceApiToken: process.env.WEBSITE_TOKEN,
     },
     wpApiUsername: process.env.WP_API_USERNAME,
     wpApiPassword: process.env.WP_API_PASSWORD,
@@ -151,16 +153,16 @@ export default defineNuxtConfig({
     authHeader: "Authorization",
     tokenStorage: "cookie",
     clients: {
-    /*  default: {
+      default: {
         tokenName: "apollo-token",
-        httpEndpoint: process.env.GRAPHQL_HOST,
+        httpEndpoint: process.env.MAGE_MAGENTO_GRAPHQL_URL,
         httpLinkOptions: {
           headers: {
-            'x-hasura-admin-secret': process.env.GRAPHQL_TOKEN,
+            'Authorization': `Bearer ${process.env.WEBSITE_TOKEN}`,
             'content-type': 'application/json'
           }
         } 
-      }, */
+      },/* */
       cms: {
         httpEndpoint: process.env.API_URL
       },

@@ -1,12 +1,12 @@
 <template>
   <div>
-    <section data-bs-version="5.1" class="features2 cid-tAGUH8o3YK" id="features2-5z" v-for="category in data?.productCategories?.nodes" :key="category">
+    <section data-bs-version="5.1" class="features2 cid-tAGUH8o3YK" id="features2-5z" v-for="category in data?.categories?.items" :key="category">
 
       <div class="container">
         <div class="row main align-items-center">
           <div class="col-md-6 image-element ">
             <div class="img-wrap">
-              <img :src="`${category?.image?.soureceUrl}`" :alt="category?.name" />
+              <img :src="`${category?.image}`" :alt="category?.name" />
             </div>
           </div>
           <div class="col-md-6 text-element">
@@ -20,7 +20,7 @@
                   <br>
               </div>
               <div class="mbr-section-btn pt-3 align-center"><a class="btn btn-md btn-white display-4"
-                :href="`/departments/${category?.id}`">Start Listening</a></div>
+                :href="`/departments/${category?.uid}`">Start Listening</a></div>
             </div>
           </div>
         </div>
@@ -37,14 +37,12 @@
 
 <script setup>
   const query = gql `
-query NewQuery {
-  productCategories(where: {name: "Music"}) {
-    nodes {
-      id
-      image {
-        sourceUrl
-      }
+query {
+  categories (filters: {name: {match: "Music"}}) {
+    items {
+      uid
       name
+      image
       description
     }
   }

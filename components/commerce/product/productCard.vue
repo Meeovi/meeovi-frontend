@@ -2,8 +2,8 @@
   <div>
     <v-row class="productCard">
       <v-col>
-        <v-card class="mx-auto" max-width="350" :href="`/product/${product?.id}`">
-          <img class="align-end text-white" style="height: 250px;" :src="`${product?.image?.sourceUrl}`"
+        <v-card class="mx-auto" max-width="350" :href="`/product/${product?.sku}`">
+          <img class="align-end text-white" style="height: 250px;" :src="`${product?.media_gallery_entries?.file}`"
             :alt="product?.name" cover />
 
           <v-card-title>{{product?.name}}</v-card-title>
@@ -11,19 +11,18 @@
             Sku: {{ product?.sku }}
           </v-card-subtitle>
 
-          <v-card-subtitle class="pt-4" v-for="categories in product?.nodes?.productCategories?.nodes"
-            :key="categories">
-            Category: {{ categories?.name }}
+          <v-card-subtitle class="pt-4">
+            Category: {{ product?.extension_attributes?.category_links?.category_id }}
           </v-card-subtitle>
 
           <v-card-text>
             <div>
-              <v-rating v-model="rating" active-color="yellow-accent-4" color="orange" :size="product?.averageRating"
+              <v-rating v-model="rating" active-color="yellow-accent-4" color="orange" size="5"
                 half-increments>
               </v-rating>
             </div>
 
-            <p>{{ currency }} {{ product?.price }}</p>
+            <p>{{ product?.price }}</p>
           </v-card-text>
 
           <v-card-actions>
@@ -50,6 +49,7 @@
   }
 </script>
 <script setup>
+
   const props = defineProps({
     product: {
       type: Object,
