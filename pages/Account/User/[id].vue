@@ -17,11 +17,11 @@
                             </div>
                             <div class="text-wrap align-left">
                                 <h4 class="mbr-text-name mbr-fonts-style display-5">
-                                    <strong>{{ data?.customer?.username }}</strong>
+                                    <strong>{{ data?.customer?.firstname }}</strong>
                                 </h4>
                                 <h4 class="mbr-text mbr-fonts-style display-7" style="">
                                     <v-list style="background: transparent; color: white;">
-                                        <v-list-item title="Member Since">{{ data?.customer?.date }}</v-list-item>
+                                        <v-list-item title="Member Since">{{ data?.customer?.created_at }}</v-list-item>
                                     </v-list>
                                 </h4>
                             </div>
@@ -98,22 +98,488 @@
 </script>
 
 <script setup>
-const route = useRoute();
+//const route = useRoute();
 const query = gql`
-query NewQuery ($id: ID!) {
-  customer(id: $id) {
-    displayName
-    id
-    username
-    role
-    date
+query {
+  customer {
+    addresses {
+      city
+      company
+      country_code
+      default_billing
+      default_shipping
+      fax
+      prefix
+      firstname
+      middlename
+      lastname
+      postcode
+      region {
+        region
+      }
+      street
+      suffix
+      telephone
+      vat_id
+    }
+    date_of_birth
+    created_at
+    default_billing
+    default_shipping
+    prefix
+    firstname
+    middlename
+    lastname
+    suffix
+    email
+    gender
+    taxvat
+    orders {
+      items {
+        billing_address {
+          city
+          company
+          country_code
+          fax
+          firstname
+          lastname
+          middlename
+          postcode
+          prefix
+          region
+          region_id
+          street
+          suffix
+          telephone
+          vat_id
+        }
+        carrier
+        comments {
+          message
+          timestamp
+        }
+        order_date
+        credit_memos {
+          comments {
+            message
+            timestamp
+          } 
+          id
+          items {
+            discounts {
+              amount {
+                currency
+                value
+              }
+              label
+            }
+            id
+            order_item {
+              discounts {
+                amount {
+                  currency
+                  value
+                } 
+                label
+              }
+              entered_options {
+                label
+                value
+              }
+              gift_message {
+                from
+                message
+                to
+              }
+              id
+              product_name
+              product_sale_price {
+                currency
+                value
+              }
+              product_sku
+              product_type
+              product_url_key
+              quantity_canceled
+              quantity_invoiced
+              quantity_ordered
+              quantity_refunded
+              quantity_returned
+              quantity_shipped
+              selected_options {
+                label
+                value
+              }
+              status
+            }
+            product_name
+            product_sale_price {
+              currency
+              value
+            }
+            product_sku
+            quantity_refunded
+          } 
+          number
+          total {
+            adjustment {
+              currency
+              value
+            }
+            base_grand_total {
+              currency
+              value
+            }
+            discounts {
+              amount {
+                currency
+                value
+              }
+              label
+            }
+            grand_total {
+              currency
+              value
+            }
+            shipping_handling {
+              amount_excluding_tax {
+                currency
+                value
+              }
+              amount_including_tax {
+                currency
+                value
+              }
+              discounts {
+                amount {
+                  currency
+                  value
+                } 
+              }
+              taxes {
+                amount {
+                  currency
+                  value
+                } 
+                rate
+                title
+              }
+              total_amount {
+                currency
+                value
+              }
+            }
+            subtotal {
+              currency
+              value
+            }
+            taxes {
+              amount {
+                currency
+                value
+              }
+              rate
+              title
+            }
+            total_shipping {
+              currency
+              value
+            }
+            total_tax {
+              currency
+              value
+            }
+          } 
+        }
+        gift_message {
+          from
+          message
+          to
+        }
+        total {
+          grand_total {
+            currency
+            value
+          }
+        }
+        id
+        invoices {
+          comments {
+            message
+            timestamp
+          } 
+          id
+          number
+          total {
+            base_grand_total {
+              currency
+              value
+            }
+            discounts {
+              amount {
+                currency
+                value
+              }
+              label
+            }
+            grand_total {
+              currency
+              value
+            }
+            shipping_handling {
+              amount_excluding_tax {
+                currency
+                value
+              }
+              amount_including_tax {
+                currency
+                value
+              }
+              discounts {
+                amount {
+                  currency
+                  value
+                } 
+              }
+              taxes {
+                amount {
+                  currency
+                  value
+                } 
+                rate
+                title
+              }
+              total_amount {
+                currency
+                value
+              }
+            }
+            subtotal {
+              currency
+              value
+            }
+            taxes {
+              amount {
+                currency
+                value
+              }
+              rate
+              title
+            }
+            total_shipping {
+              currency
+              value
+            }
+            total_tax {
+              currency
+              value
+            }
+          } 
+        }
+        items {
+          discounts {
+            amount {
+              currency
+              value
+            }
+            label
+          } 
+          entered_options {
+            label
+            value
+          } 
+          gift_message {
+            from
+            message
+            to
+          } 
+          id
+          product_name
+          product_sale_price {
+            currency
+            value
+          } 
+          product_sku
+          product_type
+          product_url_key
+          quantity_canceled
+          quantity_invoiced
+          quantity_ordered
+          quantity_refunded
+          quantity_returned
+          quantity_shipped
+          selected_options {
+            label
+            value
+          } 
+          status
+        }
+        number
+        order_date
+        payment_methods {
+          additional_data {
+            name
+            value
+          } 
+          name
+          type
+        }
+        shipments {
+          comments {
+            message
+            timestamp
+          } 
+          id
+          items {
+            id
+            order_item {
+              discounts {
+                amount {
+                  currency
+                  value
+                }
+                label
+              }
+              entered_options {
+                label
+                value
+              }
+              gift_message {
+                from
+                message
+                to
+              }
+              id
+              product_name
+              product_sale_price {
+                currency
+                value
+              }
+              product_sku
+              product_type
+              product_url_key
+              quantity_canceled
+              quantity_invoiced
+              quantity_ordered
+              quantity_refunded
+              quantity_returned
+              quantity_shipped
+              selected_options {
+                label
+                value
+              }
+              status
+            } 
+            product_name
+            product_sale_price {
+              value
+              currency
+            }
+            product_sku
+            quantity_shipped
+          }
+          number
+          tracking {
+            carrier
+            number
+            title
+          }
+        }
+        shipping_address {
+          city
+          company
+          country_code
+          fax
+          firstname
+          lastname
+          middlename
+          postcode
+          prefix
+          region
+          region_id
+          street
+          suffix
+          telephone
+          vat_id
+        }
+        shipping_method
+        status
+        total {
+          base_grand_total {
+            currency
+            value
+          }
+          discounts {
+            amount {
+              currency
+              value
+            }
+            label
+          }
+          grand_total {
+            currency
+            value
+          }
+          shipping_handling {
+            amount_excluding_tax {
+              currency
+              value
+            }
+            amount_including_tax {
+              currency
+              value
+            }
+            discounts {
+              amount {
+                currency
+                value
+              }
+            }
+            taxes {
+              amount {
+                currency
+                value
+              }
+            }
+            total_amount {
+              currency
+              value
+            }
+          }
+          subtotal {
+            currency
+            value
+          }
+          taxes {
+              amount {
+                currency
+                value
+              }
+            }
+          total_shipping {
+            currency
+            value
+          }
+          total_tax {
+            currency
+            value
+          }
+        }
+      }
+      page_info {
+        current_page
+        page_size
+        total_pages
+      }
+      total_count
+    } 
   }
 }
 `
 
   const {
     data
-  } = useAsyncQuery(query, { id: route.params.id });
+  } = useAsyncQuery(query);
 
 /*  const {
     getItemById
@@ -126,7 +592,7 @@ query NewQuery ($id: ID!) {
   });*/
 
     useHead({
-        title: data?.customer?.username,
+        title: data?.customer?.firstname,
     })
 
 	definePageMeta({

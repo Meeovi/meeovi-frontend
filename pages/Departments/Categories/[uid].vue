@@ -6,7 +6,7 @@
           <h5 style="padding: 15px">Meeovi {{ data?.categories?.items[0]?.name }}</h5>
           <v-slide-group-item v-slot="{ isSelected, toggle }">
             <v-btn :color="isSelected ? 'primary' : undefined" class="ma-2" @click="toggle"
-              :href="`/departments/${data?.categories?.items[0]?.uid}`">
+              :href="`/departments/categories/${data?.categories?.items[0]?.uid}`">
               All
             </v-btn>
           </v-slide-group-item>
@@ -25,10 +25,7 @@
 
       <!--Department Banner Slider
       <img :src="`${data?.categories?.image?.sourceUrl}`" :alt="data?.categories?.name" cover />-->
-
-      <div v-html="data?.categories?.items?.cms_block?.content"></div>
       <!--Department Creators Slider-->
-      <shorts />
     </v-card>
 
     <v-row class="departmentRow">
@@ -81,14 +78,7 @@
           <relatedevents :events="products" />
         </div>
       </v-col>
-      <!---->
-
-      <!--List of spaces in the department-->
-      <v-col cols="12">
-        <relatedspaces />
-      </v-col>
     </v-row>
-    <relatedcreators />
   </div>
 </template>
 
@@ -97,9 +87,6 @@
   import latestproducts from '../../components/related/latestproducts.vue'
   import relatedevents from '../../components/related/relatedevents.vue'
   import bestsellers from '../../components/related/bestsellers.vue'
-  import relatedcreators from '../../components/related/relatedcreators.vue'
-  import shorts from '../../components/related/shorts.vue'
-  import relatedspaces from '../../components/related/relatedspaces.vue'
   import productCard from '../../components/commerce/product/productCard.vue'
 
   export default {
@@ -109,9 +96,6 @@
       latestproducts,
       relatedevents,
       bestsellers,
-      relatedcreators,
-      relatedspaces,
-      shorts,
       productCard,
     },
     data() {
@@ -120,21 +104,6 @@
         //url: process.env.DIRECTUS_URL,
       }
     },
-    mounted() {
-      setInterval(myTimer, 1000);
-
-      function myTimer() {
-        const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
-          "November", "December"
-        ];
-        const date = new Date();
-
-        let name = month[date.getMonth()];
-        const day = new Date().toLocaleString();
-
-        document.getElementById("dateTime").innerHTML = name + " " + day;
-      }
-    }
   }
 </script>
 
@@ -148,10 +117,6 @@
       children {
         uid
         name
-      }
-      description
-      cms_block {
-        content
       }
       image
       products(pageSize: 5, sort: {position: DESC}) {

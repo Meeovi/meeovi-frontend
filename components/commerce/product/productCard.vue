@@ -3,7 +3,7 @@
     <v-row class="productCard">
       <v-col>
         <v-card class="mx-auto" max-width="350" :href="`/product/${product?.sku}`">
-          <img class="align-end text-white" style="height: 250px;" :src="`${product?.media_gallery_entries?.file}`"
+          <img class="align-end text-white" style="height: 250px;" :src="`${product?.image?.url}`"
             :alt="product?.name" cover />
 
           <v-card-title>{{product?.name}}</v-card-title>
@@ -12,7 +12,7 @@
           </v-card-subtitle>
 
           <v-card-subtitle class="pt-4">
-            Category: {{ product?.extension_attributes?.category_links?.category_id }}
+            Category: {{ product?.categories?.name }}
           </v-card-subtitle>
 
           <v-card-text>
@@ -22,7 +22,7 @@
               </v-rating>
             </div>
 
-            <p>{{ product?.price }}</p>
+            <p>{{ product?.price_range?.minimum_price?.regular_price?.currency }} {{ product?.price_range?.minimum_price?.regular_price?.value }}</p>
           </v-card-text>
 
           <v-card-actions>

@@ -3,10 +3,10 @@
     <v-card variant="text">
       <v-sheet class="mx-auto">
         <v-slide-group show-arrows>
-          <h5 style="padding: 15px">Meeovi {{ data?.categories?.items[0]?.name }}</h5>
+          <h5 style="padding: 15px">{{ data?.categories?.items[0]?.name }}</h5>
           <v-slide-group-item v-slot="{ isSelected, toggle }">
             <v-btn :color="isSelected ? 'primary' : undefined" class="ma-2" @click="toggle"
-              :href="`/departments/${data?.categories?.items[0]?.uid}`">
+              :href="`/outlets/${data?.categories?.items[0]?.uid}`">
               All
             </v-btn>
           </v-slide-group-item>
@@ -23,12 +23,9 @@
         </v-slide-group>
       </v-sheet>
 
-      <!--Department Banner Slider
-      <img :src="`${data?.categories?.image?.sourceUrl}`" :alt="data?.categories?.name" cover />-->
-
-      <div v-html="data?.categories?.items?.cms_block?.content"></div>
+      <!--Department Banner Slider-->
+      <img :src="`${data?.categories?.items[0]?.image}`" :alt="data?.categories?.items[0]?.name" cover />
       <!--Department Creators Slider-->
-      <shorts />
     </v-card>
 
     <v-row class="departmentRow">
@@ -74,21 +71,7 @@
           <productCard :product="products" />
         </div>
       </v-col>
-
-      <!--List of events in this department-->
-      <v-col cols="3" v-for="category in events?.categories?.items" :key="category">
-        <div v-for="products in category?.products?.items" :key="products">
-          <relatedevents :events="products" />
-        </div>
-      </v-col>
-      <!---->
-
-      <!--List of spaces in the department-->
-      <v-col cols="12">
-        <relatedspaces />
-      </v-col>
     </v-row>
-    <relatedcreators />
   </div>
 </template>
 
@@ -97,9 +80,6 @@
   import latestproducts from '../../components/related/latestproducts.vue'
   import relatedevents from '../../components/related/relatedevents.vue'
   import bestsellers from '../../components/related/bestsellers.vue'
-  import relatedcreators from '../../components/related/relatedcreators.vue'
-  import shorts from '../../components/related/shorts.vue'
-  import relatedspaces from '../../components/related/relatedspaces.vue'
   import productCard from '../../components/commerce/product/productCard.vue'
 
   export default {
@@ -109,9 +89,6 @@
       latestproducts,
       relatedevents,
       bestsellers,
-      relatedcreators,
-      relatedspaces,
-      shorts,
       productCard,
     },
     data() {
@@ -120,21 +97,6 @@
         //url: process.env.DIRECTUS_URL,
       }
     },
-    mounted() {
-      setInterval(myTimer, 1000);
-
-      function myTimer() {
-        const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
-          "November", "December"
-        ];
-        const date = new Date();
-
-        let name = month[date.getMonth()];
-        const day = new Date().toLocaleString();
-
-        document.getElementById("dateTime").innerHTML = name + " " + day;
-      }
-    }
   }
 </script>
 
@@ -148,10 +110,6 @@
       children {
         uid
         name
-      }
-      description
-      cms_block {
-        content
       }
       image
       products(pageSize: 5, sort: {position: DESC}) {
@@ -226,29 +184,6 @@
   }
 `;
 
-  const EVENT_PRODUCTS_QUERY = gql `
-  query EventProductsQuery {
-    products(filter: {category_uid: {eq: "NjE="}}) {
-      items {
-        uid
-        name
-        image {
-          url
-        }
-        sku
-        price_range {
-          minimum_price {
-            regular_price {
-              currency
-              value
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
   // Retrieve the route and extract the UID
   const route = useRoute();
 
@@ -271,10 +206,6 @@
   } = useAsyncQuery(LATEST_PRODUCTS_QUERY, {
     uid: route.params.uid
   });
-  const {
-    data: events,
-    error: errorEvents
-  } = useAsyncQuery(EVENT_PRODUCTS_QUERY);
 
   if (errorData || errorBest || errorLatest || errorEvents) {
     console.error('GraphQL Error:', errorData || errorBest || errorLatest || errorEvents);

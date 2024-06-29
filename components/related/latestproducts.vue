@@ -34,10 +34,14 @@
 <script setup>
 const LATEST_PRODUCTS_QUERY = gql`
 query LatestProductsQuery {
-  products(pageSize: 5, sort: { created_at: DESC }) {
+  products(pageSize: 5, sort: { position: DESC }) {
     items {
       uid
       name
+      rating_summary
+      description {
+        html
+      }
       image {
         url
       }
@@ -50,6 +54,9 @@ query LatestProductsQuery {
           }
         }
       }
+      categories {
+        name
+      }
     }
   }
 }
@@ -57,5 +64,5 @@ query LatestProductsQuery {
 
   const {
     data
-  } = useAsyncQuery(LATEST_PRODUCTS_QUERY);
+  } = useAsyncQuery(query);
 </script>

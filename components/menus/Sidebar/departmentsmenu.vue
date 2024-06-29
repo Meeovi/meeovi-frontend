@@ -3,10 +3,12 @@
     <v-expansion-panels variant="accordion">
       <v-expansion-panel title="Departments" expand-icon="fas fa-plus" collapse-icon="fas fa-minus" elevation="0">
         <v-expansion-panel-text>
-          <v-list v-for="departments in categories.children_data" :key="index">
-              <v-list-item :title="departments?.name" :value="departments?.name" :href="`/departments/${departments?.id}`">
+          <div v-for="departments in data?.categories?.items" :key="departments">
+           <v-list v-for="departments in departments?.children" :key="departments">
+              <v-list-item :title="departments?.name" :value="departments?.name" :href="`/departments/${departments?.uid}`">
               </v-list-item>
-          </v-list>
+          </v-list> 
+          </div>
         </v-expansion-panel-text>
       </v-expansion-panel>
     </v-expansion-panels>
@@ -18,7 +20,7 @@
 </script>
 
 <script setup>
-  import {
+/*  import {
     ref,
     onMounted
   } from 'vue';
@@ -30,8 +32,9 @@
 
   onMounted(async () => {
     categories.value = await getCategories();
-  });
-/*  const query = gql `
+  });*/
+
+const query = gql `
 query {
   categories {
     items {
@@ -50,7 +53,7 @@ query {
     data
   } = useAsyncQuery(query);
 
-  const {
+/*  const {
           getItems
       } = useDirectusItems()
 

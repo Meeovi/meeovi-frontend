@@ -5,13 +5,14 @@
       <v-slide-group v-model="model" class="pa-4" prev-icon="fas fa-arrow-left" next-icon="fas fa-arrow-right"
         selected-class="bg-primary">
         <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }">
-          <v-row dense v-for="products in productTags?.nodes" :key="products">
-            <v-col v-for="products in products?.nodes" :key="products" cols="4">
+          <v-row dense>
+            <v-col cols="4" :class="['ma-4', selectedClass]" @click="toggle">
               <v-card>
-                <img :src="products?.image?.sourceUrl" :alt="products?.name" class="align-end" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" height="200px" cover />
-                  <v-card-title class="text-white" v-text="products?.name"></v-card-title>
+                <img :src="product?.image?.url" :alt="products?.name" class="align-end" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" height="200px" cover />
+                  <v-card-title class="text-white" v-text="product?.name"></v-card-title>
 
                 <v-card-actions>
+                  {{ product?.short_description }}
                   <v-spacer></v-spacer>
 
                   <v-btn size="small" color="surface-variant" variant="text" icon="fas fa-heart"></v-btn>
@@ -23,6 +24,11 @@
               </v-card>
             </v-col>
           </v-row>
+          <div class="d-flex fill-height align-center justify-center">
+            <v-scale-transition>
+              <v-icon v-if="isSelected" color="white" icon="mdi-close-circle-outline" size="48"></v-icon>
+            </v-scale-transition>
+          </div>
         </v-slide-group-item>
       </v-slide-group>
     </v-sheet>
@@ -45,12 +51,12 @@
 
 <script setup>
   const props = defineProps({
-    productTags: {
+    events: {
       type: Object,
       required: true,
     },
   });
   const {
-    productTags
+    events
   } = props;
 </script>

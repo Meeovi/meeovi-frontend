@@ -6,7 +6,7 @@
           <v-list v-for="departments in data?.categories?.items" :key="index">
             <div v-for="outlets in departments?.children" :key="index">
               <v-list-item :title="outlets?.name" :value="outlets?.name"
-                :href="`/departments/${outlets?.uid}`">
+                :href="`/outlets/${outlets?.uid}`">
               </v-list-item>
             </div>
           </v-list>

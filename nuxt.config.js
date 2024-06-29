@@ -163,9 +163,7 @@ export default defineNuxtConfig({
           }
         } 
       },/* */
-      cms: {
-        httpEndpoint: process.env.API_URL
-      },
+      other: './apollo/cms.js',
     /*  commerce: {
         httpEndpoint: process.env.VDURE_URL
       },*/
