@@ -1,7 +1,7 @@
 <template>
     <div>
-        <form @submit.prevent="postToActivityFeed">
-            <v-card ref="form">
+        <form>
+            <v-card>
                 <v-card-text>
                     <v-textarea v-model="content" label="What's happening?*" variant="outlined" required></v-textarea>
                     <v-row>
@@ -107,8 +107,8 @@
                 </v-card-text>
                 <v-divider class="mt-12"></v-divider>
                 <v-card-actions>
-                    <v-btn variant="text">
-                        Cancel
+                    <v-btn variant="text" @click="resetForm">
+                        Cancel Update
                     </v-btn>
                     <v-spacer></v-spacer>
                     <v-slide-x-reverse-transition>
@@ -121,11 +121,16 @@
                             <span>Refresh form</span>
                         </v-tooltip>
                     </v-slide-x-reverse-transition>
-                    <v-btn color="primary" variant="text" type="submit">
-                        Post
+                    <v-btn color="primary" variant="text" type="submit" @click.prevent="deleteActivityAndRefresh">
+                        Delete Post
+                    </v-btn>
+
+                    <v-btn color="primary" variant="text" type="submit" @click.prevent="updateActivityAndRefresh">
+                        Update Post
                     </v-btn>
                 </v-card-actions>
             </v-card>
+            
         </form>
     </div>
 </template>
@@ -147,49 +152,95 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useApolloClient } from '@vue/apollo-composable';
+import { useRoute, useRouter } from 'vue-router';
+import gql from 'graphql-tag';
 
-// Define the GraphQL mutation
-const CREATE_ACTIVITY = gql`
-  mutation CreateActivity($content: String!, $component: ActivityComponentEnum!, $type: ActivityTypeEnum!) {
-    createActivity(input: {
-      content: $content,
-      component: $component,
-      type: $type
-    }) {
+const route = useRoute();
+const router = useRouter();
+const id = route.params.id;
+
+const content = ref('');
+const image = ref('');
+const media = ref('');
+const reactions = ref('');
+
+const { client: apolloClient } = useApolloClient();
+
+// Update Mutation
+const UPDATE_ACTIVITY = gql`
+  mutation MyMutation($content: String!, $id: ID!) {
+    updateActivity(input: {content: $content, type: ACTIVITY_UPDATE, id: $id}) {
       activity {
         content
+        date
+        id
+        status
+        title
+        type
+      }
+    }
+  }
+`;
+
+const updateActivity = async () => {
+  try {
+    const { data } = await apolloClient.mutate({
+      mutation: UPDATE_ACTIVITY,
+      variables: {
+        content: content.value,
+        id: id,
+      },
+    });
+    console.log('Activity updated:', data.updateActivity.activity);
+  } catch (error) {
+    console.error('Error updating activity:', error);
+  }
+};
+
+// Delete Mutation
+const DELETE_ACTIVITY = gql`
+  mutation MyMutation($id: ID!) {
+    deleteActivity(input: {id: $id}) {
+      activity {
         id
       }
     }
   }
 `;
 
-// Set up the ref for content
-const content = ref('');
-
-// Use the useMutation hook to create a mutate function
-const { mutate } = useMutation(CREATE_ACTIVITY);
-
-// Define the function to post to the activity feed
-const postToActivityFeed = async () => {
-  const variables = {
-    content: content.value,
-    component: "ACTIVITY", // Ensure this is the correct enum value
-    type: "ACTIVITY_UPDATE" // Ensure this is the correct enum value
-  };
-
-  console.log('Variables:', variables); // Debugging: Log variables to ensure they are correct
-
+const deleteActivity = async () => {
   try {
-    const result = await mutate({ variables });
-    console.log('Mutation result:', result);
-    if (result.errors) {
-      console.error('GraphQL Errors:', result.errors);
-    } else {
-      console.log('Activity posted:', result.data.createActivity.activity);
-    }
+    const { data } = await apolloClient.mutate({
+      mutation: DELETE_ACTIVITY,
+      variables: {
+        id: id,
+      },
+    });
+    console.log('Activity deleted:', data.deleteActivity.activity.id);
   } catch (error) {
-    console.error('Error posting activity:', error);
+    console.error('Error deleting activity:', error);
   }
+};
+
+const deleteActivityAndRefresh = async () => {
+  await deleteActivity();
+  router.push('/social/newsfeed');  // Refresh the current route
+};
+
+const updateActivityAndRefresh = async () => {
+  await updateActivity();
+  router.go(0);  // Refresh the current route
+};
+
+const resetForm = () => {
+  content.value = '';
+  image.value = '';
+  media.value = '';
+  reactions.value = '';
+};
+
+const reset = () => {
+  router.go(0);
 };
 </script>

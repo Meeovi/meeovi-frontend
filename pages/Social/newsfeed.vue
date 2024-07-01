@@ -9,7 +9,7 @@
                         <v-slide-group v-model="model" class="pa-4" selected-class="bg-success" show-arrows>
                             <v-slide-group-item v-for="members in data?.members?.nodes" :key="members"
                                 v-slot="{ isSelected, toggle, selectedClass }">
-                                <v-col cols="3" v-for="newsfeed in members?.activities?.nodes" :key="newsfeed">
+                                <v-col cols="4" v-for="newsfeed in members?.activities?.nodes" :key="newsfeed">
                                     <v-card :class="['ma-4', selectedClass]" color="white" class="mx-auto" elevated="0" min-height="250px"
                                         @click="toggle">
                                         <v-card-title v-html="newsfeed?.title"></v-card-title>
@@ -123,6 +123,7 @@
         },
         data() {
             return {
+                model: null,
                 url: process.env.DIRECTUS_URL,
             }
         },
@@ -130,6 +131,17 @@
 </script>
 
 <script setup>
+/*import { ref, onMounted } from 'vue';
+import { getActivity } from '~/composables/social/getActivity';
+
+const activity = ref([]);
+
+onMounted(async () => {
+    console.log('Component mounted, fetching activity...');
+    activity.value = await getActivity();
+    console.log('Fetched activity:', activity.value);
+});*/
+
 const query = gql `
 query NewQuery {
   members {
@@ -153,7 +165,7 @@ query NewQuery {
         data
     } = useAsyncQuery(query);
 
-    /*const {
+  /*  const {
         getItems
       } = useDirectusItems()
 

@@ -8,7 +8,7 @@
           <div class="container">
             <div class="row">
               <div class="col-12 col-md-6">
-                <img :src="data?.product?.image?.url" :alt="data?.product?.name" cover />
+                <img :src="data?.products?.items?.image?.url" :alt="data?.products?.items?.name" cover />
               </div>
               <div class="col-12 col-md-6">
                 <div class="right">
@@ -16,27 +16,27 @@
                     <p class="mbr-fonts-style display-4">
                       By: <a :href="`/account/user/`"></a></p>
                   </div>
-                  <p class="name mbr-fonts-style display-2"><strong>{{ data?.product?.name }}</strong></p>
+                  <p class="name mbr-fonts-style display-2"><strong>{{ data?.products?.items?.name }}</strong></p>
 
                   <div class="price-line">
                     <p class="desc2 mbr-fonts-style display-5">
-                      <s>{{ data?.product?.productTypes?.nodes?.name }}</s></p>
+                      <s>{{ data?.products?.items?.price_range?.minimum_price?.regular_price?.currency }}&nbsp;</s></p>
                     <p class="plus1 mbr-fonts-style display-5">
-                      <strong>{{ data?.product?.price_range?.minimum_price?.regular_price?.currency }}&nbsp;</strong>{{ data?.product?.price_range?.minimum_price?.regular_price?.value }}</p>
+                      <strong></strong>{{ data?.products?.items?.price_range?.minimum_price?.regular_price?.value }}</p>
                   </div>
-                  <p class="mbr-text mbr-fonts-style display-4" v-html="data?.product?.short_description?.html"></p>
+                  <p class="mbr-text mbr-fonts-style display-4" v-html="data?.products?.items?.description?.html"></p>
 
                   <v-card variant="text" class="productVCard">
                     <v-card-actions>
                       <v-list>
                         <v-list-item>
-                          <p class="desc mbr-fonts-style display-7"><strong>Size: </strong>&nbsp;<v-btn
+                          <p class="desc mbr-fonts-style display-7"><strong>Size: {{ data?.products?.items?.size }}</strong>&nbsp;<v-btn
                               variant="outlined"></v-btn>
                           </p>
                         </v-list-item>
 
                         <v-list-item>
-                          <p class="desc mbr-fonts-style display-7"><strong>Color:</strong>&nbsp;<v-btn variant="text">
+                          <p class="desc mbr-fonts-style display-7"><strong>Color: {{ data?.products?.items?.color }}</strong>&nbsp;<v-btn variant="text">
                               <v-avatar color=""></v-avatar>
                             </v-btn>
                           </p>
@@ -59,19 +59,22 @@
                   <div class="price-line1">
                     <p class="desc mbr-fonts-style display-7"><strong>
                         Category:</strong></p>
-                    <p class="plus mbr-fonts-style display-4"
-                      v-for="(category, index) in data?.product?.productCategories?.nodes" :key="index">
-                      &nbsp;{{ category?.name }}</p>
+                    <p class="plus mbr-fonts-style display-4">{{ data?.products?.items?.categories?.name }}</p>
+                  </div>
+                  <div class="price-line1">
+                    <p class="desc mbr-fonts-style display-7"><strong>
+                        Remaining in Stock:</strong></p>
+                    <p class="plus mbr-fonts-style display-4">{{ data?.products?.items?.only_x_left_in_stock }}</p>
                   </div>
                   <div class="price-line1">
                     <p class="desc mbr-fonts-style display-7"><strong>
                         Format:</strong>&nbsp;</p>
-                    <p class="plus mbr-fonts-style display-4">{{ data?.product?.format }}</p>
+                    <p class="plus mbr-fonts-style display-4">{{ data?.products?.items?.format }}</p>
                   </div>
                   <div class="price-line1">
                     <p class="desc mbr-fonts-style display-7"><strong>
                         Product ID:</strong>&nbsp;</p>
-                    <p class="plus mbr-fonts-style display-4">{{ data?.product?.sku }}</p>
+                    <p class="plus mbr-fonts-style display-4">{{ data?.products?.items?.sku }}</p>
                   </div>
                 </div>
               </div>
@@ -95,7 +98,7 @@
               <!--Product Description-->
               <v-window-item value="one">
                 <v-card variant="text">
-                  <v-card-text>{{data?.product?.description?.html}}</v-card-text>
+                  <v-card-text>{{data?.products?.items?.description?.html}}</v-card-text>
                 </v-card>
               </v-window-item>
 
@@ -106,7 +109,7 @@
 
               <!--Product Specifications-->
               <v-window-item value="three">
-                <productSpecs />
+                <productSpecs :product="$sku" />
               </v-window-item>
 
               <!--Product FAQs-->
@@ -163,56 +166,39 @@
 <script setup>
   const route = useRoute();
   const query = gql `
-query NewQuery ($id: ID!) {
-  product(id: $id) {
-    attributes {
-      nodes {
-        name
-      }
-    }
-    averageRating
-    content
-    date
-    description
-    galleryImages {
-      nodes {
-        sourceUrl
-      }
-    }
-    id
-    image {
-      sourceUrl
-    }
-    name
-    onSale
-    productCategories {
-      nodes {
-        id
-        name
-      }
-    }
-    productTypes {
-      nodes {
-        name
-      }
-    }
-    productTags {
-      nodes {
-        name
-      }
-    }
-    sku
-    slug
-    status
-    type
-    ... on SimpleProduct {
-      id
+query($sku: String!) {
+  products (filter: {sku: {eq: $sku}}) {
+    items {
+      uid
       name
-      downloadable
-      price
-      stockQuantity
+      rating_summary
+      description {
+        html
+      }
+      short_description {
+        html
+      }
+      image {
+        url
+      }
+      format
+      size
+      color
+      sku
+      options_container
+      only_x_left_in_stock
+      price_range {
+        minimum_price {
+          regular_price {
+            currency
+            value
+          }
+        }
+      }
+      categories {
+        name
+      }
     }
-    excerpt
   }
 }
 `
@@ -220,7 +206,7 @@ query NewQuery ($id: ID!) {
   const {
     data
   } = useAsyncQuery(query, {
-    id: route.params.id
+    sku: route.params.sku
   });
 
   /*const {
@@ -234,6 +220,6 @@ query NewQuery ($id: ID!) {
     }); */
 
     useHead({
-      title: data?.value?.product?.name,
+      title: data?.products?.name,
     })
 </script>

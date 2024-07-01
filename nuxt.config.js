@@ -153,7 +153,7 @@ export default defineNuxtConfig({
     authHeader: "Authorization",
     tokenStorage: "cookie",
     clients: {
-      default: {
+      /*default: {
         tokenName: "apollo-token",
         httpEndpoint: process.env.MAGE_MAGENTO_GRAPHQL_URL,
         httpLinkOptions: {
@@ -162,7 +162,7 @@ export default defineNuxtConfig({
             'content-type': 'application/json'
           }
         } 
-      },/* */
+      }, */
       other: './apollo/cms.js',
     /*  commerce: {
         httpEndpoint: process.env.VDURE_URL

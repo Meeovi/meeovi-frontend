@@ -86,63 +86,13 @@
 </script>
 
 <script setup>
-const route = useRoute();
-const query = gql`
-query NewQuery ($id: ID!) {
-  product(id: $id) {
-    attributes {
-      nodes {
-        name
-      }
-    }
-    averageRating
-    content
-    date
-    description
-    galleryImages {
-      nodes {
-        sourceUrl
-      }
-    }
-    id
-    image {
-      sourceUrl
-    }
-    name
-    onSale
-    productCategories {
-      nodes {
-        id
-        name
-      }
-    }
-    productTypes {
-      nodes {
-        name
-      }
-    }
-    productTags {
-      nodes {
-        name
-      }
-    }
-    sku
-    slug
-    status
-    type
-    ... on SimpleProduct {
-      id
-      name
-      downloadable
-      price
-      stockQuantity
-    }
-    excerpt
-  }
-}
-`
-
+  const props = defineProps({
+    compare: {
+      type: Object,
+      required: true,
+    },
+  });
   const {
-    data
-  } = useAsyncQuery(query, { id: route.params.id });
+    compare
+  } = props;
 </script>

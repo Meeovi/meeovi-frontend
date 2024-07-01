@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form @submit.prevent="postToActivityFeed">
+        <form @submit.prevent="createActivityAndRefresh">
             <v-card>
                 <v-card-text>
                     <v-textarea v-model="content" label="What's happening?*" variant="outlined" required></v-textarea>
@@ -145,52 +145,54 @@
 </script>
 
 <script setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
+import { useApolloClient } from '@vue/apollo-composable';
+import { useRoute, useRouter } from 'vue-router';
+import gql from 'graphql-tag';
 
-// Access environment variables
-const apiUrl = process.env.API_URL || 'https://meeovi.meeovicms.com'
-const wordpressToken = process.env.WORDPRESS_TOKEN || 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL21lZW92aS5tZWVvdmljbXMuY29tIiwiaWF0IjoxNzE4MjkxMTg0LCJuYmYiOjE3MTgyOTExODQsImV4cCI6MTcxODg5NTk4NCwiZGF0YSI6eyJ1c2VyIjp7ImlkIjoiMSJ9fX0.pER2LWpuRBgMUqqvD6pcZfb185nULQV_dq-ml67AFZc'
+const route = useRoute();
+const router = useRouter();
+//const id = ref('');
 
 const content = ref('');
-const attachmentAvatar = ref('');
-const errorMessage = ref('');
-const successMessage = ref('')
+const image = ref('');
+const media = ref('');
+const reactions = ref('');
 
-const postToActivityFeed = async () => {
-  try {
-    const response = await $fetch(`${apiUrl}/wp-json/buddypress/v1/activity`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${wordpressToken}`
-      },
-      body: JSON.stringify({
-        content: content.value,
-        attachmentAvatar: attachmentAvatar.value,
-      })
-    })
+const { client: apolloClient } = useApolloClient();
 
-    console.log(response);
-
-    if (response.id) {
-      successMessage.value = 'Activity created successfully!'
-      errorMessage.value = ''
-    } else {
-      throw new Error('Failed to create activity')
+// Create Mutation
+const CREATE_ACTIVITY = gql`
+  mutation MyMutation($content: String!) {
+    createActivity(input: {content: $content, type: ACTIVITY_UPDATE}) {
+    activity {
+      content
+      date
+      status
+      title
+      type
     }
-  } catch (error) {
-    console.error('Error creating activity:', error);
-    if (error.response) {
-      console.error('Error response:', error.response);
-      if (error.response.status === 403) {
-        errorMessage.value = 'You do not have permission to create a activity.'
-      } else {
-        errorMessage.value = `Error: ${error.response.status} ${error.response.statusText}`
-      }
-    } else {
-      errorMessage.value = error.message
-    }
-    successMessage.value = ''
   }
 }
+`;
+
+const createActivity = async () => {
+  try {
+    const { data } = await apolloClient.mutate({
+      mutation: CREATE_ACTIVITY,
+      variables: {
+        content: content.value,
+        //id: id.value,
+      },
+    });
+    console.log('Activity created:', data.createActivity.activity);
+  } catch (error) {
+    console.error('Error updating activity:', error);
+  }
+};
+
+const createActivityAndRefresh = async () => {
+  await createActivity();
+  router.go(0);  // Refresh the current route
+};
 </script>

@@ -3,7 +3,7 @@
         <profilebar />
 
         <v-card flat>
-            <v-toolbar color="primary" dark extended flat height="250" :image="`${group?.avatar_urls?.full}`">
+            <v-toolbar color="primary" dark extended flat height="250" :image="`${data?.group?.attachmentCover?.full}`">
             </v-toolbar>
 
                 <section data-bs-version="5.1" class="features1 cid-sBXVhMMeXw" id="features2-2k">
@@ -14,8 +14,8 @@
                                     <div class="card-box align-center">
                                         <h4 class="card-title align-center mbr-black mbr-fonts-style display-7">
                                             <strong>
-                                                <v-avatar size="80" rounded="0" :image="`${group?.avatar_urls?.thumb}`"></v-avatar>
-                                            </strong><br><br>{{ group?.name }}</h4>
+                                                <v-avatar size="80" rounded="0" :image="`${data?.group?.attachmentAvatar?.full}`"></v-avatar>
+                                            </strong><br><br>{{ data?.group?.name }}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -25,7 +25,7 @@
                                         <span class="mbr-iconfont mobi-mbri-calendar mobi-mbri"
                                             style="color: rgb(255, 153, 102); fill: rgb(255, 153, 102);"></span>
                                         <h4 class="card-title align-center mbr-black mbr-fonts-style display-7">
-                                            <strong>Group Created</strong><br><br>{{ new Date(group?.date_created).toLocaleDateString() }}</h4>
+                                            <strong>Group Created</strong><br><br>{{ new Date(data?.group?.dateCreated).toLocaleDateString() }}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -35,7 +35,7 @@
                                         <span class="mbr-iconfont mobi-mbri-users mobi-mbri"
                                             style="color: rgb(255, 153, 102); fill: rgb(255, 153, 102);"></span>
                                         <h4 class="card-title align-center mbr-black mbr-fonts-style display-7">
-                                            <strong># of Members</strong><br><br>{{ group?.total_member_count }}
+                                            <strong># of Members</strong><br><br>{{ data?.group?.totalMemberCount }}
                                         </h4>
                                     </div>
                                 </div>
@@ -44,11 +44,11 @@
                                 <div class="card-wrapper">
                                     <div class="card-box align-center">
                                         <v-avatar size="50">
-                                            <img :src="`${group?.creator?.avatar?.url}`"
-                                                :alt="group?.creator?.username" />
+                                            <img :src="`${data?.group?.creator?.avatar?.url}`"
+                                                :alt="data?.group?.creator?.username" />
                                         </v-avatar>
                                         <h4 class="card-title align-center mbr-black mbr-fonts-style display-7">
-                                            <strong>Created By</strong><br><br><a :href="`/account/user/${group?.creator?.username}`"></a></h4>
+                                            <strong>Created By</strong><br><br><a :href="`/account/user/${data?.group?.creator?.username}`"></a></h4>
                                     </div>
                                 </div>
                             </div>
@@ -57,7 +57,7 @@
                                 <div class="card-wrapper">
                                     <div class="card-box align-center">
                                         <h4 class="card-title align-center mbr-black mbr-fonts-style display-7"
-                                            v-html="group?.description?.rendered"></h4>
+                                            v-html="data?.group?.description"></h4>
                                     </div>
                                 </div>
                             </div>
@@ -104,7 +104,7 @@
             <v-tabs-window v-model="tab">
                 <v-window v-model="tab">
                     <!--Space Social Feed-->
-                    <v-tabs-window-item value="tab-1" v-for="activities in group?.activities?.nodes"
+                    <v-tabs-window-item value="tab-1" v-for="activities in data?.group?.activities?.nodes"
                         :key="activities">
                         <v-row>
                             <v-col cols="4">
@@ -159,25 +159,25 @@
                     <!--Space People-->
                     <v-tabs-window-item value="tab-2">
                         <v-list lines="one">
-                            <v-list-item :title="`${group?.total_member_count} Members`"></v-list-item>
+                            <v-list-item :title="`${data?.group?.totalMemberCount} Members`"></v-list-item>
                         </v-list>
 
                         <v-text-field label="Find a Member" prepend-inner-icon="fas fa-search" variant="solo">
                         </v-text-field>
 
                         <v-list lines="two">
-                            <h5>Creator of {{ group?.name }}</h5>
+                            <h5>Creator of {{ data?.group?.name }}</h5>
                             <v-list-item>
                                 <v-row align="center" class="spacer" no-gutters>
                                     <v-col cols="4" sm="2" md="1">
                                         <v-avatar size="50">
-                                            <img :src="`${group?.creator?.avatar?.url}`"
-                                                :alt="group?.creator?.username" />
+                                            <img :src="`${data?.group?.creator?.avatar?.url}`"
+                                                :alt="data?.group?.creator?.username" />
                                         </v-avatar>
                                     </v-col>
 
                                     <v-col class="hidden-xs-only text-left ms-2" sm="5" md="3">
-                                        <p>{{ group?.creator?.username }}</p>
+                                        <p>{{ data?.group?.creator?.username }}</p>
                                     </v-col>
 
                                     <v-col class="text-medium-emphasis text-truncate hidden-sm-and-down">
@@ -188,8 +188,8 @@
                         </v-list>
 
                         <v-list lines="two">
-                            <h5>Admins of {{ group?.name }}</h5>
-                            <v-list-item v-for="admins in group?.admins?.nodes" :key="admins">
+                            <h5>Admins of {{ data?.group?.name }}</h5>
+                            <v-list-item v-for="admins in data?.group?.admins?.nodes" :key="admins">
                                 <v-row align="center" class="spacer" no-gutters>
                                     <v-col cols="4" sm="2" md="1">
                                         <v-avatar size="50">
@@ -213,8 +213,8 @@
                         </v-list>
 
                         <v-list lines="two">
-                            <h5>Moderators of {{ group?.name }}</h5>
-                            <v-list-item v-for="admins in group?.mods?.nodes" :key="admins">
+                            <h5>Moderators of {{ data?.group?.name }}</h5>
+                            <v-list-item v-for="admins in data?.group?.mods?.nodes" :key="admins">
                                 <v-row align="center" class="spacer" no-gutters>
                                     <v-col cols="4" sm="2" md="1">
                                         <v-avatar size="50">
@@ -238,8 +238,8 @@
                         </v-list>
 
                         <v-list lines="two">
-                            <h5>All Members of {{ group?.name }}</h5>
-                            <v-list-item v-for="members in group?.members?.nodes" :key="members">
+                            <h5>All Members of {{ data?.group?.name }}</h5>
+                            <v-list-item v-for="members in data?.group?.members?.nodes" :key="members">
                                 <v-row align="center" class="spacer" no-gutters>
                                     <v-col cols="4" sm="2" md="1">
                                         <v-avatar size="50">
@@ -266,15 +266,15 @@
                     <!--Space Media-->
                     <v-tabs-window-item value="tab-3">
                         <v-card class="mx-auto" max-width="400">
-                            <img class="align-end text-white" height="200" :src="`${group?.media?.filename_disk}`"
-                                :alt="group?.name" cover />
+                            <img class="align-end text-white" height="200" :src="`${data?.group?.media?.filename_disk}`"
+                                :alt="data?.group?.name" cover />
                         </v-card>
                     </v-tabs-window-item>
 
                     <!--Space Products-->
                     <v-tabs-window-item value="tab-4">
                         <section class="features3 cid-sBXVblMrWB" id="features3-2j">
-                            <div class="container" v-for="products in products?.nodes" :key="products.id">
+                            <div class="container" v-for="products in products?.nodes" :key="products?.id">
                                 <productCard :product="products" />
                             </div>
                         </section>
@@ -350,10 +350,10 @@
 </script>
 
 <script setup>
-import { getGroupById } from '~/composables/read/getGroups';
+const route = useRoute();
+/*import { getGroupById } from '~/composables/social/getGroups';
 
 const group = ref(null);
-const route = useRoute();
 
 onMounted(async () => {
     const id = route.params.id;
@@ -363,9 +363,9 @@ onMounted(async () => {
     } catch (error) {
         console.error("Failed to fetch group data:", error);
     }
-});
+}); */
 
-/*const query = gql `
+const query = gql `
 query NewQuery ($id: ID!) {
 group(id: $id){
     creator {
@@ -437,7 +437,7 @@ group(id: $id){
         id: route.params.id
     });
 
-        const {
+    /*    const {
             getItemById
         } = useDirectusItems()
 
@@ -452,7 +452,7 @@ group(id: $id){
         });*/
 
     useHead({
-        title: group?.name
+        title: data?.group?.name
     })
 
     definePageMeta({

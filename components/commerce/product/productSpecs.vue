@@ -3,75 +3,59 @@
       <tbody>
         <tr>
           <th>Name</th>
-          <td>{{ data?.product?.name }}</td>
+          <td>{{ products?.name }}</td>
         </tr>
         <tr>
           <th>Category Name</th>
-          <td>{{ data?.product?.productCategories?.nodes?.name }}</td>
+          <td>{{ products?.categories?.name }}</td>
         </tr>
         <tr>
           <th>Price</th>
-          <td>{{ data?.product?.price }}</td>
+          <td><strong>{{ data?.products?.items?.price_range?.minimum_price?.regular_price?.currency }}&nbsp;</strong>{{ data?.products?.items?.price_range?.minimum_price?.regular_price?.value }}</td>
+        </tr>
+        <tr>
+          <th>Special Price</th>
+          <td>{{ products?.special_price }}</td>
+        </tr>
+        <tr>
+          <th>Special to Date </th>
+          <td>{{ products?.special_to_date }}</td>
         </tr>
         <tr>
           <th>Average Rating</th>
-          <td>{{ data?.product?.averageRating }}</td>
+          <td>{{ products?.rating_summary }}</td>
         </tr>
         <tr>
           <th># of Reviews</th>
-          <td>{{ data?.product?.reviewCount }}</td>
-        </tr>
-        <tr>
-          <th>Sale Price</th>
-          <td>{{ data?.product?.salePrice }}</td>
+          <td>{{ products?.review_count }}</td>
         </tr>
         <tr>
           <th>Sku</th>
-          <td>{{ data?.product?.sku }}</td>
+          <td>{{ products?.sku }}</td>
         </tr>
         <tr>
           <th>How many items are left?</th>
-          <td>{{ data?.product?.stockQuantity }}</td>
+          <td>{{ products?.only_x_left_in_stock }}</td>
         </tr>
         <tr>
-          <th>Weight</th>
-          <td>{{ data?.product?.weight }}</td>
+          <th>Gift Message Available?</th>
+          <td>{{ products?.gift_message_available }}</td>
         </tr>
         <tr>
-          <th>Height</th>
-          <td>{{ data?.product?.height }}</td>
-        </tr>
-        <tr>
-          <th>Width</th>
-          <td>{{ data?.product?.width }}</td>
-        </tr>
-        <tr>
-          <th>Total Sales</th>
-          <td>{{ data?.product?.totalSales }}</td>
-        </tr>
-        <tr>
-          <th>Tax Class</th>
-          <td v-html="data?.product?.taxClass"></td>
-        </tr>
-        <tr>
-          <th>Tax Status</th>
-          <td>{{ data?.product?.taxStatus }}</td>
-        </tr>
-        <tr>
-          <th>Stock Status</th>
-          <td>{{ data?.product?.stockStatus }}</td>
-        </tr>
-        <tr>
-          <th># of Reviews</th>
-          <td>{{ data?.product?.reviewCount }}</td>
+          <th>Country of Manufacture</th>
+          <td>{{ products?.country_of_manufacture }}</td>
         </tr>
         <tr>
           <th>Format</th>
-          <td>{{ data?.product?.type }}</td>
+          <td>{{ products?.format }}</td>
         </tr>
         <tr>
-          <th>Product Released</th>
-          <td>{{ data?.product?.date }}</td>
+          <th>Product Sizes</th>
+          <td>{{ products?.size }}</td>
+        </tr>
+        <tr>
+          <th>Product Colors</th>
+          <td>{{ products?.color }}</td>
         </tr>
       </tbody>
     </v-table>
@@ -88,54 +72,13 @@
 </script>
 
 <script setup>
-const route = useRoute();
-const query = gql`
-query NewQuery ($id: ID!) {
-  product(id: $id) {
-    averageRating
-    content
-    date
-    description
-    id
-    name
-    onSale
-    sku
-    slug
-    status
-    type
-    ... on SimpleProduct {
-      id
-      name
-      downloadable
-      price
-      stockQuantity
-      backorders
-      height
-      productCategories {
-        nodes {
-          name
-        }
-      }
-      reviewCount
-      salePrice
-      sku
-      slug
-      status
-      stockStatus
-      taxClass
-      taxStatus
-      totalSales
-      type
-      weight
-      width
-      virtual
-    }
-    totalSales
-  }
-}
-`
-
+  const props = defineProps({
+    product: {
+      type: Object,
+      required: true,
+    },
+  });
   const {
-    data
-  } = useAsyncQuery(query, { id: route.params.id });
+    product
+  } = props;
 </script>

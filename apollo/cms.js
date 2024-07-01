@@ -2,7 +2,7 @@ import { defineApolloClient } from '@nuxtjs/apollo/config'
 
 export default defineApolloClient({
   // The GraphQL endpoint.
-  httpEndpoint: process.env.API_URL,
+  httpEndpoint: process.env.API_URL_GRAPHQL,
 
   // Provide a GraphQL endpoint to be used client-side. Overrides `httpEndpoint`.
   // browserHttpEndpoint: '/graphql',

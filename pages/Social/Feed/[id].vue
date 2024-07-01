@@ -9,8 +9,7 @@
                             <v-row>
                                 <v-col cols="10">
                                     <v-list lines="two">
-                                        <v-list-item :title="data?.activity?.creator?.username"
-                                            :prepend-avatar="data?.activity?.creator?.avatar?.url">
+                                        <v-list-item :title="data?.activity?.creator?.username" :prepend-avatar="data?.activity?.creator?.avatar?.url">
                                         </v-list-item>
                                     </v-list>
                                 </v-col>
@@ -22,12 +21,10 @@
                                         </template>
 
                                         <template v-slot:default="{ isActive }">
-                                            <updatepost />
+                                            <updatepost :id="activityId" />
                                         </template>
                                     </v-dialog>
                                 </v-col>
-
-                                <v-col cols="1"><v-btn class="rightAddBtn" icon="fas fa-x" variant="text" title="Delete Post"></v-btn></v-col>
                             </v-row>
 
 
@@ -88,13 +85,29 @@
         },
         data() {
             return {
-                url: process.env.DIRECTUS_URL,
+                activityId: this.$route.params.id,
+                //url: process.env.DIRECTUS_URL,
             }
         },
     }
 </script>
 
 <script setup>
+/*import { getActivityById } from '~/composables/social/getActivity';
+
+const activity = ref(null);
+const route = useRoute();
+
+onMounted(async () => {
+    const id = route.params.id;
+    try {
+        activity.value = await getActivityById(id);
+        console.log(activity.value);  // Check the fetched data in the console
+    } catch (error) {
+        console.error("Failed to fetch activity data:", error);
+    }
+});*/
+
     const route = useRoute();
     const query = gql `
 query NewQuery ($id: ID!) {
@@ -121,7 +134,7 @@ query NewQuery ($id: ID!) {
         id: route.params.id
     });
 
-    /*const {
+ /*   const {
         getItemById
       } = useDirectusItems()
 
@@ -131,7 +144,7 @@ query NewQuery ($id: ID!) {
       });*/
 
     useHead({
-        title: data?.value?.activity?.title,
+        title: data?.activity?.title,
     })
 
     definePageMeta({

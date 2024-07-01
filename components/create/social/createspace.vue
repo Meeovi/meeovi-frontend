@@ -6,7 +6,7 @@
                 <v-btn v-bind="props" stacked prepend-icon="fas fa-plus" text="Create A Space" size="150" variant="flat" style="height: 321px; margin-top: 27px;"></v-btn>
             </template>
             <v-card>
-                <form @submit.prevent="createGroup">
+                <form @submit.prevent="createGroupAndRefresh">
                     <v-toolbar dark color="primary">
                         <v-btn icon dark @click="dialog = false">
                             <v-icon icon="fas fa-circle-xmark"></v-icon>
@@ -80,60 +80,54 @@
 </script>
 
 <script setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
+import { useApolloClient } from '@vue/apollo-composable';
+import { useRoute, useRouter } from 'vue-router';
+import gql from 'graphql-tag';
 
-// Access environment variables
-const apiUrl = process.env.API_URL || 'https://meeovi.meeovicms.com'
-const wordpressToken = process.env.WORDPRESS_TOKEN || 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL21lZW92aS5tZWVvdmljbXMuY29tIiwiaWF0IjoxNzE4MjkxMTg0LCJuYmYiOjE3MTgyOTExODQsImV4cCI6MTcxODg5NTk4NCwiZGF0YSI6eyJ1c2VyIjp7ImlkIjoiMSJ9fX0.pER2LWpuRBgMUqqvD6pcZfb185nULQV_dq-ml67AFZc'
+const route = useRoute();
+const router = useRouter();
+//const id = ref('');
 
-const name = ref('');
-const description = ref('');
-const attachmentCover = ref('');
-const attachmentAvatar = ref('');
-const errorMessage = ref('');
-const successMessage = ref('');
-const typeItems = ref('Default', 'Audio', 'Video');
-const statusItems = ref('Public', 'Private', 'Hidden')
+const content = ref('');
+const image = ref('');
+const media = ref('');
+const reactions = ref('');
+
+const { client: apolloClient } = useApolloClient();
+
+// Create Mutation
+const CREATE_ACTIVITY = gql`
+  mutation MyMutation($content: String!) {
+    createGroup(input: {content: $content, type: ACTIVITY_UPDATE}) {
+    activity {
+      content
+      date
+      status
+      title
+      type
+    }
+  }
+}
+`;
 
 const createGroup = async () => {
   try {
-    const response = await $fetch(`${apiUrl}/wp-json/buddypress/v1/groups`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${wordpressToken}`
+    const { data } = await apolloClient.mutate({
+      mutation: CREATE_ACTIVITY,
+      variables: {
+        content: content.value,
+        //id: id.value,
       },
-      body: JSON.stringify({
-        name: name.value,
-        description: description.value,
-        attachmentCover: attachmentCover.value,
-        attachmentAvatar: attachmentAvatar.value,
-        status: 'public',  // You can set it to 'public', 'private', or 'hidden'
-        enable_forum: false  // Set to true if you want to enable forums for the group
-      })
-    })
-
-    console.log(response);
-
-    if (response.id) {
-      successMessage.value = 'Group created successfully!'
-      errorMessage.value = ''
-    } else {
-      throw new Error('Failed to create group')
-    }
+    });
+    console.log('Group created:', data.createGroup.activity);
   } catch (error) {
-    console.error('Error creating group:', error);
-    if (error.response) {
-      console.error('Error response:', error.response);
-      if (error.response.status === 403) {
-        errorMessage.value = 'You do not have permission to create a group.'
-      } else {
-        errorMessage.value = `Error: ${error.response.status} ${error.response.statusText}`
-      }
-    } else {
-      errorMessage.value = error.message
-    }
-    successMessage.value = ''
+    console.error('Error updating activity:', error);
   }
-}
+};
+
+const createGroupAndRefresh = async () => {
+  await createGroup();
+  router.go(0);  // Refresh the current route
+};
 </script>
