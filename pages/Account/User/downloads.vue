@@ -1,101 +1,38 @@
 <template>
     <div class="contentPage">
         <profilebar />
-        <v-row>
-            <v-col cols="12">
-                <v-toolbar title="Your Downloads" subtitle=""></v-toolbar>
-                <v-row class="accountRow">
-                    <v-col cols="3" v-for="(downloads, index) in data?.customer?.downloadableItems?.nodes" :key="index">
-                        <v-card class="mx-auto" max-width="400">
-                            <img :src="downloads?.product?.image?.sourceUrl" :alt="downloads?.product?.name">
-                            <v-card-title>{{ downloads?.name }}</v-card-title>
-
-                            <v-card-subtitle class="pt-4">
-                                Access Expires: {{ downloads?.accessExpires }}
-                            </v-card-subtitle>
-
-                            <v-card-text>
-                                <div>Product Name: {{ downloads?.product?.name }}</div>
-
-                                <div>Product Sku: {{ downloads?.product?.sku }}</div>
-
-                                <div>Product Type: {{ downloads?.product?.type }}</div>
-
-                                <div>Product Price: {{ downloads?.product?.price }}</div>
-                            </v-card-text>
-
-                            <v-card-actions>
-                                <v-btn color="orange" :href="downloads?.download?.file">
-                                    Download
-                                </v-btn>
-
-                                <v-btn color="red">
-                                    Delete
-                                </v-btn>
-                            </v-card-actions>
-                        </v-card>
-                    </v-col>
-                </v-row>
-            </v-col>
-
-            <v-col cols="12">
-                <v-toolbar title="Your Uploads" subtitle=""></v-toolbar>
-                <v-row class="accountRow">
-                    <v-col cols="3" v-for="(products, index) in data?.wishlist?.items" :key="index">
-                        <v-card class="mx-auto" max-width="400">
-                            <v-card-title>{{ products?.name }}</v-card-title>
-
-                            <v-card-subtitle class="pt-4">
-                                # of Products: {{ products?.items?.qty }}
-                            </v-card-subtitle>
-
-                            <v-card-text>
-                                <div>Updated: {{ products?.updated_at }}</div>
-
-                                <div>{{ products?.items?.description }}</div>
-                            </v-card-text>
-
-                            <v-card-actions>
-                                <v-btn color="orange">
-                                    Archive Order
-                                </v-btn>
-
-                                <v-btn color="red" href="`/commerce/lists/`">
-                                    Manage subscription
-                                </v-btn>
-                            </v-card-actions>
-                        </v-card>
-                    </v-col>
-                </v-row>
-            </v-col>
-
-            <v-col cols="12">
-                <v-toolbar title="Your Reviews" subtitle=""></v-toolbar>
-                <v-row class="accountRow">
-                    <v-col cols="3" v-for="(reviews, index) in data?.customer?.reviews?.items" :key="index">
-                        <v-card class="mx-auto" max-width="400">
-                            <v-card-title>{{ reviews?.nickname }}</v-card-title>
-
-                            <v-card-subtitle class="pt-4">
-                                Created: {{ reviews?.created_at }}
-                            </v-card-subtitle>
-
-                            <v-card-text>
-                                <div>Summary: {{ reviews?.summary }}</div>
-
-                                <div>{{ reviews?.average_rating }}</div>
-                            </v-card-text>
-
-                            <v-card-actions>
-                                <v-btn color="orange">
-                                    View Product
-                                </v-btn>
-                            </v-card-actions>
-                        </v-card>
-                    </v-col>
-                </v-row>
-            </v-col>
-        </v-row>
+        <section data-bs-version="5.1" class="firmm4_features1 features1 cid-uhBuptnWmV" id="features1-9v"
+            data-sortbtn="btn-primary">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 title_block">
+                        <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+                            <strong>Downloads</strong></h3>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="card col-12 col-lg-3 col-md-6 col-sm-6" v-for="(downloads, index) in data?.customer?.downloadableItems?.nodes" :key="index">
+                        <div class="card_wrapper">
+                            <div class="card-box">
+                                <div class="icon_block">
+                                    <div class="iconfont-wrapper">
+                                        <span class="mbr-iconfont mobi-mbri-cart-full mobi-mbri"></span>
+                                    </div>
+                                </div>
+                                <h5 class="card-title mbr-fonts-style display-7"><strong>{{ downloads?.name }}</strong></h5>
+                                <p class="card-text mbr-fonts-style display-4">Access Expires: {{ downloads?.accessExpires }}</p>
+                                <p class="card-text mbr-fonts-style display-4">Product Name: {{ downloads?.product?.name }}</p>
+                                <p class="card-text mbr-fonts-style display-4">Product Sku: {{ downloads?.product?.sku }}</p>
+                                <p class="card-text mbr-fonts-style display-4">Product Type: {{ downloads?.product?.type }}</p>
+                                <p class="card-text mbr-fonts-style display-4">Bill to Name:
+                                    {{ new Date(memo?.date_created).toLocaleDateString() }}</p>
+                                <p class="btn_link mbr-fonts-style display-4"><a :href="downloads?.download?.file" class="text-secondary">View<span class="mobi-mbri mobi-mbri-right mbr-iconfont"></span></a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 </template>
 

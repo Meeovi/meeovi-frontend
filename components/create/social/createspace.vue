@@ -1,10 +1,6 @@
 <template>
     <div>
-    <v-row justify="center">
-        <v-dialog v-model="dialog" :scrim="false" transition="dialog-bottom-transition">
-            <template v-slot:activator="{ props }">
-                <v-btn v-bind="props" stacked prepend-icon="fas fa-plus" text="Create A Space" size="150" variant="flat" style="height: 321px; margin-top: 27px;"></v-btn>
-            </template>
+        <v-row justify="center">
             <v-card>
                 <form @submit.prevent="createGroupAndRefresh">
                     <v-toolbar dark color="primary">
@@ -12,7 +8,7 @@
                             <v-icon icon="fas fa-circle-xmark"></v-icon>
                         </v-btn>
                         <v-card-title>
-                            <span class="text-h6">Create new Space</span>
+                            <span class="text-h6">Create a new Space</span>
                         </v-card-title>
                     </v-toolbar>
                     <v-card-text>
@@ -22,12 +18,12 @@
                                     <v-text-field v-model="name" id="spaceName" label="Space Name*" required>
                                     </v-text-field>
                                 </v-col>
-                                <v-col cols="6">
+                                <!--<v-col cols="6">
                                     <v-select v-model="type" label="What type of space is this?" :items="typeItems"></v-select>
                                 </v-col>
                                 <v-col cols="6">
                                     <v-select v-model="status" label="Is this space public or private?" :items="statusItems"></v-select>
-                                </v-col>
+                                </v-col>-->
                                 <v-col cols="12">
                                     <v-textarea v-model="description" label="Description" id="spaceDescription">
                                     </v-textarea>
@@ -59,8 +55,7 @@
                     <div v-if="successMessage">{{ successMessage }}</div>
                 </form>
             </v-card>
-        </v-dialog>
-    </v-row>
+        </v-row>
     </div>
 </template>
 
@@ -80,54 +75,67 @@
 </script>
 
 <script setup>
-import { ref } from 'vue';
-import { useApolloClient } from '@vue/apollo-composable';
-import { useRoute, useRouter } from 'vue-router';
-import gql from 'graphql-tag';
+    import {
+        ref
+    } from 'vue';
+    import {
+        useApolloClient
+    } from '@vue/apollo-composable';
+    import {
+        useRoute,
+        useRouter
+    } from 'vue-router';
+    import gql from 'graphql-tag';
 
-const route = useRoute();
-const router = useRouter();
-//const id = ref('');
+    const route = useRoute();
+    const router = useRouter();
+    //const id = ref('');
 
-const content = ref('');
-const image = ref('');
-const media = ref('');
-const reactions = ref('');
+    const content = ref('');
+    const name = ref('');
+    const image = ref('');
+    const media = ref('');
+    const reactions = ref('');
 
-const { client: apolloClient } = useApolloClient();
+    const {
+        client: apolloClient
+    } = useApolloClient();
 
-// Create Mutation
-const CREATE_ACTIVITY = gql`
-  mutation MyMutation($content: String!) {
-    createGroup(input: {content: $content, type: ACTIVITY_UPDATE}) {
-    activity {
-      content
-      date
+    // Create Mutation
+    const CREATE_ACTIVITY = gql `
+  mutation MyMutation($description: String!, $name: String!) {
+  createGroup(
+    input: {types: DEFAULT, name: $name, description: $description, status: PUBLIC}
+  ) {
+    group {
+      description
+      name
       status
-      title
-      type
     }
   }
 }
 `;
 
-const createGroup = async () => {
-  try {
-    const { data } = await apolloClient.mutate({
-      mutation: CREATE_ACTIVITY,
-      variables: {
-        content: content.value,
-        //id: id.value,
-      },
-    });
-    console.log('Group created:', data.createGroup.activity);
-  } catch (error) {
-    console.error('Error updating activity:', error);
-  }
-};
+    const createGroup = async () => {
+        try {
+            const {
+                data
+            } = await apolloClient.mutate({
+                mutation: CREATE_ACTIVITY,
+                variables: {
+                    description: description.value,
+                    name: name.value
+                    //id: id.value,
+                },
+            });
+            console.log('Group created:', data.createGroup.activity);
+        } catch (error) {
+            console.error('Error updating activity:', error);
+        }
+    };
 
-const createGroupAndRefresh = async () => {
-  await createGroup();
-  router.go(0);  // Refresh the current route
-};
+    const createGroupAndRefresh = async () => {
+        await createGroup();
+        router.go(0); // Refresh the current route
+    };
 </script>

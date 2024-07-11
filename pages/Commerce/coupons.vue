@@ -128,4 +128,4 @@
     definePageMeta({
 	  //middleware: ['auth-logged-in'],
 	})
-</script>~/server/api/read/getCoupons
+</script>

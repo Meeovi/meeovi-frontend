@@ -324,7 +324,7 @@
 <script>
     import profilebar from '../../../components/menus/profilebar.vue'
     import comments from '../../../components/social/comments.vue'
-    import settings from '../../../components/create copy/social/updatespace.vue'
+    import settings from '../../../components/update/social/updatespace.vue'
     import productCard from '../../../components/commerce/product/productCard.vue'
     import shorts from '../../../components/related/shorts.vue'
 

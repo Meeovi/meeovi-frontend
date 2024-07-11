@@ -2,7 +2,7 @@
     <div>
         <v-dialog max-width="500">
             <template v-slot:activator="{ props: activatorProps }">
-                <v-btn v-bind="activatorProps" color="surface-variant" stacked prepend-icon="fas fa-plus" text="Create A List" size="150" variant="flat" style="height: 221px; margin-top: 17px;"></v-btn>
+                <v-btn v-bind="activatorProps" color="surface-variant" prepend-icon="fas fa-plus" text="Create A List" variant="flat"></v-btn>
             </template>
 
             <template v-slot:default="{ isActive }">

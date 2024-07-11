@@ -4,7 +4,7 @@
     <v-toolbar title="Showcases" color="purple">
       <v-dialog min-width="500">
         <template v-slot:activator="{ props: activatorProps }">
-          <v-btn v-bind="activatorProps" prepend-icon="fas fa-plus" title="Update Showcase" variant="flat">Update Showcase
+          <v-btn v-bind="activatorProps" prepend-icon="fas fa-plus" title="Create Showcase" variant="flat">Create Showcase
           </v-btn>
         </template>
 

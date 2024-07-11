@@ -37,7 +37,7 @@
 <script setup>
   const query = gql `
 query {
-  categories (filters: {category_uid: {eq: "ODc="}}) {
+  categories (filters: {category_uid: {eq: "NDE="}}) {
     items {
       uid
       name

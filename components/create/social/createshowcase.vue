@@ -2,7 +2,7 @@
     <div>
         <v-card elevation="0">
             <v-toolbar title="Create A Showcase"></v-toolbar>
-            <v-form @submit.prevent="createShowcase">
+            <form @submit.prevent="createShowcase">
                 <v-container>
                     <v-row>
                         <v-col cols="6">
@@ -69,7 +69,7 @@
                         Create
                     </v-btn>
                 </v-card-actions>
-            </v-form>
+            </form>
         </v-card>
     </div>
 </template>
@@ -85,71 +85,70 @@
 </script>
 
 <script setup>
-    import {
-        ref
-    } from 'vue'
+import { ref } from 'vue';
+import { useApolloClient } from '@vue/apollo-composable';
+import { useRoute, useRouter } from 'vue-router';
+import gql from 'graphql-tag';
 
-    // Access environment variables
-    const apiUrl = process.env.API_URL || 'https://meeovi.meeovicms.com'
-    const wordpressToken = process.env.WORDPRESS_TOKEN ||
-        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL21lZW92aS5tZWVvdmljbXMuY29tIiwiaWF0IjoxNzE4MjkxMTg0LCJuYmYiOjE3MTgyOTExODQsImV4cCI6MTcxODg5NTk4NCwiZGF0YSI6eyJ1c2VyIjp7ImlkIjoiMSJ9fX0.pER2LWpuRBgMUqqvD6pcZfb185nULQV_dq-ml67AFZc'
+const route = useRoute();
+const router = useRouter();
 
-    const title = ref('');
-    const acf = ref('');
-    const ispublic = ref('');
-    const description = ref('');
-    const type = ref('');
-    const products = ref('');
-    const owner = ref('');
-    const image = ref('');
-    const errorMessage = ref('');
-    const successMessage = ref('');
+const title = ref('');
+const type = ref('');
+const description = ref('');
+const image = ref('');
+const color = ref('');
+const colortext = ref('');
+const showcaseFields = ref('');
 
-    const createShowcase = async () => {
-        try {
-            const response = await $fetch(`${apiUrl}/wp-json/wp/v2/list`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${wordpressToken}`
-                },
-                body: JSON.stringify({
-                    title: title.value,
-                    ispublic: ispublic.value,
-                    description: description.value,
-                    image: image.value,
-                    type: type.value,
-                    products: products.value,
-                    owner: owner.value,
-                    status: 'publish',
-                })
-            })
+const { client: apolloClient } = useApolloClient();
 
-            console.log(response);
-
-            if (response.id) {
-                successMessage.value = 'Showcase created successfully!'
-                errorMessage.value = ''
-            } else {
-                throw new Error('Failed to create list')
+const CREATE_SHOWCASE = gql`
+  mutation CreateShowcase($title: String!) {
+    createShowcase(input: {
+      title: $title,
+      status: PUBLISH,
+    }) {
+      showcase {
+        id
+        title
+        status
+        showcaseFields {
+          color
+          colortext
+          description
+          image {
+            node {
+                sourceUrl
             }
-        } catch (error) {
-            console.error('Error creating list:', error);
-            if (error.response) {
-                console.error('Error response:', error.response);
-                if (error.response.status === 403) {
-                    errorMessage.value = 'You do not have permission to create a list.'
-                } else {
-                    errorMessage.value = `Error: ${error.response.status} ${error.response.statusText}`
-                }
-            } else {
-                errorMessage.value = error.message
-            }
-            successMessage.value = ''
+          }
         }
+      }
     }
+  }
+`;
 
-    useHead({
-        title: 'Create Showcase',
-    })
+const createShowcase = async () => {
+  try {
+    const { data } = await apolloClient.mutate({
+      mutation: CREATE_SHOWCASE,
+      variables: {
+        title: title.value,
+        status: type.value,
+        description: showcaseFields.description.value,
+        image: showcaseFields.image.value,
+        color: showcaseFields.color.value,
+        colortext: showcaseFields.colortext.value,
+      },
+    });
+    console.log('Showcase created:', data.createShowcase.showcase);
+  } catch (error) {
+    console.error('Error creating showcase:', error);
+  }
+};
+
+const createShowcaseAndRefresh = async () => {
+  await createShowcase();
+  router.go(0);  // Refresh the current route
+};
 </script>

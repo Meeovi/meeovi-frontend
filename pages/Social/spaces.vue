@@ -3,27 +3,19 @@
         <profilebar />
         <v-row>
             <v-col cols="12">
-                <v-card title="Meeovi Spaces" color="blue">
-                    <v-sheet class="mx-auto" elevation="0" color="transparent">
-                        <v-slide-group v-model="model" class="pa-4" selected-class="bg-success" show-arrows>
+                <v-toolbar title="Spaces" color="primary">
+                    <v-dialog min-width="500">
+                        <template v-slot:activator="{ props: activatorProps }">
+                            <v-btn v-bind="activatorProps" prepend-icon="fas fa-plus" title="Create a Space"
+                                variant="flat">Create a Space
+                            </v-btn>
+                        </template>
+
+                        <template v-slot:default="{ isActive }">
                             <createspace />
-                            <v-slide-group-item v-for="(spaces, index) in data?.groups?.nodes" :key="index"
-                                v-slot="{ isSelected, toggle, selectedClass }">
-                                <v-card :class="['ma-4', selectedClass]" color="white" height="321" width="196" :href="`/social/group/${spaces?.id}`" @click="toggle">
-                                    <img :src="`${spaces?.attachmentAvatar?.full}`" :alt="spaces?.name" cover />
-                                    <v-card-title>{{ spaces?.name }}</v-card-title>
-                                    <v-card-subtitle style="display: inline-block;">By: {{spaces?.creator?.username}}</v-card-subtitle>
-                                    <div class="d-flex fill-height align-center justify-center">
-                                        <v-scale-transition>
-                                            <v-icon v-if="isSelected" color="white" icon="mdi-close-circle-outline"
-                                                size="48"></v-icon>
-                                        </v-scale-transition>
-                                    </div>
-                                </v-card>
-                            </v-slide-group-item>
-                        </v-slide-group>
-                    </v-sheet>
-                </v-card>
+                        </template>
+                    </v-dialog>
+                </v-toolbar>
 
                 <section class="features4 cid-sBXUicXM4E" id="features5-2g">
                     <div class="container">
@@ -84,7 +76,7 @@
 </script>
 
 <script setup>
-/*import { ref, onMounted } from 'vue';
+    /*import { ref, onMounted } from 'vue';
 import { getGroups } from '~/composables/social/getGroups';
 
 const groups = ref([]);
@@ -95,9 +87,9 @@ onMounted(async () => {
     console.log('Fetched groups:', groups.value);
 }); */
 
-const query = gql `
+    const query = gql `
 query NewQuery {
-  groups(where: {status: PUBLIC, type: ACTIVE}) {
+groups(where: {status: PUBLIC, type: ACTIVE}) {
     nodes {
       creator {
         avatar {
@@ -116,9 +108,6 @@ query NewQuery {
       attachmentCover {
         full
       }
-      attachmentAvatar {
-        full
-      }
     }
   }
 }
@@ -128,13 +117,13 @@ query NewQuery {
         data
     } = useAsyncQuery(query);
 
-   /* const {
-        getItems
-      } = useDirectusItems()
+    /* const {
+         getItems
+       } = useDirectusItems()
 
-      const spaces = await getItems({
-        collection: "Space"
-      });*/
+       const spaces = await getItems({
+         collection: "Space"
+       });*/
 
     useHead({
         title: 'Spaces',

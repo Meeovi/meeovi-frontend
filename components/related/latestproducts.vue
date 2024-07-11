@@ -64,5 +64,5 @@ query LatestProductsQuery {
 
   const {
     data
-  } = useAsyncQuery(query);
+  } = useAsyncQuery(LATEST_PRODUCTS_QUERY);
 </script>

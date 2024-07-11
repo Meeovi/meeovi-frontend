@@ -39,7 +39,7 @@ export default defineNuxtConfig({
       {
         src: 'https://app2.weatherwidget.org/js/?id=ww_be4a6c6ecdcf1',
         crossorigin: 'anonymous'
-      }
+      },
     ],
     },
   },
@@ -67,10 +67,6 @@ export default defineNuxtConfig({
     //'assets/styles/PriceSlider.css',
   ],
 
-  typescript: {
-    typeCheck: true,
-  },
-
   devtools: { 
     enabled: true,
     vscode: {},
@@ -81,10 +77,10 @@ export default defineNuxtConfig({
     '@nuxtjs/apollo',
     'nuxt-gtag',
     'nuxt3-leaflet',
+    '@logto/nuxt',
     //'@sidebase/nuxt-auth',
     "@nuxt/image",
-    '@nuxtjs/kinde',
-    '@nuxtjs/algolia',
+    'nuxt-directus',
     '@nuxtjs/tailwindcss',
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
@@ -94,44 +90,25 @@ export default defineNuxtConfig({
     },
   ],
 
-  /*directus: {
-    url: process.env.DIRECTUS_URL,
-    auth: {
-      email: process.env.NUXTUS_DIRECTUS_ADMIN_EMAIL,
-      password: process.env.NUXTUS_DIRECTUS_ADMIN_PASSWORD,
-      token: process.env.NUXTUS_DIRECTUS_STATIC_TOKEN,
-    }
-  },*/
-
   routeRules: {
     proxy: [
       process.env.wordpressUrl,
     ],
-  },  
-
-  algolia: {
-    instantSearch: {
-      theme: 'algolia'
-    }
   },
 
   gtag: {
     id: process.env.NUXT_PUBLIC_GTAG_ID
   },
 
-  kinde: {
-    // This is true by default and adds 'auth-logged-in' and 'auth-logged-out'
-    // middleware to your Nuxt application.
-    // 
-    // middleware: false,
-    //
-    // enable the debug `/api/health` endpoint
-    // debug: true,
-  },
-
    runtimeConfig: {
     //websiteURL: process.env.GQL_HOST,
     //websiteToken: process.env.WEBSITE_TOKEN,
+    logto: {
+      endpoint: process.env.NUXT_LOGTO_ENDPOINT,
+      appId: process.env.NUXT_LOGTO_APP_ID,
+      appSecret: process.env.NUXT_LOGTO_APP_SECRET,
+      cookieEncryptionKey: process.env.NUXT_LOGTO_COOKIE_ENCRYPTION_KEY,
+    },
     turnstile: {
       // This can be overridden at runtime via the NUXT_TURNSTILE_SECRET_KEY
       // environment variable.
@@ -143,6 +120,14 @@ export default defineNuxtConfig({
       wordpressToken: process.env.WORDPRESS_TOKEN,
       commerceUrl: process.env.MAGE_STORE_URL,
       commerceApiToken: process.env.WEBSITE_TOKEN,
+      directus: {
+        url: process.env.DIRECTUS_URL,
+        auth: {
+          email: process.env.NUXTUS_DIRECTUS_ADMIN_EMAIL,
+          password: process.env.NUXTUS_DIRECTUS_ADMIN_PASSWORD,
+          token: process.env.NUXTUS_DIRECTUS_STATIC_TOKEN,
+        }
+      }
     },
     wpApiUsername: process.env.WP_API_USERNAME,
     wpApiPassword: process.env.WP_API_PASSWORD,
@@ -163,43 +148,34 @@ export default defineNuxtConfig({
           }
         } 
       }, */
-      other: './apollo/cms.js',
+      cms: {
+        tokenName: "apollo-token",
+        httpEndpoint: process.env.API_URL_GRAPHQL,
+        httpLinkOptions: {
+          headers: {
+            'Authorization': `Bearer ${process.env.WORDPRESS_TOKEN}`,
+            'content-type': 'application/json'
+          }
+        } 
+      }, 
     /*  commerce: {
         httpEndpoint: process.env.VDURE_URL
       },*/
     },
   },
 
-  /* auth: {
-     provider: {
-       type: 'authjs'
-     },
-     strategies: {
-       keycloak: {
-         scheme: 'oauth2',
-         endpoints: {
-           authorization: process.env.KEYCLOAK_AUTHORIZATION_URL,
-           token: process.env.KEYCLOAK_TOKEN_URL,
-           userInfo: process.env.KEYCLOAK_USER_INFO_URL,
-           logout: process.env.KEYCLOAK_LOGOUT_URL,
-         },
-         responseType: 'token id_token',
-         tokenType: 'Bearer',
-         redirectUri: process.env.BASE_URL || '/',
-         clientId: process.env.KEYCLOAK_CLIENT_ID,
-       },
-     },
-     redirect: {
-       login: '/login',
-       logout: '/',
-       callback: '/login',
-       home: '/',
-     },
-   }, */
+  logto: {
+    pathnames: {
+      signIn: '/login',
+      signOut: '/logout',
+      callback: '/auth/callback',
+    },
+  },
 
   build: {
     transpile: [
       'vuetify',
+      'nuxt-graphql-request',
       "@fortawesome/vue-fontawesome",
       "@fortawesome/fontawesome-svg-core",
       "@fortawesome/pro-solid-svg-icons",

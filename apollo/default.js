@@ -2,7 +2,7 @@ import { defineApolloClient } from '@nuxtjs/apollo/config'
 
 export default defineApolloClient({
   // The GraphQL endpoint.
-  httpEndpoint: process.env.MAGE_MAGENTO_GRAPHQL_URL,
+  httpEndpoint: process.env.GRAPHQL_HOST,
 
   // Provide a GraphQL endpoint to be used client-side. Overrides `httpEndpoint`.
   // browserHttpEndpoint: '/graphql',
@@ -10,7 +10,7 @@ export default defineApolloClient({
   // See https://www.apollographql.com/docs/link/links/http.html#options
   httpLinkOptions: {
     headers: {
-      'Authorization': `Bearer ${process.env.WEBSITE_TOKEN}`,
+      'x-hasura-admin-secret': `${process.env.GRAPHQL_TOKEN}`,
       'content-type': 'application/json'
     }
   },

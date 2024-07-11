@@ -70,7 +70,7 @@
     import reactions from '../../../components/social/reactions.vue'
     import bookmark from '../../../components/social/bookmark.vue'
     import share from '../../../components/social/share.vue'
-    import updatepost from '../../../components/create copy/social/updatepost.vue'
+    import updatepost from '../../../components/update/social/updatepost.vue'
 
     export default {
         components: {

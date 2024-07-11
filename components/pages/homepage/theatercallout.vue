@@ -19,7 +19,7 @@
                   <br>
                   <br>
               </div>
-              <div class="mbr-section-btn pt-3 align-center"><a class="btn btn-md btn-white display-4" :href="`/departments/${category?.uid}`">Start Watching</a></div>
+              <div class="mbr-section-btn pt-3 align-center"><a class="btn btn-md btn-white display-4" :href="`/departments/${callout?.uid}`">Start Watching</a></div>
             </div>
           </div>
         </div>

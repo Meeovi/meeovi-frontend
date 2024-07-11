@@ -66,7 +66,7 @@
 <script>
   import productCard from '../../../components/commerce/product/productCard.vue'
   import profilebar from '../../../components/menus/profilebar.vue'
-  import updatelist from '../../../components/create copy/commerce/updatelist.vue'
+  import updatelist from '../../../components/update/commerce/updatelist.vue'
 
   export default {
     components: {

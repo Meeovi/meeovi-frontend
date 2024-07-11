@@ -50,7 +50,7 @@
 <script>
   import productCard from '../../../components/commerce/product/productCard.vue'
   import profilebar from '../../../components/menus/profilebar.vue'
-  import updateshowcase from '../../../components/create copy/social/updateshowcase.vue'
+  import updateshowcase from '../../../components/update/social/updateshowcase.vue'
 
   export default {
     components: {
