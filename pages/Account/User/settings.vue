@@ -2,55 +2,51 @@
   <div class="contentPage">
     <profilebar />
     <v-row>
-      <v-toolbar title="Your Account" color="transparent"></v-toolbar>
-      <v-col cols="4">
-        <v-card append-icon="fas fa-arrow-up-right-from-square" class="mx-auto" href="https://github.com/vuetifyjs/vuetify/"
-          max-width="344" prepend-icon="fas fa-shopping-bag" rel="noopener" subtitle="Check out the official repository"
-          target="_blank" title="Vuetify on GitHub"></v-card>
+      <v-toolbar :title="page?.name" color="transparent"></v-toolbar>
+      <v-col cols="4" v-for="page in page?.repeaterTextBox" :key="page">
+        <v-card append-icon="fas fa-arrow-up-right-from-square" class="mx-auto"
+          :href="page?.url" :subtitle="page?.description" :title="page?.name"></v-card>
       </v-col>
 
       <v-divider></v-divider>
 
-      <v-col cols="12">
-        <v-card>
-          <v-tabs v-model="tab" bg-color="primary">
-            <v-tab value="one">Digital Content</v-tab>
-            <v-tab value="two">Messages and Ads</v-tab>
-            <v-tab value="three">Pay</v-tab>
-            <v-tab value="four">Ordering and Shipping</v-tab>
-            <v-tab value="five">Other Accounts</v-tab>
-            <v-tab value="six">Shopping</v-tab>
-            <v-tab value="seven">Memberships and Subscriptions</v-tab>
-            <v-tab value="seven">Manage your data</v-tab>
-            <v-tab value="eight">Financial Services</v-tab>
-          </v-tabs>
-
-          <v-card-text>
-            <v-tabs-window v-model="tab">
-              <v-tabs-window-item value="one">
-                One
-              </v-tabs-window-item>
-
-              <v-tabs-window-item value="two">
-                Two
-              </v-tabs-window-item>
-
-              <v-tabs-window-item value="three">
-                Three
-              </v-tabs-window-item>
-            </v-tabs-window>
-          </v-card-text>
-        </v-card>
-      </v-col>
+      <section data-bs-version="5.1" class="features5 cid-uhB5ybzJ7z" id="afeatures5-9m" style="width: 100%;">
+        <div class="container">
+          <div class="row">
+            <div class="col-6 col-items" v-for="navigation in navigation" :key="navigation">
+              <div class="item col-12 col-lg-12">
+                <div class="item-wrap">
+                  <div class="item-content">
+                    <p class="label-text mbr-fonts-style display-4">
+                      {{ navigation?.name}}
+                    </p>
+                    <div class="list-container">
+                      <div class="list-item" v-for="navigation in navigation?.menus" :key="navigation">
+                        <div class="icon-box">
+                          <span class="mobi-mbri mobi-mbri-success mbr-iconfont mbr-iconfont-btn"
+                            style="font-size: 18px; color: rgb(255, 255, 255); fill: rgb(255, 255, 255);"></span>
+                        </div>
+                        <v-list-item class="list-text mbr-fonts-style display-4" :title="navigation?.name" :href="navigation?.url"></v-list-item>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </v-row>
   </div>
 </template>
 
 <script>
-import profilebar from '../../../components/menus/profilebar.vue'
+  import profilebar from '../../../components/menus/profilebar.vue'
 
   export default {
-    components: { profilebar },
+    components: {
+      profilebar
+    },
     data: () => ({
       tab: null,
     }),
@@ -58,9 +54,31 @@ import profilebar from '../../../components/menus/profilebar.vue'
 </script>
 
 <script setup>
+  const {
+      getItemById, getItems
+    } = useDirectusItems()
+
+    const page = await getItemById({
+      collection: "pages",
+      id: 48
+    });
+
+    const navigation = await getItems({
+      collection: "navigation",
+      filter: {
+        type: {
+          _eq: "settings"
+        }
+      }
+    });
+
   useHead({
     title: 'Settings'
   })
+
+  definePageMeta({
+    layout: "nolive",
+  });
 
   definePageMeta({
     //middleware: ['auth-logged-in'],

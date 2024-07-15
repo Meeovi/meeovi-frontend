@@ -59,6 +59,8 @@ const {
     id: route.params.id,
   });
 
+import gql from 'graphql-tag'
+
 const query = gql`
 query MyQuery {
     cmsBlocks(identifiers: "redeemtextbox") {

@@ -1,39 +1,26 @@
 <template>
   <div>
-    <!--<ais-instant-search :search-client="searchClient" index-name="demo_ecommerce">
-        
-    <ais-search-box />
-        <ais-hits>
-            <template v-slot:item="{ item }">
-                <h2>{{ item.name }}</h2>
-              </template>
-          </ais-hits>
-      </ais-instant-search>-->
+    <!--<ais-search-box>
+    <template #default="{ refine, currentRefinement, isSearchStalled }">
+      <input
+        :value="currentRefinement"
+        @input="event => refine(event.currentTarget.value)"
+        placeholder="Search Meeovi"
+      />
+      <button @click="() => refine('')">Clear</button>
+      <span v-if="isSearchStalled">Searching...</span>
+    </template>
+  </ais-search-box>-->
     <v-text-field id="mainSearch" density="compact" variant="solo" label="Search Meeovi" append-inner-icon="fas fa-search" single-line
-        hide-details></v-text-field>
+        hide-details @input="fetchSearchResults"></v-text-field>
   </div>
-    
 </template>
 
-<style>
-  body {
-    font-family: sans-serif;
-    padding: 1em;
-  }
-</style>
-
-<script>
- /* import algoliasearch from 'algoliasearch/lite';
-  import 'instantsearch.css/themes/satellite-min.css';
-
-  export default {
-    data() {
-      return {
-        searchClient: algoliasearch(
-          'B1G2GM9NG0',
-          'aadef574be1f9252bb48d4ea09b5cfe5'
-        ),
-      };
-    },
-  };*/
+<script lang="ts" setup>
+const { result, search } = useAlgoliaSearch("headless_commerce");
+const hits = ref([]);
+const fetchSearchResults = async (e) => {
+  await search({ query: e.target.value });
+  hits.value = result.value.hits;
+};
 </script>

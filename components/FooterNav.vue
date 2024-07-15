@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NewsletterForm />
+    <Newsletter />
     <v-btn class="footertotopbtn" title="To the Top of the Page" prepend-icon="fas fa-arrow-up" rounded="0"
       href="#mainSection">Back to Top</v-btn>
     <section data-bs-version="5.1" class="footer3 cid-u4cbW5p2qg" once="footer" id="footer03-8b"

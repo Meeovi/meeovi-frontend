@@ -228,6 +228,11 @@
     }
   });
 */
+
+definePageMeta({
+    layout: false,
+  });
+  
   useHead({
     title: data?.categories?.items?.name
   });

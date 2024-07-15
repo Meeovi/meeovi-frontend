@@ -84,8 +84,8 @@
                     Mode</v-btn>
                 </v-col>
                 <v-col cols="3">
-                  <v-btn variant="text" stacked title="Logout" prepend-icon="fas fa-right-from-bracket"
-                    size="x-small" href="">Logout</v-btn>
+                  <v-list-item prepend-icon="fas fa-clock-rotate-left" title="Logoff"> <a
+                    :href="`/sign-${ user ? 'out' : 'in' }`"> Sign {{ user ? 'out' : 'in' }} </a></v-list-item>
                 </v-col>
               </v-row>
             </v-list>
@@ -162,26 +162,7 @@
     ref
   } from 'vue';
 
-const query = gql `
-query NewQuery {
-  pages(where: {name: "Meeovi"}) {
-    nodes {
-      id
-      title
-      featuredImage {
-        node {
-          sourceUrl
-        }
-      }
-      content
-    }
-  }
-}
-`
-
-  const {
-    data
-  } = useAsyncQuery(query);
+  const user = useLogtoUser();
 
   /*const {
           getItems

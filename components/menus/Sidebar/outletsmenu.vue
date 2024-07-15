@@ -21,7 +21,7 @@
 </script>
 
 <script setup>
-  const query = gql `
+const query = gql `
 query {
   categories (filters: {name: {match: "Outlets"}}) {
     items {

@@ -76,18 +76,10 @@
 </script>
 
 <script setup>
-    /*import { ref, onMounted } from 'vue';
-import { getGroups } from '~/composables/social/getGroups';
+import gql from 'graphql-tag'
+import { useQuery } from '@vue/apollo-composable'
 
-const groups = ref([]);
-
-onMounted(async () => {
-    console.log('Component mounted, fetching groups...');
-    groups.value = await getGroups();
-    console.log('Fetched groups:', groups.value);
-}); */
-
-    const query = gql `
+const { data } = useQuery(gql`
 query NewQuery {
 groups(where: {status: PUBLIC, type: ACTIVE}) {
     nodes {
@@ -110,12 +102,8 @@ groups(where: {status: PUBLIC, type: ACTIVE}) {
       }
     }
   }
-}
-`
-
-    const {
-        data
-    } = useAsyncQuery(query);
+}`
+)
 
     /* const {
          getItems

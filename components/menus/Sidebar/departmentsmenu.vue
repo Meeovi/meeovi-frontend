@@ -60,4 +60,4 @@ query {
       const departments = await getItems({
           collection: "departments"
       });*/
-</script>~/composables/categories/getCategories
+</script>

@@ -1,0 +1,7 @@
+/*********************** Seller Dashboard ***************/
+
+.sellerDashboard {
+    height: 100vh !important;
+    position: relative;
+    top: 60px;
+}

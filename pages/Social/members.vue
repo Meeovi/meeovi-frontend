@@ -41,7 +41,10 @@ import followButton from '../../components/social/followButton.vue'
 </script>
 
 <script setup>
-const query = gql`
+import gql from 'graphql-tag'
+import { useQuery } from '@vue/apollo-composable'
+
+const { data } = useQuery(gql`
 query NewQuery {
   members {
     nodes {
@@ -58,12 +61,8 @@ query NewQuery {
       latestUpdate
     }
   }
-}
-`
-
-  const {
-    data
-  } = useAsyncQuery(query);
+}`
+)
 
 /*import { createDirectus, rest, readItems, readItem } from '@directus/sdk';
 const route = useRoute()

@@ -51,6 +51,8 @@
 
 <script setup>
 const route = useRoute();
+import gql from 'graphql-tag'
+
 const query = gql`
 query NewQuery ($id: ID!) {
   category(id: $id) {

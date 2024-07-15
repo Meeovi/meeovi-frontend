@@ -32,6 +32,8 @@
 </script>
 
 <script setup>
+import gql from 'graphql-tag'
+
 const query = gql`
 query {
   products (search: "Featured") {

@@ -741,3 +741,26 @@ footer a:hover {
 .footer7 {
     background-color: #232323 !important;
 }
+
+.cid-tZRUOapGTD form {
+    width: 100%;
+}
+
+.cid-tZRUOapGTD input {
+    width: 85%;
+    background: white !important;
+}
+
+.cid-tZRUOapGTD h2 {
+    display: none !important;
+}
+
+.cid-tZRUOapGTD button {
+    background-color: rgb(var(--v-theme-primary));
+    color: white;
+    padding: 12px;
+    border-radius: 0px 20px 20px 0px;
+    left: -18px;
+    position: relative;
+}
+

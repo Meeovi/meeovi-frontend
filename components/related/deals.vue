@@ -32,6 +32,8 @@
 </script>
 
 <script setup>
+import gql from 'graphql-tag'
+
 const query = gql`
 query {
   products (filter: {price: {to: "20"}}) {

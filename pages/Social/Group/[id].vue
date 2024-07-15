@@ -350,21 +350,10 @@
 </script>
 
 <script setup>
+import gql from 'graphql-tag'
+import { useQuery } from '@vue/apollo-composable'
+
 const route = useRoute();
-/*import { getGroupById } from '~/composables/social/getGroups';
-
-const group = ref(null);
-
-onMounted(async () => {
-    const id = route.params.id;
-    try {
-        group.value = await getGroupById(id);
-        console.log(group.value);  // Check the fetched data in the console
-    } catch (error) {
-        console.error("Failed to fetch group data:", error);
-    }
-}); */
-
 const query = gql `
 query NewQuery ($id: ID!) {
 group(id: $id){
@@ -431,11 +420,11 @@ group(id: $id){
 }
 `
 
-    const {
-        data
-    } = useAsyncQuery(query, {
-        id: route.params.id
-    });
+const id = ref('initial-id')
+
+const { data, refetch } = useQuery(query, () => ({
+  id: route.params.id
+}))
 
     /*    const {
             getItemById

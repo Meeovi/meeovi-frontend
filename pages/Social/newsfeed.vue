@@ -131,18 +131,10 @@
 </script>
 
 <script setup>
-/*import { ref, onMounted } from 'vue';
-import { getActivity } from '~/composables/social/getActivity';
+import gql from 'graphql-tag'
+import { useQuery } from '@vue/apollo-composable'
 
-const activity = ref([]);
-
-onMounted(async () => {
-    console.log('Component mounted, fetching activity...');
-    activity.value = await getActivity();
-    console.log('Fetched activity:', activity.value);
-});*/
-
-const query = gql `
+const { data } = useQuery(gql`
 query NewQuery {
   members {
     nodes {
@@ -158,12 +150,8 @@ query NewQuery {
       }
     }
   }
-}
-`
-
-    const {
-        data
-    } = useAsyncQuery(query);
+}`
+)
 
   /*  const {
         getItems

@@ -2,9 +2,11 @@
   <div>
     <v-menu :location="location" transition="slide-y-transition">
       <template v-slot:activator="{ props }">
-        <a variant="flat" v-bind="props">
-          <v-icon start icon="fas fa-user-circle"></v-icon>
-        </a>
+        <v-btn v-bind="props">
+          <ul v-if="Boolean(user)">
+            <li v-for="(value, key) in user"><b>{{ key }}:</b> {{ value }}</li>
+          </ul>
+        </v-btn>
       </template>
       <v-list>
         <v-row class="accountDropdown">
@@ -32,7 +34,7 @@
           </v-col>
 
           <v-col cols="12">
-            <v-list-item prepend-icon="fas fa-clock-rotate-left" title="Logoff" href="/logoff"></v-list-item>
+            <v-list-item prepend-icon="fas fa-clock-rotate-left" :href="`/sign-${ user ? 'out' : 'in' }`">Sign {{ user ? 'out' : 'in' }}</v-list-item>
           </v-col>
         </v-row>
       </v-list>
@@ -51,6 +53,8 @@
 </script>
 
 <script setup>
+  const user = useLogtoUser();
+
   const query = gql `
 query NewQuery {
   navigations(where: {search: "Account Commerce"}) {

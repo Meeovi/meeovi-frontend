@@ -6,6 +6,10 @@
 </template>
 
 <script setup>
+import { gql } from 'nuxt-graphql-request/utils';
+
+const { $graphql } = useNuxtApp();
+
 const query = gql `
 query NewQuery {
 navigations(where: {title: "Account Social"}) {
@@ -32,9 +36,11 @@ navigations(where: {title: "Account Social"}) {
 }
 `
 
-  const {
-      data
-  } = useAsyncQuery(query);
+const { data } = await useAsyncData('navigations', async () => {
+  const data = await $graphql.default.request(query);
+  return data;
+});
+
 /* const {
   getItemById
 } = useDirectusItems()

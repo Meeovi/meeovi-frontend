@@ -6,9 +6,12 @@
 </template>
 
 <script setup>
+import gql from 'graphql-tag'
+import { useQuery } from '@vue/apollo-composable'
+
 const route = useRoute();
-const query = gql`
-query SinglePage($id: ID!) {
+const query = gql `
+query NewQuery ($id: ID!) {
   page(id: $id) {
     content
     id
@@ -19,13 +22,13 @@ query SinglePage($id: ID!) {
 }
 `;
 
-const { data, error } = useAsyncQuery(query, { id: route.params.id });
+const { data, error } = useQuery(query, { id: route.params.id });
 
 if (error) {
     console.error('Error fetching page:', error);
 }
 
 useHead({
-    title: data?.value?.page?.title,
+    title: data?.page?.title,
     })
 </script>

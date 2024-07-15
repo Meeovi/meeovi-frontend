@@ -49,5 +49,5 @@ query NewQuery {
 
   const {
     data
-  } = useAsyncQuery(query);
+  } = useAsyncQuery(query, { client: 'cms' });
 </script>
