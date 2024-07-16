@@ -1,6 +1,6 @@
 <template>
     <div class="contentPage">
-        <profilebar />
+        <!--<profilebar />-->
 
         <v-card flat>
             <v-toolbar color="primary" dark extended flat height="250" :image="`${data?.group?.attachmentCover?.full}`">

@@ -1,7 +1,7 @@
 <template>
     <div>
         <!--<profilebar />-->
-        <v-toolbar color="transparent" density="compact" title="My Addresses">
+        <v-toolbar color="transparent" density="compact" title="My Reviews">
             <addPayment />
         </v-toolbar>
         <v-table fixed-header>
@@ -53,8 +53,8 @@
 </script>
 
 <script setup>
-const route = useRoute();
 import gql from 'graphql-tag'
+const route = useRoute();
 
 const query = gql`
 query NewQuery {
@@ -86,7 +86,7 @@ const {
     });
 
     useHead({
-        title: 'My Payments',
+        title: 'My Reviews',
     });
 
     definePageMeta({

@@ -1,6 +1,6 @@
 <template>
     <div class="contentPage">
-        <profilebar />
+        <!--<profilebar />-->
         <v-row class="centralfeed">
             <v-col cols="10">
                 <v-row>

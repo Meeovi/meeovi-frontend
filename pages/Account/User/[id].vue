@@ -1,6 +1,6 @@
 <template>
-    <div class="contentPage">
-        <profilebar />
+    <div>
+        <!--<profilebar />-->
         <section data-bs-version="5.1" class="people3 cid-u1nMLE9Ke9 mbr-fullscreen mbr-parallax-background"
             id="apeople3-6r">
 

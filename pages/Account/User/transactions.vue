@@ -1,6 +1,6 @@
 <template>
-    <div class="contentPage">
-        <profilebar />
+    <div>
+        <!--<profilebar />-->
         <section data-bs-version="5.1" class="firmm4_features1 features1 cid-uhBuptnWmV" id="features1-9v"
             data-sortbtn="btn-primary">
             <div class="container-fluid">
@@ -62,13 +62,13 @@
         onMounted
     } from 'vue';
     import {
-        getTransactionss
-    } from '~/composables/sales/getTransactionss';
+        getTransactions
+    } from '~/composables/sales/getTransactions';
 
     const transactions = ref([]);
 
     onMounted(async () => {
-        transactions.value = await getTransactionss();
+        transactions.value = await getTransactions();
     });
     /*  const {
         getItems

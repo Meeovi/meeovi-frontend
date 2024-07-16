@@ -1,6 +1,6 @@
 <template>
-  <div class="contentPage">
-    <profilebar />
+  <div>
+    <!--<profilebar />-->
     <v-row>
       <v-col cols="12" v-for="(refunds, index) in data?.customer?.refunds?.nodes" :key="index">
         <v-card variant="text">

@@ -1,6 +1,6 @@
 <template>
-    <div class="contentPage">
-        <profilebar />
+    <div>
+        <!--<profilebar />-->
         <v-row>
             <v-col cols="12">
                 <v-toolbar title="Your Subscriptions" subtitle=""></v-toolbar>

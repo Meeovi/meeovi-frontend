@@ -1,6 +1,6 @@
 <template>
-    <div class="contentPage">
-        <profilebar />
+    <div>
+        <!--<profilebar />-->
         <v-row>
             <v-col cols="12">
                 <v-toolbar title="Your Coupons" subtitle=""></v-toolbar>
@@ -106,7 +106,7 @@
   } from 'vue';
   import {
     getCoupons
-  } from '~/composables/read/getCoupons';
+  } from '~/composables/marketing/getCoupons';
 
   const coupons = ref([]);
 

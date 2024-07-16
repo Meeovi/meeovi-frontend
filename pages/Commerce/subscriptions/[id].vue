@@ -1,6 +1,6 @@
 <template>
     <div>
-        <profilebar />
+        <!--<profilebar />-->
         <section data-bs-version="5.1" class="features14 cid-u3U56NDZtd" id="features15-7o" data-sortbtn="btn-primary">
             <div class="container">
                 <div class="row justify-content-center">

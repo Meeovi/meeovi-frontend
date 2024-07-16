@@ -1,6 +1,6 @@
 <template>
-    <div class="contentPage">
-        <profilebar />
+    <div>
+        <!--<profilebar />-->
         <v-toolbar color="transparent" density="compact" title="Seller Products">
             <v-btn color="orange" href="/upload">Add a Product</v-btn>
         </v-toolbar>

@@ -1,6 +1,6 @@
 <template>
-  <div class="contentPage">
-    <profilebar />
+  <div>
+    <!--<profilebar />-->
     <v-row>
       <v-toolbar :title="page?.name" color="transparent"></v-toolbar>
       <v-col cols="4" v-for="page in page?.repeaterTextBox" :key="page">

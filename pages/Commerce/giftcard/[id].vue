@@ -1,5 +1,5 @@
 <template>
-    <div class="contentPage">
+    <div>
         <v-row>
             <v-col cols="4">
                 <h4 style="text-align: center;">Gift Card Image</h4>

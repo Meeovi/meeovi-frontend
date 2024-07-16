@@ -1,6 +1,6 @@
 <template>
-    <div class="contentPage">
-        <profilebar />
+    <div>
+        <!--<profilebar />-->
         <v-toolbar color="transparent" density="compact" title="Reviews"></v-toolbar>
         <v-table fixed-header>
             <thead>

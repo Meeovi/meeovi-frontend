@@ -1,6 +1,6 @@
 <template>
-    <div class="contentPage">
-        <profilebar />
+    <div>
+        <!--<profilebar />-->
         <v-row class="giftCardSection">
             <v-col cols="12">
                 <h2>Redeem a gift card</h2>

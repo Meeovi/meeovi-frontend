@@ -1,5 +1,5 @@
 <template>
-    <div class="contentPage">
+    <div>
         <profilebar />
         <v-toolbar color="transparent" density="compact" title="My Addresses">
             <addAddress />

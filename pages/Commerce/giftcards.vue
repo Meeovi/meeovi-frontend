@@ -1,6 +1,6 @@
 <template>
-    <div class="contentPage">
-        <profilebar />
+    <div>
+        <!--<profilebar />-->
         <v-row>
             <v-col cols="12">
                 <v-toolbar title="Your Gift Cards" subtitle=""></v-toolbar>
@@ -88,7 +88,7 @@
   } from 'vue';
   import {
     getCards
-  } from '~/composables/getGiftCards';
+  } from '~/composables/marketing/getGiftCards';
 
   const cards = ref([]);
 

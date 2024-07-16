@@ -1,6 +1,6 @@
 <template>
-    <div class="contentPage">
-        <profilebar />
+    <div>
+        <!--<profilebar />-->
         <section data-bs-version="5.1" class="pricing1 cid-u3X1MKinjb" id="pricing1-7q" data-sortbtn="btn-primary">
             <div class="container">
                 <div class="row">

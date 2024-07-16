@@ -1,6 +1,6 @@
 <template>
-    <div class="contentPage">
-        <profilebar />
+    <div>
+        <!--<profilebar />-->
         <v-toolbar color="transparent" density="compact" title="Attribute Set">
             <addAddress />
         </v-toolbar>

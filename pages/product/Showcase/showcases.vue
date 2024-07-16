@@ -1,6 +1,6 @@
 <template>
   <div class="contentPage">
-    <profilebar />
+    <!--<profilebar />-->
     <v-toolbar title="Showcases" color="purple">
       <v-dialog min-width="500">
         <template v-slot:activator="{ props: activatorProps }">

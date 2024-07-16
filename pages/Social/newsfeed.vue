@@ -1,6 +1,6 @@
 <template>
     <div class="contentPage">
-        <profilebar />
+        <!--<profilebar />-->
         <v-row>
             <v-col cols="12">
                 <v-card title="Meeovi Social Feed" color="green">
