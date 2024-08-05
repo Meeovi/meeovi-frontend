@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ["@nuxtjs/apollo"],
+  modules: ['nuxt-graphql-client'],
 
   runtimeConfig: {
     public: {
@@ -9,6 +9,10 @@ export default defineNuxtConfig({
       wordpressToken: process.env.WORDPRESS_TOKEN,
       commerceUrl: process.env.MAGE_STORE_URL,
       commerceApiToken: process.env.WEBSITE_TOKEN,
+
+      // Graphql
+
+      GQL_HOST: process.env.API_URL_GRAPHQL,
 
       // Directus
       /*directus: {
@@ -24,21 +28,21 @@ export default defineNuxtConfig({
     wpApiPassword: process.env.WP_API_PASSWORD,
   },
 
-  apollo: {
+  /*apollo: {
     clients: {
       default: {
         httpEndpoint: process.env.API_URL_GRAPHQL,
-      /*  httpLinkOptions: {
+        httpLinkOptions: {
           headers: {
             'Authorization': `Bearer ${process.env.WORDPRESS_TOKEN}`,
             'username': process.env.WP_API_USERNAME,
             'password': process.env.WP_API_PASSWORD,
             'content-type': 'application/json'
           }
-        }*/
+        }
       },
     },
-  },
+  },*/
 
   compatibilityDate: '2024-04-03',
 })

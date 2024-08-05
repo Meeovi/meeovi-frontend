@@ -153,10 +153,52 @@
 </script>
 
 <script setup>
-//import query from '../../../apollo/Queries/categories'
+    import {
+        ref
+    } from 'vue';
+    import {
+        useApolloClient
+    } from '@vue/apollo-composable';
+    import {
+        useRoute,
+        useRouter
+    } from 'vue-router';
+    import CREATE_VIDEO from '~/graphql/CMS/queries/videos.gql'
 
-const {
-    data
-  } = await useAsyncQuery(query)
+    const route = useRoute();
+    const router = useRouter();
+    //const id = ref('');
 
+    const content = ref('');
+    const name = ref('');
+    const image = ref('');
+    const media = ref('');
+    const reactions = ref('');
+
+    const {
+        client: apolloClient
+    } = useApolloClient();
+
+    const createGroup = async () => {
+        try {
+            const {
+                data
+            } = await apolloClient.mutate({
+                mutation: CREATE_VIDEO,
+                variables: {
+                    description: description.value,
+                    name: name.value
+                    //id: id.value,
+                },
+            });
+            console.log('Group created:', data.createGroup.activity);
+        } catch (error) {
+            console.error('Error updating activity:', error);
+        }
+    };
+
+    const createGroupAndRefresh = async () => {
+        await createGroup();
+        router.go(0); // Refresh the current route
+    };
 </script>

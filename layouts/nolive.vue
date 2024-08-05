@@ -107,18 +107,18 @@
 <script setup>
   //import SearchHeader from '../components/search/SearchHeader.vue'
   import search from '../components/apps/search/search.vue'
-  import ecosystemmenu from '../components/menus/ecosystemmenu.vue'
-  //import live from '../components/menus/Livebar/live.vue'
-  import topmenu from '../components/menus/Sidebar/topmenu.vue'
-  import socialmenu from '../components/menus/Sidebar/socialmenu.vue'
-  import departmentsmenu from '../components/menus/Sidebar/departmentsmenu.vue'
-  import outlets from '../components/menus/Sidebar/outletsmenu.vue'
-  import myaccountmenu from '../components/menus/Sidebar/myaccountmenu.vue'
-  import LayoutNotifications from '../components/menus/LayoutNotifications.vue'
-  import mobilesearch from '../components/menus/TopMenu/mobilesearch.vue'
-  import myaccounttopmenu from '../components/menus/TopMenu/myaccounttopmenu.vue'
-  import bottomsidebarmenu from '../components/menus/Sidebar/bottomsidebarmenu.vue'
-
+  import ecosystemmenu from '~/components/menus/ecosystemmenu.vue'
+  //import live from '~/components/menus/Livebar/live.vue'
+  import topmenu from '~/components/menus/Sidebar/topmenu.vue'
+  import socialmenu from '~/components/menus/Sidebar/socialmenu.vue'
+  import departmentsmenu from '~/components/menus/Sidebar/departmentsmenu.vue'
+  import outlets from '~/components/menus/Sidebar/outletsmenu.vue'
+  import myaccountmenu from '~/components/menus/Sidebar/myaccountmenu.vue'
+  import LayoutNotifications from '~/components/menus/LayoutNotifications.vue'
+  import mobilesearch from '~/components/menus/TopMenu/mobilesearch.vue'
+  import myaccounttopmenu from '~/components/menus/TopMenu/myaccounttopmenu.vue'
+  import bottomsidebarmenu from '~/components/menus/Sidebar/bottomsidebarmenu.vue'
+  
   import {
     ref
   } from 'vue';

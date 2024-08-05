@@ -111,7 +111,7 @@
         useRoute,
         useRouter
     } from 'vue-router';
-    import gql from 'graphql-tag';
+    import { UPDATE_ADDRESS, DELETE_ADDRESS } from '~/graphql/Commerce/queries/address.gql'
 
     const route = useRoute();
     const router = useRouter();
@@ -136,33 +136,6 @@
     const {
         client: apolloClient
     } = useApolloClient();
-
-    const UPDATE_ADDRESS = gql `
-  mutation MyMutation($id: ID!, $city: String!, $fax: String!, $country_code: CountryCodeEnum = AD, $company: String!, $default_billing: Boolean = false, $default_shipping: Boolean = false, $vat_id: String!, $telephone: String!, $suffix: String!, $street: [String]!, $prefix: String!, $postcode: String!, $middlename: String!, $lastname: String!, $firstname: String!, $region: String!) {
-  updateCustomerAddress(id: $id, input: {city: $city, company: $company, country_code: $country_code, default_billing: $default_billing, default_shipping: $default_shipping, fax: $fax, firstname: $firstname, lastname: $lastname, middlename: $middlename, postcode: $postcode, prefix: $prefix, street: $street, suffix: $suffix, telephone: $telephone, vat_id: $vat_id, region: {region: $region}}) {
-    city
-    customer_id
-    id
-    company
-    country_code
-    default_billing
-    default_shipping
-    fax
-    firstname
-    lastname
-    middlename
-    postcode
-    prefix
-    street
-    suffix
-    telephone
-    vat_id
-    region {
-      region
-    }
-  }
-}
-`;
 
     const updateAddress = async () => {
         try {
@@ -196,16 +169,6 @@
     };
 
     // Delete Mutation
-const DELETE_ADDRESS = gql`
-  mutation MyMutation($id: ID!) {
-    deleteCustomerAddress(id: $id) {
-      address {
-        id
-      }
-    }
-  }
-`;
-
 const deleteAddress = async () => {
   try {
     const { data } = await apolloClient.mutate({

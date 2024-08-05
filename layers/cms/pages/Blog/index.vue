@@ -30,54 +30,14 @@
     </div>
 </template>
 
-<script>
-    import blogbar from '../../components/menus/blogbar.vue'
-
-    export default {
-        components: {
-            blogbar
-        },
-        data() {
-            return {
-                tab: null,
-                url: process.env.DIRECTUS_URL,
-            }
-        }
-    }
-</script>
-
 <script setup>
-const route = useRoute();
-import gql from 'graphql-tag'
+import blogbar from '../../components/menus/blogbar.vue'
+import posts from '~/graphql/CMS/queries/posts.gql'
+import { ref } from 'vue'
 
-const query = gql`
-query NewQuery {
-  posts {
-    nodes {
-      author {
-        node {
-          username
-        }
-      }
-      content
-      date
-      excerpt
-      id
-      title
-      slug
-      featuredImage {
-        node {
-          sourceUrl
-        }
-      }
-    }
-  }
-}
-`
+const tab = ref(null);
 
-  const {
-    data
-  } = useAsyncQuery(query);
+const { data } = useAsyncQuery(posts);
 
 /*const {
     getItems

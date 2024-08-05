@@ -1,0 +1,12 @@
+query {
+  categories (filters: {name: {match: "Outlets"}}) {
+    items {
+      uid
+      name
+      children {
+        uid
+        name
+      }
+    }
+  }
+}

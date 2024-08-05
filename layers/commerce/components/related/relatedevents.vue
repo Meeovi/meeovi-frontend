@@ -35,21 +35,11 @@
   </v-sheet>
 </template>
 
-<script>
+<script setup>
   import productCard from '../commerce/product/productCard.vue'
 
-  export default {
-    components: {
-      productCard
-    },
-    data: () => ({
-      model: null,
-      url: process.env.DIRECTUS_URL,
-    }),
-  }
-</script>
+  const model = ref(null);
 
-<script setup>
   const props = defineProps({
     events: {
       type: Object,

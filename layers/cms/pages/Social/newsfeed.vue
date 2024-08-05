@@ -1,6 +1,6 @@
 <template>
     <div class="contentPage">
-        <!--<profilebar />-->
+        <profilebar /><!---->
         <v-row>
             <v-col cols="12">
                 <v-card title="Meeovi Social Feed" color="green">
@@ -114,44 +114,15 @@
     </div>
 </template>
 
-<script>
-    import profilebar from '../../components/menus/profilebar.vue'
-
-    export default {
-        components: {
-            profilebar,
-        },
-        data() {
-            return {
-                model: null,
-                url: process.env.DIRECTUS_URL,
-            }
-        },
-    }
-</script>
-
 <script setup>
-import gql from 'graphql-tag'
-import { useAsyncQuery } from '@vue/apollo-composable'
+import profilebar from '../../components/menus/profilebar.vue'
+import activities from '~/graphql/CMS/queries/activities.gql'
+import { ref } from 'vue'
 
-const { data } = useAsyncQuery(gql`
-query NewQuery {
-  members {
-    nodes {
-      activities(where: {order: DESC, type: ACTIVITY_UPDATE, component: ACTIVITY}) {
-        nodes {
-          content
-          id
-          date
-          status
-          title
-          type
-        }
-      }
-    }
-  }
-}`
-)
+const model = ref(null);
+
+const { data } = useAsyncQuery(activities);
+
 
   /*  const {
         getItems

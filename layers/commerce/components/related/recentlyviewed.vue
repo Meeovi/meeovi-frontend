@@ -17,51 +17,13 @@
   </div>
 </template>
 
-<script>
-  import productCard from '../commerce/product/productCard.vue'
-
-  export default {
-    components: {
-      productCard
-    },
-    data: () => ({
-      model: null,
-      //url: process.env.DIRECTUS_URL,
-    }),
-  }
-</script>
-
 <script setup>
-const query = gql`
-query NewQuery {
-  products(where: {featured: true}) {
-    nodes {
-      id
-      averageRating
-      description
-      image {
-        sourceUrl
-      }
-      name
-      sku
-      type
-      ... on SimpleProduct {
-        id
-        name
-        price
-        type
-        productCategories {
-          nodes {
-            name
-          }
-        }
-      }
-    }
-  }
-}
-`
+  import productCard from '../commerce/product/productCard.vue'
+  import relatedviewed from '~/graphql/Commerce/queries/relatedviewed.gql'
+
+  const model = ref(null);
 
   const {
     data
-  } = useAsyncQuery(query);
+  } = useAsyncQuery(relatedviewed);
 </script>

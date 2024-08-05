@@ -148,7 +148,7 @@
 import { ref } from 'vue';
 import { useApolloClient } from '@vue/apollo-composable';
 import { useRoute, useRouter } from 'vue-router';
-import gql from 'graphql-tag';
+import CREATE_ACTIVITY from '~/graphql/CMS/queries/activities.gql'
 
 const route = useRoute();
 const router = useRouter();
@@ -160,21 +160,6 @@ const media = ref('');
 const reactions = ref('');
 
 const { client: apolloClient } = useApolloClient();
-
-// Create Mutation
-const CREATE_ACTIVITY = gql`
-  mutation MyMutation($content: String!) {
-    createActivity(input: {content: $content, type: ACTIVITY_UPDATE}) {
-    activity {
-      content
-      date
-      status
-      title
-      type
-    }
-  }
-}
-`;
 
 const createActivity = async () => {
   try {

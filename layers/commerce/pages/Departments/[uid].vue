@@ -93,33 +93,7 @@
 </template>
 
 <script>
-  //import videobar from '../../components/menus/videobar.vue'
-  import latestproducts from '../../components/related/latestproducts.vue'
-  import relatedevents from '../../components/related/relatedevents.vue'
-  import bestsellers from '../../components/related/bestsellers.vue'
-  import relatedcreators from '../../components/related/relatedcreators.vue'
-  import shorts from '../../components/related/shorts.vue'
-  import relatedspaces from '../../components/related/relatedspaces.vue'
-  import productCard from '../../components/commerce/product/productCard.vue'
-
   export default {
-    components: {
-      //videobar,
-      //live,
-      latestproducts,
-      relatedevents,
-      bestsellers,
-      relatedcreators,
-      relatedspaces,
-      shorts,
-      productCard,
-    },
-    data() {
-      return {
-        model: null,
-        //url: process.env.DIRECTUS_URL,
-      }
-    },
     mounted() {
       setInterval(myTimer, 1000);
 
@@ -139,115 +113,17 @@
 </script>
 
 <script setup>
-  const CATEGORY_QUERY = gql `
-  query CategoryQuery($uid: String!) {
-    categories (filters: {category_uid: {eq: $uid}}) {
-    items {
-      uid
-      name
-      children {
-        uid
-        name
-      }
-      description
-      cms_block {
-        content
-      }
-      image
-      products(pageSize: 5, sort: {position: DESC}) {
-        items {
-          description {
-            html
-          }
-          uid
-          name
-          image {
-            url
-          }
-          sku
-          price_range {
-            minimum_price {
-              regular_price {
-                currency
-                value
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-`;
-
-  const BESTSELLER_QUERY = gql `
-  query BestsellerQuery($uid: String!) {
-    products(filter: {category_uid: {eq: $uid}}, pageSize: 5, sort: {position: DESC}) {
-      items {
-        uid
-        name
-        image {
-          url
-        }
-        sku
-        price_range {
-          minimum_price {
-            regular_price {
-              currency
-              value
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
-  const LATEST_PRODUCTS_QUERY = gql `
-  query LatestProductsQuery($uid: String!) {
-    products(filter: {category_uid: {eq: $uid}}, pageSize: 5, sort: {position: DESC}) {
-      items {
-        uid
-        name
-        image {
-          url
-        }
-        sku
-        price_range {
-          minimum_price {
-            regular_price {
-              currency
-              value
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
-  const EVENT_PRODUCTS_QUERY = gql `
-  query EventProductsQuery {
-    products(filter: {category_uid: {eq: "NjE="}}) {
-      items {
-        uid
-        name
-        image {
-          url
-        }
-        sku
-        price_range {
-          minimum_price {
-            regular_price {
-              currency
-              value
-            }
-          }
-        }
-      }
-    }
-  }
-`;
+  //import videobar from '../../components/menus/videobar.vue'
+  import latestproducts from '../../components/related/latestproducts.vue'
+  import relatedevents from '../../components/related/relatedevents.vue'
+  import bestsellers from '../../components/related/bestsellers.vue'
+  import relatedcreators from '../../components/related/relatedcreators.vue'
+  import shorts from '../../components/related/shorts.vue'
+  import relatedspaces from '../../components/related/relatedspaces.vue'
+  import productCard from '../../components/commerce/product/productCard.vue'
+  import { CategoryQuery, BestsellerQuery, LatestProductsQuery, EventProductsQuery } from '~/graphql/Commerce/queries/id/department.gql'
+  
+  const model = ref(null)
 
   // Retrieve the route and extract the UID
   const route = useRoute();
@@ -256,25 +132,25 @@
   const {
     data,
     error: errorData
-  } = useAsyncQuery(CATEGORY_QUERY, {
+  } = useAsyncQuery(CategoryQuery, {
     uid: route.params.uid
   });
   const {
     data: best,
     error: errorBest
-  } = useAsyncQuery(BESTSELLER_QUERY, {
+  } = useAsyncQuery(BestsellerQuery, {
     uid: route.params.uid
   });
   const {
     data: latest,
     error: errorLatest
-  } = useAsyncQuery(LATEST_PRODUCTS_QUERY, {
+  } = useAsyncQuery(LatestProductsQuery, {
     uid: route.params.uid
   });
   const {
     data: events,
     error: errorEvents
-  } = useAsyncQuery(EVENT_PRODUCTS_QUERY);
+  } = useAsyncQuery(EventProductsQuery);
 
   if (errorData || errorBest || errorLatest || errorEvents) {
     console.error('GraphQL Error:', errorData || errorBest || errorLatest || errorEvents);

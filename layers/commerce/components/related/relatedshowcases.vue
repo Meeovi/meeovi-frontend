@@ -29,21 +29,11 @@
   </div>
 </template>
 
-<script>
-  import productCard from '../commerce/product/productCard.vue'
-
-  export default {
-    components: {
-      productCard
-    },
-    data: () => ({
-      model: null,
-      //url: process.env.DIRECTUS_URL,
-    }),
-  }
-</script>
-
 <script setup>
+  import { ref } from 'vue'
+
+  const model = ref(null);
+
   const props = defineProps({
     showcases: {
       type: Object,

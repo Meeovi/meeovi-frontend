@@ -146,3 +146,64 @@
         }, */
     }
 </script>
+
+<script setup>
+    import {
+        ref
+    } from 'vue'
+    import { useRuntimeConfig } from '#imports';
+
+    const config = useRuntimeConfig();
+    const name = ref('');
+    const slug = ref('');
+    const type = ref('');
+    const description = ref('');
+    const errorMessage = ref('');
+    const successMessage = ref('');
+
+    const createAttribute = async () => {
+        try {
+            const response = await $fetch(`${config.public.wordpressUrl}/wp-json/dokan/v1/products/attributes/${attribute.id}/terms`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${config.public.wordpressToken}`
+                },
+                body: JSON.stringify({
+                    name: name.value,
+                    slug: slug.value,
+                    type: type.value,
+                    description: description.value,
+                    description: description.value,
+                    status: 'publish',
+                })
+            })
+
+            console.log(response);
+
+            if (response.id) {
+                successMessage.value = 'Attribute Term created successfully!'
+                errorMessage.value = ''
+            } else {
+                throw new Error('Failed to create attribute term')
+            }
+        } catch (error) {
+            console.error('Error creating attribute term:', error);
+            if (error.response) {
+                console.error('Error response:', error.response);
+                if (error.response.status === 403) {
+                    errorMessage.value = 'You do not have permission to create a attribute term.'
+                } else {
+                    errorMessage.value = `Error: ${error.response.status} ${error.response.statusText}`
+                }
+            } else {
+                errorMessage.value = error.message
+            }
+            successMessage.value = ''
+        }
+    }
+
+    useHead({
+        title: 'Create Attribute Term',
+    })
+</script>

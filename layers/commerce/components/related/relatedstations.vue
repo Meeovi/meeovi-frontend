@@ -47,21 +47,12 @@
 
 </template>
 
-<script>
+<script setup>
+  import { ref } from 'vue'
   import productCard from '../commerce/product/productCard.vue'
 
-  export default {
-    components: {
-      productCard
-    },
-    data: () => ({
-      model: null,
-      url: process.env.DIRECTUS_URL,
-    }),
-  }
-</script>
+  const model = ref(null);
 
-<script setup>
   const props = defineProps({
     products: {
       type: Object,

@@ -33,65 +33,17 @@
     </div>
 </template>
 
-<script>
-    import blogbar from '../../components/menus/blogbar.vue'
-
-    export default {
-        components: {
-            blogbar
-        },
-        data() {
-            return {
-                tab: null,
-                url: process.env.DIRECTUS_URL,
-            }
-        }
-    }
-</script>
-
 <script setup>
-const route = useRoute();
-import gql from 'graphql-tag'
+  import blogbar from '../../components/menus/blogbar.vue'
+  import blogCategory from '~/graphql/CMS/queries/id/blogCategory.gql'
+  import { ref } from 'vue'
 
-const query = gql`
-query NewQuery ($id: ID!) {
-  category(id: $id) {
-    id
-    name
-    uri
-    slug
-    posts {
-      nodes {
-        author {
-          node {
-            username
-          }
-        }
-        date
-        excerpt
-        featuredImage {
-          node {
-            sourceUrl
-          }
-        }
-        title
-        status
-        slug
-      }
-    }
-    taxonomy {
-      node {
-        id
-        name
-      }
-    }
-  }
-}
-`
+  const tab = ref(null);
+  const route = useRoute();
 
   const {
     data
-  } = useAsyncQuery(query, { id: route.params.id });
+  } = useAsyncQuery(blogCategory, { id: route.params.id });
 
 /*    const {
         getItemById

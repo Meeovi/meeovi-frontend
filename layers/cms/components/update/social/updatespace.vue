@@ -51,25 +51,16 @@
     </div>
 </template>
 
-<script>
-    export default {
-        data() {
-            return {
-                dialog: false,
-                notifications: false,
-                sound: true,
-                widgets: false,
-            }
-        }
-    }
-</script>
-
 <script setup>
 import { ref } from 'vue';
 import { useApolloClient } from '@vue/apollo-composable';
 import { useRoute, useRouter } from 'vue-router';
-import gql from 'graphql-tag';
+import { UPDATE_GROUP, DELETE_GROUP } from '~/graphql/CMS/queries/groups.gql'
 
+const dialog = ref(false);
+const notifications = ref(false);
+const sound = ref(true);
+const widgets = ref(false);
 const route = useRoute();
 const router = useRouter();
 const id = route.params.id;
@@ -81,22 +72,6 @@ const media = ref('');
 const reactions = ref('');
 
 const { client: apolloClient } = useApolloClient();
-
-// Update Mutation
-const UPDATE_GROUP = gql`
-  mutation MyMutation($description: String!, $name: String!, $id: ID!) {
-    updateGroup(
-      input: {types: DEFAULT, name: $name, description: $description, status: PUBLIC, id: $id}
-    ) {
-      group {
-        description
-        name
-        status
-        id
-    }
-  }
-}
-`;
 
 const updateGroup = async () => {
   try {
@@ -113,17 +88,6 @@ const updateGroup = async () => {
     console.error('Error updating group:', error);
   }
 };
-
-// Delete Mutation
-const DELETE_GROUP = gql`
-  mutation MyMutation($id: ID!) {
-    deleteGroup(input: {id: $id}) {
-      group {
-        id
-      }
-    }
-  }
-`;
 
 const deleteGroup = async () => {
   try {

@@ -154,7 +154,7 @@
 import { ref } from 'vue';
 import { useApolloClient } from '@vue/apollo-composable';
 import { useRoute, useRouter } from 'vue-router';
-import gql from 'graphql-tag';
+import { UPDATE_ACTIVITY, DELETE_ACTIVITY } from '~/graphql/CMS/queries/activities.gql'
 
 const route = useRoute();
 const router = useRouter();
@@ -166,22 +166,6 @@ const media = ref('');
 const reactions = ref('');
 
 const { client: apolloClient } = useApolloClient();
-
-// Update Mutation
-const UPDATE_ACTIVITY = gql`
-  mutation MyMutation($content: String!, $id: ID!) {
-    updateActivity(input: {content: $content, type: ACTIVITY_UPDATE, id: $id}) {
-      activity {
-        content
-        date
-        id
-        status
-        title
-        type
-      }
-    }
-  }
-`;
 
 const updateActivity = async () => {
   try {
@@ -197,17 +181,6 @@ const updateActivity = async () => {
     console.error('Error updating activity:', error);
   }
 };
-
-// Delete Mutation
-const DELETE_ACTIVITY = gql`
-  mutation MyMutation($id: ID!) {
-    deleteActivity(input: {id: $id}) {
-      activity {
-        id
-      }
-    }
-  }
-`;
 
 const deleteActivity = async () => {
   try {

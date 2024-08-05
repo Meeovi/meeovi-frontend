@@ -1,0 +1,19 @@
+query NewQuery {
+  categories {
+    nodes {
+      parent {
+        node {
+          id
+          name
+        }
+      }
+    }
+  }
+  nodeByUri(uri: "blog") {
+    ... on Page {
+      id
+      title
+      content
+    }
+  }
+}

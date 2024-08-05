@@ -1,0 +1,110 @@
+query overview {
+  pages(where: {name: "Meeovi"}) {
+    nodes {
+      id
+      title
+      featuredImage {
+        node {
+          sourceUrl
+        }
+      }
+      content
+    }
+  }
+}
+
+query aboutQuery {
+  navigations(where: {title: "About Us"}) {
+    nodes {
+      title
+      navigationFields {
+        menu {
+          nodes {
+            ... on Website {
+              id
+              websiteFields {
+                link
+                type
+                icon
+                description
+              }
+              title
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query legalQuery {
+  navigations(where: {title: "Legal"}) {
+    nodes {
+      title
+      navigationFields {
+        menu {
+          nodes {
+            ... on Website {
+              id
+              websiteFields {
+                link
+                type
+                icon
+                description
+              }
+              title
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query companyQuery {
+  navigations(where: {title: "Company"}) {
+    nodes {
+      title
+      navigationFields {
+        menu {
+          nodes {
+            ... on Website {
+              id
+              websiteFields {
+                link
+                type
+                icon
+                description
+              }
+              title
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query copyrightQuery {
+  navigations(where: {title: "Footer Copyright Menu"}) {
+    nodes {
+      title
+      navigationFields {
+        menu {
+          nodes {
+            ... on Website {
+              id
+              websiteFields {
+                link
+                type
+                icon
+                description
+              }
+              title
+            }
+          }
+        }
+      }
+    }
+  }
+}

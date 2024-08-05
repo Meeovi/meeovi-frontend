@@ -1,6 +1,6 @@
 <template>
     <div class="contentPage">
-        <!--<profilebar />-->
+        <profilebar /><!---->
         <v-row>
             <v-col cols="12">
                 <v-toolbar title="Spaces" color="primary">
@@ -59,35 +59,11 @@
 </template>
 
 <script setup>
-import gql from 'graphql-tag'
 import profilebar from '../../components/menus/profilebar.vue'
 import createspace from '../../components/create/social/createspace.vue'
+import groups from '~/graphql/CMS/queries/groups.gql'
 
-const { data } = useAsyncQuery(gql`
-query NewQuery {
-groups(where: {status: PUBLIC, type: ACTIVE}) {
-    nodes {
-      creator {
-        avatar {
-          url
-        }
-        username
-      }
-      description
-      id
-      lastActivity
-      name
-      slug
-      status
-      totalMemberCount
-      dateCreated
-      attachmentCover {
-        full
-      }
-    }
-  }
-}`
-)
+const { data } = useAsyncQuery(groups);
 
     /* const {
          getItems

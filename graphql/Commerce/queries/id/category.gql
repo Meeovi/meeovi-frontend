@@ -1,0 +1,97 @@
+  query CategoryQuery($uid: String!) {
+    categories (filters: {category_uid: {eq: $uid}}) {
+    items {
+      uid
+      name
+      children {
+        uid
+        name
+      }
+      image
+      products(pageSize: 5, sort: {position: DESC}) {
+        items {
+          description {
+            html
+          }
+          uid
+          name
+          image {
+            url
+          }
+          sku
+          price_range {
+            minimum_price {
+              regular_price {
+                currency
+                value
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+  query BestsellerQuery($uid: String!) {
+    products(filter: {category_uid: {eq: $uid}}, pageSize: 5, sort: {position: DESC}) {
+      items {
+        uid
+        name
+        image {
+          url
+        }
+        sku
+        price_range {
+          minimum_price {
+            regular_price {
+              currency
+              value
+            }
+          }
+        }
+      }
+    }
+  }
+
+    query LatestProductsQuery($uid: String!) {
+    products(filter: {category_uid: {eq: $uid}}, pageSize: 5, sort: {position: DESC}) {
+      items {
+        uid
+        name
+        image {
+          url
+        }
+        sku
+        price_range {
+          minimum_price {
+            regular_price {
+              currency
+              value
+            }
+          }
+        }
+      }
+    }
+  }
+
+    query EventProductsQuery {
+    products(filter: {category_uid: {eq: "NjE="}}) {
+      items {
+        uid
+        name
+        image {
+          url
+        }
+        sku
+        price_range {
+          minimum_price {
+            regular_price {
+              currency
+              value
+            }
+          }
+        }
+      }
+    }
+  }

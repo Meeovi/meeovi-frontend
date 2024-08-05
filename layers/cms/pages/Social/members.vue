@@ -1,5 +1,6 @@
 <template>
     <div class="contentPage">
+      <profilebar /><!---->
         <v-toolbar title="My Network" color="transparent"></v-toolbar>
         <v-row style="padding-top: 10px; padding-bottom: 10px;">
             <v-col cols="3" v-for="(customers, index) in data?.members?.nodes" :key="index">
@@ -29,40 +30,16 @@
     </div>
 </template>
 
-<script>
-import followButton from '../../components/social/followButton.vue'
-
-    export default {
-      components: { followButton },
-        data: () => ({
-            //url: process.env.DIRECTUS_URL,
-        })
-    }
-</script>
-
 <script setup>
-import gql from 'graphql-tag'
-import { useAsyncQuery } from '@vue/apollo-composable'
+import profilebar from '../../components/menus/profilebar.vue'
+import followButton from '../../components/social/followButton.vue'
+import members from '~/graphql/CMS/queries/members.gql'
+import { ref } from 'vue'
 
-const { data } = useAsyncQuery(gql`
-query NewQuery {
-  members {
-    nodes {
-      avatar {
-        url
-      }
-      description
-      id
-      memberTypes
-      url
-      username
-      totalFriendCount
-      locale
-      latestUpdate
-    }
-  }
-}`
-)
+const model = ref(null);
+
+const { data } = useAsyncQuery(members);
+
 
 /*import { createDirectus, rest, readItems, readItem } from '@directus/sdk';
 const route = useRoute()

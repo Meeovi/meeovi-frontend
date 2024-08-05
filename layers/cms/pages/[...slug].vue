@@ -6,29 +6,15 @@
 </template>
 
 <script setup>
-const route = useRoute();
-/*import gql from 'graphql-tag'
-import { useAsyncQuery } from '@vue/apollo-composable'
+    import page from '~/graphql/CMS/queries/id/page.gql'
+    import { ref } from 'vue'
 
-const query = gql `
-query NewQuery ($id: ID!) {
-  page(id: $id) {
-    content
-    id
-    title
-    status
-    slug
-  }
-}
-`;
+    const route = useRoute();
+    const { data } = useAsyncQuery(page, {
+        id: route.params.id
+    });
 
-const { data, error } = useAsyncQuery(query, { id: route.params.id });
-
-if (error) {
-    console.error('Error fetching page:', error);
-}*/
-
-const {
+/*const {
        getItems
    } = useDirectusItems()
 
@@ -39,7 +25,7 @@ const {
           _eq: route.params.slug
         }
        }
-   });
+   });*/
 
 useHead({
     title: page?.name,

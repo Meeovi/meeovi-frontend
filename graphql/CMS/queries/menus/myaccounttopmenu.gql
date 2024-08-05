@@ -1,0 +1,46 @@
+query AccountCommerce {
+  navigations(where: {search: "Account Commerce"}) {
+    nodes {
+      title
+      navigationFields {
+        menu {
+          nodes {
+            ... on Website {
+              id
+              websiteFields {
+                link
+                type
+                description
+                icon
+              }
+              title
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query AccountSocial {
+  navigations(where: {search: "Account Social"}) {
+    nodes {
+      title
+      navigationFields {
+        menu {
+          nodes {
+            ... on Website {
+              id
+              websiteFields {
+                link
+                type
+                description
+              }
+              title
+            }
+          }
+        }
+      }
+    }
+  }
+}

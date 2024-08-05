@@ -157,12 +157,9 @@
     import {
         ref
     } from 'vue'
+    import { useRuntimeConfig } from '#imports';
 
-    // Access environment variables
-    const apiUrl = process.env.API_URL || 'https://meeovi.meeovicms.com'
-    const wordpressToken = process.env.WORDPRESS_TOKEN ||
-        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL21lZW92aS5tZWVvdmljbXMuY29tIiwiaWF0IjoxNzE4MjkxMTg0LCJuYmYiOjE3MTgyOTExODQsImV4cCI6MTcxODg5NTk4NCwiZGF0YSI6eyJ1c2VyIjp7ImlkIjoiMSJ9fX0.pER2LWpuRBgMUqqvD6pcZfb185nULQV_dq-ml67AFZc'
-
+    const config = useRuntimeConfig();
     const name = ref('');
     const status = ref('');
     const short_description = ref('');
@@ -188,11 +185,11 @@
 
     const createProduct = async () => {
         try {
-            const response = await $fetch(`${apiUrl}/wp-json/dokan/v1/products/`, {
+            const response = await $fetch(`${config.public.wordpressUrl}/wp-json/dokan/v1/products/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${wordpressToken}`
+                    'Authorization': `Bearer ${config.public.wordpressToken}`
                 },
                 body: JSON.stringify({
                     name: name.value,

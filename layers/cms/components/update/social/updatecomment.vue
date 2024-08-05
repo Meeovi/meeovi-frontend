@@ -7,20 +7,7 @@
   </div>
 </template>
 
-<script>
-  import editor from '../../partials/editor.vue'
-  export default {
-    components: {
-      editor
-    },
-    data() {
-      return {
-
-      };
-    },
-  };
-</script>
-
 <script lang="ts" setup>
+  import editor from '~/components/partials/editor.vue'
 
 </script>

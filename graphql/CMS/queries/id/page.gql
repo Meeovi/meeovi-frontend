@@ -1,0 +1,9 @@
+query NewQuery ($id: ID!) {
+  page(id: $id) {
+    content
+    id
+    title
+    status
+    slug
+  }
+}

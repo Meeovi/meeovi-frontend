@@ -1,0 +1,11 @@
+query NewQuery {
+  activities {
+    nodes {
+      id
+      date
+      status
+      title
+      type
+    }
+  }
+}

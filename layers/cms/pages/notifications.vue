@@ -22,32 +22,8 @@
     </div>
 </template>
 
-<script>
-    export default {
-        data() {
-            return {
-
-            }
-        },
-    }
-</script>
-
 <script setup>
-const query = gql`
-query NewQuery {
-  activities {
-    nodes {
-      id
-      date
-      status
-      title
-      type
-    }
-  }
-}
-`
+import notifications from '~/graphql/CMS/queries/notifications.gql'
 
-  const {
-    data
-  } = useAsyncQuery(query, { client: 'cms' });
+const { data } = useAsyncQuery(notifications);
 </script>

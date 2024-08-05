@@ -1,0 +1,17 @@
+query NewQuery {
+  members {
+    nodes {
+      avatar {
+        url
+      }
+      description
+      id
+      memberTypes
+      url
+      username
+      totalFriendCount
+      locale
+      latestUpdate
+    }
+  }
+}

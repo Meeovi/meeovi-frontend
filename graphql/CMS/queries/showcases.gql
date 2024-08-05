@@ -1,0 +1,73 @@
+
+
+  mutation CREATE_SHOWCASE($title: String!) {
+    createShowcase(input: {
+      title: $title,
+      status: PUBLISH,
+    }) {
+      showcase {
+        id
+        title
+        status
+        showcaseFields {
+          color
+          colortext
+          description
+          image {
+            node {
+                sourceUrl
+            }
+          }
+        }
+      }
+    }
+  }
+
+mutation UPDATE_SHOWCASE($content: String!, $description: String!, $name: String!, $id: ID!, $title: String!, $excerpt: String!) {
+  updateShowcase(
+    input: {id: $id, title: $title, status: PUBLISH, excerpt: $excerpt, content: $content}
+  ) {
+    showcase {
+      content
+      excerpt
+      id
+      title
+      showcaseFields {
+        color
+        colortext
+        description
+        image {
+          node {
+            sourceUrl
+          }
+        }
+        name
+        rating
+        products {
+          nodes {
+            id
+            date
+            status
+            ... on SimpleProduct {
+              id
+              name
+              description
+              content
+              price
+              sku
+              type
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+  mutation UPDATE_SHOWCASE($id: ID!) {
+    deleteShowcase(input: {id: $id}) {
+      showcase {
+        id
+      }
+    }
+  }

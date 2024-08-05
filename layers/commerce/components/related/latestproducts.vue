@@ -17,52 +17,13 @@
   </div>
 </template>
 
-<script>
-  import productCard from '../commerce/product/productCard.vue'
-
-  export default {
-    components: {
-      productCard
-    },
-    data: () => ({
-      model: null,
-      //url: process.env.DIRECTUS_URL,
-    }),
-  }
-</script>
-
 <script setup>
-const LATEST_PRODUCTS_QUERY = gql`
-query LatestProductsQuery {
-  products(pageSize: 5, sort: { position: DESC }) {
-    items {
-      uid
-      name
-      rating_summary
-      description {
-        html
-      }
-      image {
-        url
-      }
-      sku
-      price_range {
-        minimum_price {
-          regular_price {
-            currency
-            value
-          }
-        }
-      }
-      categories {
-        name
-      }
-    }
-  }
-}
-`
+  import productCard from '../commerce/product/productCard.vue'
+  import latestproducts from '~/graphql/Commerce/queries/latestproducts.gql'
+
+  const model = ref(null);
 
   const {
     data
-  } = useAsyncQuery(LATEST_PRODUCTS_QUERY);
+  } = useAsyncQuery(latestproducts);
 </script>

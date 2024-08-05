@@ -88,7 +88,7 @@
 import { ref } from 'vue';
 import { useApolloClient } from '@vue/apollo-composable';
 import { useRoute, useRouter } from 'vue-router';
-import gql from 'graphql-tag';
+import { UPDATE_SHOWCASE, DELETE_SHOWCASE } from '~/graphql/CMS/queries/showcases.gql'
 
 const route = useRoute();
 const router = useRouter();
@@ -105,50 +105,6 @@ const rating = ref('');
 const products = ref('');
 
 const { client: apolloClient } = useApolloClient();
-
-// Update Mutation
-const UPDATE_SHOWCASE = gql`
-  mutation MyMutation($content: String!, $description: String!, $name: String!, $id: ID!, $title: String!, $excerpt: String!) {
-  updateShowcase(
-    input: {id: $id, title: $title, status: PUBLISH, excerpt: $excerpt, content: $content}
-  ) {
-    showcase {
-      content
-      excerpt
-      id
-      title
-      showcaseFields {
-        color
-        colortext
-        description
-        image {
-          node {
-            sourceUrl
-          }
-        }
-        name
-        rating
-        products {
-          nodes {
-            id
-            date
-            status
-            ... on SimpleProduct {
-              id
-              name
-              description
-              content
-              price
-              sku
-              type
-            }
-          }
-        }
-      }
-    }
-  }
-}
-`;
 
 const updateShowcase = async () => {
   try {
@@ -169,17 +125,6 @@ const updateShowcase = async () => {
     console.error('Error updating showcase:', error);
   }
 };
-
-// Delete Mutation
-const DELETE_SHOWCASE = gql`
-  mutation MyMutation($id: ID!) {
-    deleteShowcase(input: {id: $id}) {
-      showcase {
-        id
-      }
-    }
-  }
-`;
 
 const deleteShowcase = async () => {
   try {

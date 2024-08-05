@@ -17,52 +17,13 @@
   </div>
 </template>
 
-<script>
-  import productCard from '../commerce/product/productCard.vue'
-
-  export default {
-    components: {
-      productCard
-    },
-    data: () => ({
-      model: null,
-      //url: process.env.DIRECTUS_URL,
-    }),
-  }
-</script>
-
 <script setup>
-const query = gql`
-query {
-  products (search: "Featured") {
-    items {
-      uid
-      name
-      rating_summary
-      description {
-        html
-      }
-      image {
-        url
-      }
-      sku
-      price_range {
-        minimum_price {
-          regular_price {
-            currency
-            value
-          }
-        }
-      }
-      categories {
-        name
-      }
-    }
-  }
-}
-`
+  import productCard from '../commerce/product/productCard.vue'
+  import featuredproducts from '~/graphql/Commerce/queries/featuredproducts.gql'
+
+  const model = ref(null);
 
   const {
     data
-  } = useAsyncQuery(query);
+  } = useAsyncQuery(featuredproducts);
 </script>

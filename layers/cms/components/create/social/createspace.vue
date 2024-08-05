@@ -85,7 +85,7 @@
         useRoute,
         useRouter
     } from 'vue-router';
-    import gql from 'graphql-tag';
+    import CREATE_GROUP from '~/graphql/CMS/queries/groups.gql'
 
     const route = useRoute();
     const router = useRouter();
@@ -101,27 +101,12 @@
         client: apolloClient
     } = useApolloClient();
 
-    // Create Mutation
-    const CREATE_ACTIVITY = gql `
-  mutation MyMutation($description: String!, $name: String!) {
-  createGroup(
-    input: {types: DEFAULT, name: $name, description: $description, status: PUBLIC}
-  ) {
-    group {
-      description
-      name
-      status
-    }
-  }
-}
-`;
-
     const createGroup = async () => {
         try {
             const {
                 data
             } = await apolloClient.mutate({
-                mutation: CREATE_ACTIVITY,
+                mutation: CREATE_GROUP,
                 variables: {
                     description: description.value,
                     name: name.value

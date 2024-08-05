@@ -1,3 +1,4 @@
+import { useRuntimeConfig } from '#imports';
 
 export const getGroups = async () => {
   const config = useRuntimeConfig();

@@ -74,26 +74,16 @@
   </div>
 </template>
 
-<script>
-  export default {
-      data: () => ({
-          dialog: false,
-          includeFiles: true,
-          enabled: false,
-      }),
-  }
-</script>
-
 <script setup>
   import {
       ref
   } from 'vue'
+  import { useRuntimeConfig } from '#imports';
 
-  // Access environment variables
-  const apiUrl = process.env.API_URL || 'https://meeovi.meeovicms.com'
-  const wordpressToken = process.env.WORDPRESS_TOKEN ||
-      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL21lZW92aS5tZWVvdmljbXMuY29tIiwiaWF0IjoxNzE4MjkxMTg0LCJuYmYiOjE3MTgyOTExODQsImV4cCI6MTcxODg5NTk4NCwiZGF0YSI6eyJ1c2VyIjp7ImlkIjoiMSJ9fX0.pER2LWpuRBgMUqqvD6pcZfb185nULQV_dq-ml67AFZc'
-
+  const config = useRuntimeConfig();
+  const dialog = ref(false);
+  const includeFiles = ref(true);
+  const enabled = ref(false);
   const title = ref('');
   const acf = ref('');
   const ispublic = ref('');
@@ -107,11 +97,11 @@
 
   const updateList = async () => {
       try {
-          const response = await $fetch(`${apiUrl}/wp-json/wp/v2/list`, {
+          const response = await $fetch(`${config.apiUrl}/wp-json/wp/v2/list`, {
               method: 'PUT',
               headers: {
                   'Content-Type': 'application/json',
-                  'Authorization': `Bearer ${wordpressToken}`
+                  'Authorization': `Bearer ${config.wordpressToken}`
               },
               body: JSON.stringify({
                   title: title.value,

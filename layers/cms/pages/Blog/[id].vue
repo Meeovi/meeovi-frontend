@@ -40,90 +40,14 @@
     </div>
 </template>
 
-<script>
-    import relatedpost from '../../components/pages/homepage/blogposts.vue'
-
-    export default {
-        components: {
-            relatedpost
-        },
-        data() {
-            return {
-                url: process.env.DIRECTUS_URL,
-            }
-        },
-    }
-</script>
-
 <script setup>
+import relatedpost from '../../components/pages/homepage/blogposts.vue'
+import post from '~/graphql/CMS/queries/id/post.gql'
 const route = useRoute();
-import gql from 'graphql-tag'
-
-const query = gql`
-query NewQuery ($id: ID!) {
-  post(id: $id) {
-    author {
-      node {
-        username
-      }
-    }
-    content
-    comments {
-      nodes {
-        author {
-          node {
-            avatar {
-              url
-            }
-            id
-            name
-          }
-        }
-        content
-        date
-        status
-        replies {
-          nodes {
-            content
-            author {
-              node {
-                avatar {
-                  url
-                }
-                name
-              }
-            }
-            status
-            type
-          }
-        }
-      }
-    }
-    date
-    excerpt
-    featuredImage {
-      node {
-        sourceUrl
-      }
-    }
-    id
-    modified
-    slug
-    status
-    tags {
-      nodes {
-        name
-      }
-    }
-    title
-    uri
-  }
-}
-`
 
   const {
     data
-  } = useAsyncQuery(query, { id: route.params.id });
+  } = useAsyncQuery(post, { id: route.params.id });
 
 /*    const {
         getItemById

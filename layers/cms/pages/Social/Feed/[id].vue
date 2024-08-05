@@ -1,6 +1,6 @@
 <template>
     <div class="contentPage">
-        <!--<profilebar />-->
+        <profilebar /><!---->
         <v-row class="centralfeed">
             <v-col cols="10">
                 <v-row>
@@ -63,26 +63,7 @@
 </template>
 
 <script>
-    import profilebar from '../../../components/menus/profilebar.vue'
-    import disqus from '~/components/partials/disqus.vue'
-    import comments from '../../../components/social/comments.vue'
-    import repost from '../../../components/social/repost.vue'
-    import reactions from '../../../components/social/reactions.vue'
-    import bookmark from '../../../components/social/bookmark.vue'
-    import share from '../../../components/social/share.vue'
-    import updatepost from '../../../components/update/social/updatepost.vue'
-
     export default {
-        components: {
-            profilebar,
-            disqus,
-            comments,
-            repost,
-            reactions,
-            bookmark,
-            share,
-            updatepost
-        },
         data() {
             return {
                 activityId: this.$route.params.id,
@@ -93,10 +74,27 @@
 </script>
 
 <script setup>
+    import profilebar from '../../../components/menus/profilebar.vue'
+    import disqus from '~/components/partials/disqus.vue'
+    import comments from '../../../components/social/comments.vue'
+    import repost from '../../../components/social/repost.vue'
+    import reactions from '../../../components/social/reactions.vue'
+    import bookmark from '../../../components/social/bookmark.vue'
+    import share from '../../../components/social/share.vue'
+    import updatepost from '../../../components/update/social/updatepost.vue'
+
+    import activity from '~/graphql/CMS/queries/id/activity.gql'
+    import { ref } from 'vue'
+
+    const model = ref(null);
+    const route = useRoute();
+    const { data } = useAsyncQuery(activity, {
+        id: route.params.id
+    });
+
 /*import { getActivityById } from '~/composables/social/getActivity';
 
 const activity = ref(null);
-const route = useRoute();
 
 onMounted(async () => {
     const id = route.params.id;
@@ -108,31 +106,6 @@ onMounted(async () => {
     }
 });*/
 
-    const route = useRoute();
-    const query = gql `
-query NewQuery ($id: ID!) {
-  activity(id: $id) {
-    content
-    creator {
-      avatar {
-        url
-      }
-      username
-    }
-    date
-    id
-    status
-    title
-    type
-  }
-}
-`
-
-    const {
-        data
-    } = useAsyncQuery(query, {
-        id: route.params.id
-    });
 
  /*   const {
         getItemById

@@ -17,54 +17,13 @@
   </div>
 </template>
 
-<script>
-  import productCard from '../commerce/product/productCard.vue'
-
-  export default {
-    components: {
-      productCard
-    },
-    data: () => ({
-      model: null,
-      //url: process.env.DIRECTUS_URL,
-    }),
-  }
-</script>
-
 <script setup>
-import gql from 'graphql-tag'
+  import productCard from '../commerce/product/productCard.vue'
+  import deals from '~/graphql/Commerce/queries/deals.gql'
 
-const query = gql`
-query {
-  products (filter: {price: {to: "20"}}) {
-    items {
-      uid
-      name
-      rating_summary
-      description {
-        html
-      }
-      image {
-        url
-      }
-      sku
-      price_range {
-        minimum_price {
-          regular_price {
-            currency
-            value
-          }
-        }
-      }
-      categories {
-        name
-      }
-    }
-  }
-}
-`
+  const model = ref(null);
 
   const {
     data
-  } = useAsyncQuery(query);
+  } = useAsyncQuery(deals);
 </script>

@@ -156,6 +156,10 @@ export default defineNuxtConfig({
 
       // Cloudinary
       cloudinaryCloudName: process.env.CLOUDINARY_CLOUD_NAME,
+
+      // Graphql
+
+
     },
   },
 
@@ -178,14 +182,34 @@ export default defineNuxtConfig({
     recommend: true,
   },
 
- /* apollo: {
+  apollo: {
     clients: {
       default: {
-        httpEndpoint: 'http://localhost:4000/graphql',
+        httpEndpoint: process.env.GRAPHQL_HOST,
         tokenStorage: "cookie",
+        httpLinkOptions: {
+          headers: {
+            'x-hasura-admin-secret': `${process.env.GRAPHQL_TOKEN}`,
+            'content-type': 'application/json'
+          }
+        }
       },
+      cms: {
+        httpEndpoint: process.env.API_URL_GRAPHQL,
+      /*  httpLinkOptions: {
+          headers: {
+            'Authorization': `Bearer ${process.env.WORDPRESS_TOKEN}`,
+            'username': process.env.WP_API_USERNAME,
+            'password': process.env.WP_API_PASSWORD,
+            'content-type': 'application/json'
+          }
+        }*/
+      },
+      /*  commerce: {
+          httpEndpoint: process.env.VDURE_URL
+        },*/
     },
-  }, */
+  }, /**/
 
   build: {
     transpile: [

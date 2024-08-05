@@ -88,7 +88,7 @@
 import { ref } from 'vue';
 import { useApolloClient } from '@vue/apollo-composable';
 import { useRoute, useRouter } from 'vue-router';
-import gql from 'graphql-tag';
+import CREATE_SHOWCASE from '~/graphql/CMS/queries/showcases.gql'
 
 const route = useRoute();
 const router = useRouter();
@@ -102,31 +102,6 @@ const colortext = ref('');
 const showcaseFields = ref('');
 
 const { client: apolloClient } = useApolloClient();
-
-const CREATE_SHOWCASE = gql`
-  mutation CreateShowcase($title: String!) {
-    createShowcase(input: {
-      title: $title,
-      status: PUBLISH,
-    }) {
-      showcase {
-        id
-        title
-        status
-        showcaseFields {
-          color
-          colortext
-          description
-          image {
-            node {
-                sourceUrl
-            }
-          }
-        }
-      }
-    }
-  }
-`;
 
 const createShowcase = async () => {
   try {

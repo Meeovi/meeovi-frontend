@@ -118,11 +118,11 @@
 
     const createCoupon = async () => {
         try {
-            const response = await $fetch(`${apiUrl}/wp-json/dokan/v1/coupons/?code=REST`, {
+            const response = await $fetch(`${config.public.wordpressUrl}/wp-json/dokan/v1/coupons/?code=REST`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${wordpressToken}`
+                    'Authorization': `Bearer ${config.public.wordpressToken}`
                 },
                 body: JSON.stringify({
                     name: name.value,

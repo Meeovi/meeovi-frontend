@@ -1,0 +1,26 @@
+query NewQuery {
+  products(where: {featured: true}) {
+    nodes {
+      id
+      averageRating
+      description
+      image {
+        sourceUrl
+      }
+      name
+      sku
+      type
+      ... on SimpleProduct {
+        id
+        name
+        price
+        type
+        productCategories {
+          nodes {
+            name
+          }
+        }
+      }
+    }
+  }
+}

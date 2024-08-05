@@ -49,17 +49,9 @@
   </div>
 </template>
 
-<script>
+<script setup>
   import disqus from '~/components/partials/disqus.vue'
 
-  export default {
-    components: {
-      disqus,
-    },
-  }
-</script>
-
-<script setup>
  /* const {
     getItems
   } = useDirectusItems()

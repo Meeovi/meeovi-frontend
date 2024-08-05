@@ -62,37 +62,9 @@ import createlist from '../create/commerce/createlist.vue'
 </script>
 
 <script setup>
-const query = gql `
-query NewQuery {
-  lists {
-    nodes {
-      author {
-        node {
-          username
-          avatar {
-            url
-          }
-        }
-      }
-      date
-      id
-      lists {
-        description
-        ispublic
-        name
-        type
-        image {
-          node {
-            sourceUrl
-          }
-        }
-      }
-    }
-  }
-}
-`
+  import lists from '~/graphql/Commerce/queries/lists.gql'
 
     const {
         data
-    } = useAsyncQuery(query);
+    } = useAsyncQuery(lists);
 </script>

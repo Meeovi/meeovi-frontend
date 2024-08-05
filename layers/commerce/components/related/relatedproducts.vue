@@ -17,21 +17,15 @@
   </div>
 </template>
 
-<script>
-  import productCard from '../commerce/product/productCard.vue'
-
-  export default {
-    components: {
-      productCard
-    },
-    data: () => ({
-      model: null,
-      //url: process.env.DIRECTUS_URL,
-    }),
-  }
-</script>
-
 <script setup>
+  import productCard from '../commerce/product/productCard.vue'
+  import bestsellers from '~/graphql/Commerce/queries/bestsellers.gql'
+
+  const model = ref(null);
+
+  const {
+    data
+  } = useAsyncQuery(bestsellers);
 const query = gql`
 query {
   products (search: "Featured") {

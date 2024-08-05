@@ -29,49 +29,15 @@
   </v-sheet>
 </template>
 
-<script>
-  export default {
-    data: () => ({
-      model: null,
-      url: process.env.DIRECTUS_URL,
-    }),
-  }
-</script>
-
 <script setup>
-const query = gql `
-query NewQuery {
-  charts {
-    nodes {
-      chartFields {
-        name
-        image {
-          node {
-            sourceUrl
-          }
-        }
-        products {
-          nodes {
-            id
-            ... on SimpleProduct {
-              id
-              name
-              price
-            }
-          }
-        }
-        color
-      }
-      id
-      date
-    }
-  }
-}
-`
+  import productCard from '../commerce/product/productCard.vue'
+  import charts from '~/graphql/Commerce/queries/charts.gql'
+
+  const model = ref(null);
 
   const {
     data
-  } = useAsyncQuery(query);
+  } = useAsyncQuery(charts);
 
 /*const {
         getItems

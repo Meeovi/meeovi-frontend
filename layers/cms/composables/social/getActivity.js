@@ -1,3 +1,4 @@
+import { useRuntimeConfig } from '#imports';
 
 export const getActivity = async () => {
   const config = useRuntimeConfig();

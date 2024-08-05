@@ -4,7 +4,7 @@ const consumerSecret = 'cs_6ab0eaa4c194e84b414cef8a25f7b3324c715b88';
 
 export const getCategories = async () => {
   try {
-    const categories = await $fetch(`${apiUrl}/wp-json/wc/v3/products/categories`, {
+    const categories = await $fetch(`${config.public.wordpressUrl}/wp-json/wc/v3/products/categories`, {
       params: {
         consumer_key: consumerKey,
         consumer_secret: consumerSecret
@@ -19,14 +19,14 @@ export const getCategories = async () => {
 
 export const getCategoryById = async (id) => {
   try {
-    const category = await $fetch(`${apiUrl}/wp-json/wc/v3/products/categories/${id}`, {
+    const category = await $fetch(`${config.public.wordpressUrl}/wp-json/wc/v3/products/categories/${id}`, {
       params: {
         consumer_key: consumerKey,
         consumer_secret: consumerSecret
       }
     });
 
-    const subCategories = await $fetch(`${apiUrl}/wp-json/wc/v3/products/categories`, {
+    const subCategories = await $fetch(`${config.public.wordpressUrl}/wp-json/wc/v3/products/categories`, {
       params: {
         consumer_key: consumerKey,
         consumer_secret: consumerSecret,

@@ -322,109 +322,32 @@
 </template>
 
 <script>
-    import profilebar from '../../../components/menus/profilebar.vue'
-    import comments from '../../../components/social/comments.vue'
-    import settings from '../../../components/update/social/updatespace.vue'
-    import productCard from '../../../components/commerce/product/productCard.vue'
-    import shorts from '../../../components/related/shorts.vue'
-
     export default {
-        components: {
-            profilebar,
-            productCard,
-            comments,
-            settings,
-            shorts
-        },
         data() {
             return {
                 //url: process.env.DIRECTUS_URL,
-                tab: null,
-                model: null,
-                data: null,
                 groupId: this.$route.params.id
-                //space: null,
             }
         },
     }
 </script>
 
 <script setup>
-import gql from 'graphql-tag'
-import { useAsyncQuery } from '@vue/apollo-composable'
+    import profilebar from '../../../components/menus/profilebar.vue'
+    import comments from '../../../components/social/comments.vue'
+    import settings from '../../../components/update/social/updatespace.vue'
+    import productCard from '../../../components/commerce/product/productCard.vue'
+    import shorts from '../../../components/related/shorts.vue'
 
-const route = useRoute();
-const query = gql `
-query NewQuery ($id: ID!) {
-group(id: $id){
-    creator {
-      avatar {
-        url
-      }
-      username
-    }
-    dateCreated
-    description
-    id
-    lastActivity
-    name
-    slug
-    status
-    totalMemberCount
-    mods {
-      avatar {
-        url
-      }
-      username
-      description
-    }
-    members {
-      nodes {
-        avatar {
-          url
-        }
-        username
-        description
-      }
-    }
-    attachmentCover {
-      full
-    }
-    attachmentAvatar {
-      full
-    }
-    admins {
-      avatar {
-        url
-      }
-      username
-      description
-    }
-    activities {
-      nodes {
-        content
-        creator {
-          avatar {
-            url
-          }
-          username
-        }
-        date
-        id
-        status
-        title
-        type
-      }
-    }
-  }
-}
-`
+    import group from '~/graphql/CMS/queries/id/group.gql'
+    import { ref } from 'vue'
 
-const id = ref('initial-id')
-
-const { data, refetch } = useAsyncQuery(query, () => ({
-  id: route.params.id
-}))
+    const model = ref(null);
+    const tab = ref(null);
+    const route = useRoute();
+    const { data } = useAsyncQuery(group, {
+        id: route.params.id
+    });
 
     /*    const {
             getItemById
