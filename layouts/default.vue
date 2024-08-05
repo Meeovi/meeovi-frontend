@@ -12,7 +12,8 @@
         <a class="logobrand" href="/">
           <v-icon start icon="fas fa-shopping-bag" color="orange">
             <!--<img :src="siteoverview?.featuredImage?.node?.sourceUrl" :alt="siteoverview?.title" />-->
-          </v-icon><!--{{ siteoverview?.title }}-->Meeovi
+          </v-icon>
+          <!--{{ siteoverview?.title }}-->Meeovi
         </a>
       </v-app-bar-title>
 
@@ -49,10 +50,8 @@
       <v-card>
         <v-layout>
           <v-navigation-drawer class="sidebarSection" v-model="drawer" temporary>
-            <accountDetails />
-
             <v-list nav>
-             <!----> 
+              <!---->
               <topmenu />
               <v-divider></v-divider>
 
@@ -84,8 +83,8 @@
                     Mode</v-btn>
                 </v-col>
                 <v-col cols="3">
-                  <v-list-item prepend-icon="fas fa-clock-rotate-left" title="Logoff"> <a
-                    :href="`/sign-${ user ? 'out' : 'in' }`"> Sign {{ user ? 'out' : 'in' }} </a></v-list-item>
+                  <v-btn variant="text" stacked title="Logout" prepend-icon="fas fa-right-from-bracket"
+                    size="x-small" @click="signOut({ callbackUrl: '/' })"  href="">Logout</v-btn>
                 </v-col>
               </v-row>
             </v-list>
@@ -112,57 +111,33 @@
   </v-app>
 </template>
 
-<script>
-  //import SearchHeader from '../components/search/SearchHeader.vue'
-  import search from '../components/search/search.vue'
-  import ecosystemmenu from '../components/menus/ecosystemmenu.vue'
-  import live from '../components/menus/Livebar/live.vue'
-  import topmenu from '../components/menus/Sidebar/topmenu.vue'
-  import socialmenu from '../components/menus/Sidebar/socialmenu.vue'
-  import departmentsmenu from '../components/menus/Sidebar/departmentsmenu.vue'
-  import outlets from '../components/menus/Sidebar/outletsmenu.vue'
-  import myaccountmenu from '../components/menus/Sidebar/myaccountmenu.vue'
-  import LayoutNotifications from '../components/menus/LayoutNotifications.vue'
-  import mobilesearch from '../components/menus/TopMenu/mobilesearch.vue'
-  import myaccounttopmenu from '../components/menus/TopMenu/myaccounttopmenu.vue'
-  import bottomsidebarmenu from '../components/menus/Sidebar/bottomsidebarmenu.vue'
-  import accountDetails from '../components/menus/Sidebar/accountDetails.vue'
-
-  export default {
-    data() {
-      return {
-        components: {
-          //SearchHeader,
-          search,
-          ecosystemmenu,
-          live,
-          topmenu,
-          socialmenu,
-          departmentsmenu,
-          outlets,
-          myaccountmenu,
-          LayoutNotifications,
-          mobilesearch,
-          myaccounttopmenu,
-          bottomsidebarmenu,
-          accountDetails
-        },
-        drawer: null,
-        rail: true,
-        location: 'bottom',
-        loaded: false,
-        loading: false,
-      }
-    },
-  }
-</script>
-
 <script setup>
+  //import SearchHeader from '../components/search/SearchHeader.vue'
+  import search from '../components/apps/search/search.vue'
+  import ecosystemmenu from '~/layers/cms/components/menus/ecosystemmenu.vue'
+  import live from '~/layers/cms/components/menus/Livebar/live.vue'
+  import topmenu from '~/layers/cms/components/menus/Sidebar/topmenu.vue'
+  import socialmenu from '~/layers/cms/components/menus/Sidebar/socialmenu.vue'
+  import departmentsmenu from '~/layers/cms/components/menus/Sidebar/departmentsmenu.vue'
+  import outlets from '~/layers/cms/components/menus/Sidebar/outletsmenu.vue'
+  import myaccountmenu from '~/layers/cms/components/menus/Sidebar/myaccountmenu.vue'
+  import LayoutNotifications from '~/layers/cms/components/menus/LayoutNotifications.vue'
+  import mobilesearch from '~/layers/cms/components/menus/TopMenu/mobilesearch.vue'
+  import myaccounttopmenu from '~/layers/cms/components/menus/TopMenu/myaccounttopmenu.vue'
+  import bottomsidebarmenu from '~/layers/cms/components/menus/Sidebar/bottomsidebarmenu.vue'
+  
+
   import {
     ref
   } from 'vue';
 
-  const user = useLogtoUser();
+const drawer = ref(null);
+const rail = ref(true);
+const location = ref('bottom');
+const loaded = ref(false);
+const loading = ref(false);
+
+//const {  signOut  } = useAuth()
 
   /*const {
           getItems
@@ -179,4 +154,12 @@
   function onClick() {
     theme.value = theme.value === 'light' ? 'dark' : 'light'
   };
+
+  useHead({
+    title: 'Meeovi',
+    htmlAttrs: {
+      // uncomment this line to simulate dark mode
+      // class: 'dark',
+    },
+  });
 </script>

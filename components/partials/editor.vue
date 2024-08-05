@@ -27,14 +27,8 @@
     </div>
   </template>
   
-  <script>
+  <script setup>
   import Editor from '@tinymce/tinymce-vue'
   
-  export default {
-    name: 'app',
-    components: {
-      'editor': Editor
-    }
-  }
   </script>
   

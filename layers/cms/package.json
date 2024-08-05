@@ -1,0 +1,23 @@
+{
+  "name": "m-cms",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@directus/types": "11.0.0",
+    "nuxt3-leaflet": "^1.0.12"
+  },
+  "dependencies": {
+    "@directus/sdk": "^16.1.1",
+    "@nuxtjs/apollo": "^5.0.0-alpha.14",
+    "nuxt": "^3.12.4",
+    "nuxt-directus": "^5.6.1",
+    "vue": "latest"
+  }
+}

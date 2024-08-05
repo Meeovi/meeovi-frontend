@@ -37,18 +37,6 @@
     </div>
 </template>
 
-<script>
-
-    export default {
-        components: {},
-        data() {
-            return {
-                url: process.env.DIRECTUS_URL,
-            }
-        },
-    }
-</script>
-
 <script setup>
 const query = gql `
 query NewQuery {

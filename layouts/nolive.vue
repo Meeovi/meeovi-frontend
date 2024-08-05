@@ -49,8 +49,6 @@
       <v-card>
         <v-layout>
           <v-navigation-drawer class="sidebarSection" v-model="drawer" temporary>
-            <accountDetails />
-
             <v-list nav>
               <topmenu />
               <v-divider></v-divider>
@@ -84,7 +82,7 @@
                 </v-col>
                 <v-col cols="3">
                   <v-btn variant="text" stacked title="Logout" prepend-icon="fas fa-right-from-bracket"
-                    size="x-small" href="">Logout</v-btn>
+                    size="x-small" @click="signOut({ callbackUrl: '/' })"  href="">Logout</v-btn>
                 </v-col>
               </v-row>
             </v-list>
@@ -106,9 +104,9 @@
   </v-app>
 </template>
 
-<script>
+<script setup>
   //import SearchHeader from '../components/search/SearchHeader.vue'
-  import search from '../components/search/search.vue'
+  import search from '../components/apps/search/search.vue'
   import ecosystemmenu from '../components/menus/ecosystemmenu.vue'
   //import live from '../components/menus/Livebar/live.vue'
   import topmenu from '../components/menus/Sidebar/topmenu.vue'
@@ -120,41 +118,18 @@
   import mobilesearch from '../components/menus/TopMenu/mobilesearch.vue'
   import myaccounttopmenu from '../components/menus/TopMenu/myaccounttopmenu.vue'
   import bottomsidebarmenu from '../components/menus/Sidebar/bottomsidebarmenu.vue'
-  import accountDetails from '../components/menus/Sidebar/accountDetails.vue'
 
-  export default {
-    data() {
-      return {
-        components: {
-          //SearchHeader,
-          search,
-          ecosystemmenu,
-          //live,
-          topmenu,
-          socialmenu,
-          departmentsmenu,
-          outlets,
-          myaccountmenu,
-          LayoutNotifications,
-          mobilesearch,
-          myaccounttopmenu,
-          bottomsidebarmenu,
-          accountDetails
-        },
-        drawer: null,
-        rail: true,
-        location: 'bottom',
-        loaded: false,
-        loading: false,
-      }
-    },
-  }
-</script>
-
-<script setup>
   import {
     ref
   } from 'vue';
+
+const drawer = ref(null);
+const rail = ref(true);
+const location = ref('bottom');
+const loaded = ref(false);
+const loading = ref(false);
+
+//const {  signOut  } = useAuth()
 
 const query = gql `
 query NewQuery {

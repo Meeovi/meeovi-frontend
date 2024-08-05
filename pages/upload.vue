@@ -36,20 +36,16 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import createproduct from '../components/create/commerce/createproduct.vue'
 import createlist from '../components/create/commerce/createlist.vue'
 import bookmarkvideo from '../components/create/social/bookmarkvideo.vue'
+import { useRuntimeConfig } from '#imports';
 
-  export default {
-    components: { createproduct, createlist, bookmarkvideo },
-    data: () => ({
-      tab: null,
-    }),
-  }
-</script>
+const config = useRuntimeConfig();
 
-<script setup>
+const tab = ref(null);
+
     useHead({
         title: 'Upload Center',
     })

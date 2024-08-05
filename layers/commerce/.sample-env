@@ -1,0 +1,34 @@
+# Information here will appear across M-template
+
+# Database URL
+
+DATABASE_URL='mysql://example:example@example.com:3306/example'
+
+# Database Credentials
+
+DB_HOST='example.com'
+DB_USER='example'
+DB_PASSWORD='example'
+DB_NAME='example'
+
+# eCommerce Credentials = Magento
+
+MAGE_STORE_URL='https://example.com'
+MAGE_MAGENTO_GRAPHQL_URL='https://example.com/graphql'
+GQL_KEY='' #Consumer Key
+GQL_SECRET='' #Consumer Secret
+WEBSITE_TOKEN='' #Access Token
+WEBSITE_SECRET='' #Access Token Secret
+
+#VDURE_URL='http://example:3000/shop-api'
+
+# Graphql
+
+GRAPHQL_HOST="http://example:8089/v1/graphql"
+GRAPHQL_TOKEN=""
+
+# Stripe Credentials
+
+STRIPE_SECRET_KEY=
+STRIPE_PUBLISHABLE_KEY=
+STRIPE_WEBHOOK_SECRET=

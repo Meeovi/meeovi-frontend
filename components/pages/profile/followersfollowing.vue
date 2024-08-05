@@ -21,23 +21,12 @@
     </div>
 </template>
 
-<script>
+<script setup>
     import followers from './followers.vue'
     import following from './following.vue'
+    import {ref} from 'vue';
 
-    export default {
-        components: {
-            followers,
-            following
-        },
-        data: () => ({
-            tab: 'option-1',
-        }),
-    }
-</script>
-
-<script setup>
-
+    const tab = ref('option-1');
 
     useHead({
         title: 'Followers / Following',

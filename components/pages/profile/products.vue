@@ -26,12 +26,6 @@
     </v-card>
 </template>
 
-<script>
-export default {
-    
-}
-</script>
-
 <script setup>
     useHead({
         title: ''

@@ -1,0 +1,28 @@
+{
+  "name": "m-graphql",
+  "version": "1.0.0",
+  "description": "Graphql service built on Graphql-Yoga and Apollo Federation.",
+  "main": "index.js",
+  "author": "Meeovi",
+  "license": "ISC",
+  "private": true,
+  "scripts": {
+    "check": "exit 0",
+    "start": "node index.js"
+  },
+  "devDependencies": {
+    "@types/graphql": "^14.5.0"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.10.8",
+    "@apollo/gateway": "^0.54.1",
+    "@envelop/apollo-federation": "^5.0.0",
+    "@graphql-yoga/plugin-persisted-operations": "^3.6.2",
+    "@vue/apollo-composable": "^4.0.2",
+    "@whatwg-node/server-plugin-cookies": "^1.0.3",
+    "graphql": "^16.9.0",
+    "graphql-tag": "^2.12.6",
+    "graphql-tools": "^9.0.1",
+    "graphql-yoga": "^5.6.2"
+  }
+}

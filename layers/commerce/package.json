@@ -1,0 +1,25 @@
+{
+  "name": "m-commerce",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@storefront-ui/nuxt": "^2.5.1",
+    "@stripe/stripe-js": "2.1.7",
+    "prisma": "^5.17.0",
+    "stripe": "13.8.0"
+  },
+  "dependencies": {
+    "@nuxtjs/apollo": "^5.0.0-alpha.14",
+    "@storefront-ui/nuxt": "^2.5.2",
+    "nuxt": "^3.12.4",
+    "stripe": "^14.23.0",
+    "vue": "latest"
+  }
+}

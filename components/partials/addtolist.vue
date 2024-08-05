@@ -49,19 +49,13 @@
     </div>
 </template>
 
-<script>
-import createlist from '../create/commerce/createlist.vue'
-
-    export default {
-        components: { createlist },
-        data: () => ({
-            dialog: false,
-            tab: null,
-        }),
-    }
-</script>
-
 <script setup>
+import createlist from '../create/commerce/createlist.vue'
+import {ref} from 'vue';
+
+const tab = ref(null);
+const dialog = ref(false);
+
 const query = gql `
 query NewQuery {
   lists {

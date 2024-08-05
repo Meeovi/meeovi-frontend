@@ -20,15 +20,9 @@
     </div>
 </template>
 
-<script>
-    import createlist from '../create/commerce/createlist.vue'
+<script setup>
+import createlist from '../create/commerce/createlist.vue'
+import {ref} from 'vue';
 
-    export default {
-        components: {
-            createlist
-        },
-        data: () => ({
-            dialog: false,
-        }),
-    }
+const dialog = ref(false);
 </script>

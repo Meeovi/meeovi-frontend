@@ -1,3 +1,3 @@
 module.exports = {
-    content: ['storyblok/**/*.{vue,js}', 'components/**/*.{vue,js}', 'pages/**/*.vue'],
+    content: ['components/**/*.{vue,js}', 'pages/**/*.vue', './node_modules/@morpheme/**/src/**/*.{vue,js,ts,jsx,tsx,css}'],
   }

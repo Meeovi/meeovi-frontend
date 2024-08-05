@@ -312,6 +312,14 @@ body {
     min-height: 0vh !important;
 }
 
+.logoutPage {
+    width: 100%;
+}
+
+.logoutPage p {
+    text-align: center;
+}
+
 /******************** Meeovi Time CSS ************/
 
 .homeSection {
@@ -531,6 +539,7 @@ body {
 .v-navigation-drawer--active {
     height: 100% !important;
     width: auto !important;
+    top: 60px !important;
 }
 
 
@@ -579,6 +588,17 @@ body {
 }
 
 /****************** Social Profile ****************/
+
+.cid-u1nMLE9Ke9 {
+    background-image: url(/_nuxt/assets/images/mbr-9-1920x1280.jpg);
+    max-height: 500px !important;
+    min-height: 200px !important;
+}
+
+.cid-u1nMLE9Ke9 .content-container {
+    position: relative;
+    top: 48px;
+}
 
 .profilePage {
     padding: 10px;
@@ -697,6 +717,33 @@ body {
     color: #888;
     font-size: 0.8em;
     margin-bottom: 0.5em;
+}
+/***************** Newsletter Footer ********************/
+
+#mc_embed_signup {
+    background: #fff;
+    font: 14px Helvetica, Arial, sans-serif;
+    width: 600px;
+}
+
+#mc-embedded-subscribe-form input[type=checkbox] {
+    display: inline;
+    width: auto;
+    margin-right: 10px;
+}
+
+#mergeRow-gdpr {
+    margin-top: 20px;
+}
+
+#mergeRow-gdpr fieldset label {
+    font-weight: normal;
+}
+
+#mc-embedded-subscribe-form .mc_fieldset {
+    border: none;
+    min-height: 0px;
+    padding-bottom: 0px;
 }
 
 /***************** Footer ********************/

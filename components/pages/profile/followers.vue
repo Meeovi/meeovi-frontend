@@ -29,16 +29,6 @@
     </div>
 </template>
 
-<script>
-    //import profilebar from '../../../components/menus/profilebar'
-
-    export default {
-        data: () => ({
-            url: process.env.DIRECTUS_URL,
-        }),
-    }
-</script>
-
 <script setup>
 const route = useRoute();
 const query = gql`
