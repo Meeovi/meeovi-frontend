@@ -77,18 +77,35 @@ const config = {
 const signInWithGoogle = async () => {
   try {
     const result = await signInWithPopup(auth, provider)
-    userStore.setUser(result.user)
-    console.log('User signed in:', result.user)
-    await router.push('/')
+    const firebaseUser = result.user
+    const idToken = await firebaseUser.getIdToken()
+    
+    // Send token to your backend API
+    const response = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ idToken }),
+    })
+    
+    if (response.ok) {
+      const magentoUserData = await response.json()
+      try {
+        userStore.updateUserData(firebaseUser, magentoUserData)
+        await router.push('/')
+      } catch (validationError) {
+        console.error('User data validation failed:', validationError)
+        // Handle validation error (e.g., show an error message to the user)
+      }
+    } else {
+      throw new Error('Failed to authenticate with the backend')
+    }
   } catch (error) {
     console.error('Error during sign in:', error)
-    if (error.code === 'auth/popup-closed-by-user') {
-      // Display a user-friendly message, e.g., using a toast notification
-      alert('Sign-in was cancelled. Please try again if you want to sign in.')
-    }
+    // Handle other errors
   }
 }
-
 
 const signOut = async () => {
   try {

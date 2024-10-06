@@ -3,7 +3,8 @@ import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth'
 
 export const useUserStore = defineStore('user', {
   state: () => ({
-    user: null,
+    firebaseUser: null,
+    magentoUser: null,
     loading: true,
   }),
   actions: {
@@ -12,19 +13,22 @@ export const useUserStore = defineStore('user', {
       this.loading = true
       return new Promise((resolve) => {
         onAuthStateChanged(auth, (user) => {
-          this.user = user
+          this.setFirebaseUser(user)
           this.loading = false
           resolve(user)
         })
       })
     },
-    setUser(user) {
-      this.user = user
+    setFirebaseUser(user) {
+      this.firebaseUser = user
+    },
+    setMagentoUser(user) {
+      this.magentoUser = user
     },
     clearUser() {
-      this.user = null
+      this.firebaseUser = null
+      this.magentoUser = null
     },
-    // Add this new logout action
     async logout() {
       const auth = getAuth()
       try {
@@ -33,11 +37,53 @@ export const useUserStore = defineStore('user', {
         console.log('User logged out successfully')
       } catch (error) {
         console.error('Error during logout:', error)
-        throw error // Rethrow the error so it can be handled by the component if needed
+        throw error
       }
+    },
+    // New method to update user data after Magento authentication
+    updateUserData(firebaseUser, magentoUser) {
+      if (this.validateFirebaseUser(firebaseUser) && this.validateMagentoUser(magentoUser)) {
+        this.setFirebaseUser(firebaseUser)
+        this.setMagentoUser(magentoUser)
+      } else {
+        console.error('Invalid user data')
+        throw new Error('Invalid user data')
+      }
+    },
+
+    validateFirebaseUser(user) {
+      // Basic Firebase user validation
+      if (!user) return false
+      if (typeof user.uid !== 'string' || user.uid.length === 0) return false
+      if (typeof user.email !== 'string' || user.email.length === 0) return false
+      if (typeof user.emailVerified !== 'boolean') return false
+
+      // Add more specific validations as needed
+      return true
+    },
+
+    validateMagentoUser(user) {
+      // Basic Magento user validation
+      if (!user) return false
+      if (typeof user.id !== 'number' || user.id <= 0) return false
+      if (typeof user.email !== 'string' || user.email.length === 0) return false
+      if (typeof user.firstname !== 'string' || user.firstname.length === 0) return false
+      if (typeof user.lastname !== 'string' || user.lastname.length === 0) return false
+
+      // Add more specific validations as needed
+      return true
     },
   },
   getters: {
-    isLoggedIn: (state) => !!state.user,
+    isLoggedIn: (state) => !!state.firebaseUser && !!state.magentoUser,
+    currentUser: (state) => {
+      if (state.firebaseUser && state.magentoUser) {
+        return {
+          ...state.firebaseUser,
+          ...state.magentoUser,
+        }
+      }
+      return null
+    },
   },
 })
