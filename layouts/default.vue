@@ -129,13 +129,34 @@
     ref
   } from 'vue';
   //import logout from '~/components/authentication/logout'
+  import { useUserStore } from '~/stores/user'
 
+const userStore = useUserStore()
+
+// Initialize user state
+await userStore.init()
 const drawer = ref(null);
 const rail = ref(true);
 const location = ref('bottom');
 const loaded = ref(false);
 const loading = ref(false);
 
+const router = useRouter()
+const route = useRoute()
+const user = useCurrentUser()
+
+// we don't need this watcher on server
+onMounted(() => {
+  watch(user, (user, prevUser) => {
+    if (prevUser && !user) {
+      // user logged out
+      router.push('/login')
+    } else if (user && typeof route.query.redirect === 'string') {
+      // user logged in
+      router.push(route.query.redirect)
+    }
+  })
+})
 
   const theme = ref('light')
 

@@ -27,6 +27,10 @@ export default defineNuxtConfig({
           rel: 'apple-touch-icon',
           href: '/icons/apple-touch-icon-180x180.png'
         },
+        {
+          rel: 'stylesheet',
+          href: 'https://cdn.jsdelivr.net/npm/instantsearch.css@7/themes/satellite-min.css'
+        },
       ],
       script: [{
           src: '//platform-api.sharethis.com/js/sharethis.js#property=#{property?._id}&product=custom-share-buttons&source=platform',
@@ -70,6 +74,8 @@ export default defineNuxtConfig({
     "nuxt-disqus",
     '@pinia/nuxt',
     "@storefront-ui/nuxt",
+    '@sidebase/nuxt-auth',
+    'nuxt-vuefire',
     //'@logto/nuxt',
     //"@prisma/nuxt",
     '@nuxtjs/seo',
@@ -82,6 +88,25 @@ export default defineNuxtConfig({
       })
     },
   ],
+
+  algolia: {
+    apiKey: process.env.ALGOLIA_API_KEY,
+    applicationId: process.env.ALGOLIA_APPLICATION_ID,
+    globalIndex: process.env.ALGOLIA_INDEX_NAME,
+    lite: true,
+    cache: false,
+    instantSearch: {
+      theme: 'algolia'
+    },
+    useFetch: false,
+    crawler: {
+      apiKey: process.env.ALGOLIA_CRAWLER_ID,
+      indexName: process.env.ALGOLIA_INDEX_NAME,
+      meta: ['title', 'description'],
+      include: () => true
+    },
+    recommend: true,
+  },
 
   // https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/prisma-nuxt-module#configuration
  /* prisma: {
@@ -107,7 +132,7 @@ export default defineNuxtConfig({
     shortname: process.env.DISQUS_SHORTNAME,
   },
 
-  /*auth: {
+  auth: {
     isEnabled: true,
     disableServerSideAuth: false,
     globalAppMiddleware: false,
@@ -123,7 +148,40 @@ export default defineNuxtConfig({
       enablePeriodically: true,
       enableOnWindowFocus: true,
     }
-  },*/
+  },/**/
+
+  vuefire: {
+    emulators: {
+      // uncomment this line to run the application in production mode without emulators during dev
+      // enabled: false,
+      auth: {
+        options: {
+          disableWarnings: true,
+        },
+      },
+    },
+    auth: {
+      enabled: true,
+      sessionCookie: false,
+    },
+
+    appCheck: {
+      provider: 'ReCaptchaV3',
+      // site key, NOT secret key
+      key: process.env.FIREBASE_APPCHECK_DEBUG_TOKEN,
+      isTokenAutoRefreshEnabled: true,
+    },
+
+    config: {
+      apiKey: process.env.NUXT_FIREBASE_API_KEY,
+      authDomain: process.env.NUXT_FIREBASE_AUTH_DOMAIN,
+      projectId: process.env.NUXT_FIREBASE_PROJECT_ID,
+      storageBucket: process.env.NUXT_FIREBASE_STORAGE_BUCKET,
+      messagingSenderId: process.env.NUXT_FIREBASE_MESSAGING_SENDER_ID,
+      appId: process.env.NUXT_FIREBASE_APP_ID,
+      measurementId: process.env.NUXT_MEASUREMENT_ID,
+    },
+  },
 
   runtimeConfig: {
     // Elasticsearch
@@ -132,6 +190,8 @@ export default defineNuxtConfig({
     indexName: process.env.ELASTICSEARCH_INDEX_NAME,
     api_key: process.env.ELASTICSEARCH_API_KEY,
     id: process.env.ELASTICSEARCH_ID,
+    username: process.env.ELASTICSEARCH_USERNAME,
+    password: process.env.ELASTICSEARCH_PASSWORD,
 
     // Cloudflare Turnstile
     turnstile: {
@@ -151,11 +211,13 @@ export default defineNuxtConfig({
       websiteURL: process.env.GRAPHQL_HOST,
       websiteToken: process.env.GRAPHQL_TOKEN,
 
-      //WorkOS
-      workosApiKey: process.env.WORKOS_API_KEY,
-      workosClientId: process.env.WORKOS_CLIENT_ID,
-      workosRedirectUri: process.env.WORKOS_REDIRECT_URI,
+      //Algolia
 
+      appId: process.env.ALGOLIA_APPLICATION_ID,
+      apiKey: process.env.ALGOLIA_API_KEY,
+      indexName: process.env.ALGOLIA_INDEX_NAME,
+
+      // Graphql
       //websiteURL: process.env.GQL_HOST,
       //websiteToken: process.env.WEBSITE_TOKEN,
 
@@ -177,15 +239,14 @@ export default defineNuxtConfig({
       commerceGraphql: process.env.MAGE_MAGENTO_GRAPHQL_URL,
       commerceApiToken: process.env.WEBSITE_TOKEN,
 
-      // Directus
-     /* directus: {
-        url: process.env.DIRECTUS_URL,
-        auth: {
-          email: process.env.NUXTUS_DIRECTUS_ADMIN_EMAIL,
-          password: process.env.NUXTUS_DIRECTUS_ADMIN_PASSWORD,
-          token: process.env.NUXTUS_DIRECTUS_STATIC_TOKEN,
-        }
-      },*/
+      // Firebase
+      firebaseApiKey: process.env.NUXT_FIREBASE_API_KEY,
+      firebaseAuthDomain: process.env.NUXT_FIREBASE_AUTH_DOMAIN,
+      firebaseProjectId: process.env.NUXT_FIREBASE_PROJECT_ID,
+      firebaseStorageBucket: process.env.NUXT_FIREBASE_STORAGE_BUCKET,
+      firebaseMessagingSenderId: process.env.NUXT_FIREBASE_MESSAGING_SENDER_ID,
+      firebaseAppId: process.env.NUXT_FIREBASE_APP_ID,
+      measurementId: process.env.NUXT_MEASUREMENT_ID,
 
       // Budibase
       budibaseEmbed: process.env.BUDIBASE_EMBED || '',
@@ -228,7 +289,10 @@ export default defineNuxtConfig({
           }
         }
       }
-    ]
+    ],
+    optimizeDeps: {
+      include: ['algoliasearch/lite'],
+    },
   },
 
   compatibilityDate: '2024-07-14'

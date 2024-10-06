@@ -1,72 +1,32 @@
 <template>
   <div class="authPage">
-    <section
-      data-bs-version="5.1"
-      class="form2 shopm5 cid-umoq9RvANO mbr-parallax-background"
-      id="aform2-a3"
-      data-sortbtn="btn-primary"
-    >
-      <div
-        class="mbr-overlay"
-        style="opacity: 0.3; background-color: rgb(255, 255, 255);"
-      ></div>
+    <section data-bs-version="5.1" class="form2 shopm5 cid-umoq9RvANO mbr-parallax-background" id="aform2-a3"
+      data-sortbtn="btn-primary" style="height: 100vh;">
+      <div class="mbr-overlay" style="opacity: 0.3; background-color: rgb(255, 255, 255);"></div>
 
       <div class="container-fluid">
         <div class="row justify-content-center">
           <div class="col content-wrap">
             <div class="mbr-section-head">
-              <img
-                src="~/assets/images/logo512alpha-128x128.png"
-                alt="Meeovi Logo"
-                class="authLogo"
-              />
+              <img src="~/assets/images/logo512alpha-128x128.png" alt="Meeovi Logo" class="authLogo" />
               <h2 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
-                <strong>Welcome Back</strong>
+                <strong>Login / Register</strong>
               </h2>
-
-              <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
             </div>
             <div class="form-wrap">
               <div class="mbr-form" data-form-type="formoid">
-                <form width="500" @submit.prevent="handleLogin">
-                  <v-text-field
-                    type="email"
-                    v-model="email"
-                    label="Email*"
-                    required
-                  ></v-text-field>
-                  <v-text-field
-                    type="password"
-                    v-model="password"
-                    label="Password*"
-                    required
-                  ></v-text-field>
-
-                  <v-list lines="one" style="background: transparent;">
-                    <v-list-item>
-                      <v-list-item-title
-                        >Forgot your password?.
-                        <a href="/auth/forgot-password">Reset It Here</a></v-list-item-title
-                      >
-                    </v-list-item>
-
-                    <v-list-item>
-                      <v-list-item-title
-                        >Don't have an account?. <a href="/auth/register">Signup Here</a></v-list-item-title
-                      >
-                    </v-list-item>
-                  </v-list>
-
-                  <v-btn
-                    class="mt-2 btn btn-primary display-4"
-                    type="submit"
-                    >Login</v-btn
-                  >
-                </form>
+                <div v-if="!userStore.isLoggedIn">
+                  <v-btn @click="signInWithGoogle" class="gBtn">Sign in with Google</v-btn>
+                  <div id="firebaseui-auth-container" v-if="showFirebaseUI"></div>
+                </div>
+                <div v-else>
+                  <p class="align-center">Welcome {{ userStore.user.displayName }}</p>
+                  <v-btn @click="signOut">Sign Out</v-btn>
+                </div>
               </div>
             </div>
             <p class="comment-text mbr-fonts-style align-center mb-0 display-7">
-              We respect your privacy, so we never share your info.
+              We respect your privacy, so we never will share your info.
             </p>
           </div>
         </div>
@@ -76,54 +36,92 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
+import { ref, onMounted, watch } from 'vue'
+import { useFirebaseAuth } from 'vuefire'
+import * as firebaseui from 'firebaseui'
+import 'firebaseui/dist/firebaseui.css'
+import { signInWithPopup, GoogleAuthProvider, EmailAuthProvider, signOut as firebaseSignOut } from 'firebase/auth'
+import { useRouter } from 'vue-router'
+import { useUserStore } from '~/stores/user'
 
+const userStore = useUserStore()
+const auth = useFirebaseAuth()
+const provider = new GoogleAuthProvider()
 const router = useRouter()
-const route = useRoute()
-const email = ref('')
-const password = ref('')
-const errorMessage = ref('')
+const showFirebaseUI = ref(false)
 
-const handleLogin = async () => {
-  try {
-    const response = await fetch('/api/auth/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: email.value,
-        password: password.value,
-        website_id: 1,
-      }),
-    });
-
-    if (response.ok) {
-      const data = await response.json();
+const config = {
+  signInOptions: [
+    EmailAuthProvider.PROVIDER_ID,
+  ],
+  callbacks: {
+    signInSuccessWithAuthResult(authResult, redirectUrl) {
+      console.log("Sign-in success callback triggered");
+      console.log("Auth result:", authResult);
+      console.log("Redirect URL:", redirectUrl);
       
-      // Store the token in localStorage or cookies
-      localStorage.setItem('authToken', data.body.token);
+      userStore.setUser(authResult.user)
+      router.push('/')
+      
+      return false;
+    },
+    uiShown() {
+      console.log("FirebaseUI widget rendered");
+    },
+    signInFailure(error) {
+      console.error('Authentication failed:', error);
+    },
+  },
+}
 
-      // Clear any previous error message
-      errorMessage.value = '';
-
-      // Redirect to the previous page or home if no previous page
-      const returnUrl = route.query.returnUrl || '/';
-      console.log('Redirecting to:', returnUrl);
-      router.push(returnUrl);
-    } else {
-      const errorData = await response.json();
-      errorMessage.value = errorData.statusMessage || 'Login failed';
-    }
+const signInWithGoogle = async () => {
+  try {
+    const result = await signInWithPopup(auth, provider)
+    userStore.setUser(result.user)
+    console.log('User signed in:', result.user)
+    await router.push('/')
   } catch (error) {
-    console.error('Error during login:', error);
-    errorMessage.value = 'An unexpected error occurred';
+    console.error('Error during sign in:', error)
+    if (error.code === 'auth/popup-closed-by-user') {
+      // Display a user-friendly message, e.g., using a toast notification
+      alert('Sign-in was cancelled. Please try again if you want to sign in.')
+    }
   }
-};
+}
+
+
+const signOut = async () => {
+  try {
+    await firebaseSignOut(auth)
+    userStore.clearUser()
+    console.log('User signed out')
+    await router.push('/auth/login')
+  } catch (error) {
+    console.error('Error signing out:', error)
+  }
+}
+
+const initializeFirebaseUI = () => {
+  if (document.getElementById('firebaseui-auth-container')) {
+    const ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(auth)
+    ui.start("#firebaseui-auth-container", config)
+  } else {
+    console.error('FirebaseUI container not found')
+  }
+}
+
+onMounted(() => {
+  showFirebaseUI.value = true
+})
+
+watch(showFirebaseUI, (newValue) => {
+  if (newValue) {
+    // Use setTimeout to ensure the DOM has updated
+    setTimeout(initializeFirebaseUI, 0)
+  }
+})
 
 definePageMeta({
-  auth: false,
   layout: 'auth',
 });
 </script>

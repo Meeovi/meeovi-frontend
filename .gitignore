@@ -17,6 +17,7 @@ node_modules
 .nuxt
 .nitro
 .cache
+dist
 
 # testing
 coverage
@@ -39,6 +40,8 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
+service-account.json
+.firebase
 
 # turbo
 .turbo

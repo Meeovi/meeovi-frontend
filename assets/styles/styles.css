@@ -33,6 +33,8 @@ body {
     width: 600px;
     height: 50px;
     display: inline-block !important;
+    background: white;
+    border-radius: 5px;
 }
 
 .mainSearch span {
@@ -223,6 +225,10 @@ body {
     text-align: center;
 }
 
+.gBtn {
+    margin-left: 30%;
+}
+
 /******************* Main Section CSS *********/
 
 #mainSection {
@@ -397,6 +403,9 @@ body {
     text-align: center;
 }
 
+#firebaseui-auth-container {
+    margin-top: 10px;
+}
 /******************** Meeovi Time CSS ************/
 
 .homeSection {
@@ -773,9 +782,14 @@ body {
     margin-top: 70px;
 }
 
-.filtersPanel {
+.resultsPage .v-navigation-drawer--active {
     position: relative;
     margin-top: 5px;
+    min-width: 356px;
+}
+
+.searchfilters {
+    padding-left: 10px !important;
 }
 
 .searchResults p {
@@ -784,17 +798,22 @@ body {
 }
 
 .resultsPage {
-    min-height: 100vh;
-    padding-bottom: 50% !important;
+    min-height: 100%;
+    height: 100%;
     margin-top: 60px;
 }
 
 .resultsPage .v-layout {
-    min-height: 100vh !important;
+    min-height: 2050px !important;
 }
 
 .resultsPage .v-navigation-drawer__scrim {
-    min-height: 100vh
+    min-height: 100%
+}
+
+.filters .v-btn {
+    width: 100%;
+    margin: 10px;
 }
 
 .searchResults .v-btn:hover {
@@ -836,6 +855,12 @@ body {
     color: #888;
     font-size: 0.8em;
     margin-bottom: 0.5em;
+}
+
+.resultsPage .v-window__container {
+    height: 100% !important;
+    min-height: 100% !important;
+    position: absolute !important;
 }
 /***************** Newsletter Footer ********************/
 
