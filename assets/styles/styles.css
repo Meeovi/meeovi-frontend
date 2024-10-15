@@ -600,6 +600,13 @@ body {
     margin-top: 60px;
 }
 
+.productPageListBtn {
+    display: inline-block;
+    position: relative;
+    left: 30px;
+    top: 7px;
+}
+
 /******************* Upload Center ************/
 
 .uploadHeader,
@@ -765,12 +772,35 @@ body {
     background-color: transparent !important;
 }
 
-/*************** Search *****************/
+/*************** Comments *****************/
 
 .reviewBox {
     margin-bottom: 10px;
 }
 
+/*************** Chat CSS *****************/
+
+.chatWindow {
+    height: 100% !important;
+}
+
+.chatSidebar {
+    border-right: #222222;
+    height: 100%;
+}
+
+.messageWindow {
+    min-height: 100vh;
+}
+
+.chatAvatar {
+    padding-left: 10px;
+}
+
+.chatMessage {
+    bottom: 0px;
+    position: relative;
+}
 /*************** Search *****************/
 
 #search {

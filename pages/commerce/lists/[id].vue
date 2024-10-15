@@ -85,6 +85,6 @@
     title: result?.lists?.title,
   })
   definePageMeta({
-    middleware: ['auth'],
+    middleware: ['authenticated'],
   })
 </script>

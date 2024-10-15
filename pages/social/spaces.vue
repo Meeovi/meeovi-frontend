@@ -25,7 +25,6 @@
                     <v-spacer></v-spacer>
                 </v-app-bar>
 
-
                 <!--<v-navigation-drawer class="filtersPanel" v-model="drawer"
                     :location="$vuetify.display.mobile ? 'bottom' : undefined" temporary>
                     <filters />
@@ -82,15 +81,9 @@
     import spaces from '~/components/cms/related/spaces.vue'
     import createspace from '~/components/cms/create/social/createspace.vue'
     import {groups} from '~/graphql/cms/queries/groups'
-    //import { getGroups } from '~/composables/cms/social/getGroups.js'; // Import the composable function
   
 
     const tab = ref(null);
-   /* const groups = ref([]); 
-
-    onMounted(async () => {
-        groups.value = await getGroups();
-    }); */
 
     const {
     result
@@ -99,14 +92,6 @@
       clientName: 'secondary' // This will use the secondary endpoint
     }
   })
-
-    /* const {
-         getItems
-       } = useDirectusItems()
-
-       const spaces = await getItems({
-         collection: "Space"
-       });*/
 
     useHead({
         title: 'Spaces',

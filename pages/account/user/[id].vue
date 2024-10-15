@@ -105,7 +105,7 @@ if (error && error.value.statusCode === 404) {
 
     definePageMeta({
         auth: false,
-        middleware: ['auth'],
+        middleware: ['authenticated'],
         layout: "nolive",
     });
 </script>

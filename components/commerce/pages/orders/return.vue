@@ -43,6 +43,6 @@ async function initialize() {
   })
 
   definePageMeta({
-    middleware: ['auth'],
+    middleware: ['authenticated'],
   })
 </script>

@@ -111,7 +111,6 @@
         useRoute,
         useRouter
     } from 'vue-router';
-    import gql from 'graphql-tag';
     import CREATE_ADDRESS from '~/graphql/commerce/queries/address'
 
     const route = useRoute();

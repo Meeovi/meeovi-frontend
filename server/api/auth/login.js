@@ -1,99 +1,55 @@
-import { PrismaClient } from '@prisma/client';
-import bcryptjs from 'bcryptjs';
-import jwt from 'jsonwebtoken';
+import { initializeApp, cert } from 'firebase-admin/app'
+import { getAuth } from 'firebase-admin/auth'
+import { readFileSync } from 'fs'
+import 'dotenv/config'
 
-const prisma = new PrismaClient();
+// Initialize Firebase Admin SDK (do this only once)
+if (!process.env.FIREBASE_ADMIN_INITIALIZED) {
+  try {
+    const serviceAccountPath = process.env.GOOGLE_APPLICATION_CREDENTIALS
+    if (!serviceAccountPath) {
+      throw new Error('GOOGLE_APPLICATION_CREDENTIALS environment variable is not set')
+    }
+
+    const serviceAccount = JSON.parse(readFileSync(serviceAccountPath, 'utf8'))
+
+    initializeApp({
+      credential: cert(serviceAccount)
+    })
+
+    process.env.FIREBASE_ADMIN_INITIALIZED = 'true'
+  } catch (error) {
+    console.error('Error initializing Firebase Admin SDK:', error)
+    throw error // Re-throw to prevent the app from starting with invalid credentials
+  }
+}
+
+const auth = getAuth()
 
 export default defineEventHandler(async (event) => {
-  const config = useRuntimeConfig();
-  const jwtSecret = config.public.jwtSecret;
-
-  console.log('JWT Secret:', jwtSecret); // Add this to verify the secret is loaded
-
-  if (!jwtSecret) {
-    throw new Error('JWT Secret is not defined');
-  }
-
-  const body = await readBody(event);
-  const { email, password, website_id } = body;
-
-  // Validate input
-  if (!email || !password || !website_id) {
-    return sendError(event, createError({
-      statusCode: 400,
-      statusMessage: 'Email, password, and website_id are required',
-    }));
-  }
-
   try {
-    // Find the user using the unique constraint
-    const user = await prisma.mgtn_customer_entity.findUnique({
-      where: {
-        MGTN_CUSTOMER_ENTITY_EMAIL_WEBSITE_ID: {
-          email,
-          website_id,
-        },
-      },
-    });
-
-    // Check if the user exists
-    if (!user) {
-      return sendError(event, createError({
-        statusCode: 404,
-        statusMessage: 'User not found',
-      }));
-    }
-
-    // Check if the password hash is null
-    if (!user.password_hash) {
-      return sendError(event, createError({
-        statusCode: 400,
-        statusMessage: 'User does not have a password set.',
-      }));
-    }
-
-    // Compare the password with the stored hashed password
-    const isPasswordValid = await bcryptjs.compare(password, user.password_hash);
-
-    if (!isPasswordValid) {
-      return sendError(event, createError({
-        statusCode: 401,
-        statusMessage: 'Invalid password',
-      }));
-    }
-
-    // Generate a JWT token for the session
-    const token = jwt.sign(
-      {
-        userId: user.entity_id,
-        email: user.email,
-        firstname: user.firstname,
-        lastname: user.lastname,
-        is_seller: user.is_seller,
-      },
-      jwtSecret, // Use the secret key here
-      { expiresIn: '12h' }
-    );
-
+    const { idToken } = await readBody(event)
+    
+    // Verify the Firebase token
+    const decodedToken = await auth.verifyIdToken(idToken)
+    
+    // Get additional user info from Firebase
+    const userRecord = await auth.getUser(decodedToken.uid)
+    
+    // Return user data
     return {
-      statusCode: 200,
-      body: {
-        message: 'Login successful',
-        token,
-        user: {
-          id: user.entity_id,
-          email: user.email,
-          firstname: user.firstname,
-          lastname: user.lastname,
-          is_seller: user.is_seller,
-        },
-      },
-    };
+      uid: userRecord.uid,
+      email: userRecord.email,
+      displayName: userRecord.displayName,
+      photoURL: userRecord.photoURL,
+      // Add any other user properties you need
+    }
   } catch (error) {
-    console.error('Error during login:', error);
-    return sendError(event, createError({
-      statusCode: 500,
-      statusMessage: 'Internal Server Error',
-    }));
+    console.error('Error in login:', error)
+    return createError({
+      statusCode: 400,
+      statusMessage: 'Authentication failed',
+      data: { message: error.message }
+    })
   }
-});
+})

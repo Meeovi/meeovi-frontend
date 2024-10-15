@@ -33,12 +33,17 @@ export default defineNuxtConfig({
         },
       ],
       script: [{
-          src: '//platform-api.sharethis.com/js/sharethis.js#property=#{property?._id}&product=custom-share-buttons&source=platform',
+          src: `https://platform-api.sharethis.com/js/sharethis.js#property=${process.env.NUXT_PROJECT_ID}&product=sticky-share-buttons`,
+          async: true
         },
          {
-           src: 'https://www.paypal.com/sdk/js?client-id=AVd8oZZ4CzkBDwsDNc5-KO21w2-ebavRSw0NZme7laFfoa-mUY_DyscyNkVRJJMH_9fmca43WlytIta3&buyer-country=US&currency=USD&components=buttons,card-fields&enable-funding=venmo',
+           src: `https://www.paypal.com/sdk/js?client-id=${process.env.PAYPAL_CLIENT_ID}&buyer-country=US&currency=USD&components=buttons,card-fields&enable-funding=venmo`,
            async: true
          },
+        {
+          src: `${process.env.NUXT_PUBLIC_COMMENTS_URL}/comments/embed.js`,
+          async: true
+        },
       ],
     },
   },
@@ -48,6 +53,8 @@ export default defineNuxtConfig({
   },
 
   css: [
+    'video.js/dist/video-js.css',
+    'videojs-share/dist/videojs-share.css',
     'assets/web/assets/mobirise-icons2/mobirise2.css',
     'assets/web/assets/mobirise-icons/mobirise-icons.css',
     'assets/bootstrap/css/bootstrap.min.css',
@@ -71,7 +78,6 @@ export default defineNuxtConfig({
   modules: [
     "@nuxt/image",
     '@nuxtjs/tailwindcss',
-    "nuxt-disqus",
     '@pinia/nuxt',
     "@storefront-ui/nuxt",
     '@sidebase/nuxt-auth',
@@ -126,10 +132,6 @@ export default defineNuxtConfig({
       allow: ['/pages/*'],
       comments: 'Allow Google AdsBot to index the login page but no-admin pages'
     }, ]
-  },
-
-  disqus: {
-    shortname: process.env.DISQUS_SHORTNAME,
   },
 
   auth: {
@@ -212,7 +214,6 @@ export default defineNuxtConfig({
       websiteToken: process.env.GRAPHQL_TOKEN,
 
       //Algolia
-
       appId: process.env.ALGOLIA_APPLICATION_ID,
       apiKey: process.env.ALGOLIA_API_KEY,
       indexName: process.env.ALGOLIA_INDEX_NAME,
@@ -253,6 +254,16 @@ export default defineNuxtConfig({
 
       // Google Tag Manager
       gtagId: process.env.NUXT_PUBLIC_GTAG_ID,
+
+      // Rocket Chat
+      rocketChatUrl: process.env.NUXT_ROCKET_CHAT_URL,
+      rockatChatHost: process.env.NUXT_ROCKET_CHAT_HOST,
+      rocketChatUser: process.env.NUXT_ROCKET_CHAT_USER,
+      rocketChatPass: process.env.NUXT_ROCKET_CHAT_PASS,
+      rocketChatToken: process.env.NUXT_ROCKET_CHAT_TOKEN,
+
+      // Comments
+      commentsUrl: process.env.NUXT_COMMENT_ID,
 
       // Stripe
       stripePk: process.env.STRIPE_PUBLIC_KEY,

@@ -23,6 +23,6 @@ const model = ref(null);
 } = useAsyncQuery(deals);*/
 
 definePageMeta({
-    //middleware: ['auth'],
+    middleware: ['authenticated'],
   })
 </script>

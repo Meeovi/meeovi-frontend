@@ -75,10 +75,7 @@
                     </template>
                     Compare
                   </SfButton>
-                  <SfButton size="sm" variant="tertiary">
-                    <SfIconFavorite size="sm" />
-                    Add to list
-                  </SfButton>
+                  <createListBtn class="productPageListBtn" :productId="result?.products?.items[0]?.uid" />
                 </div>
               </div>
               <div class="flex first:mt-4">
@@ -102,6 +99,10 @@
                   Free 30-days returns.
                   <SfLink href="#" variant="secondary" class="ml-1"> Details </SfLink>
                 </p>
+              </div>
+
+              <div class="flex mt-4">
+                <share />
               </div>
             </section>
           </v-col>
@@ -129,11 +130,12 @@
 
               <!--Product Reviews-->
               <v-window-item value="two">
-                <div v-if="result?.products?.items[0]?.reviews?.items?.length > 0">
+                <!---<div v-if="result?.products?.items[0]?.reviews?.items?.length > 0">
                   <div v-for="(review, index) in result?.products?.items[0]?.reviews?.items" :key="index">
                     <productReviews :review="review" />
                   </div>
-                </div>
+                </div>-->
+                <comments />
               </v-window-item>
 
               <!--Product Specifications-->
@@ -231,31 +233,26 @@
   import {
     useCounter
   } from '@vueuse/core';
+  import share from '~/components/partials/share.vue'
   import {
     getProductById
   } from '~/composables/commerce/products/products';
-
+  import comments from '~/components/partials/comments.vue'
   import {
     product
   } from '~/graphql/commerce/queries/id/product'
+  import createListBtn from '~/components/commerce/partials/createListBtn.vue';
   /*  import {
     addToCart
   } from '~/utils/addToCart'
   import {
     buyNow
   } from '~/utils/buyNow'
-  import {
-    addToList
-  } from '~/utils/addToList'
-  import {
-    bookmark
-  } from '~/utils/bookmark' */
-  import disqus from '~/components/partials/disqus.vue'
+ */
   import productSpecs from '~/components/commerce/commerce/product/productSpecs.vue'
   import productReviews from '~/components/commerce/commerce/product/productReviews.vue'
   import productCard from '~/components/commerce/commerce/product/productCard.vue'
   import productCompare from '~/components/commerce/commerce/product/productCompare.vue'
-  import addtolist from '~/components/commerce/partials/addtolist.vue'
   //import product from '~/graphql/commerce/queries/id/product.js'
   const tab = ref(null);  
   const model = ref(null);
@@ -296,6 +293,6 @@
    }); */
 
   useHead({
-    title: result?.products?.items[0]?.name,
+    title: computed(() => result.value?.products?.items[0]?.name || 'Product Page')
   })
 </script>

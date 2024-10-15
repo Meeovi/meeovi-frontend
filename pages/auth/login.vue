@@ -76,34 +76,33 @@ const config = {
 
 const signInWithGoogle = async () => {
   try {
-    const result = await signInWithPopup(auth, provider)
-    const firebaseUser = result.user
-    const idToken = await firebaseUser.getIdToken()
+    const result = await signInWithPopup(auth, provider);
+    const firebaseUser = result.user;
     
-    // Send token to your backend API
+    // Get the Firebase ID token
+    const idToken = await firebaseUser.getIdToken();
+    
+    // Send this token to your backend
     const response = await fetch('/api/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ idToken }),
-    })
-    
-    if (response.ok) {
-      const magentoUserData = await response.json()
-      try {
-        userStore.updateUserData(firebaseUser, magentoUserData)
-        await router.push('/')
-      } catch (validationError) {
-        console.error('User data validation failed:', validationError)
-        // Handle validation error (e.g., show an error message to the user)
-      }
-    } else {
-      throw new Error('Failed to authenticate with the backend')
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(`Authentication failed: ${errorData.message || response.statusText}`);
     }
+
+    const userData = await response.json();
+    userStore.updateUserData(userData);
+    
+    await router.push('/');
   } catch (error) {
-    console.error('Error during sign in:', error)
-    // Handle other errors
+    console.error('Error during sign in:', error);
+    alert(`Authentication failed: ${error.message}`);
   }
 }
 

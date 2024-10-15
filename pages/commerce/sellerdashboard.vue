@@ -31,6 +31,6 @@ const config = useRuntimeConfig();
 const url = config.public.budibaseEmbed;
 
 definePageMeta({
-    middleware: ['auth'],
+    middleware: ['authenticated'],
   })
 </script>

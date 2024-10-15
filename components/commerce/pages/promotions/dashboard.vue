@@ -26,6 +26,6 @@ const {
 } = useQuery(deals);
 
 definePageMeta({
-    //middleware: ['auth'],
+    middleware: ['authenticated'],
   })
 </script>
