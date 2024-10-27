@@ -206,7 +206,6 @@
 <script setup lang="ts">
   import videoPage from '~/components/commerce/pages/product/video.vue'
   import chartPage from '~/components/commerce/pages/product/chart.vue'
-  import showcase from '~/pages/account/[sku].vue'
   import audioPage from '~/components/commerce/pages/product/audio.vue'
   import {
     ref
@@ -267,18 +266,16 @@
   });
 
   const productComponent = computed(() => {
-    const productType = result.value?.products?.items[0]?.type;
+    const productType = result.value?.products?.items[0]?.format;
     switch (productType) {
       case 'audio':
         return audioPage;
       case 'video':
         return videoPage;
-      case 'BundleProduct':
-        return showcase;
       case 'chartPage':
         return chartPage;
       default:
-        return RegularProduct;
+        return 'simple';
     }
   });
 
