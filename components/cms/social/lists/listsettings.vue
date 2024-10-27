@@ -95,7 +95,7 @@
   const errorMessage = ref('');
   const successMessage = ref('');
 
-  const update-list = async () => {
+  const updatelist = async () => {
       try {
           const response = await $fetch(`${config.apiUrl}/wp-json/wp/v2/list`, {
               method: 'PUT',

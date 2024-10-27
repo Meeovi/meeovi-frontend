@@ -2,7 +2,7 @@
     <div>
         <v-card elevation="0">
             <v-toolbar title="Update A List"></v-toolbar>
-            <v-form @submit.prevent="update-list">
+            <v-form @submit.prevent="updatelist">
                 <v-container>
                     <v-row>
                         <v-col cols="6">
@@ -102,7 +102,7 @@
     const errorMessage = ref('');
     const successMessage = ref('');
 
-    const update-list = async () => {
+    const updatelist = async () => {
         try {
             const response = await $fetch(`${config.public.wordpressUrl}/wp-json/wp/v2/list`, {
                 method: 'POST',
