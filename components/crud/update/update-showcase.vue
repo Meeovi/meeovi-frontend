@@ -78,7 +78,7 @@
 import { ref } from 'vue';
 
 import { useRoute, useRouter } from 'vue-router';
-import { UPDATE_SHOWCASE, DELETE_SHOWCASE } from '~/graphql/cms/queries/showcases'
+/*import { UPDATE_SHOWCASE, DELETE_SHOWCASE } from '~/graphql/cms/queries/showcases'
 
 const route = useRoute();
 const router = useRouter();
@@ -145,9 +145,9 @@ const updateShowcaseAndRefresh = async () => {
 
 const reset = () => {
   router.go(0);
-};
+};*/
 
     useHead({
         title: 'Update Showcase',
     })
-</script>~/graphql/cms/queries/showcases
+</script>

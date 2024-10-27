@@ -32,4 +32,4 @@ const showcases = gql`
  }
 `
 
-export {showcases, UPDATE_SHOWCASE, DELETE_SHOWCASE};
+export default showcases;
