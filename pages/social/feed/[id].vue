@@ -1,62 +1,85 @@
 <template>
     <div class="contentPage">
         <!--<profilebar />-->
-        <v-row class="centralfeed">
-            <v-col cols="10">
+        <v-row>
+            <v-col cols="12">
                 <v-row>
                     <v-col cols="12">
-                        <v-card class="mx-auto">
-                            <v-row>
-                                <v-col cols="10">
-                                    <v-list lines="two">
-                                        <v-list-item :title="result?.activity?.creator?.username"
-                                            :prepend-avatar="result?.activity?.creator?.avatar?.url">
-                                        </v-list-item>
-                                    </v-list>
-                                </v-col>
+                        <section data-bs-version="5.1" class="features02 healthm5 cid-us2aUvDb1L" id="features02-a4">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-12 col-lg-6">
+                                        <div class="image-wrapper">
+                                            <img :src="result?.blogPost?.featured_image" :alt="result?.blogPost?.title">
+                                            <div class="recall-wrapper">
+                                                <div class="icon-wrapper">
+                                                    <span class="mbr-iconfont mobi-mbri-quote-right mobi-mbri"
+                                                        style="color: black;"></span>
+                                                </div>
+                                                <p class="mbr-recall mbr-fonts-style display-7" style="color: black;">
+                                                    Posted:
+                                                    {{ new Date(result?.blogPost?.publish_time).toLocaleDateString() }}
+                                                </p>
+                                                <div class="people-wrapper" style="width: 600px;">
+                                                    <div class="people-wrap">
+                                                        <div class="image-wrap">
+                                                            <img class="person" src="assets/images/image1.jpg"
+                                                                :alt="result?.blogPost?.author?.name">
+                                                        </div>
+                                                        <div class="rating-content">
 
-                                <v-col cols="1">
-                                    <v-dialog min-width="500">
-                                        <template v-slot:activator="{ props: activatorProps }">
-                                            <v-btn v-bind="activatorProps" icon="fas fa-gear" title="Update Post"
-                                                class="rightAddBtn" variant="flat"></v-btn>
-                                        </template>
+                                                            <p class="mbr-name mbr-fonts-style display-4">
+                                                                {{ result?.blogPost?.author?.name }}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-6">
+                                        <div class="content-wrapper">
+                                            <div class="content-wrap">
+                                                <div class="desc-wrapper">
+                                                    <p class="mbr-desc mbr-fonts-style display-4">
+                                                        {{ result?.blogPost?.categories[0]?.title }}
+                                                    </p>
+                                                </div>
+                                                <h5 class="mbr-section-title mbr-fonts-style display-5">
+                                                    {{ result?.blogPost?.title }}
+                                                </h5>
+                                                <div class="rating-wrapper">
+                                                    <div class="rating-wrap">
+                                                        <v-toolbar color="transparent">
+                                                            <v-toolbar-subtitle class="socialReactionButton">
+                                                                <reactions />
+                                                            </v-toolbar-subtitle>
 
-                                        <template v-slot:default="{ isActive }">
-                                            <updatepost :id="activityId" />
-                                        </template>
-                                    </v-dialog>
-                                </v-col>
-                            </v-row>
+                                                            <v-toolbar-subtitle class="socialShareButton">
+                                                                <share />
+                                                            </v-toolbar-subtitle>
 
-
-                            <v-card-text class="pt-4" v-html="result?.activity?.content"></v-card-text>
-
-                            <v-card-subtitle class="pt-4">
-                                Posted: {{ new Date(result?.activity?.date).toLocaleDateString() }}
-                            </v-card-subtitle>
-
-                            <v-card-text class="pt-4" v-html="result?.activity?.status"></v-card-text>
-
-                            <v-row class="align-center">
-                                <v-col>
-                                    <reactions />
-                                </v-col>
-                                <v-col>
-                                    <repost />
-                                </v-col>
-                                <v-col>
-                                    <bookmark />
-                                </v-col>
-                                <v-col>
-                                    <share />
-                                </v-col>
-                            </v-row>
-                        </v-card>
+                                                            <v-toolbar-subtitle class="socialListButton">
+                                                                <createListBtn />
+                                                            </v-toolbar-subtitle>
+                                                            <v-spacer></v-spacer>
+                                                        </v-toolbar>
+                                                    </div>
+                                                </div>
+                                                <div class="text-wrapper">
+                                                    <p class="mbr-text mbr-fonts-style display-7"
+                                                        v-html="result?.blogPost?.content"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
                     </v-col>
 
                     <v-col cols="12">
-                        <disqus />
+                        <comments />
                     </v-col>
                 </v-row>
             </v-col>
@@ -69,7 +92,6 @@
         result() {
             return {
                 activityId: this.$route.params.id,
-                //url: process.env.DIRECTUS_URL,
             }
         },
     }
@@ -83,28 +105,23 @@
         useQuery
     } from '@vue/apollo-composable'
     //import profilebar from '~/components/menus/profilebar.vue'
-    import disqus from '~/components/partials/disqus.vue'
-    //import comments from '~/components/cms/social/comments.vue'
-    import repost from '~/components/cms/social/repost.vue'
+    //import repost from '~/components/cms/social/repost.vue'
     import reactions from '~/components/cms/social/reactions.vue'
-    import bookmark from '~/components/cms/social/bookmark.vue'
-    import share from '~/components/partials/share.vue'
-    import updatepost from '~/components/cms/update/social/updatepost.vue'
+    import comments from '~/components/partials/comments.vue'
+    import createListBtn from '~/components/partials/createListBtn.vue'
+    import share from '~/components/partials/shareDialog.vue'
+    import updatepost from '~/components/crud/update/update-post.vue'
     //import { getActivityById } from '~/composables/cms/social/getActivity';
-    import activity from '~/graphql/cms/queries/id/activity'
+    import post from '~/graphql/commerce/queries/id/blogpost'
 
-    const model = ref(null);
+    const tab = ref(null);
     const route = useRoute();
     const {
         result,
         loading,
         error
-    } = useQuery(activity, {
-        id: route.params.id // Pass variables inside the 'variables' object
-    }, {
-        context: {
-            clientName: 'secondary' // This will use the secondary endpoint
-        }
+    } = useQuery(post, {
+        id: `${route.params.id}` // Pass variables inside the 'variables' object
     });
 
     /* const activity = ref(null);
@@ -119,18 +136,8 @@
          }
      });*/
 
-
-    /*   const {
-           getItemById
-         } = useDirectusItems()
-
-         const newsfeed = await getItemById({
-           collection: "newsfeed",
-           id: route.params.id
-         });*/
-
     useHead({
-        title: result?.activity?.title,
+        title: computed(() => result.value?.blogPost?.title || 'Post Page')
     })
 
     definePageMeta({

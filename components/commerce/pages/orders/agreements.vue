@@ -36,7 +36,7 @@
 </template>
 
 <script>
-    import addPayment from '~/components/commerce/create/commerce/add-payment.vue'
+    import addPayment from '~/components/crud/create/commerce/add-payment.vue'
     import profilebar from '~/components/menus/profilebar.vue'
 
     export default {

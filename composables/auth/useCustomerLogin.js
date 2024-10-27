@@ -1,16 +1,16 @@
-export default defineEventHandler(async (event) => {
-  const { email, password } = await useBody(event)
-  
-  // Authentication logic...
-  
-  const token = jwt.sign({ userId: user.entity_id }, process.env.JWT_SECRET, { expiresIn: '1h' })
+import { useRuntimeConfig } from '#imports';
 
-  // Set the JWT as an HTTP-only cookie
-  setCookie(event, 'authToken', token, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',  // Only use secure cookies in production
-    maxAge: 60 * 60,  // 1 hour
-  })
-
-  return { message: 'Logged in successfully' }
-})
+export async function loginToMagento(email, password) {
+  const config = useRuntimeConfig();
+  try {
+    const response = await $fetch(`${config.public.commerceUrl}/rest/V1/integration/customer/token`, {
+      method: 'POST',
+      body: JSON.stringify({ username: email, password: password }),
+    });
+    const magentoToken = response;  // Store or use this token as needed
+    return magentoToken;
+  } catch (error) {
+    console.error('Magento login failed:', error);
+    throw error;
+  }
+}

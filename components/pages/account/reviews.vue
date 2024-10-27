@@ -39,7 +39,7 @@
         ref
     } from 'vue'
     //import profilebar from '~/components/menus/profilebar.vue'
-    import addReview from '~/components/commerce/create/add-review.vue'
+    import addReview from '~/components/crud/create/add-review.vue'
     //import profilebar from '~/components/menus/profilebar.vue'    
     import {
         useQuery

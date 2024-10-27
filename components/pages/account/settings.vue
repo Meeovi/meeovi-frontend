@@ -1,86 +1,77 @@
 <template>
   <div>
-    <!--<profilebar />-->
-    <v-row>
-      <v-toolbar :title="page?.name" color="transparent"></v-toolbar>
-      <v-col cols="4" v-for="page in page?.repeaterTextBox" :key="page">
-        <v-card append-icon="fas fa-arrow-up-right-from-square" class="mx-auto"
-          :href="page?.url" :subtitle="page?.description" :title="page?.name"></v-card>
-      </v-col>
+    <v-card elevation="0">
+      <v-tabs v-model="tab">
+        <v-tab value="one">Account Information</v-tab>
+        <v-tab value="two">Communication</v-tab>
+        <v-tab value="three">Payments</v-tab>
+        <v-tab value="four">Personalization</v-tab>
+        <v-tab value="five">Security</v-tab>
+        <v-tab value="six">Language</v-tab>
+        <v-tab value="seven">Accessibility</v-tab>
+        <v-tab value="eight">Privacy and Data</v-tab>
+      </v-tabs>
 
-      <v-divider></v-divider>
+      <v-card-text>
+        <v-tabs-window v-model="tab">
+          <v-tabs-window-item value="one">
+            <account />
+          </v-tabs-window-item>
 
-      <section data-bs-version="5.1" class="features5 cid-uhB5ybzJ7z" id="afeatures5-9m" style="width: 100%;">
-        <div class="container">
-          <div class="row">
-            <div class="col-6 col-items" v-for="navigation in navigation" :key="navigation">
-              <div class="item col-12 col-lg-12">
-                <div class="item-wrap">
-                  <div class="item-content">
-                    <p class="label-text mbr-fonts-style display-4">
-                      {{ navigation?.name}}
-                    </p>
-                    <div class="list-container">
-                      <div class="list-item" v-for="navigation in navigation?.menus" :key="navigation">
-                        <div class="icon-box">
-                          <span class="mobi-mbri mobi-mbri-success mbr-iconfont mbr-iconfont-btn"
-                            style="font-size: 18px; color: rgb(255, 255, 255); fill: rgb(255, 255, 255);"></span>
-                        </div>
-                        <v-list-item class="list-text mbr-fonts-style display-4" :title="navigation?.name" :href="navigation?.url"></v-list-item>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </v-row>
+          <v-tabs-window-item value="two">
+            <communication />
+          </v-tabs-window-item>
+
+          <v-tabs-window-item value="three">
+            <payments />
+          </v-tabs-window-item>
+
+          <v-tabs-window-item value="four">
+            <personalization />
+          </v-tabs-window-item>
+
+          <v-tabs-window-item value="five">
+            <security />
+          </v-tabs-window-item>
+          
+          <v-tabs-window-item value="six">
+            <language />
+          </v-tabs-window-item>
+
+          <v-tabs-window-item value="seven">
+            <accessibility />
+          </v-tabs-window-item>
+
+          <v-tabs-window-item value="eight">
+            <privacy />
+          </v-tabs-window-item>
+        </v-tabs-window>
+      </v-card-text>
+    </v-card>
   </div>
 </template>
 
-<script>
-  import profilebar from '~/components/menus/profilebar.vue'
-
-  export default {
-    components: {
-      profilebar
-    },
-    data: () => ({
-      tab: null,
-    }),
-  }
-</script>
-
 <script setup>
-  const {
-      getItemById, getItems
-    } = useDirectusItems()
+  import account from '~/components/pages/account/setting/account.vue'
+  import communication from '~/components/pages/account/setting/communications.vue'
+  import payments from '~/components/pages/account/setting/payments.vue'
+  import personalization from '~/components/pages/account/setting/personalization.vue'
+  import security from '~/components/pages/account/setting/security.vue'
+  import language from '~/components/pages/account/setting/language.vue'
+  import accessibility from '~/components/pages/account/setting/accessibility.vue'
+  import privacy from '~/components/pages/account/setting/privacy.vue'
+  import {
+    ref
+  } from 'vue'
 
-    const page = await getItemById({
-      collection: "pages",
-      id: 48
-    });
-
-    const navigation = await getItems({
-      collection: "navigation",
-      filter: {
-        type: {
-          _eq: "settings"
-        }
-      }
-    });
-
-  useHead({
-    title: 'Settings'
-  })
+  const tab = ref(null)
 
   definePageMeta({
-    layout: "nolive",
+    layout: 'nolive',
+    middleware: ['authenticated'],
   });
 
-  definePageMeta({
-    middleware: ['authenticated'],
-  })
+  useHead({
+    title: 'Settings',
+  });
 </script>

@@ -77,7 +77,7 @@
     import {
         useQuery
     } from '@vue/apollo-composable'
-    import addAddress from '~/components/commerce/create/add-address.vue'
+    import addAddress from '~/components/crud/create/add-address.vue'
     //import profilebar from '~/components/menus/profilebar.vue'
     import address from '~/graphql/commerce/queries/address.js'
 

@@ -79,7 +79,7 @@
     useQuery
   } from '@vue/apollo-composable'
     import spaces from '~/components/cms/related/spaces.vue'
-    import createspace from '~/components/cms/create/social/createspace.vue'
+    import createspace from '~/components/crud/create/add-space.vue'
     import {groups} from '~/graphql/cms/queries/groups'
   
 

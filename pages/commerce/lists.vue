@@ -39,7 +39,7 @@
         useQuery
     } from '@vue/apollo-composable'
     import list from '~/components/commerce/related/lists.vue'
-    import createlist from '~/components/commerce/partials/createListBtn.vue'
+    import createlist from '~/components/partials/createListBtn.vue'
     import wishlists from '~/graphql/commerce/queries/lists.js'
 
     const tab = ref(null);

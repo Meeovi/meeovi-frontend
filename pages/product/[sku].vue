@@ -204,6 +204,10 @@
 </template>
 
 <script setup lang="ts">
+  import videoPage from '~/components/commerce/pages/product/video.vue'
+  import chartPage from '~/components/commerce/pages/product/chart.vue'
+  import showcase from '~/pages/account/[sku].vue'
+  import audioPage from '~/components/commerce/pages/product/audio.vue'
   import {
     ref
   } from 'vue'
@@ -238,10 +242,11 @@
     getProductById
   } from '~/composables/commerce/products/products';
   import comments from '~/components/partials/comments.vue'
+
   import {
     product
   } from '~/graphql/commerce/queries/id/product'
-  import createListBtn from '~/components/commerce/partials/createListBtn.vue';
+  import createListBtn from '~/components/partials/createListBtn.vue';
   /*  import {
     addToCart
   } from '~/utils/addToCart'
@@ -259,6 +264,22 @@
   const route = useRoute();
   const { result, loading, error } = useQuery(product, {
     sku: route.params.sku
+  });
+
+  const productComponent = computed(() => {
+    const productType = result.value?.products?.items[0]?.type;
+    switch (productType) {
+      case 'audio':
+        return audioPage;
+      case 'video':
+        return videoPage;
+      case 'BundleProduct':
+        return showcase;
+      case 'chartPage':
+        return chartPage;
+      default:
+        return RegularProduct;
+    }
   });
 
    const inputId = useId();

@@ -406,6 +406,14 @@ body {
 #firebaseui-auth-container {
     margin-top: 10px;
 }
+
+.articlePageListBtn {
+    display: inline-block;
+    position: relative;
+    left: -20px;
+    top: 43px;
+}
+
 /******************** Meeovi Time CSS ************/
 
 .homeSection {
@@ -502,6 +510,10 @@ body {
 
 .cid-uhBuptnWmV {
     padding-top: 0px !important;
+}
+
+.cartBadge {
+    top: -25px;
 }
 /**************** Product Page *******************/
 
@@ -649,7 +661,32 @@ body {
 .centralfeed {
     padding-top: 15px;
     padding-bottom: 5%;
-    padding-left: 20%;
+    padding-left: 15%;
+}
+
+.postCard {
+    position: relative;
+    left: 8%;
+    width: 800px;
+}
+
+.postCard img {
+    max-height: 350px;
+}
+
+.socialReactionButton {
+    padding-left: 15px;
+}
+
+.socialShareButton {
+    padding-left: 20px;
+}
+
+.socialListButton {
+    left: 55px;
+    float: left;
+    position: relative;
+    top: 23px;   
 }
 
 .feedcomments {
@@ -687,6 +724,10 @@ body {
 .cid-tZRUOapGTD button {
     position: relative;
     left: 10px;
+}
+
+.reactionButton {
+    margin-bottom: 5px;
 }
 
 /****************** Social Profile ****************/

@@ -19,8 +19,9 @@
                                 <v-card-text>
                                     <v-row dense>
                                         <v-col cols="12" sm="6">
-                                            <v-autocomplete  v-for="(lists, index) in data?.lists?.nodes" :key="index" :items="[`${lists?.lists?.name}`]" label="Choose A List" auto-select-first
-                                                multiple></v-autocomplete>
+                                            <v-autocomplete v-for="(lists, index) in result?.lists?.nodes" :key="index"
+                                                :items="[`${lists?.lists?.name}`]" label="Choose A List"
+                                                auto-select-first multiple></v-autocomplete>
                                         </v-col>
                                     </v-row>
 
@@ -50,43 +51,18 @@
 </template>
 
 <script setup>
-import createlist from '~/components/commerce/create/createlist.vue'
-import {ref} from 'vue';
+    import {
+        ref,
+    } from 'vue';
+    import {
+        useQuery
+    } from '@vue/apollo-composable'
+    import createlist from '~/components/crud/create/add-list.vue'
+    import lists from '~/graphql/commerce/queries/lists'
 
-const tab = ref(null);
-const dialog = ref(false);
-
-const query = gql `
-query NewQuery {
-  lists {
-    nodes {
-      author {
-        node {
-          username
-          avatar {
-            url
-          }
-        }
-      }
-      date
-      id
-      lists {
-        description
-        ispublic
-        name
-        type
-        image {
-          node {
-            sourceUrl
-          }
-        }
-      }
-    }
-  }
-}
-`
-
+    const dialog = ref(false)
+    const tab = ref(null)
     const {
-        data
-    } = useAsyncQuery(query);
+        result
+    } = useQuery(lists);
 </script>

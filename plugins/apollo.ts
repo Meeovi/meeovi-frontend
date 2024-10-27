@@ -19,7 +19,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     return {
       headers: {
         ...headers,
-        'x-hasura-admin-secret': config.public.commerceApiToken,
+        'Bearer': config.public.commerceApiToken,
       }
     }
   })

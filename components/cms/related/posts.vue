@@ -1,40 +1,45 @@
 <template>
   <div>
-    <v-card :class="['ma-4', selectedClass]" color="white" class="mx-auto" elevated="0" min-height="250px"
-      @click="toggle">
-      <v-card-title v-html="activity?.title"></v-card-title>
-
-      <v-list lines="one">
-        <v-list-item :title="activity?.creator?.username" :prepend-avatar="activity?.creator?.avatar?.url">
-        </v-list-item>
-      </v-list>
-
-      <v-card-text>
-        <div>
-          <p v-html="activity?.content"></p>
+    <v-card class="features03 healthm5 cid-us2b5LfABW" id="features03-a5" data-sortbtn="btn-primary" width="500px">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <a :href="`/social/feed/${activity?.post_id}`">
+              <div class="items-wrapper" style="width: 1820px;">
+                <div class="item features-without-image">
+                  <div class="item-wrapper">
+                    <img :src="activity?.featured_image" :alt="activity?.title">
+                    <div class="card-box">
+                      <p class="item-text mbr-fonts-style display-7" v-html="activity?.title"></p>
+                      <p class="item-text mbr-fonts-style display-7" v-html="activity?.content"></p>
+                      <div class="people-wrapper">
+                        <div class="people-wrap">
+                          <div class="image-wrap">
+                            <img class="person" src="" :alt="activity?.author?.name">
+                          </div>
+                          <div class="rating-content">
+                            <div class="rating-wrapper">
+                              <div class="rating-wrap">
+                                <p class="mbr-rating mbr-fonts-style display-4">
+                                  Posted: {{ new Date(activity?.publish_time).toLocaleDateString() }}
+                                </p>
+                              </div>
+                            </div>
+                            <p class="item-name mbr-fonts-style display-4">
+                              {{ activity?.author?.name }}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
         </div>
-      </v-card-text>
-
-      <v-card-subtitle><em>Posted: {{ new Date(activity?.date).toLocaleDateString() }}</em></v-card-subtitle>
-
-      <v-card-actions>
-        <v-row>
-          <v-col cols="3">
-            <v-btn title="Comments" prepend-icon="fas fa-comment" variant="plain" :href="`/social/feed/${activity?.id}`">
-              ()</v-btn>
-          </v-col>
-          <v-col cols="3">
-            <v-btn title="Repost" prepend-icon="fas fa-repeat" variant="plain" @click="repost()">()</v-btn>
-          </v-col>
-          <v-col cols="3">
-            <v-btn title="Like This" prepend-icon="fas fa-heart" variant="plain" @click="addLike()">()</v-btn>
-          </v-col>
-          <v-col cols="3">
-            <v-btn title="Bookmark" prepend-icon="fas fa-bookmark" variant="plain" @click="addBookmark()">()</v-btn>
-          </v-col>
-        </v-row>
-      </v-card-actions>
-    </v-card>
+      </div>
+  </v-card>
   </div>
 </template>
 
@@ -42,6 +47,7 @@
   import {
     ref
   } from 'vue'
+  import createListBtn from '~/components/partials/createListBtn.vue'
 
   const model = ref(null)
   const props = defineProps({

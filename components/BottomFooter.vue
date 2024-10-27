@@ -15,7 +15,7 @@
     import {
         ref
     } from 'vue'
-import createpost from '../components/cms/create/social/createpost.vue'
+import createpost from './crud/create/add-post.vue'
 
     const dialog = ref(false);
 </script>

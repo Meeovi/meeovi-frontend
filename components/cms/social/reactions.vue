@@ -2,7 +2,7 @@
     <div>
         <v-menu>
             <template v-slot:activator="{ props }">
-                <v-btn color="primary" v-bind="props" icon="fas fa-thumbs-up"></v-btn>
+                <v-btn class="reactionButton" color="primary" v-bind="props" icon="fas fa-thumbs-up" size="medium" title="Thumbs Up"></v-btn>
             </template>
             <v-list>
                 <v-list-item v-for="(item, index) in items" :key="index" :value="index">

@@ -136,6 +136,6 @@
   }
 
   useHead({
-    title: result?.categories?.items?.name
+    title: computed(() => result.value?.categories?.items[0]?.name || 'Outlet Page')
   });
 </script>

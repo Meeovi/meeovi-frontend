@@ -231,7 +231,7 @@ import {
     //import profilebar from '~/components/menus/profilebar.vue'
     import member from '~/components/cms/related/member.vue'
     import comments from '~/components/cms/social/comments.vue'
-    import settings from '~/components/cms/update/social/updatespace.vue'
+    import settings from '~/components/crud/update/updatespace.vue'
     import productCard from '~/components/commerce/commerce/product/productCard.vue'
     import shorts from '~/components/cms/related/shorts.vue'
     import post from '~/components/cms/related/posts.vue'

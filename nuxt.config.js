@@ -82,6 +82,7 @@ export default defineNuxtConfig({
     "@storefront-ui/nuxt",
     '@sidebase/nuxt-auth',
     'nuxt-vuefire',
+    '@nuxtjs/leaflet',
     //'@logto/nuxt',
     //"@prisma/nuxt",
     '@nuxtjs/seo',

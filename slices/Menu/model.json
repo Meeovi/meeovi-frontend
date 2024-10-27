@@ -1,0 +1,67 @@
+{
+  "id": "title",
+  "type": "SharedSlice",
+  "name": "Menu",
+  "description": "Title",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "title",
+            "placeholder": ""
+          }
+        },
+        "url": {
+          "type": "Link",
+          "config": {
+            "label": "url",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "select": null,
+            "allowText": true
+          }
+        },
+        "location": {
+          "type": "Select",
+          "config": {
+            "label": "location",
+            "placeholder": "",
+            "options": [
+              "top",
+              "trending",
+              "social",
+              "try-something-new",
+              "account",
+              "commerce",
+              "ecosystemmenu"
+            ]
+          }
+        },
+        "icon": {
+          "type": "Text",
+          "config": {
+            "label": "icon",
+            "placeholder": ""
+          }
+        },
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

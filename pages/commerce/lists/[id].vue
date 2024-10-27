@@ -70,7 +70,7 @@
   } from '@vue/apollo-composable'
   import productCard from '~/components/commerce/commerce/product/productCard.vue'
   import profilebar from '~/components/menus/profilebar.vue'
-  import updatelist from '~/components/commerce/update/commerce/updatelist.vue'
+  import updatelist from '~/components/crud/update/commerce/updatelist.vue'
   import lists from '~/graphql/commerce/queries/lists'
 
   const model = ref(null)

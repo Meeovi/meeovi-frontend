@@ -41,9 +41,9 @@
     import {
     useQuery
   } from '@vue/apollo-composable'
-    import createproduct from '~/components/commerce/create/createproduct.vue'
-    import createlist from '~/components/commerce/create/createlist.vue'
-    import bookmarkvideo from '~/components/cms/create/social/bookmarkvideo.vue'
+    import createproduct from '~/components/crud/create/createproduct.vue'
+    import createlist from '~/components/crud/create/createlist.vue'
+    import bookmarkvideo from '~/components/crud/create/add-bookmarkvideo.vue'
     import { uploadPage } from '~/graphql/commerce/queries/pages/upload'
 
     useHead({

@@ -3,7 +3,7 @@
     <article class="w-full p-4 border rounded-md">
       <v-row>
         <v-col cols="12">
-          <disqus />
+          <comments />
         </v-col>
       </v-row>
       <section data-bs-version="5.1" class="people1 cid-u1nHNN1e0D" id="people1-6m">
@@ -50,6 +50,6 @@
 </template>
 
 <script setup>
-  import disqus from '~/components/partials/disqus.vue'
+  import comments from '~/components/partials/comments.vue'
 
 </script>

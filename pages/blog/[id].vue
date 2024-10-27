@@ -34,9 +34,9 @@
         </section>
         <relatedpost />
 
-        <DisqusCount identifier="/blog/1" />
+        <commentsCount identifier="/blog/1" />
 
-        <DisqusComments identifier="/blog/1" />
+        <commentsComments identifier="/blog/1" />
     </div>
 </template>
 

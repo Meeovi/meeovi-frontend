@@ -8,7 +8,7 @@
           <!-- <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon> Filters-->
 
           <v-spacer></v-spacer>
-          <v-toolbar title="Social Feed" color="transparent">
+          <v-toolbar title="Social Feed" color="transparent" elevation="0">
           <!--  <v-dialog min-width="500">
               <template v-slot:activator="{ props: activatorProps }">
                 <v-btn v-bind="activatorProps" prepend-icon="fas fa-plus" title="Create a Post" variant="flat">
@@ -43,11 +43,10 @@
             <v-tabs-window v-model="tab">
               <v-tabs-window-item value="one">
                 <v-row>
-                  <v-col cols="4" v-if="result?.members?.nodes && result?.members?.nodes.length"
-                    v-for="(activity, index) in result.members.nodes" :key="index">
-                    <div style="padding-top: 10px;" v-for="(activities, index) in activity?.activities?.nodes"
-                      :key="index">
-                      <activity :activity="activities" />
+                  <v-col cols="4" v-if="result?.blogPosts?.items && result?.blogPosts?.items.length"
+                    v-for="(activity, index) in result.blogPosts?.items" :key="index">
+                    <div style="padding-top: 10px;">
+                      <activity :activity="activity" />
                     </div>
                   </v-col>
                 </v-row>
@@ -55,7 +54,7 @@
 
               <!--<v-tabs-window-item value="two">
                 <v-row>
-                  <v-col cols="4" v-if="result?.members?.nodes && result?.members?.nodes.length"
+                  <v-col cols="4" v-if="result?.blogPosts?.items && result?.blogPosts?.items.length"
                     v-for="(activity, index) in result.members.nodes" :key="index">
                     <div style="padding-top: 10px;" v-for="(activities, index) in activity?.activities?.nodes"
                       :key="index">
@@ -67,7 +66,7 @@
 
               <v-tabs-window-item value="three">
                 <v-row>
-                  <v-col cols="4" v-if="result?.members?.nodes && result?.members?.nodes.length"
+                  <v-col cols="4" v-if="result?.blogPosts?.items && result?.blogPosts?.items.length"
                     v-for="(activity, index) in result.members.nodes" :key="index">
                     <div style="padding-top: 10px;" v-for="(activities, index) in activity?.activities?.nodes"
                       :key="index">
@@ -94,29 +93,20 @@
   } from '@vue/apollo-composable'
   //import profilebar from '~/components/menus/profilebar.vue';
   import activity from '~/components/cms/related/posts.vue'
-  import {activities} from '~/graphql/cms/queries/activities'
+  import notes from '~/graphql/commerce/queries/notes'
   //import { getActivity } from '~/composables/cms/social/getActivity'; // Import the composable
 
-
+  const tab = ref(null);
   const {
     result
-  } = useQuery(activities, null, {
-    context: {
-      clientName: 'secondary' // This will use the secondary endpoint
-    }
-  })
+  } = useQuery(notes)
   /*const activities = ref([]); 
 
   onMounted(async () => {
     activities.value = await getActivity(); 
   });
 */
-  const model = ref(null); // Model for v-slide-activities
 
-  // Placeholder methods for actions
-  const repost = () => {
-    /* Implement repost functionality */
-  };
   const addLike = () => {
     /* Implement like functionality */
   };

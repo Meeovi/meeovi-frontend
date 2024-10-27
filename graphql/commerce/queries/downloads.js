@@ -1,40 +1,17 @@
 import gql from 'graphql-tag';
 
 const downloads = gql `
-query NewQuery ($id: ID!) {
-  customer(id: $id) {
-    displayName
-    id
-    username
-    role
-    date
-    downloadableItems {
-      nodes {
-        id
-        name
-        product {
-          id
-          image {
-            sourceUrl
-          }
-          name
-          sku
-          type
-          ... on SimpleProduct {
-            id
-            name
-            price
-          }
-        }
-        accessExpires
-        download {
-          file
-          fileType
-          name
-        }
-      }
+query{
+  customerDownloadableProducts {
+    items {
+      date
+      download_url
+      order_increment_id
+      remaining_downloads
+      status
     }
   }
-}`
+}
+`
 
 export default { downloads }

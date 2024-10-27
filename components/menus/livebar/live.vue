@@ -37,7 +37,7 @@
                                       <p>{{ videoid?.video?.title }}</p>
                                         <p>{{ videoid?.video?.content }}</p>
                                         <v-divider></v-divider>
-                                        <disqus />
+                                        <comments />
                                     </v-col>
                                 </v-row>
 
@@ -66,7 +66,7 @@
 </script>
 
 <script setup>
-    import disqus from '~/components/partials/disqus.vue'
+    import comments from '~/components/partials/comments.vue'
     //import livebubbles from '../livebar/livebubbles.vue'
     import video from '~/components/media/live/livePlayer'
     import {

@@ -1,33 +1,35 @@
 import gql from 'graphql-tag';
 
 const showcases = gql`
-query {
-  products (filter: {format: {eq: "Showcase"}}) {
+ query {
+  products (filter: {price: {from: "0"}}) {
     items {
+      ... on GroupedProduct {
+      uid
       name
-      ... on BundleProduct {
-        canonical_url
-        name
-        created_at
-        image {
-          url
-        }
-        description {
-          html
-        }
-        dynamic_price
-        dynamic_sku
-        dynamic_weight
-        country_of_manufacture
-        rating_summary
-        review_count
-        stock_status
-        uid
-        color
-        colortext
+      rating_summary
+      description {
+        html
+      }
+      image {
+        url
+      }
+      sku
+      price_range {
+        minimum_price {
+          regular_price {
+            currency
+            value
+          }
         }
       }
+      categories {
+        name
+      }
     }
-  }`
+    }
+  }
+ }
+`
 
 export default showcases;

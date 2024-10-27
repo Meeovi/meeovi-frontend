@@ -76,35 +76,19 @@ const config = {
 
 const signInWithGoogle = async () => {
   try {
-    const result = await signInWithPopup(auth, provider);
-    const firebaseUser = result.user;
-    
-    // Get the Firebase ID token
-    const idToken = await firebaseUser.getIdToken();
-    
-    // Send this token to your backend
-    const response = await fetch('/api/auth/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ idToken }),
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(`Authentication failed: ${errorData.message || response.statusText}`);
-    }
-
-    const userData = await response.json();
-    userStore.updateUserData(userData);
-    
-    await router.push('/');
+    const result = await signInWithPopup(auth, provider)
+    userStore.setUser(result.user)
+    console.log('User signed in:', result.user)
+    await router.push('/')
   } catch (error) {
-    console.error('Error during sign in:', error);
-    alert(`Authentication failed: ${error.message}`);
+    console.error('Error during sign in:', error)
+    if (error.code === 'auth/popup-closed-by-user') {
+      // Display a user-friendly message, e.g., using a toast notification
+      alert('Sign-in was cancelled. Please try again if you want to sign in.')
+    }
   }
 }
+
 
 const signOut = async () => {
   try {

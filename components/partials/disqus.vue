@@ -8,9 +8,9 @@
                 <div class="addons-row">
 
                     <div class="addons-container-inner" data-shortname="meeovi">
-                        <div class="disqusPlaceholder text-center" data-numposts="">
-                            <h2>DISQUS COMMENTS WILL BE SHOWN ONLY WHEN YOUR SITE IS ONLINE</h2> <img
-                                src="assets/images/disqus-comments.jpg">
+                        <div class="commentsPlaceholder text-center" data-numposts="">
+                            <h2>comments COMMENTS WILL BE SHOWN ONLY WHEN YOUR SITE IS ONLINE</h2> <img
+                                src="assets/images/comments-comments.jpg">
                         </div>
                     </div>
                 </div>
