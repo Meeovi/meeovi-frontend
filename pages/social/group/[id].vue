@@ -2,12 +2,13 @@
     <div class="contentPage">
         <!--<profilebar />-->
 
-        <v-card flat>
-            <v-toolbar color="primary" dark extended flat height="250" :image="`${space?.image?.filename_disk}`">
+        <v-card elevation="0">
+            <v-img class="align-end text-white" height="250" :src="`${space?.image?.filename_disk}`" :alt="space?.name" cover></v-img>
+            <v-toolbar color="info" dark>
+                <v-toolbar-title style="width: 100%; text-align: center; font-size: 30px;">{{ space?.name }}</v-toolbar-title>
             </v-toolbar>
         </v-card>
 
-        <v-divider></v-divider>
         <v-card min-height="500px">
             <!--Shorts for Space 
             <shorts />-->
