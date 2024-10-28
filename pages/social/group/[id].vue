@@ -2,17 +2,22 @@
     <div class="contentPage">
         <!--<profilebar />-->
 
-        <v-card min-height="500px" elevation="0">
-            <v-toolbar color="primary" dark extended flat height="250" :image="`${result?.group?.attachmentCover?.full}`"></v-toolbar>
+        <v-card flat>
+            <v-toolbar color="primary" dark extended flat height="250" :image="`${space?.image?.filename_disk}`">
+            </v-toolbar>
+        </v-card>
+
+        <v-divider></v-divider>
+        <v-card min-height="500px">
             <!--Shorts for Space 
             <shorts />-->
-            <v-tabs v-model="tab" align-tabs="center" bg-color="info" stacked>
+            <v-tabs v-model="tab" align-tabs="center" bg-color="warning" stacked>
                 <v-tab value="tab-1">
-                    <v-btn variant="text" stacked prepend-icon="fas fa-home">About</v-btn>
+                    <v-btn variant="text" stacked prepend-icon="fas fa-home">Home</v-btn>
                 </v-tab>
 
                 <v-tab value="tab-2">
-                    <v-btn variant="text" stacked prepend-icon="fas fa-message">Posts</v-btn>
+                    <v-btn variant="text" stacked prepend-icon="fas fa-pencil">About</v-btn>
                 </v-tab>
 
                 <v-tab value="tab-3">
@@ -40,11 +45,61 @@
                 </v-tab>
             </v-tabs>
 
-            <v-card-text style="padding: 0rem !important;">
+            <v-card-text>
                 <v-tabs-window v-model="tab">
                     <v-window v-model="tab">
-                        <!--About Space-->
-                        <v-tabs-window-item value="tab-1">
+                        <!--Space Social Feed-->
+                        <v-tabs-window-item value="tab-1" v-for="newsfeed in space?.newsfeed?.newsfeed_id"
+                            :key="newsfeed">
+                            <v-row>
+                                <v-col cols="4">
+                                    <v-card class="mx-auto" elevated="0">
+                                        <v-list lines="one">
+                                            <v-list-item :title="newsfeed?.user_created?.username"
+                                                :prepend-avatar="newsfeed?.user_created?.avatar?.filename_disk">
+                                            </v-list-item>
+                                        </v-list>
+
+                                        <v-card-text>
+                                            <div>
+                                                <p v-html="newsfeed?.post"></p>
+                                            </div>
+                                        </v-card-text>
+
+                                        <v-card-subtitle><em>Posted:
+                                                {{ new Date(newsfeed?.date_created).toLocaleDateString() }}</em>
+                                        </v-card-subtitle>
+
+                                        <v-card-actions>
+                                            <v-row>
+                                                <v-col cols="3">
+                                                    <v-btn title="Comments" prepend-icon="fas fa-comment"
+                                                        variant="plain" :href="`/social/feed/${newsfeed.id}`">()</v-btn>
+                                                </v-col>
+                                                <v-col cols="3">
+                                                    <v-btn title="Repost" prepend-icon="fas fa-repeat" variant="plain"
+                                                        @click="repost()">()
+                                                    </v-btn>
+                                                </v-col>
+                                                <v-col cols="3">
+                                                    <v-btn title="Like This" prepend-icon="fas fa-heart" variant="plain"
+                                                        @click="addLike">()
+                                                    </v-btn>
+                                                </v-col>
+                                                <v-col cols="3">
+                                                    <v-btn title="Bookmark" prepend-icon="fas fa-bookmark"
+                                                        variant="plain" @click="addBookmark">()
+                                                    </v-btn>
+                                                </v-col>
+                                            </v-row>
+                                        </v-card-actions>
+                                    </v-card>
+                                </v-col>
+                            </v-row>
+                        </v-tabs-window-item>
+
+                        <!--About Tab-->
+                        <v-tabs-window-item value="tab-2">
                             <section data-bs-version="5.1" class="features1 cid-sBXVhMMeXw" id="features2-2k">
                                 <div class="container">
                                     <div class="row justify-content-center">
@@ -54,8 +109,10 @@
                                                     <h4
                                                         class="card-title align-center mbr-black mbr-fonts-style display-7">
                                                         <strong>
-                                                            <v-avatar size="80" rounded="0" :image="`${result?.group?.creator?.avatar?.url}`"></v-avatar>
-                                                        </strong><br><br>{{ result?.group?.name }}</h4>
+                                                            <v-avatar size="80" rounded="0"
+                                                                :image="`${space?.image?.filename_disk}`"></v-avatar>
+                                                        </strong><br><br>{{ space?.name }}
+                                                    </h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -66,7 +123,8 @@
                                                         style="color: rgb(255, 153, 102); fill: rgb(255, 153, 102);"></span>
                                                     <h4
                                                         class="card-title align-center mbr-black mbr-fonts-style display-7">
-                                                        <strong>Group Created</strong><br><br>{{ new Date(result?.group?.dateCreated).toLocaleDateString() }}
+                                                        <strong>Group
+                                                            Created</strong><br><br>{{ new Date(space?.date_created).toLocaleDateString() }}
                                                     </h4>
                                                 </div>
                                             </div>
@@ -79,7 +137,7 @@
                                                     <h4
                                                         class="card-title align-center mbr-black mbr-fonts-style display-7">
                                                         <strong># of
-                                                            Members</strong><br><br>{{ result?.group?.totalMemberCount }}
+                                                            Members</strong><br><br>{{ space?.numberOfMembers }}
                                                     </h4>
                                                 </div>
                                             </div>
@@ -88,21 +146,23 @@
                                             <div class="card-wrapper">
                                                 <div class="card-box align-center">
                                                     <v-avatar size="50">
-                                                        <img :src="`${result?.group?.creator?.avatar?.url}`" :alt="result?.group?.creator?.username" />
+                                                        <img :src="`${space?.user_created?.avatar?.filename_disk}`"
+                                                            :alt="space?.user_created?.username" />
                                                     </v-avatar>
                                                     <h4
                                                         class="card-title align-center mbr-black mbr-fonts-style display-7">
                                                         <strong>Created By</strong><br><br><a
-                                                            :href="`/account/user/${result?.group?.creator?.username}`"></a></h4>
+                                                            :href="`/account/user/${space?.user_created?.username}`"></a>
+                                                    </h4>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="col-12">
+                                        <div class="col-10">
                                             <div class="card-wrapper">
                                                 <div class="card-box align-center">
                                                     <h4 class="card-title align-center mbr-black mbr-fonts-style display-7"
-                                                        v-html="result?.group?.description"></h4>
+                                                        v-html="space?.description"></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -111,80 +171,129 @@
                             </section>
                         </v-tabs-window-item>
 
-                        <!--Space Social Feed-->
-                        <v-tabs-window-item value="tab-2">
-                            <v-row>
-                            <v-col cols="3" v-for="activities in result?.group?.activities?.nodes" :key="activities">
-                                <post :post="activities" />
-                            </v-col>
-                        </v-row>
-                        </v-tabs-window-item>
-
                         <!--Space People-->
                         <v-tabs-window-item value="tab-3">
                             <v-list lines="one">
-                                <v-list-item :title="`${result?.group?.totalMemberCount} Members`"></v-list-item>
+                                <v-list-item :title="`${space?.numberOfMembers} Members`"></v-list-item>
                             </v-list>
 
                             <v-text-field label="Find a Member" prepend-inner-icon="fas fa-search" variant="solo">
                             </v-text-field>
 
                             <v-list lines="two">
-                            <h5>Creator of {{ result?.group?.name }}</h5>
-                            <v-list-item>
-                                <v-row align="center" class="spacer" no-gutters>
-                                    <v-col cols="4" sm="2" md="1">
-                                        <v-avatar size="50">
-                                            <img :src="`${result?.group?.creator?.avatar?.url}`"
-                                                :alt="result?.group?.creator?.username" />
-                                        </v-avatar>
-                                    </v-col>
+                                <h5>Creator of {{ space?.name }}</h5>
+                                <v-list-item>
+                                    <v-row align="center" class="spacer" no-gutters>
+                                        <v-col cols="4" sm="2" md="1">
+                                            <v-avatar size="50">
+                                                <img :src="`${space?.user_created?.avatar?.filename_disk}`"
+                                                    :alt="space?.user_created?.username" />
+                                            </v-avatar>
+                                        </v-col>
 
-                                    <v-col class="hidden-xs-only text-left ms-2" sm="5" md="3">
-                                        <p>{{ result?.group?.creator?.username }}</p>
-                                    </v-col>
+                                        <v-col class="hidden-xs-only text-left ms-2" sm="5" md="3">
+                                            <p>{{ space?.user_created?.username }}</p>
+                                        </v-col>
 
-                                    <v-col class="text-medium-emphasis text-truncate hidden-sm-and-down">
-                                        <v-btn prepend-icon="fas fa-user-plus" color="primary">Add Friend</v-btn>
-                                    </v-col>
-                                </v-row>
-                            </v-list-item>
-                        </v-list>
-
-                        <v-list lines="two">
-                            <h5>Admins of {{ result?.group?.name }}</h5>
-                            <v-list-item v-for="admins in result?.group?.admins?.nodes" :key="admins">
-                                <member :member="admins" />
-                            </v-list-item>
-                        </v-list>
-
-                        <v-list lines="two">
-                            <h5>Moderators of {{ result?.group?.name }}</h5>
-                            <v-list-item v-for="mods in result?.group?.mods?.nodes" :key="mods">
-                                <member :member="mods" />
-                            </v-list-item>
-                        </v-list>
+                                        <v-col class="text-medium-emphasis text-truncate hidden-sm-and-down">
+                                            <v-btn prepend-icon="fas fa-user-plus" color="primary">Add Friend</v-btn>
+                                        </v-col>
+                                    </v-row>
+                                </v-list-item>
+                            </v-list>
 
                             <v-list lines="two">
-                            <h5>All Members of {{ result?.group?.name }}</h5>
-                            <v-list-item v-for="members in result?.group?.members?.nodes" :key="members">
-                                <member :member="members" />
-                            </v-list-item>
-                        </v-list>
-                    </v-tabs-window-item>
+                                <h5>Admins of {{ space?.name }}</h5>
+                                <v-list-item v-for="admins in space?.space_admins?.space_admin_id" :key="admins">
+                                    <v-row align="center" class="spacer" no-gutters
+                                        v-for="admins in admins?.users?.directus_users_id" :key="admins">
+                                        <v-col cols="4" sm="2" md="1">
+                                            <v-avatar size="50">
+                                                <img :src="`${admins?.avatar?.filename_disk}`"
+                                                    :alt="admins?.username" />
+                                            </v-avatar>
+                                        </v-col>
+
+                                        <v-col class="hidden-xs-only text-left ms-2" sm="5" md="3">
+                                            <p>{{ admins?.username }}</p>
+                                        </v-col>
+
+                                        <v-col class="text-no-wrap text-left" cols="5" sm="3">
+                                            <p>admins?.description</p>
+                                        </v-col>
+
+                                        <v-col class="text-medium-emphasis text-truncate hidden-sm-and-down">
+                                            <v-btn prepend-icon="fas fa-user-plus" color="primary">Add Friend</v-btn>
+                                        </v-col>
+                                    </v-row>
+                                </v-list-item>
+                            </v-list>
+
+                            <v-list lines="two">
+                                <h5>Moderators of {{ space?.name }}</h5>
+                                <v-list-item v-for="mods in space?.space_mods?.space_admin_id" :key="mods">
+                                    <v-row align="center" class="spacer" no-gutters
+                                        v-for="mods in mods?.users?.directus_users_id" :key="mods">
+                                        <v-col cols="4" sm="2" md="1">
+                                            <v-avatar size="50">
+                                                <img :src="`${mods?.avatar?.filename_disk}`" :alt="mods?.username" />
+                                            </v-avatar>
+                                        </v-col>
+
+                                        <v-col class="hidden-xs-only text-left ms-2" sm="5" md="3">
+                                            <p>{{ mods?.username }}</p>
+                                        </v-col>
+
+                                        <v-col class="text-no-wrap text-left" cols="5" sm="3">
+                                            <p>mods?.description</p>
+                                        </v-col>
+
+                                        <v-col class="text-medium-emphasis text-truncate hidden-sm-and-down">
+                                            <v-btn prepend-icon="fas fa-user-plus" color="primary">Add Friend</v-btn>
+                                        </v-col>
+                                    </v-row>
+                                </v-list-item>
+                            </v-list>
+
+                            <v-list lines="two">
+                                <h5>All Members of {{ space?.name }}</h5>
+                                <v-list-item v-for="members in space?.user_created" :key="members">
+                                    <v-row align="center" class="spacer" no-gutters>
+                                        <v-col cols="4" sm="2" md="1">
+                                            <v-avatar size="50">
+                                                <img :src="`${members?.avatar?.filename_disk}`"
+                                                    :alt="members?.username" />
+                                            </v-avatar>
+                                        </v-col>
+
+                                        <v-col class="hidden-xs-only text-left ms-2" sm="5" md="3">
+                                            <p>{{ members?.username }}</p>
+                                        </v-col>
+
+                                        <v-col class="text-no-wrap text-left" cols="5" sm="3">
+                                            <p>members?.description</p>
+                                        </v-col>
+
+                                        <v-col class="text-medium-emphasis text-truncate hidden-sm-and-down">
+                                            <v-btn prepend-icon="fas fa-user-plus" color="primary">Add Friend</v-btn>
+                                        </v-col>
+                                    </v-row>
+                                </v-list-item>
+                            </v-list>
+                        </v-tabs-window-item>
 
                         <!--Space Media-->
                         <v-tabs-window-item value="tab-4">
                             <v-card class="mx-auto" max-width="400">
-                                <img class="align-end text-white" height="200" :src="`${result?.group?.activities?.nodes?.content}`"
-                                    :alt="result?.group?.name" cover />
+                                <img class="align-end text-white" height="200" :src="`${space?.media?.filename_disk}`"
+                                    :alt="space?.name" cover />
                             </v-card>
                         </v-tabs-window-item>
 
                         <!--Space Products-->
                         <v-tabs-window-item value="tab-5">
                             <section class="features3 cid-sBXVblMrWB" id="features3-2j">
-                                <div class="container" v-for="products in result?.group?.products?.products_id"
+                                <div class="container" v-for="products in space?.products?.products_id"
                                     :key="products?.id">
                                     <productCard :product="products" />
                                 </div>
@@ -194,7 +303,7 @@
                         <!--Space Events-->
                         <v-tabs-window-item value="tab-6">
                             <section class="features3 cid-sBXVblMrWB" id="features3-2j">
-                                <div class="container" v-for="products in result?.group?.products?.products_id"
+                                <div class="container" v-for="products in space?.products?.products_id"
                                     :key="products?.id">
                                     <relatedevents :product="products" />
                                 </div>
@@ -225,9 +334,9 @@
 </script>
 
 <script setup>
-import {
-    useQuery
-  } from '@vue/apollo-composable'
+    import {
+        useQuery
+    } from '@vue/apollo-composable'
     //import profilebar from '~/components/menus/profilebar.vue'
     import member from '~/components/cms/related/member.vue'
     import comments from '~/components/cms/social/comments.vue'
@@ -246,45 +355,20 @@ import {
 
     const tab = ref(null);
     const route = useRoute();
+
     const {
-        result,
-        loading,
-        error
-    } = useQuery(group, {
-        id: route.params.id // Pass variables inside the 'variables' object
-    }, {
-        context: {
-            clientName: 'secondary' // This will use the secondary endpoint
-        }
-    });
+        $directus,
+        $readItem
+    } = useNuxtApp()
 
-    /*const group = ref(null);
-
-    onMounted(async () => {
-        const id = route.params.id;
-        try {
-            group.value = await getGroupById(id);
-            console.log(group.value);  // Check the fetched data in the console
-        } catch (error) {
-            console.error("Failed to fetch group data:", error);
-        }
-    });*/
-    /*    const {
-            getItemById
-        } = useDirectusItems()
-
-        const space = await getItemById({
-            collection: "Space",
-            id: route.params.id
-        }); 
-
-        const page = await getItemById({
-            collection: "pages",
-            id: route.params.id
-        });*/
+    const {
+        data: space
+    } = await useAsyncData('spaces', () => {
+        return $directus.request($readItem('spaces', route.params.id))
+    })
 
     useHead({
-        title: result?.group?.name
+        title: computed(() => space.value?.spaces?.name || 'Space Page')
     })
 
     definePageMeta({

@@ -15,13 +15,14 @@
     </v-toolbar>
 
     <v-row style="padding-top: 10px;">
-      <v-col cols="4" v-for="showcase in result?.products?.items" :key="showcases">
-        <a :href="`/product/showcase/${showcase?.uid}`">
+      <div v-for="showcase in result?.cmsBlocks?.items" :key="showcase">
+        <div v-html="showcase?.content"></div>
+        <!--<a :href="`/product/showcase/${showcase?.uid}`">
           <v-card class="mx-auto" max-width="500" :title="showcase?.name">
             <productCard :product="showcase" />
           </v-card>
-        </a>
-      </v-col>
+        </a>-->
+      </div>
     </v-row>
   </div>
 </template>
@@ -34,11 +35,11 @@
   import createshowcase from '~/components/crud/create/add-showcase.vue'
   import productCard from '~/components/commerce/commerce/product/productCard.vue'
   import bookmark from '~/components/cms/social/bookmark.vue'
-  import showcases from '~/graphql/commerce/queries/showcases'
+  import showcaseBlock from '~/graphql/commerce/queries/blocks/showcase'
 
   const {
     result
-  } = useQuery(showcases);
+  } = useQuery(showcaseBlock);
 
   useHead({
     title: 'Showcases',

@@ -56,3 +56,5 @@ lib/
 # HTTPS Proxy certificates
 localhost.pem
 localhost-key.pem
+# Local Netlify folder
+.netlify

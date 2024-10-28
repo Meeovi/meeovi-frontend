@@ -1,25 +1,16 @@
 <template>
-    <v-card variant="text">
-        <v-tabs style="background-color: transparent" center-active>
-            <v-tab v-for="(menu, index) in nav?.menus" :key="index"><a :href="menu?.url">{{ menu?.name }}</a></v-tab>
-        </v-tabs>
-    </v-card>
+  <v-card variant="text">
+      <v-tabs style="background-color: transparent" center-active>
+          <v-tab v-for="(menu, index) in seller?.menus" :key="index"><a :href="menu?.url">{{ menu?.name }}</a></v-tab>
+      </v-tabs>
+  </v-card>
 </template>
 
 <script setup>
-    import sellerbar from '~/graphql/cms/queries/menus/sellerbar'
-  
+const { $directus, $readItem } = useNuxtApp()
+const route = useRoute()
 
-const {
-    data
-} = useAsyncQuery(sellerbar);
-
-  const {
-    getItemById
-  } = useDirectusItems()
-
-  const nav = await getItemById({
-    collection: "navigation",
-    id: 14
-  });
+const { data: seller } = await useAsyncData('seller', () => {
+return $directus.request($readItem('navigation', '14'))
+})
 </script>

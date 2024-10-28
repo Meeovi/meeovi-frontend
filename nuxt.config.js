@@ -229,6 +229,16 @@ export default defineNuxtConfig({
       // JWT Secret
       jwtSecret: process.env.JWT_SECRET,
 
+      // Directus
+      directus: {
+        url: process.env.DIRECTUS_URL,
+        auth: {
+          email: process.env.NUXTUS_DIRECTUS_ADMIN_EMAIL,
+          password: process.env.NUXTUS_DIRECTUS_ADMIN_PASSWORD,
+          token: process.env.NUXTUS_DIRECTUS_STATIC_TOKEN,
+        }
+      },
+
       // Wordpress
       wordpressUrl: process.env.API_URL,
       wpGraphql: process.env.API_URL_GRAPHQL,

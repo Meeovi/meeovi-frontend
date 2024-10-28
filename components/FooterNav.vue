@@ -7,28 +7,28 @@
       data-sortbtn="btn-primary">
       <div class="container">
         <v-row class="align-left justify-content-center mbr-white">
-          <v-col cols="4" class="md-pb" v-for="(menu, index) in about?.menus?.nodes" :key="index">
+          <v-col cols="4" class="md-pb">
             <h2 class="mbr-section-title pb-2 mbr-fonts-style display-7">
-              <strong>{{ menu?.name }}</strong></h2>
-            <div v-for="(menu, index) in menu?.menuItems?.nodes" :key="index">
-              <h3 class="mbr-section-subtitle mbr-fonts-style mbr-white display-4"><a
-                  :href="`/${menu?.path}`">{{ menu?.label }}</a></h3>
+              <strong>{{ about?.name }}</strong></h2>
+            <div v-for="child in about?.menus" :key="child.id">
+              <h3 class="mbr-section-subtitle mbr-fonts-style mbr-lighter display-4"><a
+                  :href="`/${child?.slug}`">{{ child?.name }}</a></h3>
             </div>
           </v-col>
-          <v-col cols="4" class="md-pb" v-for="(menu, index) in legal?.menus?.nodes" :key="index">
+          <v-col cols="4" class="md-pb">
             <h2 class="mbr-section-title pb-2 mbr-fonts-style display-7">
-              <strong>{{ menu?.name }}</strong></h2>
-            <div v-for="(menu, index) in menu?.menuItems?.nodes" :key="index">
-              <h3 class="mbr-section-subtitle mbr-fonts-style mbr-white display-4"><a
-                  :href="`/${menu?.path}`">{{ menu?.label }}</a></h3>
+              <strong>{{ legal?.name }}</strong></h2>
+            <div v-for="child in legal?.menus" :key="child.id">
+              <h3 class="mbr-section-subtitle mbr-fonts-style mbr-lighter display-4"><a
+                  :href="`/${child?.slug}`">{{ child?.name }}</a></h3>
             </div>
           </v-col>
-          <v-col cols="4" class="md-pb" v-for="(menu, index) in social?.menus?.nodes" :key="index">
+          <v-col cols="4" class="md-pb">
             <h2 class="mbr-section-title pb-2 mbr-fonts-style display-7">
-              <strong>{{ menu?.name }}</strong></h2>
-            <div v-for="(menu, index) in menu?.menuItems?.nodes" :key="index">
-              <h3 class="mbr-section-subtitle mbr-fonts-style mbr-white display-4"><a
-                  :href="`/${menu?.path}`">{{ menu?.label }}</a></h3>
+              <strong>{{ company?.name }}</strong></h2>
+            <div v-for="child in company?.menus" :key="child.id">
+              <h3 class="mbr-section-subtitle mbr-fonts-style mbr-lighter display-4"><a
+                  :href="`/${child?.slug}`">{{ child?.name }}</a></h3>
             </div>
           </v-col>
         </v-row>
@@ -38,14 +38,14 @@
     <section data-bs-version="5.1" class="footer7 cid-u4ccfXoeP6" once="footers" id="footer7-8c"
       data-sortbtn="btn-primary">
       <div class="container">
-        <div class="row align-left justify-content-center mbr-white" v-for="(menu, index) in copyright?.menus?.nodes" :key="index">
-          <v-col cols="3" v-for="(menu, index) in menu?.menuItems?.nodes" :key="index">
-            <v-list-item :title="menu?.label" :value="menu?.label" :prepend-icon="menu?.icon"
-              :href="`/${menu?.path}`"></v-list-item>
+        <div class="row align-left justify-content-center mbr-white">
+          <v-col cols="3" v-for="child in copyright?.menus" :key="child.id">
+            <v-list-item :title="child?.name" :value="child?.name" :prepend-icon="child?.icon"
+              :href="`/${child?.slug}`"></v-list-item>
           </v-col>
           <v-col cols="12">
             <p class="mbr-text mb-0 mbr-fonts-style display-7" style="width: 100%; text-align: center;">
-              @ 2017 - {{ new Date().getFullYear() }}&nbsp;<a href="/">Meeovi&nbsp;&nbsp;</a>All
+              @ 2017 - {{ new Date().getFullYear() }}&nbsp;<a href="/">{{ siteoverview?.site_name }}&nbsp;&nbsp;</a>All
               Rights Reserved.
             </p>
           </v-col>
@@ -56,31 +56,44 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { useQuery } from '@vue/apollo-composable'
-import { aboutQuery, legalQuery, copyrightQuery } from '~/graphql/cms/queries/menus/footer'
-import socialmenu from '~/graphql/cms/queries/menus/socialmenu'
+  import {
+    ref
+  } from 'vue'
 
-const { result: about } = useQuery(aboutQuery, null, {
-  context: {
-    clientName: 'secondary' // This will use the secondary endpoint
-  }
-})
-const { result: legal } = useQuery(legalQuery, null, {
-  context: {
-    clientName: 'secondary' // This will use the secondary endpoint
-  }
-})
+  const {
+    $directus,
+    $readItem,
+    $readSingleton
+  } = useNuxtApp()
+  const route = useRoute()
 
-const { result: social } = useQuery(socialmenu, null, {
-  context: {
-    clientName: 'secondary' // This will use the secondary endpoint
-  }
-})
+  const {
+    siteoverview
+  } = await useAsyncData('siteoverview', () => {
+    return $directus.request($readSingleton('siteoverview'))
+  })
 
-const { result: copyright } = useQuery(copyrightQuery, null, {
-  context: {
-    clientName: 'secondary' // This will use the secondary endpoint
-  }
-})
+  const {
+    data: about
+  } = await useAsyncData('about', () => {
+    return $directus.request($readItem('navigation', '7'))
+  })
+
+  const {
+    data: legal
+  } = await useAsyncData('legal', () => {
+    return $directus.request($readItem('navigation', '8'))
+  })
+
+  const {
+    data: company
+  } = await useAsyncData('company', () => {
+    return $directus.request($readItem('navigation', '9'))
+  })
+
+  const {
+    data: copyright
+  } = await useAsyncData('copyright', () => {
+    return $directus.request($readItem('navigation', '10'))
+  })
 </script>
