@@ -1,58 +1,74 @@
 <template>
     <div class="contentPage">
         <!--<profilebar />-->
-        <v-row>
-            <v-col cols="12">
-                <v-toolbar title="Spaces" color="primary">
-                    <v-dialog min-width="500">
-                        <template v-slot:activator="{ props: activatorProps }">
-                            <v-btn v-bind="activatorProps" prepend-icon="fas fa-plus" title="Create a Space"
-                                variant="flat">Create a Space
-                            </v-btn>
-                        </template>
+        <v-card elevation="0">
+            <v-toolbar title="Spaces" color="primary">
+                <v-dialog min-width="500">
+                    <template v-slot:activator="{ props: activatorProps }">
+                        <v-btn v-bind="activatorProps" prepend-icon="fas fa-plus" title="Create a Space"
+                            variant="flat">Create a Space
+                        </v-btn>
+                    </template>
 
-                        <template v-slot:default="{ isActive }">
-                            <createspace />
-                        </template>
-                    </v-dialog>
-                </v-toolbar>
+                    <template v-slot:default="{ isActive }">
+                        <createspace />
+                    </template>
+                </v-dialog>
+            </v-toolbar>
 
-                <v-row>
-                    <v-col cols="4" v-for="(spaces, index) in spaces" :key="index">
-                        <v-card class="mx-auto" max-width="400" height="450">
-                            <v-img class="align-end text-white" height="200"
-                            :src="`${url}${spaces?.image?.filename_disk}`" :alt="spaces?.name" cover>
-                                <v-card-title>{{ spaces?.name }}</v-card-title>
-                            </v-img>
+            <v-tabs v-model="tab" bg-color="primary">
+                <v-tab value="one">All Spaces</v-tab>
+                <v-tab value="two">Audio Spaces</v-tab>
+                <v-tab value="three">Video Spaces</v-tab>
+                <v-tab value="four">My Spaces</v-tab>
+            </v-tabs>
 
-                            <v-card-subtitle class="pt-4">
-                                Created: {{ new Date(spaces?.date_created).toLocaleDateString() }}
-                            </v-card-subtitle>
+            <v-card-text>
+                <v-tabs-window v-model="tab">
+                    <v-tabs-window-item value="one">
+                        <v-row style="padding-top: 15px;">
+                            <v-col cols="4" v-for="(spaces, index) in spaces" :key="index">
+                                <space :space="spaces" />
+                            </v-col>
+                        </v-row>
+                    </v-tabs-window-item>
 
-                            <v-card-text>
-                                <div>Last Activity: {{ new Date(spaces?.date_updated).toLocaleDateString() }}</div>
+                    <v-tabs-window-item value="two">
+                        <v-row style="padding-top: 15px;">
+                            <v-col cols="4" v-for="(spaces, index) in audiospaces" :key="index">
+                                <space :space="spaces" />
+                            </v-col>
+                        </v-row>
+                    </v-tabs-window-item>
 
-                                <div># of Members: {{spaces?.totalMemberCount}}</div>
+                    <v-tabs-window-item value="three">
+                        <v-row style="padding-top: 15px;">
+                            <v-col cols="4" v-for="(spaces, index) in videospaces" :key="index">
+                                <space :space="spaces" />
+                            </v-col>
+                        </v-row>
+                    </v-tabs-window-item>
 
-                                <div>Status: {{spaces?.status}}</div>
+                    <v-tabs-window-item value="four">
+                        <v-row style="padding-top: 15px;">
+                            <v-col cols="4" v-for="(spaces, index) in spaces" :key="index">
+                                <space :space="spaces" />
+                            </v-col>
+                        </v-row>
+                    </v-tabs-window-item>
+                </v-tabs-window>
+            </v-card-text>
+        </v-card>
 
-                                <div v-html="spaces?.description"></div>
-                            </v-card-text>
-
-                            <v-card-actions>
-                                <v-btn color="orange" text="Explore" :href="`/social/group/${spaces?.id}`"></v-btn>
-                            </v-card-actions>
-                        </v-card>
-                    </v-col>
-                </v-row>
-            </v-col>
-        </v-row>
     </div>
 </template>
 
 <script setup>
+    import space from '~/components/cms/related/spaces.vue'
     import createspace from '~/components/crud/create/add-space.vue'
+    import { ref } from 'vue'
 
+    const tab = ref(null);
     const {
         $directus,
         $readItems
@@ -62,6 +78,30 @@
         data: spaces
     } = await useAsyncData('spaces', () => {
         return $directus.request($readItems('spaces'))
+    })
+
+    const {
+        data: audiospaces
+    } = await useAsyncData('audiospaces', () => {
+        return $directus.request($readItems('spaces', {
+            filter: {
+                type: {
+                    _eq: "Audio"
+                }
+            }
+        }))
+    })
+
+    const {
+        data: videospaces
+    } = await useAsyncData('videospaces', () => {
+        return $directus.request($readItems('spaces', {
+            filter: {
+                type: {
+                    _eq: "Video"
+                }
+            }
+        }))
     })
 
     useHead({

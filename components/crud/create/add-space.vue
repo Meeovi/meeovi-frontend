@@ -2,7 +2,7 @@
     <div>
         <v-row justify="center">
             <v-card>
-                <form @submit.prevent="createGroupAndRefresh">
+                <form>
                     <v-toolbar dark color="primary">
                         <v-btn icon dark @click="dialog = false">
                             <v-icon icon="fas fa-circle-xmark"></v-icon>
@@ -15,28 +15,28 @@
                         <v-container>
                             <v-row>
                                 <v-col cols="12">
-                                    <v-text-field v-model="name" id="spaceName" label="Space Name*" required>
-                                    </v-text-field>
-                                </v-col>
-                                <!--<v-col cols="6">
-                                    <v-select v-model="type" label="What type of space is this?" :items="typeItems"></v-select>
+                                    <v-text-field v-model="spaceData.name" id="spaceName" label="Space Name*" required />
                                 </v-col>
                                 <v-col cols="6">
-                                    <v-select v-model="status" label="Is this space public or private?" :items="statusItems"></v-select>
-                                </v-col>-->
+                                    <v-select v-model="spaceData.type" label="What type of space is this?"
+                                        :items="['Default', 'Audio', 'Video']" />
+                                </v-col>
+                                <v-col cols="6">
+                                    <v-select v-model="spaceData.status" label="Is this space public or private?"
+                                        :items="['Public', 'Private', 'Hidden']" />
+                                </v-col>
                                 <v-col cols="12">
-                                    <v-textarea v-model="description" label="Description" id="spaceDescription">
-                                    </v-textarea>
+                                    <v-textarea v-model="spaceData.description" label="Description" id="spaceDescription" />
                                 </v-col>
                                 <v-col cols="6">
-                                    <v-file-input @change="onFileChange('cover', $event)" clearable density="compact"
-                                        prepend-icon="fas fa-image" accept="image/*" label="Image for Banner"
-                                        variant="solo-inverted"></v-file-input>
+                                    <v-file-input @change="handleImageUpload" clearable density="compact"
+                                        prepend-icon="fas fa-image" accept="image/*" label="Image for Cover"
+                                        variant="solo-inverted" />
                                 </v-col>
                                 <v-col cols="6">
-                                    <v-file-input @change="onFileChange('avatar', $event)" clearable density="compact"
+                                    <v-file-input @change="handleAvatarUpload" clearable density="compact"
                                         prepend-icon="fas fa-image" accept="image/*" label="Image for Avatar"
-                                        variant="solo-inverted"></v-file-input>
+                                        variant="solo-inverted" />
                                 </v-col>
                             </v-row>
                         </v-container>
@@ -47,12 +47,10 @@
                         <v-btn color="blue-darken-1" variant="text" @click="dialog = false">
                             Close
                         </v-btn>
-                        <v-btn color="blue-darken-1" variant="text" type="submit" @click="dialog = false">
+                        <v-btn color="blue-darken-1" variant="text" type="submit" @click="createNewSpace">
                             Create Space
                         </v-btn>
                     </v-card-actions>
-                    <div v-if="errorMessage">{{ errorMessage }}</div>
-                    <div v-if="successMessage">{{ successMessage }}</div>
                 </form>
             </v-card>
         </v-row>
@@ -60,58 +58,47 @@
 </template>
 
 <script setup>
-    import {
-        ref
-    } from 'vue';
-    import {
-        useApolloClient
-    } from '@vue/apollo-composable';
-    import {
-        useRoute,
-        useRouter
-    } from 'vue-router';
-    import {CREATE_GROUP} from '~/graphql/cms/mutations/groups'
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import uploadFiles from '@/composables/cms/content/uploadFiles';
+import createSpace from '@/composables/cms/spaces/createSpace';
 
-    const route = useRoute();
-    const router = useRouter();
-    //const id = ref('');
+const spaceData = ref({
+    name: '',
+    type: '',
+    status: '',
+    description: '',
+    coverFile: null,
+    avatarFile: null,
+})
 
-    const dialog = ref(false);
-    const includeFiles = ref(true);
-    const enabled = ref(false);
-    const notifications = ref(false);
-    const sound = ref(true);
-    const widgets = ref(false)
-    const content = ref('');
-    const name = ref('');
-    const image = ref('');
-    const media = ref('');
-    const reactions = ref('');
+const dialog = ref(false);
 
-    const {
-        client: apolloClient
-    } = useApolloClient();
+const imageFile = ref(null);
+const documentFile = ref(null);
 
-    const createGroup = async () => {
-        try {
-            const {
-                data
-            } = await apolloClient.mutate({
-                mutation: CREATE_GROUP,
-                variables: {
-                    description: description.value,
-                    name: name.value
-                    //id: id.value,
-                },
-            });
-            console.log('Group created:', data.createGroup.activity);
-        } catch (error) {
-            console.error('Error updating activity:', error);
-        }
-    };
+const handleImageUpload = (event) => {
+  imageFile.value = event.target.files[0];
+};
 
-    const createGroupAndRefresh = async () => {
-        await createGroup();
-        router.go(0); // Refresh the current route
-    };
+const handleAvatarUpload = (event) => {
+  documentFile.value = event.target.files[0];
+};
+
+const createNewSpace = async () => {
+  try {
+    const uploadedFiles = await uploadFiles({
+      imageFile: imageFile.value,
+      documentFile: documentFile.value,
+    });
+
+    spaceData.value.image = uploadedFiles.imageId;
+    spaceData.value.document = uploadedFiles.documentId;
+
+    const space = await createSpace(spaceData.value);
+    console.log('Created Space:', space);
+  } catch (error) {
+    console.error('Error creating space:', error);
+  }
+};
 </script>

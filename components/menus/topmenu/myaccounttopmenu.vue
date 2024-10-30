@@ -11,23 +11,23 @@
           <v-col cols="12">
             <v-toolbar :title="`Welcome, ${userEmail}`"></v-toolbar>
           </v-col>
-          <v-col cols="6" v-for="(menu, index) in result?.menus?.nodes" :key="index">
-            <h6>{{ menu?.name }}</h6>
+          <v-col cols="6">
+            <h6>{{ nav?.name }}</h6>
             <br>
             <v-divider></v-divider>
-            <div v-for="(item, index) in menu?.menuItems?.nodes" :key="index">
-              <v-list-item :title="item?.label" :value="item?.label" :prepend-icon="item?.icon" :href="item?.path">
-              </v-list-item>
+            <div v-for="(item, index) in nav?.menus" :key="index">
+              <v-list-item :title="item?.name" :value="item?.name" :prepend-icon="item?.icon"
+                :href="item?.url"></v-list-item>
             </div>
           </v-col>
 
-          <v-col cols="6" v-for="(menu, index) in social?.menus?.nodes" :key="index">
-            <h6>{{ menu?.name }}</h6>
+          <v-col cols="6">
+            <h6>{{ navcomm?.name }}</h6>
             <br>
             <v-divider></v-divider>
-            <div v-for="(item, index) in menu?.menuItems?.nodes" :key="index">
-              <v-list-item :title="item?.label" :value="item?.label" :prepend-icon="item?.websiteFields?.icon"
-                :href="item?.path"></v-list-item>
+            <div v-for="(item, index) in navcomm?.menus" :key="index">
+              <v-list-item :title="item?.name" :value="item?.name" :prepend-icon="item?.icon"
+                :href="item?.url"></v-list-item>
             </div>
           </v-col>
           <v-col cols="12">
@@ -87,19 +87,15 @@
   const userStore = useUserStore()
   const router = useRouter()
 
-  const {
-    result
-  } = useQuery(AccountCommerce, null, {
-    context: {
-      clientName: 'secondary'
-    }
+  const { $directus, $readItem } = useNuxtApp()
+  const route = useRoute()
+
+  const { data: nav } = await useAsyncData('nav', () => {
+    return $directus.request($readItem('navigation', '2'))
   })
-  const {
-    result: social
-  } = useQuery(AccountSocial, null, {
-    context: {
-      clientName: 'secondary'
-    }
+
+  const { data: navcomm } = await useAsyncData('navcomm', () => {
+    return $directus.request($readItem('navigation', '3'))
   })
 
   const location = ref('bottom');

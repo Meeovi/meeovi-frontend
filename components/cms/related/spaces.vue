@@ -1,25 +1,25 @@
 <template>
     <div>
-        <v-card class="mx-auto" max-width="400" max-height="650" min-height="650">
-            <img class="align-end text-white" style="max-height: 350px !important; min-height: 350px;" src="~/assets/images/mystery-group-50.png" cover />
-                <v-card-title>{{ space?.name }}</v-card-title>
+        <v-card class="mx-auto" max-width="400" height="450">
+            <v-img class="align-end text-white" height="200" :src="`${space?.image?.filename_disk}`" :alt="space?.name" cover></v-img>
 
+            <v-card-title>{{ space?.name }}</v-card-title>
             <v-card-subtitle class="pt-4">
-                <div># of Members: {{space?.totalMemberCount}}</div>
-
-                <div>Created: {{ new Date(space?.dateCreated).toLocaleDateString() }}</div>
-
-                <div>Last Activity: {{ new Date(space?.lastActivity).toLocaleDateString() }}</div>
+                Created: {{ new Date(space?.date_created).toLocaleDateString() }}
             </v-card-subtitle>
 
             <v-card-text>
+                <div>Last Activity: {{ new Date(space?.date_updated).toLocaleDateString() }}</div>
+
+                <div># of Members: {{space?.totalMemberCount}}</div>
+
                 <div>Status: {{space?.status}}</div>
 
                 <div v-html="space?.description"></div>
             </v-card-text>
 
             <v-card-actions>
-                <v-btn color="orange" text="Join" :href="`/social/group/${space?.id}`"></v-btn>
+                <v-btn color="orange" text="Explore" :href="`/social/group/${space?.id}`"></v-btn>
             </v-card-actions>
         </v-card>
     </div>
