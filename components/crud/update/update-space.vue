@@ -81,6 +81,7 @@
 
 <script setup>
 import { ref } from 'vue';
+import { readItem, deleteItem, updateItem } from '@directus/sdk'; // Add this import at the top
 import uploadFiles from '@/composables/cms/content/uploadFiles';
 import updateSpace from '@/composables/cms/spaces/updateSpace';
 
@@ -151,6 +152,7 @@ const resetForm = () => {
 const handleSubmit = async () => {
     try {
         loading.value = true;
+        const { $directus } = useNuxtApp();
 
         // Handle image upload if there's a new image
         if (imageFile.value) {
@@ -160,20 +162,23 @@ const handleSubmit = async () => {
             spaceData.value.image = uploadedFiles.imageId;
         }
 
-        // Update the space
-        const updatedSpace = await updateSpace(route.params.id, {
-            name: spaceData.value.name,
-            type: spaceData.value.type,
-            status: spaceData.value.status,
-            description: spaceData.value.description,
-            image: spaceData.value.image,
-        });
+        // Update the space using Directus SDK directly
+        const updatedSpace = await $directus.request(
+            updateItem('spaces', route.params.id, {
+                name: spaceData.value.name,
+                type: spaceData.value.type,
+                status: spaceData.value.status,
+                description: spaceData.value.description,
+                image: spaceData.value.image,
+            })
+        );
 
-        console.log('Space updated successfully:', updatedSpace);
-        
-        // Show success message (you can implement your preferred notification system)
-        alert('Space updated successfully');
-
+        if (updatedSpace) {
+            // Verify the update was successful
+            await fetchSpaceData(); // Refresh the data
+            alert('Space updated successfully');
+            navigateTo('/social/spaces'); // Adjust this path as needed
+        }
     } catch (error) {
         console.error('Error updating space:', error);
         alert('Error updating space: ' + error.message);
@@ -181,6 +186,7 @@ const handleSubmit = async () => {
         loading.value = false;
     }
 };
+
 
 // Add these new functions for delete functionality
 const confirmDelete = () => {
@@ -209,5 +215,13 @@ const deleteSpace = async () => {
     } finally {
         deleteLoading.value = false;
     }
+};
+
+const validateForm = () => {
+    if (!spaceData.value.name) {
+        alert('Space name is required');
+        return false;
+    }
+    return true;
 };
 </script>

@@ -5,7 +5,7 @@ export default async function deleteSpace(spaceId) {
     const { $directus } = useNuxtApp();
   
     try {
-      $directus.request(deleteItem('Space', spaceId));
+      $directus.request(deleteItem('spaces', spaceId));
       console.log('Space deleted successfully');
     } catch (error) {
       console.error('Error deleting space:', error);

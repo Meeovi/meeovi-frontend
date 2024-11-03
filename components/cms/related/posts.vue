@@ -1,32 +1,29 @@
 <template>
   <div>
-    <v-card class="features03 healthm5 cid-us2b5LfABW" id="features03-a5" data-sortbtn="btn-primary" width="500px">
+    <v-card class="features03 healthm5 cid-us2b5LfABW" id="features03-a5" data-sortbtn="btn-primary" width="500px" elevation="3">
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-            <a :href="`/social/feed/${activity?.post_id}`">
+            <a :href="post?.id ? `/social/feed/${post.id}` : '#'">
               <div class="items-wrapper" style="width: 1820px;">
                 <div class="item features-without-image">
                   <div class="item-wrapper">
-                    <img :src="activity?.featured_image" :alt="activity?.title">
+                    <img :src="post?.image?.filename_disk" :alt="post?.title || 'No Title'" />
                     <div class="card-box">
-                      <p class="item-text mbr-fonts-style display-7" v-html="activity?.title"></p>
-                      <p class="item-text mbr-fonts-style display-7" v-html="activity?.content"></p>
+                      <p class="item-text mbr-fonts-style display-7">{{ post?.title }}</p>
+                      <p class="item-text mbr-fonts-style display-7">{{ post?.content }}</p>
                       <div class="people-wrapper">
                         <div class="people-wrap">
                           <div class="image-wrap">
-                            <img class="person" src="" :alt="activity?.author?.name">
+                            <img class="person" src="" :alt="post?.username || 'Anonymous'">
                           </div>
                           <div class="rating-content">
-                            <div class="rating-wrapper">
-                              <div class="rating-wrap">
-                                <p class="mbr-rating mbr-fonts-style display-4">
-                                  Posted: {{ new Date(activity?.publish_time).toLocaleDateString() }}
-                                </p>
-                              </div>
-                            </div>
-                            <p class="item-name mbr-fonts-style display-4">
-                              {{ activity?.author?.name }}
+                            <p class="mbr-rating mbr-fonts-style display-4">
+                              Posted:
+                              {{ post?.date_created ? new Date(post?.date_created).toLocaleDateString() : 'Unknown date' }}
+                            </p>
+                            <p class="item-name mbr-fonts-style display-4" style="color: rgb(var(--v-theme-info));">
+                              {{ post?.username || 'Unknown User' }}
                             </p>
                           </div>
                         </div>
@@ -39,24 +36,21 @@
           </div>
         </div>
       </div>
-  </v-card>
+    </v-card>
   </div>
 </template>
 
 <script setup>
-  import {
-    ref
-  } from 'vue'
-  import createListBtn from '~/components/partials/createListBtn.vue'
+import { ref, computed } from 'vue'
+import createListBtn from '~/components/partials/createListBtn.vue'
 
-  const model = ref(null)
-  const props = defineProps({
-    activity: {
-      type: Object,
-      required: true,
-    },
-  });
-  const {
-    activity
-  } = props;
+const model = ref(null)
+const props = defineProps({
+  post: {
+    type: Object,
+    required: true,
+  },
+});
+
+const { post } = props;
 </script>

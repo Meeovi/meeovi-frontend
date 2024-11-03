@@ -414,6 +414,10 @@ body {
     top: 43px;
 }
 
+.features03 .item-text, .item-name {
+    color: rgb(var(--v-theme-info));
+}
+
 /******************** Meeovi Time CSS ************/
 
 .homeSection {

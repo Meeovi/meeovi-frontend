@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-card class="mx-auto" max-width="400" height="450">
+        <v-card class="mx-auto" max-width="400" height="480">
             <v-img class="align-end text-white" height="200" :src="`${space?.image?.filename_disk}`" :alt="space?.name" cover></v-img>
 
             <v-card-title>{{ space?.name }}</v-card-title>

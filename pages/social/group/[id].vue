@@ -3,13 +3,15 @@
         <!--<profilebar />-->
 
         <v-card elevation="0">
-            <v-img class="align-end text-white" height="250" :src="`${space?.image?.filename_disk}`" :alt="space?.name" cover></v-img>
+            <v-img class="align-end text-white" height="250" :src="`${space?.image?.filename_disk}`" :alt="space?.name"
+                cover></v-img>
             <v-toolbar color="info" dark>
-                <v-toolbar-title style="width: 100%; text-align: center; font-size: 30px;">{{ space?.name }}</v-toolbar-title>
+                <v-toolbar-title
+                    style="width: 100%; text-align: center; font-size: 30px;">{{ space?.name }}</v-toolbar-title>
             </v-toolbar>
         </v-card>
 
-        <v-card min-height="500px">
+        <v-card min-height="500px" elevation="0">
             <!--Shorts for Space 
             <shorts />-->
             <v-tabs v-model="tab" align-tabs="center" bg-color="warning" stacked>
@@ -49,54 +51,27 @@
             <v-card-text>
                 <v-tabs-window v-model="tab">
                     <v-window v-model="tab">
-                        <!--Space Social Feed-->
-                        <v-tabs-window-item value="tab-1" v-for="newsfeed in space?.newsfeed?.newsfeed_id"
-                            :key="newsfeed">
-                            <v-row>
-                                <v-col cols="4">
-                                    <v-card class="mx-auto" elevated="0">
-                                        <v-list lines="one">
-                                            <v-list-item :title="newsfeed?.user_created?.username"
-                                                :prepend-avatar="newsfeed?.user_created?.avatar?.filename_disk">
-                                            </v-list-item>
-                                        </v-list>
+                        <!--Posts Tab-->
+                        <v-tabs-window-item value="tab-1">
+                            <v-expansion-panels>
+                                <v-expansion-panel title="Create a Post">
+                                    <v-expansion-panel-text>
+                                        <createpost :spaces_id="groupId" />
+                                    </v-expansion-panel-text>
+                                </v-expansion-panel>
+                            </v-expansion-panels>
 
-                                        <v-card-text>
-                                            <div>
-                                                <p v-html="newsfeed?.post"></p>
-                                            </div>
-                                        </v-card-text>
+                            <!-- Update this section to properly access posts -->
+                            <div v-if="space?.posts.length">
+                                <div v-for="post in space.posts" :key="post.id">
+                                    <posts :post="post?.posts_id" style="padding-top: 15px;" />
+                                </div>
+                            </div>
 
-                                        <v-card-subtitle><em>Posted:
-                                                {{ new Date(newsfeed?.date_created).toLocaleDateString() }}</em>
-                                        </v-card-subtitle>
 
-                                        <v-card-actions>
-                                            <v-row>
-                                                <v-col cols="3">
-                                                    <v-btn title="Comments" prepend-icon="fas fa-comment"
-                                                        variant="plain" :href="`/social/feed/${newsfeed.id}`">()</v-btn>
-                                                </v-col>
-                                                <v-col cols="3">
-                                                    <v-btn title="Repost" prepend-icon="fas fa-repeat" variant="plain"
-                                                        @click="repost()">()
-                                                    </v-btn>
-                                                </v-col>
-                                                <v-col cols="3">
-                                                    <v-btn title="Like This" prepend-icon="fas fa-heart" variant="plain"
-                                                        @click="addLike">()
-                                                    </v-btn>
-                                                </v-col>
-                                                <v-col cols="3">
-                                                    <v-btn title="Bookmark" prepend-icon="fas fa-bookmark"
-                                                        variant="plain" @click="addBookmark">()
-                                                    </v-btn>
-                                                </v-col>
-                                            </v-row>
-                                        </v-card-actions>
-                                    </v-card>
-                                </v-col>
-                            </v-row>
+                            <div v-else style="padding-top: 15px;">
+                                <p style="text-align: center; font-size: 20px;">No posts in this space yet</p>
+                            </div>
                         </v-tabs-window-item>
 
                         <!--About Tab-->
@@ -335,21 +310,13 @@
 </script>
 
 <script setup>
-    import {
-        useQuery
-    } from '@vue/apollo-composable'
-    //import profilebar from '~/components/menus/profilebar.vue'
     import member from '~/components/cms/related/member.vue'
-    import comments from '~/components/cms/social/comments.vue'
+    import createpost from '~/components/crud/create/add-post.vue'
     import settings from '~/components/crud/update/update-space.vue'
     import productCard from '~/components/commerce/commerce/product/productCard.vue'
     import shorts from '~/components/cms/related/shorts.vue'
-    import post from '~/components/cms/related/posts.vue'
+    import posts from '~/components/cms/related/posts.vue'
     import relatedevents from '~/components/commerce/related/relatedevents.vue'
-    import {
-        getGroupById
-    } from '~/composables/cms/social/getGroups'; // Import the composable function
-    import group from '~/graphql/cms/queries/id/group'
     import {
         ref
     } from 'vue'
@@ -364,12 +331,23 @@
 
     const {
         data: space
-    } = await useAsyncData('spaces', () => {
-        return $directus.request($readItem('spaces', route.params.id))
+    } = await useAsyncData('space', () => {
+        return $directus.request($readItem('spaces', route.params.id, {
+            fields: ['*', 'posts.posts_id.*'],
+        }))
     })
 
+
+    // Add this debug log
+    watchEffect(() => {
+        if (space.value) {
+            console.log('Fetched space data:', space.value)
+        }
+    })
+
+
     useHead({
-        title: computed(() => space.value?.spaces?.name || 'Space Page')
+        title: computed(() => space?.value?.spaces?.name || 'Space Page')
     })
 
     definePageMeta({

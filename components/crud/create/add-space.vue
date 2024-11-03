@@ -2,7 +2,7 @@
     <div>
         <v-row justify="center">
             <v-card>
-                <form>
+                <form @submit.prevent="createNewSpace">
                     <v-toolbar dark color="primary">
                         <v-btn icon dark @click="dialog = false">
                             <v-icon icon="fas fa-circle-xmark"></v-icon>

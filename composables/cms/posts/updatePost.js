@@ -1,12 +1,15 @@
 // composables/updatePost.js
-export default async function updatePost(updateId, postData) {
-  const { $directus } = useNuxtApp();
+import { updateItem } from '@directus/sdk';
 
-  try {
-    $directus.request(updateItem('posts', updateId));
-    console.log('Post updated successfully');
-  } catch (error) {
-    console.error('Error deleting update:', error);
-    throw error;
+export default async function updatePost(spaceId, spaceData) {
+    const { $directus } = useNuxtApp();
+  
+    try {
+      const post = await $directus.request(updateItem('posts', spaceId));
+      return post;
+    } catch (error) {
+      console.error('Error updating post:', error);
+      throw error;
+    }
   }
-}
+  
