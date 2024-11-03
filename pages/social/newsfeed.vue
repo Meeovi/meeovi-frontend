@@ -43,22 +43,19 @@
             <v-tabs-window v-model="tab">
               <v-tabs-window-item value="one">
                 <v-row>
-                  <v-col cols="4" v-if="result?.blogPosts?.items && result?.blogPosts?.items.length"
-                    v-for="(activity, index) in result.blogPosts?.items" :key="index">
-                    <div style="padding-top: 10px;">
-                      <activity :activity="activity" />
-                    </div>
+                  <v-col cols="4" v-for="(posts, index) in posts" :key="index">
+                    <post :post="posts" />
                   </v-col>
                 </v-row>
               </v-tabs-window-item>
 
               <!--<v-tabs-window-item value="two">
                 <v-row>
-                  <v-col cols="4" v-if="result?.blogPosts?.items && result?.blogPosts?.items.length"
-                    v-for="(activity, index) in result.members.nodes" :key="index">
-                    <div style="padding-top: 10px;" v-for="(activities, index) in activity?.activities?.nodes"
+                  <v-col cols="4" v-if="posts && posts.length"
+                    v-for="(posts, index) in result.members.nodes" :key="index">
+                    <div style="padding-top: 10px;" v-for="(activities, index) in posts?.activities?.nodes"
                       :key="index">
-                      <activity :activity="activities" />
+                      <posts :posts="activities" />
                     </div>
                   </v-col>
                 </v-row>
@@ -66,11 +63,11 @@
 
               <v-tabs-window-item value="three">
                 <v-row>
-                  <v-col cols="4" v-if="result?.blogPosts?.items && result?.blogPosts?.items.length"
-                    v-for="(activity, index) in result.members.nodes" :key="index">
-                    <div style="padding-top: 10px;" v-for="(activities, index) in activity?.activities?.nodes"
+                  <v-col cols="4" v-if="posts && posts.length"
+                    v-for="(posts, index) in result.members.nodes" :key="index">
+                    <div style="padding-top: 10px;" v-for="(activities, index) in posts?.activities?.nodes"
                       :key="index">
-                      <activity :activity="activities" />
+                      <posts :posts="activities" />
                     </div>
                   </v-col>
                 </v-row>
@@ -86,33 +83,20 @@
 <script setup>
   import {
     ref,
-    onMounted
   } from 'vue';
-  import {
-    useQuery
-  } from '@vue/apollo-composable'
-  //import profilebar from '~/components/menus/profilebar.vue';
-  import activity from '~/components/cms/related/posts.vue'
-  import notes from '~/graphql/commerce/queries/notes'
-  //import { getActivity } from '~/composables/cms/social/getActivity'; // Import the composable
+  import post from '~/components/cms/related/posts.vue'
 
   const tab = ref(null);
   const {
-    result
-  } = useQuery(notes)
-  /*const activities = ref([]); 
-
-  onMounted(async () => {
-    activities.value = await getActivity(); 
-  });
-*/
-
-  const addLike = () => {
-    /* Implement like functionality */
-  };
-  const addBookmark = () => {
-    /* Implement bookmark functionality */
-  };
+        $directus,
+        $readItems
+    } = useNuxtApp()
+    
+  const {
+        data: posts
+    } = await useAsyncData('posts', () => {
+        return $directus.request($readItems('posts'))
+    })
 
   useHead({
     title: 'Social Feed',

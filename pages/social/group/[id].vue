@@ -347,7 +347,7 @@
 
 
     useHead({
-        title: computed(() => space?.value?.spaces?.name || 'Space Page')
+        title: computed(() => space?.value?.name || 'Space Page')
     })
 
     definePageMeta({

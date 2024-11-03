@@ -145,7 +145,7 @@ const deleteList = async () => {
 };
 
 useHead({
-    title: computed(() => list.value?.lists?.name || 'List Page')
+    title: computed(() => list.value?.name || 'List Page')
 })
 
 definePageMeta({

@@ -63,7 +63,7 @@
                                                             </v-toolbar-subtitle>
                                                             <v-spacer></v-spacer>
 
-                                                            <v-toolbar-subtitle class="socialListButton">
+                                                            <v-toolbar-subtitle class="socialSettingsButton">
                                                                 <updatepost :id="activityId" />
                                                             </v-toolbar-subtitle>
                                                         </v-toolbar>
@@ -125,7 +125,7 @@
     })
 
     useHead({
-        title: computed(() => post.value?.posts?.name || 'Post Page')
+        title: computed(() => post.value?.title || 'Post Page')
     })
 
     definePageMeta({

@@ -693,6 +693,10 @@ body {
     top: 23px;   
 }
 
+.socialSettingsButton {
+    left: 0px;
+}
+
 .feedcomments {
     background-color: #232323 !important;
 }
