@@ -1,7 +1,6 @@
-// composables/uploadFiles.js
 import { uploadFiles } from '@directus/sdk';
 
-export default async function uploadFile({ imageFile, documentFile }) {
+export default async function uploadFile({ imageFile, documentFile, videoFile }) {
     const { $directus } = useNuxtApp();
     const uploadedFiles = {};
   
@@ -19,6 +18,13 @@ export default async function uploadFile({ imageFile, documentFile }) {
         const uploadedDocument = await $directus.request(uploadFiles(formDataDocument));
         uploadedFiles.documentId = uploadedDocument.id;
       }
+
+      if (videoFile) {
+        const formDataVideo = new FormData();
+        formDataVideo.append('file', videoFile);
+        const uploadedVideo = await $directus.request(uploadFiles(formDataVideo));
+        uploadedFiles.videoId = uploadedVideo.id;
+      }
   
       return uploadedFiles;
     } catch (error) {
@@ -26,4 +32,3 @@ export default async function uploadFile({ imageFile, documentFile }) {
       throw error;
     }
   }
-  

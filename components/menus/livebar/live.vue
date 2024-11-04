@@ -23,19 +23,19 @@
                     <div class="text-center">
                         <v-dialog v-model="dialog" width="auto" transition="dialog-bottom-transition" fullscreen>
                             <template v-slot:activator="{ props }">
-                                <div class="avatarBorder">
+                                <div class="avatarBorder" v-for="(shorts, index) in short" :key="index">
                                     <v-avatar v-bind="props" size="60">
-                                        <img src="~/assets/images/face6.jpg" alt="video?.title" cover />
+                                        <img :src="shorts?.filename_disk" :alt="shorts?.name" cover />
                                     </v-avatar>
                                 </div>
                             </template>
 
                             <v-card min-height="75%" min-width="75%">
                                 <v-row>
-                                    <v-col cols="6"><video class="liveVideo" src="//vjs.zencdn.net/v/oceans.mp4" autoplay controls></video></v-col>
-                                    <v-col cols="6">
-                                      <p>{{ videoid?.video?.title }}</p>
-                                        <p>{{ videoid?.video?.content }}</p>
+                                    <v-col cols="12">
+                                        <shorts :short="shortId" />
+                                    </v-col>
+                                    <v-col cols="12">
                                         <v-divider></v-divider>
                                         <comments />
                                     </v-col>
@@ -62,12 +62,18 @@
                 controls: true,
             }
         }),
+        result() {
+            return {
+                shortId: this.$route.params.id,
+            }
+        },
     }
 </script>
 
 <script setup>
     import comments from '~/components/partials/comments.vue'
     //import livebubbles from '../livebar/livebubbles.vue'
+    import shorts from '~/components/cms/related/shorts.vue'
     import video from '~/components/media/live/livePlayer'
     import {
         ref
@@ -84,4 +90,22 @@
     const sound = ref(true);
     const widgets = ref(false)
     const route = useRoute();
+
+    const {
+        $directus,
+        $readItems,
+        $readItem
+    } = useNuxtApp()
+
+    const {
+        data: short
+    } = await useAsyncData('short', () => {
+        return $directus.request($readItems('shorts'))
+    })
+
+    const {
+        data: shortId
+    } = await useAsyncData('shortId', () => {
+        return $directus.request($readItem('shorts', route.params.id))
+    })
 </script>

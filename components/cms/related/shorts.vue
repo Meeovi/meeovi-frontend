@@ -1,50 +1,35 @@
 <template>
-    <div>
-        <a :href="`/videos/video/${short?.id}`">
-            <v-sheet class="mx-auto" elevation="0" min-width="800">
-                <v-slide-group v-model="model" class="pa-4" selected-class="bg-success" show-arrows>
-                    <v-slide-group-item v-for="video in short?.videoFields" :key="video"
-                        v-slot="{ isSelected, toggle, selectedClass }">
-                        <v-card color="grey-lighten-1" :class="['ma-4', selectedClass]" height="200" width="100"
-                            @click="toggle">
-                            <div class="d-flex fill-height align-center justify-center">
-                                <div class="item-img">
-                                    <div class="img-wrap">
-                                        <img :src="`${video?.thumbnail?.node?.sourceUrl}`"
-                                            :alt="video?.videoFile?.name" cover />
-                                    </div>
-                                </div>
-                                <v-scale-transition>
-                                    <v-icon v-if="isSelected" color="white" size="48" icon="mdi-close-circle-outline">
-                                    </v-icon>
-                                </v-scale-transition>
-                            </div>
-                        </v-card>
-                    </v-slide-group-item>
-                </v-slide-group>
-            </v-sheet>
-        </a>
-    </div>
+  <v-card class="mx-auto" max-width="400">
+    <v-img class="align-end text-white" height="200" :src="short?.thumbnail?.filename_disk" :alt="short?.name" cover />
+
+    <v-card-subtitle class="pt-4">
+      {{ short?.name }}
+    </v-card-subtitle>
+
+    <v-card-text>
+      <div>Type: {{ short?.type }}</div>
+
+      <div>{{ short?.description }}</div>
+    </v-card-text>
+
+    <v-card-actions>
+      <v-btn color="orange" text="View" :href="`/social/vibe/${short?.id}`"></v-btn>
+    </v-card-actions>
+  </v-card>
 </template>
 
-<script>
-    export default {
-    data() {
-      return {
-        model: null,
-      }
-    },
-    }
-</script>
-
 <script setup>
+import { ref } from 'vue'
+
+  const model = ref(null);
+
   const props = defineProps({
-    product: {
+    short: {
       type: Object,
       required: true,
     },
   });
   const {
-    product
+    short
   } = props;
 </script>

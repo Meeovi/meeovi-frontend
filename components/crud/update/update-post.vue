@@ -85,7 +85,7 @@
     } from 'vue';
     import uploadFiles from '@/composables/cms/content/uploadFiles';
     import updatePost from '@/composables/cms/posts/updatePost';
-    import { readItem, updateItem, deleteItem } from '@directus/sdk';
+    import { updateItem, deleteItem } from '@directus/sdk';
     import {
         useUserStore
     } from '~/stores/user'
