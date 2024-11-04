@@ -1,12 +1,9 @@
 <template>
     <div>
-        <v-row justify="center">
+        <v-row justify="center" style="position: relative; top: 20px;">
             <v-card>
                 <form @submit.prevent="createNewShort">
                     <v-toolbar dark color="primary">
-                        <v-btn icon dark @click="dialog = false">
-                            <v-icon icon="fas fa-circle-xmark"></v-icon>
-                        </v-btn>
                         <v-card-title>
                             <span class="text-h6">Create a new Short</span>
                         </v-card-title>
@@ -15,7 +12,8 @@
                         <v-container>
                             <v-row>
                                 <v-col cols="12">
-                                    <v-text-field v-model="shortData.name" id="shortName" label="Short Name*" required />
+                                    <v-text-field v-model="shortData.name" id="shortName" label="Short Name*"
+                                        required />
                                 </v-col>
                                 <v-col cols="6">
                                     <v-select v-model="shortData.type" label="What type of short is this?"
@@ -30,7 +28,8 @@
                                         :items="['Everyone', '18+', '16+']" />
                                 </v-col>
                                 <v-col cols="12">
-                                    <v-textarea v-model="shortData.description" label="Description" id="shortDescription" />
+                                    <v-textarea v-model="shortData.description" label="Description"
+                                        id="shortDescription" />
                                 </v-col>
                                 <v-col cols="6">
                                     <v-file-input @change="handleVideoUpload" clearable density="compact"
@@ -48,9 +47,6 @@
                     </v-card-text>
                     <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn color="blue-darken-1" variant="text" @click="dialog = false">
-                            Close
-                        </v-btn>
                         <v-btn color="blue-darken-1" variant="text" type="submit" @click="createNewShort">
                             Create Short
                         </v-btn>
@@ -62,15 +58,19 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-import uploadFiles from '@/composables/cms/content/uploadFiles';
-import createShort from '@/composables/cms/shorts/createShort';
-import {
-    useUserStore
-  } from '~/stores/user'
+    import {
+        ref
+    } from 'vue';
+    import {
+        useRouter
+    } from 'vue-router';
+    import uploadFiles from '@/composables/cms/content/uploadFiles';
+    import createShort from '@/composables/cms/shorts/createShort';
+    import {
+        useUserStore
+    } from '~/stores/user'
 
-  const userStore = useUserStore()
+    const userStore = useUserStore()
     // Make sure your props are properly defined
     // Update props to include spaces_id
     const props = defineProps({
@@ -81,8 +81,8 @@ import {
     });
 
     const userDisplayName = computed(() => {
-    return userStore.user?.name || userStore.user?.username || 'User'
-  })
+        return userStore.user?.name || userStore.user?.username || 'User'
+    })
 
     const route = useRoute();
 

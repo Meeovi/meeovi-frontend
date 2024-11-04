@@ -3,7 +3,7 @@
         <!--<profilebar />-->
         <v-card elevation="0">
             <v-toolbar title="Meeovi Vibez" color="primary">
-                <v-dialog min-width="500">
+                <v-dialog>
                     <template v-slot:activator="{ props: activatorProps }">
                         <v-btn v-bind="activatorProps" prepend-icon="fas fa-plus" title="Create a Vibe"
                             variant="flat">Create a Vibe
@@ -11,7 +11,15 @@
                     </template>
 
                     <template v-slot:default="{ isActive }">
-                        <createshort />
+                        <v-card color="white">
+                            <addlive />
+
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+
+                                <v-btn text="Close" @click="isActive.value = false"></v-btn>
+                            </v-card-actions>
+                        </v-card>
                     </template>
                 </v-dialog>
             </v-toolbar>
@@ -56,8 +64,10 @@
 
 <script setup>
     import shorts from '~/components/cms/related/shorts.vue'
-    import createshort from '~/components/crud/create/add-live.vue'
-    import { ref } from 'vue'
+    import addlive from '~/components/crud/create/add-live.vue'
+    import {
+        ref
+    } from 'vue'
 
     const tab = ref(null);
     const {

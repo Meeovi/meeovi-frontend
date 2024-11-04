@@ -1,20 +1,28 @@
 <template>
     <div class="livebar">
+
         <v-card height="75" variant="text">
             <v-tabs v-model="tab" center-active height="75">
                 <v-tab>
                     <div class="text-center">
-                        <v-dialog v-model="createdialog" transition="dialog-bottom-transition" fullscreen>
+                        <v-dialog v-model="createdialog" transition="dialog-bottom-transition">
                             <template v-slot:activator="{ props }">
-                                <v-avatar icon="fas fa-plus" style="background: rgb(var(--v-theme-info))!important; color: white;" size="60"
+                                <v-avatar icon="fas fa-plus"
+                                    style="background: rgb(var(--v-theme-info))!important; color: white;" size="60"
                                     v-bind="props"></v-avatar>
                             </template>
-                            <v-card>
-                                <video src="" controls></video>
-                                <v-card-actions>
-                                    <v-btn color="info" block @click="createdialog = false">Close</v-btn>
-                                </v-card-actions>
-                            </v-card>
+
+                            <template v-slot:default="{ isActive }">
+                                <v-card color="white">
+                                    <addlive />
+
+                                    <v-card-actions>
+                                        <v-spacer></v-spacer>
+
+                                        <v-btn text="Close" @click="isActive.value = false"></v-btn>
+                                    </v-card-actions>
+                                </v-card>
+                            </template>
                         </v-dialog>
                     </div>
                 </v-tab>
@@ -74,6 +82,7 @@
     import comments from '~/components/partials/comments.vue'
     //import livebubbles from '../livebar/livebubbles.vue'
     import shorts from '~/components/cms/related/shorts.vue'
+    import addlive from '~/components/crud/create/add-live.vue'
     import video from '~/components/media/live/livePlayer'
     import {
         ref
