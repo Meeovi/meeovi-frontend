@@ -2,14 +2,9 @@
   <div>
     <v-card elevation="0">
       <v-tabs v-model="tab">
-        <v-tab value="one">Account Information</v-tab>
-        <v-tab value="two">Communication</v-tab>
-        <v-tab value="three">Payments</v-tab>
-        <v-tab value="four">Personalization</v-tab>
-        <v-tab value="five">Security</v-tab>
-        <v-tab value="six">Language</v-tab>
-        <v-tab value="seven">Accessibility</v-tab>
-        <v-tab value="eight">Privacy and Data</v-tab>
+        <div v-for="(menu, index) in settings?.menus" :key="index">
+          <v-tab :value="menu?.value">{{ menu?.name }}</v-tab>
+        </div>
       </v-tabs>
 
       <v-card-text>
@@ -33,7 +28,7 @@
           <v-tabs-window-item value="five">
             <security />
           </v-tabs-window-item>
-          
+
           <v-tabs-window-item value="six">
             <language />
           </v-tabs-window-item>
@@ -63,6 +58,17 @@
   import {
     ref
   } from 'vue'
+
+  const {
+    $directus,
+    $readItem
+  } = useNuxtApp()
+
+  const {
+    data: settings
+  } = await useAsyncData('settings', () => {
+    return $directus.request($readItem('navigation', '25'))
+  })
 
   const tab = ref(null)
 

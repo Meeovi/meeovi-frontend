@@ -29,25 +29,17 @@
 
                 <v-tab>
                     <div class="text-center">
-                        <v-dialog v-model="dialog" width="auto" transition="dialog-bottom-transition" fullscreen>
+                        <v-dialog v-model="dialog" transition="dialog-bottom-transition">
                             <template v-slot:activator="{ props }">
                                 <div class="avatarBorder" v-for="(shorts, index) in short" :key="index">
                                     <v-avatar v-bind="props" size="60">
-                                        <img :src="shorts?.filename_disk" :alt="shorts?.name" cover />
+                                        <img :src="shorts?.thumbnail?.filename_disk" :alt="shorts?.name" cover />
                                     </v-avatar>
                                 </div>
                             </template>
 
                             <v-card min-height="75%" min-width="75%">
-                                <v-row>
-                                    <v-col cols="12">
-                                        <shorts :short="shortId" />
-                                    </v-col>
-                                    <v-col cols="12">
-                                        <v-divider></v-divider>
-                                        <comments />
-                                    </v-col>
-                                </v-row>
+                                <shortId />
 
                                 <v-card-actions>
                                     <v-btn color="primary" block @click="dialog = false">Close</v-btn>
@@ -81,7 +73,7 @@
 <script setup>
     import comments from '~/components/partials/comments.vue'
     //import livebubbles from '../livebar/livebubbles.vue'
-    import shorts from '~/components/cms/related/shorts.vue'
+    import shortId from '~/pages/social/vibe/[id].vue'
     import addlive from '~/components/crud/create/add-live.vue'
     import video from '~/components/media/live/livePlayer'
     import {
@@ -103,18 +95,11 @@
     const {
         $directus,
         $readItems,
-        $readItem
     } = useNuxtApp()
 
     const {
         data: short
     } = await useAsyncData('short', () => {
         return $directus.request($readItems('shorts'))
-    })
-
-    const {
-        data: shortId
-    } = await useAsyncData('shortId', () => {
-        return $directus.request($readItem('shorts', route.params.id))
     })
 </script>

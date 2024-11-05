@@ -14,19 +14,44 @@
         step="2"
         thumb-label
       ></v-slider>
-      <v-btn @click="saveAccessibility" color="primary">Save Settings</v-btn>
     </v-card-text>
   </v-card>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { useAccessibilitySettings } from '~/composables/cms/settings/useAccessibilitySettings'
 
-const highContrast = ref(false);
-const fontSize = ref(16);
-
-const saveAccessibility = () => {
-  // Implement save logic here
-  console.log('Saving accessibility settings');
-};
+const { highContrast, fontSize } = useAccessibilitySettings()
 </script>
+
+<style>
+/* Add these styles to your global CSS */
+body {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.high-contrast {
+  background-color: #000;
+  color: #fff;
+}
+
+body.high-contrast a {
+  color: #ffff00;
+}
+
+/* Adjust Vuetify components for high contrast mode */
+body.high-contrast .v-card {
+  background-color: #333;
+  color: #fff;
+}
+
+body.high-contrast .v-switch__track {
+  background-color: #666 !important;
+}
+
+body.high-contrast .v-switch__thumb {
+  background-color: #fff !important;
+}
+
+/* Add more high-contrast styles for other components as needed */
+</style>
