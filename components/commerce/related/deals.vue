@@ -1,9 +1,12 @@
 <template>
   <div>
     <v-sheet class="mx-auto sliderProducts row align-items-stretch items-row justify-content-center">
-      <h4>Deals</h4>
+      <v-toolbar title="Deals" color="transparent">
+        <v-toolbar-subtitle><a href="/departments/deals/">All Deals</a></v-toolbar-subtitle>
+      </v-toolbar>
       <v-slide-group v-model="model" class="pa-4" selected-class="bg-success" show-arrows>
-        <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }" v-for="(products, index) in result?.products?.items" :key="index">
+        <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }"
+          v-for="(products, index) in result?.products?.items" :key="index">
           <productCard :product="products" :class="['ma-4', selectedClass]" @click="toggle" />
 
           <div class="d-flex fill-height align-center justify-center">
@@ -19,34 +22,38 @@
 
 <script setup>
   import productCard from '~/components/commerce/commerce/product/productCard.vue'
-  import { ref } from 'vue'
+  import {
+    ref
+  } from 'vue'
   import {
     useQuery
-    } from '@vue/apollo-composable'
-  import {deals} from '~/graphql/commerce/queries/deals'
-  
+  } from '@vue/apollo-composable'
+  import {
+    deals
+  } from '~/graphql/commerce/queries/deals'
+
   const model = ref(null);
   const {
     result
-    } = useQuery(deals)
+  } = useQuery(deals)
 
- /*  import {
-        getDeals
-    } from '@/composables/commerce/products/deals.js';
+  /*  import {
+         getDeals
+     } from '@/composables/commerce/products/deals.js';
 
-    // Pass the specific products name you want to fetch
-    const products = ref([]); 
+     // Pass the specific products name you want to fetch
+     const products = ref([]); 
 
-    onMounted(async () => {
-        products.value = await getDeals();
-    });
+     onMounted(async () => {
+         products.value = await getDeals();
+     });
 
- import productCard from '~/components/commerce/commerce/product/productCard.vue'
-  //import { deals } from '~/graphql/commerce/queries/deals'
+  import productCard from '~/components/commerce/commerce/product/productCard.vue'
+   //import { deals } from '~/graphql/commerce/queries/deals'
 
 
 
-  const {
-    data
-  } = useAsyncQuery(deals); */
+   const {
+     data
+   } = useAsyncQuery(deals); */
 </script>

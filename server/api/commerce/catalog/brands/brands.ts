@@ -7,7 +7,8 @@ export default defineEventHandler(async (event) => {
     const brands = await prisma.mgtn_sparsh_brand.findMany({
       select: {
         brand_id: true,
-        title: true
+        title: true,
+        image: true
       },
       orderBy: {
         title: 'asc'

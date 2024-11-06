@@ -1,7 +1,9 @@
 <template>
   <div>
     <v-sheet class="mx-auto row align-items-stretch items-row">
-      <h4>Related Spaces</h4>
+      <v-toolbar title="Spaces within the community" color="transparent">
+        <v-toolbar-subtitle><a href="/social/spaces/">All Spaces</a></v-toolbar-subtitle>
+      </v-toolbar>
       <v-slide-group v-model="model" class="pa-4" selected-class="bg-success" show-arrows>
         <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }" v-for="(result, index) in result?.groups?.nodes" :key="index">
           <spaces style="margin: 10px;" :space="result" />

@@ -1,6 +1,8 @@
 <template>
   <v-sheet class="mx-auto sliderProducts">
-    <h4>Events you may like</h4>
+    <v-toolbar title="Events you may like" color="transparent">
+        <v-toolbar-subtitle><a href="/departments/NTY=/">All Events</a></v-toolbar-subtitle>
+      </v-toolbar>
     <v-sheet class="mx-auto" elevation="0" color="transparent">
       <v-slide-group v-model="model" class="pa-4" prev-icon="fas fa-arrow-left" next-icon="fas fa-arrow-right"
         selected-class="bg-primary">

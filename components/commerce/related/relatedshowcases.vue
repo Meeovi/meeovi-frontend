@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h4>Related Showcases</h4>
+    <v-toolbar title="Related Showcases" color="transparent">
+        <v-toolbar-subtitle><a href="/products/showcases/">All Showcases</a></v-toolbar-subtitle>
+      </v-toolbar>
     <v-slide-group v-model="model" class="pa-4" selected-class="bg-success" show-arrows>
       <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }">
         <v-card class="mx-auto" max-width="400">

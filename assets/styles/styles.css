@@ -259,7 +259,7 @@ body {
 .accountPage {
     position: relative;
     min-height: 100vh;
-    margin-top: 64px
+    margin-top: 64px;
 }
 
 .contentPage h2 {
