@@ -24,8 +24,7 @@
     "preview": "nuxt preview",
     "analyze": "nuxi analyze",
     "postinstall": "nuxt prepare && prisma generate",
-    "all": "npm-run-all --parallel dev start",
-    "slicemachine": "start-slicemachine"
+    "all": "npm-run-all --parallel dev start"
   },
   "dependencies": {
     "@apollo/client": "^3.11.8",
@@ -81,7 +80,6 @@
     "@nuxtjs/turnstile": "^0.7.1",
     "@prisma/client": "^5.20.0",
     "@sidebase/nuxt-auth": "^0.9.3",
-    "@slicemachine/adapter-nuxt": "^0.3.53",
     "@storefront-ui/nuxt": "^2.5.2",
     "@stripe/stripe-js": "^2.1.7",
     "@tinymce/tinymce-vue": "latest",
@@ -95,7 +93,6 @@
     "nuxt": "^3.13.2",
     "prisma": "^5.20.0",
     "sass": "^1.77.8",
-    "slice-machine-ui": "^2.9.1",
     "stripe": "^14.23.0",
     "typescript": "^5.4.3"
   },
