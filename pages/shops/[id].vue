@@ -1,109 +1,101 @@
 <template>
   <div class="contentPage">
-    <section data-bs-version="5.1" class="info3 cid-uehYEJBGCu" id="info3-9i" data-sortbtn="btn-primary"
-      :style="`background-image: url(${shop?.banner})`">
-
-
-
-
-      <div class="mbr-overlay" style="opacity: 0.6; background-color: rgb(68, 121, 217);">
+    <v-card>
+      <div class="card-box align-center">
+        <h4 class="card-title mbr-fonts-style align-center mb-4 display-1">
+          <strong><v-avatar :image="shop?.store_logo" size="80"></v-avatar></strong>
+        </h4>
       </div>
+      <img src="" alt="">
 
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="card col-12 col-lg-10">
-            <div class="card-wrapper">
-              <div class="card-box align-center">
-                <h4 class="card-title mbr-fonts-style align-center mb-4 display-1">
-                  <strong><v-avatar icon="$vuetify" :image="shop?.gravatar" size="80"></v-avatar></strong>
-                </h4>
-                <h4 class="card-title mbr-fonts-style align-center mb-4 display-1">
-                  <strong>{{ shop?.store_name }}</strong>
-                </h4>
-                <p class="mbr-text mbr-fonts-style mb-4 display-6" v-html="shop?.email"></p>
-                <v-rating v-model="rating" active-color="yellow-accent-4" color="white" :size="shop?.rating" half-increments>
-                </v-rating>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+      <v-toolbar>
+        <v-toolbar-title>{{ shop?.store_name }}</v-toolbar-title>
+      </v-toolbar>
+    </v-card>
 
-    <section data-bs-version="5.1" class="features14 cid-uehYKMMZRU" id="features15-9j" data-sortbtn="btn-primary">
+    <v-card elevation="0">
+      <v-tabs v-model="tab" bg-color="info">
+        <v-tab value="one">About</v-tab>
+        <v-tab value="two">Products</v-tab>
+        <v-tab value="three">Showcases</v-tab>
+        <v-tab value="four">Reviews</v-tab>
+      </v-tabs>
 
+      <v-card-text>
+        <v-tabs-window v-model="tab">
+          <v-tabs-window-item value="one">
+            <v-card elevation="0">
+              <v-card-item>
+                <v-card-title>
+                  <p>About {{shop?.store_name}}</p>
+                </v-card-title>
 
+                <v-card-subtitle>
+                  <div><p>Email: {{ shop?.store_email }}</p></div>
 
+                  <div><p>Phone: {{ shop?.store_phone }}</p></div>
 
+                  <div><p>Shipping Policy: {{ shop?.store_shipping_policy }}</p></div>
 
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="card col-12 col-md-6 col-lg-4">
-            <div class="card-wrapper">
-              <span class="mbr-iconfont mobi-mbri-protect mobi-mbri m-auto"></span>
-              <div class="card-box">
-                <h4 class="card-title mbr-fonts-style mb-2 display-7"><strong>Owner</strong></h4>
-                <h5 class="card-text mbr-fonts-style display-4">{{ shop?.first_name }} {{ shop?.last_name }}
-                </h5>
-              </div>
-            </div>
-          </div>
-          <div class="card col-12 col-md-6 col-lg-4">
-            <div class="card-wrapper">
-              <span class="mbr-iconfont m-auto mobi-mbri-website-theme-2 mobi-mbri"></span>
-              <div class="card-box">
-                <h4 class="card-title mbr-fonts-style mb-2 display-7"><strong>Launched on Meeovi</strong></h4>
-                <h5 class="card-text mbr-fonts-style display-4">{{ new Date(shop?.registered).toLocaleDateString() }}</h5>
-              </div>
-            </div>
-          </div>
-          <div class="card col-12 col-md-6 col-lg-4">
-            <div class="card-wrapper">
-              <span class="mbr-iconfont m-auto mobi-mbri-features mobi-mbri"></span>
-              <div class="card-box">
-                <h4 class="card-title mbr-fonts-style mb-2 display-7">
-                  <strong>Contact</strong>
-                </h4>
-                <h5 class="card-text mbr-fonts-style display-4" v-html="shop?.email"></h5>
-              </div>
+                  <div><p>Address: {{ shop?.store_address }}</p></div>
 
-            </div>
-          </div>
+                  <div><p>Country: {{ shop?.store_country }}</p></div>
+                </v-card-subtitle>
+              </v-card-item>
 
-        </div>
-      </div>
-    </section>
-    <v-row>
-      <productCard />
+              <v-card-text v-html="shop?.store_description"></v-card-text>
+            </v-card>
+          </v-tabs-window-item>
 
-      <v-col cols="3">
-        <showcases />
-      </v-col>
-    </v-row>
-    <!---->
+          <v-tabs-window-item value="two">
+            <productCard />
+          </v-tabs-window-item>
+
+          <v-tabs-window-item value="three">
+            <showcases />
+          </v-tabs-window-item>
+
+          <v-tabs-window-item value="four">
+            <comments />
+          </v-tabs-window-item>
+        </v-tabs-window>
+      </v-card-text>
+    </v-card>
   </div>
 </template>
 
 <script setup>
-  import { ref } from 'vue'
+  import {
+    ref
+  } from 'vue'
   import showcases from '~/components/commerce/related/relatedshowcases.vue'
   import productCard from '~/components/commerce/commerce/product/productCard.vue'
-  import { useShopById } from '~/composables/commerce/read/getShops';
+  import comments from '~/components/partials/comments.vue'
 
-  const rating = ref(null);
-  const shop = ref(null);
+  const config = useRuntimeConfig();
   const route = useRoute();
+  const tab = ref(null);
+  const shop = ref(null)
 
-  onMounted(async () => {
-    const id = route.params.id;
-    shop.value = await useShopById(id);
-  });
+  const fetchShop = async () => {
+    try {
+      const id = route.params.id
+      const response = await $fetch(`/api/commerce/marketplace/${route.params.id}`)
+      shop.value = response
+    } catch (error) {
+      console.error('Error fetching shop:', error)
+    }
+  }
+
+  onMounted(() => {
+    fetchShop()
+  })
 
   definePageMeta({
     layout: 'nolive',
   });
 
   useHead({
-        title: shop?.name,
-    })
+    title: computed(() => shop.value?.store_name || 'Shop Page')
+  })
 </script>

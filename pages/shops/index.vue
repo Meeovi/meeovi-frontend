@@ -1,45 +1,66 @@
 <template>
   <div class="contentPage">
-    <v-toolbar title="Shops" color="transparent"></v-toolbar>
-    <v-row style="padding-top: 10px; padding-bottom: 10px;">
-      <v-col cols="3" v-for="(shops, index) in shops" :key="index">
-        <v-card class="mx-auto" max-width="300">
-          <img class="align-end text-white" height="200" :src="`${shops?.gravatar}`" :alt="shops?.store_name" cover />
+    <v-card elevation="0">
+      <v-toolbar title="Shops on Meeovi" color="green"></v-toolbar>
+      <v-tabs v-model="tab" bg-color="green">
+        <v-tab value="one">All Shops</v-tab>
+        <v-tab value="two">Local Shops</v-tab>
+        <!--<v-tab value="three">Integrations</v-tab>-->
+      </v-tabs>
 
-          <v-card-title>@{{ shops?.store_name }}</v-card-title>
+      <v-card-text>
+        <v-tabs-window v-model="tab">
+          <v-tabs-window-item value="one">
+            <v-row>
+              <v-col cols="4" v-for="(stores, index) in stores" :key="index">
+                <store :store="stores" />
+              </v-col>
+            </v-row>
+          </v-tabs-window-item>
 
-          <v-card-subtitle class="pt-4">
-            <div class="text-center">
-              <v-rating :rating="shops?.rating" readonly></v-rating>
-            </div>
-          </v-card-subtitle>
+          <v-tabs-window-item value="two">
+            <v-row>
+              <v-col cols="4" v-for="(store, index) in stores" :key="index">
+                <store v-if="store" :store="store" />
+              </v-col>
+            </v-row>
+          </v-tabs-window-item>
 
-          <v-card-actions>
-            <v-btn color="orange" text="Enter" :href="`/shops/${shops.id}`"></v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-col>
-    </v-row>
+          <v-tabs-window-item value="three">
+            <v-row>
+              <v-col cols="4" v-for="(store, index) in stores" :key="index">
+                <store v-if="store" :store="store" />
+              </v-col>
+            </v-row>
+          </v-tabs-window-item>
+        </v-tabs-window>
+      </v-card-text>
+    </v-card>
   </div>
 </template>
 
 <script setup>
-  import {
-    ref,
-    onMounted
-  } from 'vue';
-  import followButton from '~/components/cms/social/followButton.vue'
-  import {
-    getShops
-  } from '~/composables/commerce/read/getShops';
+import { ref, onMounted } from 'vue'
+import store from '~/components/commerce/related/stores.vue'
 
-  const shops = ref([]);
+const tab = ref(null)
+const stores = ref([])
 
-  onMounted(async () => {
-    shops.value = await getShops();
-  });
+const fetchStores = async () => {
+  try {
+    const response = await $fetch('/api/commerce/marketplace/stores')
+    stores.value = Array.isArray(response) ? response : []
+  } catch (error) {
+    console.error('Error fetching stores:', error)
+    stores.value = []
+  }
+}
 
-  useHead({
-    title: 'Shops',
-  })
+onMounted(() => {
+  fetchStores()
+})
+
+useHead({
+  title: 'Shops',
+})
 </script>

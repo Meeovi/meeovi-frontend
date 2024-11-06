@@ -65,6 +65,7 @@
     "jsonwebtoken": "^9.0.2",
     "mvideoplayer": "^1.0.1",
     "next-auth": "^4.21.1",
+    "node-html-parser": "^6.1.13",
     "nuxt-vuefire": "^1.0.4",
     "pinia": "^2.2.2",
     "vite-plugin-vuetify": "^2.0.3",
