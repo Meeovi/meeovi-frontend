@@ -21,8 +21,9 @@
         
         <bestsellers />
         <recentlyviewed />
-        <blogcallout />
         <latestproducts />
+        <blogcallout />
+        <relatedbrands />
       <!--  <intro />
         <headerslider />
         <pixanomycallout />
@@ -49,6 +50,7 @@
     import exclusives from '~/components/commerce/related/exclusives.vue'
     import deals from '~/components/commerce/related/deals.vue'
     import recentlyviewed from '~/components/commerce/related/recentlyviewed.vue'
+    import relatedbrands from '~/components/commerce/related/relatedbrands.vue'
     //import relatedcreators from '~/components/related/relatedcreators.vue'
     //import yardsale from '~/components/pages/homepage/yardsale.vue'
     import blogcallout from '~/components/pages/homepage/blogcallout.vue'
