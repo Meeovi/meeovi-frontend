@@ -7,7 +7,8 @@
     "skipLibCheck": true,
     "types": [
       "@types/node",
-      "@nuxtjs/apollo"
+      "@nuxtjs/apollo",
+      "@types/leaflet"
     ]
   }
 }

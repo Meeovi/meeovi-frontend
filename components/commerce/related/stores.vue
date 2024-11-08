@@ -2,7 +2,7 @@
     <div>
         <div v-if="store">
             <v-card class="mx-auto" max-width="300">
-                <img class="align-end text-white" height="200" v-if="store.store_logo" :src="store.store_logo"
+                <img class="align-end text-white" height="200" v-if="store.store_logo" :src="`${config.public.commerceUrl}/media/${shop?.store_logo}`"
                     :alt="store.store_name" cover />
 
                 <v-card-title>{{ store.store_name }}</v-card-title>
@@ -21,6 +21,9 @@
 </template>
 
 <script setup>
+  import { useRuntimeConfig } from 'nuxt/app';
+
+    const config = useRuntimeConfig();
     const props = defineProps({
         store: {
             type: Object,

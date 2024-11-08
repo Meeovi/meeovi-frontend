@@ -44,6 +44,10 @@ export default defineNuxtConfig({
           src: `${process.env.NUXT_PUBLIC_COMMENTS_URL}/comments/embed.js`,
           async: true
         },
+        {
+          src: `https://app3.weatherwidget.org/js/?id=ww_217f04fb5b512`,
+          async: true
+        },
       ],
     },
   },

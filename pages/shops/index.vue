@@ -4,8 +4,8 @@
       <v-toolbar title="Shops on Meeovi" color="green"></v-toolbar>
       <v-tabs v-model="tab" bg-color="green">
         <v-tab value="one">All Shops</v-tab>
-        <v-tab value="two">Local Shops</v-tab>
-        <!--<v-tab value="three">Integrations</v-tab>-->
+        <!--<v-tab value="two">Local Shops</v-tab>
+        <v-tab value="three">Integrations</v-tab>-->
       </v-tabs>
 
       <v-card-text>

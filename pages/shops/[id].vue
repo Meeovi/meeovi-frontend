@@ -1,20 +1,19 @@
 <template>
   <div class="contentPage">
-    <v-card>
+    <v-card :image="`${config.public.commerceUrl}/media/${shop?.store_banner}`">
       <div class="card-box align-center">
         <h4 class="card-title mbr-fonts-style align-center mb-4 display-1">
-          <strong><v-avatar :image="shop?.store_logo" size="80"></v-avatar></strong>
+          <strong><v-avatar :image="`${config.public.commerceUrl}/media/${shop?.store_logo}`" size="80"></v-avatar></strong>
         </h4>
       </div>
-      <img src="" alt="">
 
-      <v-toolbar>
-        <v-toolbar-title>{{ shop?.store_name }}</v-toolbar-title>
+      <v-toolbar color="info">
+        <v-toolbar-title class="align-center">{{ shop?.store_name }}</v-toolbar-title>
       </v-toolbar>
     </v-card>
 
     <v-card elevation="0">
-      <v-tabs v-model="tab" bg-color="info">
+      <v-tabs v-model="tab" bg-color="info" align-tabs="center">
         <v-tab value="one">About</v-tab>
         <v-tab value="two">Products</v-tab>
         <v-tab value="three">Showcases</v-tab>
@@ -71,6 +70,7 @@
   import showcases from '~/components/commerce/related/relatedshowcases.vue'
   import productCard from '~/components/commerce/commerce/product/productCard.vue'
   import comments from '~/components/partials/comments.vue'
+  import { useRuntimeConfig } from 'nuxt/app';
 
   const config = useRuntimeConfig();
   const route = useRoute();

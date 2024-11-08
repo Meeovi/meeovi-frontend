@@ -6,9 +6,11 @@ export const CategoryQuery = gql`
     items {
       uid
       name
+      image
       children {
         uid
         name
+        image
       }
       description
       cms_block {

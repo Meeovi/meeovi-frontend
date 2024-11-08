@@ -24,7 +24,20 @@
       </v-sheet>
 
       <!--Department Banner Slider-->
-      <img :src="`${result?.categories?.items[0]?.image}`" :alt="result?.categories?.items[0]?.name" cover />
+      <div>
+        <div v-if="result?.categories?.items[0]?.uid === 'OTY='">
+          <timeBanner :category="result?.categories?.items[0]?.uid" />
+        </div>
+        <div v-else-if="result?.categories?.items[0]?.uid === 'OTM='">
+          <weather :category="result?.categories?.items[0]?.uid" />
+        </div>
+        <div v-else-if="result?.categories?.items[0]?.uid === 'NjY='">
+          <travel :category="result?.categories?.items[0]?.uid" />
+        </div>
+        <div v-else :src="`${result?.categories?.items[0]?.image}`">
+          <img :alt="result?.categories?.items[0]?.name" cover />
+        </div>
+      </div>
     </v-card>
 
     <v-row class="departmentRow">
@@ -100,8 +113,16 @@
   import {
     useQuery
   } from '@vue/apollo-composable'
-  import { CategoryQuery, BestsellerQuery, LatestProductsQuery, EventProductsQuery } from '~/graphql/commerce/queries/id/department'
-  
+  import {
+    CategoryQuery,
+    BestsellerQuery,
+    LatestProductsQuery,
+    EventProductsQuery
+  } from '~/graphql/commerce/queries/id/department'
+  import timeBanner from '~/components/appearance/time.vue'
+  import weather from '~/components/appearance/weather.vue'
+  import travel from '~/components/appearance/travel.vue'
+
   const model = ref(null)
 
   // Retrieve the route and extract the UID
