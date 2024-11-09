@@ -14,6 +14,7 @@
 
       <v-tabs v-model="tab" bg-color="purple">
         <v-tab value="one">All Showcases</v-tab>
+        <v-tab value="two">Bundled Products</v-tab>
       </v-tabs>
 
       <v-card-text>
@@ -21,6 +22,14 @@
           <v-tabs-window-item value="one">
             <v-row v-if="groupedProducts && groupedProducts.length">
               <v-col cols="4" v-for="(product, index) in groupedProducts" :key="index">
+                <productCard :product="product" />
+              </v-col>
+            </v-row>
+          </v-tabs-window-item>
+
+          <v-tabs-window-item value="two">
+            <v-row v-if="bundledProducts && bundledProducts.length">
+              <v-col cols="4" v-for="(product, index) in bundledProducts" :key="index">
                 <productCard :product="product" />
               </v-col>
             </v-row>
@@ -45,6 +54,13 @@ const { result } = useQuery(showcases);
 const groupedProducts = computed(() => 
   result.value?.products?.items.filter(
     (item) => item.__typename === 'GroupedProduct'
+  )
+);
+
+// Filter products to only include grouped products
+const bundledProducts = computed(() => 
+  result.value?.products?.items.filter(
+    (item) => item.__typename === 'BundledProduct'
   )
 );
 

@@ -35,6 +35,12 @@
                                                 label="Live Video" variant="solo-inverted">
                                             </v-file-input>
                                         </v-col>
+                                        <v-col cols="12">
+                                            <v-file-input @change="handleAudioUpload" chips multiple clearable
+                                                density="compact" prepend-icon="fas fa-microphone" accept="audio/*"
+                                                label="Audio" variant="solo-inverted">
+                                            </v-file-input>
+                                        </v-col>
                                     </v-row>
                                 </v-card-text>
                                 <v-divider class="mt-12"></v-divider>
@@ -122,6 +128,7 @@
         content: '',
         image: null,
         media: null,
+        audio: null,
         username: userDisplayName,
         space_id: props.space_id, // Initialize with the space_id from props
     });
@@ -129,6 +136,7 @@
     const dialog = ref(false);
     const includeFiles = ref(true);
     const imageFile = ref(null);
+    const audioFile = ref(null);
     const loading = ref(false);
 
     // Function to fetch existing post data
@@ -149,6 +157,7 @@
                 status: response.status,
                 content: response.content,
                 image: response.image,
+                audio: response.audio,
                 username: response.username
             };
         } catch (error) {
@@ -171,6 +180,10 @@
         imageFile.value = event.target.files[0];
     };
 
+    const handleAudioUpload = (event) => {
+        audioFile.value = event.target.files[0];
+    };
+
     const resetForm = () => {
         postData.value = {
             id: '', // Add this to store the post ID
@@ -180,6 +193,7 @@
             content: '',
             image: null,
             media: null,
+            audio: null,
         };
         imageFile.value = null;
     };

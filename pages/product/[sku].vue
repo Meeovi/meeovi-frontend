@@ -7,10 +7,20 @@
         <v-col cols="12">
           <v-row>
             <v-col cols="6">
-              <v-carousel>
-                <v-carousel-item :src="result?.products?.items[0]?.image?.url" cover>
-                </v-carousel-item>
-              </v-carousel>
+              <div>
+                <div v-if="result?.products?.items[0]?.__typename === 'VirtualProduct'">
+                  <videoProduct :category="result?.products?.items[0]?.format" />
+                </div>
+                <div v-else-if="result?.products?.items[0]?.__typename === 'DownloadableProduct'">
+                  <videoProduct :category="result?.products?.items[0]?.format" />
+                </div>
+                <div v-else>
+                  <v-carousel>
+                    <v-carousel-item :src="result?.products?.items[0]?.image?.url" cover>
+                    </v-carousel-item>
+                  </v-carousel>
+                </div>
+              </div>
             </v-col>
             <v-col cols="6">
               <section class="md:max-w-[640px]">
@@ -237,9 +247,8 @@
 </template>
 
 <script setup>
-  import videoPage from '~/components/commerce/pages/product/video.vue'
-  import chartPage from '~/components/commerce/pages/product/chart.vue'
-  import audioPage from '~/components/commerce/pages/product/audio.vue'
+  import videoProduct from '~/components/appearance/videoproduct.vue'
+  import chartProduct from '~/components/appearance/chart.vue'
   import {
     ref
   } from 'vue'
@@ -270,27 +279,17 @@
     useCounter
   } from '@vueuse/core';
   import share from '~/components/partials/share.vue'
-  import {
-    getProductById
-  } from '~/composables/commerce/products/products';
   import comments from '~/components/partials/comments.vue'
 
   import {
     product
   } from '~/graphql/commerce/queries/id/product'
   import createListBtn from '~/components/partials/createListBtn.vue';
-  /*  import {
-    addToCart
-  } from '~/utils/addToCart'
-  import {
-    buyNow
-  } from '~/utils/buyNow'
- */
   import productSpecs from '~/components/commerce/commerce/product/productSpecs.vue'
   import productReviews from '~/components/commerce/commerce/product/productReviews.vue'
   import productCard from '~/components/commerce/commerce/product/productCard.vue'
   import productCompare from '~/components/commerce/commerce/product/productCompare.vue'
-  //import product from '~/graphql/commerce/queries/id/product.js'
+
   const tab = ref(null);
   const model = ref(null);
   const route = useRoute();
@@ -311,10 +310,12 @@
 
 
   // Filter products to only include bundled products
-  const bundledProducts = computed(() => {
-    const mainProduct = result.value?.products?.items[0];
-    return mainProduct?.__typename === 'BundledProduct' ? mainProduct.items : [];
-  });
+  const bundledProduct = computed(() => {
+    const products = result.value?.products?.items
+    const product = products ? products.find(p => p.__typename === 'BundledProduct') : null
+    console.log('Bundled Product:', JSON.stringify(product, null, 2))
+    return product
+  })
 
   const inputId = useId();
   const min = ref(1);

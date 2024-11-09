@@ -11,7 +11,7 @@
 
                     <v-card-actions>
                         <v-btn class="ms-2" size="small" text="VIEW PRODUCTS" variant="outlined"
-                            :href="`/brands/${brand.brand_id}`"></v-btn>
+                            :href="`/commerce/brands/${brand.brand_id}`"></v-btn>
                     </v-card-actions>
                 </div>
 

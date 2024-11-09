@@ -62,15 +62,44 @@
                             </v-expansion-panels>
 
                             <!-- Update this section to properly access posts -->
-                            <div v-if="space?.posts.length">
-                                <div v-for="post in space.posts" :key="post.id">
-                                    <posts :post="post?.posts_id" style="padding-top: 15px;" />
+
+                            <!-- Audio Groups -->
+                            <div v-if="space?.type === 'Audio'">
+                                <div v-if="space?.posts.length">
+                                    <div v-for="post in space.posts" :key="post.id">
+                                        <audiogroup :post="post?.posts_id" style="padding-top: 15px;" />
+                                    </div>
+                                </div>
+
+                                <div v-else style="padding-top: 15px;">
+                                    <p style="text-align: center; font-size: 20px;">No audio posts in this space yet</p>
                                 </div>
                             </div>
 
+                            <!-- Video Groups 
+                            <div v-if="space?.type === 'Video'">
+                                <div v-if="space?.posts.length">
+                                    <div v-for="post in space.posts" :key="post.id">
+                                        <videogroup :post="post?.posts_id" style="padding-top: 15px;" />
+                                    </div>
+                                </div>
 
-                            <div v-else style="padding-top: 15px;">
-                                <p style="text-align: center; font-size: 20px;">No posts in this space yet</p>
+                                <div v-else style="padding-top: 15px;">
+                                    <p style="text-align: center; font-size: 20px;">No video posts in this space yet</p>
+                                </div>
+                            </div>-->
+
+                            <!-- Default Groups -->
+                            <div v-else>
+                                <div v-if="space?.posts.length">
+                                    <div v-for="post in space.posts" :key="post.id">
+                                        <posts :post="post?.posts_id" style="padding-top: 15px;" />
+                                    </div>
+                                </div>
+
+                                <div v-else style="padding-top: 15px;">
+                                    <p style="text-align: center; font-size: 20px;">No posts in this space yet</p>
+                                </div>
                             </div>
                         </v-tabs-window-item>
 
@@ -317,6 +346,8 @@
     import shorts from '~/components/cms/related/shorts.vue'
     import posts from '~/components/cms/related/posts.vue'
     import relatedevents from '~/components/commerce/related/relatedevents.vue'
+    import audiogroup from '~/components/appearance/audiogroup.vue'
+    import videogroup from '~/components/appearance/videogroup.vue'
     import {
         ref
     } from 'vue'

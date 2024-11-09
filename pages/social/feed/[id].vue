@@ -10,7 +10,8 @@
                                 <div class="row">
                                     <div class="col-12 col-lg-6">
                                         <div class="image-wrapper">
-                                            <img :src="post?.image?.filename_disk" :alt="post?.title">
+                                            <div v-if="post?.type === 'Video'"><video :src="post?.media?.filename_disk" controls></video></div>
+                                            <div v-else><img :src="post?.image?.filename_disk" :alt="post?.title"></div>
                                             <div class="recall-wrapper">
                                                 <div class="icon-wrapper">
                                                     <span class="mbr-iconfont mobi-mbri-quote-right mobi-mbri"

@@ -20,9 +20,15 @@
                             <v-file-input @change="handleImageUpload" clearable density="compact"
                                 prepend-icon="fas fa-image" accept="image/*" label="Image" variant="solo-inverted" />
                         </v-col>
+                        
                         <v-col cols="12">
                             <v-file-input @change="handleMediaUpload" chips multiple clearable density="compact"
                                 prepend-icon="fas fa-video" accept="video/*" label="Live Video" variant="solo-inverted">
+                            </v-file-input>
+                        </v-col>
+                        <v-col cols="12">
+                            <v-file-input @change="handleAudioUpload" chips multiple clearable density="compact"
+                                prepend-icon="fas fa-microphone" accept="audio/*" label="Audio" variant="solo-inverted">
                             </v-file-input>
                         </v-col>
                     </v-row>
@@ -94,9 +100,11 @@
         status: '',
         image: '',
         media: '',
+        audio: '',
         reactions: '',
         coverFile: null,
         avatarFile: null,
+        audioFile: null,
         username: userDisplayName,
         spaces: [
             {
@@ -112,6 +120,7 @@
 
     const imageFile = ref(null);
     const documentFile = ref(null);
+    const audioFile = ref(null);
 
     // Emit event for parent component updates
     const emit = defineEmits(['post-created']);
@@ -124,18 +133,24 @@
         documentFile.value = event.target.files[0];
     };
 
+    const handleAudioUpload = (event) => {
+        audioFile.value = event.target.files[0];
+    };
+
     const createNewPost = async () => {
     try {
         // Upload files if any
         const uploadedFiles = await uploadFiles({
             imageFile: imageFile.value,
             documentFile: documentFile.value,
+            audioFile: audioFile.value,
         });
 
         // Update post data with uploaded files
         if (uploadedFiles) {
             postData.value.image = uploadedFiles.imageId;
             postData.value.media = uploadedFiles.documentId;
+            postData.value.audio = uploadedFiles.audioId;
         }
 
         // Set spaces_id in postData to link post to the space

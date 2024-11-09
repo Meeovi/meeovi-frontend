@@ -1,6 +1,6 @@
 import { uploadFiles } from '@directus/sdk';
 
-export default async function uploadFile({ imageFile, documentFile, videoFile }) {
+export default async function uploadFile({ imageFile, documentFile, videoFile, audioFile }) {
     const { $directus } = useNuxtApp();
     const uploadedFiles = {};
   
@@ -24,6 +24,13 @@ export default async function uploadFile({ imageFile, documentFile, videoFile })
         formDataVideo.append('file', videoFile);
         const uploadedVideo = await $directus.request(uploadFiles(formDataVideo));
         uploadedFiles.videoId = uploadedVideo.id;
+      }
+
+      if (audioFile) {
+        const formDataAudio = new FormData();
+        formDataAudio.append('file', audioFile);
+        const uploadedAudio = await $directus.request(uploadFiles(formDataAudio));
+        uploadedFiles.audioId = uploadedAudio.id;
       }
   
       return uploadedFiles;
