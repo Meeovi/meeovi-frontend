@@ -738,6 +738,14 @@ body {
     margin-bottom: 5px;
 }
 
+/****************** Seller Dashboard **************/
+
+.sellerDashboard {
+    position: relative;
+    min-height: 100vh;
+    margin-top: 64px;
+}
+
 /****************** Social Profile ****************/
 
 .cid-u1nMLE9Ke9 {

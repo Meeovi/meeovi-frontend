@@ -1,7 +1,7 @@
 {
   "name": "mmeeovi",
   "type": "module",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "This is a storefront for Magento with Prisma and Algolia.",
   "author": "Sebastian Hilton (https://www.sebastianhilton.com)",
   "homepage": "https://template.meeovi.com",
