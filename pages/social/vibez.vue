@@ -108,4 +108,8 @@
     useHead({
         title: 'Vibez',
     })
+
+    definePageMeta({
+        middleware: ['authenticated'],
+    })
 </script>

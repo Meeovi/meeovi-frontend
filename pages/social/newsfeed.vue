@@ -103,6 +103,6 @@
   });
 
   definePageMeta({
-    //middleware: ['auth-logged-in'],
-  });
+        middleware: ['authenticated'],
+    })
 </script>

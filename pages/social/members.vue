@@ -1,78 +1,68 @@
 <template>
-    <div class="contentPage">
-      <!--<profilebar />-->
-        <v-toolbar title="My Network" color="transparent"></v-toolbar>
-        <v-row style="padding-top: 10px; padding-bottom: 10px;">
-            <v-col cols="3" v-for="(customers, index) in result?.members?.nodes" :key="index">
-                <v-card class="mx-auto" max-width="300">
-                    <img class="align-end text-white" height="200" :src="`${customers?.avatar?.url}`" :alt="customers?.username" cover />
+  <div class="contentPage">
+    <v-card elevation="0">
+      <v-toolbar title="My Network" color="info"><createcontact /></v-toolbar>
+      <v-tabs v-model="tab" bg-color="info">
+        <div v-for="(menu, index) in mynetwork?.menus" :key="index">
+          <v-tab :value="menu?.value">{{ menu?.name }}</v-tab>
+        </div>
 
-                    <v-card-title>@{{ customers?.username }}</v-card-title>
+      </v-tabs>
 
-                    <v-card-subtitle class="pt-4">
-                        <span class="fas fa-globe">{{ customers?.locale }}</span> 
-                    </v-card-subtitle>
+      <v-card-text>
+        <v-tabs-window v-model="tab">
+          <v-tabs-window-item value="one">
+            <contacts />
+          </v-tabs-window-item>
 
-                    <v-card-text>
-                        <div># of Friends: {{ customers?.totalFriendCount }}</div>
+          <v-tabs-window-item value="two">
+            <mycontacts />
+          </v-tabs-window-item>
 
-                        <div>Member Type: {{ customers?.memberTypes }}</div>
-
-                        <div>Last Update: {{ customers?.latestUpdate }}</div>
-                    </v-card-text>
-
-                    <v-card-actions>
-                      <followButton />
-                    </v-card-actions>
-                </v-card>
-            </v-col>
-        </v-row>
-    </div>
+          <v-tabs-window-item value="three">
+            <contacts />
+          </v-tabs-window-item>
+        </v-tabs-window>
+      </v-card-text>
+    </v-card>
+  </div>
 </template>
 
 <script setup>
   import {
     useQuery
   } from '@vue/apollo-composable'
-import profilebar from '~/components/menus/profilebar.vue'
-import followButton from '~/components/cms/social/followButton.vue'
-import {members} from '~/graphql/cms/queries/members'
-import { ref } from 'vue'
+  import createcontact from '~/components/crud/create/add-contact.vue'
+  import contacts from '~/components/pages/contacts/contacts.vue'
+  import mycontacts from '~/components/pages/contacts/mycontacts.vue'
+  //import customers from '~/graphql/commerce/queries/customers'
+  import {
+    ref
+  } from 'vue'
 
-const {
+  /*const {
     result
-  } = useQuery(members, null, {
-    context: {
-      clientName: 'secondary' // This will use the secondary endpoint
-    }
+  } = useQuery(customers)*/
+
+  const tab = ref(null);
+
+  const {
+    $directus,
+    $readItem
+  } = useNuxtApp()
+  const route = useRoute()
+
+  const {
+    data: mynetwork
+  } = await useAsyncData('mynetwork', () => {
+    return $directus.request($readItem('navigation', '28'))
   })
 
-const model = ref(null);
+  definePageMeta({
+        middleware: ['authenticated'],
+    })
 
-/*import { createDirectus, rest, readItems, readItem } from '@directus/sdk';
-const route = useRoute()
-
-const client = createDirectus(process.env.DIRECTUS_URL).with(rest());
-
-const members = await client.request(readItems('customers', route.params.id, {
-  fields: ['*'],
-  filter: {
-    type: {
-        _eq: "Seller"
-    }
-  }
-}));
-
-const page = await client.request(readItem('pages', route.params.id, {
-  fields: ['*'],
-  filter: {
-    id: {
-      _eq: 30,
-    }
-  }
-}));*/
-
-useHead({
+  useHead({
     title: 'My Network'
-})
+  })
 </script>
