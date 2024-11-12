@@ -19,10 +19,11 @@
                     <v-card-text>
                         <v-container>
                             <v-row>
-                                <v-col cols="12">
-                                    <v-select label="Is this a default address?"
-                                        :items="['Default Billing', 'Default Shipping']">
-                                    </v-select>
+                                <v-col cols="6">
+                                    <v-checkbox v-model="default_shipping" label="Default Shipping?"></v-checkbox>
+                                </v-col>
+                                <v-col cols="6">
+                                    <v-checkbox v-model="default_billing" label="Default Billing?"></v-checkbox>
                                 </v-col>
                                 <v-col cols="4">
                                     <v-text-field v-model="firstname" id="firstName" label="First Name*" required>
@@ -78,7 +79,7 @@
                     <v-card-actions>
                         <v-spacer></v-spacer>
                         <v-btn color="blue-darken-1" variant="text"  @click.prevent="deleteAddressAndRefresh">
-                            Close
+                            Delete Address
                         </v-btn>
                         <v-btn color="blue-darken-1" variant="text"  @click.prevent="updateAddressAndRefresh">
                             Update Address
@@ -89,16 +90,6 @@
         </v-dialog>
     </v-row>
 </template>
-
-<script>
-    export default {
-        data: () => ({
-            dialog: false,
-            includeFiles: true,
-            enabled: false,
-        }),
-    }
-</script>
 
 <script setup>
     import {
@@ -115,6 +106,7 @@
 
     const route = useRoute();
     const router = useRouter();
+    const dialog = ref(false);
 
     const city = ref('');
     const company = ref('');
@@ -185,7 +177,7 @@ const deleteAddress = async () => {
 
 const deleteAddressAndRefresh = async () => {
   await deleteAddress();
-  router.push('/account/user/addresses');  // Refresh the current route
+  router.push('/account/');  // Refresh the current route
 };
 
 const updateAddressAndRefresh = async () => {

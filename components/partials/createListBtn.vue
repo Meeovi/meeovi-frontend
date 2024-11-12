@@ -1,73 +1,76 @@
 <template>
-    <div>
-      <v-dialog v-model="dialogOpen" max-width="500">
-        <template v-slot:activator="{ props }">
-          <SfButton
-            v-bind="props"
-            variant="tertiary"
-            size="sm"
-            square
-            class="absolute bottom-0 right-0 mr-2 mb-2 bg-white ring-1 ring-inset ring-neutral-200 !rounded-full"
-            aria-label="Add to wishlist"
-          >
-            <SfIconFavorite size="sm" />
-          </SfButton>
-        </template>
-  
-        <v-card>
-          <v-card-title>Add to Wishlist</v-card-title>
-          <v-card-text>
-            <v-select
-              v-model="selectedWishlist"
-              :items="[{id: 'new', wishlist_name: 'Create New Wishlist'}, ...wishlists]"
-              item-title="wishlist_name"
-              item-value="multi_wishlist_id"
-              label="Select Wishlist"
-            ></v-select>
-            <template v-if="selectedWishlist === 'new'">
-              <v-text-field
-                v-model="newWishlistName"
-                label="New Wishlist Name"
-              ></v-text-field>
-              <v-textarea
-                v-model="newWishlistDescription"
-                label="Description"
-              ></v-textarea>
-            </template>
-          </v-card-text>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn color="primary" @click="addToWishlist">Add</v-btn>
-            <v-btn color="grey" @click="dialogOpen = false">Cancel</v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
-    </div>
-  </template>  
-  
-  <script setup>
-  import { ref, onMounted } from 'vue'
-  import { SfButton, SfIconFavorite } from '@storefront-ui/vue'
-  import { useWishlist } from '~/composables/commerce/customers/useWishlist'
-  
+  <div>
+    <v-dialog v-model="dialogOpen" max-width="500">
+      <template v-slot:activator="{ props }">
+        <SfButton v-bind="props" variant="tertiary" size="sm" square
+          class="absolute bottom-0 right-0 mr-2 mb-2 bg-white ring-1 ring-inset ring-neutral-200 !rounded-full"
+          aria-label="Add to wishlist">
+          <SfIconFavorite size="sm" />
+        </SfButton>
+      </template>
+
+      <v-card>
+        <v-tabs v-model="tab" bg-color="primary">
+          <v-tab value="one">Your Lists</v-tab>
+          <v-tab value="two">Create a List</v-tab>
+          <v-tab value="three">Item Three</v-tab>
+        </v-tabs>
+
+        <v-card-text>
+          <v-tabs-window v-model="tab">
+            <v-tabs-window-item value="one">
+              One
+            </v-tabs-window-item>
+
+            <v-tabs-window-item value="two">
+              <createlist />
+            </v-tabs-window-item>
+
+            <v-tabs-window-item value="three">
+              Three
+            </v-tabs-window-item>
+          </v-tabs-window>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
+  </div>
+</template>
+
+<script setup>
+  import {
+    ref,
+    onMounted
+  } from 'vue'
+  import {
+    SfButton,
+    SfIconFavorite
+  } from '@storefront-ui/vue'
+  import createlist from '~/components/crud/create/add-list.vue'
+
   const props = defineProps({
     productId: {
       type: Number,
       required: true
     }
   })
-  
+
   const dialogOpen = ref(false)
   const newWishlistName = ref('')
   const newWishlistDescription = ref('')
   const selectedWishlist = ref(null)
-  
-  const { wishlists, currentWishlist, fetchWishlists, createWishlist, setCurrentWishlist } = useWishlist()
-  
+
+  const {
+    wishlists,
+    currentWishlist,
+    fetchWishlists,
+    createWishlist,
+    setCurrentWishlist
+  } = useWishlist()
+
   onMounted(async () => {
     await fetchWishlists()
   })
-  
+
   const createNewWishlist = async () => {
     try {
       if (!newWishlistName.value) {
@@ -84,7 +87,7 @@
       alert('Failed to create wishlist')
     }
   }
-  
+
   const addToWishlist = async () => {
     try {
       if (selectedWishlist.value === 'new') {
@@ -104,12 +107,11 @@
       alert('Failed to add product to wishlist')
     }
   }
-  </script>
-  
-  
-  <style scoped>
+</script>
+
+
+<style scoped>
   .v-dialog {
     border-radius: 8px;
   }
-  </style>
-  
+</style>

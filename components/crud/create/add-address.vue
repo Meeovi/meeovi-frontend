@@ -19,10 +19,11 @@
                     <v-card-text>
                         <v-container>
                             <v-row>
-                                <v-col cols="12">
-                                    <v-select label="Is this a default address?"
-                                        :items="['Default Billing', 'Default Shipping']">
-                                    </v-select>
+                                <v-col cols="6">
+                                    <v-checkbox v-model="default_shipping" label="Default Shipping?"></v-checkbox>
+                                </v-col>
+                                <v-col cols="6">
+                                    <v-checkbox v-model="default_billing" label="Default Billing?"></v-checkbox>
                                 </v-col>
                                 <v-col cols="4">
                                     <v-text-field v-model="firstname" id="firstName" label="First Name*" required>
@@ -48,28 +49,28 @@
                                     <v-text-field v-model="suffix" label="Address Suffix"></v-text-field>
                                 </v-col>
                                 <v-col cols="6">
-                                    <v-text-field v-model="city" label="Meta Keywords"></v-text-field>
+                                    <v-text-field v-model="city" label="City"></v-text-field>
                                 </v-col>
                                 <v-col cols="6">
-                                    <v-text-field v-model="postcode" label="Meta Keywords"></v-text-field>
+                                    <v-text-field v-model="postcode" label="Postcode"></v-text-field>
                                 </v-col>
                                 <v-col cols="6">
-                                    <v-text-field v-model="company" label="Meta Keywords"></v-text-field>
+                                    <v-text-field v-model="company" label="Company"></v-text-field>
                                 </v-col>
                                 <v-col cols="6">
-                                    <v-text-field v-model="telephone" label="Meta Keywords"></v-text-field>
+                                    <v-text-field v-model="telephone" label="Phone Number"></v-text-field>
                                 </v-col>
                                 <v-col cols="6">
-                                    <v-text-field v-model="fax" label="Meta Keywords"></v-text-field>
+                                    <v-text-field v-model="fax" label="Fax"></v-text-field>
                                 </v-col>
                                 <v-col cols="6">
-                                    <v-text-field v-model="country_code" label="Meta Keywords"></v-text-field>
+                                    <v-text-field v-model="country_code" label="Country Code"></v-text-field>
                                 </v-col>
                                 <v-col cols="6">
-                                    <v-text-field v-model="vat_id" label="Meta Keywords"></v-text-field>
+                                    <v-text-field v-model="vat_id" label="Vat ID"></v-text-field>
                                 </v-col>
                                 <v-col cols="6">
-                                    <v-text-field v-model="region" label="Meta Keywords"></v-text-field>
+                                    <v-text-field v-model="region" label="Region"></v-text-field>
                                 </v-col>
                             </v-row>
                         </v-container>
@@ -80,7 +81,7 @@
                         <v-btn color="blue-darken-1" variant="text" @click="dialog = false">
                             Close
                         </v-btn>
-                        <v-btn color="blue-darken-1" variant="text" @click="dialog = false">
+                        <v-btn color="blue-darken-1" variant="text" @click="createAddressAndRefresh">
                             Create Address
                         </v-btn>
                     </v-card-actions>
@@ -89,16 +90,6 @@
         </v-dialog>
     </v-row>
 </template>
-
-<script>
-    export default {
-        data: () => ({
-            dialog: false,
-            includeFiles: true,
-            enabled: false,
-        }),
-    }
-</script>
 
 <script setup>
     import {
@@ -115,6 +106,7 @@
 
     const route = useRoute();
     const router = useRouter();
+    const dialog = ref(false);
 
     const city = ref('');
     const company = ref('');
