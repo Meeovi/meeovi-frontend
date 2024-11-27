@@ -11,7 +11,9 @@
             <v-tabs v-model="tab" bg-color="green">
                 <v-tab value="one">All Lists</v-tab>
                 <v-tab value="two">Bookmarks</v-tab>
-                <!--<v-tab value="two">Starred</v-tab>-->
+                <v-tab value="three">Starred</v-tab>
+                <v-tab value="four">Archived</v-tab>
+                <!---->
             </v-tabs>
 
             <v-card-text>
@@ -28,6 +30,22 @@
                         <v-row>
                             <v-col cols="3" v-for="websites in websites" :key="websites">
                                 <bookmark :website="websites" />
+                            </v-col>
+                        </v-row>
+                    </v-tabs-window-item>
+
+                    <v-tabs-window-item value="three">
+                        <v-row>
+                            <v-col cols="3" v-for="fave in listsfave" :key="fave">
+                                <list :list="fave" />
+                            </v-col>
+                        </v-row>
+                    </v-tabs-window-item>
+
+                    <v-tabs-window-item value="four">
+                        <v-row>
+                            <v-col cols="3" v-for="archive in listsarchive" :key="archive">
+                                <list :list="archive" />
                             </v-col>
                         </v-row>
                     </v-tabs-window-item>
@@ -60,7 +78,37 @@
     const {
         data: lists
     } = await useAsyncData('lists', () => {
-        return $directus.request($readItems('lists'))
+        return $directus.request($readItems('lists', {
+            filter: {
+                status: {
+                    _eq: 'Public'
+                }
+            }
+        }))
+    })
+
+    const {
+        data: listsfave
+    } = await useAsyncData('listsfave', () => {
+        return $directus.request($readItems('lists', {
+            filter: {
+                favorite: {
+                    _eq: 'yes'
+                }
+            }
+        }))
+    })
+
+    const {
+        data: listsarchive
+    } = await useAsyncData('listsarchive', () => {
+        return $directus.request($readItems('lists', {
+            filter: {
+                status: {
+                    _eq: 'Archived'
+                }
+            }
+        }))
     })
 
     const {

@@ -27,7 +27,7 @@
                 <v-tabs-window v-model="tab">
                     <v-tabs-window-item value="one">
                         <v-row style="padding-top: 15px;">
-                            <v-col cols="4" v-for="(spaces, index) in spaces" :key="index">
+                            <v-col cols="3" v-for="(spaces, index) in spaces" :key="index">
                                 <space :space="spaces" />
                             </v-col>
                         </v-row>
@@ -35,7 +35,7 @@
 
                     <v-tabs-window-item value="two">
                         <v-row style="padding-top: 15px;">
-                            <v-col cols="4" v-for="(spaces, index) in audiospaces" :key="index">
+                            <v-col cols="3" v-for="(spaces, index) in audiospaces" :key="index">
                                 <space :space="spaces" />
                             </v-col>
                         </v-row>
@@ -43,7 +43,7 @@
 
                     <v-tabs-window-item value="three">
                         <v-row style="padding-top: 15px;">
-                            <v-col cols="4" v-for="(spaces, index) in videospaces" :key="index">
+                            <v-col cols="3" v-for="(spaces, index) in videospaces" :key="index">
                                 <space :space="spaces" />
                             </v-col>
                         </v-row>
@@ -51,7 +51,7 @@
 
                     <v-tabs-window-item value="four">
                         <v-row style="padding-top: 15px;">
-                            <v-col cols="4" v-for="(spaces, index) in spaces" :key="index">
+                            <v-col cols="3" v-for="(spaces, index) in myspaces" :key="index">
                                 <space :space="spaces" />
                             </v-col>
                         </v-row>
@@ -67,12 +67,21 @@
     import space from '~/components/cms/related/spaces.vue'
     import createspace from '~/components/crud/create/add-space.vue'
     import { ref } from 'vue'
+    import {
+        useUserStore
+    } from '~/stores/user'
+    
+    const userStore = useUserStore()
 
     const tab = ref(null);
     const {
         $directus,
         $readItems
     } = useNuxtApp()
+
+    const userDisplayName = computed(() => {
+        return userStore.user?.name || userStore.user?.username || 'User'
+    })
 
     const {
         data: spaces
@@ -99,6 +108,18 @@
             filter: {
                 type: {
                     _eq: "Video"
+                }
+            }
+        }))
+    })
+
+    const {
+        data: myspaces
+    } = await useAsyncData('myspaces', () => {
+        return $directus.request($readItems('spaces', {
+            filter: {
+                creator: {
+                    _eq: `${userDisplayName.value}`
                 }
             }
         }))

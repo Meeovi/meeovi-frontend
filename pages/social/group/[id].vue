@@ -3,7 +3,7 @@
         <!--<profilebar />-->
 
         <v-card elevation="0">
-            <v-img class="align-end text-white" height="250" :src="`${space?.image?.filename_disk}`" :alt="space?.name"
+            <v-img class="align-end text-white" height="250" :src="`${$directus.url}/assets/${space?.image?.filename_disk}`" :alt="space?.name"
                 cover></v-img>
             <v-toolbar color="info" dark>
                 <v-toolbar-title
@@ -31,11 +31,11 @@
                     <v-btn variant="text" stacked prepend-icon="fas fa-shop">Products</v-btn>
                 </v-tab>
 
-                <v-tab value="tab-5">
+                <v-tab value="tab-5" v-if="space?.type === 'Default'">
                     <v-btn variant="text" stacked prepend-icon="fas fa-photo-film">Media</v-btn>
                 </v-tab>
 
-                <v-tab value="tab-6">
+                <v-tab value="tab-6" v-if="space?.type === 'Default'">
                     <v-btn variant="text" stacked prepend-icon="fas fa-calendar-days">Events</v-btn>
                 </v-tab>
 
@@ -76,7 +76,7 @@
                                 </div>
                             </div>
 
-                            <!-- Video Groups 
+                           <!-- Video Groups -->
                             <div v-if="space?.type === 'Video'">
                                 <div v-if="space?.posts.length">
                                     <div v-for="post in space.posts" :key="post.id">
@@ -87,7 +87,7 @@
                                 <div v-else style="padding-top: 15px;">
                                     <p style="text-align: center; font-size: 20px;">No video posts in this space yet</p>
                                 </div>
-                            </div>-->
+                            </div> 
 
                             <!-- Default Groups -->
                             <div v-else>
@@ -115,7 +115,7 @@
                                                         class="card-title align-center mbr-black mbr-fonts-style display-7">
                                                         <strong>
                                                             <v-avatar size="80" rounded="0"
-                                                                :image="`${space?.image?.filename_disk}`"></v-avatar>
+                                                                :image="`${$directus.url}/assets/${space?.image?.filename_disk}`"></v-avatar>
                                                         </strong><br><br>{{ space?.name }}
                                                     </h4>
                                                 </div>
@@ -152,12 +152,12 @@
                                                 <div class="card-box align-center">
                                                     <v-avatar size="50">
                                                         <img :src="`${space?.user_created?.avatar?.filename_disk}`"
-                                                            :alt="space?.user_created?.username" />
+                                                            :alt="space?.creator" />
                                                     </v-avatar>
                                                     <h4
                                                         class="card-title align-center mbr-black mbr-fonts-style display-7">
                                                         <strong>Created By</strong><br><br><a
-                                                            :href="`/account/user/${space?.user_created?.username}`"></a>
+                                                            :href="`/account/user/${space?.creator}`">{{ space?.creator }}</a>
                                                     </h4>
                                                 </div>
                                             </div>
@@ -192,12 +192,12 @@
                                         <v-col cols="4" sm="2" md="1">
                                             <v-avatar size="50">
                                                 <img :src="`${space?.user_created?.avatar?.filename_disk}`"
-                                                    :alt="space?.user_created?.username" />
+                                                    :alt="space?.creator" />
                                             </v-avatar>
                                         </v-col>
 
                                         <v-col class="hidden-xs-only text-left ms-2" sm="5" md="3">
-                                            <p>{{ space?.user_created?.username }}</p>
+                                            <a :href="`/account/user/${space?.creator}`">{{ space?.creator }}</a>
                                         </v-col>
 
                                         <v-col class="text-medium-emphasis text-truncate hidden-sm-and-down">
@@ -290,7 +290,7 @@
                         <!--Space Media-->
                         <v-tabs-window-item value="tab-4">
                             <v-card class="mx-auto" max-width="400">
-                                <img class="align-end text-white" height="200" :src="`${space?.media?.filename_disk}`"
+                                <img class="align-end text-white" height="200" :src="`${$directus.url}/assets/${space?.media?.filename_disk}`"
                                     :alt="space?.name" cover />
                             </v-card>
                         </v-tabs-window-item>

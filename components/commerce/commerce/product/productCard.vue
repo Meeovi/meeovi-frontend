@@ -8,7 +8,7 @@
               <img :src="`${product?.image?.url}`" :alt="product?.name"
                 class="block object-cover h-auto rounded-md aspect-square" width="300" height="300" />
             </SfLink>
-            <createListBtn :productId="product?.uid" />
+            <createListBtn :product_sku="product?.uid" />
           </div>
           <div class="p-4 border-t border-neutral-200">
             <SfLink :href="`/product/${product?.sku}`" variant="secondary" class="no-underline">{{product?.name}}
