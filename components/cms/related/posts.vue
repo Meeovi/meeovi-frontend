@@ -8,7 +8,7 @@
               <div class="items-wrapper" style="width: 1820px;">
                 <div class="item features-without-image">
                   <div class="item-wrapper">
-                    <img :src="post?.image?.filename_disk" :alt="post?.title || 'No Title'" />
+                    <img :src="`${$directus.url}assets/${post?.image?.filename_disk}`" :alt="post?.title || 'No Title'" />
                     <div class="card-box">
                       <p class="item-text mbr-fonts-style display-7">{{ post?.title }}</p>
                       <p class="item-text mbr-fonts-style display-7">{{ post?.content }}</p>

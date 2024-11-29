@@ -83,7 +83,10 @@
                 status: {
                     _eq: 'Public'
                 }
-            }
+            },
+            fields: ['*', {
+                '*': ['*']
+            }]
         }))
     })
 
@@ -95,7 +98,10 @@
                 favorite: {
                     _eq: 'yes'
                 }
-            }
+            },
+            fields: ['*', {
+                '*': ['*']
+            }]
         }))
     })
 
@@ -107,14 +113,21 @@
                 status: {
                     _eq: 'Archived'
                 }
-            }
+            },
+            fields: ['*', {
+                '*': ['*']
+            }]
         }))
     })
 
     const {
         data: websites
     } = await useAsyncData('websites', () => {
-        return $directus.request($readItems('websites'))
+        return $directus.request($readItems('websites', {
+            fields: ['*', {
+                '*': ['*']
+            }]
+        }))
     })
 
     useHead({

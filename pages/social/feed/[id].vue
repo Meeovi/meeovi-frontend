@@ -10,8 +10,8 @@
                                 <div class="row">
                                     <div class="col-12 col-lg-6">
                                         <div class="image-wrapper">
-                                            <div v-if="post?.type === 'Video'"><video :src="post?.media?.filename_disk" controls></video></div>
-                                            <div v-else><img :src="post?.image?.filename_disk" :alt="post?.title"></div>
+                                            <div v-if="post?.type === 'Video'"><video :src="`${$directus.url}assets/${post?.media?.filename_disk}`" controls></video></div>
+                                            <div v-else><img :src="`${$directus.url}assets/${post?.image?.filename_disk}`" :alt="post?.title"></div>
                                             <div class="recall-wrapper">
                                                 <div class="icon-wrapper">
                                                     <span class="mbr-iconfont mobi-mbri-quote-right mobi-mbri"
@@ -122,7 +122,11 @@
     const {
         data: post
     } = await useAsyncData('post', () => {
-        return $directus.request($readItem('posts', route.params.id))
+        return $directus.request($readItem('posts', route.params.id, {
+            fields: ['*', {
+                '*': ['*']
+            }]
+        }))
     })
 
     useHead({

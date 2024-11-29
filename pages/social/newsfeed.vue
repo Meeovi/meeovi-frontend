@@ -95,7 +95,9 @@
   const {
         data: posts
     } = await useAsyncData('posts', () => {
-        return $directus.request($readItems('posts'))
+        return $directus.request($readItems('posts', {
+            fields: ['*', { '*': ['*'] }]
+        }))
     })
 
   useHead({

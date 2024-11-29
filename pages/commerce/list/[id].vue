@@ -13,7 +13,7 @@
         <div class="row main align-items-center">
           <div class="col-md-6 image-element align-self-stretch">
             <div class="img-wrap" style="width: 80%; height: 80%;">
-              <img :src="`${list?.image?.filename_disk}`" :alt="list?.name">
+              <img :src="`${$directus.url}assets/${list?.image?.filename_disk}`" :alt="list?.name">
             </div>
           </div>
           <div class="col-md-6 text-element">
@@ -158,7 +158,11 @@
   const {
         data: list
       } = await useAsyncData('list', () =>
-        $directus.request(readItem('lists', route.params.id))
+        $directus.request(readItem('lists', route.params.id, {
+            fields: ['*', {
+                '*': ['*']
+            }]
+        }))
       )
 
   // Delete functionality

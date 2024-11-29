@@ -2,7 +2,7 @@
     <v-row class="contentPage">
         <v-col cols="12">
             <v-card class="mx-auto" max-width="800px" elevation="0">
-                <img class="align-end text-white" height="200" :src="`${$directus.url}/assets/${website?.image?.filename_disk}`" :alt="website?.name" cover />
+                <img class="align-end text-white" height="200" :src="`${$directus.url}assets/${website?.image?.filename_disk}`" :alt="website?.name" cover />
                 <v-card-title>{{ website?.name }}</v-card-title>
 
                 <v-card-subtitle class="pt-4">
@@ -50,7 +50,11 @@
     const {
         data: website
     } = await useAsyncData('website', () => {
-        return $directus.request($readItem('websites', route.params.id))
+        return $directus.request($readItem('websites', route.params.id, {
+            fields: ['*', {
+                '*': ['*']
+            }]
+        }))
     })
 
 

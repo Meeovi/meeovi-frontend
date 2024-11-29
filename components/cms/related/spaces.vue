@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-card class="mx-auto" max-width="400" height="480">
-            <v-img class="align-end text-white" height="200" :src="`${space?.image?.filename_disk}`" :alt="space?.name" cover></v-img>
+            <img class="align-end text-white" height="200" :src="`${$directus.url}assets/${space?.image?.filename_disk}?width=600`" :alt="space?.name" cover />
 
             <v-card-title>{{ space?.name }}</v-card-title>
             <v-card-subtitle class="pt-4">
@@ -29,6 +29,9 @@
     import {
         ref
     } from 'vue'
+    const {
+        $directus
+    } = useNuxtApp()
 
     const model = ref(null)
     const props = defineProps({

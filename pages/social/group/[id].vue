@@ -3,8 +3,8 @@
         <!--<profilebar />-->
 
         <v-card elevation="0">
-            <v-img class="align-end text-white" height="250" :src="`${$directus.url}/assets/${space?.image?.filename_disk}`" :alt="space?.name"
-                cover></v-img>
+            <v-img class="align-end text-white" height="250"
+                :src="`${$directus.url}assets/${space?.image?.filename_disk}`" :alt="space?.name" cover></v-img>
             <v-toolbar color="info" dark>
                 <v-toolbar-title
                     style="width: 100%; text-align: center; font-size: 30px;">{{ space?.name }}</v-toolbar-title>
@@ -28,11 +28,11 @@
                 </v-tab>
 
                 <v-tab value="tab-4">
-                    <v-btn variant="text" stacked prepend-icon="fas fa-shop">Products</v-btn>
+                    <v-btn variant="text" stacked prepend-icon="fas fa-shop">Media</v-btn>
                 </v-tab>
 
                 <v-tab value="tab-5" v-if="space?.type === 'Default'">
-                    <v-btn variant="text" stacked prepend-icon="fas fa-photo-film">Media</v-btn>
+                    <v-btn variant="text" stacked prepend-icon="fas fa-photo-film">Products</v-btn>
                 </v-tab>
 
                 <v-tab value="tab-6" v-if="space?.type === 'Default'">
@@ -76,7 +76,7 @@
                                 </div>
                             </div>
 
-                           <!-- Video Groups -->
+                            <!-- Video Groups -->
                             <div v-if="space?.type === 'Video'">
                                 <div v-if="space?.posts.length">
                                     <div v-for="post in space.posts" :key="post.id">
@@ -87,7 +87,7 @@
                                 <div v-else style="padding-top: 15px;">
                                     <p style="text-align: center; font-size: 20px;">No video posts in this space yet</p>
                                 </div>
-                            </div> 
+                            </div>
 
                             <!-- Default Groups -->
                             <div v-else>
@@ -115,7 +115,7 @@
                                                         class="card-title align-center mbr-black mbr-fonts-style display-7">
                                                         <strong>
                                                             <v-avatar size="80" rounded="0"
-                                                                :image="`${$directus.url}/assets/${space?.image?.filename_disk}`"></v-avatar>
+                                                                :image="`${$directus.url}assets/${space?.image?.filename_disk}`"></v-avatar>
                                                         </strong><br><br>{{ space?.name }}
                                                     </h4>
                                                 </div>
@@ -290,17 +290,22 @@
                         <!--Space Media-->
                         <v-tabs-window-item value="tab-4">
                             <v-card class="mx-auto" max-width="400">
-                                <img class="align-end text-white" height="200" :src="`${$directus.url}/assets/${space?.media?.filename_disk}`"
-                                    :alt="space?.name" cover />
+                                <div v-if="space?.media?.filename_disk"><video class="align-end text-white" height="200"
+                                        :src="`${$directus.url}assets/${space?.media?.filename_disk}`"
+                                        :alt="space?.name"></video></div>
+
+                                <div v-else="space?.image?.filename_disk"><img class="align-end text-white" height="200"
+                                        :src="`${$directus.url}assets/${space?.image?.filename_disk}`"
+                                        :alt="space?.name" cover /></div>
+
                             </v-card>
                         </v-tabs-window-item>
 
                         <!--Space Products-->
                         <v-tabs-window-item value="tab-5">
                             <section class="features3 cid-sBXVblMrWB" id="features3-2j">
-                                <div class="container" v-for="products in space?.products?.products_id"
-                                    :key="products?.id">
-                                    <productCard :product="products" />
+                                <div class="container" v-for="products in space?.products" :key="products?.id">
+                                    <productCard :product="products?.products_id" />
                                 </div>
                             </section>
                         </v-tabs-window-item>
@@ -308,9 +313,8 @@
                         <!--Space Events-->
                         <v-tabs-window-item value="tab-6">
                             <section class="features3 cid-sBXVblMrWB" id="features3-2j">
-                                <div class="container" v-for="products in space?.products?.products_id"
-                                    :key="products?.id">
-                                    <relatedevents :product="products" />
+                                <div class="container" v-for="products in space?.products" :key="products?.id">
+                                    <relatedevents :product="products?.products_id" />
                                 </div>
                             </section>
                         </v-tabs-window-item>
@@ -364,18 +368,11 @@
         data: space
     } = await useAsyncData('space', () => {
         return $directus.request($readItem('spaces', route.params.id, {
-            fields: ['*', 'posts.posts_id.*'],
+            fields: ['*', {
+                '*': ['*']
+            }]
         }))
     })
-
-
-    // Add this debug log
-    watchEffect(() => {
-        if (space.value) {
-            console.log('Fetched space data:', space.value)
-        }
-    })
-
 
     useHead({
         title: computed(() => space?.value?.name || 'Space Page')

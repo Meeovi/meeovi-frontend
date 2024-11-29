@@ -78,7 +78,11 @@
     const {
         data: vibez
     } = await useAsyncData('vibez', () => {
-        return $directus.request($readItems('shorts'))
+        return $directus.request($readItems('shorts', {
+            fields: ['*', {
+                '*': ['*']
+            }]
+        }))
     })
 
     const {
@@ -89,7 +93,10 @@
                 type: {
                     _eq: "Live"
                 }
-            }
+            },
+            fields: ['*', {
+                '*': ['*']
+            }]
         }))
     })
 
@@ -101,7 +108,10 @@
                 type: {
                     _eq: "Video"
                 }
-            }
+            },
+            fields: ['*', {
+                '*': ['*']
+            }]
         }))
     })
 

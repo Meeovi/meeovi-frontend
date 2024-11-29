@@ -33,13 +33,13 @@
                             <template v-slot:activator="{ props }">
                                 <div class="avatarBorder" v-for="(shorts, index) in short" :key="index">
                                     <v-avatar v-bind="props" size="60">
-                                        <img :src="shorts?.thumbnail?.filename_disk" :alt="shorts?.name" cover />
+                                        <img :src="`${$directus.url}assets/${shorts?.thumbnail?.filename_disk}`" :alt="shorts?.name" cover />
                                     </v-avatar>
                                 </div>
                             </template>
 
                             <v-card min-height="75%" min-width="75%">
-                                <shortId />
+                                <shortId :vibe="shortId" />
 
                                 <v-card-actions>
                                     <v-btn color="primary" block @click="dialog = false">Close</v-btn>
@@ -100,6 +100,8 @@
     const {
         data: short
     } = await useAsyncData('short', () => {
-        return $directus.request($readItems('shorts'))
+        return $directus.request($readItems('shorts', {
+            fields: ['*', { '*': ['*'] }]
+        }))
     })
 </script>

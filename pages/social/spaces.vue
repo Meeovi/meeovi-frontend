@@ -86,7 +86,9 @@
     const {
         data: spaces
     } = await useAsyncData('spaces', () => {
-        return $directus.request($readItems('spaces'))
+        return $directus.request($readItems('spaces', {
+            fields: ['*', { '*': ['*'] }]
+        }))
     })
 
     const {

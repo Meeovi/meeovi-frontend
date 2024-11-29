@@ -3,8 +3,7 @@
         <v-row>
             <v-col cols="12">
                 <v-card class="mx-auto" max-width="800">
-                    <video class="align-end text-white" height="200" width="100%" :src="short?.video?.filename_disk"
-                        controls :alt="short?.name"></video>
+                    <video height="200" width="100%" :src="`${$directus.url}assets/${short?.video?.filename_disk}`" controls></video>
 
                     <v-card-subtitle class="pt-4">
                         {{ short?.name }}
@@ -12,6 +11,8 @@
 
                     <v-card-text>
                         <div>Type: {{ short?.type }}</div>
+
+                        <div>Duration: {{ short?.duration }}</div>
 
                         <div>{{ short?.description }}</div>
                     </v-card-text>
@@ -87,7 +88,11 @@
     const {
         data: short
     } = await useAsyncData('short', () => {
-        return $directus.request($readItem('shorts', route.params.id))
+        return $directus.request($readItem('shorts', route.params.id, {
+            fields: ['*', {
+                '*': ['*']
+            }]
+        }))
     })
 
     useHead({
@@ -132,4 +137,14 @@
         }
         return true;
     };
+
+    const props = defineProps({
+        vibe: {
+            type: Object,
+            required: true,
+        },
+    });
+    const {
+        vibe
+    } = props;
 </script>
