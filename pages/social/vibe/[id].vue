@@ -3,7 +3,7 @@
         <v-row>
             <v-col cols="12">
                 <v-card class="mx-auto" max-width="800">
-                    <video height="200" width="100%" :src="`${$directus.url}assets/${short?.video?.filename_disk}`" controls></video>
+                    <video loading="lazy" id="my-video" class="video-js" controls preload="auto" style="width: 100% !important; height: 50% !important;" :src="`${$directus.url}assets/${short?.video?.filename_disk}`" loop></video>
 
                     <v-card-subtitle class="pt-4">
                         {{ short?.name }}

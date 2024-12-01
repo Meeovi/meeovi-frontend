@@ -37,7 +37,7 @@
                     </div>
                 </div>
             </div>
-            <img src="~/~/assets/images/background2.jpg" alt="Coupons">
+            <nuxt-img loading="lazy" src="~/~/assets/images/background2.jpg" alt="Coupons">
         </section>
     </div>
 </template>

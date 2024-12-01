@@ -113,7 +113,7 @@
                     </div>
                 </div>
             </div>
-            <img src="~/~/assets/images/background2.jpg" alt="Invoices">
+            <nuxt-img loading="lazy" src="~/~/assets/images/background2.jpg" alt="Invoices">
         </section>
 
         <v-card title="Invoice Items" flat>

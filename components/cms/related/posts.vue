@@ -8,14 +8,14 @@
               <div class="items-wrapper" style="width: 1820px;">
                 <div class="item features-without-image">
                   <div class="item-wrapper">
-                    <img :src="`${$directus.url}assets/${post?.image?.filename_disk}`" :alt="post?.title || 'No Title'" />
+                    <nuxt-img loading="lazy" :src="`${$directus.url}assets/${post?.image?.filename_disk}`" :alt="post?.title || 'No Title'" />
                     <div class="card-box">
                       <p class="item-text mbr-fonts-style display-7">{{ post?.title }}</p>
                       <p class="item-text mbr-fonts-style display-7">{{ post?.content }}</p>
                       <div class="people-wrapper">
                         <div class="people-wrap">
                           <div class="image-wrap">
-                            <img class="person" src="" :alt="post?.username || 'Anonymous'">
+                            <nuxt-img loading="lazy" class="person" src="" :alt="post?.username || 'Anonymous'">
                           </div>
                           <div class="rating-content">
                             <p class="mbr-rating mbr-fonts-style display-4">

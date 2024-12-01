@@ -5,7 +5,7 @@
         <div class="border border-neutral-200 rounded-md hover:shadow-lg max-w-[300px]">
           <div class="relative">
             <SfLink :href="`/product/${product?.sku}`" class="block">
-              <img :src="`${product?.image?.url}`" :alt="product?.name"
+              <nuxt-img loading="lazy" :src="`${product?.image?.url}`" :alt="product?.name"
                 class="block object-cover h-auto rounded-md aspect-square" width="300" height="300" />
             </SfLink>
             <createListBtn :product_sku="product?.uid" />

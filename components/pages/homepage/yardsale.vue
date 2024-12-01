@@ -24,7 +24,7 @@
                         </div>
                     </div>
                     <div class="item-img">
-                        <img :src="`${category?.custom_attributes[1]?.value}`" :alt="category?.name">
+                        <nuxt-img loading="lazy" :src="`${category?.custom_attributes[1]?.value}`" :alt="category?.name">
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
             <div class="item features-image col-12 col-md-12 col-lg-4">
                 <div class="item-wrapper">
                     <div class="item-img">
-                        <img src="assets/images/022.jpg" alt="">
+                        <nuxt-img loading="lazy" src="assets/images/022.jpg" alt="">
                         <div class="mbr-section-btn">
                             <a href="" class="btn btn-danger item-btn display-7" target="_blank">
                                 Read More

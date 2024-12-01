@@ -7,7 +7,7 @@
             <div class="row">
               <div class="col-md-6 col-lg-3">
                 <v-avatar size="120">
-                  <img :src="`${members?.avatar?.url}`" :alt="members?.username" />
+                  <nuxt-img loading="lazy" :src="`${members?.avatar?.url}`" :alt="members?.username" />
                 </v-avatar>
                 <div class="user_name mbr-fonts-style display-7">
                   <strong>{{ members?.username}}</strong>

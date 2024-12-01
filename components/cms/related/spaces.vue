@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-card class="mx-auto" max-width="400" height="480">
-            <img class="align-end text-white" height="200" :src="`${$directus.url}assets/${space?.image?.filename_disk}?width=600`" :alt="space?.name" cover />
+            <nuxt-img loading="lazy" class="align-end text-white" height="200" :src="`${$directus.url}assets/${space?.image?.filename_disk}?width=600`" :alt="space?.name" cover />
 
             <v-card-title>{{ space?.name }}</v-card-title>
             <v-card-subtitle class="pt-4">

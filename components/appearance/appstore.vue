@@ -21,7 +21,7 @@
                                                             <strong>{{ product?.categories?.name }}</strong>
                                                         </p>
                                                         <div class="item-img">
-                                                            <img :src="`${product?.image?.url}`" :alt="product?.name" />
+                                                            <nuxt-img loading="lazy" :src="`${product?.image?.url}`" :alt="product?.name" />
                                                         </div>
                                                         <div class="item-content">
                                                             <p class="item-text mbr-fonts-style display-7">

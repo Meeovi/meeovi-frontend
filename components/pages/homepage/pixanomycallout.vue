@@ -28,7 +28,7 @@
             <div class="item features-image col-12 col-md-6 col-lg-3">
                 <div class="item-wrapper">
                     <div class="item-img">
-                        <img src="assets/images/011.jpg" alt="">
+                        <nuxt-img loading="lazy" src="assets/images/011.jpg" alt="">
                         <div class="mbr-section-btn">
                             <a href="" class="btn btn-danger item-btn display-7" target="_blank">
                                 Read More
@@ -52,7 +52,7 @@
             <div class="item features-image col-12 col-md-6 col-lg-3">
                 <div class="item-wrapper">
                     <div class="item-img">
-                        <img src="assets/images/022.jpg" alt="">
+                        <nuxt-img loading="lazy" src="assets/images/022.jpg" alt="">
                         <div class="mbr-section-btn">
                             <a href="" class="btn btn-danger item-btn display-7" target="_blank">
                                 Read More

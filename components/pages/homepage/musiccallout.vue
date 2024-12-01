@@ -6,7 +6,7 @@
         <div class="row main align-items-center">
           <div class="col-md-6 image-element ">
             <div class="img-wrap">
-              <img :src="`${category?.image}`" :alt="category?.name" />
+              <nuxt-img loading="lazy" :src="`${category?.image}`" :alt="category?.name" />
             </div>
           </div>
           <div class="col-md-6 text-element">

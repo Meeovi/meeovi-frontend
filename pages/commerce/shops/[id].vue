@@ -1,7 +1,7 @@
 <template>
     <div class="contentPage">
         <v-card variant="text">
-          <img class="align-end text-white" height="400" :src="shop?.image?.filename_disk" :alt="shop?.name" cover />
+          <nuxt-img loading="lazy" class="align-end text-white" height="400" :src="shop?.image?.filename_disk" :alt="shop?.name" cover />
           <h1>Name: <strong>{{ shop?.name }}</strong></h1>
           <h3>Owner: {{ shop?.customers?.customers_id?.username }}</h3>
           <h3>Launched: {{ shop?.user_created }}</h3>
@@ -11,7 +11,7 @@
             <v-col cols="3" v-for="(products, index) in shop?.products?.products_id" :key="index">
                 <a href="">
                     <v-card class="ma-4" height="380" width="250" @click="toggle">
-                        <img class="align-end text-white" height="200" :src="products?.image?.filename_disk" :alt="products?.name" cover />
+                        <nuxt-img loading="lazy" class="align-end text-white" height="200" :src="products?.image?.filename_disk" :alt="products?.name" cover />
 
                         <v-card-title class="pt-4">
                             {{ products?.name }}

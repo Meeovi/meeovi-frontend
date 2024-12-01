@@ -8,7 +8,7 @@
         <div class="row justify-content-center">
           <div class="col content-wrap">
             <div class="mbr-section-head">
-              <img src="~/assets/images/logo512alpha-128x128.png" alt="Meeovi Logo" class="authLogo" />
+              <nuxt-img loading="lazy" src="~/assets/images/logo512alpha-128x128.png" alt="Meeovi Logo" class="authLogo" />
               <h2 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
                 <strong>Register</strong>
               </h2>

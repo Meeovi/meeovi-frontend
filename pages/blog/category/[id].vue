@@ -8,7 +8,7 @@
                     <div v-for="post in result?.category?.posts?.nodes" :key="post.id" class="item features-image сol-12 col-md-6 col-lg-4">
                         <div class="item-wrapper">
                             <div class="item-img">
-                                <img :src="`${post?.featuredImage?.node?.sourceUrl}`" :alt="post?.title" cover />
+                                <nuxt-img loading="lazy" :src="`${post?.featuredImage?.node?.sourceUrl}`" :alt="post?.title" cover />
                             </div>
                             <div class="item-content">
                                 <h5 class="item-title mbr-fonts-style display-7">

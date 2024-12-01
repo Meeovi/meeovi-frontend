@@ -16,7 +16,7 @@
                 </div>
 
                 <v-avatar class="ma-3" rounded="0" size="125">
-                    <img :src="`${config.public.commerceUrl}/media/${brand.image}`" :alt="brand.title" />
+                    <nuxt-img loading="lazy" :src="`${config.public.commerceUrl}/media/${brand.image}`" :alt="brand.title" />
                 </v-avatar>
             </div>
         </v-card>

@@ -1,7 +1,7 @@
 <template>
     <div class="auction-item">
         <h2>{{ item.name }}</h2>
-        <img :src="item.image" :alt="item.name" />
+        <nuxt-img loading="lazy" :src="item.image" :alt="item.name" />
         <p>Current Bid: ${{ currentBid }}</p>
         <p>Time Left: {{ timeLeft }}</p>
         <input v-model.number="bidAmount" type="number" :min="minBid" step="0.01" />

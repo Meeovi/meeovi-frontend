@@ -7,7 +7,7 @@
                 <v-row class="accountRow">
                     <v-col cols="3" v-for="(card, index) in cards" :key="index">
                         <v-card class="mx-auto" max-width="400">
-                            <img class="align-end text-white" height="200"
+                            <nuxt-img loading="lazy" class="align-end text-white" height="200"
                                 :src="card?.giftCardFields.image?.node?.sourceUrl" :alt="card?.giftCardFields.name"
                                 cover />
                             <v-card-title>{{card?.giftCardFields.name}}</v-card-title>
@@ -42,7 +42,7 @@
                 <v-row class="accountRow">
                     <v-col cols="3" v-for="(card, index) in cards" :key="index">
                         <v-card class="mx-auto" max-width="400">
-                            <img class="align-end text-white" height="200"
+                            <nuxt-img loading="lazy" class="align-end text-white" height="200"
                                 :src="card?.giftCardFields.image?.node?.sourceUrl" :alt="card?.giftCardFields.name"
                                 cover />
                             <v-card-title>{{card?.giftCardFields.name}}</v-card-title>

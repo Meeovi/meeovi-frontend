@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-card class="mx-auto" max-width="400">
-      <v-img class="align-end text-white" height="200" :src="news?.featured_image" :alt="news?.title" cover>
+      <nuxt-img loading="lazy" class="align-end text-white" height="200" :src="news?.featured_image" :alt="news?.title" cover>
         <v-card-title>{{ news?.title}}</v-card-title>
       </v-img>
 

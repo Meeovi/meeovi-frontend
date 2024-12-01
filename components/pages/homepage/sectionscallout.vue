@@ -22,7 +22,7 @@
                                 </div>
                                 <div class="col-12 col-md-5">
                                     <div class="img-wrapper">
-                                        <img :src="`${spaces?.attachmentCover?.full}`" :alt="spaces?.name" cover />
+                                        <nuxt-img loading="lazy" :src="`${spaces?.attachmentCover?.full}`" :alt="spaces?.name" cover />
                                     </div>
                                 </div>
                             </div>

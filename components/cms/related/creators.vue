@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-card class="mx-auto" max-width="300">
-            <img class="align-end text-white" height="200" :src="`${customers?.avatar?.url}`" :alt="customers?.firstname"
+            <nuxt-img loading="lazy" class="align-end text-white" height="200" :src="`${customers?.avatar?.url}`" :alt="customers?.firstname"
                 cover />
 
             <v-card-title>@{{ customers?.firstname }}</v-card-title>

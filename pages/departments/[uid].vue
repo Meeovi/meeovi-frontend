@@ -38,7 +38,7 @@
           <appstore :product="result?.categories?.items[0]?.uid" />
         </div>
         <div v-else :src="`${result?.categories?.items[0]?.image}`">
-          <img :alt="result?.categories?.items[0]?.name" cover />
+          <nuxt-img loading="lazy" :alt="result?.categories?.items[0]?.name" cover />
         </div>
       </div>
     </v-card>

@@ -1,10 +1,10 @@
 <template>
   <div class="authPage">
     <section data-bs-version="5.1" class="authForm">
-      <img src="~/assets/images/logo512alpha-128x128.png" alt="Meeovi Logo" class="authLogo">
+      <nuxt-img loading="lazy" src="~/assets/images/logo512alpha-128x128.png" alt="Meeovi Logo" class="authLogo" />
       <h1 class="mbr-section-title mbr-fonts-style display-1">Forgot Password</h1>
       <div class="mbr-section-btn">
-        <form @submit.prevent="requestPasswordReset" width="500">
+        <form @submit.prevent="forgotPassword" width="500">
           <v-text-field type="email" v-model="email" label="Enter Email for Password Reset" required></v-text-field>
           <v-btn class="mt-2 btn btn-primary display-4" type="submit" block>Request Password Reset</v-btn>
         </form>

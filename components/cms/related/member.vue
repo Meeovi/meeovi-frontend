@@ -3,7 +3,7 @@
         <v-row align="center" class="spacer" no-gutters>
             <v-col cols="4" sm="2" md="1">
                 <v-avatar size="50">
-                    <img :src="`${members?.avatar?.url}`" :alt="members?.username" />
+                    <nuxt-img loading="lazy" :src="`${members?.avatar?.url}`" :alt="members?.username" />
                 </v-avatar>
             </v-col>
 

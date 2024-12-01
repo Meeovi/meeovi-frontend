@@ -1,7 +1,7 @@
 <template>
   <div class="authPage">
     <section data-bs-version="5.1" class="authForm">
-      <img src="~/assets/images/logo512alpha-128x128.png" alt="Meeovi Logo" class="authLogo">
+      <nuxt-img loading="lazy" src="~/assets/images/logo512alpha-128x128.png" alt="Meeovi Logo" class="authLogo" />
       <h1 class="mbr-section-title mbr-fonts-style display-1">Reset Password</h1>
 
       <p v-if="message" class="message">{{ message }}</p>

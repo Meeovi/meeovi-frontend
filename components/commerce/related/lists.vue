@@ -7,7 +7,7 @@
                         <div class="card-box">
                             <div class="icon_block">
                                 <div class="iconfont-wrapper">
-                                    <img :src="`${$directus.url}assets/${list?.image?.filename_disk}`" :alt="list?.name" cover />
+                                    <nuxt-img loading="lazy" :src="`${$directus.url}assets/${list?.image?.filename_disk}`" :alt="list?.name" cover />
                                 </div>
                             </div>
                             <p class="card-text mbr-fonts-style display-4">{{ list?.name }}</p>

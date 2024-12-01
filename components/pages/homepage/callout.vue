@@ -14,7 +14,7 @@
                       <div class="item_overlay" data-toggle="modal" data-bs-toggle="modal"></div>
                       <div class="galleryItem" data-toggle="modal" data-bs-toggle="modal">
                         <div class="style_overlay"></div>
-                        <div class="img_wraper"><img :src="products.image.url" /></div><span
+                        <div class="img_wraper"><nuxt-img loading="lazy" :src="products.image.url" /></div><span
                           class="onsale mbr-fonts-style display-7" data-onsale="true">-50%</span>
                         <div class="sidebar_wraper">
                           <h4 class="item-title mbr-fonts-style mbr-text display-5">{{ products.name }}

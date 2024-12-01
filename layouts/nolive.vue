@@ -11,7 +11,7 @@
       <v-app-bar-title>
         <a class="logobrand" href="/">
           <v-icon start icon="fas fa-shopping-bag" color="orange">
-            <!--<img :src="siteoverview?.featuredImage?.node?.sourceUrl" :alt="siteoverview?.title" />-->
+            <!--<nuxt-img loading="lazy" :src="siteoverview?.featuredImage?.node?.sourceUrl" :alt="siteoverview?.title" />-->
           </v-icon>
           <!--{{ siteoverview?.title }}-->Meeovi
         </a>

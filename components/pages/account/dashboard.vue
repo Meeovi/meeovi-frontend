@@ -23,7 +23,7 @@
             </thead>
             <tbody>
                 <tr v-for="(payment, index) in data?.customer?.availablePaymentMethods" :key="index">
-                    <td><img :src="payment?.gateway?.icon" :alt="payment?.gateway?.title"></td>
+                    <td><nuxt-img loading="lazy" :src="payment?.gateway?.icon" :alt="payment?.gateway?.title"></td>
                     <td>{{ payment?.gateway?.title }}</td>
                     <td>{{ payment?.type }}</td>
                     <td>{{ payment?.gateway?.description }}</td>

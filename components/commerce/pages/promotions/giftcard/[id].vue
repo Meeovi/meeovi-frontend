@@ -3,7 +3,7 @@
         <v-row>
             <v-col cols="4">
                 <h4 style="text-align: center;">Gift Card Image</h4>
-                <img :src="`${data?.giftCard?.giftCardFields?.image?.node?.sourceUrl}`" :alt="data?.giftCard?.giftCardFields?.name" />
+                <nuxt-img loading="lazy" :src="`${data?.giftCard?.giftCardFields?.image?.node?.sourceUrl}`" :alt="data?.giftCard?.giftCardFields?.name" />
             </v-col>
             <v-col cols="8">
                 <v-card style="margin-bottom: 20px;">

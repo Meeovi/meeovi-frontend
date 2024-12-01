@@ -1,6 +1,6 @@
 <template>
   <v-card class="mx-auto" max-width="400">
-    <v-img class="align-end text-white" height="200" :src="`${$directus.url}assets/${short?.thumbnail?.filename_disk}`" :alt="short?.name" cover />
+    <nuxt-img loading="lazy" class="align-end text-white" height="200" :src="`${$directus.url}assets/${short?.thumbnail?.filename_disk}`" :alt="short?.name" cover />
 
     <v-card-subtitle class="pt-4">
       {{ short?.name }}

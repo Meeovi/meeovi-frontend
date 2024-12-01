@@ -44,7 +44,7 @@
                                                 </v-checkbox-btn>
                                                 <!--<a :href="`/product/${products.id}`">
                                         <v-card class="ma-4" height="580" width="250" @click="toggle">
-                                            <img class="align-end text-white" height="280"
+                                            <nuxt-img loading="lazy" class="align-end text-white" height="280"
                                                 :src="`${products.featuredAsset.preview}`" :alt="products.name" cover />
 
                                             <v-card-title class="pt-4">

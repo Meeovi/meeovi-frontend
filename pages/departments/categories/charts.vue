@@ -12,7 +12,7 @@
         <v-container>
           <v-row justify="space-around">
             <v-card width="400" :href="`/product/chart/${charts?.uid}`">
-              <img height="200" :src="`${charts?.image}`" :alt="charts?.name" cover
+              <nuxt-img loading="lazy" height="200" :src="`${charts?.image}`" :alt="charts?.name" cover
                 class="text-white" />
 
               <v-card-text>

@@ -2,7 +2,7 @@
     <v-row>
         <v-col cols="3" v-for="media in data?.members?.nodes?.mediaItems?.nodes" :key="media">
             <v-card class="mx-auto" max-width="400">
-                <img class="align-end text-white" height="280" :src="`${media?.sourceUrl}`" :alt="media?.altText" cover />
+                <nuxt-img loading="lazy" class="align-end text-white" height="280" :src="`${media?.sourceUrl}`" :alt="media?.altText" cover />
                 <v-card-title>{{ media?.title }}</v-card-title>
 
                 <v-card-subtitle class="pt-4">

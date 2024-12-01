@@ -2,7 +2,7 @@
     <v-row class="contentPage">
         <v-col cols="12">
             <v-card class="mx-auto" max-width="800px" elevation="0">
-                <img class="align-end text-white" height="200" :src="`${$directus.url}assets/${website?.image?.filename_disk}`" :alt="website?.name" cover />
+                <nuxt-img loading="lazy" class="align-end text-white" height="200" :src="`${$directus.url}assets/${website?.image?.filename_disk}`" :alt="website?.name" cover />
                 <v-card-title>{{ website?.name }}</v-card-title>
 
                 <v-card-subtitle class="pt-4">

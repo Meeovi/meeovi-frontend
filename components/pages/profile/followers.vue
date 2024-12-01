@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-12 col-sm-6 col-lg-3" v-for="followers in data?.friendship?.friend" :key="followers.id">
                 <div class="wrap-img item-img">
-                    <img :src="`${followers.avatar.url}`" :alt="followers.username" class="inner">
+                    <nuxt-img loading="lazy" :src="`${followers.avatar.url}`" :alt="followers.username" class="inner">
                 </div>
                 <h5 class="card-title mbr-fonts-style display-7">
                     <a :href="`/admin/user/${followers.id}`">{{ followers.username }}</a></h5>

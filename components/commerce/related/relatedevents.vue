@@ -10,7 +10,7 @@
           <v-row dense>
             <v-col cols="4" :class="['ma-4', selectedClass]" @click="toggle">
               <v-card>
-                <img :src="product?.image?.url" :alt="products?.name" class="align-end" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" height="200px" cover />
+                <nuxt-img loading="lazy" :src="product?.image?.url" :alt="products?.name" class="align-end" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" height="200px" cover />
                   <v-card-title class="text-white" v-text="product?.name"></v-card-title>
 
                 <v-card-actions>

@@ -12,7 +12,7 @@
                         <div class="content-container">
                             <div class="img-wrap">
                                 <div class="item-img">
-                                    <img :src="`${user?.picture}`" :alt="user?.username" />
+                                    <nuxt-img loading="lazy" :src="`${user?.picture}`" :alt="user?.username" />
                                 </div>
                             </div>
                             <div class="text-wrap align-left">

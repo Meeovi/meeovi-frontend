@@ -13,7 +13,7 @@
         <div class="row main align-items-center">
           <div class="col-md-6 image-element align-self-stretch">
             <div class="img-wrap" style="width: 80%; height: 80%;">
-              <img :src="`${$directus.url}assets/${list?.image?.filename_disk}`" :alt="list?.name">
+              <nuxt-img loading="lazy" :src="`${$directus.url}assets/${list?.image?.filename_disk}`" :alt="list?.name" />
             </div>
           </div>
           <div class="col-md-6 text-element">
