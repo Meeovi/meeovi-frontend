@@ -50,7 +50,6 @@
                 </v-tab>
             </v-tabs>
         </v-card>
-        <!--<livebubbles />-->
     </div>
 </template>
 
@@ -71,26 +70,18 @@
 </script>
 
 <script setup>
-    import comments from '~/components/partials/comments.vue'
-    //import livebubbles from '../livebar/livebubbles.vue'
     import shortId from '~/pages/social/vibe/[id].vue'
     import addlive from '~/components/crud/create/add-live.vue'
-    import video from '~/components/media/live/livePlayer'
     import {
         ref
     } from 'vue';
     import {
-        useRoute,
-        useRouter
+        useRoute
     } from 'vue-router';
 
     const tab = ref(null);
     const createdialog = ref(false);
     const dialog = ref(false);
-    const notifications = ref(false);
-    const sound = ref(true);
-    const widgets = ref(false)
-    const route = useRoute();
 
     const {
         $directus,
