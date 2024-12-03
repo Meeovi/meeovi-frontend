@@ -2,7 +2,7 @@
     <div class="contentPage">
         <!--<profilebar />-->
         <v-card elevation="0">
-            <v-toolbar title="Spaces" color="primary">
+            <v-toolbar :title="spacebar?.name" color="primary">
                 <v-dialog min-width="500">
                     <template v-slot:activator="{ props: activatorProps }">
                         <v-btn v-bind="activatorProps" prepend-icon="fas fa-plus" title="Create a Space"
@@ -17,10 +17,9 @@
             </v-toolbar>
 
             <v-tabs v-model="tab" bg-color="primary">
-                <v-tab value="one">All Spaces</v-tab>
-                <v-tab value="two">Audio Spaces</v-tab>
-                <v-tab value="three">Video Spaces</v-tab>
-                <v-tab value="four">My Spaces</v-tab>
+                <div v-for="(menu, index) in spacebar?.menus" :key="index">
+                    <v-tab :value="menu?.value">{{ menu?.name }}</v-tab>
+                </div>
             </v-tabs>
 
             <v-card-text>
@@ -76,7 +75,8 @@
     const tab = ref(null);
     const {
         $directus,
-        $readItems
+        $readItems,
+        $readItem
     } = useNuxtApp()
 
     const userDisplayName = computed(() => {
@@ -125,6 +125,12 @@
                 }
             }
         }))
+    })
+
+    const {
+        data: spacebar
+    } = await useAsyncData('spacebar', () => {
+        return $directus.request($readItem('navigation', '31'))
     })
 
     definePageMeta({

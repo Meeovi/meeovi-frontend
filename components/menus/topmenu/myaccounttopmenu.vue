@@ -71,13 +71,6 @@
     ref
   } from 'vue';
   import {
-    useQuery
-  } from '@vue/apollo-composable'
-  import {
-    AccountCommerce,
-    AccountSocial
-  } from '~/graphql/cms/queries/menus/myaccounttopmenu'
-  import {
     useUserStore
   } from '~/stores/user'
   import {

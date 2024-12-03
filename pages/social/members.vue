@@ -1,7 +1,7 @@
 <template>
   <div class="contentPage">
     <v-card elevation="0">
-      <v-toolbar title="My Network" color="info"><createcontact /></v-toolbar>
+      <v-toolbar :title="mynetwork?.name" color="info"><createcontact /></v-toolbar>
       <v-tabs v-model="tab" bg-color="info">
         <div v-for="(menu, index) in mynetwork?.menus" :key="index">
           <v-tab :value="menu?.value">{{ menu?.name }}</v-tab>

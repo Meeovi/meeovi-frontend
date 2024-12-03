@@ -8,7 +8,7 @@
           <!-- <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon> Filters-->
 
           <v-spacer></v-spacer>
-          <v-toolbar title="Social Feed" color="transparent" elevation="0">
+          <v-toolbar :title="feedbar?.name" color="transparent" elevation="0">
           <!--  <v-dialog min-width="500">
               <template v-slot:activator="{ props: activatorProps }">
                 <v-btn v-bind="activatorProps" prepend-icon="fas fa-plus" title="Create a Post" variant="flat">
@@ -32,12 +32,11 @@
                 </v-navigation-drawer>-->
 
         <v-main>
-          <v-tabs class="searchSection" center-active v-model="tab" bg-color="transparent">
-            <v-tab value="one">All Posts</v-tab>
-            <!--<v-tab value="two">Facebook</v-tab>
-            <v-tab value="three">Twitter</v-tab>-->
-            
-          </v-tabs>
+          <v-tabs v-model="tab" bg-color="primary">
+                <div v-for="(menu, index) in feedbar?.menus" :key="index">
+                    <v-tab :value="menu?.value">{{ menu?.name }}</v-tab>
+                </div>
+            </v-tabs>
 
           <v-card-text>
             <v-tabs-window v-model="tab">
@@ -98,6 +97,12 @@
         return $directus.request($readItems('posts', {
             fields: ['*', { '*': ['*'] }]
         }))
+    })
+
+    const {
+        data: feedbar
+    } = await useAsyncData('feedbar', () => {
+        return $directus.request($readItem('navigation', '32'))
     })
 
   useHead({

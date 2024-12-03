@@ -47,7 +47,7 @@
                     </v-card-text>
                     <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn color="blue-darken-1" variant="text" type="submit" @click="createNewShort">
+                        <v-btn color="blue-darken-1" variant="text" type="submit">
                             Create Short
                         </v-btn>
                     </v-card-actions>
@@ -64,8 +64,12 @@
     import {
         useRouter
     } from 'vue-router';
-    import uploadFiles from '@/composables/cms/content/uploadFiles';
+    //import uploadFiles from '@/composables/cms/content/uploadFiles';
     import createShort from '@/composables/cms/shorts/createShort';
+    import {
+        createItem,
+        uploadFiles
+    } from '@directus/sdk';
     import {
         useUserStore
     } from '~/stores/user'
@@ -85,6 +89,7 @@
     })
 
     const route = useRoute();
+    const loading = ref(false);
 
     const id = route.params.id;
 
@@ -96,9 +101,9 @@
         duration: '',
         video_url: '',
         age_requirement: '',
-        video: '',
+        video: null,
         thumbnail: null,
-        host: userDisplayName,
+        creator: userDisplayName,
         spaces: [{
             spaces_id: {
                 id: id
@@ -110,7 +115,7 @@
     const location = ref('bottom');
 
     const imageFile = ref(null);
-    const documentFile = ref(null);
+    const videoFile = ref(null);
 
     const getVideoDuration = (file) => {
         return new Promise((resolve, reject) => {
@@ -130,25 +135,41 @@
         });
     }
 
-
     // Emit event for parent component updates
     const emit = defineEmits(['short-created']);
 
-    const handleThumbnailUpload = (event) => {
-        imageFile.value = event.target.files[0];
+    // File handling functions
+    const handleVideoUpload = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            // Check file type
+            if (!file.type.startsWith('video/')) {
+                alert('Please upload a valid video file');
+                return;
+            }
+            // Check file size (e.g., 100MB limit)
+            if (file.size > 100 * 1024 * 1024) {
+                alert('Video file size should be less than 100MB');
+                return;
+            }
+            videoFile.value = file;
+        }
     };
 
-    const handleVideoUpload = async (event) => {
-        videoFile.value = event.target.files[0];
-        if (videoFile.value) {
-            try {
-                const duration = await getVideoDuration(videoFile.value);
-                shortData.value.duration = Math.round(duration);
-                console.log('Video duration:', shortData.value.duration);
-            } catch (error) {
-                console.error('Error getting video duration:', error);
-                alert(error);
+    const handleThumbnailUpload = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            // Check file type
+            if (!file.type.startsWith('image/')) {
+                alert('Please upload a valid image file');
+                return;
             }
+            // Check file size (e.g., 15MB limit)
+            if (file.size > 15 * 1024 * 1024) {
+                alert('Image file size should be less than 15MB');
+                return;
+            }
+            imageFile.value = file;
         }
     };
 
@@ -159,52 +180,84 @@
                 $directus
             } = useNuxtApp();
 
-            let uploadedFiles = {};
-            let videoDuration = shortData.value.duration; // Keep the existing duration as fallback
+            let videoFileId = null;
+            let thumbnailFileId = null;
+            let videoDuration = shortData.value.duration;
 
+            // Handle file uploads first
             if (videoFile.value || imageFile.value) {
-                uploadedFiles = await uploadFiles({
-                    videoFile: videoFile.value,
-                    imageFile: imageFile.value
-                });
+                try {
+                    if (videoFile.value) {
+                        // Create FormData for video upload
+                        const videoFormData = new FormData();
+                        videoFormData.append('file', videoFile.value);
 
-                // Calculate video duration if a new video file is uploaded
-                if (videoFile.value) {
-                    try {
-                        const duration = await getVideoDuration(videoFile.value);
-                        videoDuration = Math.round(duration);
-                        console.log('New video duration:', videoDuration);
-                    } catch (error) {
-                        console.error('Error getting video duration:', error);
-                        // Don't throw here, we'll use the existing duration
+                        // Upload video file using the correct Directus method
+                        const videoUploadResponse = await $directus.request(
+                            uploadFiles(videoFormData)
+                        );
+                        videoFileId = videoUploadResponse.id;
+
+                        // Get video duration
+                        try {
+                            const duration = await getVideoDuration(videoFile.value);
+                            videoDuration = Math.round(duration);
+                        } catch (error) {
+                            console.error('Error getting video duration:', error);
+                        }
                     }
+
+                    if (imageFile.value) {
+                        // Create FormData for thumbnail upload
+                        const thumbnailFormData = new FormData();
+                        thumbnailFormData.append('file', imageFile.value);
+
+                        // Upload thumbnail file using the correct Directus method
+                        const thumbnailUploadResponse = await $directus.request(
+                            uploadFiles(thumbnailFormData)
+                        );
+                        thumbnailFileId = thumbnailUploadResponse.id;
+                    }
+                } catch (error) {
+                    console.error('Error uploading files:', error);
+                    throw new Error('Failed to upload files');
                 }
             }
 
-            // Update the short using Directus SDK
+            // Create the short with the uploaded file IDs
+            const shortPayload = {
+                name: shortData.value.name,
+                type: shortData.value.type,
+                status: shortData.value.status,
+                description: shortData.value.description,
+                duration: videoDuration,
+                video_url: shortData.value.video_url,
+                age_requirement: shortData.value.age_requirement,
+                creator: userDisplayName.value,
+                spaces: shortData.value.spaces
+            };
+
+            // Only add video and thumbnail if they were uploaded
+            if (videoFileId) {
+                shortPayload.video = videoFileId;
+            }
+            if (thumbnailFileId) {
+                shortPayload.thumbnail = thumbnailFileId;
+            }
+
+            // Create the short
             const createdShort = await $directus.request(
-                createItem('shorts', route.params.id, {
-                    name: shortData.value.name,
-                    type: shortData.value.type,
-                    status: shortData.value.status,
-                    description: shortData.value.description,
-                    video: uploadedFiles.videoId || shortData.value.video,
-                    duration: videoDuration, // Use the calculated duration or existing one
-                    video_url: shortData.value.video_url,
-                    age_requirement: shortData.value.age_requirement,
-                    thumbnail: uploadedFiles.imageId || shortData.value.thumbnail,
-                })
+                createItem('shorts', shortPayload)
             );
 
             if (createdShort) {
-                await fetchShortData(); // Refresh the data
                 alert('Short created successfully');
-                dialog.value = false; // Close the dialog
-                window.location.reload(); // Refresh the page
+                dialog.value = false;
+                window.location.reload();
             }
         } catch (error) {
-            console.error('Error create short:', error);
-            alert('Error create short: ' + error.message);
+            console.error('Error creating short:', error);
+            alert('Error creating short: ' + error.message);
         } finally {
             loading.value = false;
         }

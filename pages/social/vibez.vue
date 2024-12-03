@@ -2,7 +2,7 @@
     <div class="contentPage">
         <!--<profilebar />-->
         <v-card elevation="0">
-            <v-toolbar title="Meeovi Vibez" color="primary">
+            <v-toolbar :title="vibebar?.name" color="primary">
                 <v-dialog>
                     <template v-slot:activator="{ props: activatorProps }">
                         <v-btn v-bind="activatorProps" prepend-icon="fas fa-plus" title="Create a Vibe"
@@ -25,9 +25,9 @@
             </v-toolbar>
 
             <v-tabs v-model="tab" bg-color="primary">
-                <v-tab value="one">All Vibez</v-tab>
-                <v-tab value="two">Live Vibez</v-tab>
-                <v-tab value="three">My Vibez</v-tab>
+                <div v-for="(menu, index) in vibebar?.menus" :key="index">
+                    <v-tab :value="menu?.value">{{ menu?.name }}</v-tab>
+                </div>
             </v-tabs>
 
             <v-card-text>
@@ -50,7 +50,7 @@
 
                     <v-tabs-window-item value="three">
                         <v-row style="padding-top: 15px;">
-                            <v-col cols="4" v-for="(shorts, index) in vibez" :key="index">
+                            <v-col cols="4" v-for="(shorts, index) in videoshorts" :key="index">
                                 <shorts :short="shorts" />
                             </v-col>
                         </v-row>
@@ -72,7 +72,8 @@
     const tab = ref(null);
     const {
         $directus,
-        $readItems
+        $readItems,
+        $readItem
     } = useNuxtApp()
 
     const {
@@ -105,14 +106,20 @@
     } = await useAsyncData('videoshorts', () => {
         return $directus.request($readItems('shorts', {
             filter: {
-                type: {
-                    _eq: "Video"
+                creator: {
+                    _eq: `${userDisplayName.value}`
                 }
             },
             fields: ['*', {
                 '*': ['*']
             }]
         }))
+    })
+
+    const {
+        data: vibebar
+    } = await useAsyncData('vibebar', () => {
+        return $directus.request($readItem('navigation', '30'))
     })
 
     useHead({

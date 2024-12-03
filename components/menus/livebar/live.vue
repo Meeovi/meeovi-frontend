@@ -39,7 +39,7 @@
                             </template>
 
                             <v-card min-height="75%" min-width="75%">
-                                <shortId :vibe="shortId" />
+                                <vibe :vibe="shortId" />
 
                                 <v-card-actions>
                                     <v-btn color="primary" block @click="dialog = false">Close</v-btn>
@@ -70,7 +70,7 @@
 </script>
 
 <script setup>
-    import shortId from '~/pages/social/vibe/[id].vue'
+    import vibe from '~/pages/social/vibe/[id].vue'
     import addlive from '~/components/crud/create/add-live.vue'
     import {
         ref
