@@ -37,6 +37,18 @@
         <div v-else-if="result?.categories?.items[0]?.uid === 'NTE='">
           <appstore :product="result?.categories?.items[0]?.uid" />
         </div>
+        <div v-else-if="result?.categories?.items[0]?.uid === 'NTE='">
+          <adultstore :product="result?.categories?.items[0]?.uid" />
+        </div>
+        <div v-else-if="result?.categories?.items[0]?.uid === 'NTE='">
+          <health :product="result?.categories?.items[0]?.uid" />
+        </div>
+        <div v-else-if="result?.categories?.items[0]?.uid === 'NTE='">
+          <realestate :product="result?.categories?.items[0]?.uid" />
+        </div>
+        <div v-else-if="result?.categories?.items[0]?.uid === 'NTE='">
+          <pantry :product="result?.categories?.items[0]?.uid" />
+        </div>
         <div v-else :src="`${result?.categories?.items[0]?.image}`">
           <nuxt-img loading="lazy" :alt="result?.categories?.items[0]?.name" cover />
         </div>
@@ -126,6 +138,10 @@
   import weather from '~/components/appearance/weather.vue'
   import travel from '~/components/appearance/travel.vue'
   import appstore from '~/components/appearance/appstore.vue'
+  import adultstore from '~/components/appearance/adultstore.vue'
+  import realestate from '~/components/appearance/realestate.vue'
+  import health from '~/components/appearance/health.vue'
+  import pantry from '~/components/appearance/pantry.vue'
 
   const model = ref(null)
 
