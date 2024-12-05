@@ -27,6 +27,13 @@
                                     <v-select v-model="shortData.age_requirement" label="What is the Age Requirement?"
                                         :items="['Everyone', '18+', '16+']" />
                                 </v-col>
+                                <v-col cols="6">
+                                    <v-select v-model="shortData.departments"
+                                        label="What department would this Vibe belong to?" :items="departmentOptions"
+                                        item-title="title" item-value="value"
+                                        :rules="[(v) => !!v || 'Department is required']"
+                                        @change="(val) => console.log('Selected department:', val)" />
+                                </v-col>
                                 <v-col cols="12">
                                     <v-textarea v-model="shortData.description" label="Description"
                                         id="shortDescription" />
@@ -62,23 +69,29 @@
         ref
     } from 'vue';
     import {
-        useRouter
+        useRoute
     } from 'vue-router';
-    //import uploadFiles from '@/composables/cms/content/uploadFiles';
+    import uploadFiles from '@/composables/cms/content/uploadFiles';
     import createShort from '@/composables/cms/shorts/createShort';
-    import {
-        createItem,
-        uploadFiles
-    } from '@directus/sdk';
     import {
         useUserStore
     } from '~/stores/user'
 
     const userStore = useUserStore()
-    // Make sure your props are properly defined
-    // Update props to include spaces_id
+
+    const {
+        $directus,
+        $readItems
+    } = useNuxtApp()
+
+    const {
+        data: departments
+    } = await useAsyncData('departments', () => {
+        return $directus.request($readItems('departments'))
+    })
+
     const props = defineProps({
-        spaces_id: {
+        departments_id: {
             type: String,
             required: true
         }
@@ -88,183 +101,85 @@
         return userStore.user?.name || userStore.user?.username || 'User'
     })
 
+    // Modified to handle nested department-department relationship
+    const departmentOptions = computed(() => {
+        if (!departments.value) return []
+
+        return departments.value.map(department => ({
+            title: department.name, // Vuetify uses 'title' for display text
+            value: department.id, // The actual value that will be saved
+        }))
+    })
+
     const route = useRoute();
-    const loading = ref(false);
 
     const id = route.params.id;
 
     const shortData = ref({
         name: '',
-        description: '',
         type: '',
         status: '',
+        description: '',
         duration: '',
-        video_url: '',
-        age_requirement: '',
         video: null,
         thumbnail: null,
-        creator: userDisplayName,
-        spaces: [{
-            spaces_id: {
-                id: id
-            }
-        }], // Initialize with the spaces_id from props
-    })
+        age_requirement: '',
+        creator: userDisplayName.value,
+        departments: null,
+    });
 
+    // Add these refs for file handling
+    const videoFile = ref(null);
+    const imageFile = ref(null);
     const dialog = ref(false);
     const location = ref('bottom');
 
-    const imageFile = ref(null);
-    const videoFile = ref(null);
-
-    const getVideoDuration = (file) => {
-        return new Promise((resolve, reject) => {
-            const video = document.createElement('video');
-            video.preload = 'metadata';
-
-            video.onloadedmetadata = function () {
-                window.URL.revokeObjectURL(video.src);
-                resolve(video.duration);
-            }
-
-            video.onerror = function () {
-                reject("Invalid video. Please select a valid video file.");
-            }
-
-            video.src = URL.createObjectURL(file);
-        });
-    }
-
-    // Emit event for parent component updates
-    const emit = defineEmits(['short-created']);
-
-    // File handling functions
-    const handleVideoUpload = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            // Check file type
-            if (!file.type.startsWith('video/')) {
-                alert('Please upload a valid video file');
-                return;
-            }
-            // Check file size (e.g., 100MB limit)
-            if (file.size > 100 * 1024 * 1024) {
-                alert('Video file size should be less than 100MB');
-                return;
-            }
-            videoFile.value = file;
-        }
+    const handleThumbnailUpload = (event) => {
+        imageFile.value = event.target.files[0];
     };
 
-    const handleThumbnailUpload = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            // Check file type
-            if (!file.type.startsWith('image/')) {
-                alert('Please upload a valid image file');
-                return;
-            }
-            // Check file size (e.g., 15MB limit)
-            if (file.size > 15 * 1024 * 1024) {
-                alert('Image file size should be less than 15MB');
-                return;
-            }
-            imageFile.value = file;
-        }
+    const handleVideoUpload = (event) => {
+        videoFile.value = event.target.files[0];
     };
 
     const createNewShort = async () => {
         try {
-            loading.value = true;
-            const {
-                $directus
-            } = useNuxtApp();
+            // Upload files if any
+            const uploadedFiles = await uploadFiles({
+                imageFile: imageFile.value,
+                documentFile: videoFile.value
+            });
 
-            let videoFileId = null;
-            let thumbnailFileId = null;
-            let videoDuration = shortData.value.duration;
-
-            // Handle file uploads first
-            if (videoFile.value || imageFile.value) {
-                try {
-                    if (videoFile.value) {
-                        // Create FormData for video upload
-                        const videoFormData = new FormData();
-                        videoFormData.append('file', videoFile.value);
-
-                        // Upload video file using the correct Directus method
-                        const videoUploadResponse = await $directus.request(
-                            uploadFiles(videoFormData)
-                        );
-                        videoFileId = videoUploadResponse.id;
-
-                        // Get video duration
-                        try {
-                            const duration = await getVideoDuration(videoFile.value);
-                            videoDuration = Math.round(duration);
-                        } catch (error) {
-                            console.error('Error getting video duration:', error);
-                        }
-                    }
-
-                    if (imageFile.value) {
-                        // Create FormData for thumbnail upload
-                        const thumbnailFormData = new FormData();
-                        thumbnailFormData.append('file', imageFile.value);
-
-                        // Upload thumbnail file using the correct Directus method
-                        const thumbnailUploadResponse = await $directus.request(
-                            uploadFiles(thumbnailFormData)
-                        );
-                        thumbnailFileId = thumbnailUploadResponse.id;
-                    }
-                } catch (error) {
-                    console.error('Error uploading files:', error);
-                    throw new Error('Failed to upload files');
-                }
+            // Update short data with uploaded files
+            if (uploadedFiles) {
+                shortData.value.thumbnail = uploadedFiles.imageId;
+                shortData.value.video = uploadedFiles.documentId
             }
 
-            // Create the short with the uploaded file IDs
-            const shortPayload = {
-                name: shortData.value.name,
-                type: shortData.value.type,
-                status: shortData.value.status,
-                description: shortData.value.description,
-                duration: videoDuration,
-                video_url: shortData.value.video_url,
-                age_requirement: shortData.value.age_requirement,
-                creator: userDisplayName.value,
-                spaces: shortData.value.spaces
-            };
+            // Set departments_id in shortData
+            //shortData.value.departments_id = props.departments_id;
 
-            // Only add video and thumbnail if they were uploaded
-            if (videoFileId) {
-                shortPayload.video = videoFileId;
-            }
-            if (thumbnailFileId) {
-                shortPayload.thumbnail = thumbnailFileId;
-            }
+            // Create the short with department relationship
+            const short = await createShort(shortData.value);
 
-            // Create the short
-            const createdShort = await $directus.request(
-                createItem('shorts', shortPayload)
-            );
+            console.log('Created Short:', short);
 
-            if (createdShort) {
-                alert('Short created successfully');
-                dialog.value = false;
-                window.location.reload();
-            }
+            // Emit event to refresh parent component
+            emit('short-created', short);
+
+            // Close dialog and reset form
+            dialog.value = false;
+            reset();
+
+            // Optional: Redirect to the shorts page
+            router.push(`/social/vibez/${props.departments_id}`);
         } catch (error) {
             console.error('Error creating short:', error);
-            alert('Error creating short: ' + error.message);
-        } finally {
-            loading.value = false;
+            // Add error handling here
         }
     };
 
-    // Add watch to update spaces_id if props change
-    watch(() => props.spaces_id, (newSpaceId) => {
-        shortData.value.spaces_id = newSpaceId;
+    watch(() => props.departments_id, (newDepartmentId) => {
+        shortData.value.departments_id = newDepartmentId;
     });
 </script>
