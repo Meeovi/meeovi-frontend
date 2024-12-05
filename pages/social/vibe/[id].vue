@@ -27,7 +27,7 @@
                         <v-btn color="blue-darken-1" variant="text" @click="confirmDelete" :loading="deleteLoading">
                             Delete
                         </v-btn>
-                        <updateshort :id="shortId" />
+                        <!--<updateshort :id="shortId" />-->
                     </v-card-actions>
                 </v-card>
             </v-col>
