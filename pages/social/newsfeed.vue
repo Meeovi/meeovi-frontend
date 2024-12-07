@@ -88,7 +88,8 @@
   const tab = ref(null);
   const {
         $directus,
-        $readItems
+        $readItems,
+        $readItem
     } = useNuxtApp()
     
   const {
@@ -102,7 +103,9 @@
     const {
         data: feedbar
     } = await useAsyncData('feedbar', () => {
-        return $directus.request($readItem('navigation', '32'))
+        return $directus.request($readItem('navigation', '32', {
+            fields: ['*', { '*': ['*'] }]
+        }))
     })
 
   useHead({

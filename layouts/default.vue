@@ -11,7 +11,7 @@
       <v-app-bar-title>
         <a class="logobrand" href="/">
           <v-icon start icon="fas fa-shopping-bag" color="orange">
-            <!--<nuxt-img loading="lazy" :src="siteoverview?.featuredImage?.node?.sourceUrl" :alt="siteoverview?.title" />-->
+            <!--<img :src="siteoverview?.featuredImage?.node?.sourceUrl" :alt="siteoverview?.title" />-->
           </v-icon>
           <!--{{ siteoverview?.title }}-->Meeovi
         </a>
@@ -48,7 +48,12 @@
       <v-card>
         <v-layout>
           <v-navigation-drawer class="sidebarSection" v-model="drawer" temporary>
+            <div v-if="userStore.isLoggedIn">
+              <v-toolbar :title="`Welcome, ${userEmail}`"></v-toolbar>
+            </div>
+            <div class="drawer-content">
             <v-list nav>
+
               <!---->
               <topmenu />
               <v-divider></v-divider>
@@ -85,6 +90,7 @@
                 </v-col>
               </v-row>
             </v-list>
+            </div>
           </v-navigation-drawer>
 
           <v-main id="sidebarNav"></v-main>
@@ -129,9 +135,14 @@
     ref
   } from 'vue';
   //import logout from '~/components/authentication/logout'
-  import { useUserStore } from '~/stores/user'
+  import {
+    useUserStore
+  } from '~/stores/user'
+  import {
+    useRouter
+  } from 'vue-router'
 
-const userStore = useUserStore()
+  const userStore = useUserStore()
 
 // Initialize user state
 await userStore.init()
@@ -144,6 +155,14 @@ const loading = ref(false);
 const router = useRouter()
 const route = useRoute()
 const user = useCurrentUser()
+
+const userDisplayName = computed(() => {
+    return userStore.user?.name || userStore.user?.username || 'User'
+  })
+
+  const userEmail = computed(() => {
+    return userStore.user?.email || ''
+  })
 
 // we don't need this watcher on server
 onMounted(() => {

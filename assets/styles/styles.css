@@ -3,7 +3,8 @@ html {
     font-family: 'Inter', sans-serif !important;
 }
 
-a, a:hover {
+a,
+a:hover {
     color: rgb(var(--v-theme-info));
 }
 
@@ -52,8 +53,8 @@ body {
 }
 
 .ais-Hits {
- width: 100%;
- position: absolute;
+    width: 100%;
+    position: absolute;
 }
 
 .searchbox {
@@ -78,7 +79,7 @@ body {
 .lowernav {
     top: 60px;
     position: relative;
-    background-color: rgb(var(--v-theme-info))!important;
+    background-color: rgb(var(--v-theme-info)) !important;
 }
 
 .livebar {
@@ -169,19 +170,29 @@ body {
 
 /******************* Authentication CSS ********/
 
-.loginForm, .registerForm, .resetForm, .forgotPasswordForm, .resetPasswordSuccessPage {
+.loginForm,
+.registerForm,
+.resetForm,
+.forgotPasswordForm,
+.resetPasswordSuccessPage {
     width: 70%;
     padding-top: 10%;
     padding-left: 10px;
     padding-right: 10px;
 }
 
-.loginForm h1, .registerForm h1, .resetForm h1, .forgotPasswordForm h1 {
+.loginForm h1,
+.registerForm h1,
+.resetForm h1,
+.forgotPasswordForm h1 {
     text-align: center;
     font-size: 25px;
 }
 
-.loginForm img, .registerForm img, .resetForm img, .forgotPasswordForm img {
+.loginForm img,
+.registerForm img,
+.resetForm img,
+.forgotPasswordForm img {
     width: 100px;
     display: inline-block;
 }
@@ -385,7 +396,8 @@ body {
     padding: 10px;
 }
 
-.departmentRow h2, .sliderProducts h4 {
+.departmentRow h2,
+.sliderProducts h4 {
     text-align: left;
     padding: 15px;
     font-size: 20px;
@@ -412,10 +424,6 @@ body {
     position: relative;
     left: -20px;
     top: 43px;
-}
-
-.features03 .item-text, .item-name {
-    color: rgb(var(--v-theme-info));
 }
 
 /******************** Meeovi Time CSS ************/
@@ -494,7 +502,8 @@ body {
     padding-top: 5px;
 }
 
-.giftcardfield, .giftcardbtn {
+.giftcardfield,
+.giftcardbtn {
     display: inline-block;
 }
 
@@ -519,6 +528,7 @@ body {
 .cartBadge {
     top: -25px;
 }
+
 /**************** Product Page *******************/
 
 .sizelist {
@@ -650,11 +660,16 @@ body {
 }
 
 .v-navigation-drawer--active {
-    height: 100% !important;
+    height: 94vh !important;
     width: auto !important;
     top: 60px !important;
 }
 
+.sidebarSection {
+    height: 95%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
 
 /********************* Social CSS **************/
 
@@ -690,7 +705,7 @@ body {
     left: 55px;
     float: left;
     position: relative;
-    top: 23px;   
+    top: 23px;
 }
 
 .socialSettingsButton {
@@ -719,7 +734,8 @@ body {
     color: white !important;
 }
 
-.liveVideo, .createVideo{
+.liveVideo,
+.createVideo {
     width: 100% !important;
     height: 100% !important;
 }
@@ -774,7 +790,7 @@ body {
     top: 18px;
 }
 
-.profileInfo li{
+.profileInfo li {
     display: block;
     padding-right: 10px;
 }
@@ -858,6 +874,7 @@ body {
     bottom: 0px;
     position: relative;
 }
+
 /*************** Search *****************/
 
 #search {
@@ -949,6 +966,7 @@ body {
     min-height: 100% !important;
     position: absolute !important;
 }
+
 /***************** Newsletter Footer ********************/
 
 #mc_embed_signup {
@@ -984,12 +1002,12 @@ body {
 
 .footertotopbtn {
     width: 100% !important;
-    background-color: rgb(var(--v-theme-info))!important;
+    background-color: rgb(var(--v-theme-info)) !important;
     color: white !important;
 }
 
 footer {
-    background-color: rgb(var(--v-theme-info))!important;
+    background-color: rgb(var(--v-theme-info)) !important;
     color: white !important;
 }
 
@@ -1049,4 +1067,3 @@ footer a:hover {
     left: -18px;
     position: relative;
 }
-

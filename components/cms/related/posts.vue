@@ -15,14 +15,14 @@
                       <div class="people-wrapper">
                         <div class="people-wrap">
                           <div class="image-wrap">
-                            <nuxt-img loading="lazy" class="person" src="" :alt="post?.username || 'Anonymous'">
+                            <nuxt-img loading="lazy" class="person" src="" :alt="post?.username || 'Anonymous'" />
                           </div>
                           <div class="rating-content">
                             <p class="mbr-rating mbr-fonts-style display-4">
                               Posted:
                               {{ post?.date_created ? new Date(post?.date_created).toLocaleDateString() : 'Unknown date' }}
                             </p>
-                            <p class="item-name mbr-fonts-style display-4" style="color: rgb(var(--v-theme-info));">
+                            <p class="item-name mbr-fonts-style display-4">
                               {{ post?.username || 'Unknown User' }}
                             </p>
                           </div>
