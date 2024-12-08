@@ -101,6 +101,7 @@
               </v-col>
             </v-row>
             <div>
+              <announcements />
               <slot />
             </div>
           </main>
@@ -131,6 +132,7 @@
   import BottomFooter from '~/components/BottomFooter'
   import FooterNav from '~/components/FooterNav'
   import cart from '~/components/menus/topmenu/cart.vue'
+  import announcements from '~/components/partials/announcements.vue'
   import {
     ref
   } from 'vue';

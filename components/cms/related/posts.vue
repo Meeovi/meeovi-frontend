@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card class="features03 healthm5 cid-us2b5LfABW" id="features03-a5" data-sortbtn="btn-primary" width="500px">
+    <v-card class="features03 healthm5 cid-us2b5LfABW" id="features03-a5" data-sortbtn="btn-primary" width="500px" elevation="0">
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">

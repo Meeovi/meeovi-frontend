@@ -1,58 +1,123 @@
 <template>
-  <div>
-    <v-card class="lowerbar">
-      <v-tabs center-active>
-        <h5>Meeovi Charts</h5>
-        <!--<v-tab><a :href="`/Product/Chart/charts/`">All</a></v-tab>
-        <v-tab><a :href="`/categories/${charts?.categories?.categories_id?.id}`"></a></v-tab>-->
-      </v-tabs>
-    </v-card>
-    <v-row class="contentPage">
-      <v-col cols="4" v-for="charts in data?.categories?.items" :key="charts">
-        <v-container>
-          <v-row justify="space-around">
-            <v-card width="400" :href="`/product/chart/${charts?.uid}`">
-              <nuxt-img loading="lazy" height="200" :src="`${charts?.image}`" :alt="charts?.name" cover
-                class="text-white" />
+  <div class="contentPage">
+      <!--<profilebar />-->
+      <v-card elevation="0">
+          <v-toolbar :title="chartbar?.name" color="#1F7087">
+              <v-dialog min-width="500">
+                  <template v-slot:activator="{ props: activatorProps }">
+                      <v-btn v-bind="activatorProps" prepend-icon="fas fa-plus" title="Create a Chart"
+                          variant="flat">Create a Chart
+                      </v-btn>
+                  </template>
 
-              <v-card-text>
-                {{ charts?.name }}
+                  <template v-slot:default="{ isActive }">
+                      <createchart />
+                  </template>
+              </v-dialog>
+          </v-toolbar>
 
-                <v-timeline density="compact" align="start">
-                  <v-timeline-item v-for="(products, index) in charts?.products?.items" :key="index" :dot-color="charts?.color"
-                    size="x-small">
-                    <div class="mb-4">
-                      <div class="font-weight-normal">
-                        <strong>{{ products?.name }}</strong>
-                      </div>
-                      <div>{{ product?.price_range?.minimum_price?.regular_price?.currency }} {{ product?.price_range?.minimum_price?.regular_price?.value }}</div>
-                    </div>
-                  </v-timeline-item>
-                </v-timeline>
-              </v-card-text>
-            </v-card>
-          </v-row>
-        </v-container>
-      </v-col>
-    </v-row>
+          <v-tabs v-model="tab" bg-color="#1F7087">
+              <div v-for="(menu, index) in chartbar?.menus" :key="index">
+                  <v-tab :value="menu?.value">{{ menu?.name }}</v-tab>
+              </div>
+          </v-tabs>
+
+          <v-card-text>
+              <v-tabs-window v-model="tab">
+                  <v-tabs-window-item value="one">
+                      <v-row style="padding-top: 15px;">
+                          <v-col cols="4" v-for="(charts, index) in charts" :key="index">
+                              <chart :chart="charts" />
+                          </v-col>
+                      </v-row>
+                  </v-tabs-window-item>
+
+                  <v-tabs-window-item value="two">
+                      <v-row style="padding-top: 15px;">
+                          <v-col cols="4" v-for="(charts, index) in videocharts" :key="index">
+                              <chart :chart="charts" />
+                          </v-col>
+                      </v-row>
+                  </v-tabs-window-item>
+
+                  <v-tabs-window-item value="three">
+                      <v-row style="padding-top: 15px;">
+                          <v-col cols="4" v-for="(charts, index) in mycharts" :key="index">
+                              <chart :chart="charts" />
+                          </v-col>
+                      </v-row>
+                  </v-tabs-window-item>
+              </v-tabs-window>
+          </v-card-text>
+      </v-card>
+
   </div>
 </template>
 
 <script setup>
+  import chart from '~/components/cms/related/musicchart.vue'
+  import createchart from '~/components/crud/create/add-chart.vue'
+  import { ref } from 'vue'
   import {
-    useQuery
-  } from '@vue/apollo-composable'
-  import charts from '~/graphql/commerce/queries/charts'
+      useUserStore
+  } from '~/stores/user'
+  
+  const userStore = useUserStore()
+
+  const tab = ref(null);
+  const {
+      $directus,
+      $readItems,
+      $readItem
+  } = useNuxtApp()
+
+  const userDisplayName = computed(() => {
+      return userStore.user?.name || userStore.user?.username || 'User'
+  })
 
   const {
-    result
-  } = useQuery(charts, null, {
-    context: {
-      clientName: 'secondary' // This will use the secondary endpoint
-    }
+      data: charts
+  } = await useAsyncData('charts', () => {
+      return $directus.request($readItems('musicchart', {
+          fields: ['*', { '*': ['*'] }]
+      }))
+  })
+
+  const {
+      data: videocharts
+  } = await useAsyncData('videocharts', () => {
+      return $directus.request($readItems('musicchart', {
+          filter: {
+              type: {
+                  _eq: "Video"
+              }
+          }
+      }))
+  })
+
+  const {
+      data: mycharts
+  } = await useAsyncData('mycharts', () => {
+      return $directus.request($readItems('musicchart', {
+          filter: {
+              creator: {
+                  _eq: `${userDisplayName.value}`
+              }
+          }
+      }))
+  })
+
+  const {
+      data: chartbar
+  } = await useAsyncData('chartbar', () => {
+      return $directus.request($readItem('navigation', '33'))
+  })
+
+  definePageMeta({
+      middleware: ['authenticated'],
   })
 
   useHead({
-    title: 'Meeovi Charts',
+      title: 'Charts',
   })
 </script>

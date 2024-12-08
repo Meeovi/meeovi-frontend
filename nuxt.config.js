@@ -84,10 +84,8 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
     "@storefront-ui/nuxt",
-    '@sidebase/nuxt-auth',
     'nuxt-vuefire',
     '@nuxtjs/leaflet',
-    //'@logto/nuxt',
     //"@prisma/nuxt",
     '@nuxtjs/seo',
     (_options, nuxt) => {
@@ -139,7 +137,7 @@ export default defineNuxtConfig({
     }, ]
   },
 
-  auth: {
+  /*auth: {
     isEnabled: true,
     disableServerSideAuth: false,
     globalAppMiddleware: false,
@@ -155,7 +153,7 @@ export default defineNuxtConfig({
       enablePeriodically: true,
       enableOnWindowFocus: true,
     }
-  },/**/
+  },*/
 
   vuefire: {
     emulators: {
@@ -243,13 +241,6 @@ export default defineNuxtConfig({
         }
       },
 
-      // Wordpress
-      wordpressUrl: process.env.API_URL,
-      wpGraphql: process.env.API_URL_GRAPHQL,
-      wordpressToken: process.env.WORDPRESS_TOKEN,
-      wpApiUsername: process.env.WP_API_USERNAME,
-      wpApiPassword: process.env.WP_API_PASSWORD,
-
       // Magento 
       commerceUrl: process.env.MAGE_STORE_URL,
       commerceGraphql: process.env.MAGE_MAGENTO_GRAPHQL_URL,
@@ -270,21 +261,9 @@ export default defineNuxtConfig({
       // Google Tag Manager
       gtagId: process.env.NUXT_PUBLIC_GTAG_ID,
 
-      // Rocket Chat
-      rocketChatUrl: process.env.NUXT_ROCKET_CHAT_URL,
-      rockatChatHost: process.env.NUXT_ROCKET_CHAT_HOST,
-      rocketChatUser: process.env.NUXT_ROCKET_CHAT_USER,
-      rocketChatPass: process.env.NUXT_ROCKET_CHAT_PASS,
-      rocketChatToken: process.env.NUXT_ROCKET_CHAT_TOKEN,
-
       // Comments
       commentsUrl: process.env.NUXT_COMMENT_ID,
-
-      // Stripe
-      stripePk: process.env.STRIPE_PUBLIC_KEY,
     },
-    // Stripe
-    stripeSecretKey: process.env.STRIPE_SECRET_KEY || 'sk_test_XXXXXXXXXXXXXXXXXXXXXXXX', // Replace with your secret key
   },
 
   build: {
@@ -302,20 +281,7 @@ export default defineNuxtConfig({
     define: {
       'process.env.DEBUG': false,
     },
-    plugins: [
-      {
-        name: 'graphql-loader',
-        enforce: 'pre',
-        transform(code, id) {
-          if (id.endsWith('.gql')) {
-            return {
-              code: `import gql from 'graphql-tag'; export default gql\`${code}\`;`,
-              map: null
-            }
-          }
-        }
-      }
-    ],
+    plugins: [],
     optimizeDeps: {
       include: ['algoliasearch/lite'],
     },

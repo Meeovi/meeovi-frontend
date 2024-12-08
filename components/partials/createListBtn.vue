@@ -64,12 +64,8 @@
   } from '@storefront-ui/vue'
   import list from '~/components/commerce/related/lists.vue'
   import createlist from '~/components/crud/create/add-list.vue'
-  import {
-    useToast
-  } from 'vue-toast-notification'
-  import 'vue-toast-notification/dist/theme-sugar.css'
+  import alert from '~/components/partials/alert.vue'
 
-  const $toast = useToast()
   const loading = ref(false)
 
   // Add product_sku to props
@@ -122,61 +118,74 @@
   };
 
   const saveProductToList = async (listId) => {
-  loading.value = true;
+    loading.value = true;
 
-  try {
-    console.log('Input values:', { listId, product_sku: props.product_sku });
+    try {
+      console.log('Input values:', {
+        listId,
+        product_sku: props.product_sku
+      });
 
-    // Check if the product already exists in the list
-    const existingProducts = await $directus.request(
-      $readItems('list_products', {
-        filter: {
-          'lists.id': { _eq: listId }, 
-          product_sku: { _eq: props.product_sku },
-        },
+      // Check if the product already exists in the list
+      const existingProducts = await $directus.request(
+        $readItems('list_products', {
+          filter: {
+            'lists.id': {
+              _eq: listId
+            },
+            product_sku: {
+              _eq: props.product_sku
+            },
+          },
+        })
+      )?.data || [];
+
+      console.log('Existing products query result:', existingProducts);
+
+      if (existingProducts.length > 0) {
+        this.$refs.alert.showAlert({
+          message: 'Product already exists in this list',
+          color: 'warning', // or error, warning, info
+          type: 'warning', // or error, warning, info
+          timeout: 3000 // optional, defaults to 3000ms
+        })
+        return;
+      }
+
+      // Prepare payload for many-to-many relationship
+      const productData = {
+        product_sku: props.product_sku,
+        quantity: 1,
+        date_created: new Date().toISOString(),
+        lists: [listId], // Pass listId directly
+      };
+
+      console.log('Attempting to save product data:', productData);
+
+      const savedProduct = await $directus.request($createItem('list_products', productData));
+      console.log('Save response:', savedProduct);
+
+      if (savedProduct) {
+        this.$refs.alert.showAlert({
+          message: 'Product added to list successfully',
+          color: 'success', // or error, warning, info
+          type: 'success', // or error, warning, info
+          timeout: 3000 // optional, defaults to 3000ms
+        })
+        dialogOpen.value = false;
+      }
+    } catch (error) {
+      console.error('Error in saveProductToList:', error);
+      this.$refs.alert.showAlert({
+        message: 'Failed to add product to list',
+        color: 'error', // or error, warning, info
+        type: 'error', // or error, warning, info
+        timeout: 3000 // optional, defaults to 3000ms
       })
-    )?.data || [];
-
-    console.log('Existing products query result:', existingProducts);
-
-    if (existingProducts.length > 0) {
-      $toast.error('Product already exists in this list', {
-        position: 'top-right',
-        duration: 3000,
-      });
-      return;
+    } finally {
+      loading.value = false;
     }
-
-    // Prepare payload for many-to-many relationship
-    const productData = {
-      product_sku: props.product_sku,
-      quantity: 1,
-      date_created: new Date().toISOString(),
-      lists: [listId], // Pass listId directly
-    };
-
-    console.log('Attempting to save product data:', productData);
-
-    const savedProduct = await $directus.request($createItem('list_products', productData));
-    console.log('Save response:', savedProduct);
-
-    if (savedProduct) {
-      $toast.success('Product added to list successfully', {
-        position: 'top-right',
-        duration: 3000,
-      });
-      dialogOpen.value = false;
-    }
-  } catch (error) {
-    console.error('Error in saveProductToList:', error);
-    $toast.error(`Failed to add product to list: ${error.message}`, {
-      position: 'top-right',
-      duration: 3000,
-    });
-  } finally {
-    loading.value = false;
-  }
-};
+  };
 </script>
 
 <style scoped>

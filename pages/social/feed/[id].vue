@@ -10,26 +10,32 @@
                                 <div class="row">
                                     <div class="col-12 col-lg-6">
                                         <div class="image-wrapper">
-                                            <div v-if="post?.type === 'Video'"><video loading="lazy" :src="`${$directus.url}assets/${post?.media?.filename_disk}`" controls></video></div>
-                                            <div v-else><nuxt-img loading="lazy" :src="`${$directus.url}assets/${post?.image?.filename_disk}`" :alt="post?.title" /></div>
+                                            <div v-if="post?.type === 'Video'"><video loading="lazy"
+                                                    :src="`${$directus.url}assets/${post?.media?.filename_disk}`"
+                                                    controls></video></div>
+                                            <div v-if="post?.type === 'Audio'"><video loading="lazy"
+                                                    :src="`${$directus.url}assets/${post?.media?.filename_disk}`"
+                                                    controls></video></div>
+                                            <div v-else><nuxt-img loading="lazy"
+                                                    :src="`${$directus.url}assets/${post?.image?.filename_disk}`"
+                                                    :alt="post?.title" /></div>
                                             <div class="recall-wrapper">
                                                 <div class="icon-wrapper">
-                                                    <span class="mbr-iconfont mobi-mbri-quote-right mobi-mbri"
-                                                        style="color: black;"></span>
+                                                    <span class="mbr-iconfont mobi-mbri-quote-right mobi-mbri" style="color: inherit"></span>
                                                 </div>
-                                                <p class="mbr-recall mbr-fonts-style display-7" style="color: black;">
+                                                <p class="mbr-recall mbr-fonts-style display-7" style="color: inherit">
                                                     Posted:
                                                     {{ new Date(post?.date_created).toLocaleDateString() }}
                                                 </p>
                                                 <div class="people-wrapper" style="width: 600px;">
                                                     <div class="people-wrap">
                                                         <div class="image-wrap">
-                                                            <nuxt-img loading="lazy" class="person" src="assets/images/image1.jpg"
-                                                                :alt="post?.username" />
+                                                            <nuxt-img loading="lazy" class="person" style="color: inherit"
+                                                                src="assets/images/image1.jpg" :alt="post?.username" />
                                                         </div>
                                                         <div class="rating-content">
 
-                                                            <p class="mbr-name mbr-fonts-style display-4">
+                                                            <p class="mbr-name mbr-fonts-style display-4" style="color: inherit">
                                                                 {{ post?.username }}
                                                             </p>
                                                         </div>
@@ -45,33 +51,34 @@
                                                     <p class="mbr-desc mbr-fonts-style display-4" v-html="post?.type">
                                                     </p>
                                                 </div>
-                                                <h5 class="mbr-section-title mbr-fonts-style display-5">
+                                                <h5 class="mbr-section-title mbr-fonts-style display-5" style="color: inherit">
                                                     {{ post?.title }}
                                                 </h5>
                                                 <div class="rating-wrapper">
                                                     <div class="rating-wrap">
                                                         <v-toolbar color="transparent">
-                                                            <v-toolbar-subtitle class="socialReactionButton">
-                                                                <reactions />
-                                                            </v-toolbar-subtitle>
+                                                            <div class="socialReactionButton">
+                                                                <reactions v-if="post?.id" :contentId="post?.id"
+                                                                    :contentType="`post`" />
+                                                            </div>
 
-                                                            <v-toolbar-subtitle class="socialShareButton">
+                                                            <div class="socialShareButton">
                                                                 <share />
-                                                            </v-toolbar-subtitle>
+                                                            </div>
 
-                                                            <v-toolbar-subtitle class="socialListButton">
+                                                            <div class="socialListButton">
                                                                 <createListBtn />
-                                                            </v-toolbar-subtitle>
+                                                            </div>
                                                             <v-spacer></v-spacer>
 
-                                                            <v-toolbar-subtitle class="socialSettingsButton">
-                                                                <updatepost :id="activityId" />
-                                                            </v-toolbar-subtitle>
+                                                            <div class="socialSettingsButton">
+                                                                <updatepost :id="id" />
+                                                            </div>
                                                         </v-toolbar>
                                                     </div>
                                                 </div>
                                                 <div class="text-wrapper">
-                                                    <p class="mbr-text mbr-fonts-style display-7"
+                                                    <p class="mbr-text mbr-fonts-style display-7" style="color: inherit"
                                                         v-html="post?.content"></p>
                                                 </div>
                                             </div>
@@ -91,16 +98,6 @@
     </div>
 </template>
 
-<script>
-    export default {
-        result() {
-            return {
-                activityId: this.$route.params.id,
-            }
-        },
-    }
-</script>
-
 <script setup>
     import {
         ref
@@ -112,12 +109,13 @@
     import share from '~/components/partials/shareDialog.vue'
     import updatepost from '~/components/crud/update/update-post.vue'
 
-    const tab = ref(null);
     const route = useRoute();
     const {
         $directus,
         $readItem
     } = useNuxtApp()
+
+    const id = route.params.id
 
     const {
         data: post
@@ -134,6 +132,6 @@
     })
 
     definePageMeta({
-      middleware: ['authenticated'],
+        middleware: ['authenticated'],
     })
 </script>
