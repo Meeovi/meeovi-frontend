@@ -1,0 +1,76 @@
+<template>
+    <div class="contentPage">
+        <v-row>
+            <v-col cols="12">
+                <v-card color="#1F7087">
+                    <div class="d-flex flex-no-wrap justify-space-between">
+                        <div>
+                            <v-card-title class="text-h5">
+                                {{ station?.name }}
+                            </v-card-title>
+
+                            <v-card-subtitle>Format: {{ station?.format }}</v-card-subtitle>
+
+                            <v-card-subtitle>Categories: 
+                                <div v-for="category in station?.categories" :key="category">
+                                    {{ category?.categories_id?.name }}
+                                </div>
+                            </v-card-subtitle>
+
+                            <v-card-subtitle v-html="station?.description"></v-card-subtitle>
+                        </div>
+
+                        <v-avatar class="ma-3" rounded="0" size="125">
+                            <v-img :src="`${$directus.url}assets/${station?.image?.filename_disk}`"></v-img>
+                        </v-avatar>
+                    </div>
+                </v-card>
+            </v-col>
+
+            <v-col cols="12">
+                <video :src="`${$directus.url}assets/${station?.file?.filename_disk}`" controls loop
+                    class="radioStation"></video>
+            </v-col>
+
+            <v-col cols="12">
+                <relatedstations />
+            </v-col>
+
+            <v-col cols="12">
+                <comments />
+            </v-col>
+        </v-row>
+    </div>
+</template>
+
+<script setup>
+    import {
+        ref,
+        computed
+    } from 'vue'
+    import comments from '@/components/partials/comments.vue'
+    import relatedstations from '@/components/cms/related/relatedstations.vue'
+
+    const route = useRoute()
+
+    const {
+        $directus,
+        $readItem,
+        $readItems
+    } = useNuxtApp()
+
+    const {
+        data: station
+    } = await useAsyncData('station', () => {
+        return $directus.request($readItem('radios', route.params.id, {
+            fields: ['*', {
+                '*': ['*']
+            }]
+        }))
+    })
+
+    // Set page title
+    useHead({
+        title: computed(() => station.value?.name || 'Station Page'),
+    });
+</script>

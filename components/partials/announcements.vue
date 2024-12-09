@@ -21,13 +21,16 @@
 
     const alert = ref(true);
 
-    const props = defineProps({
-        announcement: {
-            type: Object,
-            required: true,
-        },
-    });
     const {
-        announcement
-    } = props;
+      $directus,
+      $readItems
+  } = useNuxtApp()
+
+  const {
+      data: announcements
+  } = await useAsyncData('announcements', () => {
+      return $directus.request($readItems('announcements', {
+          fields: ['*', { '*': ['*'] }]
+      }))
+  })
 </script>

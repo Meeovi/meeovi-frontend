@@ -1,12 +1,12 @@
 <template>
   <div>
     <v-sheet class="mx-auto row align-items-stretch items-row">
-      <v-toolbar title="Spaces within the community" color="transparent">
-        <v-toolbar-subtitle><a href="/social/spaces/">All Spaces</a></v-toolbar-subtitle>
+      <v-toolbar title="Radio Stations within the community" color="transparent">
+        <v-toolbar-subtitle><a href="/departments/categories/stations/">All Radio Stations</a></v-toolbar-subtitle>
       </v-toolbar>
       <v-slide-group v-model="model" class="pa-4" selected-class="bg-success" show-arrows>
-        <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }" v-for="(result, index) in space" :key="index">
-          <spaces style="margin: 10px;" :space="result" />
+        <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }" v-for="(result, index) in station" :key="index">
+          <stations style="margin: 10px;" :radio="result" />
         </v-slide-group-item>
       </v-slide-group>
     </v-sheet>
@@ -20,8 +20,8 @@
     import {
     useQuery
   } from '@vue/apollo-composable'
-    import spaces from '~/components/cms/related/spaces.vue'
-    import createspace from '~/components/crud/create/add-space.vue'
+    import stations from '~/components/cms/related/stations.vue'
+    import createstation from '~/components/crud/create/add-station.vue'
     //import {groups} from '~/graphql/cms/queries/groups'
     //import { getGroups } from '~/composables/cms/social/getGroups.js'; // Import the composable function
   
@@ -34,9 +34,9 @@
     } = useNuxtApp()
 
     const {
-        data: space
-    } = await useAsyncData('space', () => {
-        return $directus.request($readItems('spaces', {
+        data: station
+    } = await useAsyncData('station', () => {
+        return $directus.request($readItems('radios', {
             fields: ['*', { '*': ['*'] }]
         }))
     })
