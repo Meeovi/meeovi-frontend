@@ -1,7 +1,7 @@
 <template>
     <v-row>
-        <v-col cols="3">
-            <v-card color="#1F7087" :href="`/departments/categories/station/${radio?.id}`">
+        <v-col>
+            <v-card color="#1F7087">
                 <div class="d-flex flex-no-wrap justify-space-between">
                     <div>
                         <v-card-title class="text-h5">
@@ -11,12 +11,12 @@
                         <v-card-subtitle>{{ radio?.description }}</v-card-subtitle>
 
                         <v-card-actions>
-                            <v-btn class="ms-2" size="small" text="LISTEN" variant="outlined"></v-btn>
+                            <v-btn class="ms-2" size="small" text="LISTEN" variant="outlined" :href="`/departments/categories/station/${radio?.id}`"></v-btn>
                         </v-card-actions>
                     </div>
 
                     <v-avatar class="ma-3" rounded="0" size="125">
-                        <v-img :src="`${$directus.url}assets/${radio?.image?.filename_disk}`"></v-img>
+                        <nuxt-img :src="`${$directus.url}assets/${radio?.image?.filename_disk}`" />
                     </v-avatar>
                 </div>
             </v-card>

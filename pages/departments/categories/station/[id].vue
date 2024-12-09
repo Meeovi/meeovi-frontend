@@ -21,15 +21,12 @@
                         </div>
 
                         <v-avatar class="ma-3" rounded="0" size="125">
-                            <v-img :src="`${$directus.url}assets/${station?.image?.filename_disk}`"></v-img>
+                            <nuxt-img :src="`${$directus.url}assets/${station?.image?.filename_disk}`" />
                         </v-avatar>
                     </div>
-                </v-card>
-            </v-col>
 
-            <v-col cols="12">
-                <video :src="`${$directus.url}assets/${station?.file?.filename_disk}`" controls loop
-                    class="radioStation"></video>
+                  <audio :src="`${$directus.url}assets/${station?.file?.filename_disk}`" loop class="radioStation"></audio>  
+                </v-card>
             </v-col>
 
             <v-col cols="12">
@@ -55,8 +52,7 @@
 
     const {
         $directus,
-        $readItem,
-        $readItems
+        $readItem
     } = useNuxtApp()
 
     const {
@@ -69,7 +65,6 @@
         }))
     })
 
-    // Set page title
     useHead({
         title: computed(() => station.value?.name || 'Station Page'),
     });

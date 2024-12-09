@@ -27,7 +27,7 @@
                   <v-tabs-window-item value="one">
                       <v-row style="padding-top: 15px;">
                           <v-col cols="4" v-for="(stations, index) in stations" :key="index">
-                              <station :station="stations" />
+                              <station :radio="stations" />
                           </v-col>
                       </v-row>
                   </v-tabs-window-item>
@@ -35,7 +35,7 @@
                   <v-tabs-window-item value="two">
                       <v-row style="padding-top: 15px;">
                           <v-col cols="4" v-for="(stations, index) in livestations" :key="index">
-                              <station :station="stations" />
+                              <station :radio="stations" />
                           </v-col>
                       </v-row>
                   </v-tabs-window-item>
@@ -43,7 +43,7 @@
                   <v-tabs-window-item value="three">
                       <v-row style="padding-top: 15px;">
                           <v-col cols="4" v-for="(stations, index) in mystations" :key="index">
-                              <station :station="stations" />
+                              <station :radio="stations" />
                           </v-col>
                       </v-row>
                   </v-tabs-window-item>
@@ -91,7 +91,8 @@
               type: {
                   _eq: "Live"
               }
-          }
+          },
+          fields: ['*', { '*': ['*'] }]
       }))
   })
 
