@@ -6,7 +6,7 @@
         <div class="row main align-items-center">
           <div class="col-md-6 image-element ">
             <div class="img-wrap">
-              <nuxt-img loading="lazy" :src="`${category?.image}`" :alt="category?.name" />
+              <NuxtImg loading="lazy" :src="`${category?.image}`" :alt="category?.name" />
             </div>
           </div>
           <div class="col-md-6 text-element">
@@ -19,7 +19,7 @@
                   <br>
                   <br>
               </div>
-              <div class="mbr-section-btn pt-3 align-center"><a class="btn btn-md btn-white display-4" :href="`/departments/${category?.uid}`">Start Reading</a></div>
+              <div class="mbr-section-btn pt-3 align-center"><NuxtLink class="btn btn-md btn-white display-4" :href="`/departments/${category?.uid}`">Start Reading</NuxtLink></div>
             </div>
           </div>
         </div>

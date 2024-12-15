@@ -21,7 +21,7 @@
         <v-main>
           <v-tabs class="searchSection" center-active v-model="tab" bg-color="transparent">
             <v-tab value="one">All Results</v-tab>
-            <v-tab v-for="(menu, index) in searchbar?.menus" :key="index"><a :href="menu?.url">{{ menu?.name }}</a></v-tab>
+            <v-tab v-for="(menu, index) in searchbar?.menus" :key="index"><NuxtLink :to="menu?.url">{{ menu?.name }}</NuxtLink></v-tab>
           </v-tabs>
 
           <v-card-text>

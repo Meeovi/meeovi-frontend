@@ -9,12 +9,12 @@
 
       <!-- v-for="siteoverview in data?.pages?.nodes" :key="siteoverview.id"-->
       <v-app-bar-title>
-        <a class="logobrand" href="/">
+        <NuxtLink class="logobrand" href="/">
           <v-icon start icon="fas fa-shopping-bag" color="orange">
             <!--<img :src="siteoverview?.featuredImage?.node?.sourceUrl" :alt="siteoverview?.title" />-->
           </v-icon>
           <!--{{ siteoverview?.title }}-->Meeovi
-        </a>
+        </NuxtLink>
       </v-app-bar-title>
 
       <search />
@@ -102,7 +102,7 @@
           </main>
         </v-layout>
       </v-card>
-      <!--<AboveFooter />-->
+      <!--<aboveFooter />-->
       <BottomFooter />
       <FooterNav />
       <!---->

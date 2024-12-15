@@ -1,6 +1,6 @@
 <template>
     <v-card>
-        <v-toolbar color="" title="Products"><addproduct /></v-toolbar>
+        <v-toolbar color="" title="Products"><NuxtLinkddproduct /></v-toolbar>
         <v-tabs v-model="tab" bg-color="primary">
             <v-tab value="one">My Products</v-tab>
             <!--<v-tab value="two">Item Two</v-tab>

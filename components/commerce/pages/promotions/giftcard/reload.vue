@@ -5,7 +5,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-md-6">
-                        <nuxt-img loading="lazy" src="~/assets/images/mbr-1076x585.png" class="top" alt="">
+                        <NuxtImg loading="lazy" src="~/assets/images/mbr-1076x585.png" class="top" alt="">
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="right">
@@ -31,7 +31,7 @@
                                 </v-card-actions>
                                 <v-col cols="12"><v-text-field prepend-inner-icon="fas fa-dollar-sign" label="Other" ></v-text-field></v-col>
                             </v-card>
-                            <div class="mbr-section-btn"><a class="btn btn-secondary display-7" href="">Buy Now</a>
+                            <div class="mbr-section-btn"><NuxtLink class="btn btn-secondary display-7" href="">Buy Now</NuxtLink>
                             </div>
                             <div class="price-line1">
                                 <p class="desc mbr-fonts-style display-7"><strong>

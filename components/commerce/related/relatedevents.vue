@@ -1,7 +1,7 @@
 <template>
   <v-sheet class="mx-auto sliderProducts">
     <v-toolbar title="Events you may like" color="transparent">
-        <v-toolbar-subtitle><a href="/departments/NTY=/">All Events</a></v-toolbar-subtitle>
+        <v-toolbar-subtitle><NuxtLink to="/departments/NTY=/">All Events</NuxtLink></v-toolbar-subtitle>
       </v-toolbar>
     <v-sheet class="mx-auto" elevation="0" color="transparent">
       <v-slide-group v-model="model" class="pa-4" prev-icon="fas fa-arrow-left" next-icon="fas fa-arrow-right"
@@ -10,7 +10,7 @@
           <v-row dense>
             <v-col cols="4" :class="['ma-4', selectedClass]" @click="toggle">
               <v-card>
-                <nuxt-img loading="lazy" :src="product?.image?.url" :alt="products?.name" class="align-end" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" height="200px" cover />
+                <NuxtImg loading="lazy" :src="product?.image?.url" :alt="products?.name" class="align-end" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" height="200px" cover />
                   <v-card-title class="text-white" v-text="product?.name"></v-card-title>
 
                 <v-card-actions>

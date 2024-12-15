@@ -1,5 +1,6 @@
-const express = require('express');
-const jwt = require('jsonwebtoken');
+import express from 'express';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 const router = express.Router();
 
 // Load JWT secret from environment variables

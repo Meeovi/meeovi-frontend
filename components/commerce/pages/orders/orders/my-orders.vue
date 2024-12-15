@@ -27,9 +27,9 @@
                               <p class="card-text mbr-fonts-style display-4">Grand Total (Base): {{ order?.base_grand_total }}</p>
                               <p class="card-text mbr-fonts-style display-4">Grand Total (Purchased): {{ order?.grand_total }}</p>
                               <p class="card-text mbr-fonts-style display-4">Status: {{ order?.status }}</p>
-                              <p class="btn_link mbr-fonts-style display-4"><a :href="`/account/user/order/${order?.id}`"
+                              <p class="btn_link mbr-fonts-style display-4"><NuxtLink :to="`/account/user/order/${order?.id}`"
                                       class="text-secondary">View<span
-                                          class="mobi-mbri mobi-mbri-right mbr-iconfont"></span></a></p>
+                                          class="mobi-mbri mobi-mbri-right mbr-iconfont"></span></NuxtLink></p>
                           </div>
                       </div>
                   </div>

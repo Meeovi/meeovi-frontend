@@ -50,7 +50,7 @@
           <pantry :product="result?.categories?.items[0]?.uid" />
         </div>
         <div v-else :src="`${result?.categories?.items[0]?.image}`">
-          <nuxt-img loading="lazy" :alt="result?.categories?.items[0]?.name" cover />
+          <NuxtImg loading="lazy" :alt="result?.categories?.items[0]?.name" cover />
         </div>
       </div>
     </v-card>

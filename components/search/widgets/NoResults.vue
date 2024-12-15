@@ -88,7 +88,7 @@
         }}
       </p>
 
-      <ais-clear-refinements>
+      <NuxtLinkis-clear-refinements>
         <template #resetLabel>
           <div class="clear-filters">
             <svg

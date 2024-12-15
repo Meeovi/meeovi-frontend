@@ -65,9 +65,9 @@
               </div>
 
               <div class="mbr-section-btn">
-                <a href="" class="btn btn-danger display-7" target="_blank">
+                <NuxtLink to="" class="btn btn-danger display-7" target="_blank">
                   Add to Cart
-                </a>
+                </NuxtLink>
               </div>
             </div>
           </div>

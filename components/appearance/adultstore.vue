@@ -1,6 +1,6 @@
 <template>
     <div>
-        <age-verification />
+        <NuxtLinkge-verification />
         <section data-bs-version="5.1" class="formulam5 header1 cid-uwd6B8oI8u mbr-parallax-background" id="header1-a7">
 
             <div class="mbr-overlay"></div>
@@ -13,9 +13,9 @@
                         <p class="mbr-fonts-style mbr-text mbr-white mb-4 display-7">
                             {{ adult?.description }}
                         </p>
-                        <div class="mbr-section-btn"><a class="btn btn-white display-4" href="#"><span
+                        <div class="mbr-section-btn"><NuxtLink class="btn btn-white display-4" href="#"><span
                                     class="mobi-mbri mobi-mbri-right mbr-iconfont mbr-iconfont-btn"></span>START
-                                SHOPPING</a>
+                                SHOPPING</NuxtLink>
                         </div>
                     </div>
                 </div>
@@ -42,10 +42,10 @@
                                     </h5>
 
 
-                                    <div class="mbr-section-btn item-footer"><a href=""
+                                    <div class="mbr-section-btn item-footer"><NuxtLink to=""
                                             class="btn item-btn btn-white display-4"><span
                                                 class="mobi-mbri mobi-mbri-right mbr-iconfont mbr-iconfont-btn"></span>Learn
-                                            More</a></div>
+                                            More</NuxtLink></div>
                                 </div>
                             </div>
 
@@ -62,10 +62,10 @@
                                     </h5>
 
 
-                                    <div class="mbr-section-btn item-footer"><a href=""
+                                    <div class="mbr-section-btn item-footer"><NuxtLink to=""
                                             class="btn item-btn btn-white display-4"><span
                                                 class="mobi-mbri mobi-mbri-right mbr-iconfont mbr-iconfont-btn"></span>Learn
-                                            More</a></div>
+                                            More</NuxtLink></div>
                                 </div>
                             </div>
 
@@ -82,10 +82,10 @@
                                     </h5>
 
 
-                                    <div class="mbr-section-btn item-footer"><a href=""
+                                    <div class="mbr-section-btn item-footer"><NuxtLink to=""
                                             class="btn item-btn btn-white display-4"><span
                                                 class="mobi-mbri mobi-mbri-right mbr-iconfont mbr-iconfont-btn"></span>Learn
-                                            More</a></div>
+                                            More</NuxtLink></div>
                                 </div>
                             </div>
 

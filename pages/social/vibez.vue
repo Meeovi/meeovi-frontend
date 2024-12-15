@@ -12,7 +12,7 @@
 
                     <template v-slot:default="{ isActive }">
                         <v-card color="white">
-                            <addlive />
+                            <NuxtLinkddlive />
 
                             <v-card-actions>
                                 <v-spacer></v-spacer>

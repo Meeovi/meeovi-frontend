@@ -1,6 +1,6 @@
 <template>
     <v-card class="mx-auto" max-width="400">
-        <nuxt-img loading="lazy" class="align-end text-white" height="280" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg" cover>
+        <NuxtImg loading="lazy" class="align-end text-white" height="280" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg" cover>
             <v-card-title>Top 10 Australian beaches</v-card-title>
         </v-img>
 

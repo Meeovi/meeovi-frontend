@@ -36,7 +36,7 @@
                             </div>
 
                             <v-avatar class="ma-3" rounded="0" size="125">
-                                <nuxt-img loading="lazy" :src="post?.image?.filename_disk" :alt="post?.title || 'No Title'" />
+                                <NuxtImg loading="lazy" :src="post?.image?.filename_disk" :alt="post?.title || 'No Title'" />
                             </v-avatar>
                         </div>
                     </v-card>

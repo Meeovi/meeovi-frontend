@@ -9,7 +9,7 @@
                         <v-row dense>
                             <v-col v-for="news in categories?.items" :key="news" cols="4">
                                 <v-card class="mx-auto" max-width="400">
-                                    <nuxt-img loading="lazy" class="align-end text-white" height="200"
+                                    <NuxtImg loading="lazy" class="align-end text-white" height="200"
                                         :src="items?.image?.sourceUrl" :alt="items?.name" cover />
                                         <v-card-title>{{ items?.name}}</v-card-title>
 

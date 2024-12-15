@@ -8,7 +8,7 @@
                     <div v-for="post in result?.category?.posts?.nodes" :key="post.id" class="item features-image сol-12 col-md-6 col-lg-4">
                         <div class="item-wrapper">
                             <div class="item-img">
-                                <nuxt-img loading="lazy" :src="`${post?.featuredImage?.node?.sourceUrl}`" :alt="post?.title" cover />
+                                <NuxtImg loading="lazy" :src="`${post?.featuredImage?.node?.sourceUrl}`" :alt="post?.title" cover />
                             </div>
                             <div class="item-content">
                                 <h5 class="item-title mbr-fonts-style display-7">
@@ -22,9 +22,9 @@
                                 </h6>
                                 <p class="mbr-text mbr-fonts-style mt-3 display-7" v-html="post?.excerpt"></p>
                             </div>
-                            <div class="mbr-section-btn item-footer mt-2"><a
+                            <div class="mbr-section-btn item-footer mt-2"><NuxtLink
                                     :href="`/blog/${post?.id}`"
-                                    class="btn btn-primary item-btn display-7">Read More&gt;</a></div>
+                                    class="btn btn-primary item-btn display-7">Read More&gt;</NuxtLink></div>
                         </div>
                     </div>
                 </div>

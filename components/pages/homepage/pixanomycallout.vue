@@ -16,10 +16,10 @@
                     </h5>
                     <h5 class="main-text mbr-fonts-style mb-0 display-7" v-html="stores.content"></h5>
                     <div class="mbr-section-btn item-footer">
-                        <a :href="`/Stores/${stores.name}`" class="btn btn-danger item-btn display-7" target="_blank">
+                        <NuxtLink :to="`/Stores/${stores.name}`" class="btn btn-danger item-btn display-7" target="_blank">
                             <span class="mobi-mbri mobi-mbri-arrow-next mbr-iconfont mbr-iconfont-btn"></span>
                             Shop Now
-                        </a>
+                        </NuxtLink>
                     </div>
                 </div>
             </div>
@@ -28,11 +28,11 @@
             <div class="item features-image col-12 col-md-6 col-lg-3">
                 <div class="item-wrapper">
                     <div class="item-img">
-                        <nuxt-img loading="lazy" src="assets/images/011.jpg" alt="">
+                        <NuxtImg loading="lazy" src="assets/images/011.jpg" alt="">
                         <div class="mbr-section-btn">
-                            <a href="" class="btn btn-danger item-btn display-7" target="_blank">
+                            <NuxtLink to="" class="btn btn-danger item-btn display-7" target="_blank">
                                 Read More
-                            </a>
+                            </NuxtLink>
                         </div>
                     </div>
                     <div class="item-content">
@@ -52,11 +52,11 @@
             <div class="item features-image col-12 col-md-6 col-lg-3">
                 <div class="item-wrapper">
                     <div class="item-img">
-                        <nuxt-img loading="lazy" src="assets/images/022.jpg" alt="">
+                        <NuxtImg loading="lazy" src="assets/images/022.jpg" alt="">
                         <div class="mbr-section-btn">
-                            <a href="" class="btn btn-danger item-btn display-7" target="_blank">
+                            <NuxtLink to="" class="btn btn-danger item-btn display-7" target="_blank">
                                 Read More
-                            </a>
+                            </NuxtLink>
                         </div>
                     </div>
                     <div class="item-content">

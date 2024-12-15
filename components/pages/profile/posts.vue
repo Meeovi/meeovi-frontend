@@ -5,7 +5,7 @@
                 <v-toolbar color="orange" title="Your Social Feed" subtitle="Your Posts"></v-toolbar>
                 <v-col cols="3" v-for="(member, index) in data?.members?.nodes" :key="index">
                     <v-card class="mx-auto" elevated="0">
-                        <nuxt-img loading="lazy" class="align-end text-white" height="350"
+                        <NuxtImg loading="lazy" class="align-end text-white" height="350"
                             :src="`${member?.featuredImage?.node?.sourceUrl}`" :alt="member?.title" cover />
                             <v-card-title>{{ member?.title }}</v-card-title>
 

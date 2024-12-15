@@ -21,8 +21,8 @@
                                       <h4 class="card-title mbr-fonts-style display-7">
                                           Order Information
                                       </h4>
-                                      <a class="card-text mbr-fonts-style display-7" :href="`/account/user/orders/my-order/${order?.order_id}`">Order #:
-                                          {{ order?.order_id }}</a>
+                                      <NuxtLink class="card-text mbr-fonts-style display-7" :href="`/account/user/orders/my-order/${order?.order_id}`">Order #:
+                                          {{ order?.order_id }}</NuxtLink>
                                       <p class="card-text mbr-fonts-style display-7">Order Date:
                                           {{ new Date(order?.created_at).toLocaleDateString() }}</p>
                                       <p class="card-text mbr-fonts-style display-7">Order Status:
@@ -113,7 +113,7 @@
                   </div>
               </div>
           </div>
-          <nuxt-img loading="lazy" src="~/~/assets/images/background2.jpg" alt="Orders">
+          <NuxtImg loading="lazy" src="~/~/assets/images/background2.jpg" alt="Orders">
       </section>
 
       <v-card title="Order Items" flat>

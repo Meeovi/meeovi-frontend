@@ -30,9 +30,9 @@
                                 <p class="card-text mbr-fonts-style display-4">Status: {{ invoice?.state }}</p>
                                 <p class="card-text mbr-fonts-style display-4">Grand Total (Base): {{ invoice?.base_grand_total }}</p>
                                 <p class="card-text mbr-fonts-style display-4">Grand Total (Purchased): {{ invoice?.grand_total }}</p>
-                                <p class="btn_link mbr-fonts-style display-4"><a :href="`/account/user/invoice/${invoice?.id}`"
+                                <p class="btn_link mbr-fonts-style display-4"><NuxtLink :to="`/account/user/invoice/${invoice?.id}`"
                                         class="text-secondary">View<span
-                                            class="mobi-mbri mobi-mbri-right mbr-iconfont"></span></a></p>
+                                            class="mobi-mbri mobi-mbri-right mbr-iconfont"></span></NuxtLink></p>
                             </div>
                         </div>
                     </div>

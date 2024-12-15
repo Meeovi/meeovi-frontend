@@ -2,7 +2,7 @@
     <div>
         <!--<profilebar />-->
         <v-toolbar color="transparent" density="compact" title="My Addresses">
-            <addAddress />
+            <NuxtLinkddAddress />
         </v-toolbar>
         <v-card>
             <v-tabs v-model="tab" bg-color="primary">

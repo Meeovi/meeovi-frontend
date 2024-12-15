@@ -64,7 +64,7 @@
                             <v-tabs-window-item value="option-6">
                                 <v-card flat>
                                     <v-card-text>
-                                        <agreements />
+                                        <NuxtLinkgreements />
                                     </v-card-text>
                                 </v-card>
                             </v-tabs-window-item>

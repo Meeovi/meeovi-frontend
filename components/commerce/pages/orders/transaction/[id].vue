@@ -21,8 +21,8 @@
                                         <h4 class="card-title mbr-fonts-style display-7">
                                             Transaction Information
                                         </h4>
-                                        <a class="card-text mbr-fonts-style display-7" :href="`/account/user/orders/my-order/${transaction?.order_id}`">Order #:
-                                            {{ transaction?.order_id }}</a>
+                                        <NuxtLink class="card-text mbr-fonts-style display-7" :href="`/account/user/orders/my-order/${transaction?.order_id}`">Order #:
+                                            {{ transaction?.order_id }}</NuxtLink>
                                         <p class="card-text mbr-fonts-style display-7">Transaction ID: {{ transaction?.transaction_id }}</p>    
                                         <p class="card-text mbr-fonts-style display-7">Transaction Date:
                                             {{ new Date(transaction?.created_at).toLocaleDateString() }}</p>
@@ -37,7 +37,7 @@
                     </div>
                 </div>
             </div>
-            <nuxt-img loading="lazy" src="~/~/assets/images/background2.jpg" alt="Transactions">
+            <NuxtImg loading="lazy" src="~/~/assets/images/background2.jpg" alt="Transactions">
         </section>
     </div>
 </template>

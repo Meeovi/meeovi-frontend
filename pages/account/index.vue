@@ -25,7 +25,7 @@
                     </v-tabs-window-item>
 
                     <v-tabs-window-item value="two">
-                        <addresses />
+                        <NuxtLinkddresses />
                     </v-tabs-window-item>
 
                     <v-tabs-window-item value="three">

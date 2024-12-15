@@ -17,12 +17,12 @@
                 </v-toolbar>
                 <v-row style="padding: 10px;">
                     <v-col cols="3" v-for="menu in eco?.menus" :key="menu?.id">
-                        <a :href="menu?.url">
+                        <NuxtLink :to="menu?.url">
                             <v-card class="mx-auto" max-width="300">
                               <v-avatar :icon="`fas fa-${menu?.icon}`" size="180"></v-avatar>
                                 <v-card-title>{{ menu?.name }}</v-card-title>
                             </v-card>
-                        </a>
+                        </NuxtLink>
                     </v-col>
                 </v-row>
             </v-card>

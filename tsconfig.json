@@ -1,13 +1,12 @@
 {
   "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "allowJs": true,
     "strict": true,
-    "esModuleInterop": true,
-    "verbatimModuleSyntax": true,
-    "skipLibCheck": true,
     "types": [
       "@types/node",
-      "@nuxtjs/apollo",
       "@types/leaflet"
     ]
   }

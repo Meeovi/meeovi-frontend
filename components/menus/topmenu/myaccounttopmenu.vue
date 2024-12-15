@@ -2,9 +2,9 @@
   <div>
     <v-menu :location="location" transition="slide-y-transition">
       <template v-slot:activator="{ props }">
-        <a variant="flat" v-bind="props">
+        <NuxtLink variant="flat" v-bind="props">
           <v-icon start icon="fas fa-user-circle"></v-icon>
-        </a>
+        </NuxtLink>
       </template>
       <v-list>
         <v-row class="accountDropdown" v-if="userStore.isLoggedIn">

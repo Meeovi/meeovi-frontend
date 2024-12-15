@@ -24,7 +24,7 @@
       </v-sheet>
 
       <!--Department Banner Slider-->
-      <nuxt-img loading="lazy" :src="`${result?.categories?.items[0]?.image}`" :alt="result?.categories?.items[0]?.name" cover />
+      <NuxtImg loading="lazy" :src="`${result?.categories?.items[0]?.image}`" :alt="result?.categories?.items[0]?.name" cover />
     </v-card>
 
     <v-row class="departmentRow">

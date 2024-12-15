@@ -63,7 +63,7 @@
                                 <h6 class="card-title mbr-fonts-style mb-1 display-5">
                                     <strong>Payment Method</strong></h6>
                                 <p class="mbr-text mbr-fonts-style display-7">
-                                    <a href="mailto:info@site.com" class="text-primary">{{ subscription?.customer?.customers_id?.payment }}</a>
+                                    <NuxtLink to="mailto:info@site.com" class="text-primary">{{ subscription?.customer?.customers_id?.payment }}</NuxtLink>
                                 </p>
                             </div>
                         </div>

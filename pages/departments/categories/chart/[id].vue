@@ -13,7 +13,7 @@
                         </div>
 
                         <v-avatar class="ma-3" rounded="0" size="125">
-                            <v-img :src="`${$directus.url}assets/${chart?.image?.filename_disk}`"></v-img>
+                            <NuxtImg :src="`${$directus.url}assets/${chart?.image?.filename_disk}`" />
                         </v-avatar>
                     </div>
                 </v-card>

@@ -14,7 +14,7 @@
 
                             <template v-slot:default="{ isActive }">
                                 <v-card color="white">
-                                    <addlive />
+                                    <NuxtLinkddlive />
 
                                     <v-card-actions>
                                         <v-spacer></v-spacer>
@@ -33,7 +33,7 @@
                             <template v-slot:activator="{ props }">
                                 <div class="avatarBorder" v-for="(shorts, index) in short" :key="index">
                                     <v-avatar v-bind="props" size="60">
-                                        <nuxt-img loading="lazy" :src="`${$directus.url}assets/${shorts?.thumbnail?.filename_disk}`" :alt="shorts?.name" cover />
+                                        <NuxtImg loading="lazy" :src="`${$directus.url}assets/${shorts?.thumbnail?.filename_disk}`" :alt="shorts?.name" cover />
                                     </v-avatar>
                                 </div>
                             </template>

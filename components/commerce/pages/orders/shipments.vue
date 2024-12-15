@@ -27,9 +27,9 @@
                                 <p class="card-text mbr-fonts-style display-4">Ship to Name:
                                     {{ new Date(shipment?.customer_id).toLocaleDateString() }}</p>
                                 <p class="card-text mbr-fonts-style display-4">Total Quantity: {{ shipment?.total_qty }}</p>
-                                <p class="btn_link mbr-fonts-style display-4"><a :href="`/account/user/shipment/${shipment?.id}`"
+                                <p class="btn_link mbr-fonts-style display-4"><NuxtLink :to="`/account/user/shipment/${shipment?.id}`"
                                         class="text-secondary">View<span
-                                            class="mobi-mbri mobi-mbri-right mbr-iconfont"></span></a></p>
+                                            class="mobi-mbri mobi-mbri-right mbr-iconfont"></span></NuxtLink></p>
                             </div>
                         </div>
                     </div>

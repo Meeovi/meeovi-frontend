@@ -1,7 +1,7 @@
 <template>
     <div class="contentPage">
         <v-toolbar color="transparent">
-            <v-toolbar-title><a href="/news/">Meeovi News</a></v-toolbar-title>
+            <v-toolbar-title><NuxtLink to="/news/">Meeovi News</NuxtLink></v-toolbar-title>
         </v-toolbar>
         <newsbar />
         <v-row>

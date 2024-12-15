@@ -3,7 +3,7 @@
         <!--<profilebar />-->
 
         <v-card elevation="0">
-            <nuxt-img loading="lazy" class="align-end text-white" height="250"
+            <NuxtImg loading="lazy" class="align-end text-white" height="250"
                 :src="`${$directus.url}assets/${space?.image?.filename_disk}`" :alt="space?.name" cover />
             <v-toolbar color="info" dark>
                 <v-toolbar-title
@@ -151,13 +151,13 @@
                                             <div class="card-wrapper">
                                                 <div class="card-box align-center">
                                                     <v-avatar size="50">
-                                                        <nuxt-img loading="lazy" :src="`${space?.user_created?.avatar?.filename_disk}`"
+                                                        <NuxtImg loading="lazy" :src="`${space?.user_created?.avatar?.filename_disk}`"
                                                             :alt="space?.creator" />
                                                     </v-avatar>
                                                     <h4
                                                         class="card-title align-center mbr-black mbr-fonts-style display-7">
-                                                        <strong>Created By</strong><br><br><a
-                                                            :href="`/account/user/${space?.creator}`">{{ space?.creator }}</a>
+                                                        <strong>Created By</strong><br><br><NuxtLink
+                                                            :href="`/account/user/${space?.creator}`">{{ space?.creator }}</NuxtLink>
                                                     </h4>
                                                 </div>
                                             </div>
@@ -191,13 +191,13 @@
                                     <v-row align="center" class="spacer" no-gutters>
                                         <v-col cols="4" sm="2" md="1">
                                             <v-avatar size="50">
-                                                <nuxt-img loading="lazy" :src="`${space?.user_created?.avatar?.filename_disk}`"
+                                                <NuxtImg loading="lazy" :src="`${space?.user_created?.avatar?.filename_disk}`"
                                                     :alt="space?.creator" />
                                             </v-avatar>
                                         </v-col>
 
                                         <v-col class="hidden-xs-only text-left ms-2" sm="5" md="3">
-                                            <a :href="`/account/user/${space?.creator}`">{{ space?.creator }}</a>
+                                            <NuxtLink :to="`/account/user/${space?.creator}`">{{ space?.creator }}</NuxtLink>
                                         </v-col>
 
                                         <v-col class="text-medium-emphasis text-truncate hidden-sm-and-down">
@@ -214,7 +214,7 @@
                                         v-for="admins in admins?.users?.directus_users_id" :key="admins">
                                         <v-col cols="4" sm="2" md="1">
                                             <v-avatar size="50">
-                                                <nuxt-img loading="lazy" :src="`${admins?.avatar?.filename_disk}`"
+                                                <NuxtImg loading="lazy" :src="`${admins?.avatar?.filename_disk}`"
                                                     :alt="admins?.username" />
                                             </v-avatar>
                                         </v-col>
@@ -241,7 +241,7 @@
                                         v-for="mods in mods?.users?.directus_users_id" :key="mods">
                                         <v-col cols="4" sm="2" md="1">
                                             <v-avatar size="50">
-                                                <nuxt-img loading="lazy" :src="`${mods?.avatar?.filename_disk}`" :alt="mods?.username" />
+                                                <NuxtImg loading="lazy" :src="`${mods?.avatar?.filename_disk}`" :alt="mods?.username" />
                                             </v-avatar>
                                         </v-col>
 
@@ -266,7 +266,7 @@
                                     <v-row align="center" class="spacer" no-gutters>
                                         <v-col cols="4" sm="2" md="1">
                                             <v-avatar size="50">
-                                                <nuxt-img loading="lazy" :src="`${members?.avatar?.filename_disk}`"
+                                                <NuxtImg loading="lazy" :src="`${members?.avatar?.filename_disk}`"
                                                     :alt="members?.username" />
                                             </v-avatar>
                                         </v-col>
@@ -294,7 +294,7 @@
                                         :src="`${$directus.url}assets/${space?.media?.filename_disk}`"
                                         :alt="space?.name"></video></div>
 
-                                <div v-else="space?.image?.filename_disk"><nuxt-img loading="lazy" class="align-end text-white" height="200"
+                                <div v-else="space?.image?.filename_disk"><NuxtImg loading="lazy" class="align-end text-white" height="200"
                                         :src="`${$directus.url}assets/${space?.image?.filename_disk}`"
                                         :alt="space?.name" cover /></div>
 

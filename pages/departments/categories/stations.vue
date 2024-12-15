@@ -2,7 +2,7 @@
   <div class="contentPage">
       <!--<profilebar />-->
       <v-card elevation="0">
-          <v-toolbar :title="stationbar?.name" color="#1F7287">
+          <v-toolbar :title="stationbar?.name" color="#b02564">
               <v-dialog min-width="500">
                   <template v-slot:activator="{ props: activatorProps }">
                       <v-btn v-bind="activatorProps" prepend-icon="fas fa-plus" title="Create a Station"
@@ -16,7 +16,7 @@
               </v-dialog>
           </v-toolbar>
 
-          <v-tabs v-model="tab" bg-color="#1F7287">
+          <v-tabs v-model="tab" bg-color="#b02564">
               <div v-for="(menu, index) in stationbar?.menus" :key="index">
                   <v-tab :value="menu?.value">{{ menu?.name }}</v-tab>
               </div>
@@ -26,7 +26,7 @@
               <v-tabs-window v-model="tab">
                   <v-tabs-window-item value="one">
                       <v-row style="padding-top: 15px;">
-                          <v-col cols="4" v-for="(stations, index) in stations" :key="index">
+                          <v-col cols="6" v-for="(stations, index) in stations" :key="index">
                               <station :radio="stations" />
                           </v-col>
                       </v-row>
@@ -34,7 +34,7 @@
 
                   <v-tabs-window-item value="two">
                       <v-row style="padding-top: 15px;">
-                          <v-col cols="4" v-for="(stations, index) in livestations" :key="index">
+                          <v-col cols="6" v-for="(stations, index) in livestations" :key="index">
                               <station :radio="stations" />
                           </v-col>
                       </v-row>
@@ -42,7 +42,7 @@
 
                   <v-tabs-window-item value="three">
                       <v-row style="padding-top: 15px;">
-                          <v-col cols="4" v-for="(stations, index) in mystations" :key="index">
+                          <v-col cols="6" v-for="(stations, index) in mystations" :key="index">
                               <station :radio="stations" />
                           </v-col>
                       </v-row>

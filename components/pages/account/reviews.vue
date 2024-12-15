@@ -2,7 +2,7 @@
     <div>
         <!--<profilebar />-->
         <v-toolbar color="transparent" density="compact" title="My Reviews">
-            <addReview />
+            <NuxtLinkddReview />
         </v-toolbar>
         <v-table fixed-header>
             <thead>

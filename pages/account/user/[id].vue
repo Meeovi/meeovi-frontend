@@ -12,7 +12,7 @@
                         <div class="content-container">
                             <div class="img-wrap">
                                 <div class="item-img">
-                                    <nuxt-img loading="lazy" :src="`${user?.picture}`" :alt="user?.username" />
+                                    <NuxtImg loading="lazy" :src="`${user?.picture}`" :alt="user?.username" />
                                 </div>
                             </div>
                             <div class="text-wrap align-left">
@@ -70,7 +70,7 @@
                     </v-window-item>
 
                     <v-window-item value="seven">
-                        <archives />
+                        <NuxtLinkrchives />
                     </v-window-item>
                 </v-window>
             </v-card-text>

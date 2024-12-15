@@ -36,8 +36,8 @@
                                 </h4>
                                 <p class="mbr-text align-center mbr-white mbr-fonts-style display-7">
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac feugiat neque.</p>
-                                <div class="mbr-section-btn align-center"><a href="#"
-                                        class="btn btn-md btn-white-outline display-4">View More</a>
+                                <div class="mbr-section-btn align-center"><NuxtLink to="#"
+                                        class="btn btn-md btn-white-outline display-4">View More</NuxtLink>
                                 </div>
                             </div>
                         </div>
@@ -53,8 +53,8 @@
                                     Coverage</h4>
                                 <p class="mbr-text align-center mbr-white mbr-fonts-style display-7">
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac feugiat neque.</p>
-                                <div class="mbr-section-btn align-center"><a href="#"
-                                        class="btn btn-md btn-white-outline display-4">View More</a>
+                                <div class="mbr-section-btn align-center"><NuxtLink to="#"
+                                        class="btn btn-md btn-white-outline display-4">View More</NuxtLink>
                                 </div>
                             </div>
                         </div>
@@ -70,8 +70,8 @@
                                     Photography</h4>
                                 <p class="mbr-text align-center mbr-white mbr-fonts-style display-7">
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac feugiat neque.</p>
-                                <div class="mbr-section-btn align-center"><a href="#"
-                                        class="btn btn-md btn-white-outline display-4">View More</a>
+                                <div class="mbr-section-btn align-center"><NuxtLink to="#"
+                                        class="btn btn-md btn-white-outline display-4">View More</NuxtLink>
                                 </div>
                             </div>
                         </div>

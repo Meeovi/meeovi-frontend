@@ -22,9 +22,9 @@
     <div>
       <v-card>
         <v-tabs bg-color="blue-lighten-4" center-active>
-          <v-tab><a href="/blog/">All</a></v-tab>
-          <v-tab v-for="categories in data?.categories?.nodes" :key="categories"><a
-              :href="`/blog/category/${categories?.parent?.node.id}`">{{ categories?.parent?.node.name }}</a></v-tab>
+          <v-tab><NuxtLink to="/blog/">All</NuxtLink></v-tab>
+          <v-tab v-for="categories in data?.categories?.nodes" :key="categories"><NuxtLink
+              :href="`/blog/category/${categories?.parent?.node.id}`">{{ categories?.parent?.node.name }}</NuxtLink></v-tab>
         </v-tabs>
       </v-card>
     </div>

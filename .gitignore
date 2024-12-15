@@ -58,3 +58,7 @@ localhost.pem
 localhost-key.pem
 # Local Netlify folder
 .netlify
+.data
+
+
+*storybook.log

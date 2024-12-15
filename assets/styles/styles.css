@@ -35,7 +35,7 @@ body {
     height: 50px;
     display: inline-block !important;
     background: white;
-    border-radius: 5px;
+    border-radius: 5px !important;
 }
 
 .mainSearch span {
@@ -60,7 +60,7 @@ body {
 .searchbox {
     width: 650px;
     background-color: white !important;
-    border-radius: 5px;
+    border-radius: 5px !important;
     display: inline-block !important;
 }
 
@@ -428,6 +428,7 @@ body {
 
 .radioStation {
     width: 100%;
+    height: 200px;
     padding-bottom: 5px;
 }
 

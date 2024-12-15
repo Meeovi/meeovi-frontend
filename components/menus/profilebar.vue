@@ -3,10 +3,10 @@
     <v-tabs style="background-color: transparent" center-active>
       <div v-for="(menu, index) in profilebar?.menus" :key="index">
       <v-tab>
-        <a href="/account/user/profile">Profile</a>
+        <NuxtLink to="/account/user/profile">Profile</NuxtLink>
       </v-tab>
       <v-tab>
-        <a :href="menu?.url">{{ menu?.name }}</a>
+        <NuxtLink :to="menu?.url">{{ menu?.name }}</NuxtLink>
       </v-tab>
       </div>
     </v-tabs>

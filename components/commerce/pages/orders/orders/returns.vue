@@ -30,8 +30,8 @@
               <v-col>
                 <v-list lines="two" class="orderToolbar">
                   <v-list-item-title>Return # {{refunds?.id}}</v-list-item-title>
-                  <v-list-item-subtitle><a href="/account/user/orders/my-orders/">View order details</a> | <a href="">View
-                      Invoice</a></v-list-item-subtitle>
+                  <v-list-item-subtitle><NuxtLink to="/account/user/orders/my-orders/">View order details</NuxtLink> | <NuxtLink to="">View
+                      Invoice</NuxtLink></v-list-item-subtitle>
                 </v-list>
               </v-col>
             </v-row>

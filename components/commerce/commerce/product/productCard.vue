@@ -5,7 +5,7 @@
         <div class="border border-neutral-200 rounded-md hover:shadow-lg max-w-[300px]">
           <div class="relative">
             <SfLink :href="`/product/${product?.sku}`" class="block">
-              <nuxt-img loading="lazy" :src="`${product?.image?.url}`" :alt="product?.name"
+              <NuxtImg loading="lazy" :src="`${product?.image?.url}`" :alt="product?.name"
                 class="block object-cover h-auto rounded-md aspect-square" width="300" height="300" />
             </SfLink>
             <createListBtn :product_sku="product?.uid" />
@@ -29,7 +29,7 @@
             <span
               class="block pb-2 font-bold typography-text-lg">{{ product?.price_range?.minimum_price?.regular_price?.currency }}
               {{ product?.price_range?.minimum_price?.regular_price?.value }}</span>
-            <AddToCartBtn :product="product" />
+            <NuxtLinkddToCartBtn :product="product" />
           </div>
         </div>
       </v-col>

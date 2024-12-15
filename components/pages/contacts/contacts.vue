@@ -35,7 +35,7 @@
                             </template>
                             <v-list>
                                 <v-list-item>
-                                    <v-list-item-title><a :href="`/social/member/${contacts?.id}`">Edit</a></v-list-item-title>
+                                    <v-list-item-title><NuxtLink :to="`/social/member/${contacts?.id}`">Edit</NuxtLink></v-list-item-title>
                                 </v-list-item>
                             </v-list>
                         </v-menu>

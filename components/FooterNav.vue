@@ -11,24 +11,24 @@
             <h2 class="mbr-section-title pb-2 mbr-fonts-style display-7">
               <strong>{{ about?.name }}</strong></h2>
             <div v-for="child in about?.menus" :key="child.id">
-              <h3 class="mbr-section-subtitle mbr-fonts-style mbr-lighter display-4"><a
-                  :href="`/${child?.slug}`">{{ child?.name }}</a></h3>
+              <h3 class="mbr-section-subtitle mbr-fonts-style mbr-lighter display-4"><NuxtLink
+                  :href="`/${child?.slug}`">{{ child?.name }}</NuxtLink></h3>
             </div>
           </v-col>
           <v-col cols="4" class="md-pb">
             <h2 class="mbr-section-title pb-2 mbr-fonts-style display-7">
               <strong>{{ legal?.name }}</strong></h2>
             <div v-for="child in legal?.menus" :key="child.id">
-              <h3 class="mbr-section-subtitle mbr-fonts-style mbr-lighter display-4"><a
-                  :href="`/${child?.slug}`">{{ child?.name }}</a></h3>
+              <h3 class="mbr-section-subtitle mbr-fonts-style mbr-lighter display-4"><NuxtLink
+                  :href="`/${child?.slug}`">{{ child?.name }}</NuxtLink></h3>
             </div>
           </v-col>
           <v-col cols="4" class="md-pb">
             <h2 class="mbr-section-title pb-2 mbr-fonts-style display-7">
               <strong>{{ company?.name }}</strong></h2>
             <div v-for="child in company?.menus" :key="child.id">
-              <h3 class="mbr-section-subtitle mbr-fonts-style mbr-lighter display-4"><a
-                  :href="`/${child?.slug}`">{{ child?.name }}</a></h3>
+              <h3 class="mbr-section-subtitle mbr-fonts-style mbr-lighter display-4"><NuxtLink
+                  :href="`/${child?.slug}`">{{ child?.name }}</NuxtLink></h3>
             </div>
           </v-col>
         </v-row>
@@ -45,7 +45,7 @@
           </v-col>
           <v-col cols="12">
             <p class="mbr-text mb-0 mbr-fonts-style display-7" style="width: 100%; text-align: center;">
-              @ 2017 - {{ new Date().getFullYear() }}&nbsp;<a href="/">{{ siteoverview?.site_name }}&nbsp;&nbsp;</a>All
+              @ 2017 - {{ new Date().getFullYear() }}&nbsp;<NuxtLink to="/">{{ siteoverview?.site_name }}&nbsp;&nbsp;</NuxtLink>All
               Rights Reserved.
             </p>
           </v-col>

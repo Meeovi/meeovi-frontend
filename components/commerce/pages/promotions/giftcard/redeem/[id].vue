@@ -22,7 +22,7 @@
 
             <v-col cols="12">
                 <h2>Current Gift Card Balance: {{ card?.amount }}</h2>
-                <a :href="`/commerce/giftcard/${card?.id}`">View balance history</a>
+                <NuxtLink :to="`/commerce/giftcard/${card?.id}`">View balance history</NuxtLink>
             </v-col>
             <v-divider></v-divider>
 

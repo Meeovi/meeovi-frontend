@@ -2,11 +2,15 @@
   <div>
     <v-sheet class="mx-auto row align-items-stretch items-row">
       <v-toolbar title="Radio Stations within the community" color="transparent">
-        <v-toolbar-subtitle><a href="/departments/categories/stations/">All Radio Stations</a></v-toolbar-subtitle>
+        <NuxtLink to="/departments/categories/stations/">All Radio Stations</NuxtLink>
       </v-toolbar>
       <v-slide-group v-model="model" class="pa-4" selected-class="bg-success" show-arrows>
         <v-slide-group-item v-for="(result, index) in station" :key="index">
-          <stations style="margin: 10px;" :radio="result" />
+          <v-row>
+            <v-col cols="6">
+              <stations style="margin: 10px;" :radio="result" />
+            </v-col>
+          </v-row>
         </v-slide-group-item>
       </v-slide-group>
     </v-sheet>

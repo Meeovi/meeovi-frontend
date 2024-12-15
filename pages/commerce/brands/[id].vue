@@ -9,7 +9,7 @@
           <v-card-subtitle>{{ brand.description }}</v-card-subtitle>
         </div>
         <v-avatar class="ma-3" rounded="0" size="125">
-          <nuxt-img loading="lazy" :src="`${config.public.commerceUrl}/media/${brand.image}`" :alt="brand.title" />
+          <NuxtImg loading="lazy" :src="`${config.public.commerceUrl}/media/${brand.image}`" :alt="brand.title" />
         </v-avatar>
       </div>
     </v-card>

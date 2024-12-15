@@ -1,6 +1,6 @@
 <template>
   <div>
-    <article class="w-full p-4 border rounded-md">
+    <NuxtLinkrticle class="w-full p-4 border rounded-md">
       <v-row>
         <v-col cols="12">
           <comments />
@@ -13,7 +13,7 @@
             <div class="row">
               <div class="col-md-6 col-lg-3">
                 <v-avatar size="120" v-for="(customer, index) in products?.customers" :key="index">
-                  <nuxt-img loading="lazy" :src="customers?.customer_id?.image?.filename_disk" :alt="customers?.customer_id?.username" />
+                  <NuxtImg loading="lazy" :src="customers?.customer_id?.image?.filename_disk" :alt="customers?.customer_id?.username" />
                 </v-avatar>
                 <div class="user_name mbr-fonts-style display-7">
                   <strong>{{ products?.comments?.name }}</strong>

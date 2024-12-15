@@ -28,7 +28,7 @@
           <div class="col-md-6 align-left img-block"
             :style="`background-color: ${result?.products?.items[0]?.color};`">
             <div class="mbr-figure">
-              <nuxt-img loading="lazy" :src="`${result?.products?.items[0]?.image?.url}`"
+              <NuxtImg loading="lazy" :src="`${result?.products?.items[0]?.image?.url}`"
                 :alt="result?.products?.items[0]?.name" />
             </div>
           </div>

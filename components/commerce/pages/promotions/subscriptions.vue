@@ -7,7 +7,7 @@
                 <v-row class="accountRow">
                     <v-col cols="3" v-for="(subscriptions, index) in subscriptions" :key="index">
                         <v-card class="mx-auto" max-width="400">
-                            <nuxt-img loading="lazy" class="align-end text-white" height="200"
+                            <NuxtImg loading="lazy" class="align-end text-white" height="200"
                             :src="subscriptions?.image?.filename_disk" :alt="subscriptions?.name" cover>
                                 <v-card-title>{{subscriptions?.name}}</v-card-title>
                             </v-img>
@@ -37,7 +37,7 @@
                 <v-row class="accountRow">
                     <v-col cols="3" v-for="(subscriptions, index) in subscriptions" :key="index">
                         <v-card class="mx-auto" max-width="400">
-                            <nuxt-img loading="lazy" class="align-end text-white" height="200"
+                            <NuxtImg loading="lazy" class="align-end text-white" height="200"
                             :src="subscriptions?.image?.filename_disk" :alt="subscriptions?.name" cover>
                                 <v-card-title>{{subscriptions?.name}}</v-card-title>
                             </v-img>

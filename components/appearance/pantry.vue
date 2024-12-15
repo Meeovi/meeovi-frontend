@@ -14,8 +14,8 @@
                         <div class="content_box text-center">
                             <h1 class="mbr-section-title mbr-fonts-style display-1">{{ pantry?.name }}</h1>
                             <p class="mbr-text mbr-fonts-style display-4">{{ pantry?.description }}</p>
-                            <div class="mbr-section-btn"><a class="btn btn-lg btn-primary-outline display-4"
-                                    href="#">ORDERING</a></div>
+                            <div class="mbr-section-btn"><NuxtLink class="btn btn-lg btn-primary-outline display-4"
+                                    href="#">ORDERING</NuxtLink></div>
                         </div>
                     </div>
                     <div class="col-12 col-md-3 col-lg-3">
@@ -52,8 +52,8 @@
                             <p class="mbr-text mbr-fonts-style display-4">Lorem ipsum dolor sit amet, consectetur
                                 adipisicing elit. Sit ex voluptatem voluptas aut quod, autem obcaecati molestiae optio
                                 consequuntur.</p>
-                            <div class="mbr-section-btn"><a class="btn btn-lg btn-primary-outline display-4"
-                                    href="#">VIEW MORE</a></div>
+                            <div class="mbr-section-btn"><NuxtLink class="btn btn-lg btn-primary-outline display-4"
+                                    href="#">VIEW MORE</NuxtLink></div>
                         </div>
                     </div>
                 </div>

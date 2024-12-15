@@ -4,7 +4,7 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-12 col-md-6 image-wrapper">
-                        <nuxt-img loading="lazy" class="w-100" :src="result?.blogPost?.featured_image" :alt="result?.blogPost?.title" />
+                        <NuxtImg loading="lazy" class="w-100" :src="result?.blogPost?.featured_image" :alt="result?.blogPost?.title" />
                     </div>
                     <div class="col-12 col-md">
                         <div class="text-wrapper text-center">

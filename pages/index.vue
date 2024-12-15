@@ -8,7 +8,7 @@
     <div v-else>No content available</div>
     
        
-        <ataglance />
+        <NuxtLinktaglance />
         <exclusives />
         <bookcallout />
         <deals />

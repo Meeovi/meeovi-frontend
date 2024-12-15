@@ -16,7 +16,7 @@
                                             <div v-if="post?.type === 'Audio'"><video loading="lazy"
                                                     :src="`${$directus.url}assets/${post?.media?.filename_disk}`"
                                                     controls></video></div>
-                                            <div v-else><nuxt-img loading="lazy"
+                                            <div v-else><NuxtImg loading="lazy"
                                                     :src="`${$directus.url}assets/${post?.image?.filename_disk}`"
                                                     :alt="post?.title" /></div>
                                             <div class="recall-wrapper">
@@ -30,7 +30,7 @@
                                                 <div class="people-wrapper" style="width: 600px;">
                                                     <div class="people-wrap">
                                                         <div class="image-wrap">
-                                                            <nuxt-img loading="lazy" class="person" style="color: inherit"
+                                                            <NuxtImg loading="lazy" class="person" style="color: inherit"
                                                                 src="assets/images/image1.jpg" :alt="post?.username" />
                                                         </div>
                                                         <div class="rating-content">

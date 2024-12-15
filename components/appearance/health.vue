@@ -28,8 +28,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="mbr-section-btn mt-3"><a class="btn btn-lg btn-warning display-4" href="#">Shop
-                                    now</a></div>
+                            <div class="mbr-section-btn mt-3"><NuxtLink class="btn btn-lg btn-warning display-4" href="#">Shop
+                                    now</NuxtLink></div>
                         </div>
                     </div>
                 </div>
@@ -246,15 +246,15 @@
                         </div>
 
                         <div class="carousel-controls">
-                            <a class="carousel-control-prev" role="button" data-slide="prev" data-bs-slide="prev">
+                            <NuxtLink class="carousel-control-prev" role="button" data-slide="prev" data-bs-slide="prev">
                                 <span aria-hidden="true" class="mobi-mbri-left mobi-mbri mbr-iconfont"></span>
                                 <span class="sr-only visually-hidden">Previous</span>
-                            </a>
+                            </NuxtLink>
 
-                            <a class="carousel-control-next" role="button" data-slide="next" data-bs-slide="next">
+                            <NuxtLink class="carousel-control-next" role="button" data-slide="next" data-bs-slide="next">
                                 <span aria-hidden="true" class="mobi-mbri-right mobi-mbri mbr-iconfont"></span>
                                 <span class="sr-only visually-hidden">Next</span>
-                            </a>
+                            </NuxtLink>
                         </div>
                     </div>
                 </div>

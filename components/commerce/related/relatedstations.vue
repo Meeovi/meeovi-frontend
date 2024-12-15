@@ -27,7 +27,7 @@
                           </div>
 
                           <v-avatar class="ma-3" size="125" rounded="0">
-                            <nuxt-img loading="lazy" :src="products?.image?.url" :alt="products?.name" cover />
+                            <NuxtImg loading="lazy" :src="products?.image?.url" :alt="products?.name" cover />
                           </v-avatar>
                         </div>
                       </v-card>

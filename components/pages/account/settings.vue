@@ -10,7 +10,7 @@
       <v-card-text>
         <v-tabs-window v-model="tab">
           <v-tabs-window-item value="one">
-            <account />
+            <NuxtLinkccount />
           </v-tabs-window-item>
 
           <v-tabs-window-item value="two">
@@ -34,7 +34,7 @@
           </v-tabs-window-item>
 
           <v-tabs-window-item value="seven">
-            <accessibility />
+            <NuxtLinkccessibility />
           </v-tabs-window-item>
 
           <v-tabs-window-item value="eight">

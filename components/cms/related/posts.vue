@@ -4,18 +4,18 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-            <a :href="post?.id ? `/social/feed/${post.id}` : '#'">
+            <NuxtLink :to="post?.id ? `/social/feed/${post.id}` : '#'">
               <div class="items-wrapper" style="width: 1820px;">
                 <div class="item features-without-image">
                   <div class="item-wrapper">
-                    <nuxt-img loading="lazy" :src="`${$directus.url}assets/${post?.image?.filename_disk}`" :alt="post?.title || 'No Title'" />
+                    <NuxtImg loading="lazy" :src="`${$directus.url}assets/${post?.image?.filename_disk}`" :alt="post?.title || 'No Title'" />
                     <div class="card-box">
                       <p class="item-text mbr-fonts-style display-7">{{ post?.title }}</p>
                       <p class="item-text mbr-fonts-style display-7">{{ post?.content }}</p>
                       <div class="people-wrapper">
                         <div class="people-wrap">
                           <div class="image-wrap">
-                            <nuxt-img loading="lazy" class="person" src="" :alt="post?.username || 'Anonymous'" />
+                            <NuxtImg loading="lazy" class="person" src="" :alt="post?.username || 'Anonymous'" />
                           </div>
                           <div class="rating-content">
                             <p class="mbr-rating mbr-fonts-style display-4">
@@ -32,7 +32,7 @@
                   </div>
                 </div>
               </div>
-            </a>
+            </NuxtLink>
           </div>
         </div>
       </div>

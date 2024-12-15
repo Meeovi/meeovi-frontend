@@ -16,10 +16,10 @@
         <div class="row">
             <div class="col-12 col-sm-6 col-lg-3" v-for="following in data?.friendship?.initiator" :key="following.id">
                 <div class="wrap-img item-img">
-                    <nuxt-img loading="lazy" :src="`${following.avatar.url}`" :alt="following.username" class="inner">
+                    <NuxtImg loading="lazy" :src="`${following.avatar.url}`" :alt="following.username" class="inner">
                 </div>
                 <h5 class="card-title mbr-fonts-style display-7">
-                    <a :href="`/admin/user/${following.id}`">{{ following.username }}</a></h5>
+                    <NuxtLink :to="`/admin/user/${following.id}`">{{ following.username }}</NuxtLink></h5>
                 
                 
             </div>

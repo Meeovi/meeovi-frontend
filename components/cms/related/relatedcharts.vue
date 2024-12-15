@@ -2,7 +2,7 @@
   <div>
     <v-sheet class="mx-auto row align-items-stretch items-row">
       <v-toolbar title="Charts within the community" color="transparent">
-        <v-toolbar-subtitle><a href="/departments/categories/charts/">All Charts</a></v-toolbar-subtitle>
+        <v-toolbar-subtitle><NuxtLink to="/departments/categories/charts/">All Charts</NuxtLink></v-toolbar-subtitle>
       </v-toolbar>
       <v-slide-group v-model="model" class="pa-4" selected-class="bg-success" show-arrows>
         <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }" v-for="(result, index) in chart" :key="index">

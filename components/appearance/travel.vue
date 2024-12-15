@@ -28,7 +28,7 @@
 
             // Add the tile layer
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+                attribution: '&copy; <NuxtLink to="https://www.openstreetmap.org/">OpenStreetMap</NuxtLink> contributors',
                 maxZoom: 18,
             }).addTo(mapInstance.value);
 

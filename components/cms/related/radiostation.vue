@@ -1,7 +1,7 @@
 <template>
     <v-row>
         <v-col>
-            <v-card color="#1F7087">
+            <v-card color="#b02564">
                 <div class="d-flex flex-no-wrap justify-space-between">
                     <div>
                         <v-card-title class="text-h5">
@@ -16,7 +16,7 @@
                     </div>
 
                     <v-avatar class="ma-3" rounded="0" size="125">
-                        <nuxt-img :src="`${$directus.url}assets/${radio?.image?.filename_disk}`" />
+                        <NuxtImg :src="`${$directus.url}assets/${radio?.image?.filename_disk}`" />
                     </v-avatar>
                 </div>
             </v-card>

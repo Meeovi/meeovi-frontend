@@ -12,7 +12,7 @@
                                 data-auto-play-interval="5" data-draggable="true">
                                 <div class="embla__viewport">
                                     <div class="embla__container">
-                                        <a :href="`/product/${product?.sku}`">
+                                        <NuxtLink :to="`/product/${product?.sku}`">
                                             <div class="embla__slide slider-image item"
                                                 style="margin-left: 2rem; margin-right: 2rem;">
                                                 <div class="slide-content">
@@ -21,7 +21,7 @@
                                                             <strong>{{ product?.categories?.name }}</strong>
                                                         </p>
                                                         <div class="item-img">
-                                                            <nuxt-img loading="lazy" :src="`${product?.image?.url}`" :alt="product?.name" />
+                                                            <NuxtImg loading="lazy" :src="`${product?.image?.url}`" :alt="product?.name" />
                                                         </div>
                                                         <div class="item-content">
                                                             <p class="item-text mbr-fonts-style display-7">
@@ -35,7 +35,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </a>
+                                        </NuxtLink>
                                     </div>
                                 </div>
                                 <button class="embla__button embla__button--prev">

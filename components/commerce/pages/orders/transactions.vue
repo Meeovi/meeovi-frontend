@@ -27,9 +27,9 @@
                                 <p class="card-text mbr-fonts-style display-4">Transaction Type: {{ transaction?.txn_type }}</p>
                                 <p class="card-text mbr-fonts-style display-4">Is Closed? {{ transaction?.is_closed }}</p>
                                 <p class="card-text mbr-fonts-style display-4">Created: {{ new Date(transaction?.date_created).toLocaleDateString() }}</p>
-                                <p class="btn_link mbr-fonts-style display-4"><a :href="`/account/user/transaction/${transaction?.transaction_id}`"
+                                <p class="btn_link mbr-fonts-style display-4"><NuxtLink :to="`/account/user/transaction/${transaction?.transaction_id}`"
                                         class="text-secondary">View<span
-                                            class="mobi-mbri mobi-mbri-right mbr-iconfont"></span></a></p>
+                                            class="mobi-mbri mobi-mbri-right mbr-iconfont"></span></NuxtLink></p>
                             </div>
                         </div>
                     </div>

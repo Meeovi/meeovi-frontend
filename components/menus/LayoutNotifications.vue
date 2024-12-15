@@ -2,9 +2,9 @@
   <div>
     <v-menu :location="location" transition="slide-y-transition">
       <template v-slot:activator="{ props }">
-        <a variant="flat" v-bind="props">
+        <NuxtLink variant="flat" v-bind="props">
           <v-icon start icon="fas fa-bell"></v-icon>
-        </a>
+        </NuxtLink>
       </template>
       <v-list lines="two">
         <v-list-item v-for="notifications in activities" :key="notifications?.id" :href="notifications?.id">

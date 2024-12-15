@@ -12,7 +12,7 @@
               v-slot="{ isSelected, toggle, selectedClass }">
               <v-card :class="['ma-4', selectedClass]" height="580" width="250" @click="toggle"
                 :href="`/product/${products.id}`">
-                <nuxt-img loading="lazy" class="align-end text-white" height="280" :src="`${url}assets/${products.image.filename_disk}`"
+                <NuxtImg loading="lazy" class="align-end text-white" height="280" :src="`${url}assets/${products.image.filename_disk}`"
                   :alt="products.name" cover />
 
                 <v-card-title class="pt-4">

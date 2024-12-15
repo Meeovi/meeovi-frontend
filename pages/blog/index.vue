@@ -7,7 +7,7 @@
                     <div class="item features-image сol-12 col-md-6 col-lg-4" v-for="posts in result?.posts?.nodes" :key="posts.id">
                         <div class="item-wrapper">
                             <div class="item-img">
-                                <nuxt-img loading="lazy" :src="posts?.featuredImage?.node?.sourceUrl" :alt="posts?.title" cover />
+                                <NuxtImg loading="lazy" :src="posts?.featuredImage?.node?.sourceUrl" :alt="posts?.title" cover />
                             </div>
                             <div class="item-content">
                                 <h5 class="item-title mbr-fonts-style display-7">
@@ -21,7 +21,7 @@
                                 </h6>
                                 <p class="mbr-text mbr-fonts-style mt-3 display-7" v-html="posts?.excerpt"></p>
                             </div>
-                            <div class="mbr-section-btn item-footer mt-2"><a :href="`/blog/${posts?.id}`" class="btn btn-primary item-btn display-7">Read More&gt;</a></div>
+                            <div class="mbr-section-btn item-footer mt-2"><NuxtLink :to="`/blog/${posts?.id}`" class="btn btn-primary item-btn display-7">Read More&gt;</NuxtLink></div>
                         </div>
                     </div>
                 </div>

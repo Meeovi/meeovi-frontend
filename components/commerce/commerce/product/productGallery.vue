@@ -38,7 +38,7 @@ const fetchProductImages = async (productId: string) => {
 };
 
 const route = useRoute();
-const images = ref<any[]>([]); // Dynamic images array
+const images = ref<NuxtLinkny[]>([]); // Dynamic images array
 const productId = route.params.sku; // Assuming the product SKU is in the route params
 
 // Fetch product images on component mount

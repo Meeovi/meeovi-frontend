@@ -17,14 +17,14 @@
                         </h5>
                         
                         <div class="mbr-section-btn item-footer">
-                            <a :href="`/departments/${category.id}`" class="btn btn-black-outline item-btn display-7" target="_blank">
+                            <NuxtLink :to="`/departments/${category.id}`" class="btn btn-black-outline item-btn display-7" target="_blank">
                                 <span class="mobi-mbri mobi-mbri-arrow-next mbr-iconfont mbr-iconfont-btn"></span>
                                 Read More
-                            </a>
+                            </NuxtLink>
                         </div>
                     </div>
                     <div class="item-img">
-                        <nuxt-img loading="lazy" :src="`${category?.custom_attributes[1]?.value}`" :alt="category?.name">
+                        <NuxtImg loading="lazy" :src="`${category?.custom_attributes[1]?.value}`" :alt="category?.name">
                     </div>
                 </div>
             </div>
@@ -32,11 +32,11 @@
             <div class="item features-image col-12 col-md-12 col-lg-4">
                 <div class="item-wrapper">
                     <div class="item-img">
-                        <nuxt-img loading="lazy" src="assets/images/022.jpg" alt="">
+                        <NuxtImg loading="lazy" src="assets/images/022.jpg" alt="">
                         <div class="mbr-section-btn">
-                            <a href="" class="btn btn-danger item-btn display-7" target="_blank">
+                            <NuxtLink to="" class="btn btn-danger item-btn display-7" target="_blank">
                                 Read More
-                            </a>
+                            </NuxtLink>
                         </div>
                     </div>
                     <div class="item-content">

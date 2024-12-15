@@ -4,7 +4,7 @@
     <p>
       We appreciate your business! A confirmation email will be sent to <span id="customer-email"></span>.
 
-      If you have any questions, please email <a href="mailto:support@meeovi.com">support@meeovi.com</a>.
+      If you have any questions, please email <NuxtLink to="mailto:support@meeovi.com">support@meeovi.com</NuxtLink>.
     </p>
   </section>
   </div>

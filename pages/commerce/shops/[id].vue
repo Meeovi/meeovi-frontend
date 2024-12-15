@@ -1,7 +1,7 @@
 <template>
     <div class="contentPage">
         <v-card variant="text">
-          <nuxt-img loading="lazy" class="align-end text-white" height="400" :src="shop?.image?.filename_disk" :alt="shop?.name" cover />
+          <NuxtImg loading="lazy" class="align-end text-white" height="400" :src="shop?.image?.filename_disk" :alt="shop?.name" cover />
           <h1>Name: <strong>{{ shop?.name }}</strong></h1>
           <h3>Owner: {{ shop?.customers?.customers_id?.username }}</h3>
           <h3>Launched: {{ shop?.user_created }}</h3>
@@ -9,9 +9,9 @@
 
         <v-row class="productPage">
             <v-col cols="3" v-for="(products, index) in shop?.products?.products_id" :key="index">
-                <a href="">
+                <NuxtLink to="">
                     <v-card class="ma-4" height="380" width="250" @click="toggle">
-                        <nuxt-img loading="lazy" class="align-end text-white" height="200" :src="products?.image?.filename_disk" :alt="products?.name" cover />
+                        <NuxtImg loading="lazy" class="align-end text-white" height="200" :src="products?.image?.filename_disk" :alt="products?.name" cover />
 
                         <v-card-title class="pt-4">
                             {{ products?.name }}
@@ -28,7 +28,7 @@
                             <v-btn color="orange" variant="outlined" prepend-icon="fas fa-shopping-cart">Add to Cart</v-btn>
                         </v-card-actions>
                     </v-card>
-                </a>
+                </NuxtLink>
             </v-col>
         </v-row><!---->
     </div>

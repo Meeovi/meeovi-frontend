@@ -16,7 +16,7 @@
                 <p class="mbr-text mbr-fonts-style mb-4 display-7">Our blog follows our adventure as a growing
                   marketplace. But we don’t want to be the only ones telling a story so we opened our blog to posts by
                   users and sellers alike sharing their stories and latest news about their products.&nbsp;<br></p>
-                <div class="mbr-section-btn mt-3"><a class="btn btn-warning display-4" href="/blog">Our Blog</a></div>
+                <div class="mbr-section-btn mt-3"><NuxtLink class="btn btn-warning display-4" href="/blog">Our Blog</NuxtLink></div>
               </div>
             </div>
           </div>

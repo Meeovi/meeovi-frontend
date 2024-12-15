@@ -38,7 +38,7 @@
 
                     if (result.success) {
                         $('#checkout-message').html(
-                            '<h1>Success</h1><p>Your Drop-in UI is working! Check your <a href="https://sandbox.braintreegateway.com/login">sandbox Control Panel</a> for your test transactions.</p><p>Refresh to try another transaction.</p>'
+                            '<h1>Success</h1><p>Your Drop-in UI is working! Check your <NuxtLink to="https://sandbox.braintreegateway.com/login">sandbox Control Panel</NuxtLink> for your test transactions.</p><p>Refresh to try another transaction.</p>'
                         );
                     } else {
                         console.log(result);

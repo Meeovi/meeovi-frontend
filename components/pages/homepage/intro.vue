@@ -18,8 +18,8 @@
                     Upfront fees.
                     <br>
                     <br></p>
-                <div class="mbr-section-btn pb-5 align-center"><a class="btn btn-md btn-danger btn-bgr display-4"
-                        href="/sign-in">Signup</a></div>
+                <div class="mbr-section-btn pb-5 align-center"><NuxtLink class="btn btn-md btn-danger btn-bgr display-4"
+                        href="/sign-in">Signup</NuxtLink></div>
             </div>
             <div class="container mbr-black">
                 <div class="row justify-content-center">

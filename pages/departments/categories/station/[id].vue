@@ -2,7 +2,7 @@
     <div class="contentPage">
         <v-row>
             <v-col cols="12">
-                <v-card color="#1F7087">
+                <v-card color="#b02564">
                     <div class="d-flex flex-no-wrap justify-space-between">
                         <div>
                             <v-card-title class="text-h5">
@@ -11,21 +11,23 @@
 
                             <v-card-subtitle>Format: {{ station?.format }}</v-card-subtitle>
 
-                            <v-card-subtitle>Categories: 
+                            <v-card-subtitle>Categories:
                                 <div v-for="category in station?.categories" :key="category">
                                     {{ category?.categories_id?.name }}
                                 </div>
                             </v-card-subtitle>
 
                             <v-card-subtitle v-html="station?.description"></v-card-subtitle>
+
+                            <v-card-subtitle>Share this station: <share style="display: inline-block;" /></v-card-subtitle>
                         </div>
 
                         <v-avatar class="ma-3" rounded="0" size="125">
-                            <nuxt-img :src="`${$directus.url}assets/${station?.image?.filename_disk}`" />
+                            <NuxtImg :src="`${$directus.url}assets/${station?.image?.filename_disk}`" />
                         </v-avatar>
                     </div>
 
-                  <audio :src="`${$directus.url}assets/${station?.file?.filename_disk}`" loop class="radioStation"></audio>  
+                    <video :src="`${$directus.url}assets/${station?.file?.filename_disk}`" controls loop class="radioStation"></video>
                 </v-card>
             </v-col>
 
@@ -47,6 +49,7 @@
     } from 'vue'
     import comments from '@/components/partials/comments.vue'
     import relatedstations from '@/components/cms/related/relatedstations.vue'
+    import share from '@/components/partials/shareDialog.vue'
 
     const route = useRoute()
 
@@ -66,6 +69,6 @@
     })
 
     useHead({
-        title: computed(() => station.value?.name || 'Station Page'),
+        title: computed(() => station?.value?.name || 'Station Page'),
     });
 </script>

@@ -49,9 +49,9 @@
                                                 <div class="d-flex pa-4">
                                                     <v-checkbox-btn v-model="includeFiles" class="pe-2" color="orange">
                                                     </v-checkbox-btn>
-                                                    <!--<a :href="`/product/${products.id}`">
+                                                    <!--<NuxtLink :to="`/product/${products.id}`">
                                         <v-card class="ma-4" height="580" width="250" @click="toggle">
-                                            <nuxt-img loading="lazy" class="align-end text-white" height="280"
+                                            <NuxtImg loading="lazy" class="align-end text-white" height="280"
                                                 :src="`${products.featuredAsset.preview}`" :alt="products.name" cover />
 
                                             <v-card-title class="pt-4">
@@ -73,7 +73,7 @@
                                                 </v-scale-transition>
                                             </div>
                                         </v-card>
-                                    </a>-->
+                                    </NuxtLink>-->
                                                 </div>
                                             </v-card-text>
                                         </v-card>

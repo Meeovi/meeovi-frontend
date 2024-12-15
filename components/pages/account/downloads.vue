@@ -26,9 +26,9 @@
                                     {{ downloads?.status }}</p>
                                 <p class="card-text mbr-fonts-style display-4">Remaining Downloads:
                                     {{ downloads?.remaining_downloads }}</p>
-                                <p class="btn_link mbr-fonts-style display-4"><a :href="downloads?.download_url"
+                                <p class="btn_link mbr-fonts-style display-4"><NuxtLink :to="downloads?.download_url"
                                         class="text-secondary">View<span
-                                            class="mobi-mbri mobi-mbri-right mbr-iconfont"></span></a></p>
+                                            class="mobi-mbri mobi-mbri-right mbr-iconfont"></span></NuxtLink></p>
                             </div>
                         </div>
                     </div>

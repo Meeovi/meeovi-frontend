@@ -4,7 +4,7 @@
     <v-slide-group v-model="model" class="pa-4" center-active>
       <v-slide-group-item v-slot="{ isSelected, toggle }" v-for="(chart, index) in data?.charts?.nodes" :key="index">
         <v-card width="300px" @click="toggle" :href="`/chart/${chart?.id}`">
-          <nuxt-img loading="lazy" :src="`${chart?.chartFields?.image?.sourceUrl}`" :alt="chart?.chartFields?.name" class="align-end"
+          <NuxtImg loading="lazy" :src="`${chart?.chartFields?.image?.sourceUrl}`" :alt="chart?.chartFields?.name" class="align-end"
             gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" height="200px" cover />
           <v-card-title class="text-black">{{ chart?.chartFields?.name }}</v-card-title>
 

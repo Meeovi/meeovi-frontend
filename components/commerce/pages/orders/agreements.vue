@@ -2,7 +2,7 @@
     <div>
         <profilebar />
         <v-toolbar color="transparent" density="compact" title="My Agreements">
-            <addPayment />
+            <NuxtLinkddPayment />
         </v-toolbar>
         <v-table fixed-header>
             <thead>
@@ -23,7 +23,7 @@
             </thead>
             <tbody>
                 <tr v-for="(payment, index) in data?.customer?.availablePaymentMethods" :key="index">
-                    <td><nuxt-img loading="lazy" :src="payment?.gateway?.icon" :alt="payment?.gateway?.title"></td>
+                    <td><NuxtImg loading="lazy" :src="payment?.gateway?.icon" :alt="payment?.gateway?.title"></td>
                     <td>{{ payment?.gateway?.title }}</td>
                     <td>{{ payment?.type }}</td>
                     <td>{{ payment?.gateway?.description }}</td>

@@ -16,13 +16,13 @@
                                         <p class="mbr-text mbr-fonts-style mb-5 display-4"># of Members: {{spaces?.totalMemberCount}}</p>
                                         <p class="mbr-text mbr-fonts-style mb-5 display-4">Status: {{spaces?.status}}</p>    
                                         <p class="mbr-text mbr-fonts-style mb-5 display-4" v-html="spaces?.description"></p>
-                                        <div class="mbr-section-btn"><a :href="`/social/group/${spaces?.id}`"
-                                                class="btn btn-warning display-4">Learn more</a></div>
+                                        <div class="mbr-section-btn"><NuxtLink :to="`/social/group/${spaces?.id}`"
+                                                class="btn btn-warning display-4">Learn more</NuxtLink></div>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-5">
                                     <div class="img-wrapper">
-                                        <nuxt-img loading="lazy" :src="`${spaces?.attachmentCover?.full}`" :alt="spaces?.name" cover />
+                                        <NuxtImg loading="lazy" :src="`${spaces?.attachmentCover?.full}`" :alt="spaces?.name" cover />
                                     </div>
                                 </div>
                             </div>

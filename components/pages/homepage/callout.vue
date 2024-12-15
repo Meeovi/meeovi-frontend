@@ -14,7 +14,7 @@
                       <div class="item_overlay" data-toggle="modal" data-bs-toggle="modal"></div>
                       <div class="galleryItem" data-toggle="modal" data-bs-toggle="modal">
                         <div class="style_overlay"></div>
-                        <div class="img_wraper"><nuxt-img loading="lazy" :src="products.image.url" /></div><span
+                        <div class="img_wraper"><NuxtImg loading="lazy" :src="products.image.url" /></div><span
                           class="onsale mbr-fonts-style display-7" data-onsale="true">-50%</span>
                         <div class="sidebar_wraper">
                           <h4 class="item-title mbr-fonts-style mbr-text display-5">{{ products.name }}
@@ -30,8 +30,8 @@
                               <li>Size: {{ products.size }}</li>
                             </ul> <br>{{ products.description }}<br><br>
                           </div>
-                          <div class="mbr-section-btn" buttons="0" style="display: none;"><a
-                              class="btn btn-black display-7" href="#">Buy now</a></div>
+                          <div class="mbr-section-btn" buttons="0" style="display: none;"><NuxtLink
+                              class="btn btn-black display-7" href="#">Buy now</NuxtLink></div>
                         </div>
                       </div>
                     </div>
