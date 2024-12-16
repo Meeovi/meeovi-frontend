@@ -34,22 +34,4 @@
   const {
     result
   } = useQuery(exclusives)
-  /*  import {
-         useProductsByCategory
-     } from '@/composables/commerce/products/useProductsByCategory.js';
-
-     // Pass the specific products name you want to fetch
-     const products = ref([]); 
-
-     onMounted(async () => {
-         products.value = await useProductsByCategory(92);
-     });
-  import productCard from '~/components/commerce/commerce/product/productCard.vue'
-   //import exclusives from '~/graphql/commerce/queries/exclusives'
-
-   
-
-   const {
-     data
-   } = useAsyncQuery(exclusives); */
 </script>

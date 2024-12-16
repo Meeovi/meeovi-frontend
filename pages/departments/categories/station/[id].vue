@@ -6,7 +6,7 @@
                     <div class="d-flex flex-no-wrap justify-space-between">
                         <div>
                             <v-card-title class="text-h5">
-                                {{ station?.name }}
+                                {{ station?.name }} <share style="display: inline-block; font-size: 15px;" />
                             </v-card-title>
 
                             <v-card-subtitle>Format: {{ station?.format }}</v-card-subtitle>
@@ -18,8 +18,6 @@
                             </v-card-subtitle>
 
                             <v-card-subtitle v-html="station?.description"></v-card-subtitle>
-
-                            <v-card-subtitle>Share this station: <share style="display: inline-block;" /></v-card-subtitle>
                         </div>
 
                         <v-avatar class="ma-3" rounded="0" size="125">

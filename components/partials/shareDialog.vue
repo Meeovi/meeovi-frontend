@@ -2,7 +2,7 @@
     <div>
         <v-dialog max-width="500">
             <template v-slot:activator="{ props: activatorProps }">
-                <v-btn class="reactionButton" variant="text" v-bind="activatorProps" icon="fas fa-share" size="medium" title="Share This Post"></v-btn>
+                <v-btn class="reactionButton" variant="text" v-bind="activatorProps" icon="fas fa-share-nodes" size="medium" title="Share This"></v-btn>
             </template>
 
             <template v-slot:default="{ isActive }">
