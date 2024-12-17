@@ -31,10 +31,9 @@ body {
 }
 
 .mainSearch {
-    width: 600px;
-    height: 50px;
+    width: 650px;
+    height: 55px;
     display: inline-block !important;
-    background: white;
     border-radius: 5px !important;
 }
 
@@ -55,6 +54,20 @@ body {
 .ais-Hits {
     width: 100%;
     position: absolute;
+}
+
+.ais-SearchBox-form {
+    border-radius: 5px !important;
+}
+
+.ais-SearchBox-submit {
+    position: relative;
+    top: 18px !important;
+}
+
+.ais-SearchBox-submit svg {
+    position: relative;
+    top: 15px !important;
 }
 
 .searchbox {
@@ -427,9 +440,10 @@ body {
 }
 
 .radioStation {
+    position: relative;
     width: 100%;
-    height: 200px;
-    padding-bottom: 5px;
+    padding: 10px;
+    border-radius: 0px !important;
 }
 
 /******************** Meeovi Time CSS ************/

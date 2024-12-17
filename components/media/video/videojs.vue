@@ -1,17 +1,80 @@
 <template>
   <div>
-    <video id="my-video" class="video-js" v-video-player="options">
-      <source src="https://vjs.zencdn.net/v/oceans.mp4" type="video/mp4">
-    </video>
+    <!-- The video element -->
+    <video ref="videoRef" class="video-js" preload="auto"></video>
   </div>
 </template>
 
-<script setup>
-const options = {
-  controls: true,
-  autoplay: false,
-  preload: 'auto',
-  width: 640,
-  height: 360,
-};
+<script>
+import { ref, watch, onMounted, onBeforeUnmount } from 'vue'
+import { useVideojs } from '~/composables/media/useVideojs'
+
+export default {
+  name: 'VideoPlayer',
+  props: {
+    sources: {
+      type: Array,
+      required: true,
+      // Default video source structure
+      default: () => [
+        {
+          src: '',
+          type: 'video/mp4',
+        },
+      ],
+    },
+    plugins: {
+      type: Array,
+      default: () => [], // Array of Video.js plugins
+    },
+    options: {
+      type: Object,
+      default: () => ({}), // Extra Video.js options
+    },
+  },
+  setup(props) {
+    const videoRef = ref(null)
+    const { initPlayer } = useVideojs()
+    let player = null
+
+    // Initialize the player
+    const initializePlayer = () => {
+      // Merge default options with the passed options
+      const playerOptions = {
+        autoplay: false,
+        controls: true,
+        responsive: true,
+        loop: true,
+        fluid: true,
+        sources: props.sources, // Dynamic sources
+        ...props.options, // Allow passing extra options
+      }
+
+      player = initPlayer(videoRef.value, playerOptions, props.plugins)
+    }
+
+    // Watch for changes to sources and update the player
+    watch(
+      () => props.sources,
+      (newSources) => {
+        if (player) {
+          player.src(newSources) // Update the video source dynamically
+        }
+      },
+      { deep: true }
+    )
+
+    onMounted(() => {
+      initializePlayer()
+    })
+
+    onBeforeUnmount(() => {
+      if (player) {
+        player.dispose() // Clean up the player
+      }
+    })
+
+    return { videoRef }
+  },
+}
 </script>

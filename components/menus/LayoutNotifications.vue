@@ -27,7 +27,7 @@
   import { readNotifications } from '@directus/sdk';
 
   const location = ref('bottom');
-  const { $directus, $readItem } = useNuxtApp();
+/*  const { $directus, $readItem } = useNuxtApp();
 
   const activities = await $directus.request(
 	readNotifications({
@@ -37,5 +37,5 @@
 
 const { data: notifyNav } = await useAsyncData('notifyNav', () => {
     return $directus.request($readItem('navigation', '29'))
-  })
+  })*/
 </script>

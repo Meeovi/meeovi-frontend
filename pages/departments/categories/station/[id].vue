@@ -25,7 +25,7 @@
                         </v-avatar>
                     </div>
 
-                    <video :src="`${$directus.url}assets/${station?.file?.filename_disk}`" controls loop class="radioStation"></video>
+                    <audio :src="`${$directus.url}assets/${station?.file?.filename_disk}`" controls loop class="radioStation"></audio>
                 </v-card>
             </v-col>
 
