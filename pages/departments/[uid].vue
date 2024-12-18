@@ -1,25 +1,34 @@
 <template>
-  <div class="departmentPage">
+  <div class="contentPage">
     <v-card variant="text">
       <v-sheet class="mx-auto">
         <v-slide-group show-arrows>
           <h5 style="padding: 15px">Meeovi {{ result?.categories?.items[0]?.name }}</h5>
           <v-slide-group-item v-slot="{ isSelected, toggle }">
-            <v-btn :color="isSelected ? 'primary' : undefined" class="ma-2" @click="toggle"
-              :href="`/departments/${result?.categories?.items[0]?.uid}`">
-              All
-            </v-btn>
+            <v-menu>
+              <template v-slot:activator="{ props }">
+                <v-btn :color="isSelected ? 'primary' : undefined" class="ma-2" @click="toggle" v-bind="props"
+                  append-icon="fas fa-caret-down" variant="text">
+                  Categories
+                </v-btn>
+              </template>
+              <v-list class="departmentMenu">
+                <v-row v-for="categories in result?.categories?.items" :key="categories">
+                  <v-col cols="3" v-for="categories in categories?.children" :key="categories" :value="categories">
+                    <NuxtLink :to="`/departments/categories/${categories?.uid}`"></NuxtLink>
+                  </v-col>
+                </v-row>
+              </v-list>
+            </v-menu>
           </v-slide-group-item>
 
-          <div v-for="categories in result?.categories?.items" :key="categories">
-            <v-slide-group-item v-for="categories in categories?.children" :key="categories"
-              v-slot="{ isSelected, toggle }">
-              <v-btn :color="isSelected ? 'primary' : undefined" class="ma-2" @click="toggle"
-                :href="`/departments/categories/${categories?.uid}`">
-                {{ categories.name }}
-              </v-btn>
-            </v-slide-group-item>
-          </div>
+          <v-slide-group-item v-for="categories in departmentbar?.menus" :key="categories"
+            v-slot="{ isSelected, toggle }">
+            <v-btn :color="isSelected ? 'primary' : undefined" class="ma-2" @click="toggle"
+              :href="`/departments/categories/${categories?.uid}`">
+              {{ categories.name }}
+            </v-btn>
+          </v-slide-group-item>
         </v-slide-group>
       </v-sheet>
 
@@ -35,10 +44,10 @@
           <travel :category="result?.categories?.items[0]?.uid" />
         </div>
         <div v-else-if="result?.categories?.items[0]?.uid === 'NTE='">
-          <appstore :product="result?.categories?.items[0]?.uid" />
+          <NuxtLinkppstore :product="result?.categories?.items[0]?.uid" />
         </div>
         <div v-else-if="result?.categories?.items[0]?.uid === 'NTE='">
-          <adultstore :product="result?.categories?.items[0]?.uid" />
+          <NuxtLinkdultstore :product="result?.categories?.items[0]?.uid" />
         </div>
         <div v-else-if="result?.categories?.items[0]?.uid === 'NTE='">
           <health :product="result?.categories?.items[0]?.uid" />
@@ -147,6 +156,16 @@
 
   // Retrieve the route and extract the UID
   const route = useRoute();
+  const {
+    $directus,
+    $readItem
+  } = useNuxtApp()
+
+  const {
+    data: departmentbar
+  } = await useAsyncData('departmentbar', () => {
+    return $directus.request($readItem('departments', route.params.id))
+  })
 
   // Execute the queries with the UID variable
   const {

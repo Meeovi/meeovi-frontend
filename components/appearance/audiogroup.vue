@@ -9,7 +9,7 @@
 
                             <v-spacer></v-spacer>
 
-                            <v-toolbar-subtitle>
+                            <div>
                                 <v-menu>
                                     <template v-slot:activator="{ props }">
                                         <v-btn color="white" v-bind="props" icon="fas fa-ellipsis-vertical"></v-btn>
@@ -22,7 +22,7 @@
                                         </v-list-item>
                                     </v-list>
                                 </v-menu>
-                            </v-toolbar-subtitle>
+                            </div>
                         </v-toolbar>
                         <div class="d-flex flex-no-wrap justify-space-between">
                             <div>

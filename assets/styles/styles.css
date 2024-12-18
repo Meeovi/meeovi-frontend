@@ -296,7 +296,7 @@ body {
 }
 
 .departmentPage {
-    padding-top: 60px;
+    padding-top: 50px;
 }
 
 .homeSection a {
@@ -406,7 +406,7 @@ body {
 }
 
 .departmentRow {
-    padding: 10px;
+    padding-top: 15%;
 }
 
 .departmentRow h2,
@@ -444,6 +444,10 @@ body {
     width: 100%;
     padding: 10px;
     border-radius: 0px !important;
+}
+
+.departmentMenu {
+    min-width: 80vw;
 }
 
 /******************** Meeovi Time CSS ************/

@@ -1,7 +1,7 @@
 <template>
     <v-sheet class="mx-auto sliderProducts row align-items-stretch items-row justify-content-center" elevation="0">
         <v-toolbar title="Brands on Meeovi" color="transparent">
-            <v-toolbar-subtitle><NuxtLink to="/brands/">All Brands</NuxtLink></v-toolbar-subtitle>
+            <div><NuxtLink to="/brands/">All Brands</NuxtLink></div>
         </v-toolbar>
         <v-slide-group v-model="model" class="pa-4" selected-class="bg-primary" show-arrows>
             <v-slide-group-item v-for="brand in brands" :key="brand.brand_id" v-slot="{ toggle, selectedClass }">

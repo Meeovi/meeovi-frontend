@@ -1,7 +1,7 @@
 <template>
   <v-sheet class="mx-auto sliderProducts">
     <v-toolbar title="Events you may like" color="transparent">
-        <v-toolbar-subtitle><NuxtLink to="/departments/NTY=/">All Events</NuxtLink></v-toolbar-subtitle>
+        <div><NuxtLink to="/departments/NTY=/">All Events</NuxtLink></div>
       </v-toolbar>
     <v-sheet class="mx-auto" elevation="0" color="transparent">
       <v-slide-group v-model="model" class="pa-4" prev-icon="fas fa-arrow-left" next-icon="fas fa-arrow-right"

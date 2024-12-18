@@ -2,7 +2,7 @@
   <div>
     <v-sheet class="mx-auto sliderProducts row align-items-stretch items-row justify-content-center">
       <v-toolbar title="Deals" color="transparent">
-        <v-toolbar-subtitle><NuxtLink to="/departments/deals/">All Deals</NuxtLink></v-toolbar-subtitle>
+        <div><NuxtLink to="/departments/deals/">All Deals</NuxtLink></div>
       </v-toolbar>
       <v-slide-group v-model="model" class="pa-4" selected-class="bg-success" show-arrows>
         <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }"

@@ -9,7 +9,7 @@
                 <v-card style="margin-bottom: 20px;">
                  <v-toolbar :title="`Your Gift Card Balance: ${data?.giftCard?.giftCardFields?.amount}`">
                     <div v-for="card in data?.giftCard?.giftCardFields" :key="card">
-                     <v-toolbar-subtitle v-for="brand in card?.brands?.nodes" :key="brand">Brand: {{ brand?.brandFields?.name }}</v-toolbar-subtitle>   
+                     <div v-for="brand in card?.brands?.nodes" :key="brand">Brand: {{ brand?.brandFields?.name }}</div>   
                     </div>
                 </v-toolbar>   
 
