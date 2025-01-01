@@ -2,11 +2,11 @@
     <div>
         <!--<profilebar />-->
         <v-toolbar color="transparent" density="compact" title="My Addresses">
-            <NuxtLinkddAddress />
+            <addAddress />
         </v-toolbar>
         <v-card>
-            <v-tabs v-model="tab" bg-color="primary">
-                <v-tab value="one">Addresses</v-tab>
+            <v-tabs v-model="tab" bg-color="transparent">
+                <v-tab value="one">{{ addressbar?.name }}</v-tab>
                 <!--<v-tab value="two">Shipping Address</v-tab>-->
                 <!--<v-tab value="three">Shipping Address</v-tab>-->
             </v-tabs>
@@ -17,45 +17,28 @@
                         <v-table fixed-header>
                             <thead>
                                 <tr>
-                                    <th class="text-left">
-                                        Name
-                                    </th>
-                                    <th class="text-left">
-                                        Company
-                                    </th>
-                                    <th class="text-left">
-                                        Address
-                                    </th>
-                                    <th class="text-left">
-                                        Postcode
-                                    </th>
-                                    <th class="text-left">
-                                        City
-                                    </th>
-                                    <th class="text-left">
-                                        Country Code
-                                    </th>
-                                    <th class="text-left">
-                                        Email
-                                    </th>
-                                    <th class="text-left">
-                                        Phone
-                                    </th>
-                                    <th class="text-left">
-                                        Edit
+                                    <th class="text-left" v-for="addressbar in addressbar?.menus" :key="addressbar">
+                                        {{ addressbar?.name }}
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="(address, index) in result?.customer?.addresses" :key="index">
+                                <tr v-for="(address, index) in address" :key="index">
+                                    <td v-html="address?.type"></td>
                                     <td>{{ address?.firstName }} {{ address?.lastName }}</td>
                                     <td>{{ address?.company }}</td>
-                                    <td>{{ address?.street }}</td>
-                                    <td>{{ address?.postcode }}</td>
-                                    <td>{{ address?.city }}</td>
-                                    <td>{{ address?.country_code }} {{ address?.region?.region }}</td>
+                                    <td>{{ address?.address }} {{ address?.address2 }}</td>
+                                    <td>{{ address?.postalcode }}</td>
+                                    <td v-for="city in address?.cities?.cities_id" :key="city">{{ city?.name }}</td>
+                                    <td v-for="country in address?.countries?.countries_id" :key="country">
+                                        {{ country?.name }}</td>
+                                    <td v-for="region in address?.region?.region_id" :key="region">
+                                        {{ region?.region?.name }}</td>
                                     <td>{{ address?.email }}</td>
                                     <td>{{ address?.telephone }}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                     <td>
                                         <v-btn icon="fas fa-home" title="View"
                                             :href="`/account/user/addAccount/add-address/${address?.id}`"></v-btn>
@@ -78,20 +61,47 @@
         useQuery
     } from '@vue/apollo-composable'
     import addAddress from '~/components/crud/create/add-address.vue'
-    //import profilebar from '~/components/menus/profilebar.vue'
-    import address from '~/graphql/commerce/queries/address.js'
+    import {
+        useUserStore
+    } from '~/stores/user'
 
-    const tab = ref(null)
+    const userStore = useUserStore()
+
+    const userDisplayName = computed(() => {
+        return userStore.user?.name || userStore.user?.username || 'User'
+    })
+
+    const tab = ref(null);
     const {
-        result
-    } = useQuery(address)
-    /*const {
-        getItems
-      } = useDirectusItems()
+        $directus,
+        $readItems,
+        $readItem
+    } = useNuxtApp()
 
-      const customer = await getItems({
-        collection: "customers",
-      });*/
+    const {
+        data: address
+    } = await useAsyncData('address', () => {
+        return $directus.request($readItems('address', {
+            filter: {
+                user: {
+                    _eq: `${userDisplayName.value}`
+                }
+            },
+            fields: ['*', {
+                '*': ['*']
+            }]
+        }))
+    })
+
+    const {
+        data: addressbar
+    } = await useAsyncData('addressbar', () => {
+        return $directus.request($readItem('navigation', '38', {
+            fields: ['*', {
+                '*': ['*']
+            }]
+        }))
+    })
 
     useHead({
         title: 'Addresses',

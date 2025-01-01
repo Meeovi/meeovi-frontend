@@ -1,33 +1,25 @@
 <template>
     <div>
         <!--<profilebar />-->
-        <v-toolbar color="transparent" density="compact" title="My Reviews">
-            <NuxtLinkddReview />
+        <v-toolbar color="transparent" density="compact" :title="reviewsbar?.name">
+            <addReview />
         </v-toolbar>
         <v-table fixed-header>
             <thead>
                 <tr>
-                    <th class="text-left">
-                        Nickname
-                    </th>
-                    <th class="text-left">
-                        Summary
-                    </th>
-                    <th class="text-left">
-                        Review
-                    </th>
-                    <th class="text-left">
-                        Created At
+                    <th class="text-left" v-for="reviewsbar in reviewsbar?.menus" :key="reviewsbar">
+                        {{ reviewsbar?.name }}
                     </th>
                 </tr>
             </thead>
-            <tbody v-for="(review, index) in data?.customer?.reviews" :key="index">
-                <tr v-for="(review, index) in review?.items" :key="index">
+            <tbody>
+                <tr v-for="(review, index) in reviews" :key="index">
                     <td>{{ review?.nickname }}</td>
                     <td>{{ review?.summary }}</td>
-                    <td>{{ review?.text }}</td>
+                    <td>{{ review?.response }}</td>
                     <td>{{ review?.created_at }}</td>
-                    <td><v-rating hover :length="review?.average_rating" :size="32" :model-value="review?.average_rating" active-color="orange" /></td>
+                    <td><v-rating hover :length="review?.average_rating" :size="32"
+                            :model-value="review?.average_rating" active-color="orange" /></td>
                 </tr>
             </tbody>
         </v-table>
@@ -40,15 +32,47 @@
     } from 'vue'
     //import profilebar from '~/components/menus/profilebar.vue'
     import addReview from '~/components/crud/create/add-review.vue'
-    //import profilebar from '~/components/menus/profilebar.vue'    
     import {
-        useQuery
-    } from '@vue/apollo-composable'
-    import reviews from '~/graphql/commerce/queries/reviews.js'
+        useUserStore
+    } from '~/stores/user'
+
+    const userStore = useUserStore()
+
+    const userDisplayName = computed(() => {
+        return userStore.user?.name || userStore.user?.username || 'User'
+    })
+    
+    const tab = ref(null);
+    const {
+        $directus,
+        $readItems,
+        $readItem
+    } = useNuxtApp()
 
     const {
-        data
-    } = useQuery(reviews);
+        data: reviews
+    } = await useAsyncData('reviews', () => {
+        return $directus.request($readItems('reviews', {
+            filter: {
+                user: {
+                    _eq: `${userDisplayName.value}`
+                }
+            },
+            fields: ['*', {
+                '*': ['*']
+            }]
+        }))
+    })
+
+    const {
+        data: reviewsbar
+    } = await useAsyncData('reviewsbar', () => {
+        return $directus.request($readItem('navigation', '39', {
+            fields: ['*', {
+                '*': ['*']
+            }]
+        }))
+    })
 
     useHead({
         title: 'My Reviews',

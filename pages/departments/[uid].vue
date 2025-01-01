@@ -67,7 +67,7 @@
     <v-row class="departmentRow">
       <!--Best Seller Product Slider-->
       <v-sheet class="mx-auto sliderProducts row align-items-stretch items-row justify-content-center">
-        <h4>Best Sellers</h4>
+        <h4 style="left: 15px; position: relative;">Best Sellers</h4>
         <v-slide-group v-model="model" class="pa-4" selected-class="bg-success" show-arrows>
           <div v-for="category in best?.products?.items" :key="category">
             <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }"
@@ -85,7 +85,7 @@
 
       <!--List of latest products in the department-->
       <v-sheet class="mx-auto sliderProducts row align-items-stretch items-row justify-content-center">
-        <h4>Latest Products</h4>
+        <h4 style="left: 15px; position: relative;">Latest Products</h4>
         <v-slide-group v-model="model" class="pa-4" selected-class="bg-success" show-arrows>
           <div v-for="category in latest?.products?.items" :key="category">
             <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }"

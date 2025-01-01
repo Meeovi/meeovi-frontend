@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="userStore">
         <!--<profilebar />-->
         <section data-bs-version="5.1" class="people3 cid-u1nMLE9Ke9 mbr-fullscreen mbr-parallax-background"
             id="apeople3-6r">
@@ -9,19 +9,19 @@
             <div class="container-fluid">
                 <div class="row justify-content-center">
                     <div class="col-md-12 col-lg-12">
-                        <div class="content-container">
+                        <div class="content-container" v-if="userStore.isLoggedIn">
                             <div class="img-wrap">
                                 <div class="item-img">
-                                    <NuxtImg loading="lazy" :src="`${user?.picture}`" :alt="user?.username" />
+                                    <NuxtImg loading="lazy" :src="`${userStore?.picture}`" :alt="userStore?.username" />
                                 </div>
                             </div>
                             <div class="text-wrap align-left">
                                 <h4 class="mbr-text-name mbr-fonts-style display-5">
-                                    <strong>@{{ user?.username }}</strong>
+                                    <strong>@{{ userStore?.username }}</strong>
                                 </h4>
                                 <h4 class="mbr-text mbr-fonts-style display-7" style="">
                                     <v-list style="background: transparent; color: white;">
-                                        <v-list-item title="Member Since">{{ user?.created_at }}</v-list-item>
+                                        <v-list-item title="Member Since">{{ userStore?.created_at }}</v-list-item>
                                     </v-list>
                                 </h4>
                             </div>
@@ -33,44 +33,56 @@
 
         <v-card variant="text">
             <v-tabs v-model="tab" bg-color="transparent" align-tabs="center">
-                <v-tab value="one">Posts</v-tab>
-                <v-tab value="two">Followers</v-tab>
-                <v-tab value="three">Products</v-tab>
-                <v-tab value="four">Comments</v-tab>
-                <v-tab value="five">Media</v-tab>
-                <v-tab value="six">Likes</v-tab>
-                <v-tab value="seven">Archives</v-tab>
-                <v-tab value="eight"><v-btn variant="text" href="/account/user/settings" prepend-icon="fas fa-gear">Settings</v-btn></v-tab>
+                <div v-for="(menu, index) in profile?.menus" :key="index">
+                    <v-tab :value="menu?.value">{{ menu?.name }}</v-tab>
+                </div>
+
+                <div v-for="(menu, index) in profile?.submenus" :key="index">
+                    <v-tab :value="menu?.value"><v-btn variant="text" :href="menu?.url"
+                            :prepend-icon="`fas fa-${menu?.icon}`">{{ menu?.name }}</v-btn></v-tab>
+                </div>
             </v-tabs>
 
             <v-card-text>
                 <v-window v-model="tab">
                     <v-window-item value="one">
-                        <posts />
+                        <v-row>
+                            <v-col cols="4" v-for="(posts, index) in myposts" :key="index" style="margin: 8px;">
+                                <post :post="posts" />
+                            </v-col>
+                        </v-row>
                     </v-window-item>
 
                     <v-window-item value="two">
                         <followers />
                     </v-window-item>
 
-                    <v-window-item value="three">
+                    <!--<v-window-item value="three">
                         <products />
-                    </v-window-item>
+                    </v-window-item>-->
 
-                    <v-window-item value="four">
+                    <v-window-item value="three">
                         <replies />
                     </v-window-item>
 
-                    <v-window-item value="five">
+                    <v-window-item value="four">
                         <media />
                     </v-window-item>
 
-                    <v-window-item value="six">
+                    <v-window-item value="five">
                         <likes />
                     </v-window-item>
 
+                    <v-window-item value="six">
+                        <v-row style="padding-top: 15px;">
+                            <v-col cols="4" v-for="(shorts, index) in myvibez" :key="index">
+                                <shorts :short="shorts" />
+                            </v-col>
+                        </v-row>
+                    </v-window-item>
+
                     <v-window-item value="seven">
-                        <NuxtLinkrchives />
+                        <archives />
                     </v-window-item>
                 </v-window>
             </v-card-text>
@@ -79,28 +91,78 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import profilebar from '~/components/menus/profilebar.vue'
-import posts from '~/components/pages/profile/posts.vue'
-import followersfollowing from '~/components/pages/profile/followersfollowing.vue'
-import products from '~/components/pages/profile/products.vue'
-import replies from '~/components/pages/profile/replies.vue'
-import media from '~/components/pages/profile/media.vue'
-import likes from '~/components/pages/profile/likes.vue'
+    import {
+        ref
+    } from 'vue'
+    import profilebar from '~/components/menus/profilebar.vue'
+    import post from '~/components/cms/related/posts.vue'
+    import followersfollowing from '~/components/pages/profile/followersfollowing.vue'
+    import shorts from '~/components/cms/related/shorts.vue'
+    //import products from '~/components/pages/profile/products.vue'
+    import replies from '~/components/pages/profile/replies.vue'
+    import media from '~/components/pages/profile/media.vue'
+    import likes from '~/components/pages/profile/likes.vue'
+    import {
+        useUserStore
+    } from '~/stores/user'
 
-//const user = useLogtoUser();
+    const userStore = useUserStore()
 
-/*import { useFetch } from '#imports'
+    const {
+        $directus,
+        $readItem,
+        $readItems
+    } = useNuxtApp()
 
-const route = useRoute()
-const { data: user, error } = await useFetch(`/api/commerce/customers/${route.params.id}`)
+    const userDisplayName = computed(() => {
+        return userStore.name || userStore.username || 'User'
+    })
 
-if (error && error.value.statusCode === 404) {
-  // Handle not found
-} */
+    const tab = ref(null);
+    const route = useRoute()
+
+    const {
+        data: profile
+    } = await useAsyncData('profile', () => {
+        return $directus.request($readItem('navigation', '36', {
+            fields: ['*', {
+                '*': ['*']
+            }]
+        }))
+    })
+
+    const {
+        data: myvibez
+    } = await useAsyncData('myvibez', () => {
+        return $directus.request($readItems('shorts', {
+            filter: {
+                creator: {
+                    _eq: `${userDisplayName.value}`
+                }
+            },
+            fields: ['*', {
+                '*': ['*']
+            }]
+        }))
+    })
+
+    const {
+        data: myposts
+    } = await useAsyncData('myposts', () => {
+        return $directus.request($readItems('posts', {
+            filter: {
+                username: {
+                    _eq: `${userDisplayName.value}`
+                }
+            },
+            fields: ['*', {
+                '*': ['*']
+            }]
+        }))
+    })
 
     useHead({
-        title: user?.username,
+        title: userStore?.username,
     })
 
     definePageMeta({

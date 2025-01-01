@@ -28,16 +28,4 @@
   const {
     result
   } = useQuery(categories)
-
-  /*  import {
-      getCategories
-    } from '@/composables/commerce/categories/getCategories';
-
-    const categories = ref([]);
-
-    onMounted(async () => {
-      // Fetch the category with ID 2, which is the root category with children
-      categories.value = await getCategories('Default Category', 2);
-      console.log(categories.value); // Check the response structure for troubleshooting
-    }); */
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="accountMenu">
     <v-menu :location="location" transition="slide-y-transition">
       <template v-slot:activator="{ props }">
         <NuxtLink variant="flat" v-bind="props">
@@ -9,7 +9,7 @@
       <v-list>
         <v-row class="accountDropdown" v-if="userStore.isLoggedIn">
           <v-col cols="12">
-            <v-toolbar :title="`Welcome, ${userEmail}`"></v-toolbar>
+            <v-toolbar :title="`Welcome, ${userEmail}`" color="info"></v-toolbar>
           </v-col>
           <v-col cols="6">
             <h6>{{ nav?.name }}</h6>

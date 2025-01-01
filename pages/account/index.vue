@@ -2,18 +2,16 @@
     <div class="accountPage">
         <v-card elevation="0">
             <v-toolbar color="primary">
-                <v-toolbar-title>My Account</v-toolbar-title>
+                <v-toolbar-title>{{ accountbar?.name }}</v-toolbar-title>
 
                 <v-spacer></v-spacer>
 
                 <v-btn icon="mdi-magnify"></v-btn>
                 <template v-slot:extension>
                     <v-tabs v-model="tab">
-                        <v-tab value="one">Dashboard</v-tab>
-                        <v-tab value="two">Addresses</v-tab>
-                        <v-tab value="three">Downloads</v-tab>
-                        <v-tab value="four">Reviews</v-tab>
-                        <v-tab value="five">Settings</v-tab>
+                        <div v-for="(menu, index) in accountbar?.menus" :key="index">
+                            <v-tab :value="menu?.value">{{ menu?.name }}</v-tab>
+                        </div>
                     </v-tabs>
                 </template>
             </v-toolbar>
@@ -25,7 +23,7 @@
                     </v-tabs-window-item>
 
                     <v-tabs-window-item value="two">
-                        <NuxtLinkddresses />
+                        <addresses />
                     </v-tabs-window-item>
 
                     <v-tabs-window-item value="three">
@@ -55,7 +53,34 @@
         ref
     } from 'vue'
 
-    const tab = ref(null)
+    import {
+        useUserStore
+    } from '~/stores/user'
+
+    const userStore = useUserStore()
+
+    const {
+        $directus,
+        $readItem,
+        $readItems
+    } = useNuxtApp()
+
+    const userDisplayName = computed(() => {
+        return userStore.name || userStore.username || 'User'
+    })
+
+    const tab = ref(null);
+    const route = useRoute()
+
+    const {
+        data: accountbar
+    } = await useAsyncData('accountbar', () => {
+        return $directus.request($readItem('navigation', '37', {
+            fields: ['*', {
+                '*': ['*']
+            }]
+        }))
+    })
 
     definePageMeta({
         layout: 'nolive',

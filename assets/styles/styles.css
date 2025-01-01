@@ -51,6 +51,27 @@ body {
     position: relative;
 }
 
+.ecoAvatar {
+    padding-left: 20%;
+}
+
+.ecoAvatar .v-icon {
+    font-size: 80px;
+}
+
+.ecoTitle {
+    text-align: center;
+}
+
+.announcementBar {
+    position: relative;
+    top: 68px;
+}
+
+.announcementBar .v-alert {
+    width: 100%;
+}
+
 .ais-Hits {
     width: 100%;
     position: absolute;

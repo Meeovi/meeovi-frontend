@@ -94,6 +94,7 @@ export default defineNuxtConfig({
   ],
 
   modules: [
+    "@vueuse/nuxt",
     "@nuxt/image",
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
@@ -277,28 +278,12 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
-    // Elasticsearch
-    searchHost: process.env.ELASTICSEARCH_URL,
-    searchKey: process.env.ELASTICSEARCH_APP_SEARCH_KEY,
-    indexName: process.env.ELASTICSEARCH_INDEX_NAME,
-    api_key: process.env.ELASTICSEARCH_API_KEY,
-    id: process.env.ELASTICSEARCH_ID,
-    username: process.env.ELASTICSEARCH_USERNAME,
-    password: process.env.ELASTICSEARCH_PASSWORD,
-
     // Cloudflare Turnstile
     turnstile: {
       // This can be overridden at runtime via the NUXT_TURNSTILE_SECRET_KEY
       // environment variable.
       secretKey: process.env.NUXT_TURNSTILE_SECRET_KEY,
     },
-    /*logto: {
-      endpoint: process.env.NUXT_LOGTO_ENDPOINT,
-      appId: process.env.NUXT_LOGTO_APP_ID,
-      appSecret: process.env.NUXT_LOGTO_APP_SECRET,
-      cookieEncryptionKey: process.env.NUXT_LOGTO_COOKIE_ENCRYPTION_KEY,
-      customRedirectBaseUrl: process.env.NUXT_LOGTO_REDIRECT_URL
-    },*/
     public: {
       // Hasura
       websiteURL: process.env.GRAPHQL_HOST,
@@ -361,8 +346,8 @@ export default defineNuxtConfig({
 
       // Comments
       commentsUrl: process.env.NUXT_COMMENT_ID,
-    },
-  },
+  }
+},
 
   build: {
     transpile: [

@@ -49,7 +49,7 @@
         <v-layout>
           <v-navigation-drawer class="sidebarSection" v-model="drawer" temporary>
             <div v-if="userStore.isLoggedIn">
-              <v-toolbar :title="`Welcome, ${userEmail}`"></v-toolbar>
+              <v-toolbar :title="`Welcome, ${userEmail}`" color="info"></v-toolbar>
             </div>
             <div class="drawer-content">
             <v-list nav>
@@ -95,19 +95,19 @@
 
           <v-main id="sidebarNav"></v-main>
           <main id="mainSection">
+            <!--<announcements />-->
             <v-row>
               <v-col>
                 <live />
               </v-col>
             </v-row>
             <div>
-              <announcements />
               <slot />
             </div>
           </main>
         </v-layout>
       </v-card>
-      <!--<NuxtLinkboveFooter />-->
+      <!--<aboveFooter />-->
       <BottomFooter />
       <FooterNav />
       <!---->

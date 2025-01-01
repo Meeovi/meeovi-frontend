@@ -49,7 +49,7 @@
         <v-layout>
           <v-navigation-drawer class="sidebarSection" v-model="drawer" temporary>
             <div v-if="userStore.isLoggedIn">
-              <v-toolbar :title="`Welcome, ${userEmail}`"></v-toolbar>
+              <v-toolbar :title="`Welcome, ${userEmail}`" color="info"></v-toolbar>
             </div>
             <div class="drawer-content">
             <v-list nav>
@@ -96,7 +96,7 @@
           <v-main id="sidebarNav"></v-main>
           <main id="mainSection">
             <div>
-              <announcements />
+              <!--<announcements />-->
               <slot />
             </div>
           </main>

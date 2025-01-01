@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-sheet class="mx-auto row align-items-stretch items-row">
-      <v-toolbar title="Spaces within the community" color="transparent">
+      <v-toolbar title="Spaces within the community" color="transparent" style="position: relative; left: -20px;">
         <div><NuxtLink to="/social/spaces/">All Spaces</NuxtLink></div>
       </v-toolbar>
       <v-slide-group v-model="model" class="pa-4" selected-class="bg-success" show-arrows>

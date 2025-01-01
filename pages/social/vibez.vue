@@ -58,7 +58,6 @@
                 </v-tabs-window>
             </v-card-text>
         </v-card>
-
     </div>
 </template>
 
@@ -68,6 +67,15 @@
     import {
         ref
     } from 'vue'
+    import {
+        useUserStore
+    } from '~/stores/user'
+
+    const userStore = useUserStore()
+
+    const userDisplayName = computed(() => {
+        return userStore.user?.name || userStore.user?.username || 'User'
+    })
 
     const tab = ref(null);
     const {

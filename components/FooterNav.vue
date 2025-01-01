@@ -59,6 +59,7 @@
   import {
     ref
   } from 'vue'
+  import Newsletter from '~/components/Newsletter.vue'
 
   const {
     $directus,

@@ -1,4 +1,4 @@
-<!----><template>
+<template>
     <div class="contentPage">
       <h1 style="text-align: center;">{{ page?.name }}</h1>
       <div v-html="page?.content" />
