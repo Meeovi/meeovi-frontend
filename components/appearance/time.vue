@@ -1,9 +1,9 @@
 <template>
     <div>
         <v-row>
-            <v-col cols="12" v-for="categories in result?.categories?.items" :key="categories">
+            <v-col cols="12">
                 <section data-bs-version="5.1" class="header5 cid-ueXph5BkCt mbr-fullscreen mbr-parallax-background"
-                    id="header5-9k" :style="`background-image: url(${categories?.image})`">
+                    id="header5-9k" :style="`background-image: url(${department?.image?.filename_disk})`">
                     <div class="mbr-overlay" style="opacity: 0.1; background-color: rgb(255, 255, 255);"></div>
 
                     <div class="container">
@@ -25,14 +25,18 @@
         onMounted,
         onUnmounted
     } from 'vue';
-    import {
-    useQuery
-  } from '@vue/apollo-composable'
-    import time from '~/graphql/commerce/queries/id/time.js'
-
     const {
-        result
-    } = useQuery(time)
+    $directus,
+    $readItem
+  } = useNuxtApp()
+
+  const {
+    data: department
+  } = await useAsyncData('department', () => {
+    return $directus.request($readItem('departments', '68', {
+      fields: ['*', '*', '*']
+    }))
+  })
 
     let intervalId;
 

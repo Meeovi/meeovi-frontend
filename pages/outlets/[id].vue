@@ -1,36 +1,34 @@
 <template>
   <div class="departmentPage">
     <v-card variant="text">
-      <v-sheet class="mx-auto">
-        <v-slide-group show-arrows>
-          <h5 style="padding: 15px">{{ result?.categories?.items[0]?.name }}</h5>
-          <v-slide-group-item v-slot="{ isSelected, toggle }">
-            <v-btn :color="isSelected ? 'primary' : undefined" class="ma-2" @click="toggle"
-              :href="`/outlets/${result?.categories?.items[0]?.uid}`">
-              All
-            </v-btn>
-          </v-slide-group-item>
-
-          <div v-for="categories in result?.categories?.items" :key="categories">
-            <v-slide-group-item v-for="categories in categories?.children" :key="categories"
-              v-slot="{ isSelected, toggle }">
+      <v-toolbar :style="`background-color: ${outlet?.color}; color: ${outlet?.colortext}`" :title="outlet?.name">
+          <v-slide-group show-arrows>
+            <v-slide-group-item v-slot="{ isSelected, toggle }">
               <v-btn :color="isSelected ? 'primary' : undefined" class="ma-2" @click="toggle"
-                :href="`/departments/categories/${categories?.uid}`">
-                {{ categories.name }}
+                :href="`/outlets/${outlet?.id}`">
+                All
               </v-btn>
             </v-slide-group-item>
-          </div>
-        </v-slide-group>
-      </v-sheet>
+
+            <div v-for="categories in outlet?.categories" :key="categories?.categories_id?.id">
+              <v-slide-group-item v-slot="{ isSelected, toggle }">
+                <v-btn :color="isSelected ? 'primary' : undefined" class="ma-2" @click="toggle"
+                  :href="`/departments/categories/${categories?.categories_id?.id}`">
+                  {{ categories?.categories_id?.name }}
+                </v-btn>
+              </v-slide-group-item>
+            </div>
+          </v-slide-group>
+      </v-toolbar>
 
       <!--Department Banner Slider-->
-      <NuxtImg loading="lazy" :src="`${result?.categories?.items[0]?.image}`" :alt="result?.categories?.items[0]?.name" cover />
+      <NuxtImg loading="lazy" :src="`${outlet?.image?.filename_disk}`" :alt="outlet?.name" cover />
     </v-card>
 
     <v-row class="departmentRow">
       <!--Best Seller Product Slider-->
       <v-sheet class="mx-auto sliderProducts row align-items-stretch items-row justify-content-center">
-        <h4>Best Sellers</h4>
+        <h4>{{ outlet?.callouts[0]?.name }}</h4>
         <v-slide-group v-model="model" class="pa-4" selected-class="bg-success" show-arrows>
           <div v-for="category in best?.products?.items" :key="category">
             <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }"
@@ -48,7 +46,7 @@
 
       <!--List of latest products in the department-->
       <v-sheet class="mx-auto sliderProducts row align-items-stretch items-row justify-content-center">
-        <h4>Latest Products</h4>
+        <h4>{{ outlet?.callouts[1]?.name }}</h4>
         <v-slide-group v-model="model" class="pa-4" selected-class="bg-success" show-arrows>
           <div v-for="category in latest?.products?.items" :key="category">
             <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }"
@@ -65,8 +63,8 @@
       </v-sheet>
 
       <!--List of products in the department-->
-      <v-col cols="3" v-for="category in result?.categories?.items" :key="category.uid">
-        <div v-for="products in category?.products?.items" :key="products.uid">
+      <v-col cols="3" v-for="category in result?.categories?.items" :key="category.id">
+        <div v-for="products in category?.products?.items" :key="products.id">
           <productCard :product="products" />
         </div>
       </v-col>
@@ -79,38 +77,56 @@
   import {
     useQuery
   } from '@vue/apollo-composable'
-  import { CategoryQuery, BestsellerQuery, LatestProductsQuery } from '~/graphql/commerce/queries/id/department'
-  
+  import {
+    CategoryQuery,
+    BestsellerQuery,
+    LatestProductsQuery
+  } from '~/graphql/commerce/queries/id/department'
+
   const model = ref(null)
 
   // Retrieve the route and extract the UID
   const route = useRoute();
+  const {
+    $directus,
+    $readItem
+  } = useNuxtApp()
+
+  const {
+    data: outlet
+  } = await useAsyncData('outlet', () => {
+    return $directus.request($readItem('outlets', route.params.id, {
+      fields: ['*', {
+        '*': ['*']
+      }]
+    }))
+  })
 
   // Execute the queries with the UID variable
   const {
     result,
     error: errorData
   } = useQuery(CategoryQuery, {
-    uid: route.params.uid
+    id: route.params.id
   });
   const {
     result: best,
     error: errorBest
   } = useQuery(BestsellerQuery, {
-    uid: route.params.uid
+    id: route.params.id
   });
   const {
     result: latest,
     error: errorLatest
   } = useQuery(LatestProductsQuery, {
-    uid: route.params.uid
+    id: route.params.id
   });
 
   if (errorData || errorBest || errorLatest) {
     console.error('GraphQL Error:', errorData || errorBest || errorLatest);
   }
 
-definePageMeta({
+  definePageMeta({
     layout: 'nolive',
   });
 

@@ -1,27 +1,25 @@
 <template>
   <div class="departmentPage">
     <v-card variant="text">
-      <v-sheet class="mx-auto">
-        <v-slide-group show-arrows>
-          <h5 style="padding: 15px">Meeovi {{ result?.categories?.items[0]?.name }}</h5>
-          <v-slide-group-item v-slot="{ isSelected, toggle }">
-            <v-btn :color="isSelected ? 'primary' : undefined" class="ma-2" @click="toggle"
-              :href="`/departments/${result?.categories?.items[0]?.uid}`">
-              All
-            </v-btn>
-          </v-slide-group-item>
-
-          <div v-for="categories in result?.categories?.items" :key="categories">
-            <v-slide-group-item v-for="categories in categories?.children" :key="categories"
-              v-slot="{ isSelected, toggle }">
+      <v-toolbar :style="`background-color: ${categories?.color}; color: ${categories?.colortext}`" :title="categories?.name">
+          <v-slide-group show-arrows>
+            <v-slide-group-item v-slot="{ isSelected, toggle }">
               <v-btn :color="isSelected ? 'primary' : undefined" class="ma-2" @click="toggle"
-                :href="`/departments/categories/${categories?.uid}`">
-                {{ categories.name }}
+                :href="`/departments/categories/${categories?.id}`">
+                All
               </v-btn>
             </v-slide-group-item>
-          </div>
-        </v-slide-group>
-      </v-sheet>
+
+            <div v-for="categories in categories?.categories" :key="categories?.categories_id?.id">
+              <v-slide-group-item v-slot="{ isSelected, toggle }">
+                <v-btn :color="isSelected ? 'primary' : undefined" class="ma-2" @click="toggle"
+                  :href="`/departments/categories/${categories?.categories_id?.id}`">
+                  {{ categories?.categories_id?.name }}
+                </v-btn>
+              </v-slide-group-item>
+            </div>
+          </v-slide-group>
+      </v-toolbar>
 
       <!--Department Banner Slider
       <img :src="`${result?.categories?.items[0]?.image}`" :alt="result?.categories?.items[0]?.name" cover />-->
@@ -47,29 +45,26 @@
   //import shorts from '~/components/cms/related/shorts.vue'
   import relatedspaces from '~/components/cms/related/relatedspaces.vue'
   import productCard from '~/components/commerce/commerce/product/productCard.vue'
-  import {
-    useQuery
-  } from '@vue/apollo-composable'
-  import { CategoryQuery } from '~/graphql/commerce/queries/id/department'
   
-  const model = ref(null)
-
   // Retrieve the route and extract the UID
   const route = useRoute();
 
-  // Execute the queries with the UID variable
   const {
-    result,
-    error: errorData
-  } = useQuery(CategoryQuery, {
-    uid: route.params.uid
-  });
+    $directus,
+    $readItem
+  } = useNuxtApp()
 
-  if (errorData ) {
-    console.error('GraphQL Error:', errorData);
-  }
+  const {
+    data: categories
+  } = await useAsyncData('categories', () => {
+    return $directus.request($readItem('categories', route.params.id, {
+      fields: ['*', {
+        '*': ['*']
+      }]
+    }))
+  })
 
   useHead({
-    title: computed(() => result.value?.categories?.items[0]?.name || 'Outlet Page')
+    title: computed(() => categories?.value?.name || 'Category Page')
   });
 </script>

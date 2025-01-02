@@ -1,9 +1,8 @@
 <template>
-  <div class="contentPage">
+  <div class="departmentPage">
     <v-card variant="text">
-      <v-sheet class="mx-auto">
+      <v-toolbar :style="`background-color: ${department?.color}; color: ${department?.colortext}`" :title="department?.name">
         <v-slide-group show-arrows>
-          <h5 style="padding: 15px">Meeovi {{ result?.categories?.items[0]?.name }}</h5>
           <v-slide-group-item v-slot="{ isSelected, toggle }">
             <v-menu>
               <template v-slot:activator="{ props }">
@@ -13,53 +12,53 @@
                 </v-btn>
               </template>
               <v-list class="departmentMenu">
-                <v-row v-for="categories in result?.categories?.items" :key="categories">
-                  <v-col cols="3" v-for="categories in categories?.children" :key="categories" :value="categories">
-                    <NuxtLink :to="`/departments/categories/${categories?.uid}`"></NuxtLink>
+                <v-row>
+                  <v-col cols="3" v-for="categories in department?.categories" :key="categories?.categories_id?.id">
+                    <v-list-item><NuxtLink :to="`/departments/categories/${categories?.categories_id?.id}`">{{ categories?.categories_id?.name }}</NuxtLink></v-list-item>
                   </v-col>
                 </v-row>
               </v-list>
             </v-menu>
           </v-slide-group-item>
 
-          <v-slide-group-item v-for="categories in departmentbar?.menus" :key="categories"
+          <v-slide-group-item v-for="menu in department?.menus" :key="menu"
             v-slot="{ isSelected, toggle }">
             <v-btn :color="isSelected ? 'primary' : undefined" class="ma-2" @click="toggle"
-              :href="`/departments/categories/${categories?.uid}`">
-              {{ categories.name }}
+              :href="`/departments/categories/${categories?.id}`">
+              {{ menu.name }}
             </v-btn>
           </v-slide-group-item>
         </v-slide-group>
-      </v-sheet>
+      </v-toolbar>
 
       <!--Department Banner Slider-->
       <div>
-        <div v-if="result?.categories?.items[0]?.uid === 'OTY='">
-          <timeBanner :category="result?.categories?.items[0]?.uid" />
+        <div v-if="department?.id === 68">
+          <timeBanner :category="department?.id" />
         </div>
-        <div v-else-if="result?.categories?.items[0]?.uid === 'OTM='">
-          <weather :category="result?.categories?.items[0]?.uid" />
+        <div v-else-if="department?.id === 67">
+          <weather :category="department?.id" />
         </div>
-        <div v-else-if="result?.categories?.items[0]?.uid === 'NjY='">
-          <travel :category="result?.categories?.items[0]?.uid" />
+        <div v-else-if="department?.id === 59">
+          <travel :category="department?.id" />
         </div>
-        <div v-else-if="result?.categories?.items[0]?.uid === 'NTE='">
-          <NuxtLinkppstore :product="result?.categories?.items[0]?.uid" />
+        <div v-else-if="department?.id === 60">
+          <appstore :product="department?.id" />
         </div>
-        <div v-else-if="result?.categories?.items[0]?.uid === 'NTE='">
-          <NuxtLinkdultstore :product="result?.categories?.items[0]?.uid" />
+        <div v-else-if="department?.id === 77">
+          <adultstore :product="department?.id" />
         </div>
-        <div v-else-if="result?.categories?.items[0]?.uid === 'NTE='">
-          <health :product="result?.categories?.items[0]?.uid" />
+        <div v-else-if="department?.id === 64">
+          <health :product="department?.id" />
         </div>
-        <div v-else-if="result?.categories?.items[0]?.uid === 'NTE='">
-          <realestate :product="result?.categories?.items[0]?.uid" />
+        <div v-else-if="department?.id === 63">
+          <realestate :product="department?.id" />
         </div>
-        <div v-else-if="result?.categories?.items[0]?.uid === 'NTE='">
-          <pantry :product="result?.categories?.items[0]?.uid" />
+        <div v-else-if="department?.id === 37">
+          <pantry :product="department?.id" />
         </div>
-        <div v-else :src="`${result?.categories?.items[0]?.image}`">
-          <NuxtImg loading="lazy" :alt="result?.categories?.items[0]?.name" cover />
+        <div v-else :src="`${department?.image}`">
+          <NuxtImg loading="lazy" :alt="department?.name" cover />
         </div>
       </div>
     </v-card>
@@ -102,7 +101,7 @@
       </v-sheet>
 
       <!--List of products in the department-->
-      <v-col cols="3" v-for="category in result?.categories?.items" :key="category.uid">
+      <v-col cols="3" v-for="category in result?.categories?.items" :key="category.id">
         <div v-for="products in category?.products?.items" :key="products.uid">
           <productCard :product="products" />
         </div>
@@ -162,9 +161,14 @@
   } = useNuxtApp()
 
   const {
-    data: departmentbar
-  } = await useAsyncData('departmentbar', () => {
-    return $directus.request($readItem('departments', route.params.id))
+    data: department
+  } = await useAsyncData('department', () => {
+    return $directus.request($readItem('departments', route.params.id, {
+      fields: ['*', 
+      'categories.categories_id.id',
+      'categories.categories_id.name'
+    ]
+    }))
   })
 
   // Execute the queries with the UID variable
@@ -196,6 +200,6 @@
   }
 
   useHead({
-    title: computed(() => result.value?.categories?.items[0]?.name || 'Outlet Page')
+    title: computed(() => department?.value?.name || 'Department Page')
   });
 </script>

@@ -317,7 +317,7 @@ body {
 }
 
 .departmentPage {
-    padding-top: 50px;
+    padding-top: 45px;
 }
 
 .homeSection a {
@@ -890,6 +890,10 @@ body {
 .features02 .content-wrapper,
 .cid-tApxFdIkda .mbr-text .cid-txYTqgVHsB blockquote {
     background-color: transparent !important;
+}
+
+#dateTime {
+    color: rgb(var(--v-theme-info));
 }
 
 /*************** Comments *****************/
