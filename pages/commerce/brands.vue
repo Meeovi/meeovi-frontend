@@ -1,11 +1,11 @@
 <template>
   <div class="contentPage">
     <v-card elevation="0">
-      <v-toolbar title="Brands" color="green"></v-toolbar>
+      <v-toolbar :title="brandbar?.name" color="green"></v-toolbar>
       <v-tabs v-model="tab" bg-color="green">
-        <v-tab value="one">All Brands</v-tab>
-        <v-tab value="two">Meeovi Brands</v-tab>
-        <!--<v-tab value="three">Integrations</v-tab>-->
+        <div v-for="(menu, index) in brandbar?.menus" :key="index">
+        <v-tab :value="menu?.value">{{ menu?.name }}</v-tab>
+      </div>
       </v-tabs>
 
       <v-card-text>
@@ -20,7 +20,7 @@
 
           <v-tabs-window-item value="two">
             <v-row>
-              <v-col cols="4" v-for="brand in brands" :key="brand.brand_id">
+              <v-col cols="4" v-for="brand in meebrands" :key="brand.brand_id">
                 <brand :brand="brand" />
               </v-col>
             </v-row>
@@ -47,20 +47,44 @@
   import brand from '~/components/commerce/related/brands.vue'
 
   const tab = ref(null)
-  const brands = ref([])
+  const {
+        $directus,
+        $readItems,
+        $readItem
+    } = useNuxtApp()
 
-  const fetchBrands = async () => {
-    try {
-      // Use Nuxt's $fetch to call our API
-      const response = await $fetch('/api/commerce/catalog/brands/brands')
-      brands.value = response
-    } catch (error) {
-      console.error('Error fetching brands:', error)
-      // Handle error (e.g., show an error message to the user)
-    }
-  }
+    const {
+        data: brands
+    } = await useAsyncData('brands', () => {
+        return $directus.request($readItems('brands', {
+            fields: ['*', {
+                '*': ['*']
+            }]
+        }))
+    })
 
-  onMounted(() => {
-    fetchBrands()
+    const {
+        data: meebrands
+    } = await useAsyncData('meebrands', () => {
+        return $directus.request($readItems('brands', {
+            filter: {
+                code: {
+                    _eq: 'Mee'
+                }
+            },
+            fields: ['*', {
+                '*': ['*']
+            }]
+        }))
+    })
+
+    const {
+    data: brandbar
+  } = await useAsyncData('brandbar', () => {
+    return $directus.request($readItem('navigation', '40', {
+      fields: ['*', {
+        '*': ['*']
+      }]
+    }))
   })
 </script>

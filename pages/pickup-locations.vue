@@ -3,20 +3,20 @@
     <v-row>
       <v-toolbar title="Pickup Locations" color="orange"></v-toolbar>
       <v-col cols="4">
-        <template v-if="result?.pickupLocations?.items?.length">
+        <template v-if="pickup_locations">
           <v-card class="mx-auto mb-4" prepend-icon="$vuetify" subtitle="Meeovi" width="100%"
-            v-for="location in result?.pickupLocations?.items" :key="location?.id" @click="selectLocation(location)">
+            v-for="location in pickup_locations" :key="location?.id" @click="selectLocation(location)">
             <template v-slot:title>
               <span class="font-weight-black">{{ location?.name }}</span>
             </template>
 
             <v-card-text class="bg-surface-light pt-4">
-              <div>Street: {{ location?.street }}</div>
+              <div>Street: {{ location?.address }}</div>
               <div>City: {{ location?.city }}</div>
               <div>Postcode: {{ location?.postcode }}</div>
               <div>Phone: {{ location?.phone }}</div>
               <div>Email: {{ location?.email }}</div>
-              <div>Region: {{ location?.region }}</div>
+              <div>Region: {{ location?.country }}</div>
               <div>Description: {{ location?.description }}</div>
             </v-card-text>
           </v-card>
@@ -39,9 +39,9 @@
             layer-type="base"
             name="OpenStreetMap"
           />
-          <template v-if="result?.pickupLocations?.items?.length">
+          <template v-if="pickup_locations">
             <Marker
-              v-for="location in result?.pickupLocations?.items"
+              v-for="location in pickup_locations"
               :key="location.id"
               :lat-lng="[location?.latitude, location?.longitude]"
             >
@@ -60,14 +60,20 @@
     ref,
     computed
   } from 'vue';
-  import {
-    useQuery
-  } from '@vue/apollo-composable';
-  import pickuplocations from '~/graphql/commerce/queries/pickuplocations';
-
   const {
-    result
-  } = useQuery(pickuplocations);
+        $directus,
+        $readItems,
+    } = useNuxtApp()
+
+    const {
+        data: pickup_locations
+    } = await useAsyncData('pickup_locations', () => {
+        return $directus.request($readItems('pickup_locations', {
+            fields: ['*', {
+                '*': ['*']
+            }]
+        }))
+    })
 
   const selectedLocation = ref(null);
 
@@ -80,8 +86,8 @@
       return [selectedLocation.value.latitude, selectedLocation.value.longitude];
     }
     // If there are locations but none selected, use the first one
-    if (result.value?.pickupLocations?.items?.length) {
-      const firstLocation = result.value.pickupLocations.items[0];
+    if (pickup_locations?.length) {
+      const firstLocation = pickup_locations[0];
       return [firstLocation.latitude, firstLocation.longitude];
     }
     // Default center if no locations are available
