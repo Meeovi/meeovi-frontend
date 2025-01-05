@@ -45,7 +45,7 @@
 
             <v-card-text>
                 <v-window v-model="tab">
-                    <v-window-item value="one">
+                    <v-window-item :value="profile?.menus[0]?.value">
                         <v-row>
                             <v-col cols="4" v-for="(posts, index) in myposts" :key="index" style="margin: 8px;">
                                 <post :post="posts" />
@@ -53,27 +53,19 @@
                         </v-row>
                     </v-window-item>
 
-                    <v-window-item value="two">
-                        <followers />
-                    </v-window-item>
-
-                    <!--<v-window-item value="three">
-                        <products />
-                    </v-window-item>-->
-
-                    <v-window-item value="three">
+                    <v-window-item :value="profile?.menus[1]?.value">
                         <replies />
                     </v-window-item>
 
-                    <v-window-item value="four">
+                    <v-window-item :value="profile?.menus[2]?.value">
                         <media />
                     </v-window-item>
 
-                    <v-window-item value="five">
+                    <v-window-item :value="profile?.menus[3]?.value">
                         <likes />
                     </v-window-item>
 
-                    <v-window-item value="six">
+                    <v-window-item :value="profile?.menus[4]?.value">
                         <v-row style="padding-top: 15px;">
                             <v-col cols="4" v-for="(shorts, index) in myvibez" :key="index">
                                 <shorts :short="shorts" />
@@ -81,7 +73,7 @@
                         </v-row>
                     </v-window-item>
 
-                    <v-window-item value="seven">
+                    <v-window-item :value="profile?.menus[5]?.value">
                         <archives />
                     </v-window-item>
                 </v-window>
@@ -94,11 +86,8 @@
     import {
         ref
     } from 'vue'
-    import profilebar from '~/components/menus/profilebar.vue'
     import post from '~/components/cms/related/posts.vue'
-    import followersfollowing from '~/components/pages/profile/followersfollowing.vue'
     import shorts from '~/components/cms/related/shorts.vue'
-    //import products from '~/components/pages/profile/products.vue'
     import replies from '~/components/pages/profile/replies.vue'
     import media from '~/components/pages/profile/media.vue'
     import likes from '~/components/pages/profile/likes.vue'

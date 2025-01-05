@@ -1,6 +1,5 @@
 <template>
     <div>
-        <!--<profilebar />-->
         <v-row>
             <v-col cols="12">
                 <v-toolbar title="Your Subscriptions" subtitle=""></v-toolbar>
@@ -8,9 +7,8 @@
                     <v-col cols="3" v-for="(subscriptions, index) in subscriptions" :key="index">
                         <v-card class="mx-auto" max-width="400">
                             <NuxtImg loading="lazy" class="align-end text-white" height="200"
-                            :src="subscriptions?.image?.filename_disk" :alt="subscriptions?.name" cover>
+                            :src="subscriptions?.image?.filename_disk" :alt="subscriptions?.name" cover />
                                 <v-card-title>{{subscriptions?.name}}</v-card-title>
-                            </v-img>
 
                             <v-card-subtitle class="pt-4">
                                 Status: {{ subscriptions?.status }}
@@ -38,9 +36,8 @@
                     <v-col cols="3" v-for="(subscriptions, index) in subscriptions" :key="index">
                         <v-card class="mx-auto" max-width="400">
                             <NuxtImg loading="lazy" class="align-end text-white" height="200"
-                            :src="subscriptions?.image?.filename_disk" :alt="subscriptions?.name" cover>
+                            :src="subscriptions?.image?.filename_disk" :alt="subscriptions?.name" cover />
                                 <v-card-title>{{subscriptions?.name}}</v-card-title>
-                            </v-img>
 
                             <v-card-subtitle class="pt-4">
                                 Status: {{ subscriptions?.status }}
@@ -65,30 +62,11 @@
     </div>
 </template>
 
-<script>
-    import profilebar from '~/components/menus/profilebar.vue'
-    const productModel = ref(null)
-
-    export default {
-        components: {
-            profilebar
-        },
-        data: () => ({
-            model: null,
-            url: process.env.DIRECTUS_URL,
-        }),
-        setup() {
-            return {
-                productModel,
-            }
-        },
-    }
-</script>
-
 <script setup>
   const {
     getItems
   } = useDirectusItems()
+  const model = ref(null);
 
   const subscriptions = await getItems({
     collection: "subscriptions",

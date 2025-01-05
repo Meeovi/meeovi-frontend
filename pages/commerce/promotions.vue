@@ -1,37 +1,30 @@
 <template>
     <div class="customerDashboard">
         <v-card elevation="0">
-            <v-toolbar title="Promotions Center" color="primary"></v-toolbar>
+            <v-toolbar :title="promotionbar?.name" color="primary"></v-toolbar>
             <v-tabs v-model="tab" bg-color="primary">
-                <v-tab value="one">Dashboard</v-tab>
-                <v-tab value="two">Coupons</v-tab>
-                <v-tab value="three">Gift Cards</v-tab>
-                <v-tab value="four">Deals</v-tab>
-                <v-tab value="five">Subscriptions</v-tab>
+                <div v-for="(menu, index) in promotionbar?.menus" :key="index">
+                    <v-tab :value="menu?.value">{{ menu?.name }}</v-tab>
+                </div>
             </v-tabs>
 
             <v-card-text>
                 <v-tabs-window v-model="tab">
-                    <v-tabs-window-item value="one">
+                    <v-tabs-window-item :value="promotionbar?.menus[0]?.value">
                         <dashboard />
                     </v-tabs-window-item>
 
-                    <v-tabs-window-item value="two">
+                    <v-tabs-window-item :value="promotionbar?.menus[1]?.value">
                         <coupons />
                     </v-tabs-window-item>
 
-                    <v-tabs-window-item value="three">
+                    <v-tabs-window-item :value="promotionbar?.menus[2]?.value">
                         <giftcards />
                     </v-tabs-window-item>
 
-                    <v-tabs-window-item value="four">
-                        <deals />
-                    </v-tabs-window-item>
-
-                    <v-tabs-window-item value="five">
+                    <v-tabs-window-item :value="promotionbar?.menus[3]?.value">
                         <subscriptions />
                     </v-tabs-window-item>
-
                 </v-tabs-window>
             </v-card-text>
         </v-card>
@@ -42,13 +35,22 @@
     import dashboard from '~/components/commerce/pages/promotions/dashboard.vue'
     import coupons from '~/components/commerce/pages/promotions/coupons.vue'
     import giftcards from '~/components/commerce/pages/promotions/giftcards.vue'
-    import deals from '~/components/commerce/pages/promotions/deals.vue'
     import subscriptions from '~/components/commerce/pages/promotions/subscriptions.vue'
-    //import creditmemos from '~/components/commerce/pages/promotions/creditmemos.vue'
 
     import { ref } from 'vue'
 
     const tab = ref(null)
+    const {
+        $directus,
+        $readItems,
+        $readItem
+    } = useNuxtApp()
+
+    const {
+        data: promotionbar
+    } = await useAsyncData('promotionbar', () => {
+        return $directus.request($readItem('navigation', '45'))
+    })
 
     definePageMeta({
       layout: "nolive",

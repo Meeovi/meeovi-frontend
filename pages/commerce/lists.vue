@@ -1,24 +1,21 @@
 <template>
     <div class="contentPage">
-        <!--<profilebar />-->
         <v-card elevation="0">
-            <v-toolbar title="Meeovi Lists" color="green">
+            <v-toolbar :title="listbar?.name" color="green">
                 <listbtn />
 
                 <v-divider vertical></v-divider>
                 <createbookmark />
             </v-toolbar>
             <v-tabs v-model="tab" bg-color="green">
-                <v-tab value="one">All Lists</v-tab>
-                <v-tab value="two">Bookmarks</v-tab>
-                <v-tab value="three">Starred</v-tab>
-                <v-tab value="four">Archived</v-tab>
-                <!---->
+                <div v-for="(menu, index) in listbar?.menus" :key="index">
+                    <v-tab :value="menu?.value">{{ menu?.name }}</v-tab>
+                </div>
             </v-tabs>
 
             <v-card-text>
                 <v-tabs-window v-model="tab">
-                    <v-tabs-window-item value="one">
+                    <v-tabs-window-item :value="listbar?.menus[0]?.value">
                         <v-row>
                             <v-col cols="3" v-for="lists in lists" :key="lists">
                                 <list :list="lists" />
@@ -26,7 +23,7 @@
                         </v-row>
                     </v-tabs-window-item>
 
-                    <v-tabs-window-item value="two">
+                    <v-tabs-window-item :value="listbar?.menus[0]?.value">
                         <v-row>
                             <v-col cols="3" v-for="websites in websites" :key="websites">
                                 <bookmark :website="websites" />
@@ -34,7 +31,7 @@
                         </v-row>
                     </v-tabs-window-item>
 
-                    <v-tabs-window-item value="three">
+                    <v-tabs-window-item :value="listbar?.menus[0]?.value">
                         <v-row>
                             <v-col cols="3" v-for="fave in listsfave" :key="fave">
                                 <list :list="fave" />
@@ -42,7 +39,7 @@
                         </v-row>
                     </v-tabs-window-item>
 
-                    <v-tabs-window-item value="four">
+                    <v-tabs-window-item :value="listbar?.menus[0]?.value">
                         <v-row>
                             <v-col cols="3" v-for="archive in listsarchive" :key="archive">
                                 <list :list="archive" />
@@ -57,7 +54,6 @@
 </template>
 
 <script setup>
-    //import profilebar from '~/components/menus/profilebar.vue'
     import {
         ref
     } from 'vue'
@@ -128,6 +124,12 @@
                 '*': ['*']
             }]
         }))
+    })
+
+    const {
+        data: listbar
+    } = await useAsyncData('listbar', () => {
+        return $directus.request($readItem('navigation', '46'))
     })
 
     useHead({

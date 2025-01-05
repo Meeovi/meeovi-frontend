@@ -18,23 +18,43 @@
 
             <v-card-text>
                 <v-tabs-window v-model="tab">
-                    <v-tabs-window-item value="one">
+                    <v-tabs-window-item :value="accountbar?.menus[0]?.value">
                         <dashboard />
                     </v-tabs-window-item>
 
-                    <v-tabs-window-item value="two">
+                    <v-tabs-window-item :value="accountbar?.menus[1]?.value">
+                        <orders />
+                    </v-tabs-window-item>
+
+                    <v-tabs-window-item :value="accountbar?.menus[2]?.value">
+                        <transactions />
+                    </v-tabs-window-item>
+
+                    <v-tabs-window-item :value="accountbar?.menus[3]?.value">
+                        <shipments />
+                    </v-tabs-window-item>
+
+                    <v-tabs-window-item :value="accountbar?.menus[4]?.value">
+                        <refunds />
+                    </v-tabs-window-item>
+
+                    <v-tabs-window-item :value="accountbar?.menus[5]?.value">
+                        <creditmemos />
+                    </v-tabs-window-item>
+
+                    <v-tabs-window-item :value="accountbar?.menus[6]?.value">
                         <addresses />
                     </v-tabs-window-item>
 
-                    <v-tabs-window-item value="three">
+                    <v-tabs-window-item :value="accountbar?.menus[7]?.value">
                         <downloads />
                     </v-tabs-window-item>
 
-                    <v-tabs-window-item value="four">
+                    <v-tabs-window-item :value="accountbar?.menus[8]?.value">
                         <reviews />
                     </v-tabs-window-item>
 
-                    <v-tabs-window-item value="five">
+                    <v-tabs-window-item :value="accountbar?.menus[9]?.value">
                         <settings />
                     </v-tabs-window-item>
                 </v-tabs-window>
@@ -45,6 +65,11 @@
 
 <script setup>
     import dashboard from '~/components/pages/account/dashboard.vue'
+    import orders from '~/components/commerce/pages/orders/orders/my-orders.vue'
+    import transactions from '~/components/commerce/pages/orders/transactions.vue'
+    import shipments from '~/components/commerce/pages/orders/shipments.vue'
+    import refunds from '~/components/commerce/pages/orders/orders/returns.vue'
+    import creditmemos from '~/components/commerce/pages/orders/creditmemos.vue'
     import addresses from '~/components/pages/account/addresses.vue'
     import downloads from '~/components/pages/account/downloads.vue'
     import reviews from '~/components/pages/account/reviews.vue'

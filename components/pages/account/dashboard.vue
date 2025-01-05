@@ -1,42 +1,20 @@
 <template>
     <div>
-        <!--<profilebar />-->
-        <v-toolbar color="transparent" density="compact" title="My Dashboard">
-            <NuxtLinkddPayment />
-        </v-toolbar>
-        <v-table fixed-header>
-            <thead>
-                <tr>
-                    <th class="text-left">
-                        Name
-                    </th>
-                    <th class="text-left">
-                        Type
-                    </th>
-                    <th class="text-left">
-                        Value
-                    </th>
-                    <th class="text-left">
-                        Default?
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(payment, index) in data?.customer?.availablePaymentMethods" :key="index">
-                    <td><NuxtImg loading="lazy" :src="payment?.gateway?.icon" :alt="payment?.gateway?.title" /></td>
-                    <td>{{ payment?.gateway?.title }}</td>
-                    <td>{{ payment?.type }}</td>
-                    <td>{{ payment?.gateway?.description }}</td>
-                    <td>{{ payment?.isDefault }}</td>
-                </tr>
-            </tbody>
-        </v-table>
+        <v-toolbar color="transparent" density="compact" title="My Dashboard"></v-toolbar>
+        <v-row>
+            <v-col cols="6"><recentorders /></v-col>
+            <v-col cols="6"><recentlists /></v-col>
+            <v-col cols="6"><billingagreements /></v-col>
+            <v-col cols="6"><recentinvoices /></v-col>
+        </v-row>
     </div>
-
 </template>
 
 <script setup>
-
+import recentorders from '@/components/pages/account/accountDashboard/recentorders.vue';
+import recentlists from '@/components/pages/account/accountDashboard/recentlists.vue';
+import billingagreements from '@/components/pages/account/accountDashboard/billingagreements.vue';
+import recentinvoices from '@/components/pages/account/accountDashboard/recentinvoices.vue';
 
     useHead({
         title: 'My Dashboard',

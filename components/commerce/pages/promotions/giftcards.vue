@@ -71,21 +71,7 @@
     </div>
 </template>
 
-<script>
-    export default {
-        components: {
-            profilebar
-        },
-        data: () => ({
-            model: null,
-            //url: process.env.DIRECTUS_URL,
-        }),
-    }
-</script>
-
 <script setup>
-    import profilebar from '~/components/menus/profilebar.vue'
-
     import {
         ref,
         onMounted
@@ -95,6 +81,7 @@
     } from '~/composables/commerce/marketing/getGiftCards';
 
     const cards = ref([]);
+    const model = ref(null);
 
     onMounted(async () => {
         cards.value = await getCards();
