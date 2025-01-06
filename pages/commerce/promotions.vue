@@ -32,10 +32,10 @@
 </template>
 
 <script setup>
-    import dashboard from '~/components/commerce/pages/promotions/dashboard.vue'
-    import coupons from '~/components/commerce/pages/promotions/coupons.vue'
-    import giftcards from '~/components/commerce/pages/promotions/giftcards.vue'
-    import subscriptions from '~/components/commerce/pages/promotions/subscriptions.vue'
+    import dashboard from '~/components/pages/promotions/dashboard.vue'
+    import coupons from '~/components/pages/promotions/coupons.vue'
+    import giftcards from '~/components/pages/promotions/giftcards.vue'
+    import subscriptions from '~/components/pages/promotions/subscriptions.vue'
 
     import { ref } from 'vue'
 

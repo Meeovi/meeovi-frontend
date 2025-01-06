@@ -12,16 +12,16 @@
                         <div class="content-container" v-if="userStore.isLoggedIn">
                             <div class="img-wrap">
                                 <div class="item-img">
-                                    <NuxtImg loading="lazy" :src="`${userStore?.picture}`" :alt="userStore?.username" />
+                                    <NuxtImg loading="lazy" :src="`${userStore?.user?.photoURL}`" :alt="userStore?.user?.displayName" />
                                 </div>
                             </div>
                             <div class="text-wrap align-left">
                                 <h4 class="mbr-text-name mbr-fonts-style display-5">
-                                    <strong>@{{ userStore?.username }}</strong>
+                                    <strong>{{ userStore?.user?.displayName }}</strong>
                                 </h4>
                                 <h4 class="mbr-text mbr-fonts-style display-7" style="">
                                     <v-list style="background: transparent; color: white;">
-                                        <v-list-item title="Member Since">{{ userStore?.created_at }}</v-list-item>
+                                        <v-list-item title="Member Since">{{ userStore?.user?.metadata?.creationTime }}</v-list-item>
                                     </v-list>
                                 </h4>
                             </div>
@@ -45,37 +45,39 @@
 
             <v-card-text>
                 <v-window v-model="tab">
-                    <v-window-item :value="profile?.menus[0]?.value">
-                        <v-row>
-                            <v-col cols="4" v-for="(posts, index) in myposts" :key="index" style="margin: 8px;">
-                                <post :post="posts" />
-                            </v-col>
-                        </v-row>
-                    </v-window-item>
+                    <div v-if="profile?.value?.menus?.active === 'Active'">
+                        <v-window-item :value="profile?.menus[0]?.value">
+                            <v-row>
+                                <v-col cols="4" v-for="(posts, index) in myposts" :key="index" style="margin: 8px;">
+                                    <post :post="posts" />
+                                </v-col>
+                            </v-row>
+                        </v-window-item>
 
-                    <v-window-item :value="profile?.menus[1]?.value">
-                        <replies />
-                    </v-window-item>
+                        <v-window-item :value="profile?.menus[1]?.value">
+                            <replies />
+                        </v-window-item>
 
-                    <v-window-item :value="profile?.menus[2]?.value">
-                        <media />
-                    </v-window-item>
+                        <v-window-item :value="profile?.menus[2]?.value">
+                            <media />
+                        </v-window-item>
 
-                    <v-window-item :value="profile?.menus[3]?.value">
-                        <likes />
-                    </v-window-item>
+                        <v-window-item :value="profile?.menus[3]?.value">
+                            <likes />
+                        </v-window-item>
 
-                    <v-window-item :value="profile?.menus[4]?.value">
-                        <v-row style="padding-top: 15px;">
-                            <v-col cols="4" v-for="(shorts, index) in myvibez" :key="index">
-                                <shorts :short="shorts" />
-                            </v-col>
-                        </v-row>
-                    </v-window-item>
+                        <v-window-item :value="profile?.menus[4]?.value">
+                            <v-row style="padding-top: 15px;">
+                                <v-col cols="4" v-for="(shorts, index) in myvibez" :key="index">
+                                    <shorts :short="shorts" />
+                                </v-col>
+                            </v-row>
+                        </v-window-item>
 
-                    <v-window-item :value="profile?.menus[5]?.value">
-                        <archives />
-                    </v-window-item>
+                        <v-window-item :value="profile?.menus[5]?.value">
+                            <archives />
+                        </v-window-item>
+                    </div>
                 </v-window>
             </v-card-text>
         </v-card>
@@ -91,6 +93,7 @@
     import replies from '~/components/pages/profile/replies.vue'
     import media from '~/components/pages/profile/media.vue'
     import likes from '~/components/pages/profile/likes.vue'
+    import archives from '~/components/pages/profile/archives.vue'
     import {
         useUserStore
     } from '~/stores/user'
@@ -151,7 +154,7 @@
     })
 
     useHead({
-        title: userStore?.username,
+        title: userStore?.displayName || 'User Profile',
     })
 
     definePageMeta({

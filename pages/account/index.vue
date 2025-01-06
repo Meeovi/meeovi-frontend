@@ -65,11 +65,11 @@
 
 <script setup>
     import dashboard from '~/components/pages/account/dashboard.vue'
-    import orders from '~/components/commerce/pages/orders/orders/my-orders.vue'
-    import transactions from '~/components/commerce/pages/orders/transactions.vue'
-    import shipments from '~/components/commerce/pages/orders/shipments.vue'
-    import refunds from '~/components/commerce/pages/orders/orders/returns.vue'
-    import creditmemos from '~/components/commerce/pages/orders/creditmemos.vue'
+    import orders from '~/components/pages/orders/orders/my-orders.vue'
+    import transactions from '~/components/pages/orders/transactions.vue'
+    import shipments from '~/components/pages/orders/shipments.vue'
+    import refunds from '~/components/pages/orders/orders/returns.vue'
+    import creditmemos from '~/components/pages/orders/creditmemos.vue'
     import addresses from '~/components/pages/account/addresses.vue'
     import downloads from '~/components/pages/account/downloads.vue'
     import reviews from '~/components/pages/account/reviews.vue'
