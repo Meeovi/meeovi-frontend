@@ -9,35 +9,35 @@
 
       <v-card-text>
         <v-tabs-window v-model="tab">
-          <v-tabs-window-item value="one">
+          <v-tabs-window-item :value="settings?.menus[0]?.value">
             <account />
           </v-tabs-window-item>
 
-          <v-tabs-window-item value="two">
+          <v-tabs-window-item :value="settings?.menus[1]?.value">
             <communication />
           </v-tabs-window-item>
 
-          <v-tabs-window-item value="three">
+          <v-tabs-window-item :value="settings?.menus[2]?.value">
             <payments />
           </v-tabs-window-item>
 
-          <v-tabs-window-item value="four">
+          <v-tabs-window-item :value="settings?.menus[3]?.value">
             <personalization />
           </v-tabs-window-item>
 
-          <v-tabs-window-item value="five">
+          <v-tabs-window-item :value="settings?.menus[4]?.value">
             <security />
           </v-tabs-window-item>
 
-          <v-tabs-window-item value="six">
+          <v-tabs-window-item :value="settings?.menus[5]?.value">
             <language />
           </v-tabs-window-item>
 
-          <v-tabs-window-item value="seven">
+          <v-tabs-window-item :value="settings?.menus[6]?.value">
             <accessibility />
           </v-tabs-window-item>
 
-          <v-tabs-window-item value="eight">
+          <v-tabs-window-item :value="settings?.menus[7]?.value">
             <privacy />
           </v-tabs-window-item>
         </v-tabs-window>
@@ -67,7 +67,11 @@
   const {
     data: settings
   } = await useAsyncData('settings', () => {
-    return $directus.request($readItem('navigation', '25'))
+    return $directus.request($readItem('navigation', '25', {
+            fields: ['*', {
+                '*': ['*']
+            }]
+        }))
   })
 
   const tab = ref(null)

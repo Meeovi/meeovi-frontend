@@ -76,6 +76,10 @@
                         <v-window-item :value="profile?.menus[5]?.value">
                             <archives />
                         </v-window-item>
+
+                        <v-window-item :value="profile?.submenus[2]?.value">
+                            <settings />
+                        </v-window-item>
                 </v-window>
             </v-card-text>
         </v-card>
@@ -92,6 +96,7 @@
     import media from '~/components/pages/profile/media.vue'
     import likes from '~/components/pages/profile/likes.vue'
     import archives from '~/components/pages/profile/archives.vue'
+    import settings from '~/components/pages/account/settings.vue'
     import {
         useUserStore
     } from '~/stores/user'

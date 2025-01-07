@@ -30,7 +30,7 @@
             </div>
           </div>
 
-          <div v-else>{{ replies?.menus?.[0]?.description || 'No replies available' }}</div>
+          <div v-else style="text-align: center;">{{ replies?.menus?.[0]?.description || 'No replies available' }}</div>
         </div>
       </section>
     </div>
