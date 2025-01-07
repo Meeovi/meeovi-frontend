@@ -17,20 +17,11 @@
     </div>
 </template>
 
-<script>
+<script setup>
+    import { ref } from 'vue'
     import followButton from '~/components/partials/followButton.vue'
 
-    export default {
-        components: {
-            followButton
-        },
-        data: () => ({
-            model: null,
-        }),
-    }
-</script>
-
-<script setup>
+    const model = ref(null);
     const props = defineProps({
         customers: {
             type: Object,

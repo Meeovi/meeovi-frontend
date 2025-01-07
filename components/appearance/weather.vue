@@ -34,4 +34,11 @@
             console.error('Failed to load weather widget script:', error)
         }
     })
+
+    const props = defineProps({
+        category: {
+            type: String,
+            required: true,
+        },
+    });
 </script>

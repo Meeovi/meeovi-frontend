@@ -3,67 +3,77 @@
         <section data-bs-version="5.1" class="people1 cid-u1nHNN1e0D" id="people1-6m">
         <div class="container">
 
-          <div class="user-card">
+          <div class="user-card" v-if="comments && comments.length">
             <div class="row">
               <div class="col-md-6 col-lg-3">
                 <v-avatar size="120">
-                  <NuxtImg loading="lazy" :src="`${members?.avatar?.url}`" :alt="members?.username" />
+                  <NuxtImg loading="lazy" :src="`${comments?.media?.filename_disk}`" :alt="comments?.name" />
                 </v-avatar>
                 <div class="user_name mbr-fonts-style display-7">
-                  <strong>{{ members?.username}}</strong>
+                  <strong>{{ comments?.name}}</strong>
                 </div>
-                <p class="commentPublishedDate">{{ members?.comments?.nodes?.date }}</p>
+                <p class="commentPublishedDate">{{ comments?.created_at }}</p>
               </div>
 
               <div class="col-12 col-md-6 col-lg-9">
                 <div class="description">
                   <div class="user_text">
                     <p class="mbr-fonts-style small display-4">
-                      Type: {{ members?.comments?.nodes?.type }}
+                      Type: {{ comments?.type }}
                     </p>
                     <p class="mbr-fonts-style small display-4">
-                      Status: {{ members?.comments?.nodes?.status }}
-                    </p>
-                    <p class="mbr-fonts-style small display-4">
-                      {{ members?.comments?.nodes?.content }}
+                      {{ comments?.response }}
                     </p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
+          <div v-else>{{ replies?.menus?.[0]?.description || 'No replies available' }}</div>
         </div>
       </section>
     </div>
 </template>
 
 <script setup>
-const query = gql `
-query NewQuery {
-  members {
-    nodes {
-      comments {
-        nodes {
-          content
-          date
-          id
-          karma
-          status
-          type
-        }
-      }
-      avatar {
-        url
-      }
-      username
-    }
-  }
-}
-`
+import {
+        useUserStore
+    } from '~/stores/user'
+
+    const userStore = useUserStore()
+
+    const userDisplayName = computed(() => {
+        return userStore.user?.name || userStore.user?.username || 'User'
+    })
+
+    const tab = ref(null);
+    const {
+        $directus,
+        $readItems,
+        $readItem
+    } = useNuxtApp()
 
     const {
-        data
-    } = useAsyncQuery(query);
+        data: comments
+    } = await useAsyncData('comments', () => {
+        return $directus.request($readItems('comments', {
+          filter: {
+                user: {
+                    _eq: `${userDisplayName.value}`
+                }
+            },
+            fields: ['*', {
+                '*': ['*']
+            }]
+        }))
+    })
+
+    const {
+        data: replies
+    } = await useAsyncData('replies', () => {
+        return $directus.request($readItem('callouts', '1'))
+    })
 
     useHead({
         title: 'Replies'

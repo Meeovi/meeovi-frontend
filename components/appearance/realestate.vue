@@ -113,4 +113,11 @@ const { $directus, $readItem } = useNuxtApp()
 const { data: realestate } = await useAsyncData('realestate', () => {
   return $directus.request($readItem('departments', '63'))
 })
+
+const props = defineProps({
+        category: {
+            type: String,
+            required: true,
+        },
+    });
 </script>

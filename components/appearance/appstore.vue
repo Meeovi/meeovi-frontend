@@ -60,12 +60,12 @@
 <script setup>
 
     const props = defineProps({
-        product: {
+        category: {
             type: String,
             required: true,
         },
     });
     const {
-        product
+        category
     } = props;
 </script>

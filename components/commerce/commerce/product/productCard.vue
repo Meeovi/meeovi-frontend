@@ -29,7 +29,7 @@
             <span
               class="block pb-2 font-bold typography-text-lg">{{ product?.price_range?.minimum_price?.regular_price?.currency }}
               {{ product?.price_range?.minimum_price?.regular_price?.value }}</span>
-            <NuxtLinkddToCartBtn :product="product" />
+            <addToCartBtn :product="product" />
           </div>
         </div>
       </v-col>

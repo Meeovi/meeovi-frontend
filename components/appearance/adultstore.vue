@@ -113,4 +113,11 @@
     } = await useAsyncData('adult', () => {
         return $directus.request($readItem('departments', '64'))
     })
+
+    const props = defineProps({
+        category: {
+            type: String,
+            required: true,
+        },
+    });
 </script>

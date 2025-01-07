@@ -19,7 +19,7 @@
                                 <h4 class="mbr-text-name mbr-fonts-style display-5">
                                     <strong>{{ userStore?.user?.displayName }}</strong>
                                 </h4>
-                                <h4 class="mbr-text mbr-fonts-style display-7" style="">
+                                <h4 class="mbr-text mbr-fonts-style display-7">
                                     <v-list style="background: transparent; color: white;">
                                         <v-list-item title="Member Since">{{ userStore?.user?.metadata?.creationTime }}</v-list-item>
                                     </v-list>
@@ -34,7 +34,7 @@
         <v-card variant="text">
             <v-tabs v-model="tab" bg-color="transparent" align-tabs="center">
                 <div v-for="(menu, index) in profile?.menus" :key="index">
-                    <v-tab :value="menu?.value">{{ menu?.name }}</v-tab>
+                    <v-tab :value="menu?.value" v-if="menu?.active === 'Active'">{{ menu?.name }}</v-tab>
                 </div>
 
                 <div v-for="(menu, index) in profile?.submenus" :key="index">
@@ -45,7 +45,6 @@
 
             <v-card-text>
                 <v-window v-model="tab">
-                    <div v-if="profile?.value?.menus?.active === 'Active'">
                         <v-window-item :value="profile?.menus[0]?.value">
                             <v-row>
                                 <v-col cols="4" v-for="(posts, index) in myposts" :key="index" style="margin: 8px;">
@@ -77,7 +76,6 @@
                         <v-window-item :value="profile?.menus[5]?.value">
                             <archives />
                         </v-window-item>
-                    </div>
                 </v-window>
             </v-card-text>
         </v-card>
@@ -154,7 +152,7 @@
     })
 
     useHead({
-        title: userStore?.displayName || 'User Profile',
+        title: userStore?.user?.displayName || 'User Profile',
     })
 
     definePageMeta({
