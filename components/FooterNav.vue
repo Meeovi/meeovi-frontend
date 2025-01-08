@@ -9,26 +9,26 @@
         <v-row class="align-left justify-content-center mbr-white">
           <v-col cols="4" class="md-pb">
             <h2 class="mbr-section-title pb-2 mbr-fonts-style display-7">
-              <strong>{{ about?.name }}</strong></h2>
-            <div v-for="child in about?.menus" :key="child.id">
+              <strong>{{ aboutTitle?.name }}</strong></h2>
+            <div v-for="child in about" :key="child">
               <h3 class="mbr-section-subtitle mbr-fonts-style mbr-lighter display-4"><NuxtLink
-                  :href="`/${child?.slug}`">{{ child?.name }}</NuxtLink></h3>
+                  :href="`/${child?.id}`">{{ child?.name }}</NuxtLink></h3>
             </div>
           </v-col>
           <v-col cols="4" class="md-pb">
             <h2 class="mbr-section-title pb-2 mbr-fonts-style display-7">
-              <strong>{{ legal?.name }}</strong></h2>
-            <div v-for="child in legal?.menus" :key="child.id">
+              <strong>{{ legalTitle?.name }}</strong></h2>
+            <div v-for="child in legal" :key="child">
               <h3 class="mbr-section-subtitle mbr-fonts-style mbr-lighter display-4"><NuxtLink
-                  :href="`/${child?.slug}`">{{ child?.name }}</NuxtLink></h3>
+                  :href="`/${child?.id}`">{{ child?.name }}</NuxtLink></h3>
             </div>
           </v-col>
           <v-col cols="4" class="md-pb">
             <h2 class="mbr-section-title pb-2 mbr-fonts-style display-7">
-              <strong>{{ company?.name }}</strong></h2>
-            <div v-for="child in company?.menus" :key="child.id">
+              <strong>{{ companyTitle?.name }}</strong></h2>
+            <div v-for="child in company" :key="child">
               <h3 class="mbr-section-subtitle mbr-fonts-style mbr-lighter display-4"><NuxtLink
-                  :href="`/${child?.slug}`">{{ child?.name }}</NuxtLink></h3>
+                  :href="`/${child?.id}`">{{ child?.name }}</NuxtLink></h3>
             </div>
           </v-col>
         </v-row>
@@ -39,9 +39,9 @@
       data-sortbtn="btn-primary">
       <div class="container">
         <div class="row align-left justify-content-center mbr-white">
-          <v-col cols="3" v-for="child in copyright?.menus" :key="child.id">
+          <v-col cols="3" v-for="child in copyright" :key="child">
             <v-list-item :title="child?.name" :value="child?.name" :prepend-icon="child?.icon"
-              :href="`/${child?.slug}`"></v-list-item>
+              :href="`/${child?.id}`"></v-list-item>
           </v-col>
           <v-col cols="12">
             <p class="mbr-text mb-0 mbr-fonts-style display-7" style="width: 100%; text-align: center;">
@@ -64,6 +64,7 @@
   const {
     $directus,
     $readItem,
+    $readItems,
     $readSingleton
   } = useNuxtApp()
   const route = useRoute()
@@ -77,24 +78,63 @@
   const {
     data: about
   } = await useAsyncData('about', () => {
-    return $directus.request($readItem('navigation', '7'))
+    return $directus.request($readItems('pages', {
+      filter: {
+        type: {
+          _eq: 'About'
+        }
+      }}
+    ))
   })
 
   const {
     data: legal
   } = await useAsyncData('legal', () => {
-    return $directus.request($readItem('navigation', '8'))
+    return $directus.request($readItems('pages', {
+      filter: {
+        type: {
+          _eq: 'Legal'
+        }
+      }}))
   })
 
   const {
     data: company
   } = await useAsyncData('company', () => {
-    return $directus.request($readItem('navigation', '9'))
+    return $directus.request($readItems('pages', {
+      filter: {
+        type: {
+          _eq: 'Company'
+        }
+      }}))
   })
 
   const {
     data: copyright
   } = await useAsyncData('copyright', () => {
-    return $directus.request($readItem('navigation', '10'))
+    return $directus.request($readItems('pages', {
+      filter: {
+        type: {
+          _eq: 'Copyright'
+        }
+      }}))
+  })
+
+  const {
+    data: aboutTitle
+  } = await useAsyncData('aboutTitle', () => {
+    return $directus.request($readItem('navigation', '7'))
+  })
+
+  const {
+    data: legalTitle
+  } = await useAsyncData('legalTitle', () => {
+    return $directus.request($readItem('navigation', '8'))
+  })
+
+  const {
+    data: companyTitle
+  } = await useAsyncData('companyTitle', () => {
+    return $directus.request($readItem('navigation', '9'))
   })
 </script>
