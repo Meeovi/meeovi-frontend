@@ -67,7 +67,7 @@
         </div>
 
         <div v-else>
-          <NuxtImg :src="`${$directus.url}assets/${department?.image?.filename_disk}`" loading="lazy" :alt="department?.name" cover />
+          <NuxtImg class="departmentBanner" :src="`${$directus.url}assets/${department?.image?.filename_disk}`" loading="lazy" :alt="department?.name" cover />
         </div>
       </div>
     </v-card>

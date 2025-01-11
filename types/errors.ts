@@ -17,3 +17,10 @@ interface DirectusErrorResponse {
     )
   }
   
+  // types/errors.ts
+export class CartError extends Error {
+  constructor(message: string, public code: string) {
+    super(message)
+    this.name = 'CartError'
+  }
+}

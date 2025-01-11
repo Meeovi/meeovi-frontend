@@ -317,7 +317,11 @@ body {
 }
 
 .departmentPage {
-    padding-top: 45px;
+    padding-top: 60px;
+}
+
+.departmentBanner {
+    height: 400px;
 }
 
 .homeSection a {

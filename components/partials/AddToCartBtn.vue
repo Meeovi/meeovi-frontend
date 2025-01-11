@@ -1,5 +1,5 @@
 <template>
-  <SfButton size="sm" @click="addToCart">
+  <SfButton size="sm" @click="addToCart(product)">
     <template #prefix>
       <SfIconShoppingCart size="sm" />
     </template>
@@ -9,7 +9,7 @@
 
 <script setup>
 import { SfButton, SfIconShoppingCart } from '@storefront-ui/vue';
-import { useCart } from '~/composables/commerce/products/useCart'; // Assume you have a cart composable
+import { useCartStore } from '~/stores/cartStore'
 
 const props = defineProps({
   product: {
@@ -18,15 +18,19 @@ const props = defineProps({
   }
 });
 
-const { addItemToCart } = useCart();
+const cart = useCartStore()
 
-const addToCart = () => {
-  addItemToCart({
-    id: props.product.id,
-    sku: props.product.sku,
-    name: props.product.name,
-    price: props.product.price_range.minimum_price.regular_price.value,
-    quantity: 1
-  });
-};
+const addToCart = async (product) => {
+  try {
+    await cart.addItem({
+      sku: product.sku,
+      name: product.name,
+      price: product.price,
+      qty: 1
+    })
+  } catch (error) {
+    // Handle error (show notification, etc.)
+    console.error('Failed to add item to cart:', error)
+  }
+}
 </script>

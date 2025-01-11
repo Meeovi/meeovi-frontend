@@ -22,7 +22,7 @@
       </v-toolbar>
 
       <!--Department Banner Slider-->
-      <NuxtImg loading="lazy" :src="`${outlet?.image?.filename_disk}`" :alt="outlet?.name" cover />
+      <NuxtImg class="departmentBanner" loading="lazy" :src="`${$directus.url}assets/${outlet?.image?.filename_disk}`" :alt="outlet?.name" cover />
     </v-card>
 
     <v-row class="departmentRow">
