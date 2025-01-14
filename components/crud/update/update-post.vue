@@ -130,6 +130,7 @@
         media: null,
         audio: null,
         username: userDisplayName,
+        user_avatar: userStore.user?.photoUrl,
         space_id: props.space_id, // Initialize with the space_id from props
     });
 
@@ -158,7 +159,8 @@
                 content: response.content,
                 image: response.image,
                 audio: response.audio,
-                username: response.username
+                username: response.username,
+                user_avatar: response.user_avatar,
             };
         } catch (error) {
             console.error('Error fetching post:', error);

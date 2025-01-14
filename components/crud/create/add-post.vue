@@ -106,6 +106,7 @@
         avatarFile: null,
         audioFile: null,
         username: userDisplayName,
+        user_avatar: userStore.user?.photoUrl,
         spaces: [
             {
                 spaces_id: {

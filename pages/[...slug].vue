@@ -1,10 +1,16 @@
 <template>
   <div>
-    <div v-html="page?.content" />
+    <div v-if="page?.name === 'Meeovi Global'">
+      <meeoviGlobal />
+    </div>
+    <div>
+      <div v-html="page?.content" />
+    </div>
   </div>
 </template>
 
 <script setup>
+import meeoviGlobal from '~/components/appearance/meeoviGlobal.vue'
 const route = useRoute();
 const { $directus, $readItems } = useNuxtApp()
 

@@ -475,6 +475,14 @@ body {
     min-width: 80vw;
 }
 
+.globalPage {
+    position: relative;
+    margin-top: 5%;
+}
+
+.globalPage h5 {
+    font-weight: bold;
+}
 /******************** Meeovi Time CSS ************/
 
 .homeSection {
