@@ -1,6 +1,10 @@
 <template>
   <v-card class="mx-auto" max-width="400">
-    <NuxtImg loading="lazy" class="align-end text-white" height="200" :src="`${$directus.url}assets/${short?.thumbnail?.filename_disk}`" :alt="short?.name" cover />
+    <video loading="lazy" id="my-video" class="video-js" controls preload="auto"
+      style="width: 100% !important; height: 50% !important;" loop>
+      <source :src="`${$directus.url}assets/${short?.video?.filename_disk}`" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
 
     <v-card-subtitle class="pt-4">
       {{ short?.name }}
@@ -19,17 +23,42 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import videojs from 'video.js'
 
-  const model = ref(null);
+const model = ref(null)
+const player = ref(null)
 
-  const props = defineProps({
-    short: {
-      type: Object,
-      required: true,
-    },
-  });
-  const {
-    short
-  } = props;
+const props = defineProps({
+  short: {
+    type: Object,
+    required: true,
+  },
+})
+const { short } = props
+
+onMounted(() => {
+  player.value = videojs('my-video', {
+    controls: true,
+    autoplay: false,
+    preload: 'auto',
+    fluid: true
+  })
+})
+
+// Clean up on component unmount
+onUnmounted(() => {
+  if (player.value) {
+    player.value.dispose()
+  }
+})
 </script>
+
+<style scoped>
+.video-js {
+  width: 100%;
+  height: 300px;
+  position: relative;
+  display: block;
+}
+</style>

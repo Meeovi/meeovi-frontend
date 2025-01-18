@@ -309,7 +309,7 @@ body {
 }
 
 .departmentPage {
-    padding-top: 45px;
+    padding-top: 50px;
 }
 
 .departmentBanner {
@@ -493,7 +493,6 @@ body {
 .lowerBar {
     top: 63px;
 }
-
 
 /******************** Meeovi Time CSS ************/
 
@@ -834,6 +833,11 @@ body {
 .people3 .content-container {
     width: 60%;
     left: 23%;
+}
+
+.eatsPage {
+    padding-top: 15px;
+    position: relative;
 }
 
 /****************** Seller Dashboard **************/

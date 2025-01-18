@@ -1,7 +1,7 @@
 <template :style="`background: ${categoryEats?.color}`">
     <div>
         <v-toolbar :title="`Meeovi ${categoryEats?.name}`" :color="categoryEats?.color" :style="`color: ${categoryEats?.colortext}; font: bold;`"></v-toolbar>
-        <v-row>
+        <v-row class="eatsPage">
             <v-col cols="12" v-for="(eats, index) in eats" :key="index">
                 <shorts :short="eats" />
             </v-col>
@@ -25,13 +25,12 @@
         return $directus.request($readItems('shorts', {
             filter: {
                 type: {
-                    _eq: 'eats'
+                    _eq: 'Eats'
                 },
                 status: {
-                    _eq: 'published'
+                    _eq: 'Published'
                 }
             },
-            sort: ['-date_created'],
             fields: ['*', {
                 '*': ['*']
             }]

@@ -5,27 +5,27 @@
                 <form @submit.prevent="createNewShort">
                     <v-toolbar dark color="primary">
                         <v-card-title>
-                            <span class="text-h6">Create a new Short</span>
+                            <span class="text-h6">Create a new Vibe</span>
                         </v-card-title>
                     </v-toolbar>
                     <v-card-text>
                         <v-container>
                             <v-row>
                                 <v-col cols="12">
-                                    <v-text-field v-model="shortData.name" id="shortName" label="Short Name*"
+                                    <v-text-field v-model="shortData.name" id="shortName" label="Name*"
                                         required />
                                 </v-col>
                                 <v-col cols="6">
-                                    <v-select v-model="shortData.type" label="What type of short is this?"
+                                    <v-select v-model="shortData.type" label="What type of vibe is this?"
                                         :items="['Default', 'Live', 'Eats']" />
                                 </v-col>
                                 <v-col cols="6">
-                                    <v-select v-model="shortData.status" label="Is this short public or private?"
+                                    <v-select v-model="shortData.status" label="Is this vibe public or private?"
                                         :items="['Published', 'Private', 'Draft']" />
                                 </v-col>
                                 <v-col cols="6">
                                     <v-select v-model="shortData.age_requirement" label="What is the Age Requirement?"
-                                        :items="['Everyone', '18+', '16+']" />
+                                        :items="['Safe for Kids', 'Over 18', 'Everyone']" />
                                 </v-col>
                                 <v-col cols="6">
                                     <v-select v-model="shortData.departments"
@@ -55,7 +55,7 @@
                     <v-card-actions>
                         <v-spacer></v-spacer>
                         <v-btn color="blue-darken-1" variant="text" type="submit">
-                            Create Short
+                            Create Vibe
                         </v-btn>
                     </v-card-actions>
                 </form>
@@ -89,6 +89,16 @@
     } = await useAsyncData('departments', () => {
         return $directus.request($readItems('departments'))
     })
+
+    const {
+            data: options
+        } = await useAsyncData('options', () => {
+            return $directus.request($readItems('shorts', {
+                fields: ['*', {
+                    '*': ['*']
+                }]
+            }))
+        })
 
     const props = defineProps({
         departments_id: {
@@ -150,7 +160,7 @@
                 documentFile: videoFile.value
             });
 
-            // Update short data with uploaded files
+            // Update vibe data with uploaded files
             if (uploadedFiles) {
                 shortData.value.thumbnail = uploadedFiles.imageId;
                 shortData.value.video = uploadedFiles.documentId
@@ -159,13 +169,13 @@
             // Set departments_id in shortData
             //shortData.value.departments_id = props.departments_id;
 
-            // Create the short with department relationship
+            // Create the vibe with department relationship
             const short = await createShort(shortData.value);
 
-            console.log('Created Short:', short);
+            console.log('Created Vibe:', short);
 
             // Emit event to refresh parent component
-            emit('short-created', short);
+            emit('vibe-created', short);
 
             // Close dialog and reset form
             dialog.value = false;
@@ -174,7 +184,7 @@
             // Optional: Redirect to the shorts page
             router.push(`/social/vibez/${props.departments_id}`);
         } catch (error) {
-            console.error('Error creating short:', error);
+            console.error('Error creating vibe:', error);
             // Add error handling here
         }
     };
@@ -182,4 +192,6 @@
     watch(() => props.departments_id, (newDepartmentId) => {
         shortData.value.departments_id = newDepartmentId;
     });
+
+    
 </script>
