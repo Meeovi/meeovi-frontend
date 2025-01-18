@@ -3,6 +3,9 @@
     <div v-if="page?.name === 'Meeovi Global'">
       <meeoviGlobal />
     </div>
+    <div v-if="page?.name === 'Pickup Locations'">
+      <pickupLocations />
+    </div>
     <div>
       <div v-html="page?.content" />
     </div>
@@ -11,6 +14,8 @@
 
 <script setup>
 import meeoviGlobal from '~/components/appearance/meeoviGlobal.vue'
+import pickupLocations from '~/components/appearance/pickup-locations.vue'
+
 const route = useRoute();
 const { $directus, $readItems } = useNuxtApp()
 

@@ -5,9 +5,7 @@
                 <div class="row content-wrapper justify-content-center">
                     <div class="col-lg-7 mbr-form">
                         <div class="col-lg-12 col-md-12 col-sm-12">
-                            <h5 class="mbr-section-title mbr-fonts-style mb-5 display-7"><strong>Yes! Send me exclusive
-                                    offers, unique gift ideas, and personalised tips for shopping and selling on
-                                    Meeovi.</strong></h5>
+                            <strong><h5 class="mbr-section-title mbr-fonts-style mb-5 display-7" v-html="blocksNewsletter?.description"></h5></strong>
                                 <p v-if="message">{{ message }}</p>
                         </div>
 
@@ -18,7 +16,7 @@
                                 <v-card class="mx-auto" elevation="0" color="transparent" max-width="600">
                                     <v-card-text>
                                         <v-text-field append-inner-icon="fas fa-envelope" v-model="subscriber_email"
-                                            density="compact" label="Add Email to Subscribe" variant="solo" hide-details
+                                            density="compact" :label="blocksNewsletter?.content?.[0]?.name" variant="solo" hide-details
                                             single-line></v-text-field>
                                     </v-card-text>
                                 </v-card>
@@ -66,4 +64,17 @@
             message.value = 'An unexpected error occurred. Please try again later.';
         }
     };
+
+    const {
+        $directus,
+        $readItem
+    } = useNuxtApp()
+
+    const {
+        data: blocksNewsletter
+    } = await useAsyncData('blocksNewsletter', () => {
+        return $directus.request($readItem('page_blocks', '4', {
+            fields: ['*', 'media.*.*'],
+        }))
+    })
 </script>

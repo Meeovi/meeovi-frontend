@@ -1,33 +1,57 @@
-import { Directus, createItems, readItems } from "@directus/sdk";
+import 'dotenv'
 
-const directus = new Directus(process.env.DIRECTUS_URL);
+// composables/useDirectus.js
+export async function signInToDirectus(email, password) {
+  const directusUrl = process.env.DIRECTUS_URL;
 
-export async function findOrCreateUserInDirectus(firebaseUser) {
   try {
-    // Check if the user already exists
-    const { data: users } = await directus.items("users").readItems({
-      filter: {
-        email: { _eq: firebaseUser.email },
-      },
+    const response = await $fetch(`${directusUrl}/auth/login`, {
+      method: "POST",
+      body: { email, password },
     });
-
-    if (users?.length > 0) {
-      return users[0]; // User already exists
-    }
-
-    // Create a new user if one doesn't exist
-    const [newUser] = await directus.items("users").createItems([
-      {
-        email: firebaseUser.email,
-        first_name: firebaseUser.name,
-        status: "active",
-        external_uid: firebaseUser.uid,
-      },
-    ]);
-
-    return newUser;
+    return response.data; // Contains access token
   } catch (error) {
-    console.error("Error in findOrCreateUserInDirectus:", error);
+    console.error("Directus Sign-In Error:", error.message);
     throw error;
   }
 }
+
+export async function createUserInDirectus(email, firstName, lastName, password) {
+  const directusUrl = process.env.DIRECTUS_URL;
+  const adminToken = process.env.NUXTUS_DIRECTUS_STATIC_TOKEN;
+
+  try {
+    const response = await $fetch(`${directusUrl}/users`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${adminToken}` },
+      body: {
+        email,
+        first_name: firstName,
+        last_name: lastName,
+        password,
+        role: "authenticated", // Or your desired role ID
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Directus User Creation Error:", error.message);
+    throw error;
+  }
+}
+
+const updateDirectusUser = async (user) => {
+  try {
+    const token = await getDirectusToken();
+    const response = await $fetch(`${config.public.directus.url}`, {
+      method: 'PATCH',
+      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+      body: { id: user.uid, email: user.email, displayName: user.displayName, photoURL: user.photoURL },
+    });
+    showNotification('User data synced with Directus!', 'success');
+  } catch (error) {
+    console.error('Directus sync failed:', error);
+    showNotification('Directus sync failed. Retrying...', 'warning');
+    setTimeout(() => updateDirectusUser(user), 5000);
+  }
+};
+

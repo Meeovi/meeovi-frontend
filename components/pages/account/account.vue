@@ -5,7 +5,7 @@
                 <v-toolbar color="primary" :title="page?.name">
                     <v-toolbar-items>
                         <v-btn prepend-icon="fas fa-th" color="white" @click.stop="drawer = !drawer">
-                            Account Menu
+                            {{ account?.name }}
                         </v-btn>
                     </v-toolbar-items>
                 </v-toolbar>
@@ -13,15 +13,15 @@
                 <div class="d-flex flex-row">
                     <v-navigation-drawer v-model="drawer" temporary>
                         <v-tabs v-model="tab" color="primary" direction="vertical">
-                            <div v-for="page in page?.repeaterTextBox" :key="page.id">
-                                <v-tab prepend-icon="mdi-account" :text="page?.name" :value="page?.subject"></v-tab>
+                            <div v-for="(menu, index) in account?.menus" :key="index">
+                                <v-tab :value="menu?.value" v-if="menu?.active === 'Active'">{{ menu?.name }}</v-tab>
                             </div>
                         </v-tabs>
                     </v-navigation-drawer>
 
                     <v-main style="height: 100vh">
                         <v-tabs-window v-model="tab" style="width: 100%;">
-                            <v-tabs-window-item value="option-1">
+                            <v-tabs-window-item :value="account?.menus[0]?.value">
                                 <v-card flat>
                                     <v-card-text>
                                         <orders />
@@ -29,7 +29,7 @@
                                 </v-card>
                             </v-tabs-window-item>
 
-                            <v-tabs-window-item value="option-2">
+                            <v-tabs-window-item :value="account?.menus[1]?.value">
                                 <v-card flat>
                                     <v-card-text>
                                         <invoices />
@@ -37,7 +37,7 @@
                                 </v-card>
                             </v-tabs-window-item>
 
-                            <v-tabs-window-item value="option-3">
+                            <v-tabs-window-item :value="account?.menus[2]?.value">
                                 <v-card flat>
                                     <v-card-text>
                                         <shipments />
@@ -45,7 +45,7 @@
                                 </v-card>
                             </v-tabs-window-item>
 
-                            <v-tabs-window-item value="option-4">
+                            <v-tabs-window-item :value="account?.menus[3]?.value">
                                 <v-card flat>
                                     <v-card-text>
                                         <creditmemos />
@@ -53,7 +53,7 @@
                                 </v-card>
                             </v-tabs-window-item>
 
-                            <v-tabs-window-item value="option-5">
+                            <v-tabs-window-item :value="account?.menus[4]?.value">
                                 <v-card flat>
                                     <v-card-text>
                                         <transactions />
@@ -61,31 +61,15 @@
                                 </v-card>
                             </v-tabs-window-item>
 
-                            <v-tabs-window-item value="option-6">
+                            <v-tabs-window-item :value="account?.menus[5]?.value">
                                 <v-card flat>
                                     <v-card-text>
-                                        <NuxtLinkgreements />
+                                        <agreements />
                                     </v-card-text>
                                 </v-card>
                             </v-tabs-window-item>
 
-                            <v-tabs-window-item value="option-7">
-                                <v-card flat>
-                                    <v-card-text>
-                                        <spaces />
-                                    </v-card-text>
-                                </v-card>
-                            </v-tabs-window-item>
-
-                            <v-tabs-window-item value="option-8">
-                                <v-card flat>
-                                    <v-card-text>
-                                        <feed />
-                                    </v-card-text>
-                                </v-card>
-                            </v-tabs-window-item>
-
-                            <v-tabs-window-item value="option-9">
+                            <v-tabs-window-item :value="account?.menus[6]?.value">
                                 <v-card flat>
                                     <v-card-text>
                                         <coupons />
@@ -93,31 +77,7 @@
                                 </v-card>
                             </v-tabs-window-item>
 
-                            <v-tabs-window-item value="option-10">
-                                <v-card flat>
-                                    <v-card-text>
-                                        <reviews />
-                                    </v-card-text>
-                                </v-card>
-                            </v-tabs-window-item>
-
-                            <v-tabs-window-item value="option-11">
-                                <v-card flat>
-                                    <v-card-text>
-                                        <lists />
-                                    </v-card-text>
-                                </v-card>
-                            </v-tabs-window-item>
-
-                            <v-tabs-window-item value="option-12">
-                                <v-card flat>
-                                    <v-card-text>
-                                        <showcases />
-                                    </v-card-text>
-                                </v-card>
-                            </v-tabs-window-item>
-
-                            <v-tabs-window-item value="option-13">
+                            <v-tabs-window-item :value="account?.menus[7]?.value">
                                 <v-card flat>
                                     <v-card-text>
                                         <subscriptions />
@@ -125,7 +85,7 @@
                                 </v-card>
                             </v-tabs-window-item>
 
-                            <v-tabs-window-item value="option-14">
+                            <v-tabs-window-item :value="account?.menus[8]?.value">
                                 <v-card flat>
                                     <v-card-text>
                                         <giftcards />
@@ -133,15 +93,7 @@
                                 </v-card>
                             </v-tabs-window-item>
 
-                            <v-tabs-window-item value="option-15">
-                                <v-card flat>
-                                    <v-card-text>
-                                        <settings />
-                                    </v-card-text>
-                                </v-card>
-                            </v-tabs-window-item>
-
-                            <v-tabs-window-item value="option-16">
+                            <v-tabs-window-item :value="account?.menus[9]?.value">
                                 <v-card flat>
                                     <v-card-text>
                                         <sellerdashboard />
@@ -156,60 +108,37 @@
     </div>
 </template>
 
-<script>
-    import orders from './orders/my-orders.vue'
-    import invoices from './invoices.vue'
-    import shipments from './shipments.vue'
-    import creditmemos from './creditmemos.vue'
-    import transactions from './transactions.vue'
-    import agreements from './agreements.vue'
-    import spaces from '~/social/spaces.vue'
-    import feed from '~/social/newsfeed.vue'
-    import coupons from '~/commerce/coupons.vue'
-    import subscriptions from '~/commerce/subscriptions.vue'
-    import giftcards from '~/commerce/giftcards.vue'
-    import reviews from './reviews.vue'
-    import lists from './lists.vue'
-    import showcases from '~/product/Showcase/showcases.vue'
-    import sellerdashboard from './sellerdashboard.vue'
-    import settings from './settings.vue'
-
-    export default {
-        components: {
-            orders,
-            invoices,
-            shipments,
-            creditmemos,
-            transactions,
-            agreements,
-            spaces,
-            feed,
-            coupons,
-            subscriptions,
-            giftcards,
-            reviews,
-            lists,
-            showcases,
-            sellerdashboard,
-            settings
-        },
-        data: () => ({
-            tab: 'option-1',
-            drawer: null,
-        }),
-    }
-</script>
-
 <script setup>
-    const {
-        getItemById,
-        getItems
-    } = useDirectusItems()
+    import {
+        ref
+    } from 'vue'
+    import invoices from '~/components/pages/orders/invoices.vue'
+    import shipments from '~/components/pages/orders/shipments.vue'
+    import creditmemos from '~/components/pages/orders/creditmemos.vue'
+    import transactions from '~/components/pages/orders/transactions.vue'
+    import agreements from '~/components/pages/orders/agreements.vue'
+    import coupons from '~/components/pages/promotions/coupons.vue'
+    import subscriptions from '~/components/pages/promotions/subscriptions.vue'
+    import giftcards from '~/components/pages/promotions/giftcards.vue'
+    import sellerdashboard from './sellerdashboard.vue'
 
-    const page = await getItemById({
-        collection: "pages",
-        id: 49
-    });
+    const tab = ref('option-1');
+    const drawer = ref(null);
+    const {
+        $directus,
+        $readItem,
+        $readItems
+    } = useNuxtApp()
+
+    const {
+        data: account
+    } = await useAsyncData('account', () => {
+        return $directus.request($readItem('navigation', '1', {
+            fields: ['*', {
+                '*': ['*']
+            }]
+        }))
+    })
 
     definePageMeta({
         layout: 'nolive',

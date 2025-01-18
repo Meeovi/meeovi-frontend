@@ -248,7 +248,7 @@
 
 <script setup>
   import videoProduct from '~/components/appearance/videoproduct.vue'
-  import chartProduct from '~/components/appearance/chart.vue'
+  //import chartProduct from '~/components/appearance/chart.vue'
   import {
     ref
   } from 'vue'

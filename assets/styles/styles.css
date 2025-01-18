@@ -165,14 +165,6 @@ body {
     padding-top: 10px;
 }
 
-.lowerbar {
-    top: 55px;
-}
-
-.lowerbar h5 {
-    padding: 15px;
-}
-
 .rightnav {
     padding-top: 35px;
     position: relative;
@@ -304,7 +296,7 @@ body {
 .accountPage {
     position: relative;
     min-height: 100vh;
-    margin-top: 64px;
+    margin-top: 60px;
 }
 
 .contentPage h2 {
@@ -317,7 +309,7 @@ body {
 }
 
 .departmentPage {
-    padding-top: 60px;
+    padding-top: 45px;
 }
 
 .departmentBanner {
@@ -483,6 +475,26 @@ body {
 .globalPage h5 {
     font-weight: bold;
 }
+
+.helloBar {
+    width: 100%;
+    top: 45px;
+}
+
+.helloBar-items {
+    padding-right: 10px;
+}
+
+.indexHeaderSlider {
+    position: relative;
+    top: 45px;
+}
+
+.lowerBar {
+    top: 63px;
+}
+
+
 /******************** Meeovi Time CSS ************/
 
 .homeSection {
@@ -815,6 +827,15 @@ body {
     margin-bottom: 5px;
 }
 
+.followBtn {
+    position: relative;
+}
+
+.people3 .content-container {
+    width: 60%;
+    left: 23%;
+}
+
 /****************** Seller Dashboard **************/
 
 .sellerDashboard {
@@ -910,6 +931,10 @@ body {
 
 #dateTime {
     color: rgb(var(--v-theme-info));
+}
+
+.userProfileAvatar {
+    border-radius: 135px;
 }
 
 /*************** Comments *****************/

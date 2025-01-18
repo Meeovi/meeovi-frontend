@@ -1,0 +1,166 @@
+/**
+ * ScandiPWA - Progressive Web App for Magento
+ *
+ * Copyright © Scandiweb, Inc. All rights reserved.
+ * See LICENSE for license details.
+ *
+ * @license OSL-3.0 (Open Software License ("OSL") v. 3.0)
+ * @package scandipwa/scandipwa
+ * @link https://github.com/scandipwa/scandipwa
+ */
+
+import { Dispatch } from 'redux';
+
+import OrderQuery from '~/query/Order.query';
+import { OrderItem, ReorderOutput } from '~/query/Order.type';
+import { CART_URL } from 'Route/CartPage/CartPage.config';
+import CartDispatcher from '~/stores/Cart/Cart.dispatcher';
+import { showNotification } from '~/stores/Notification/Notification.action';
+import { NotificationType } from '~/stores/Notification/Notification.type';
+import { getOrderList, setLoadingStatus } from '~/stores/Order/Order.action';
+import { NetworkError } from '~/types/Common.type';
+import { getAuthorizationToken } from '~/utils/Auth/Token';
+import { decodeBase64 } from '~/utils/Base64';
+import history from '~/utils/History';
+import { getErrorMessage } from '~/utils/Request/Error';
+import { fetchMutation } from '~/utils/Request/Mutation';
+import { fetchQuery } from '~/utils/Request/Query';
+import { appendWithStoreCode } from '~/utils/Url';
+
+/** @namespace Store/Order/Dispatcher */
+export class OrderDispatcher {
+    requestOrders(dispatch: Dispatch, page = 1): Promise<void> {
+        const query = OrderQuery.getOrderListQuery({ page });
+
+        dispatch(setLoadingStatus(true));
+
+        return fetchQuery(query).then(
+            /** @namespace Store/Order/Dispatcher/OrderDispatcher/requestOrders/fetchQuery/then */
+            ({ customer: { orders } }) => {
+                dispatch(getOrderList(orders, false));
+            },
+            /** @namespace Store/Order/Dispatcher/OrderDispatcher/requestOrders/fetchQuery/then/catch */
+            (error) => {
+                dispatch(showNotification(NotificationType.ERROR, getErrorMessage(error)));
+                dispatch(setLoadingStatus(false));
+            },
+        );
+    }
+
+    async reorder(dispatch: Dispatch, incrementId: string): Promise<void> {
+        const {
+            reorderItems: {
+                userInputErrors = [],
+            } = {},
+        } = await this.handleReorderMutation(dispatch, incrementId) || {};
+
+        CartDispatcher.updateInitialCartData(dispatch, !!getAuthorizationToken());
+
+        history.push(appendWithStoreCode(CART_URL));
+
+        if (userInputErrors.length) {
+            userInputErrors.map((
+                { message }: NetworkError,
+            ) => dispatch(showNotification(NotificationType.ERROR, message)));
+        }
+    }
+
+    handleReorderMutation(
+        dispatch: Dispatch,
+        incrementId: string,
+    ): Promise<Record<'reorderItems', ReorderOutput>> | null {
+        try {
+            return fetchMutation(OrderQuery.getReorder(incrementId));
+        } catch (error) {
+            dispatch(showNotification(NotificationType.ERROR, getErrorMessage(error as NetworkError | NetworkError[])));
+
+            return null;
+        }
+    }
+
+    async getOrderById(dispatch: Dispatch, orderId: number): Promise<OrderItem | null> {
+        try {
+            const {
+                customer: {
+                    orders: {
+                        items,
+                    },
+                },
+            } = await fetchQuery(OrderQuery.getOrderListQuery({ orderId }));
+
+            return items[0];
+        } catch (error) {
+            dispatch(showNotification(NotificationType.ERROR, getErrorMessage(error as NetworkError | NetworkError[])));
+
+            return null;
+        }
+    }
+
+    async getOrderInvoice(dispatch: Dispatch, invoiceId: number): Promise<OrderItem | null> {
+        try {
+            const {
+                orderByInvoice,
+            } = await fetchQuery(OrderQuery.getOrderByInvoice(invoiceId));
+
+            const invoice = orderByInvoice.invoices.find(({ id }) => Number(decodeBase64(id)) === invoiceId);
+
+            if (!invoice) {
+                return null;
+            }
+
+            orderByInvoice.invoices = [invoice];
+
+            return orderByInvoice;
+        } catch (error) {
+            dispatch(showNotification(NotificationType.ERROR, getErrorMessage(error as NetworkError)));
+
+            return null;
+        }
+    }
+
+    async getOrderShipment(dispatch: Dispatch, shipmentId: number): Promise<OrderItem | null> {
+        try {
+            const {
+                orderByShipment,
+            } = await fetchQuery(OrderQuery.getOrderByShipment(shipmentId));
+
+            const shipment = orderByShipment.shipments.find(({ id }) => Number(decodeBase64(id)) === shipmentId);
+
+            if (!shipment) {
+                return null;
+            }
+
+            orderByShipment.shipments = [shipment];
+
+            return orderByShipment;
+        } catch (error) {
+            dispatch(showNotification(NotificationType.ERROR, getErrorMessage(error as NetworkError)));
+
+            return null;
+        }
+    }
+
+    async getOrderRefund(dispatch: Dispatch, refundId: number): Promise<OrderItem | null> {
+        try {
+            const {
+                orderByRefund,
+            } = await fetchQuery(OrderQuery.getOrderByRefund(refundId));
+
+            const refund = orderByRefund.credit_memos.find(({ id }) => Number(decodeBase64(id)) === refundId);
+
+            if (!refund) {
+                return null;
+            }
+
+            orderByRefund.credit_memos = [refund];
+
+            return orderByRefund;
+        } catch (error) {
+            dispatch(showNotification(NotificationType.ERROR, getErrorMessage(error as NetworkError)));
+
+            return null;
+        }
+    }
+}
+
+export default new OrderDispatcher();

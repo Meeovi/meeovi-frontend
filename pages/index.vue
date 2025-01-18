@@ -1,14 +1,9 @@
 <template>
-   <div class="contentPage">
-    <div v-if="loading">Loading...</div>
-    <div v-else-if="error">Error: {{ error.message }}</div>
-    <div v-else-if="pageContent">
-      <div v-html="pageContent"></div>
-    </div>
-    <div v-else>No content available</div>
-    
-       
-        <NuxtLinktaglance />
+  <div>
+    <hellobar />
+    <headerslider />
+    <div class="contentPage">
+        <ataglance />
         <exclusives />
         <bookcallout />
         <deals />
@@ -25,19 +20,21 @@
         <blogcallout />
         <relatedbrands />
       <!--  <intro />
-        <headerslider />
+        
         <pixanomycallout />
         <yardsale />
         <relatedcreators />
         -->
     </div>
+  </div>
 </template>
 
 <script setup>
-    //import headerslider from '~/components/pages/homepage/headerslider.vue'
+    import headerslider from '~/components/pages/homepage/headerslider.vue'
     //import latestproducts from '~/components/builderio/latestproducts.vue'
     import intro from '~/components/pages/homepage/intro.vue'
     //import pixanomycallout from '~/components/pages/homepage/pixanomycallout.vue'
+    import hellobar from '~/components/pages/homepage/hellobar.vue'
     import bookcallout from '~/components/pages/homepage/bookcallout.vue'
     import musiccallout from '~/components/pages/homepage/musiccallout.vue'
     import latestproducts from '~/components/commerce/related/latestproducts.vue'

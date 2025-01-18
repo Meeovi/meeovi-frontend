@@ -7,13 +7,12 @@
         </v-btn>
       </template>
 
-      <!-- v-for="siteoverview in data?.pages?.nodes" :key="siteoverview.id"-->
       <v-app-bar-title>
         <NuxtLink class="logobrand" href="/">
-          <v-icon start icon="fas fa-shopping-bag" color="orange">
-            <!--<img :src="siteoverview?.featuredImage?.node?.sourceUrl" :alt="siteoverview?.title" />-->
+          <v-icon start color="orange">
+            <NuxtImg loading="lazy" :src="`${$directus.url}assets/${blocksSiteoverview?.media?.[0]?.directus_files_id?.filename_disk}`" :alt="blocksSiteoverview?.name" />
           </v-icon>
-          <!--{{ siteoverview?.title }}-->Meeovi
+          {{ blocksSiteoverview?.name }}<!--Meeovi-->
         </NuxtLink>
       </v-app-bar-title>
 
@@ -43,6 +42,8 @@
         </v-col>
       </div>
     </v-app-bar>
+
+    
 
     <v-main>
       <v-card>
@@ -96,6 +97,7 @@
           <v-main id="sidebarNav"></v-main>
           <main id="mainSection">
             <!--<announcements />-->
+            <LowerBar />
             <v-row>
               <v-col>
                 <live />
@@ -129,7 +131,7 @@
   import mobilesearch from '~/components/menus/topmenu/mobilesearch.vue'
   import myaccounttopmenu from '~/components/menus/topmenu/myaccounttopmenu.vue'
   import bottomsidebarmenu from '~/components/menus/sidebar/bottomsidebarmenu.vue'
-  import BottomFooter from '~/components/BottomFooter'
+  import LowerBar from '~/components/LowerBar.vue'
   import FooterNav from '~/components/FooterNav'
   import cart from '~/components/menus/topmenu/cart.vue'
   import announcements from '~/components/partials/announcements.vue'
@@ -184,6 +186,19 @@ onMounted(() => {
   function onClick() {
     theme.value = theme.value === 'light' ? 'dark' : 'light'
   };
+
+  const {
+        $directus,
+        $readItem
+    } = useNuxtApp()
+
+    const {
+        data: blocksSiteoverview
+    } = await useAsyncData('blocksSiteoverview', () => {
+        return $directus.request($readItem('page_blocks', '5', {
+            fields: ['*', 'media.*.*'],
+        }))
+    })
 
   useHead({
     title: 'Meeovi',

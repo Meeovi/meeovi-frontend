@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-const CategoryQuery = gql`
+export const CategoryQuery = gql`
   query CategoryQuery($uid: String!) {
     categories (filters: {category_uid: {eq: $uid}}) {
     items {
@@ -36,7 +36,7 @@ const CategoryQuery = gql`
   }
 }`
 
-const BestsellerQuery = gql`
+export const BestsellerQuery = gql`
   query BestsellerQuery($uid: String!) {
     products(filter: {category_uid: {eq: $uid}}, pageSize: 5, sort: {position: DESC}) {
       items {
@@ -58,7 +58,7 @@ const BestsellerQuery = gql`
     }
   }`
 
-const LatestProductsQuery = gql`
+export const LatestProductsQuery = gql`
     query LatestProductsQuery($uid: String!) {
     products(filter: {category_uid: {eq: $uid}}, pageSize: 5, sort: {position: DESC}) {
       items {
@@ -80,7 +80,7 @@ const LatestProductsQuery = gql`
     }
   }`
 
-const EventProductsQuery = gql`
+export const EventProductsQuery = gql`
     query EventProductsQuery {
     products(filter: {category_uid: {eq: "NjE="}}) {
       items {
@@ -102,4 +102,4 @@ const EventProductsQuery = gql`
     }
   }`
 
-export default { CategoryQuery, BestsellerQuery, LatestProductsQuery, EventProductsQuery }
+//export default { CategoryQuery, BestsellerQuery, LatestProductsQuery, EventProductsQuery }

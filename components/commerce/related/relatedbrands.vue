@@ -1,10 +1,10 @@
 <template>
     <v-sheet class="mx-auto sliderProducts row align-items-stretch items-row justify-content-center" elevation="0">
-        <v-toolbar title="Brands on Meeovi" color="transparent">
-            <div><NuxtLink to="/brands/">All Brands</NuxtLink></div>
+        <v-toolbar :title="callouts?.menus?.[0]?.name" color="transparent">
+            <div><NuxtLink :to="`${callouts?.menus?.[0]?.description }`">{{ callouts?.name }}</NuxtLink></div>
         </v-toolbar>
         <v-slide-group v-model="model" class="pa-4" selected-class="bg-primary" show-arrows>
-            <v-slide-group-item v-for="brand in brands" :key="brand.brand_id" v-slot="{ toggle, selectedClass }">
+            <v-slide-group-item v-for="brand in brands" :key="brand.id" v-slot="{ toggle, selectedClass }">
                 <brand :brand="brand" />
             </v-slide-group-item>
         </v-slide-group>
@@ -27,22 +27,27 @@
         onMounted
     } from 'vue'
     import brand from '~/components/commerce/related/brands.vue'
+    
+    const {
+        $directus,
+        $readItems,
+        $readItem
+    } = useNuxtApp()
 
-    const model = ref(null)
-    const brands = ref([])
-
-    const fetchBrands = async () => {
-        try {
-            // Use Nuxt's $fetch to call our API
-            const response = await $fetch('/api/commerce/catalog/brands/brands')
-            brands.value = response
-        } catch (error) {
-            console.error('Error fetching brands:', error)
-            // Handle error (e.g., show an error message to the user)
-        }
-    }
-
-    onMounted(() => {
-        fetchBrands()
+    const model = ref(null);
+    const {
+        data: brands
+    } = await useAsyncData('brands', () => {
+        return $directus.request($readItems('brands', {
+            fields: ['*', {
+                '*': ['*']
+            }]
+        }))
     })
+
+    const {
+    data: callouts
+  } = await useAsyncData('callouts', () => {
+    return $directus.request($readItem('callouts', '3'))
+  })
 </script>

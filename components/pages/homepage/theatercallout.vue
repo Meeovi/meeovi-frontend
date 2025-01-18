@@ -1,25 +1,25 @@
 <template>
   <div>
-    <section data-bs-version="5.1" class="features1 cid-tAGULGk3ZD" id="features1-60" v-for="category in result?.categories?.items" :key="category">
+    <section data-bs-version="5.1" class="features1 cid-tAGULGk3ZD" id="features1-60" :style="`background-color: ${departmentTheater.color}; color: ${departmentTheater?.colortext}`">
 
       <div class="container">
         <div class="row main align-items-center">
           <div class="col-md-6 image-element ">
             <div class="img-wrap">
-              <NuxtImg loading="lazy" :src="`${category?.image}`" :alt="category?.name" />
+              <NuxtImg loading="lazy" :src="`${$directus.url}assets/${departmentTheater?.image?.filename_disk}`" :alt="departmentTheater?.name" />
             </div>
           </div>
           <div class="col-md-6 text-element">
             <div class="text-content">
 
-              <h2 class="mbr-title pt-2 mbr-fonts-style align-center mbr-white display-2">{{ category?.name }}</h2>
+              <h2 class="mbr-title pt-2 mbr-fonts-style align-center mbr-white display-2">{{ departmentTheater?.name }}</h2>
               <div class="mbr-section-text">
-                <h4 class="mbr-text pt-3 mbr-light mbr-fonts-style align-center mbr-white display-4" v-html="category?.description">
+                <h4 class="mbr-text pt-3 mbr-light mbr-fonts-style align-center mbr-white display-4" v-html="departmentTheater?.description">
                   </h4>
                   <br>
                   <br>
               </div>
-              <div class="mbr-section-btn pt-3 align-center"><NuxtLink class="btn btn-md btn-white display-4" :href="`/departments/${category?.uid}`">Start Watching</NuxtLink></div>
+              <div class="mbr-section-btn pt-3 align-center"><NuxtLink class="btn btn-md btn-white display-4" :href="`/departments/${departmentTheater?.id}`">Start Watching</NuxtLink></div>
             </div>
           </div>
         </div>
@@ -36,12 +36,18 @@ export default {
 </script>
 
 <script setup>
-  import {
-    useQuery
-  } from '@vue/apollo-composable'
-import categoryTheater from '~/graphql/commerce/queries/theater.js'
+const {
+    $directus,
+    $readItem
+  } = useNuxtApp()
 
   const {
-    result
-  } = useQuery(categoryTheater);
+    data: departmentTheater
+  } = await useAsyncData('departmentTheater', () => {
+    return $directus.request($readItem('departments', '30', {
+      fields: ['*', {
+        '*': ['*']
+      }]
+    }))
+  })
 </script>

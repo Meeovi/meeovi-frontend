@@ -1,24 +1,34 @@
 <template>
-    <div>
-     <!-- <v-carousel hide-delimiters show-arrows="hover" :continuous="true" v-for="pages in homepage" :key="pages.id">
-            <v-carousel-item :src="`${url}assets/${pages.image.filename_disk}`" :alt="pages.name" cover></v-carousel-item>
-        </v-carousel>-->
-    <div v-for="block in block?.items">
-      <div v-html="block?.content"></div>
-    </div>
+    <div class="indexHeaderSlider">
+        <v-carousel hide-delimiters show-arrows="hover" :continuous="true">
+            <div v-for="(media, index) in blocksSlider?.media" :key="index">
+                <v-carousel-item :src="`${$directus.url}assets/${media?.directus_files_id?.filename_disk}`"
+                    cover></v-carousel-item>
+            </div>
+        </v-carousel>
     </div>
 </template>
 
 <script setup>
+    const {
+        $directus,
+        $readItem
+    } = useNuxtApp()
     import {
-        getBlockById
-    } from '@/composables/commerce/content/getBlocks';
+        useUserStore
+    } from '~/stores/user'
 
-    // Pass the specific block name you want to fetch
-    const block = ref([]); 
+    const userStore = useUserStore()
 
-    onMounted(async () => {
-        block.value = await getBlockById(31);
-    });
+    const userDisplayName = computed(() => {
+        return userStore.user?.email || ''
+    })
 
+    const {
+        data: blocksSlider
+    } = await useAsyncData('blocksSlider', () => {
+        return $directus.request($readItem('page_blocks', '1', {
+            fields: ['*', 'media.*.*'],
+        }))
+    })
 </script>

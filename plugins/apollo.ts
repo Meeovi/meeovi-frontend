@@ -12,7 +12,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   })
 
   const secondaryHttpLink = createHttpLink({
-    uri: config.public.wpGraphql, // Replace with your secondary endpoint
+    uri: config.public.directus.url, // Replace with your secondary endpoint
   })
 
   const primaryAuthLink = setContext((_, { headers }) => {
@@ -28,7 +28,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     return {
       headers: {
         ...headers,
-        'authorization': `Bearer ${config.public.wordpressToken}`, // Replace with your secondary auth token
+        'authorization': `Bearer ${config.public.directus.auth.token}`, // Replace with your secondary auth token
       }
     }
   })

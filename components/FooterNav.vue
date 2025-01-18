@@ -45,8 +45,7 @@
           </v-col>
           <v-col cols="12">
             <p class="mbr-text mb-0 mbr-fonts-style display-7" style="width: 100%; text-align: center;">
-              @ 2017 - {{ new Date().getFullYear() }}&nbsp;<NuxtLink to="/">{{ siteoverview?.site_name }}&nbsp;&nbsp;</NuxtLink>All
-              Rights Reserved.
+              {{ blocksCopyright?.content?.[0]?.subtitle }} {{ new Date().getFullYear() }}&nbsp;<NuxtLink :to="blocksCopyright?.content?.[0]?.url">{{ blocksCopyright?.name }}&nbsp;&nbsp;</NuxtLink> {{ blocksCopyright?.content?.[0]?.name }}
             </p>
           </v-col>
         </div>
@@ -63,16 +62,17 @@
 
   const {
     $directus,
-    $readItem,
-    $readSingleton
+    $readItem
   } = useNuxtApp()
   const route = useRoute()
 
-  const {
-    siteoverview
-  } = await useAsyncData('siteoverview', () => {
-    return $directus.request($readSingleton('siteoverview'))
-  })
+    const {
+        data: blocksCopyright
+    } = await useAsyncData('blocksCopyright', () => {
+        return $directus.request($readItem('page_blocks', '5', {
+            fields: ['*', 'media.*.*'],
+        }))
+    })
 
   const {
     data: about

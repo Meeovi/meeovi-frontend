@@ -181,10 +181,10 @@ export default defineNuxtConfig({
 
     domains: ['*'],
 
-    alias: {
-      youtube: 'https://img.youtube.com',
-      vimeo: 'https://i.vimeocdn.com',
-    },
+    provider: 'directus',
+		directus: {
+			baseURL: `${process.env.DIRECTUS_URL}/assets/`,
+		},
   },
 
   algolia: {
@@ -285,6 +285,7 @@ export default defineNuxtConfig({
       secretKey: process.env.NUXT_TURNSTILE_SECRET_KEY,
     },
     public: {
+      stripePublishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
       // Hasura
       websiteURL: process.env.GRAPHQL_HOST,
       websiteToken: process.env.GRAPHQL_TOKEN,
@@ -310,7 +311,7 @@ export default defineNuxtConfig({
         auth: {
           email: process.env.NUXTUS_DIRECTUS_ADMIN_EMAIL,
           password: process.env.NUXTUS_DIRECTUS_ADMIN_PASSWORD,
-          token: process.env.NUXTUS_DIRECTUS_STATIC_TOKEN,
+          token: process.env.NUXTUS_DIRECTUS_STATIC_TOKEN
         }
       },
 
@@ -346,7 +347,9 @@ export default defineNuxtConfig({
 
       // Comments
       commentsUrl: process.env.NUXT_COMMENT_ID,
-  }
+  },
+  stripeSecretKey: process.env.STRIPE_SECRET_KEY,
+	stripeWebhookSecret: process.env.STRIPE_WEBHOOK_SECRET,
 },
 
   build: {
@@ -359,7 +362,9 @@ export default defineNuxtConfig({
       "@fortawesome/free-brands-svg-icons",
       'firebaseui',
       'firebase/auth',
-      'firebase/app'
+      'firebase/app',
+      'dialog-polyfill',
+      'v-perfect-signature'
     ],
   },  
 

@@ -8,62 +8,60 @@
             <div class="item features-image сol-12 col-md-6 col-lg-4">
                 <div class="item-wrapper">
                     <div class="item-img">
-                        <NuxtImg loading="lazy" src="assets/images/mbr-2.jpg" alt="" title="" />
+                        <NuxtImg loading="lazy" :src="`${$directus.url}assets/${blocks?.media?.[0]?.directus_files_id?.filename_disk}`" :alt="blocks?.name" />
                     </div>
                     <div class="item-content">
-                        <h5 class="item-title mbr-fonts-style display-5"><NuxtLink to="#top" class="text-primary">C</NuxtLink>reate a Gallery</h5>
-                        <h6 class="item-subtitle mbr-fonts-style mt-1 display-7"><strong>Inspiration Galleries</strong></h6>
-                        <p class="mbr-text mbr-fonts-style mt-3 display-7">Inspiration Galleries are great ways to showcase your products and get your ideas in front of the world.&nbsp;</p>
+                        <h5 class="item-title mbr-fonts-style display-5"><NuxtLink to="#top" class="text-primary"></NuxtLink>{{ blocks?.content[0]?.name }}</h5>
+                        <h6 class="item-subtitle mbr-fonts-style mt-1 display-7"><strong>{{ blocks?.content[0]?.subtitle }}</strong></h6>
+                        <p class="mbr-text mbr-fonts-style mt-3 display-7" v-html="blocks?.content[2]?.content"></p>
                     </div>
-                    <div class="mbr-section-btn item-footer mt-2"><NuxtLink to="/product/showcase/showcases" class="btn item-btn btn-primary display-7" target="_blank">Read More
-                            &gt;</NuxtLink></div>
+                    <div class="mbr-section-btn item-footer mt-2"><NuxtLink :to="blocks?.content?.[0]?.url" class="btn item-btn btn-primary display-7" target="_blank">{{blocks?.content?.[0]?.url_name}} &gt;</NuxtLink></div>
                 </div>
             </div>
             <div class="item features-image сol-12 col-md-6 col-lg-4">
                 <div class="item-wrapper">
                     <div class="item-img">
-                        <NuxtImg loading="lazy" src="assets/images/mbr-1.jpg" alt="" title="" />
+                        <NuxtImg loading="lazy" :src="`${$directus.url}assets/${blocks?.media?.[1]?.directus_files_id?.filename_disk}`" :alt="blocks?.name" />
                     </div>
                     <div class="item-content">
-                        <h5 class="item-title mbr-fonts-style display-5"><NuxtLink to="#top" class="text-primary">J</NuxtLink>oin a Group</h5>
-                        <h6 class="item-subtitle mbr-fonts-style mt-1 display-7"><strong>Groups with like minded&nbsp;</strong></h6>
-                        <p class="mbr-text mbr-fonts-style mt-3 display-7">Groups like on other social networks, are amazing places to unite with others with similar passions as yours.<br>
+                        <h5 class="item-title mbr-fonts-style display-5"><NuxtLink to="#top" class="text-primary"></NuxtLink>{{ blocks?.content[1]?.name }}</h5>
+                        <h6 class="item-subtitle mbr-fonts-style mt-1 display-7"><strong>{{ blocks?.content[1]?.subtitle }}&nbsp;</strong></h6>
+                        <p class="mbr-text mbr-fonts-style mt-3 display-7" v-html="blocks?.content[2]?.content">
                         </p>
                     </div>
-                    <div class="mbr-section-btn item-footer mt-2"><NuxtLink to="/social/spaces" class="btn btn-primary item-btn display-7" target="_blank">Read More
-                            &gt;</NuxtLink></div>
+                    <div class="mbr-section-btn item-footer mt-2"><NuxtLink :to="blocks?.content?.[1]?.url" class="btn btn-primary item-btn display-7" target="_blank">{{blocks?.content?.[1]?.url_name}} &gt;</NuxtLink></div>
                 </div>
             </div>
             <div class="item features-image сol-12 col-md-6 col-lg-4">
                 <div class="item-wrapper">
                     <div class="item-img">
-                        <NuxtImg loading="lazy" src="assets/images/mbr.jpg" alt="" title="" />
+                        <NuxtImg loading="lazy" :src="`${$directus.url}assets/${blocks?.media?.[2]?.directus_files_id?.filename_disk}`" :alt="blocks?.name" />
                     </div>
                     <div class="item-content">
-                        <h5 class="item-title mbr-fonts-style display-5"><NuxtLink to="#top" class="text-primary">S</NuxtLink>tay in Touch</h5>
-                        <h6 class="item-subtitle mbr-fonts-style mt-1 display-7"><strong>Yes, you even have a newsfeed</strong></h6>
-                        <p class="mbr-text mbr-fonts-style mt-3 display-7">Like a product, follow another person from our community, or you recently bought something.&nbsp;</p>
+                        <h5 class="item-title mbr-fonts-style display-5"><NuxtLink to="#top" class="text-primary"></NuxtLink>{{ blocks?.content[2]?.name }}</h5>
+                        <h6 class="item-subtitle mbr-fonts-style mt-1 display-7"><strong>{{ blocks?.content[2]?.subtitle }}</strong></h6>
+                        <p class="mbr-text mbr-fonts-style mt-3 display-7" v-html="blocks?.content[2]?.content"></p>
                     </div>
-                    <div class="mbr-section-btn item-footer mt-2"><NuxtLink to="/social/newsfeed" class="btn btn-primary item-btn display-7" target="_blank">Read More
-                            &gt;</NuxtLink></div>
+                    <div class="mbr-section-btn item-footer mt-2"><NuxtLink :to="blocks?.content?.[2]?.url" class="btn btn-primary item-btn display-7" target="_blank">{{blocks?.content?.[2]?.url_name}} &gt;</NuxtLink></div>
                 </div>
             </div>
-
         </div>
     </div>
 </section>
-       <!--  <div v-for="page in ataglance" :key="page">
-          <div v-html="page?.content"></div>  
-        </div>-->
     </div>
 </template>
 
-<script>
-    export default {
-
-    }
-</script>
-
 <script setup>
+    const {
+        $directus,
+        $readItem
+    } = useNuxtApp()
 
+    const {
+        data: blocks
+    } = await useAsyncData('blocks', () => {
+        return $directus.request($readItem('page_blocks', '2', {
+            fields: ['*', 'media.directus_files_id.filename_disk', 'content.*'],
+        }))
+    })
 </script>

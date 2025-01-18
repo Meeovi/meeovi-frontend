@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-card elevation="0">
-      <v-tabs v-model="tab">
+      <v-tabs v-model="tab" align-tabs="center">
         <div v-for="(menu, index) in settings?.menus" :key="index">
           <v-tab :value="menu?.value">{{ menu?.name }}</v-tab>
         </div>

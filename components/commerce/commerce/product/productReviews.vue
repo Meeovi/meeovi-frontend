@@ -1,5 +1,5 @@
 <template>
-  <NuxtLinkrticle class="w-full p-4 border rounded-md reviewBox">
+  <article class="w-full p-4 border rounded-md reviewBox">
     <p class="pb-2 font-medium" v-html="review?.summary || 'No summary provided'"></p>
     <header class="flex flex-col items-start pb-4 md:flex-row md:justify-between">
       <div class="flex items-start">

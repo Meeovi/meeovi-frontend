@@ -1,17 +1,18 @@
 import gql from 'graphql-tag';
 
 const outletsmenu = gql`
- query {
-  categories (filters: {name: {match: "Outlets"}}) {
-    items {
-      uid
-      name
-      children {
-        uid
-        name
-      }
-    }
+query ($name: String!){
+  outlets (filter: {name: {_eq: $name}}){
+    id
+    name
+    uid
+    color
+    colortext
+    callouts
+    description
+    date_created
+    date_updated
   }
- }`
+}`
 
 export default outletsmenu;

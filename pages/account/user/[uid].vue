@@ -1,50 +1,56 @@
 <template>
-    <div v-if="userStore">
-        <!--<profilebar />-->
-        <section data-bs-version="5.1" class="people3 cid-u1nMLE9Ke9 mbr-fullscreen mbr-parallax-background"
-            id="apeople3-6r">
+    <div>
+        <!--<LowerBar /> -->
+        <div v-if="userStore" class="accountPage">
+            <section data-bs-version="5.1" class="people3 cid-u1nMLE9Ke9 mbr-fullscreen mbr-parallax-background"
+                id="apeople3-6r">
 
-            <div class="mbr-overlay" style="opacity: 0; background-color: rgb(255, 255, 255);">
-            </div>
-            <div class="container-fluid">
-                <div class="row justify-content-center">
-                    <div class="col-md-12 col-lg-12">
-                        <div class="content-container" v-if="userStore.isLoggedIn">
-                            <div class="img-wrap">
-                                <div class="item-img">
-                                    <NuxtImg loading="lazy" :src="`${userStore?.user?.photoURL}`" :alt="userStore?.user?.displayName" />
+                <div class="mbr-overlay" style="opacity: 0; background-color: rgb(255, 255, 255);">
+                </div>
+                <div class="container-fluid">
+                    <div class="row justify-content-center">
+                        <div class="col-md-12 col-lg-12">
+                            <div class="content-container" v-if="userStore.isLoggedIn">
+                                <div class="img-wrap">
+                                    <div class="item-img">
+                                        <NuxtImg class="userProfileAvatar" loading="lazy"
+                                            :src="`${userStore?.user?.photoURL}`" :alt="userStore?.user?.displayName" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="text-wrap align-left">
-                                <h4 class="mbr-text-name mbr-fonts-style display-5">
-                                    <strong>{{ userStore?.user?.displayName }}</strong>
-                                </h4>
-                                <h4 class="mbr-text mbr-fonts-style display-7">
-                                    <v-list style="background: transparent; color: white;">
-                                        <v-list-item title="Member Since">{{ userStore?.user?.metadata?.creationTime }}</v-list-item>
-                                    </v-list>
-                                </h4>
+                                <div class="text-wrap align-left">
+                                    <h4 class="mbr-text-name mbr-fonts-style display-5">
+                                        <strong>{{ userStore?.user?.displayName }}</strong>
+                                    </h4>
+                                    <h4 class="mbr-text mbr-fonts-style display-7">
+                                        <v-list
+                                            style="background: transparent; color: white; left: -15px; position: relative;">
+                                            <v-list-item
+                                                title="Member Since">{{ userStore?.user?.metadata?.creationTime }}</v-list-item>
+                                        </v-list>
+                                    </h4>
+
+                                    <followButton />
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <v-card variant="text">
-            <v-tabs v-model="tab" bg-color="transparent" align-tabs="center">
-                <div v-for="(menu, index) in profile?.menus" :key="index">
-                    <v-tab :value="menu?.value" v-if="menu?.active === 'Active'">{{ menu?.name }}</v-tab>
-                </div>
+            <v-card variant="text">
+                <v-tabs v-model="tab" bg-color="transparent" align-tabs="center">
+                    <div v-for="(menu, index) in profile?.menus" :key="index">
+                        <v-tab :value="menu?.value" v-if="menu?.active === 'Active'">{{ menu?.name }}</v-tab>
+                    </div>
 
-                <div v-for="(menu, index) in profile?.submenus" :key="index">
-                    <v-tab :value="menu?.value"><v-btn variant="text" :href="menu?.url"
-                            :prepend-icon="`fas fa-${menu?.icon}`">{{ menu?.name }}</v-btn></v-tab>
-                </div>
-            </v-tabs>
+                    <div v-for="(menu, index) in profile?.submenus" :key="index">
+                        <v-tab :value="menu?.value"><v-btn variant="text" :href="menu?.url"
+                                :prepend-icon="`fas fa-${menu?.icon}`">{{ menu?.name }}</v-btn></v-tab>
+                    </div>
+                </v-tabs>
 
-            <v-card-text>
-                <v-window v-model="tab">
+                <v-card-text>
+                    <v-window v-model="tab">
                         <v-window-item :value="profile?.menus[0]?.value">
                             <v-row>
                                 <v-col cols="4" v-for="(posts, index) in myposts" :key="index" style="margin: 8px;">
@@ -80,9 +86,10 @@
                         <v-window-item :value="profile?.submenus[2]?.value">
                             <settings />
                         </v-window-item>
-                </v-window>
-            </v-card-text>
-        </v-card>
+                    </v-window>
+                </v-card-text>
+            </v-card>
+        </div>
     </div>
 </template>
 
@@ -90,6 +97,7 @@
     import {
         ref
     } from 'vue'
+    import followButton from '~/components/partials/followButton.vue'
     import post from '~/components/cms/related/posts.vue'
     import shorts from '~/components/cms/related/shorts.vue'
     import replies from '~/components/pages/profile/replies.vue'

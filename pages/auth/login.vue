@@ -64,7 +64,7 @@
 import { setPersistence, browserLocalPersistence } from 'firebase/auth'
 import { ref, onMounted, watch, onUnmounted } from 'vue'
 import { useFirebaseAuth } from 'vuefire'
-import * as firebaseui from 'firebaseui'
+import * as firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css'
 import {
   signInWithPopup,
@@ -74,6 +74,18 @@ import {
 } from 'firebase/auth'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '~/stores/user'
+import { useAuthSync } from "~/composables/useAuthSync";
+
+const { handleUserSignIn } = useAuthSync();
+
+const handleLogin = async () => {
+  const email = "test@example.com";
+  const password = "securepassword";
+  const firstName = "John";
+  const lastName = "Doe";
+
+  await handleUserSignIn(email, password, firstName, lastName);
+};
 
 // State management
 const isLoading = ref(false)
@@ -90,17 +102,60 @@ const attemptCount = ref(0)
 const isBlocked = ref(false)
 const blockTimeout = ref(null)
 
-const handleFailedAttempt = () => {
-  attemptCount.value++
-  if (attemptCount.value >= 5) {
-    isBlocked.value = true
-    showNotification('Too many failed attempts. Please try again in 5 minutes.', 'warning')
-    blockTimeout.value = setTimeout(() => {
-      isBlocked.value = false
-      attemptCount.value = 0
-    }, 300000) // 5 minutes
+const updateDirectusUser = async (user) => {
+  try {
+    const directusToken = localStorage.getItem('directusToken'); // Assuming token is stored locally
+    if (!directusToken) {
+      console.error('Directus token not found');
+      return;
+    }
+
+    const response = await $fetch(`${config.public.directus.url}`, {
+      method: 'PATCH',
+      headers: {
+        Authorization: `Bearer ${directusToken}`,
+        'Content-Type': 'application/json',
+      },
+      body: {
+        id: user.uid, // Assuming Firebase UID is used as Directus user ID
+        email: user.email,
+        displayName: user.displayName,
+        photoURL: user.photoURL,
+      },
+    });
+
+    console.log('Directus user updated:', response);
+    showNotification('User data synced with Directus!', 'success');
+  } catch (error) {
+    console.error('Failed to update user in Directus:', error);
+    showNotification('Failed to sync with Directus. Please try again.', 'error');
   }
-}
+};
+
+const handleFailedAttempt = () => {
+  attemptCount.value++;
+  localStorage.setItem('attemptCount', attemptCount.value);
+
+  if (attemptCount.value >= 5) {
+    isBlocked.value = true;
+    localStorage.setItem('isBlocked', 'true');
+    showNotification('Too many failed attempts. Please try again in 5 minutes.', 'warning');
+
+    blockTimeout.value = setTimeout(() => {
+      isBlocked.value = false;
+      attemptCount.value = 0;
+      localStorage.removeItem('isBlocked');
+      localStorage.removeItem('attemptCount');
+    }, 300000); // 5 minutes
+  }
+};
+
+// On mount, restore state from localStorage
+onMounted(() => {
+  attemptCount.value = parseInt(localStorage.getItem('attemptCount')) || 0;
+  isBlocked.value = localStorage.getItem('isBlocked') === 'true';
+});
+
 
 const config = {
   signInOptions: [{
@@ -120,24 +175,31 @@ const config = {
   }],
   callbacks: {
     signInSuccessWithAuthResult(authResult, redirectUrl) {
-      console.log("Sign-in success callback triggered");
-      console.log("Auth result:", authResult);
-      console.log("Redirect URL:", redirectUrl);
+    const user = authResult.user;
+    userStore.setUser(user);
 
-      userStore.setUser(authResult.user)
-      showNotification('Successfully signed in!', 'success')
-      router.push('/')
+    // Sync with Directus
+    updateDirectusUser(user);
 
-      return false;
-    },
+    showNotification('Successfully signed in!', 'success');
+    router.push('/');
+
+    return false;
+  },
     uiShown() {
       console.log("FirebaseUI widget rendered");
     },
     signInFailure(error) {
-      console.error('Authentication failed:', error);
-      handleFailedAttempt()
-      showNotification('Authentication failed. Please try again.', 'error')
-    },
+    console.error('Authentication failed:', error);
+    if (error.code === 'auth/wrong-password') {
+      showNotification('Incorrect password. Please try again.', 'error');
+    } else if (error.code === 'auth/user-not-found') {
+      showNotification('No account found with this email.', 'error');
+    } else {
+      showNotification('Authentication failed. Please try again later.', 'error');
+    }
+    handleFailedAttempt();
+  },
   },
   signInFlow: 'popup',
   privacyPolicyUrl: '/privacy-policy',
@@ -146,29 +208,34 @@ const config = {
 
 const signInWithGoogle = async () => {
   if (isBlocked.value) {
-    showNotification('Please wait before trying again.', 'error')
-    return
+    showNotification('Please wait before trying again.', 'error');
+    return;
   }
 
-  isLoading.value = true
+  isLoading.value = true;
   try {
-    const result = await signInWithPopup(auth, provider)
-    userStore.setUser(result.user)
-    console.log('User signed in:', result.user)
-    showNotification('Successfully signed in with Google!', 'success')
-    await router.push('/')
+    const result = await signInWithPopup(auth, provider);
+    const user = result.user;
+    userStore.setUser(user);
+
+    // Sync with Directus
+    updateDirectusUser(user);
+
+    console.log('User signed in:', user);
+    showNotification('Successfully signed in with Google!', 'success');
+    await router.push('/');
   } catch (error) {
-    console.error('Error during sign in:', error)
+    console.error('Error during sign in:', error);
     if (error.code === 'auth/popup-closed-by-user') {
-      showNotification('Sign-in was cancelled. Please try again if you want to sign in.', 'info')
+      showNotification('Sign-in was cancelled. Please try again if you want to sign in.', 'info');
     } else {
-      showNotification('Failed to sign in. Please try again.', 'error')
-      handleFailedAttempt()
+      showNotification('Failed to sign in. Please try again.', 'error');
+      handleFailedAttempt();
     }
   } finally {
-    isLoading.value = false
+    isLoading.value = false;
   }
-}
+};
 
 const signOut = async () => {
   isLoading.value = true
@@ -188,45 +255,41 @@ const signOut = async () => {
 
 const handleWebAuthnLogin = async () => {
   if (!canUseWebAuthn.value) {
-    showNotification('Biometric authentication is not supported on this device.')
-    return
+    showNotification('Biometric authentication is not supported on this device.');
+    return;
   }
-  // Implement WebAuthn logic here
-}
+  try {
+    const publicKeyCredentialRequestOptions = await $fetch('/api/webauthn/options', { method: 'POST' });
+    const assertion = await navigator.credentials.get({ publicKey: publicKeyCredentialRequestOptions });
+    await $fetch('/api/webauthn/verify', { method: 'POST', body: { assertion } });
+    showNotification('Biometric login successful!', 'success');
+  } catch (error) {
+    console.error('WebAuthn login failed:', error);
+    showNotification('Biometric login failed. Please try again.', 'error');
+  }
+};
 
 const initializeFirebaseUI = () => {
-  if (document.getElementById('firebaseui-auth-container')) {
-    const ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(auth)
-    ui.start("#firebaseui-auth-container", config)
-  } else {
-    console.error('FirebaseUI container not found')
-    showNotification('Error initializing login form. Please refresh the page.')
+  if (!document.getElementById('firebaseui-auth-container')) {
+    console.error('FirebaseUI container not found');
+    showNotification('Error initializing login form. Please refresh the page.', 'error');
+    return;
   }
-}
+  const ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(auth);
+  ui.start('#firebaseui-auth-container', config);
+};
 
 onMounted(async () => {
   try {
-    // Check WebAuthn support
-    canUseWebAuthn.value = window.PublicKeyCredential !== undefined
-
-    // Set persistence based on remember me
-    const persistenceType = rememberMe.value ? browserLocalPersistence : browserSessionPersistence
-    await setPersistence(auth, persistenceType)
-
-    // Check if user is already logged in
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        userStore.setUser(user)
-        router.push('/')
-      } else {
-        showFirebaseUI.value = true
-      }
-    })
+    await setPersistence(auth, browserLocalPersistence); // Set persistence for auth
+    initializeFirebaseUI();
+    showFirebaseUI.value = true;
   } catch (error) {
-    console.error('Error during initialization:', error)
-    showNotification('Sign-in was cancelled. Please try again if you want to sign in.', 'info')
+    console.error('Error initializing FirebaseUI:', error);
+    showNotification('Error initializing login form. Please refresh the page.', 'error');
   }
-})
+});
+
 
 watch(showFirebaseUI, (newValue) => {
   if (newValue) {
@@ -244,7 +307,6 @@ onUnmounted(() => {
 
 definePageMeta({
   layout: 'auth',
-  middleware: ['guest']
 });
 </script>
 

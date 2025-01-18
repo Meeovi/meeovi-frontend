@@ -16,12 +16,6 @@
 
         <section data-bs-version="5.1" class="features06 photom4_features06 cid-uwdiCl2VuY mbr-parallax-background"
             id="features06-ag" data-sortbtn="btn-primary">
-
-
-
-
-
-
             <div class="container">
                 <div class="row">
                     <div class="card p-3 col-12 col-md-8 col-lg-4">
