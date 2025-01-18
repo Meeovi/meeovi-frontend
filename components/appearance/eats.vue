@@ -1,4 +1,4 @@
-<template>
+<template :style="`background: ${categoryEats?.color}`">
     <div>
         <v-toolbar :title="`Meeovi ${categoryEats?.name}`" :color="categoryEats?.color" :style="`color: ${categoryEats?.colortext}; font: bold;`"></v-toolbar>
         <v-row>
@@ -23,6 +23,15 @@
         data: eats
     } = await useAsyncData('eats', () => {
         return $directus.request($readItems('shorts', {
+            filter: {
+                type: {
+                    _eq: 'eats'
+                },
+                status: {
+                    _eq: 'published'
+                }
+            },
+            sort: ['-date_created'],
             fields: ['*', {
                 '*': ['*']
             }]
