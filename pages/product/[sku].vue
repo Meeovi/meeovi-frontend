@@ -37,62 +37,42 @@
                   <SfLink href="#" variant="secondary" class="ml-2 text-xs text-neutral-500">
                     {{result?.products?.items[0]?.review_count}} reviews </SfLink>
                 </div>
-                <ul class="mb-4 font-normal typography-text-sm">
-                  <strong>Category: </strong>
-                  <li style="display: inline-block; padding-right: 5px;"
-                    v-for="(category, index) in result?.products?.items[0]?.categories" :key="index">
-                    {{ category.name }}
-                  </li>
+                <v-row>
+                  <v-col cols="6">
+                    <colorOptions />
+                  </v-col>
 
-                  <li><strong>Format: </strong>{{ result?.products?.items?.format }}</li>
-                  <li><strong>Sku: </strong>{{ result?.products?.items[0]?.sku }}</li>
-                  <li></li>
-                </ul>
+                  <v-col cols="6">
+                    <sizeOptions />
+                  </v-col>
+
+                  <v-col cols="6">
+                    <div v-if="cartId">
+                      <shippingOptions :cart-id="cartId" />
+                    </div>
+                    <p v-else>No cart available. Please create a cart to view shipping options.</p>
+                  </v-col>
+
+
+                  <v-col cols="6">
+                    <productQty />
+                  </v-col>
+                </v-row>
                 <div class="py-4 mb-4 border-gray-200 border-y">
                   <div
                     class="bg-primary-100 text-primary-700 flex justify-center gap-1.5 py-1.5 typography-text-sm items-center mb-4 rounded-md">
                     <SfIconShoppingCartCheckout />
                     1 in cart
                   </div>
-                  <div class="items-start xs:flex">
-                    <div class="flex flex-col items-stretch xs:items-center xs:inline-flex">
-                      <div class="flex border border-neutral-300 rounded-md">
-                        <SfButton variant="tertiary" :disabled="count <= min" square class="rounded-r-none p-3"
-                          :aria-controls="inputId" aria-label="Decrease value" @click="dec()">
-                          <SfIconRemove />
-                        </SfButton>
-                        <input :id="inputId" v-model="count" type="number"
-                          class="grow appearance-none mx-2 w-8 text-center bg-transparent font-medium [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-inner-spin-button]:display-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-outer-spin-button]:display-none [&::-webkit-outer-spin-button]:m-0 [-moz-appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none disabled:placeholder-disabled-900 focus-visible:outline focus-visible:outline-offset focus-visible:rounded-sm"
-                          :min="min" :max="max" @input="handleOnChange" />
-                        <SfButton variant="tertiary" :disabled="count >= max" square class="rounded-l-none p-3"
-                          :aria-controls="inputId" aria-label="Increase value" @click="inc()">
-                          <SfIconAdd />
-                        </SfButton>
-                      </div>
-                      <p class="self-center mt-1 mb-4 text-xs text-neutral-500 xs:mb-0">
-                        <strong class="text-neutral-900">{{ result?.products?.items[0]?.only_x_left_in_stock }}</strong>
-                        in
-                        stock
-                      </p>
-                    </div>
-                    <SfButton size="lg" class="w-full xs:ml-4">
-                      <template #prefix>
-                        <SfIconShoppingCart size="sm" />
-                      </template>
-                      Add to cart
-                    </SfButton>
-                  </div>
-                  <div class="flex justify-center mt-4 gap-x-4">
-                    <SfButton size="sm" variant="tertiary">
-                      <template #prefix>
-                        <SfIconCompareArrows size="sm" />
-                      </template>
-                      Compare
-                    </SfButton>
+                  <div class="d-flex align-center gap-4">
+                    <addToCartBtn v-if="isValidProduct" :product="productData" :cart-id="cartId" :quantity="count"
+                      :loading="loading" />
+
+                    <compareProductBtn v-if="isValidProduct" :product="productData" />
                     <createListBtn class="productPageListBtn" :productId="result?.products?.items[0]?.uid" />
                   </div>
                 </div>
-                <div class="flex first:mt-4">
+                <!--<div class="flex first:mt-4">
                   <SfIconPackage size="sm" class="flex-shrink-0 mr-1 text-neutral-500" />
                   <p class="text-sm">
                     Free shipping, arrives by Thu, Apr 7. Want it faster?
@@ -113,7 +93,7 @@
                     Free 30-days returns.
                     <SfLink href="#" variant="secondary" class="ml-1"> Details </SfLink>
                   </p>
-                </div>
+                </div>-->
 
                 <div class="flex mt-4">
                   <share />
@@ -248,51 +228,58 @@
 
 <script setup>
   import videoProduct from '~/components/appearance/videoproduct.vue'
-  //import chartProduct from '~/components/appearance/chart.vue'
   import {
-    ref
-  } from 'vue'
+    ref,
+    computed,
+    onMounted
+  } from 'vue';
   import {
     useQuery
   } from '@vue/apollo-composable'
   import {
-    SfButton,
     SfCounter,
     SfLink,
     SfRating,
-    SfIconSafetyCheck,
-    SfIconCompareArrows,
-    SfIconWarehouse,
-    SfIconPackage,
-    SfIconFavorite,
-    SfIconSell,
-    SfIconShoppingCart,
-    SfIconAdd,
-    SfIconRemove,
-    useId,
     SfIconShoppingCartCheckout,
   } from '@storefront-ui/vue';
-  import {
-    clamp
-  } from '@storefront-ui/shared';
-  import {
-    useCounter
-  } from '@vueuse/core';
+
   import share from '~/components/partials/share.vue'
   import comments from '~/components/partials/comments.vue'
+  import addToCartBtn from '~/components/partials/addToCartBtn.vue'
+  import compareProductBtn from '~/components/partials/compareBtn.vue'
+  import colorOptions from '~/components/commerce/commerce/product/colorOptions.vue'
+  import sizeOptions from '~/components/commerce/commerce/product/sizeOptions.vue'
+  import shippingOptions from '~/components/commerce/commerce/product/shippingOptions.vue'
+  import productQty from '~/components/commerce/commerce/product/productQty.vue'
 
   import {
     product
   } from '~/graphql/commerce/queries/id/product'
   import createListBtn from '~/components/partials/createListBtn.vue';
   import productSpecs from '~/components/commerce/commerce/product/productSpecs.vue'
-  import productReviews from '~/components/commerce/commerce/product/productReviews.vue'
+  //import productReviews from '~/components/commerce/commerce/product/productReviews.vue'
   import productCard from '~/components/commerce/commerce/product/productCard.vue'
   import productCompare from '~/components/commerce/commerce/product/productCompare.vue'
+  import {
+    useCart
+  } from '~/composables/commerce/useCart';
 
+
+  const {
+    cartId,
+    initializeCart
+  } = useCart();
+  onMounted(async () => {
+    await initializeCart(); // Ensure cartId is initialized
+  });
+
+  const isValidProduct = computed(() => !!productData.value);
+  const count = ref(1); // Example quantity
   const tab = ref(null);
   const model = ref(null);
-  const route = useRoute();
+
+  // Product query
+  const route = useRoute()
   const {
     result,
     loading,
@@ -308,7 +295,6 @@
     return product
   })
 
-
   // Filter products to only include bundled products
   const bundledProduct = computed(() => {
     const products = result.value?.products?.items
@@ -317,24 +303,38 @@
     return product
   })
 
-  const inputId = useId();
-  const min = ref(1);
-  const max = ref(999);
-  const {
-    count,
-    inc,
-    dec,
-    set
-  } = useCounter(1, {
-    min: min.value,
-    max: max.value
-  });
+  // Computed properties
+  const productData = computed(() => {
+    if (!result.value?.products?.items[0]) return null
 
-  function handleOnChange(event) {
-    const currentValue = (event.target)?.value;
-    const nextValue = parseFloat(currentValue);
-    set(clamp(nextValue, min.value, max.value));
-  }
+    const product = result.value.products.items[0]
+    return {
+      id: product.uid,
+      sku: product.sku,
+      name: product.name,
+      price: product.price_range.minimum_price.final_price,
+      stock_status: product.stock_status
+    }
+  })
+
+  const isProductAvailable = computed(() => {
+    return productData.value?.stock_status === 'IN_STOCK'
+  })
+
+  // Cart initialization
+  onMounted(async () => {
+    if (!cartId.value) {
+      try {
+        const {
+          data
+        } = await createCart()
+        cartId.value = data.createEmptyCart
+        localStorage.setItem('cart_id', cartId.value)
+      } catch (error) {
+        console.error('Failed to initialize cart:', error)
+      }
+    }
+  })
 
   useHead({
     title: computed(() => result.value?.products?.items[0]?.name || 'Product Page')

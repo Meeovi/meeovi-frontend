@@ -49,7 +49,7 @@
   } from '@storefront-ui/vue';
   import Ratings from '~/components/partials/ratings.vue';
   import createListBtn from '~/components/partials/createListBtn.vue';
-  import AddToCartBtn from '~/components/partials/AddToCartBtn.vue'
+  import AddToCartBtn from '~/components/partials/addToCartBtn.vue'
 
   const rating = ref(null)
   const props = defineProps({
