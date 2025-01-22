@@ -11,15 +11,15 @@
 
       <v-card-text>
         <v-tabs-window v-model="tab">
-          <v-tabs-window-item value="one">
+          <v-tabs-window-item :value="mynetwork?.menus[0]?.value">
             <contacts />
           </v-tabs-window-item>
 
-          <v-tabs-window-item value="two">
+          <v-tabs-window-item :value="mynetwork?.menus[1]?.value">
             <mycontacts />
           </v-tabs-window-item>
 
-          <v-tabs-window-item value="three">
+          <v-tabs-window-item :value="mynetwork?.menus[2]?.value">
             <contacts />
           </v-tabs-window-item>
         </v-tabs-window>

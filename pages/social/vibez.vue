@@ -5,14 +5,14 @@
             <v-toolbar :title="vibebar?.name" color="primary">
                 <v-dialog>
                     <template v-slot:activator="{ props: activatorProps }">
-                        <v-btn v-bind="activatorProps" prepend-icon="fas fa-plus" title="Create a Vibe"
-                            variant="flat">Create a Vibe
+                        <v-btn v-bind="activatorProps" prepend-icon="fas fa-plus"
+                            :title="vibeBlocks?.content?.[0]?.name" variant="flat">{{ vibeBlocks?.content?.[0]?.name }}
                         </v-btn>
                     </template>
 
                     <template v-slot:default="{ isActive }">
                         <v-card color="white">
-                            <NuxtLinkddlive />
+                            <addlive />
 
                             <v-card-actions>
                                 <v-spacer></v-spacer>
@@ -26,13 +26,13 @@
 
             <v-tabs v-model="tab" bg-color="primary">
                 <div v-for="(menu, index) in vibebar?.menus" :key="index">
-                    <v-tab :value="menu?.value">{{ menu?.name }}</v-tab>
+                    <v-tab v-if="menu?.active === 'Active'" :value="menu?.value">{{ menu?.name }}</v-tab>
                 </div>
             </v-tabs>
 
             <v-card-text>
                 <v-tabs-window v-model="tab">
-                    <v-tabs-window-item value="one">
+                    <v-tabs-window-item :value="vibebar?.menus[0]?.value">
                         <v-row style="padding-top: 15px;">
                             <v-col cols="4" v-for="(shorts, index) in vibez" :key="index">
                                 <shorts :short="shorts" />
@@ -40,7 +40,7 @@
                         </v-row>
                     </v-tabs-window-item>
 
-                    <v-tabs-window-item value="two">
+                    <v-tabs-window-item :value="vibebar?.menus[1]?.value">
                         <v-row style="padding-top: 15px;">
                             <v-col cols="4" v-for="(shorts, index) in livevibez" :key="index">
                                 <shorts :short="shorts" />
@@ -48,7 +48,7 @@
                         </v-row>
                     </v-tabs-window-item>
 
-                    <v-tabs-window-item value="three">
+                    <v-tabs-window-item :value="vibebar?.menus[2]?.value">
                         <v-row style="padding-top: 15px;">
                             <v-col cols="4" v-for="(shorts, index) in videoshorts" :key="index">
                                 <shorts :short="shorts" />
@@ -128,6 +128,14 @@
         data: vibebar
     } = await useAsyncData('vibebar', () => {
         return $directus.request($readItem('navigation', '30'))
+    })
+
+    const {
+        data: vibeBlocks
+    } = await useAsyncData('vibeBlocks', () => {
+        return $directus.request($readItem('page_blocks', '9', {
+            fields: ['*', 'media.directus_files_id.filename_disk', 'content.*'],
+        }))
     })
 
     useHead({

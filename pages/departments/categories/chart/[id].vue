@@ -2,7 +2,7 @@
     <div class="contentPage">
         <v-row>
             <v-col cols="12">
-                <v-card color="#1F7087">
+                <v-card :color="chartbar?.color">
                     <div class="d-flex flex-no-wrap justify-space-between">
                         <div>
                             <v-card-title class="text-h5">
@@ -21,29 +21,28 @@
 
             <v-col cols="12">
                 <v-card elevation="0">
-                    <v-tabs v-model="tab" bg-color="#1F7087">
-                        <v-tab value="weekly">Weekly Chart</v-tab>
-                        <v-tab value="monthly">Monthly Chart</v-tab>
-                        <v-tab value="yearly">Yearly Chart</v-tab>
-                        <v-tab value="related">Related Charts</v-tab>
+                    <v-tabs v-model="tab" :bg-color="chartbar?.color">
+                        <div v-for="(menu, index) in spacebar?.menus" :key="index">
+                            <v-tab :value="menu?.value">{{ menu?.name }}</v-tab>
+                        </div>
                     </v-tabs>
 
                     <v-card-text>
                         <v-tabs-window v-model="tab">
-                            <v-tabs-window-item value="weekly">
+                            <v-tabs-window-item :value="chartbar?.menus[0]?.value">
                                 <!-- Weekly Chart Table -->
                                 <WeeklyChart :data="topProducts" />
                             </v-tabs-window-item>
-                            <v-tabs-window-item value="monthly">
+                            <v-tabs-window-item :value="chartbar?.menus[1]?.value">
                                 <!-- Monthly Chart Table -->
                                 <MonthlyChart :data="topProducts" />
                             </v-tabs-window-item>
-                            <v-tabs-window-item value="yearly">
+                            <v-tabs-window-item :value="chartbar?.menus[2]?.value">
                                 <!-- Yearly Chart Table -->
                                 <YearlyChart :data="topProducts" />
                             </v-tabs-window-item>
 
-                            <v-tabs-window-item value="related">
+                            <v-tabs-window-item :value="chartbar?.menus[3]?.value">
                                 <v-row>
                                     <v-col v-for="charts in charts" :key="charts">
                                         <charts :chart="charts" />
@@ -99,12 +98,20 @@
     })
 
     const {
-      data: charts
-  } = await useAsyncData('charts', () => {
-      return $directus.request($readItems('musicchart', {
-          fields: ['*', { '*': ['*'] }]
-      }))
-  })
+        data: charts
+    } = await useAsyncData('charts', () => {
+        return $directus.request($readItems('musicchart', {
+            fields: ['*', {
+                '*': ['*']
+            }]
+        }))
+    })
+
+    const {
+        data: chartbar
+    } = await useAsyncData('chartbar', () => {
+        return $directus.request($readItem('navigation', '53'))
+    })
 
     const categories = ref([]) // Will be populated from your products data
 

@@ -3,13 +3,13 @@
     <v-toolbar :title="feedbar?.name" color="transparent" elevation="0"></v-toolbar>
     <v-tabs v-model="tab" bg-color="primary">
       <div v-for="(menu, index) in feedbar?.menus" :key="index">
-        <v-tab :value="menu?.value">{{ menu?.name }}</v-tab>
+        <v-tab v-if="menu?.active === 'Active'" :value="menu?.value">{{ menu?.name }}</v-tab>
       </div>
     </v-tabs>
 
     <v-card-text>
       <v-tabs-window v-model="tab">
-        <v-tabs-window-item value="one">
+        <v-tabs-window-item :value="feedbar?.menus[0]?.value">
           <v-row>
             <v-col cols="4" v-for="(posts, index) in posts" :key="index" style="margin: 8px;">
               <post :post="posts" />
@@ -17,7 +17,7 @@
           </v-row>
         </v-tabs-window-item>
 
-        <v-tabs-window-item value="two">
+        <v-tabs-window-item :value="feedbar?.menus[1]?.value">
           <v-row>
             <v-col cols="4" v-for="(posts, index) in myposts" :key="index" style="margin: 8px;">
               <post :post="posts" />

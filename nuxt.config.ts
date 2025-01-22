@@ -101,6 +101,7 @@ export default defineNuxtConfig({
     "@storefront-ui/nuxt",
     'nuxt-vuefire',
     '@nuxtjs/leaflet',
+    //'@nuxtjs/i18n',
     //"@prisma/nuxt",
     '@nuxtjs/seo',
     "nuxt-security",

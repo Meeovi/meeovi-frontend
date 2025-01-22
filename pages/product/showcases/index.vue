@@ -1,10 +1,10 @@
 <template>
   <div class="contentPage">
     <v-card elevation="0">
-      <v-toolbar title="Showcases" color="purple">
+      <v-toolbar :title="showcasebar?.name" :color="showcasebar?.color">
         <v-dialog min-width="500">
           <template v-slot:activator="{ props: activatorProps }">
-            <v-btn v-bind="activatorProps" prepend-icon="fas fa-plus" title="Create Showcase" variant="text">Create Showcase</v-btn>
+            <v-btn v-bind="activatorProps" prepend-icon="fas fa-plus" :title="productBlocks?.content?.[5]?.content" variant="text">{{ productBlocks?.content?.[5]?.content }}</v-btn>
           </template>
           <template v-slot:default="{ isActive }">
             <createshowcase />
@@ -13,8 +13,9 @@
       </v-toolbar>
 
       <v-tabs v-model="tab" bg-color="purple">
-        <v-tab value="one">All Showcases</v-tab>
-        <v-tab value="two">Bundled Products</v-tab>
+        <div v-for="(menu, index) in showcasebar?.menus" :key="index">
+                <v-tab v-if="menu?.active === 'Active'" :value="menu?.value">{{ menu?.name }}</v-tab>
+              </div>
       </v-tabs>
 
       <v-card-text>
@@ -63,6 +64,25 @@ const bundledProducts = computed(() =>
     (item) => item.__typename === 'BundledProduct'
   )
 );
+
+const {
+    $directus,
+    $readItem
+  } = useNuxtApp()
+
+  const {
+    data: productBlocks
+  } = await useAsyncData('productBlocks', () => {
+    return $directus.request($readItem('page_blocks', '8', {
+      fields: ['*', 'media.directus_files_id.filename_disk', 'content.*'],
+    }))
+  })
+
+  const {
+    data: showcasebar
+  } = await useAsyncData('showcasebar', () => {
+    return $directus.request($readItem('navigation', '54'))
+  })
 
 useHead({
   title: 'Showcases',

@@ -24,20 +24,23 @@
             </v-col>
             <v-col cols="6">
               <section class="md:max-w-[640px]">
-                <h1 class="mb-1 font-bold typography-headline-4">{{ result?.products?.items[0]?.name }}</h1>
-                <div class="headline-2">
-                  By:
-                </div>
-                <strong
-                  class="block font-bold typography-headline-3">{{ result?.products?.items[0]?.price_range?.minimum_price?.regular_price?.currency }}
-                  {{ result?.products?.items[0]?.price_range?.minimum_price?.regular_price?.value }}</strong>
-                <div class="inline-flex items-center mt-4 mb-2">
-                  <SfRating size="xs" :value="result?.products?.items[0]?.rating_summary" :max="5" half-increment />
-                  <SfCounter class="ml-1" size="xs">{{result?.products?.items[0]?.review_count}}</SfCounter>
-                  <SfLink href="#" variant="secondary" class="ml-2 text-xs text-neutral-500">
-                    {{result?.products?.items[0]?.review_count}} reviews </SfLink>
-                </div>
                 <v-row>
+                  <v-col cols="10">
+                    <h2 class="productTitle">{{ result?.products?.items[0]?.name }}</h2>
+                  </v-col>
+
+                  <v-col cols="2">
+                    <share />
+                  </v-col>
+                  <v-col cols="12">
+                    <div class="inline-flex items-center mt-4 mb-2">
+                      <SfRating size="xs" :value="result?.products?.items[0]?.rating_summary" :max="5" half-increment />
+                      <SfCounter class="ml-1" size="xs">{{result?.products?.items[0]?.review_count}}</SfCounter>
+                      <SfLink href="#" variant="secondary" class="ml-2 text-xs text-neutral-500">
+                        {{result?.products?.items[0]?.review_count}} reviews </SfLink>
+                    </div>
+                  </v-col>
+
                   <v-col cols="6">
                     <colorOptions />
                   </v-col>
@@ -50,21 +53,35 @@
                     <div v-if="cartId">
                       <shippingOptions :cart-id="cartId" />
                     </div>
-                    <p v-else>No cart available. Please create a cart to view shipping options.</p>
+                    <p v-else v-html="productBlocks?.content[0]?.content"></p>
                   </v-col>
 
-
                   <v-col cols="6">
-                    <productQty />
+                    <h6 v-html="productBlocks?.content[3]?.content"></h6>
+
+                    <br>
+                    <div
+                      class="bg-primary-100 text-primary-700 flex justify-center gap-1.5 py-1.5 typography-text-sm items-center mb-4 rounded-md">
+                      <SfIconShoppingCartCheckout />
+                      1 <div style="top: 7px; position: relative;" v-html="productBlocks?.content[1]?.content"></div>
+                    </div>
                   </v-col>
                 </v-row>
                 <div class="py-4 mb-4 border-gray-200 border-y">
-                  <div
-                    class="bg-primary-100 text-primary-700 flex justify-center gap-1.5 py-1.5 typography-text-sm items-center mb-4 rounded-md">
-                    <SfIconShoppingCartCheckout />
-                    1 in cart
+                  <div class="flex mt-4">
+                    <v-toolbar color="transparent">
+                      <v-toolbar-title v-html="productBlocks?.content[2]?.content"></v-toolbar-title>
+
+                      <v-spacer></v-spacer>
+
+                      <h5 style="padding-top: 5px;">
+                        {{ result?.products?.items[0]?.price_range?.minimum_price?.regular_price?.currency }}
+                        {{ result?.products?.items[0]?.price_range?.minimum_price?.regular_price?.value }}</h5>
+                    </v-toolbar>
                   </div>
+
                   <div class="d-flex align-center gap-4">
+
                     <addToCartBtn v-if="isValidProduct" :product="productData" :cart-id="cartId" :quantity="count"
                       :loading="loading" />
 
@@ -72,31 +89,9 @@
                     <createListBtn class="productPageListBtn" :productId="result?.products?.items[0]?.uid" />
                   </div>
                 </div>
-                <!--<div class="flex first:mt-4">
-                  <SfIconPackage size="sm" class="flex-shrink-0 mr-1 text-neutral-500" />
-                  <p class="text-sm">
-                    Free shipping, arrives by Thu, Apr 7. Want it faster?
-                    <SfLink href="#" variant="secondary" class="mx-1"> Add an address </SfLink>
-                    to see options
-                  </p>
-                </div>
-                <div class="flex mt-4">
-                  <SfIconWarehouse size="sm" class="flex-shrink-0 mr-1 text-neutral-500" />
-                  <p class="text-sm">
-                    Pickup not available at your shop.
-                    <SfLink href="#" variant="secondary" class="ml-1"> Check availability nearby </SfLink>
-                  </p>
-                </div>
-                <div class="flex mt-4">
-                  <SfIconSafetyCheck size="sm" class="flex-shrink-0 mr-1 text-neutral-500" />
-                  <p class="text-sm">
-                    Free 30-days returns.
-                    <SfLink href="#" variant="secondary" class="ml-1"> Details </SfLink>
-                  </p>
-                </div>-->
 
                 <div class="flex mt-4">
-                  <share />
+
                 </div>
               </section>
             </v-col>
@@ -105,10 +100,10 @@
 
         <v-col cols="12">
           <v-card elevation="0">
-            <v-tabs v-model="tab" bg-color="info">
-              <v-tab value="one">Description</v-tab>
-              <v-tab value="two">Reviews</v-tab>
-              <v-tab value="three">Specifications</v-tab>
+            <v-tabs v-model="tab" :bg-color="productbar?.color">
+              <div v-for="(menu, index) in productbar?.menus" :key="index">
+                <v-tab v-if="menu?.active === 'Active'" :value="menu?.value">{{ menu?.name }}</v-tab>
+              </div>
               <!-- <v-tab value="four">FAQS</v-tab>
             <v-tab value="five">Compare</v-tab>-->
               <v-tab value="six" v-if="result?.products?.items[0]?.__typename === 'GroupedProduct'">Products</v-tab>
@@ -118,7 +113,7 @@
             <v-card-text>
               <v-window v-model="tab">
                 <!--Product Description-->
-                <v-window-item value="one">
+                <v-window-item :value="productbar?.menus[0]?.value">
                   <v-card variant="text">
                     <v-card-text style="font-size: 20px;"
                       v-html="result?.products?.items[0]?.description?.html"></v-card-text>
@@ -126,7 +121,7 @@
                 </v-window-item>
 
                 <!--Product Reviews-->
-                <v-window-item value="two">
+                <v-window-item :value="productbar?.menus[1]?.value">
                   <!---<div v-if="result?.products?.items[0]?.reviews?.items?.length > 0">
                   <div v-for="(review, index) in result?.products?.items[0]?.reviews?.items" :key="index">
                     <productReviews :review="review" />
@@ -136,12 +131,12 @@
                 </v-window-item>
 
                 <!--Product Specifications-->
-                <v-window-item value="three">
+                <v-window-item :value="productbar?.menus[2]?.value">
                   <productSpecs :product="result?.products?.items[0]" />
                 </v-window-item>
 
                 <!--Product FAQs-->
-                <v-window-item value="four">
+                <v-window-item :value="productbar?.menus[3]?.value">
                   <v-expansion-panels v-for="(faqs, index) in result?.products?.items[0]?.faqs?.faqs_id" :key="index">
                     <v-expansion-panel :title="faqs.question" :text="faqs.answer">
                     </v-expansion-panel>
@@ -149,7 +144,7 @@
                 </v-window-item>
 
                 <!--Product Compare List-->
-                <v-window-item value="five">
+                <v-window-item :value="productbar?.menus[4]?.value">
                   <productCompare />
                 </v-window-item>
 
@@ -243,7 +238,7 @@
     SfIconShoppingCartCheckout,
   } from '@storefront-ui/vue';
 
-  import share from '~/components/partials/share.vue'
+  import share from '~/components/partials/shareDialog.vue'
   import comments from '~/components/partials/comments.vue'
   import addToCartBtn from '~/components/partials/addToCartBtn.vue'
   import compareProductBtn from '~/components/partials/compareBtn.vue'
@@ -264,7 +259,6 @@
     useCart
   } from '~/composables/commerce/useCart';
 
-
   const {
     cartId,
     initializeCart
@@ -277,6 +271,10 @@
   const count = ref(1); // Example quantity
   const tab = ref(null);
   const model = ref(null);
+  const sizes = ref([]);
+  const colors = ref([]);
+  const selectedSize = ref(null);
+  const selectedColor = ref(null);
 
   // Product query
   const route = useRoute()
@@ -334,6 +332,98 @@
         console.error('Failed to initialize cart:', error)
       }
     }
+  })
+
+  function onSizeSelected(size) {
+    selectedSize.value = size;
+  }
+
+  function onColorSelected(color) {
+    selectedColor.value = color;
+  }
+
+  async function fetchProductDetails(productId) {
+    try {
+      const {
+        result
+      } = useQuery(PRODUCT_DETAILS_QUERY, {
+        id: productId
+      });
+      const fetchedProduct = result.value.product;
+
+      product.value = fetchedProduct;
+
+      sizes.value =
+        fetchedProduct.options.find((option) => option.attribute_code === 'size')
+        ?.values.map((value) => ({
+          value: value.value_index,
+          label: value.label,
+        })) || [];
+
+      colors.value =
+        fetchedProduct.options.find((option) => option.attribute_code === 'color')
+        ?.values.map((value) => ({
+          value: value.value_index,
+          label: value.label,
+        })) || [];
+    } catch (error) {
+      console.error('Error fetching product details:', error);
+    }
+  }
+
+  async function addToCart() {
+    if (!selectedSize.value || !selectedColor.value) {
+      alert('Please select a size and color.');
+      return;
+    }
+
+    await addToCart({
+      sku: product.value.sku,
+      qty: 1,
+      product_options: {
+        extension_attributes: {
+          configurable_item_options: [{
+              option_id: sizes.value.find(
+                (size) => size.value === selectedSize.value
+              ).value,
+              option_value: selectedSize.value,
+            },
+            {
+              option_id: colors.value.find(
+                (color) => color.value === selectedColor.value
+              ).value,
+              option_value: selectedColor.value,
+            },
+          ],
+        },
+      },
+    });
+
+    alert('Product added to cart!');
+  }
+
+  onMounted(() => {
+    const productId = 'sample-product-id'; // Replace with your product ID
+    fetchProductDetails(productId);
+  });
+
+  const {
+    $directus,
+    $readItem
+  } = useNuxtApp()
+
+  const {
+    data: productBlocks
+  } = await useAsyncData('productBlocks', () => {
+    return $directus.request($readItem('page_blocks', '8', {
+      fields: ['*', 'media.directus_files_id.filename_disk', 'content.*'],
+    }))
+  })
+
+  const {
+    data: productbar
+  } = await useAsyncData('productbar', () => {
+    return $directus.request($readItem('navigation', '52'))
   })
 
   useHead({
