@@ -25,7 +25,7 @@
         useRoute
     } from 'vue-router';
     import FilterComponent from '~/components/search/filters.vue';
-    import productCard from '~/components/commerce/commerce/product/productCard.vue';
+    import productCard from '~/components/commerce/product/productCard.vue';
     import {
         liteClient as algoliasearch
     } from 'algoliasearch/lite';

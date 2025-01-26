@@ -82,8 +82,11 @@
 
                   <div class="d-flex align-center gap-4">
 
-                    <addToCartBtn v-if="isValidProduct" :product="productData" :cart-id="cartId" :quantity="count"
-                      :loading="loading" />
+                    <addToCartBtn v-if="productData && cartId" :product="productData" :cartId="cartId"
+                      :quantity="count" :loading="loading" @add-to-cart="handleAddToCart" />
+                    <v-btn v-else disabled variant="outlined">
+                      Unable to add to cart
+                    </v-btn>
 
                     <compareProductBtn v-if="isValidProduct" :product="productData" />
                     <createListBtn class="productPageListBtn" :productId="result?.products?.items[0]?.uid" />
@@ -237,37 +240,39 @@
     SfRating,
     SfIconShoppingCartCheckout,
   } from '@storefront-ui/vue';
+  import {
+    gql
+  } from 'graphql-tag'
+  import {
+    useMutation
+  } from '@vue/apollo-composable'
 
   import share from '~/components/partials/shareDialog.vue'
   import comments from '~/components/partials/comments.vue'
   import addToCartBtn from '~/components/partials/addToCartBtn.vue'
   import compareProductBtn from '~/components/partials/compareBtn.vue'
-  import colorOptions from '~/components/commerce/commerce/product/colorOptions.vue'
-  import sizeOptions from '~/components/commerce/commerce/product/sizeOptions.vue'
-  import shippingOptions from '~/components/commerce/commerce/product/shippingOptions.vue'
-  import productQty from '~/components/commerce/commerce/product/productQty.vue'
+  import colorOptions from '~/components/commerce/product/colorOptions.vue'
+  import sizeOptions from '~/components/commerce/product/sizeOptions.vue'
+  import shippingOptions from '~/components/commerce/product/shippingOptions.vue'
+  //import productQty from '~/components/commerce/product/productQty.vue'
 
   import {
     product
   } from '~/graphql/commerce/queries/id/product'
   import createListBtn from '~/components/partials/createListBtn.vue';
-  import productSpecs from '~/components/commerce/commerce/product/productSpecs.vue'
-  //import productReviews from '~/components/commerce/commerce/product/productReviews.vue'
-  import productCard from '~/components/commerce/commerce/product/productCard.vue'
-  import productCompare from '~/components/commerce/commerce/product/productCompare.vue'
+  import productSpecs from '~/components/commerce/product/productSpecs.vue'
+  //import productReviews from '~/components/commerce/product/productReviews.vue'
+  import productCard from '~/components/commerce/product/productCard.vue'
+  import productCompare from '~/components/commerce/product/productCompare.vue'
+  import {
+    FETCH_PRODUCTS
+  } from '~/graphql/commerce/queries/products.js'
   import {
     useCart
   } from '~/composables/commerce/useCart';
 
-  const {
-    cartId,
-    initializeCart
-  } = useCart();
-  onMounted(async () => {
-    await initializeCart(); // Ensure cartId is initialized
-  });
-
   const isValidProduct = computed(() => !!productData.value);
+  const cartId = ref(null)
   const count = ref(1); // Example quantity
   const tab = ref(null);
   const model = ref(null);
@@ -275,6 +280,42 @@
   const colors = ref([]);
   const selectedSize = ref(null);
   const selectedColor = ref(null);
+  // Add mutation for creating cart
+  const CREATE_CART = gql`
+  mutation createEmptyCart {
+    createEmptyCart
+  }
+`
+
+  const {
+    mutate: createCart
+  } = useMutation(CREATE_CART)
+
+  // Initialize cart
+  const initializeCart = async () => {
+    try {
+      // Check for existing cart ID in storage
+      const existingCartId = localStorage.getItem('cartId')
+
+      if (existingCartId) {
+        cartId.value = existingCartId
+      } else {
+        // Create new cart
+        const {
+          data
+        } = await createCart()
+        cartId.value = data.createEmptyCart
+        localStorage.setItem('cartId', cartId.value)
+      }
+    } catch (error) {
+      console.error('Error initializing cart:', error)
+    }
+  }
+
+  // Call initializeCart when component mounts
+  onMounted(() => {
+    initializeCart()
+  })
 
   // Product query
   const route = useRoute()
@@ -301,16 +342,21 @@
     return product
   })
 
-  // Computed properties
+  // Prepare product data for add to cart
   const productData = computed(() => {
-    if (!result.value?.products?.items[0]) return null
+    if (!result.value?.products?.items?.[0]) return null
 
-    const product = result.value.products.items[0]
+    const product = result.value.products.items[0];
+
+    // Format the product data to match what AddToCartBtn expects
     return {
       id: product.uid,
-      sku: product.sku,
+      sku: route.params.sku,
       name: product.name,
-      price: product.price_range.minimum_price.final_price,
+      price: product.price_range.minimum_price.regular_price.value,
+      quantity: count.value,
+      // Include any other required fields your AddToCartBtn component expects
+      image: product.image?.url,
       stock_status: product.stock_status
     }
   })
@@ -346,7 +392,7 @@
     try {
       const {
         result
-      } = useQuery(PRODUCT_DETAILS_QUERY, {
+      } = useQuery(FETCH_PRODUCTS, {
         id: productId
       });
       const fetchedProduct = result.value.product;

@@ -76,12 +76,23 @@
                         </v-container>
                         <small>*indicates required field</small>
                     </v-card-text>
+
+                    <v-alert v-if="showError" type="error" closable @click:close="showError = false">
+                        {{ errorMessage }}
+                    </v-alert>
+
+                    <v-alert v-if="showSuccess" type="success" closable @click:close="showSuccess = false">
+                        Address updated successfully!
+                    </v-alert>
+
                     <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn color="blue-darken-1" variant="text"  @click.prevent="deleteAddressAndRefresh">
+                        <v-btn color="error" variant="text" @click.prevent="deleteAddressAndRefresh"
+                            :loading="isDeleting">
                             Delete Address
                         </v-btn>
-                        <v-btn color="blue-darken-1" variant="text"  @click.prevent="updateAddressAndRefresh">
+                        <v-btn color="primary" variant="text" @click.prevent="updateAddressAndRefresh"
+                            :loading="isUpdating">
                             Update Address
                         </v-btn>
                     </v-card-actions>
@@ -96,18 +107,26 @@
         ref
     } from 'vue';
     import {
-        useApolloClient
-    } from '@vue/apollo-composable';
-    import {
         useRoute,
         useRouter
     } from 'vue-router';
-    import { UPDATE_ADDRESS, DELETE_ADDRESS } from '~/graphql/commerce/queries/address'
+    import {
+        updateAddressDetails,
+        deleteCustomerAddress
+    } from '~/composables/useAddress'; // Add this import
 
     const route = useRoute();
     const router = useRouter();
     const dialog = ref(false);
 
+    // Add loading states
+    const isUpdating = ref(false);
+    const isDeleting = ref(false);
+    const errorMessage = ref('');
+    const showError = ref(false);
+    const showSuccess = ref(false);
+
+    // Keep existing refs
     const city = ref('');
     const company = ref('');
     const country_code = ref('');
@@ -125,67 +144,177 @@
     const vat_id = ref('');
     const region = ref('');
 
-    const {
-        client: apolloClient
-    } = useApolloClient();
+    // Add ref for address ID
+    const addressId = ref('');
 
+    // Function to update address
     const updateAddress = async () => {
         try {
-            const {
-                data
-            } = await apolloClient.mutate({
-                mutation: UPDATE_ADDRESS,
-                variables: {
-                    city: city.value,
-                    company: company.value,
-                    country_code: country_code.value,
-                    default_billing: default_billing.value,
-                    default_shipping: default_shipping.value,
-                    fax: fax.value,
-                    firstname: firstname.value,
-                    lastname: lastname.value,
-                    middlename: middlename.value,
-                    postcode: postcode.value,
-                    prefix: prefix.value,
-                    street: street.value,
-                    suffix: suffix.value,
-                    telephone: telephone.value,
-                    vat_id: vat_id.value,
-                    region: region.value,
+            isUpdating.value = true;
+            errorMessage.value = '';
+            showError.value = false;
+
+            const customerId = localStorage.getItem('customerId');
+            if (!customerId) {
+                throw new Error('User not authenticated');
+            }
+
+            // Construct address data object
+            const addressData = {
+                id: addressId.value,
+                firstname: firstname.value,
+                lastname: lastname.value,
+                middlename: middlename.value,
+                prefix: prefix.value,
+                suffix: suffix.value,
+                street: [street.value],
+                city: city.value,
+                country_id: country_code.value,
+                region: {
+                    region: region.value
                 },
-            });
-            console.log('Address updated:', data.updateAddress.address);
+                postcode: postcode.value,
+                telephone: telephone.value,
+                company: company.value,
+                fax: fax.value,
+                vat_id: vat_id.value,
+                default_billing: default_billing.value,
+                default_shipping: default_shipping.value
+            };
+
+            const result = await updateAddressDetails(customerId, addressId.value, addressData);
+
+            showSuccess.value = true;
+            dialog.value = false;
+
         } catch (error) {
-            console.error('Error creating address:', error);
+            console.error('Error updating address:', error);
+            errorMessage.value = error.message;
+            showError.value = true;
+        } finally {
+            isUpdating.value = false;
         }
     };
 
-    // Delete Mutation
-const deleteAddress = async () => {
-  try {
-    const { data } = await apolloClient.mutate({
-      mutation: DELETE_ADDRESS,
-      variables: {
-        id: id,
-      },
+    // Function to delete address
+    const deleteAddress = async () => {
+        try {
+            isDeleting.value = true;
+            errorMessage.value = '';
+            showError.value = false;
+
+            const customerId = localStorage.getItem('customerId');
+            if (!customerId) {
+                throw new Error('User not authenticated');
+            }
+
+            if (!addressId.value) {
+                throw new Error('Address ID is required');
+            }
+
+            // Show confirmation dialog
+            if (!confirm('Are you sure you want to delete this address?')) {
+                return;
+            }
+
+            await deleteCustomerAddress(customerId, addressId.value);
+
+            showSuccess.value = true;
+            dialog.value = false;
+
+        } catch (error) {
+            console.error('Error deleting address:', error);
+            errorMessage.value = error.message;
+            showError.value = true;
+        } finally {
+            isDeleting.value = false;
+        }
+    };
+
+    // Function to load address details
+    const loadAddressDetails = async (id) => {
+        try {
+            const customerId = localStorage.getItem('customerId');
+            if (!customerId || !id) return;
+
+            const address = await fetchAddressDetails(customerId, id);
+
+            // Populate form fields with address data
+            addressId.value = address.id;
+            firstname.value = address.firstname;
+            lastname.value = address.lastname;
+            middlename.value = address.middlename;
+            prefix.value = address.prefix;
+            suffix.value = address.suffix;
+            street.value = address.street[0];
+            city.value = address.city;
+            country_code.value = address.country_id;
+            region.value = address.region.region;
+            postcode.value = address.postcode;
+            telephone.value = address.telephone;
+            company.value = address.company;
+            fax.value = address.fax;
+            vat_id.value = address.vat_id;
+            default_billing.value = address.default_billing;
+            default_shipping.value = address.default_shipping;
+
+        } catch (error) {
+            console.error('Error loading address details:', error);
+            errorMessage.value = error.message;
+            showError.value = true;
+        }
+    };
+
+    // Refresh functions
+    const updateAddressAndRefresh = async () => {
+        await updateAddress();
+        if (!showError.value) {
+            router.go(0);
+        }
+    };
+
+    const deleteAddressAndRefresh = async () => {
+        await deleteAddress();
+        if (!showError.value) {
+            router.push('/account/addresses');
+        }
+    };
+
+    // Watch for dialog opening to load address details
+    watch(() => dialog.value, (newValue) => {
+        if (newValue && route.params.id) {
+            loadAddressDetails(route.params.id);
+        }
     });
-    console.log('Address deleted:', data.deleteAddress.address.id);
-  } catch (error) {
-    console.error('Error deleting address:', error);
-  }
-};
 
-const deleteAddressAndRefresh = async () => {
-  await deleteAddress();
-  router.push('/account/');  // Refresh the current route
-};
+    // Reset form function
+    const resetForm = () => {
+        addressId.value = '';
+        firstname.value = '';
+        lastname.value = '';
+        middlename.value = '';
+        prefix.value = '';
+        suffix.value = '';
+        street.value = '';
+        city.value = '';
+        country_code.value = '';
+        region.value = '';
+        postcode.value = '';
+        telephone.value = '';
+        company.value = '';
+        fax.value = '';
+        vat_id.value = '';
+        default_billing.value = false;
+        default_shipping.value = false;
+        errorMessage.value = '';
+        showError.value = false;
+        showSuccess.value = false;
+    };
 
-const updateAddressAndRefresh = async () => {
-  await updateAddress();
-  router.go(0);  // Refresh the current route
-};
-
-const reset = () => {
-  router.go(0);
-};
+    // Clean up when dialog closes
+    watch(() => dialog.value, (newValue) => {
+        if (!newValue) {
+            resetForm();
+        }
+    });
 </script>

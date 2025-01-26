@@ -1,26 +1,33 @@
 <template>
-  <div class="flex items-center gap-4">
-    <div class="flex items-center">
-      <SfButton square variant="secondary" :disabled="quantity <= min || loading"
-        @click="handleQuantityChange('decrease')">
-        <SfIconRemove />
-      </SfButton>
-      <input :id="inputId" type="number" :min="min" :max="max" class="appearance-none mx-2 w-8 text-center"
-        :value="quantity" @change="handleInputChange" :disabled="loading" />
-      <SfButton square variant="secondary" :disabled="quantity >= max || loading"
-        @click="handleQuantityChange('increase')">
-        <SfIconAdd />
-      </SfButton>
+  <div class="items-start xs:flex">
+    <div class="flex flex-col items-stretch xs:items-center xs:inline-flex">
+      <div class="flex border border-neutral-300 rounded-md">
+        <SfButton variant="tertiary" :disabled="count <= min" square class="rounded-r-none p-3" :aria-controls="inputId"
+          aria-label="Decrease value" @click="dec()">
+          <SfIconRemove />
+        </SfButton>
+        <input :id="inputId" v-model="count" type="number"
+          class="grow appearance-none mx-2 w-8 text-center bg-transparent font-medium [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-inner-spin-button]:display-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-outer-spin-button]:display-none [&::-webkit-outer-spin-button]:m-0 [-moz-appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none disabled:placeholder-disabled-900 focus-visible:outline focus-visible:outline-offset focus-visible:rounded-sm"
+          :min="min" :max="max" @input="handleOnChange" />
+        <SfButton variant="tertiary" :disabled="count >= max" square class="rounded-l-none p-3" :aria-controls="inputId"
+          aria-label="Increase value" @click="inc()">
+          <SfIconAdd />
+        </SfButton>
+      </div>
+      <p class="self-center mt-1 mb-4 text-xs text-neutral-500 xs:mb-0">
+        <strong class="text-neutral-900">{{ max }}</strong> in stock
+      </p>
     </div>
-
-    <SfButton :disabled="loading || !isValidProduct" @click="handleAddToCart" class="add-to-cart-button">
-      <SfIconShoppingCartCheckout class="mr-2" />
-      {{ buttonText }}
+    <SfButton size="sm" class="w-full xs:ml-4">
+      <template #prefix>
+        <SfIconShoppingCart size="sm" />
+      </template>
+      Add to cart
     </SfButton>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
   import {
     ref,
     computed,
@@ -33,129 +40,33 @@
     SfButton,
     SfIconAdd,
     SfIconRemove,
-    SfIconShoppingCartCheckout
+    SfIconShoppingCart,
   } from '@storefront-ui/vue'
   import {
-    ADD_PRODUCT_TO_CART
-  } from '~/graphql/commerce/mutations/cart/addProductToCart'
+    clamp
+  } from '@storefront-ui/shared';
   import {
-    useNotification
-  } from '~/composables/useNotification'
+    useCounter
+  } from '@vueuse/core';
 
-  const props = defineProps({
-    product: {
-      type: Object,
-      required: true,
-      validator: (prop) => {
-        return prop.id && prop.sku && prop.name && prop.price
-      }
-    },
-    cartId: {
-      type: String,
-      required: true
-    },
-    quantity: {
-      type: Number,
-      default: 1
-    },
-    loading: {
-      type: Boolean,
-      default: false
-    }
-  })
-
-  // Constants
-  const min = 1
-  const max = 99
-  const inputId = `quantity-${props.product.sku}`
-
-  // State
-  const quantity = ref(props.quantity || 1)
+  const inputId = useId();
+  const min = ref(1);
+  const max = ref(999);
   const {
-    notify
-  } = useNotification()
+    count,
+    inc,
+    dec,
+    set
+  } = useCounter(1, {
+    min: min.value,
+    max: max.value
+  });
 
-  // Cart mutation
-  const {
-    mutate: addToCart,
-    loading: addingToCart
-  } = useMutation(ADD_PRODUCT_TO_CART)
-
-  // Computed
-  const isValidProduct = computed(() => {
-    return props.product?.sku && props.product?.price && props.cartId
-  })
-
-  const buttonText = computed(() => {
-    if (addingToCart.value) return 'Adding...'
-    if (!isValidProduct.value) return 'Unavailable'
-    return 'Add to Cart'
-  })
-
-  // Methods
-  const handleQuantityChange = (action) => {
-    if (action === 'increase' && quantity.value < max) {
-      quantity.value++
-    } else if (action === 'decrease' && quantity.value > min) {
-      quantity.value--
-    }
+  function handleOnChange(event: Event) {
+    const currentValue = (event.target as HTMLInputElement)?.value;
+    const nextValue = parseFloat(currentValue);
+    set(clamp(nextValue, min.value, max.value));
   }
-
-  const handleInputChange = (event) => {
-    const value = parseInt(event.target.value)
-
-    if (isNaN(value)) {
-      quantity.value = min
-    } else if (value > max) {
-      quantity.value = max
-    } else if (value < min) {
-      quantity.value = min
-    } else {
-      quantity.value = value
-    }
-  }
-
-  const handleAddToCart = async () => {
-    if (!isValidProduct.value) return
-
-    try {
-      const {
-        data
-      } = await addToCart({
-        input: {
-          cart_id: props.cartId,
-          cart_items: [{
-            data: {
-              quantity: quantity.value,
-              sku: props.product.sku
-            }
-          }]
-        }
-      })
-
-      if (data?.addProductsToCart?.cart) {
-        notify({
-          type: 'success',
-          message: `Added ${quantity.value} ${props.product.name} to cart`
-        })
-      } else {
-        throw new Error('Failed to add product to cart')
-      }
-    } catch (error) {
-      console.error('Error adding to cart:', error)
-      notify({
-        type: 'error',
-        message: 'Failed to add item to cart'
-      })
-    }
-  }
-
-  // Watch for quantity changes to emit updates
-  watch(quantity, (newValue) => {
-    emit('update:quantity', newValue)
-  })
-
-  const emit = defineEmits(['update:quantity'])
 </script>
 
 <style scoped>

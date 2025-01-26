@@ -194,6 +194,31 @@ body {
     position: relative;
 }
 
+.cid-txNnCwzel4 .underline .line {
+    width: 5rem !important;
+    height: 3px !important;
+    background: linear-gradient(90deg, #6592e6, #ff6666) !important;
+    display: inline-block !important;
+  }
+
+.prodImage {
+    max-width: 100%;
+    max-height: 350px;
+    height: 350px;
+}
+
+.spaceImage {
+    width: 300px;
+    max-width: 100%;
+    max-height: 350px;
+    height: 350px;
+}
+
+#features19-48, #features19-48 .cid-twaIYCrSLG {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
 /******************* Authentication CSS ********/
 
 .loginForm,

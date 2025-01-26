@@ -1,84 +1,47 @@
-import { useCookie } from '#app';
+import { ref } from 'vue';
 
 export const useCart = () => {
-  const config = useRuntimeConfig();
-  const cartId = useState('cartId', () => null); // State for storing cart ID
-  const cartCookie = useCookie('cart-id'); // Cookie for persisting cart ID
+  const cartResponse = ref(null);
+  const loading = ref(false);
+  const error = ref(null);
 
-  /**
-   * Initialize the cart by creating a guest cart via Magento REST API
-   */
-  const initializeCart = async () => {
-    if (!cartCookie.value) {
-      try {
-        // Replace '${config.public.commerceUrl}' with your Magento base URL
-        const url = `${config.public.commerceUrl}/rest/V1/guest-carts`;
-
-        // Create an empty cart by calling the Magento REST API
-        const newCartId = await $fetch(url, {
-          method: 'POST',
-        });
-
-        cartId.value = newCartId; // Store the cart ID in state
-        cartCookie.value = newCartId; // Save the cart ID in a cookie
-      } catch (error) {
-        console.error('Error initializing cart:', error);
-      }
-    } else {
-      cartId.value = cartCookie.value; // Restore the cart ID from the cookie
-    }
-  };
-
-  /**
-   * Add a product to the cart
-   * @param {Object} product - The product details to add to the cart
-   */
-  const addToCart = async (product) => {
+  const addToCart = async (sku, quantity, selectedOptions = {}) => {
     try {
-      const url = `${config.public.commerceUrl}/rest/V1/guest-carts/${cartId.value}/items`;
+      loading.value = true;
+      error.value = null;
 
-      // Prepare the payload for adding a product to the cart
       const payload = {
         cartItem: {
-          quote_id: cartId.value,
-          sku: product.sku,
-          qty: product.qty,
+          sku,
+          qty: quantity,
+          product_option: {
+            extension_attributes: {
+              configurable_item_options: Object.entries(selectedOptions).map(
+                ([attributeCode, value]) => ({
+                  option_id: attributeCode,
+                  option_value: value,
+                })
+              ),
+            },
+          },
         },
       };
 
-      // Send the request to add the product
-      const response = await $fetch(url, {
+      const response = await $fetch('/rest/V1/carts/mine/items', {
         method: 'POST',
+        headers: {
+          Authorization: `Bearer ${process.env.MAGENTO_API_TOKEN}`,
+        },
         body: payload,
       });
 
-      console.log('Product added to cart:', response);
-    } catch (error) {
-      console.error('Error adding product to cart:', error);
+      cartResponse.value = response;
+    } catch (err) {
+      error.value = err.message || 'Failed to add to cart.';
+    } finally {
+      loading.value = false;
     }
   };
 
-  /**
-   * Fetch cart details
-   */
-  const getCart = async () => {
-    try {
-      const url = `${config.public.commerceUrl}/rest/V1/guest-carts/${cartId.value}`;
-      const response = await $fetch(url, {
-        method: 'GET',
-      });
-
-      console.log('Cart details:', response);
-      return response;
-    } catch (error) {
-      console.error('Error fetching cart details:', error);
-    }
-  };
-
-  return {
-    cartId,
-    initializeCart,
-    addToCart,
-    getCart,
-  };
+  return { cartResponse, loading, error, addToCart };
 };

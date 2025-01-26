@@ -127,7 +127,7 @@
     readItem,
     deleteItem
   } from '@directus/sdk'
-  import productCard from '~/components/commerce/commerce/product/productCard.vue'
+  import productCard from '~/components/commerce/product/productCard.vue'
   import updatelist from '~/components/crud/update/update-list.vue'
   import {
     useQuery

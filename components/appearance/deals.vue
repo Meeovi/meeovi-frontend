@@ -41,7 +41,7 @@
     import {
     useQuery
     } from '@vue/apollo-composable'
-    import productCard from '~/components/commerce/commerce/product/productCard.vue'
+    import productCard from '~/components/commerce/product/productCard.vue'
     import { deals } from '~/graphql/commerce/queries/deals'
     import dollarland from '~/graphql/commerce/queries/dollarland'
 

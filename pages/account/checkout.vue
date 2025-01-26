@@ -8,8 +8,8 @@
 </template>
 
 <script setup>
-import StripeCheckout from '~/components/commerce/commerce/StripeCheckout.vue'
-import StripeCardElement from '~/components/commerce/commerce/StripeCardElement.vue'
+import StripeCheckout from '~/components/commerce/StripeCheckout.vue'
+import StripeCardElement from '~/components/commerce/StripeCardElement.vue'
 
 useHead({
   title: 'Checkout',

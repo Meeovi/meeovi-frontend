@@ -102,7 +102,9 @@
         useRoute,
         useRouter
     } from 'vue-router';
-    import CREATE_ADDRESS from '~/graphql/commerce/queries/address'
+    import {
+        createCustomerAddress
+    } from '~/composables/commerce/customers/useAddresses'; // Add this import
 
     const route = useRoute();
     const router = useRouter();
@@ -131,35 +133,57 @@
 
     const createAddress = async () => {
         try {
-            const {
-                data
-            } = await apolloClient.mutate({
-                mutation: CREATE_ADDRESS,
-                variables: {
-                    city: city.value,
-                    company: company.value,
-                    country_code: country_code.value,
-                    default_billing: default_billing.value,
-                    default_shipping: default_shipping.value,
-                    fax: fax.value,
-                    firstname: firstname.value,
-                    lastname: lastname.value,
-                    middlename: middlename.value,
-                    postcode: postcode.value,
-                    prefix: prefix.value,
-                    street: street.value,
-                    suffix: suffix.value,
-                    telephone: telephone.value,
-                    vat_id: vat_id.value,
-                    region: region.value,
+            // Get customerId from wherever you store it (localStorage, Pinia store, etc)
+            const customerId = localStorage.getItem('customerId'); // Adjust this based on your auth setup
+
+            const addressData = {
+                firstname: firstname.value,
+                lastname: lastname.value,
+                middlename: middlename.value,
+                prefix: prefix.value,
+                suffix: suffix.value,
+                street: [street.value], // Magento expects street as an array
+                city: city.value,
+                country_id: country_code.value, // Note: country_code should be in ISO format (US, GB, etc)
+                region: {
+                    region: region.value
                 },
-            });
-            console.log('Address created:', data.createAddress.address);
+                postcode: postcode.value,
+                telephone: telephone.value,
+                company: company.value,
+                fax: fax.value,
+                vat_id: vat_id.value,
+                default_billing: default_billing.value,
+                default_shipping: default_shipping.value
+            };
+
+            // Determine address type based on checkboxes
+            let addressType = 'both';
+            if (default_billing.value && !default_shipping.value) {
+                addressType = 'billing';
+            } else if (!default_billing.value && default_shipping.value) {
+                addressType = 'shipping';
+            }
+
+            const result = await createCustomerAddress(customerId, addressData, addressType);
+
+            console.log('Address created successfully:', result);
+            dialog.value = false; // Close the dialog
+
+            // Show success message (you can use your preferred notification system)
+            // For example, if using Vuetify snackbar:
+            // snackbar.value = true;
+            // message.value = 'Address created successfully';
+
         } catch (error) {
             console.error('Error creating address:', error);
+            // Handle error (show error message to user)
+            // For example:
+            errorMessage.value = error.message;
         }
     };
 
+    // Modified createAddressAndRefresh function
     const createAddressAndRefresh = async () => {
         await createAddress();
         router.go(0); // Refresh the current route

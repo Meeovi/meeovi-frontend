@@ -1,27 +1,35 @@
 <template>
     <div>
-        <v-card class="mx-auto" max-width="400" height="480">
-            <NuxtImg loading="lazy" class="align-end text-white" height="200" :src="`${$directus.url}assets/${space?.image?.filename_disk}?width=600`" :alt="space?.name" cover />
+        <section data-bs-version="5.1" class="features19 cid-twaIYCrSLG" id="features19-48" data-sortbtn="btn-primary">
+            <div class="container">
+                <div class="row justify-content-center align-items-start">
 
-            <v-card-title>{{ space?.name }}</v-card-title>
-            <v-card-subtitle class="pt-4">
-                Created: {{ new Date(space?.date_created).toLocaleDateString() }}
-            </v-card-subtitle>
-
-            <v-card-text>
-                <div>Last Activity: {{ new Date(space?.date_updated).toLocaleDateString() }}</div>
-
-                <div># of Members: {{space?.totalMemberCount}}</div>
-
-                <div>Status: {{space?.status}}</div>
-
-                <div v-html="space?.description"></div>
-            </v-card-text>
-
-            <v-card-actions>
-                <v-btn color="orange" text="Explore" :href="`/social/group/${space?.id}`"></v-btn>
-            </v-card-actions>
-        </v-card>
+                    <div class="card">
+                        <a :href="`/social/group/${space?.id}`">
+                            <div class="card-wrapper flip-card">
+                                <div class="card-img">
+                                    <NuxtImg loading="lazy" class="align-end text-white spaceImage"
+                                        :src="`${$directus.url}assets/${space?.image?.filename_disk}`"
+                                        :alt="space?.name" cover />
+                                    <div class="img-text mbr-text mbr-fonts-style align-left mbr-white display-4"
+                                        style="color: white !important;">
+                                        {{ space?.type }}
+                                    </div>
+                                </div>
+                                <div class="card-box">
+                                    <p class="mbr-title mbr-fonts-style mbr-bold mbr-black display-5">
+                                        {{ space?.name }}
+                                    </p>
+                                    <p class="mbr-title mbr-fonts-style mbr-bold mbr-black display-7">
+                                        Created: {{ new Date(space?.date_created).toLocaleDateString() }}
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 </template>
 

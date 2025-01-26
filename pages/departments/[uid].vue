@@ -177,7 +177,7 @@
   import shorts from '~/components/cms/related/shorts.vue'
   import spaces from '~/components/cms/related/spaces.vue'
   import relatedspaces from '~/components/cms/related/relatedspaces.vue'
-  import productCard from '~/components/commerce/commerce/product/productCard.vue'
+  import productCard from '~/components/commerce/product/productCard.vue'
   import {
     useQuery
   } from '@vue/apollo-composable'

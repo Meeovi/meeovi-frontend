@@ -30,7 +30,7 @@
         ref
     } from 'vue'
     import addproduct from '~/components/crud/create/add-product.vue'
-    import productCard from '~/components/commerce/commerce/productCard.vue'
+    import productCard from '~/components/commerce/productCard.vue'
 
     const tab = ref(null);
 

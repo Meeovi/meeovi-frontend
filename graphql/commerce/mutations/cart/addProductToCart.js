@@ -9,14 +9,25 @@ export const ADD_PRODUCT_TO_CART = gql`
       cartItems: $cartItems
     ) {
       cart {
+      itemsV2 {
         items {
-          id
           product {
             name
             sku
           }
           quantity
         }
+        total_count
+        page_info {
+          page_size
+          current_page
+          total_pages
+        }
       }
     }
+    user_errors {
+      code
+      message
+    }
+  }
   }`

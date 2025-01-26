@@ -346,7 +346,7 @@
     import member from '~/components/cms/related/member.vue'
     import createpost from '~/components/crud/create/add-post.vue'
     import settings from '~/components/crud/update/update-space.vue'
-    import productCard from '~/components/commerce/commerce/product/productCard.vue'
+    import productCard from '~/components/commerce/product/productCard.vue'
     import shorts from '~/components/cms/related/shorts.vue'
     import posts from '~/components/cms/related/posts.vue'
     import relatedevents from '~/components/commerce/related/relatedevents.vue'

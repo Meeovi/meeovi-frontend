@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-const FETCH_PRODUCTS = gql`
+export const FETCH_PRODUCTS = gql`
  query {
   products (filter: {price: {from: "0"}}) {
     items {
@@ -29,4 +29,4 @@ const FETCH_PRODUCTS = gql`
   }
  }`
 
-export default FETCH_PRODUCTS;
+//export default FETCH_PRODUCTS;

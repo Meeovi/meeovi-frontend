@@ -1,20 +1,26 @@
 <template>
   <div class="accountPage" v-if="brand">
-    <v-card color="#1F7087" class="ma-4" elevation="0">
-      <div class="d-flex flex-no-wrap justify-space-between">
-        <div>
-          <v-card-title class="text-h5">
-            {{ brand.name }}
-          </v-card-title>
-          <v-card-subtitle>{{ brand.description }}</v-card-subtitle>
-          <v-card-subtitle>{{ brand.code }}</v-card-subtitle>
-        </div>
-        <v-avatar class="ma-3" rounded="0" size="125">
-          <NuxtImg loading="lazy" :src="`${brand.image?.filename_disk}`" :alt="brand.name" />
-        </v-avatar>
+    <section data-bs-version="5.1" class="info3 cid-tuzqZ1PJf1" id="info3-39"
+      :style="`background-image: url(${$directus.url}assets/${brand.image?.filename_disk});`">
+      <div class="mbr-overlay" style="opacity: 0.6; background-color: rgb(68, 121, 217);">
       </div>
-    </v-card>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="card col-12 col-lg-10">
+            <div class="card-wrapper">
+              <div class="card-box align-center">
+                <h4 class="card-title mbr-fonts-style align-center mb-4 display-1">
+                  <strong>{{ brand.name }}</strong>
+                </h4>
+                <p class="mbr-text mbr-fonts-style mb-4 display-7">{{ brand.code }}</p>
+                <p class="mbr-text mbr-fonts-style mb-4 display-7">{{ brand.description }}</p>
 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <!--Brand Products-->
     <v-row>
       <v-col cols="3" v-for="brand in brand?.shorts" :key="brand.id">
@@ -28,6 +34,8 @@
         <productCard :product="brand?.products_id" />
       </v-col>
     </v-row>
+
+    <relatedbrands />
   </div>
   <div v-else>
     Loading brand...
@@ -35,14 +43,20 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import shorts from '~/components/cms/related/shorts.vue'
-import productCard from '~/components/commerce/commerce/product/productCard.vue'
-import { useRuntimeConfig } from 'nuxt/app';
+  import {
+    ref,
+    onMounted
+  } from 'vue'
+  import shorts from '~/components/cms/related/shorts.vue'
+  import productCard from '~/components/commerce/product/productCard.vue'
+  import relatedbrands from '~/components/commerce/related/relatedbrands.vue'
+  import {
+    useRuntimeConfig
+  } from 'nuxt/app';
 
-const config = useRuntimeConfig();
-const route = useRoute();
-const {
+  const config = useRuntimeConfig();
+  const route = useRoute();
+  const {
     $directus,
     $readItem
   } = useNuxtApp()
@@ -51,17 +65,19 @@ const {
     data: brand
   } = await useAsyncData('brand', () => {
     return $directus.request($readItem('brands', route.params.id, {
-      fields: ['*', {
-        '*': ['*']
-      }]
+      fields: ['*',
+          'shorts.shorts_id.*',
+          'products.products_id.*',
+          'image.*'
+        ]
     }))
   })
 
-definePageMeta({
-  layout: 'nolive',
-});
+  definePageMeta({
+    layout: 'nolive',
+  });
 
-useHead({
-  title: computed(() => brand.value?.name || 'Brand Page')
-})
+  useHead({
+    title: computed(() => brand.value?.name || 'Brand Page')
+  })
 </script>

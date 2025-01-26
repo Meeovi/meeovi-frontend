@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
- const productQuery = gql`
+export const FETCH_PRODUCTS = gql`
  query Product($sku: String!) {
   products(filter: { sku: { eq: $sku } }) {
     items {
@@ -83,4 +83,4 @@ import gql from 'graphql-tag';
   }
 }`;
 
-export default FETCH_PRODUCTS;
+//export default FETCH_PRODUCTS;

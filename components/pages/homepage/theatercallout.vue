@@ -1,42 +1,38 @@
 <template>
   <div>
-    <section data-bs-version="5.1" class="features1 cid-tAGULGk3ZD" id="features1-60" :style="`background-color: ${departmentTheater.color}; color: ${departmentTheater?.colortext}`">
+    <section data-bs-version="5.1" class="features15 cid-skeBHQcNjS" id="features16-6" data-sortbtn="btn-primary"
+      :style="`background-img: url(${$directus.url}assets/${departmentTheater?.image?.filename_disk})`">
 
+      <div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(255, 255, 255);">
+      </div>
       <div class="container">
-        <div class="row main align-items-center">
-          <div class="col-md-6 image-element ">
-            <div class="img-wrap">
-              <NuxtImg loading="lazy" :src="`${$directus.url}assets/${departmentTheater?.image?.filename_disk}`" :alt="departmentTheater?.name" />
-            </div>
-          </div>
-          <div class="col-md-6 text-element">
-            <div class="text-content">
-
-              <h2 class="mbr-title pt-2 mbr-fonts-style align-center mbr-white display-2">{{ departmentTheater?.name }}</h2>
-              <div class="mbr-section-text">
-                <h4 class="mbr-text pt-3 mbr-light mbr-fonts-style align-center mbr-white display-4" v-html="departmentTheater?.description">
-                  </h4>
-                  <br>
-                  <br>
+        <div class="content-wrapper">
+          <div class="row align-items-center">
+            <div class="col-12 col-lg">
+              <div class="text-wrapper">
+                <h6 class="card-title mbr-fonts-style display-2">
+                  <strong>{{ departmentTheater?.name }}</strong>
+                </h6>
+                <p class="mbr-text mbr-fonts-style mb-4 display-4" v-html="departmentTheater?.description"></p>
+                <div class="mbr-section-btn mt-3"><a class="btn btn-warning display-4"
+                    :href="`/departments/${departmentTheater?.id}`">Start Watching</a></div>
               </div>
-              <div class="mbr-section-btn pt-3 align-center"><NuxtLink class="btn btn-md btn-white display-4" :href="`/departments/${departmentTheater?.id}`">Start Watching</NuxtLink></div>
+            </div>
+            <div class="col-12 col-lg-6">
+              <div class="image-wrapper">
+                <NuxtImg loading="lazy" :src="`${$directus.url}assets/${departmentTheater?.image?.filename_disk}`"
+                  :alt="departmentTheater?.name" />
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </section><!---->
+    </section>
   </div>
 </template>
 
-
-<script>
-export default {
-
-}
-</script>
-
 <script setup>
-const {
+  const {
     $directus,
     $readItem
   } = useNuxtApp()

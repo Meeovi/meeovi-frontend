@@ -1,31 +1,33 @@
 <template>
   <div>
-    <section data-bs-version="5.1" class="features2 cid-tAGUH8o3YK" id="features2-5z" :style="`background-color: ${departmentMusic.color}; color: ${departmentMusic?.colortext}`">
+    <section data-bs-version="5.1" class="features16 cid-skeBGL5AVt" id="features17-5" data-sortbtn="btn-primary" :style="`background-img: url(${$directus.url}assets/${departmentMusic?.image?.filename_disk})`">
 
+
+      <div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(255, 255, 255);">
+      </div>
       <div class="container">
-        <div class="row main align-items-center">
-          <div class="col-md-6 image-element ">
-            <div class="img-wrap">
-              <NuxtImg loading="lazy" :src="`${$directus.url}assets/${departmentMusic?.image?.filename_disk}`" :alt="departmentMusic?.name" />
-            </div>
-          </div>
-          <div class="col-md-6 text-element">
-            <div class="text-content">
-
-              <h2 class="mbr-title pt-2 mbr-fonts-style align-center mbr-white display-2">{{ departmentMusic?.name }}</h2>
-              <div class="mbr-section-text">
-                <h4 class="mbr-text pt-3 mbr-light mbr-fonts-style align-center mbr-white display-4" v-html="departmentMusic?.description">
-                  </h4>
-                  <br>
-                  <br>
+        <div class="content-wrapper">
+          <div class="row align-items-center">
+            <div class="col-12 col-lg-6">
+              <div class="image-wrapper">
+                <NuxtImg loading="lazy" :src="`${$directus.url}assets/${departmentMusic?.image?.filename_disk}`" :alt="departmentMusic?.name" />
               </div>
-              <div class="mbr-section-btn pt-3 align-center"><NuxtLink class="btn btn-md btn-white display-4"
-                :href="`/departments/${departmentMusic?.id}`">Start Listening</NuxtLink></div>
+            </div>
+            <div class="col-12 col-lg">
+              <div class="text-wrapper">
+                <h6 class="card-title mbr-fonts-style display-5">
+                  <strong>{{ departmentMusic?.name }}</strong>
+                </h6>
+                <p class="mbr-text mbr-fonts-style mb-4 display-4" v-html="departmentMusic?.description"></p>
+                <div class="mbr-section-btn mt-3"><a class="btn btn-primary display-4" :href="`/departments/${departmentMusic?.id}`">
+                    Learn more
+                  </a></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-  </section>
+    </section>
   </div>
 </template>
 
@@ -36,7 +38,7 @@
 </script>
 
 <script setup>
-const {
+  const {
     $directus,
     $readItem
   } = useNuxtApp()

@@ -45,7 +45,7 @@
 import { ref, computed } from 'vue'
 import { useQuery } from '@vue/apollo-composable'
 import createshowcase from '~/components/crud/create/add-showcase.vue'
-import productCard from '~/components/commerce/commerce/product/productCard.vue'
+import productCard from '~/components/commerce/product/productCard.vue'
 import showcases from '~/graphql/commerce/queries/showcases'
 
 const tab = ref(null);

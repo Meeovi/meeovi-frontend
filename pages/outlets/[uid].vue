@@ -76,7 +76,7 @@
 </template>
 
 <script setup>
-import productCard from '~/components/commerce/commerce/product/productCard.vue'
+import productCard from '~/components/commerce/product/productCard.vue'
 import { useQuery } from '@vue/apollo-composable'
 import {
   CategoryQuery,

@@ -1,24 +1,29 @@
 <template>
-    <v-sheet class="mx-auto sliderProducts row align-items-stretch items-row justify-content-center" elevation="0">
-        <v-toolbar :title="callouts?.menus?.[0]?.name" color="transparent">
-            <div><NuxtLink :to="`${callouts?.menus?.[0]?.description }`">{{ callouts?.name }}</NuxtLink></div>
-        </v-toolbar>
-        <v-slide-group v-model="model" class="pa-4" selected-class="bg-primary" show-arrows>
-            <v-slide-group-item v-for="brand in brands" :key="brand.id" v-slot="{ toggle, selectedClass }">
-                <brand :brand="brand" />
-            </v-slide-group-item>
-        </v-slide-group>
+    <section data-bs-version="5.1" class="mbr-section features20 cid-txNnCwzel4" id="features20-4t"
+        data-sortbtn="btn-primary">
+        <div class="container-fluid">
+            <h2 class="mbr-section-title align-left mbr-fonts-style display-5">
+                {{ callouts?.menus?.[0]?.name }}</h2>
+            <div class="underline align-left pb-3">
+                <div class="line"></div>
+            </div>
+            <v-sheet class="mx-auto">
+                <v-slide-group v-model="model" class="pa-4" show-arrows>
+                    <v-slide-group-item v-for="(brand, index) in brands" :key="index"
+                        v-slot="{ isSelected, toggle, selectedClass }">
+                        <brand :brand="brand" :class="['ma-4', selectedClass]" @click="toggle" />
 
-        <v-expand-transition>
-            <v-sheet v-if="model != null" height="200">
-                <div class="d-flex fill-height align-center justify-center">
-                    <h3 class="text-h6">
-                        Selected {{ model }}
-                    </h3>
-                </div>
+                        <div class="d-flex fill-height align-center justify-center">
+                            <v-scale-transition>
+                                <v-icon v-if="isSelected" color="white" icon="mdi-close-circle-outline"
+                                    size="48"></v-icon>
+                            </v-scale-transition>
+                        </div>
+                    </v-slide-group-item>
+                </v-slide-group>
             </v-sheet>
-        </v-expand-transition>
-    </v-sheet>
+        </div>
+    </section>
 </template>
 
 <script setup>
@@ -27,7 +32,7 @@
         onMounted
     } from 'vue'
     import brand from '~/components/commerce/related/brands.vue'
-    
+
     const {
         $directus,
         $readItems,
@@ -46,8 +51,8 @@
     })
 
     const {
-    data: callouts
-  } = await useAsyncData('callouts', () => {
-    return $directus.request($readItem('callouts', '3'))
-  })
+        data: callouts
+    } = await useAsyncData('callouts', () => {
+        return $directus.request($readItem('callouts', '3'))
+    })
 </script>
