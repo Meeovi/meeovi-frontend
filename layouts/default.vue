@@ -10,7 +10,7 @@
       <v-app-bar-title>
         <NuxtLink class="logobrand" href="/">
           <v-icon start color="orange">
-            <NuxtImg loading="lazy" :src="`${$directus.url}assets/${blocksSiteoverview?.media?.[0]?.directus_files_id?.filename_disk}`" :alt="blocksSiteoverview?.name" />
+            <NuxtImg loading="lazy" :src="`${$directus?.url}assets/${blocksSiteoverview?.media?.[0]?.directus_files_id?.filename_disk}`" :alt="blocksSiteoverview?.name" />
           </v-icon>
           {{ blocksSiteoverview?.name }}<!--Meeovi-->
         </NuxtLink>
@@ -22,7 +22,7 @@
 
       <div class="d-flex align-center flex-column flex-sm-row fill-height">
         <v-col class="notificationsHeader">
-          <LayoutNotifications />
+          <notificationBell />
         </v-col>
 
         <v-col class="ecosystemMenuIcon">
@@ -49,8 +49,8 @@
       <v-card>
         <v-layout>
           <v-navigation-drawer class="sidebarSection" v-model="drawer" temporary>
-            <div v-if="userStore.isLoggedIn">
-              <v-toolbar :title="`Welcome, ${userEmail}`" color="info"></v-toolbar>
+            <div v-if="user">
+              <v-toolbar :title="`Welcome, ${user?.username}`" color="info"></v-toolbar>
             </div>
             <div class="drawer-content">
             <v-list nav>
@@ -127,7 +127,7 @@
   import departmentsmenu from '~/components/menus/sidebar/departmentsmenu.vue'
   import outlets from '~/components/menus/sidebar/outletsmenu.vue'
   import myaccountmenu from '~/components/menus/sidebar/myaccountmenu.vue'
-  import LayoutNotifications from '~/components/menus/LayoutNotifications.vue'
+  import notificationBell from '~/components/partials/notificationBell.vue'
   import mobilesearch from '~/components/menus/topmenu/mobilesearch.vue'
   import myaccounttopmenu from '~/components/menus/topmenu/myaccounttopmenu.vue'
   import bottomsidebarmenu from '~/components/menus/sidebar/bottomsidebarmenu.vue'
@@ -139,34 +139,21 @@
     ref
   } from 'vue';
   //import logout from '~/components/authentication/logout'
-  import {
-    useUserStore
-  } from '~/stores/user'
+
   import {
     useRouter
   } from 'vue-router'
 
-  const userStore = useUserStore()
+  const { user, loading, signOut } = useAuth()
 
 // Initialize user state
-await userStore.init()
 const drawer = ref(null);
 const rail = ref(true);
 const location = ref('bottom');
 const loaded = ref(false);
-const loading = ref(false);
 
 const router = useRouter()
 const route = useRoute()
-const user = useCurrentUser()
-
-const userDisplayName = computed(() => {
-    return userStore.user?.name || userStore.user?.username || 'User'
-  })
-
-  const userEmail = computed(() => {
-    return userStore.user?.email || ''
-  })
 
 // we don't need this watcher on server
 onMounted(() => {

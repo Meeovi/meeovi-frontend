@@ -64,7 +64,6 @@
   } from '@storefront-ui/vue'
   import list from '~/components/commerce/related/lists.vue'
   import createlist from '~/components/crud/create/add-list.vue'
-  import alert from '~/components/partials/alert.vue'
 
   const loading = ref(false)
 

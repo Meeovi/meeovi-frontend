@@ -11,7 +11,7 @@
                                 </div>
                             </div>
                             <p class="card-text mbr-fonts-style display-4">{{ list?.name }}</p>
-                            <p class="card-text mbr-fonts-style display-4">Type: <div v-html="list?.type"></div></p>
+                            Type: <p class="card-text mbr-fonts-style display-4" v-html="list?.type"></p>
                             <p class="card-text mbr-fonts-style display-4">{{ list?.description }}
                             </p>
                             <p class="btn_link mbr-fonts-style display-4"><NuxtLink :to="`/commerce/list/${list?.id}`"

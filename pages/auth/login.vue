@@ -14,16 +14,18 @@
               </h2>
             </div>
             <div class="form-wrap">
-              <div class="mbr-form" data-form-type="formoid">
-                <div v-if="!userStore.isLoggedIn">
-                  <v-btn @click="signInWithGoogle" class="gBtn">Sign in with Google</v-btn>
-                  <div id="firebaseui-auth-container" v-if="showFirebaseUI"></div>
+              <form class="row flex-center flex" @submit.prevent="handleLogin">
+                <div class="col-6 form-widget">
+                  <p class="description">Sign in via magic link with your email below</p>
+                  <div>
+                    <input class="inputField" type="email" placeholder="Your email" v-model="email" />
+                  </div>
+                  <div>
+                    <input type="submit" class="button block" :value="loading ? 'Loading' : 'Send magic link'"
+                      :disabled="loading" />
+                  </div>
                 </div>
-                <div v-else>
-                  <p class="align-center">Welcome {{ userStore.user.displayName }}</p>
-                  <v-btn @click="signOut">Sign Out</v-btn>
-                </div>
-              </div>
+              </form>
             </div>
             <p class="comment-text mbr-fonts-style align-center mb-0 display-7">
               We respect your privacy, so we never will share your info.
@@ -36,92 +38,32 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from 'vue'
-import { useFirebaseAuth } from 'vuefire'
-import * as firebaseui from 'firebaseui'
-import 'firebaseui/dist/firebaseui.css'
-import { signInWithPopup, GoogleAuthProvider, EmailAuthProvider, signOut as firebaseSignOut } from 'firebase/auth'
-import { useRouter } from 'vue-router'
-import { useUserStore } from '~/stores/user'
+import { ref } from 'vue'
+import { createClient } from '@supabase/supabase-js'
 
-const userStore = useUserStore()
-const auth = useFirebaseAuth()
-const provider = new GoogleAuthProvider()
-const router = useRouter()
-const showFirebaseUI = ref(false)
+const loading = ref(false)
+const email = ref('')
 
-const config = {
-  signInOptions: [
-    EmailAuthProvider.PROVIDER_ID,
-  ],
-  callbacks: {
-    signInSuccessWithAuthResult(authResult, redirectUrl) {
-      console.log("Sign-in success callback triggered");
-      console.log("Auth result:", authResult);
-      console.log("Redirect URL:", redirectUrl);
-      
-      userStore.setUser(authResult.user)
-      router.push('/')
-      
-      return false;
-    },
-    uiShown() {
-      console.log("FirebaseUI widget rendered");
-    },
-    signInFailure(error) {
-      console.error('Authentication failed:', error);
-    },
-  },
-}
+// Initialize Supabase client
+const supabase = createClient(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_KEY
+)
 
-const signInWithGoogle = async () => {
+const handleLogin = async () => {
   try {
-    const result = await signInWithPopup(auth, provider)
-    userStore.setUser(result.user)
-    console.log('User signed in:', result.user)
-    await router.push('/')
+    loading.value = true
+    const { error } = await supabase.auth.signInWithOtp({ email: email.value })
+    if (error) throw error
+    alert('Check your email for the login link!')
   } catch (error) {
-    console.error('Error during sign in:', error)
-    if (error.code === 'auth/popup-closed-by-user') {
-      // Display a user-friendly message, e.g., using a toast notification
-      alert('Sign-in was cancelled. Please try again if you want to sign in.')
-    }
+    alert(error.error_description || error.message)
+  } finally {
+    loading.value = false
   }
 }
-
-
-const signOut = async () => {
-  try {
-    await firebaseSignOut(auth)
-    userStore.clearUser()
-    console.log('User signed out')
-    await router.push('/auth/login')
-  } catch (error) {
-    console.error('Error signing out:', error)
-  }
-}
-
-const initializeFirebaseUI = () => {
-  if (document.getElementById('firebaseui-auth-container')) {
-    const ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(auth)
-    ui.start("#firebaseui-auth-container", config)
-  } else {
-    console.error('FirebaseUI container not found')
-  }
-}
-
-onMounted(() => {
-  showFirebaseUI.value = true
-})
-
-watch(showFirebaseUI, (newValue) => {
-  if (newValue) {
-    // Use setTimeout to ensure the DOM has updated
-    setTimeout(initializeFirebaseUI, 0)
-  }
-})
 
 definePageMeta({
   layout: 'auth',
-});
+})
 </script>

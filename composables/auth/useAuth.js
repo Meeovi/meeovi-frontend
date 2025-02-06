@@ -1,21 +1,38 @@
-// composables/auth/useAuth.js
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { ref, onMounted } from 'vue'
+import { createClient } from '@supabase/supabase-js'
 
 export const useAuth = () => {
-  const signIn = async (email, password) => {
-    const auth = getAuth();
-    try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const idToken = await userCredential.user.getIdToken();
-      
-      // Store token in cookies or localStorage for subsequent requests
-      useCookie('authToken').value = idToken;
-      
-      return userCredential.user;
-    } catch (error) {
-      console.error('Sign in error:', error);
-    }
-  };
+  const user = ref(null)
+  const loading = ref(true)
 
-  return { signIn };
-};
+  const supabase = createClient(
+    process.env.SUPABASE_URL,
+    process.env.SUPABASE_KEY
+  )
+
+  onMounted(async () => {
+    // Get initial session
+    const { data: { session } } = await supabase.auth.getSession()
+    user.value = session?.user ?? null
+    loading.value = false
+
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
+      user.value = session?.user ?? null
+    })
+
+    // Cleanup subscription on unmount
+    return () => subscription.unsubscribe()
+  })
+
+  const signOut = async () => {
+    const { error } = await supabase.auth.signOut()
+    if (error) throw error
+  }
+
+  return {
+    user,
+    loading,
+    signOut
+  }
+}

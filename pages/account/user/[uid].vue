@@ -29,7 +29,9 @@
                                         </v-list>
                                     </h4>
 
-                                    <followButton />
+                                    <!-- Conditionally render the follow button -->
+                                    <followButton v-if="user.id !== loggedInUserId" :entityId="user.id"
+                                        entityType="user" />
                                 </div>
                             </div>
                         </div>
@@ -121,6 +123,8 @@
         return userStore.name || userStore.username || 'User'
     })
 
+    const user = ref(null); // User being viewed
+    const loggedInUserId = ref(null); // Logged-in user ID from Firebase Auth
     const tab = ref(null);
     const route = useRoute()
 
@@ -140,7 +144,7 @@
         return $directus.request($readItems('shorts', {
             filter: {
                 creator: {
-                    _eq: `${userDisplayName.value}`
+                    _eq: `${userStore.user.displayName}`
                 }
             },
             fields: ['*', {
@@ -155,7 +159,7 @@
         return $directus.request($readItems('posts', {
             filter: {
                 username: {
-                    _eq: `${userDisplayName.value}`
+                    _eq: `${userStore.user.displayName}`
                 }
             },
             fields: ['*', {
@@ -163,6 +167,14 @@
             }]
         }))
     })
+
+    // Get the logged-in user's ID
+    onMounted(() => {
+        const currentUser = $firebaseAuth.currentUser;
+        if (currentUser) {
+            loggedInUserId.value = currentUser.uid;
+        }
+    });
 
     useHead({
         title: userStore?.user?.displayName || 'User Profile',

@@ -14,12 +14,11 @@
                         </v-col>
                         <v-divider></v-divider>
                         <v-col cols="6">
-                            <v-select v-model="status" :items="['Enable', 'Disable']" label="Enable Product">
-                            </v-select>
+                            <v-select v-model="status" :items="['Enable', 'Disable']" label="Status*"></v-select>
                         </v-col>
                         <v-col cols="6">
-                            <v-select v-model="type" :items="['0-17']" label="Product Type*">
-                            </v-select>
+                            <v-select v-model="type" :items="['simple', 'configurable', 'virtual', 'downloadable']"
+                                label="Product Type*"></v-select>
                         </v-col>
                         <v-col cols="12">
                             <v-text-field v-model="name" label="Product Name*" required></v-text-field>
@@ -31,10 +30,12 @@
                             <v-text-field v-model="price" type="number" label="Price*" required></v-text-field>
                         </v-col>
                         <v-col cols="6">
-                            <v-select v-model="tax_class"
-                                :items="['Taxable Goods', 'Refund Adjustments', 'Gift Options', 'Order Gift Wrapping', 'Item Gift Wrapping', 'Printed Gift Goods', 'Rewards Points']"
-                                label="Tax Class">
-                            </v-select>
+                            <v-select v-model="tax_class" :items="[
+    { text: 'None', value: 0 },
+    { text: 'Taxable Goods', value: 2 },
+    { text: 'Shipping', value: 4 }
+]" label="Tax Class"></v-select>
+
                         </v-col>
                         <v-col cols="6">
                             <v-text-field v-model="quantity_per_source" type="number" label="Quantity"></v-text-field>
@@ -46,7 +47,8 @@
                             <v-text-field v-model="height" type="number" label="Height"></v-text-field>
                         </v-col>
                         <v-col cols="6">
-                            <v-autocomplete v-model="catalog_visibility" :items="['public', 'private']" label="Visibility">
+                            <v-autocomplete v-model="catalog_visibility" :items="['public', 'private']"
+                                label="Visibility">
                             </v-autocomplete>
                         </v-col>
                         <v-col cols="6">
@@ -147,7 +149,9 @@
     import {
         ref
     } from 'vue'
-    import { useRuntimeConfig } from '#imports';
+    import {
+        useRuntimeConfig
+    } from '#imports';
     import editor from '~/components/partials/editor.vue'
 
     const config = useRuntimeConfig();
@@ -176,59 +180,82 @@
 
     const createProduct = async () => {
         try {
-            const response = await $fetch(`${config.public.wordpressUrl}/wp-json/dokan/v1/products/`, {
+            const CREATE_PRODUCT = `
+            mutation createProduct(
+                $name: String!
+                $sku: String!
+                $price: Float!
+                $status: Int!
+                $type: String!
+                $weight: Float
+                $description: String
+                $short_description: String
+                $tax_class_id: Int
+            ) {
+                createSimpleProduct(
+                    input: {
+                        name: $name
+                        sku: $sku
+                        price: $price
+                        status: $status
+                        weight: $weight
+                        type_id: $type
+                        description: { html: $description }
+                        short_description: { html: $short_description }
+                        tax_class_id: $tax_class_id
+                        attribute_set_id: 4
+                    }
+                ) {
+                    product {
+                        id
+                        name
+                        sku
+                        price {
+                            regularPrice {
+                                amount {
+                                    value
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        `;
+
+            const variables = {
+                name: name.value,
+                sku: sku.value,
+                price: parseFloat(price.value),
+                status: status.value === 'Enable' ? 1 : 2,
+                type: "simple",
+                weight: parseFloat(weight.value),
+                description: description.value,
+                short_description: short_description.value,
+                tax_class_id: parseInt(tax_class.value)
+            };
+
+            const response = await fetch(`${config.public.commerceUrl}/graphql`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${config.public.wordpressToken}`
+                    'Authorization': `Bearer ${config.public.commerceApiToken}`
                 },
                 body: JSON.stringify({
-                    name: name.value,
-                    short_description: short_description.value,
-                    description: description.value,
-                    image: image.sourceUrl.value,
-                    sku: sku.value,
-                    height: height.value,
-                    weight: weight.value,
-                    tax_status: tax_status.value,
-                    price: price.value,
-                    tax_class: tax_class.value,
-                    catalog_visibility: catalog_visibility.value,
-                    categories: categories.name.value,
-                    manufacture: manufacture.value,
-                    country: country.value,
-                    type: type.value,
-                    brand: brand.value,
-                    width: width.value,
-                    format: format.value,
-                    related_ids: related_ids.value,
-                    status: 'publish',
+                    query: CREATE_PRODUCT,
+                    variables
                 })
-            })
+            });
 
-            console.log(response);
-
-            if (response.id) {
-                successMessage.value = 'Product created successfully!'
-                errorMessage.value = ''
-            } else {
-                throw new Error('Failed to create product')
+            const result = await response.json();
+            if (result.errors) {
+                throw new Error(result.errors[0].message);
             }
+
+            successMessage.value = 'Product created successfully';
         } catch (error) {
-            console.error('Error creating product:', error);
-            if (error.response) {
-                console.error('Error response:', error.response);
-                if (error.response.status === 403) {
-                    errorMessage.value = 'You do not have permission to create a product.'
-                } else {
-                    errorMessage.value = `Error: ${error.response.status} ${error.response.statusText}`
-                }
-            } else {
-                errorMessage.value = error.message
-            }
-            successMessage.value = ''
+            errorMessage.value = error.message;
         }
-    }
+    };
 
     useHead({
         title: 'Create Product',

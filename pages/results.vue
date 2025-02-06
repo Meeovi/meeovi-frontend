@@ -21,7 +21,9 @@
         <v-main>
           <v-tabs class="searchSection" center-active v-model="tab" bg-color="transparent">
             <v-tab value="one">All Results</v-tab>
-            <v-tab v-for="(menu, index) in searchbar?.menus" :key="index"><NuxtLink :to="menu?.url">{{ menu?.name }}</NuxtLink></v-tab>
+            <v-tab v-for="(menu, index) in searchbar?.menus" :key="index">
+              <NuxtLink :to="menu?.url">{{ menu?.name }}</NuxtLink>
+            </v-tab>
           </v-tabs>
 
           <v-card-text>
@@ -108,15 +110,22 @@
   import newsSearch from '~/components/search/results/newsSearch.vue'
   import financeSearch from '~/components/search/results/financeSearch.vue'
   import booksSearch from '~/components/search/results/booksSearch.vue'
+
   import {
-    liteClient as algoliasearch
-  } from 'algoliasearch/lite';
+    instantMeiliSearch
+  } from "@meilisearch/instant-meilisearch";
+  import "instantsearch.css/themes/satellite-min.css";
+
   import {
     useRuntimeConfig
   } from '#imports';
 
   const config = useRuntimeConfig();
-  const searchClient = algoliasearch(config.public.appId, config.public.apiKey);
+  // Initialize MeiliSearch client
+  const searchClient = instantMeiliSearch(
+    `${config.public.meilisearch.host}`, // Replace with your MeiliSearch host
+    `${config.public.meilisearch.searchApiKey}` // Replace with your MeiliSearch API key
+  )
 
   const tab = ref(null);
   const drawer = ref(null);

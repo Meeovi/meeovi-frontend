@@ -39,15 +39,7 @@ export default defineNuxtConfig({
           async: true
         },
         {
-          src: `https://www.paypal.com/sdk/js?client-id=${process.env.PAYPAL_CLIENT_ID}&buyer-country=US&currency=USD&components=buttons,card-fields&enable-funding=venmo`,
-          async: true
-        },
-        {
           src: `${process.env.NUXT_PUBLIC_COMMENTS_URL}/comments/embed.js`,
-          async: true
-        },
-        {
-          src: `https://app3.weatherwidget.org/js/?id=ww_217f04fb5b512`,
           async: true
         },
       ],
@@ -56,14 +48,6 @@ export default defineNuxtConfig({
 
   appConfig: {
     titleSuffix: 'Meeovi',
-  },
-
-  components: {
-    dirs: [
-      '~/components/search/atoms',
-      '~/components/search/molecules',
-      '~/components/search/organisms'
-    ]
   },
 
   css: [
@@ -94,7 +78,6 @@ export default defineNuxtConfig({
   ],
 
   modules: [
-    "@vueuse/nuxt",
     "@nuxt/image",
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
@@ -108,7 +91,6 @@ export default defineNuxtConfig({
     '@nuxtjs/partytown',
     '@nuxt/scripts',
     'nuxt-booster',
-    '@nuxtjs/algolia',
     'nuxt-link-checker',
     '@nuxtjs/sitemap',
     (_options, nuxt) => {
@@ -137,7 +119,7 @@ export default defineNuxtConfig({
       permissionsPolicy: false
     }
   },
-
+  
   booster: {
     optimizeSSR: {
       cleanPreloads: true,
@@ -188,25 +170,6 @@ export default defineNuxtConfig({
 		},
   },
 
-  algolia: {
-    apiKey: process.env.ALGOLIA_API_KEY,
-    applicationId: process.env.ALGOLIA_APPLICATION_ID,
-    globalIndex: process.env.ALGOLIA_INDEX_NAME,
-    lite: true,
-    cache: false,
-    instantSearch: {
-      theme: 'algolia'
-    },
-    useFetch: false,
-    crawler: {
-      apiKey: process.env.ALGOLIA_CRAWLER_ID  || '',
-      indexName: process.env.ALGOLIA_INDEX_NAME || '',
-      meta: ['title', 'description'],
-      include: () => true
-    },
-    recommend: true,
-  },
-
   // https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/prisma-nuxt-module#configuration
   /* prisma: {
      installCli: false,
@@ -226,24 +189,6 @@ export default defineNuxtConfig({
       comment: 'Allow Google AdsBot to index the login page but no-admin pages'
     }, ]
   },
-
-  /*auth: {
-    isEnabled: true,
-    disableServerSideAuth: false,
-    globalAppMiddleware: false,
-    originEnvKey: 'AUTH_ORIGIN',
-    baseURL: `http://localhost:3011/api/auth`,
-    provider: {
-      type: 'authjs',
-      trustHost: false,
-      defaultProvider: 'credentials',
-      addDefaultCallbackUrl: true
-    },
-    sessionRefresh: {
-      enablePeriodically: true,
-      enableOnWindowFocus: true,
-    }
-  },*/
 
   vuefire: {
     emulators: {
@@ -291,10 +236,12 @@ export default defineNuxtConfig({
       websiteURL: process.env.GRAPHQL_HOST,
       websiteToken: process.env.GRAPHQL_TOKEN,
 
-      //Algolia
-      appId: process.env.ALGOLIA_APPLICATION_ID,
-      apiKey: process.env.ALGOLIA_API_KEY,
-      indexName: process.env.ALGOLIA_INDEX_NAME,
+      // Supabase
+
+      supabase: {
+        url: process.env.SUPABASE_URL,
+        key: process.env.SUPABASE_KEY,
+      },
 
       // Graphql
       //websiteURL: process.env.GQL_HOST,
@@ -323,7 +270,7 @@ export default defineNuxtConfig({
           primaryKey: 'id',
           keepZeroFacets: false,
           finitePagination: false
-        }
+        },
       },
 
       // Magento 
@@ -348,6 +295,10 @@ export default defineNuxtConfig({
 
       // Comments
       commentsUrl: process.env.NUXT_COMMENT_ID,
+
+      // Websockets
+      websocketUrl: process.env.NUXT_WEBSOCKET_URL
+
   },
   stripeSecretKey: process.env.STRIPE_SECRET_KEY,
 	stripeWebhookSecret: process.env.STRIPE_WEBHOOK_SECRET,
@@ -363,9 +314,7 @@ export default defineNuxtConfig({
       "@fortawesome/free-brands-svg-icons",
       'firebaseui',
       'firebase/auth',
-      'firebase/app',
-      'dialog-polyfill',
-      'v-perfect-signature'
+      'firebase/app'
     ],
   },  
 
@@ -374,7 +323,7 @@ export default defineNuxtConfig({
       'process.env.DEBUG': false,
     },
     optimizeDeps: {
-      include: ['algoliasearch/lite', 'firebase/auth', 'firebase/app'],
+      include: ['firebase/auth', 'firebase/app'],
     },
     ssr: {
       noExternal: ['vuetify']
@@ -391,7 +340,10 @@ export default defineNuxtConfig({
       routes: [
         '/assets/images/*',
       ]
-    }
+    },
+    experimental: {
+      websocket: true
+    },
   },
 
   compatibilityDate: '2024-12-11',

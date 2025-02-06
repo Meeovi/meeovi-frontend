@@ -82,8 +82,8 @@
 
                   <div class="d-flex align-center gap-4">
 
-                    <addToCartBtn v-if="productData && cartId" :product="productData" :cartId="cartId"
-                      :quantity="count" :loading="loading" @add-to-cart="handleAddToCart" />
+                    <addToCartBtn v-if="productData.stock_status === 'IN_STOCK'" :product="productData"
+                      @item-added="handleItemAdded" />
                     <v-btn v-else disabled variant="outlined">
                       Unable to add to cart
                     </v-btn>
@@ -221,6 +221,21 @@
       </v-row>
     </div>
     <div v-else>No product found</div>
+
+    <!-- Enhanced success snackbar -->
+    <v-snackbar v-model="showSuccessSnackbar" color="success" timeout="3000" :loading="cartStore.loading">
+      <template v-if="cartStore.error">
+        {{ cartStore.error }}
+      </template>
+      <template v-else>
+        Item added to cart successfully!
+      </template>
+      <template v-slot:actions>
+        <v-btn variant="text" @click="showSuccessSnackbar = false">
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 
@@ -255,6 +270,10 @@
   import sizeOptions from '~/components/commerce/product/sizeOptions.vue'
   import shippingOptions from '~/components/commerce/product/shippingOptions.vue'
   //import productQty from '~/components/commerce/product/productQty.vue'
+  import {
+    useCartStore
+  } from '~/stores/cart'
+  import debounce from 'lodash/debounce'
 
   import {
     product
@@ -269,7 +288,7 @@
   } from '~/graphql/commerce/queries/products.js'
   import {
     useCart
-  } from '~/composables/commerce/useCart';
+  } from '~/composables/commerce/cart/useCart';
 
   const isValidProduct = computed(() => !!productData.value);
   const cartId = ref(null)
@@ -280,6 +299,8 @@
   const colors = ref([]);
   const selectedSize = ref(null);
   const selectedColor = ref(null);
+  const showSuccessSnackbar = ref(false)
+  const cartStore = useCartStore()
   // Add mutation for creating cart
   const CREATE_CART = gql`
   mutation createEmptyCart {
@@ -347,17 +368,64 @@
     if (!result.value?.products?.items?.[0]) return null
 
     const product = result.value.products.items[0];
-
-    // Format the product data to match what AddToCartBtn expects
     return {
       id: product.uid,
       sku: route.params.sku,
       name: product.name,
       price: product.price_range.minimum_price.regular_price.value,
-      quantity: count.value,
-      // Include any other required fields your AddToCartBtn component expects
       image: product.image?.url,
-      stock_status: product.stock_status
+      stock_status: product.stock_status,
+      description: product.description?.html,
+      // Include any other required fields your AddToCartBtn component expects
+    }
+  })
+
+  // Enhance your existing handleItemAdded with debouncing and store integration
+  const handleItemAdded = debounce(async () => {
+    try {
+      if (!productData.value) return
+
+      // Update global cart state using Pinia store
+      await cartStore.addToCart({
+        product: productData.value,
+        quantity: 1 // or use your quantity value if you have one
+      })
+
+      showSuccessSnackbar.value = true
+
+      // Emit analytics event
+      emitAnalyticsEvent('add_to_cart', {
+        product_id: productData.value.id,
+        product_name: productData.value.name,
+        price: productData.value.price
+      })
+    } catch (error) {
+      console.error('Error updating cart:', error)
+    }
+  }, 300)
+
+  // Add analytics utility function
+  const emitAnalyticsEvent = (eventName, eventData) => {
+    // Implement your analytics tracking here
+    console.log('Analytics event:', eventName, eventData)
+  }
+
+  // Modify your existing onMounted
+  onMounted(async () => {
+    // Load saved cart state
+    cartStore.loadCart()
+
+    // Your existing cart initialization
+    if (!cartId.value) {
+      try {
+        const {
+          data
+        } = await createCart()
+        cartId.value = data.createEmptyCart
+        localStorage.setItem('cart_id', cartId.value)
+      } catch (error) {
+        console.error('Failed to initialize cart:', error)
+      }
     }
   })
 

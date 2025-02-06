@@ -22,7 +22,7 @@
 
       <div class="d-flex align-center flex-column flex-sm-row fill-height">
         <v-col class="notificationsHeader">
-          <LayoutNotifications />
+          <notificationBell />
         </v-col>
 
         <v-col class="ecosystemMenuIcon">
@@ -43,12 +43,14 @@
       </div>
     </v-app-bar>
 
+    
+
     <v-main>
       <v-card>
         <v-layout>
           <v-navigation-drawer class="sidebarSection" v-model="drawer" temporary>
-            <div v-if="userStore.isLoggedIn">
-              <v-toolbar :title="`Welcome, ${userEmail}`" color="info"></v-toolbar>
+            <div v-if="user">
+              <v-toolbar :title="`Welcome, ${user?.username}`" color="info"></v-toolbar>
             </div>
             <div class="drawer-content">
             <v-list nav>
@@ -94,9 +96,9 @@
 
           <v-main id="sidebarNav"></v-main>
           <main id="mainSection">
+            <!--<announcements />-->
+            <LowerBar />
             <div>
-              <!--<announcements />-->
-              <LowerBar />
               <slot />
             </div>
           </main>
@@ -120,12 +122,11 @@
   import departmentsmenu from '~/components/menus/sidebar/departmentsmenu.vue'
   import outlets from '~/components/menus/sidebar/outletsmenu.vue'
   import myaccountmenu from '~/components/menus/sidebar/myaccountmenu.vue'
-  import LayoutNotifications from '~/components/menus/LayoutNotifications.vue'
+  import notificationBell from '~/components/partials/notificationBell.vue'
   import mobilesearch from '~/components/menus/topmenu/mobilesearch.vue'
   import myaccounttopmenu from '~/components/menus/topmenu/myaccounttopmenu.vue'
   import bottomsidebarmenu from '~/components/menus/sidebar/bottomsidebarmenu.vue'
   import LowerBar from '~/components/LowerBar.vue'
-  import BottomFooter from '~/components/BottomFooter'
   import FooterNav from '~/components/FooterNav'
   import cart from '~/components/menus/topmenu/cart.vue'
   import announcements from '~/components/partials/announcements.vue'
@@ -133,14 +134,12 @@
     ref
   } from 'vue';
   //import logout from '~/components/authentication/logout'
-  import {
-    useUserStore
-  } from '~/stores/user'
+
   import {
     useRouter
   } from 'vue-router'
 
-  const userStore = useUserStore()
+  const user = useSupabaseUser()
 
 // Initialize user state
 await userStore.init()
@@ -152,15 +151,6 @@ const loading = ref(false);
 
 const router = useRouter()
 const route = useRoute()
-const user = useCurrentUser()
-
-const userDisplayName = computed(() => {
-    return userStore.user?.name || userStore.user?.username || 'User'
-  })
-
-  const userEmail = computed(() => {
-    return userStore.user?.email || ''
-  })
 
 // we don't need this watcher on server
 onMounted(() => {

@@ -7,9 +7,9 @@
         </NuxtLink>
       </template>
       <v-list>
-        <v-row class="accountDropdown" v-if="userStore.isLoggedIn">
+        <v-row class="accountDropdown" v-if="user">
           <v-col cols="12">
-            <v-toolbar :title="`Welcome, ${userEmail}`" color="info"></v-toolbar>
+            <v-toolbar :title="`Welcome, ${user?.username}`" color="info"></v-toolbar>
           </v-col>
           <v-col cols="6">
             <h6>{{ nav?.name }}</h6>
@@ -71,13 +71,10 @@
     ref
   } from 'vue';
   import {
-    useUserStore
-  } from '~/stores/user'
-  import {
     useRouter
   } from 'vue-router'
 
-  const userStore = useUserStore()
+  const { user } = useAuth()
   const router = useRouter()
 
   const { $directus, $readItem } = useNuxtApp()
@@ -93,14 +90,6 @@
 
   const location = ref('bottom');
   const showLogoutConfirmation = ref(false)
-
-  const userDisplayName = computed(() => {
-    return userStore.user?.name || userStore.user?.username || 'User'
-  })
-
-  const userEmail = computed(() => {
-    return userStore.user?.email || ''
-  })
 
   const login = () => {
     router.push('/auth/login')

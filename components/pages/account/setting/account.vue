@@ -1,121 +1,97 @@
 <template>
-  <v-card>
-    <v-card-title>Account Information</v-card-title>
-    <v-card-text>
-      <v-alert v-if="errorMessage" type="error" dense>{{ errorMessage }}</v-alert>
-      <v-alert v-if="successMessage" type="success" dense>{{ successMessage }}</v-alert>
-      <v-form @submit.prevent="saveAccountInfo">
-        <v-text-field v-model="firstName" label="First Name" :disabled="isLoading"></v-text-field>
-        <v-text-field v-model="lastName" label="Last Name" :disabled="isLoading"></v-text-field>
-        <v-text-field v-model="email" label="Email" type="email" :disabled="isLoading"></v-text-field>
-        <v-text-field v-model="phone" label="Phone Number" :disabled="isLoading"></v-text-field>
+  <form class="form-widget" @submit.prevent="updateProfile">
+    <avatar v-model:path="avatar_path" @upload="updateProfile" />
+    <div>
+      <label for="email">Email</label>
+      <input id="email" type="text" :value="user.email" disabled />
+    </div>
+    <div>
+      <label for="username">Username</label>
+      <input id="username" type="text" v-model="username" />
+    </div>
+    <div>
+      <label for="website">Website</label>
+      <input id="website" type="url" v-model="website" />
+    </div>
 
-        <p>Reset Password (if needed)</p>
-        <v-text-field v-model="password" label="Current Password" type="password" :disabled="isLoading"></v-text-field>
-        <v-text-field v-model="newpassword" label="New Password" type="password" :disabled="isLoading"></v-text-field>
-        <v-btn type="submit" color="primary" :loading="isLoading" :disabled="isLoading">
-          Save Changes
-        </v-btn>
-      </v-form>
-    </v-card-text>
-  </v-card>
+    <div>
+      <input type="submit" class="button primary block" :value="loading ? 'Loading ...' : 'Update'"
+        :disabled="loading" />
+    </div>
+
+    <div>
+      <button class="button block" @click="signOut" :disabled="loading">Sign Out</button>
+    </div>
+  </form>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import { useRuntimeConfig } from 'nuxt/app'
+  import Avatar from '~/components/authentication/avatar.vue'
 
-const config = useRuntimeConfig()
+  const supabase = useSupabaseClient()
 
-const firstName = ref('')
-const lastName = ref('')
-const email = ref('')
-const phone = ref('')
-const password = ref('')
-const newpassword = ref('')
-const isLoading = ref(false)
-const errorMessage = ref('')
-const successMessage = ref('')
+  const loading = ref(true)
+  const username = ref('')
+  const website = ref('')
+  const avatar_path = ref('')
 
-// Magento API endpoints
-const CUSTOMER_INFO_ENDPOINT = '/V1/customers/me'
+  loading.value = true
+  const user = useSupabaseUser()
 
-// Assuming you have a way to get the customer's token (e.g., from Vuex store or localStorage)
-const getCustomerToken = () => {
-  // Implement this function to return the customer's token
-  return localStorage.getItem('customer_token')
-}
+  const {
+    data
+  } = await supabase
+    .from('profiles')
+    .select(`username, website, avatar_url`)
+    .eq('id', user.value.id)
+    .single()
 
-onMounted(async () => {
-  await fetchAccountInfo()
-})
-
-const fetchAccountInfo = async () => {
-  try {
-    isLoading.value = true
-    const customerData = await $fetch(CUSTOMER_INFO_ENDPOINT, {
-      baseURL: config.public.commerceUrl,
-      headers: {
-        'Authorization': `Bearer ${config.public.commerceApiToken}`
-      }
-    })
-    firstName.value = customerData.firstname
-    lastName.value = customerData.lastname
-    email.value = customerData.email
-    // Assuming the phone number is stored in a custom attribute
-    phone.value = customerData.custom_attributes.find(attr => attr.attribute_code === 'telephone')?.value || ''
-  } catch (error) {
-    console.error('Error fetching account info:', error)
-    errorMessage.value = 'Failed to load account information'
-  } finally {
-    isLoading.value = false
+  if (data) {
+    username.value = data.username
+    website.value = data.website
+    avatar_path.value = data.avatar_url
   }
-}
 
-const saveAccountInfo = async () => {
-  try {
-    isLoading.value = true
-    errorMessage.value = ''
-    successMessage.value = ''
+  loading.value = false
 
-    const updatedData = {
-      customer: {
-        firstname: firstName.value,
-        lastname: lastName.value,
-        email: email.value,
-        custom_attributes: [
-          {
-            attribute_code: 'telephone',
-            value: phone.value
-          }
-        ]
+  async function updateProfile() {
+    try {
+      loading.value = true
+      const user = useSupabaseUser()
+
+      const updates = {
+        id: user.value.id,
+        username: username.value,
+        website: website.value,
+        avatar_url: avatar_path.value,
+        updated_at: new Date(),
       }
+
+      const {
+        error
+      } = await supabase.from('profiles').upsert(updates, {
+        returning: 'minimal', // Don't return the value after inserting
+      })
+      if (error) throw error
+    } catch (error) {
+      alert(error.message)
+    } finally {
+      loading.value = false
     }
-
-    // If password is being changed, include it in the request
-    if (password.value && newpassword.value) {
-      updatedData.customer.password = newpassword.value
-      updatedData.customer.current_password = password.value
-    }
-
-    await $fetch(CUSTOMER_INFO_ENDPOINT, {
-      baseURL: config.public.commerceUrl,
-      method: 'PUT',
-      body: updatedData,
-      headers: {
-        'Authorization': `Bearer ${config.public.commerceApiToken}`,
-        'Content-Type': 'application/json'
-      }
-    })
-
-    successMessage.value = 'Account information updated successfully'
-    // Refresh the account info after successful update
-    await fetchAccountInfo()
-  } catch (error) {
-    console.error('Error saving account info:', error)
-    errorMessage.value = 'Failed to update account information'
-  } finally {
-    isLoading.value = false
   }
-}
+
+  async function signOut() {
+    try {
+      loading.value = true
+      const {
+        error
+      } = await supabase.auth.signOut()
+      if (error) throw error
+      user.value = null
+    } catch (error) {
+      alert(error.message)
+    } finally {
+      loading.value = false
+    }
+  }
 </script>
