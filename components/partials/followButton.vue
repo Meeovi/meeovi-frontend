@@ -12,7 +12,7 @@
   <script setup>
   import { ref, onMounted } from 'vue';
   import { useNuxtApp } from '#app';
-  import { useAuthStore } from '@/stores/user'; // Assuming you're using Pinia for auth
+  import { useUserStore } from '@/stores/user'; // Assuming you're using Pinia for auth
   
   const props = defineProps({
     entityId: {
@@ -26,7 +26,7 @@
   });
   
   const following = ref(false);
-  const authStore = useAuthStore();
+  const authStore = useUserStore();
   const { $directus, $readItem, $createItem, $deleteItem } = useNuxtApp();
   
   const checkFollowing = async () => {

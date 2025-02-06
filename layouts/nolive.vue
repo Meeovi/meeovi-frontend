@@ -140,6 +140,7 @@
   } from 'vue-router'
 
   const user = useSupabaseUser()
+  const { initialize } = useSupabaseAuth()
 
 // Initialize user state
 await userStore.init()
@@ -151,6 +152,10 @@ const loading = ref(false);
 
 const router = useRouter()
 const route = useRoute()
+
+onMounted(() => {
+  initialize()
+})
 
 // we don't need this watcher on server
 onMounted(() => {

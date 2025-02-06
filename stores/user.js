@@ -1,42 +1,67 @@
 import { defineStore } from 'pinia'
-import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth'
+import { createClient } from '@supabase/supabase-js'
+import { useRuntimeConfig } from '#imports'
+
+const config = useRuntimeConfig()
+const supabase = createClient(
+  config.public.supabase.url,
+  config.public.supabase.key
+)
 
 export const useUserStore = defineStore('user', {
   state: () => ({
     user: null,
     loading: true,
   }),
+
   actions: {
     async init() {
-      const auth = getAuth()
       this.loading = true
-      return new Promise((resolve) => {
-        onAuthStateChanged(auth, (user) => {
-          this.user = user
-          this.loading = false
-          resolve(user)
+      try {
+        // Get initial session
+        const { data: { session } } = await supabase.auth.getSession()
+        this.setUser(session?.user ?? null)
+
+        // Listen for auth changes
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+          this.setUser(session?.user ?? null)
         })
-      })
+
+        return session?.user
+      } catch (error) {
+        console.error('Error initializing auth:', error)
+        this.clearUser()
+        return null
+      } finally {
+        this.loading = false
+      }
     },
+
     setUser(user) {
       this.user = user
     },
+
     clearUser() {
       this.user = null
     },
-    // Add this new logout action
+
     async logout() {
-      const auth = getAuth()
+      this.loading = true
       try {
-        await signOut(auth)
+        const { error } = await supabase.auth.signOut()
+        if (error) throw error
+        
         this.clearUser()
         console.log('User logged out successfully')
       } catch (error) {
         console.error('Error during logout:', error)
-        throw error // Rethrow the error so it can be handled by the component if needed
+        throw error
+      } finally {
+        this.loading = false
       }
     },
   },
+
   getters: {
     isLoggedIn: (state) => !!state.user,
   },

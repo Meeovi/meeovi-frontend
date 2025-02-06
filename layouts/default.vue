@@ -50,7 +50,7 @@
         <v-layout>
           <v-navigation-drawer class="sidebarSection" v-model="drawer" temporary>
             <div v-if="user">
-              <v-toolbar :title="`Welcome, ${user?.username}`" color="info"></v-toolbar>
+              <v-toolbar :title="`Welcome, ${user?.email}`" color="info"></v-toolbar>
             </div>
             <div class="drawer-content">
             <v-list nav>
@@ -136,7 +136,7 @@
   import cart from '~/components/menus/topmenu/cart.vue'
   import announcements from '~/components/partials/announcements.vue'
   import {
-    ref
+    ref, onMounted
   } from 'vue';
   //import logout from '~/components/authentication/logout'
 
@@ -144,7 +144,7 @@
     useRouter
   } from 'vue-router'
 
-  const { user, loading, signOut } = useAuth()
+const { user, isAuthenticated, signOut } = useSupabaseAuth()
 
 // Initialize user state
 const drawer = ref(null);

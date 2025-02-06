@@ -1,32 +1,24 @@
 <template>
   <div>
-    <button @click="handleLogout" class="logout-button">
-      Logout
+    <button @click="handleLogout" class="logout-button" :disabled="authStore.loading">
+      {{ authStore.loading ? 'Logging out...' : 'Logout' }}
     </button>
   </div>
 </template>
 
 <script setup>
-import { createClient } from '@supabase/supabase-js'
 import { useRouter } from 'vue-router'
+import { useUserStore } from '~/stores/auth'
 
 const router = useRouter()
-
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_KEY
-)
+const authStore = useUserStore()
 
 const handleLogout = async () => {
   try {
-    const { error } = await supabase.auth.signOut()
+    const { error } = await authStore.signOut()
     if (error) throw error
     
-    // Clear any user store state if you're using one
-    // userStore.clearUser() // Uncomment if you're using a store
-    
-    // Redirect to login page or home
-    await router.push('/')
+    await router.push('/auth/login')
   } catch (error) {
     console.error('Error logging out:', error.message)
   }
@@ -45,5 +37,10 @@ const handleLogout = async () => {
 
 .logout-button:hover {
   background-color: #cc0000;
+}
+
+.logout-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
 }
 </style>

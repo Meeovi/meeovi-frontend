@@ -7,9 +7,9 @@
         </NuxtLink>
       </template>
       <v-list>
-        <v-row class="accountDropdown" v-if="user">
+        <v-row class="accountDropdown" v-if="isAuthenticated">
           <v-col cols="12">
-            <v-toolbar :title="`Welcome, ${user?.username}`" color="info"></v-toolbar>
+            <v-toolbar :title="`Welcome, ${user?.email}`" color="info"></v-toolbar>
           </v-col>
           <v-col cols="6">
             <h6>{{ nav?.name }}</h6>
@@ -36,11 +36,10 @@
           <v-list-item @click="initiateLogout" prepend-icon="fas fa-sign-out-alt">
             <v-list-item-title>Logout</v-list-item-title>
           </v-list-item>
-
         </v-row>
         <v-row v-else>
-          <v-list-item @click="login" prepend-icon="fas fa-sign-in-alt">
-            <v-list-item-title>Login</v-list-item-title>
+          <v-list-item prepend-icon="fas fa-sign-in-alt">
+            <v-list-item-title><NuxtLink to="/auth/login">Login</NuxtLink></v-list-item-title>
           </v-list-item>
         </v-row>
       </v-list>
@@ -67,46 +66,38 @@
 </template>
 
 <script setup>
-  import {
-    ref
-  } from 'vue';
-  import {
-    useRouter
-  } from 'vue-router'
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
-  const { user } = useAuth()
-  const router = useRouter()
+const router = useRouter()
+const location = ref('bottom')
+const showLogoutConfirmation = ref(false)
 
-  const { $directus, $readItem } = useNuxtApp()
-  const route = useRoute()
+// Use the auth composable
+const { user, isAuthenticated, signOut } = useSupabaseAuth()
 
-  const { data: nav } = await useAsyncData('nav', () => {
-    return $directus.request($readItem('navigation', '2'))
-  })
+const { $directus, $readItem } = useNuxtApp()
+const route = useRoute()
 
-  const { data: navcomm } = await useAsyncData('navcomm', () => {
-    return $directus.request($readItem('navigation', '3'))
-  })
+const { data: nav } = await useAsyncData('nav', () => {
+  return $directus.request($readItem('navigation', '2'))
+})
 
-  const location = ref('bottom');
-  const showLogoutConfirmation = ref(false)
+const { data: navcomm } = await useAsyncData('navcomm', () => {
+  return $directus.request($readItem('navigation', '3'))
+})
 
-  const login = () => {
-    router.push('/auth/login')
+const initiateLogout = () => {
+  showLogoutConfirmation.value = true
+}
+
+const confirmLogout = async () => {
+  try {
+    await signOut()
+    showLogoutConfirmation.value = false
+    await router.push('/auth/login')
+  } catch (error) {
+    console.error('Logout failed:', error)
   }
-
-  const initiateLogout = () => {
-    showLogoutConfirmation.value = true
-  }
-
-  const confirmLogout = async () => {
-    try {
-      await userStore.logout()
-      showLogoutConfirmation.value = false
-      router.push('/') // Redirect to home page after logout
-    } catch (error) {
-      console.error('Logout failed:', error)
-      // Handle the error appropriately (e.g., show an error message to the user)
-    }
-  }
+}
 </script>

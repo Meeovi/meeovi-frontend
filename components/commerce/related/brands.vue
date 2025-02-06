@@ -5,7 +5,7 @@
                 <div class="row main justify-content-center">
                     <div class="col-lg-12 p-4">
                         <div class="image-element card-wrapper">
-                            <NuxtImg :src="`${$directus.url}assets/${brand.image?.filename_disk}`" :alt="brand.name" />
+                            <NuxtImg class="brandLogo" :src="`${$directus.url}assets/${brand.image?.filename_disk}`" :alt="brand.name" />
                             <!--<div class="mbr-overlay card-overlay"></div>-->
                             <div class="wrapper">
                                 <h5 class="card-title mbr-fonts-style align-left display-2">

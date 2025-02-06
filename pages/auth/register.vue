@@ -1,5 +1,6 @@
 <template>
   <div class="authPage">
+    <!-- Use same layout as login but change title to "Register" -->
     <section data-bs-version="5.1" class="form2 shopm5 cid-umoq9RvANO mbr-parallax-background" id="aform2-a3"
       data-sortbtn="btn-primary" style="height: 100vh;">
       <div class="mbr-overlay" style="opacity: 0.3; background-color: rgb(255, 255, 255);"></div>
@@ -8,27 +9,52 @@
         <div class="row justify-content-center">
           <div class="col content-wrap">
             <div class="mbr-section-head">
-              <NuxtImg loading="lazy" src="~/assets/images/logo512alpha-128x128.png" alt="Meeovi Logo" class="authLogo" />
+              <img src="~/assets/images/logo512alpha-128x128.png" alt="Meeovi Logo" class="authLogo" />
               <h2 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
                 <strong>Register</strong>
               </h2>
             </div>
             <div class="form-wrap">
-              <form @submit.prevent="register" class="mbr-form">
-                <div class="form-group">
-                  <input v-model="email" type="email" class="form-control" placeholder="Email" required>
-                </div>
-                <div class="form-group">
-                  <input v-model="password" type="password" class="form-control" placeholder="Password" required>
-                </div>
-                <div class="form-group">
-                  <button type="submit" class="btn btn-primary">Register</button>
+              <form class="row flex-center flex" @submit.prevent="handleRegister">
+                <div class="col-6 form-widget">
+                  <div class="mb-3">
+                    <input 
+                      class="inputField" 
+                      type="email" 
+                      placeholder="Email" 
+                      v-model="email"
+                      required 
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <input 
+                      class="inputField" 
+                      type="password" 
+                      placeholder="Password" 
+                      v-model="password"
+                      required 
+                    />
+                  </div>
+                  <div>
+                    <button 
+                      type="submit" 
+                      class="button block" 
+                      :disabled="loading"
+                    >
+                      {{ loading ? 'Loading...' : 'Sign Up' }}
+                    </button>
+                  </div>
+                  <div v-if="error" class="error-message mt-3">
+                    {{ error }}
+                  </div>
+                  <div class="mt-3 text-center">
+                    <p>Already have an account? 
+                      <NuxtLink to="/auth/login">Sign In</NuxtLink>
+                    </p>
+                  </div>
                 </div>
               </form>
             </div>
-            <p class="comment-text mbr-fonts-style align-center mb-0 display-7">
-              We respect your privacy, so we never will share your info.
-            </p>
           </div>
         </div>
       </div>
@@ -38,29 +64,48 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useFirebaseAuth } from 'vuefire'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { createClient } from '@supabase/supabase-js'
 import { useRouter } from 'vue-router'
-import { useUserStore } from '~/stores/user'
+import { useRuntimeConfig } from '#imports'
 
+const router = useRouter()
+const loading = ref(false)
 const email = ref('')
 const password = ref('')
-const auth = useFirebaseAuth()
-const router = useRouter()
-const userStore = useUserStore()
+const error = ref(null)
 
-const register = async () => {
+const config = useRuntimeConfig()
+const supabase = createClient(
+  config.public.supabase.url,
+  config.public.supabase.key
+)
+
+const handleRegister = async () => {
   try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email.value, password.value)
-    userStore.setUser(userCredential.user)
-    console.log('User registered:', userCredential.user)
-    await router.push('/')
-  } catch (error) {
-    console.error('Error during registration:', error)
+    loading.value = true
+    error.value = null
+    
+    const { data, error: signUpError } = await supabase.auth.signUp({
+      email: email.value,
+      password: password.value,
+    })
+
+    if (signUpError) throw signUpError
+
+    // Successful registration
+    await router.push('/auth/login')
+  } catch (e) {
+    error.value = e.message
+  } finally {
+    loading.value = false
   }
 }
 
 definePageMeta({
   layout: 'auth',
-});
+})
 </script>
+
+<style scoped>
+/* Use same styles as login page */
+</style>

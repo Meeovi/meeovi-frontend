@@ -627,6 +627,10 @@ body {
     top: -25px;
 }
 
+.brandLogo {
+    width: 250px;
+}
+
 /**************** Product Page *******************/
 
 .sizelist {
