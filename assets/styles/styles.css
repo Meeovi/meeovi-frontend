@@ -30,11 +30,25 @@ body {
     color: white !important;
 }
 
+.searchField {
+    position: relative;
+    top: 5px;
+    left: 20%;
+}
+
 .mainSearch {
     width: 650px;
-    height: 55px;
+    min-height: 55px;
     display: inline-block !important;
     border-radius: 5px !important;
+}
+
+.ais-SearchBox-input {
+    min-height: 0 !important;
+}
+
+.ais-InstantSearch svg {
+    display: none !important;
 }
 
 .mainSearch span {

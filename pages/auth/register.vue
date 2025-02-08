@@ -18,31 +18,20 @@
               <form class="row flex-center flex" @submit.prevent="handleRegister">
                 <div class="col-6 form-widget">
                   <div class="mb-3">
-                    <input 
-                      class="inputField" 
-                      type="email" 
-                      placeholder="Email" 
-                      v-model="email"
-                      required 
-                    />
+                    <div class="mb-3">
+                    <v-text-field v-model="email" type="email" placeholder="Email" label="Email"></v-text-field>
                   </div>
                   <div class="mb-3">
-                    <input 
-                      class="inputField" 
-                      type="password" 
-                      placeholder="Password" 
-                      v-model="password"
-                      required 
-                    />
+                    <v-text-field v-model="password" type="password" placeholder="Password" label="Password"></v-text-field>
+                  </div>
                   </div>
                   <div>
-                    <button 
+                    <v-btn 
                       type="submit" 
-                      class="button block" 
                       :disabled="loading"
                     >
                       {{ loading ? 'Loading...' : 'Sign Up' }}
-                    </button>
+                    </v-btn>
                   </div>
                   <div v-if="error" class="error-message mt-3">
                     {{ error }}
@@ -100,7 +89,6 @@ const handleRegister = async () => {
     loading.value = false
   }
 }
-
 definePageMeta({
   layout: 'auth',
 })

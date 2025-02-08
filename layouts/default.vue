@@ -16,13 +16,15 @@
         </NuxtLink>
       </v-app-bar-title>
 
+      <v-spacer></v-spacer>
+      
       <search />
       <!--<SearchHeader v-model="searchInputValue" @submit="handleFormSubmit" />-->
       <v-spacer></v-spacer>
 
       <div class="d-flex align-center flex-column flex-sm-row fill-height">
         <v-col class="notificationsHeader">
-          <notificationBell />
+          <LayoutNotifications />
         </v-col>
 
         <v-col class="ecosystemMenuIcon">
@@ -127,7 +129,7 @@
   import departmentsmenu from '~/components/menus/sidebar/departmentsmenu.vue'
   import outlets from '~/components/menus/sidebar/outletsmenu.vue'
   import myaccountmenu from '~/components/menus/sidebar/myaccountmenu.vue'
-  import notificationBell from '~/components/partials/notificationBell.vue'
+  import LayoutNotifications from '~/components/menus/LayoutNotifications.vue'
   import mobilesearch from '~/components/menus/topmenu/mobilesearch.vue'
   import myaccounttopmenu from '~/components/menus/topmenu/myaccounttopmenu.vue'
   import bottomsidebarmenu from '~/components/menus/sidebar/bottomsidebarmenu.vue'

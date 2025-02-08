@@ -1,47 +1,37 @@
-import { initializeApp, cert } from 'firebase-admin/app'
-import { getAuth } from 'firebase-admin/auth'
-import { readFileSync } from 'fs'
+import { createClient } from '@supabase/supabase-js'
 import 'dotenv/config'
 
-// Initialize Firebase Admin SDK (do this only once)
-if (!process.env.FIREBASE_ADMIN_INITIALIZED) {
-  try {
-    const serviceAccountPath = process.env.GOOGLE_APPLICATION_CREDENTIALS
-    if (!serviceAccountPath) {
-      throw new Error('GOOGLE_APPLICATION_CREDENTIALS environment variable is not set')
-    }
+const config = useRuntimeConfig();
 
-    const serviceAccount = JSON.parse(readFileSync(serviceAccountPath, 'utf8'))
-
-    initializeApp({
-      credential: cert(serviceAccount)
-    })
-
-    process.env.FIREBASE_ADMIN_INITIALIZED = 'true'
-  } catch (error) {
-    console.error('Error initializing Firebase Admin SDK:', error)
-    throw error // Re-throw to prevent the app from starting with invalid credentials
-  }
+// Initialize Supabase client (do this only once)
+if (!config.public.supabase.url || !config.public.supabase.key) {
+  throw new Error('Supabase credentials are not set in environment variables')
 }
 
-const auth = getAuth()
+const supabase = createClient(
+  config.public.supabase.url,
+  config.public.supabase.key
+)
 
 export default defineEventHandler(async (event) => {
   try {
-    const { idToken } = await readBody(event)
+    const { access_token } = await readBody(event)
     
-    // Verify the Firebase token
-    const decodedToken = await auth.verifyIdToken(idToken)
+    // Verify the Supabase session
+    const { data: { user }, error } = await supabase.auth.getUser(access_token)
     
-    // Get additional user info from Firebase
-    const userRecord = await auth.getUser(decodedToken.uid)
+    if (error) throw error
     
+    if (!user) {
+      throw new Error('User not found')
+    }
+
     // Return user data
     return {
-      uid: userRecord.uid,
-      email: userRecord.email,
-      displayName: userRecord.displayName,
-      photoURL: userRecord.photoURL,
+      uid: user.id,
+      email: user.email,
+      username: user.username,
+      avatar: user.avatar,
       // Add any other user properties you need
     }
   } catch (error) {

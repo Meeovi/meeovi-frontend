@@ -11,7 +11,7 @@
         <v-sheet class="mx-auto">
           <v-slide-group v-model="model" class="pa-4" show-arrows>
             <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }"
-              v-for="(products, index) in result?.products?.items" :key="index">
+              v-for="(products, index) in bestsellers?.products?.items" :key="index">
               <productCard :product="products" :class="['ma-4', selectedClass]" @click="toggle" />
 
               <div class="d-flex fill-height align-center justify-center">
@@ -38,8 +38,9 @@
   const {
     result
     } = useQuery(bestsellers)
-    const model = ref(null); */
+     */
 
+const model = ref(null);
 async function fetchBestsellers() {
   const response = await fetch('/api/commerce/catalog/products/bestsellers/bestsellers')
   if (!response.ok) {

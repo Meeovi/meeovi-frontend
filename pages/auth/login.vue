@@ -17,31 +17,18 @@
               <form class="row flex-center flex" @submit.prevent="handleLogin">
                 <div class="col-6 form-widget">
                   <div class="mb-3">
-                    <input 
-                      class="inputField" 
-                      type="email" 
-                      placeholder="Email" 
-                      v-model="email"
-                      required 
-                    />
+                    <v-text-field v-model="email" type="email" placeholder="Email" label="Email"></v-text-field>
                   </div>
                   <div class="mb-3">
-                    <input 
-                      class="inputField" 
-                      type="password" 
-                      placeholder="Password" 
-                      v-model="password"
-                      required 
-                    />
+                    <v-text-field v-model="password" type="password" placeholder="Password" label="Password"></v-text-field>
                   </div>
                   <div>
-                    <button 
+                    <v-btn 
                       type="submit" 
-                      class="button block" 
                       :disabled="loading"
                     >
                       {{ loading ? 'Loading...' : 'Sign In' }}
-                    </button>
+                    </v-btn>
                   </div>
                   <div v-if="error" class="error-message mt-3">
                     {{ error }}
@@ -107,47 +94,3 @@ definePageMeta({
   layout: 'auth',
 })
 </script>
-
-<style scoped>
-.inputField {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.button {
-  width: 100%;
-  padding: 10px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.button:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
-}
-
-.button:hover:not(:disabled) {
-  background-color: #45a049;
-}
-
-.error-message {
-  color: #ff0000;
-  text-align: center;
-  font-size: 0.9em;
-}
-
-a {
-  color: #4CAF50;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-</style>

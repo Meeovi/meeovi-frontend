@@ -82,7 +82,6 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
     "@storefront-ui/nuxt",
-    'nuxt-vuefire',
     '@nuxtjs/leaflet',
     //'@nuxtjs/i18n',
     //"@prisma/nuxt",
@@ -190,39 +189,6 @@ export default defineNuxtConfig({
     }, ]
   },
 
-  vuefire: {
-    emulators: {
-      // uncomment this line to run the application in production mode without emulators during dev
-      // enabled: false,
-      auth: {
-        options: {
-          disableWarnings: true,
-        },
-      },
-    },
-    auth: {
-      enabled: true,
-      sessionCookie: false,
-    },
-
-    appCheck: {
-      provider: 'ReCaptchaV3',
-      // site key, NOT secret key
-      key: process.env.FIREBASE_APPCHECK_DEBUG_TOKEN,
-      isTokenAutoRefreshEnabled: true,
-    },
-
-    config: {
-      apiKey: process.env.NUXT_FIREBASE_API_KEY,
-      authDomain: process.env.NUXT_FIREBASE_AUTH_DOMAIN,
-      projectId: process.env.NUXT_FIREBASE_PROJECT_ID,
-      storageBucket: process.env.NUXT_FIREBASE_STORAGE_BUCKET,
-      messagingSenderId: process.env.NUXT_FIREBASE_MESSAGING_SENDER_ID,
-      appId: process.env.NUXT_FIREBASE_APP_ID,
-      measurementId: process.env.NUXT_MEASUREMENT_ID,
-    },
-  },
-
   runtimeConfig: {
     // Cloudflare Turnstile
     turnstile: {
@@ -263,6 +229,8 @@ export default defineNuxtConfig({
         }
       },
 
+      indexName: process.env.MEILISEARCH_INDEX_NAME,
+
       meilisearch: {
         host: process.env.MEILISEARCH_HOST,
         searchApiKey: process.env.MEILISEARCH_SEARCH_API_KEY,
@@ -277,15 +245,6 @@ export default defineNuxtConfig({
       commerceUrl: process.env.MAGE_STORE_URL,
       commerceGraphql: process.env.MAGE_MAGENTO_GRAPHQL_URL,
       commerceApiToken: process.env.WEBSITE_TOKEN,
-
-      // Firebase
-      firebaseApiKey: process.env.NUXT_FIREBASE_API_KEY,
-      firebaseAuthDomain: process.env.NUXT_FIREBASE_AUTH_DOMAIN,
-      firebaseProjectId: process.env.NUXT_FIREBASE_PROJECT_ID,
-      firebaseStorageBucket: process.env.NUXT_FIREBASE_STORAGE_BUCKET,
-      firebaseMessagingSenderId: process.env.NUXT_FIREBASE_MESSAGING_SENDER_ID,
-      firebaseAppId: process.env.NUXT_FIREBASE_APP_ID,
-      measurementId: process.env.NUXT_MEASUREMENT_ID,
 
       // Budibase
       budibaseEmbed: process.env.BUDIBASE_EMBED || '',
@@ -312,18 +271,12 @@ export default defineNuxtConfig({
       "@fortawesome/pro-solid-svg-icons",
       "@fortawesome/pro-regular-svg-icons",
       "@fortawesome/free-brands-svg-icons",
-      'firebaseui',
-      'firebase/auth',
-      'firebase/app'
     ],
   },  
 
   vite: {
     define: {
       'process.env.DEBUG': false,
-    },
-    optimizeDeps: {
-      include: ['firebase/auth', 'firebase/app'],
     },
     ssr: {
       noExternal: ['vuetify']
