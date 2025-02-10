@@ -7,9 +7,9 @@
         </NuxtLink>
       </template>
       <v-list lines="two">
-        <v-list-item v-for="notifications in activities" :key="notifications?.id" :href="notifications?.id">
+        <v-list-item v-for="notifications in notifyNav" :key="notifications?.id" :href="notifications?.id">
           <v-list-item-title v-html="notifications?.subject"></v-list-item-title>
-          <v-list-item-subtitle>{{ new Date(notifications?.timestamp).toLocaleDateString() }}</v-list-item-subtitle>
+          <v-list-item-subtitle>{{ new Date(notifications?.date_created).toLocaleDateString() }}</v-list-item-subtitle>
         </v-list-item>
         <v-divider></v-divider>
         <v-list-item :title="notifyNav?.name" :value="notifyNav?.name" append-icon="fas fa-bell"
@@ -27,15 +27,12 @@
   import { readNotifications } from '@directus/sdk';
 
   const location = ref('bottom');
-/*  const { $directus, $readItem } = useNuxtApp();
-
-  const activities = await $directus.request(
-	readNotifications({
-		fields: ['*'],
-	})
-);
+  const {
+    $directus,
+    $readItem
+  } = useNuxtApp()
 
 const { data: notifyNav } = await useAsyncData('notifyNav', () => {
     return $directus.request($readItem('navigation', '29'))
-  })*/
+  })
 </script>

@@ -7,16 +7,7 @@
         </v-btn>
       </template>
 
-      <v-app-bar-title>
-        <NuxtLink class="logobrand" href="/">
-          <v-icon start color="orange">
-            <NuxtImg loading="lazy" :src="`${$directus?.url}assets/${blocksSiteoverview?.media?.[0]?.directus_files_id?.filename_disk}`" :alt="blocksSiteoverview?.name" />
-          </v-icon>
-          {{ blocksSiteoverview?.name }}<!--Meeovi-->
-        </NuxtLink>
-      </v-app-bar-title>
-
-      <v-spacer></v-spacer>
+      <logo />
       
       <search />
       <!--<SearchHeader v-model="searchInputValue" @submit="handleFormSubmit" />-->
@@ -45,15 +36,11 @@
       </div>
     </v-app-bar>
 
-    
-
     <v-main>
       <v-card>
         <v-layout>
           <v-navigation-drawer class="sidebarSection" v-model="drawer" temporary>
-            <div v-if="user">
-              <v-toolbar :title="`Welcome, ${user?.email}`" color="info"></v-toolbar>
-            </div>
+            <sidebartop />
             <div class="drawer-content">
             <v-list nav>
 
@@ -121,6 +108,8 @@
 
 <script setup>
   //import SearchHeader from '../components/search/SearchHeader.vue'
+  import sidebartop from '~/components/appearance/blocks/sidebartop.vue'
+  import logo from '~/components/appearance/blocks/logo.vue'
   import search from '../components/search/search.vue'
   import ecosystemmenu from '~/components/menus/ecosystemmenu.vue'
   import live from '~/components/menus/livebar/live.vue'
@@ -138,56 +127,18 @@
   import cart from '~/components/menus/topmenu/cart.vue'
   import announcements from '~/components/partials/announcements.vue'
   import {
-    ref, onMounted
+    ref
   } from 'vue';
   //import logout from '~/components/authentication/logout'
 
-  import {
-    useRouter
-  } from 'vue-router'
-
-const { user, isAuthenticated, signOut } = useSupabaseAuth()
-
 // Initialize user state
 const drawer = ref(null);
-const rail = ref(true);
-const location = ref('bottom');
-const loaded = ref(false);
-
-const router = useRouter()
-const route = useRoute()
-
-// we don't need this watcher on server
-onMounted(() => {
-  watch(user, (user, prevUser) => {
-    if (prevUser && !user) {
-      // user logged out
-      router.push('/login')
-    } else if (user && typeof route.query.redirect === 'string') {
-      // user logged in
-      router.push(route.query.redirect)
-    }
-  })
-})
 
   const theme = ref('light')
 
   function onClick() {
     theme.value = theme.value === 'light' ? 'dark' : 'light'
   };
-
-  const {
-        $directus,
-        $readItem
-    } = useNuxtApp()
-
-    const {
-        data: blocksSiteoverview
-    } = await useAsyncData('blocksSiteoverview', () => {
-        return $directus.request($readItem('page_blocks', '5', {
-            fields: ['*', 'media.*.*'],
-        }))
-    })
 
   useHead({
     title: 'Meeovi',

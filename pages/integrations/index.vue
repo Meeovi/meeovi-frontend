@@ -1,5 +1,5 @@
 <template>
-    <div class="accountDashboard">
+    <div class="contentPage">
         <section data-bs-version="5.1" class="slider1 cid-sBY233VxUT" id="slider1-2n">
 
             <div class="carousel slide carousel-fade" id="uAWPEiemvT" data-ride="carousel" data-bs-ride="carousel"
@@ -67,17 +67,11 @@
         </section>
 
         <section data-bs-version="5.1" class="features19 cid-twaHSeAj36" id="features19-44">
-
             <div class="container">
-                <h2 class="mbr-section-title align-left mbr-fonts-style display-2">
-                    Сheck out these Integrations</h2>
-
-
                 <div class="row justify-content-center align-items-start">
-
                     <div class="card px-3 py-4 col-md-6 col-lg-3" v-for="(integrations, index) in integrations"
                         :key="index">
-                        <NuxtLink :to="integrations.id">
+                        <NuxtLink :to="`/integrations/integration/${integrations.id}`">
                             <div class="card-wrapper flip-card">
                                 <div class="card-img">
                                     <img :src="`${$directus.url}assets/${integrations?.screenshots?.filename_disk}`"
@@ -108,7 +102,6 @@
     const {
         $directus,
         $readItems,
-        $readItem
     } = useNuxtApp()
 
     const {
@@ -116,15 +109,22 @@
     } = await useAsyncData('integrations', () => {
         return $directus.request($readItems('integrations', {
             filter: {
-                status: {
-                    _eq: "Published"
-                },
-                type: {
-                    _eq: "Module"
-                },
-                platform: {
-                    _eq: "Meeovi"
-                }
+                _and: [{
+                        status: {
+                            _eq: "Coming Soon"
+                        }
+                    },
+                    {
+                        type: {
+                            _eq: "Module"
+                        }
+                    },
+                    {
+                        platform: {
+                            _eq: "Meeovi"
+                        }
+                    }
+                ]
             }
         }))
     })

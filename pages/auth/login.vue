@@ -15,16 +15,29 @@
             </div>
             <div class="form-wrap">
               <form class="row flex-center flex" @submit.prevent="handleLogin">
-                <div class="col-6 form-widget">
+                <div class="col-12 form-widget">
                   <div class="mb-3">
-                    <v-text-field v-model="email" type="email" placeholder="Email" label="Email"></v-text-field>
+                    <v-text-input 
+                      class="inputField" 
+                      type="email" 
+                      placeholder="Email" 
+                      v-model="email"
+                      required 
+                    />
                   </div>
                   <div class="mb-3">
-                    <v-text-field v-model="password" type="password" placeholder="Password" label="Password"></v-text-field>
+                    <v-text-input 
+                      class="inputField" 
+                      type="password" 
+                      placeholder="Password" 
+                      v-model="password"
+                      required 
+                    />
                   </div>
                   <div>
                     <v-btn 
                       type="submit" 
+                      class="button block" 
                       :disabled="loading"
                     >
                       {{ loading ? 'Loading...' : 'Sign In' }}

@@ -14,15 +14,6 @@
         $directus,
         $readItem
     } = useNuxtApp()
-    import {
-        useUserStore
-    } from '~/stores/user'
-
-    const userStore = useUserStore()
-
-    const userDisplayName = computed(() => {
-        return userStore.user?.email || ''
-    })
 
     const {
         data: blocksSlider

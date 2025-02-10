@@ -30,21 +30,28 @@ body {
     color: white !important;
 }
 
-.searchField {
+.logotext {
+    display: inline-block;
     position: relative;
     top: 5px;
-    left: 20%;
+}
+
+.searchField {
+    position: relative;
+    top: 3px;
+    left: 15%;
 }
 
 .mainSearch {
     width: 650px;
     min-height: 55px;
     display: inline-block !important;
-    border-radius: 5px !important;
+    border-radius: 55px !important;
 }
 
 .ais-SearchBox-input {
     min-height: 0 !important;
+    border-radius: 55px !important;
 }
 
 .ais-InstantSearch svg {
@@ -92,7 +99,8 @@ body {
 }
 
 .ais-SearchBox-form {
-    border-radius: 5px !important;
+    border-radius: 55px !important;
+    height: 50px;
 }
 
 .ais-SearchBox-submit {
@@ -134,7 +142,7 @@ body {
     width: 100%;
     position: relative;
     padding-top: 10px;
-    top: 55px;
+    top: 52px;
     display: inline-flex;
 }
 

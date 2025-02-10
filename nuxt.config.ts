@@ -66,15 +66,9 @@ export default defineNuxtConfig({
     'vuetify/lib/styles/main.sass',
     //'@mdi/font/css/materialdesignicons.min.css',
     '@fortawesome/fontawesome-svg-core/styles.css',
-    '~/assets/css/typography.css',
-    '~/assets/css/spacing.css',
-    '~/assets/css/shadow.css',
-    '~/assets/css/utilities.css',
     'assets/styles/mobile.css',
     'assets/styles/styles.css',
     'assets/styles/sellerDashboard.css',
-    'assets/styles/PriceSlider.css',
-    'assets/styles/searchTheme.css',
   ],
 
   modules: [
@@ -85,13 +79,7 @@ export default defineNuxtConfig({
     '@nuxtjs/leaflet',
     //'@nuxtjs/i18n',
     //"@prisma/nuxt",
-    '@nuxtjs/seo',
     "nuxt-security",
-    '@nuxtjs/partytown',
-    '@nuxt/scripts',
-    'nuxt-booster',
-    'nuxt-link-checker',
-    '@nuxtjs/sitemap',
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
         // @ts-expect-error
@@ -101,6 +89,23 @@ export default defineNuxtConfig({
       })
     },
   ],
+
+  /*auth: {
+    isEnabled: true,
+    disableServerSideAuth: false,
+    originEnvKey: 'AUTH_ORIGIN',
+    baseURL: 'http://localhost:3011/api/auth',
+    provider: {
+      type: 'authjs',
+      trustHost: false,
+      defaultProvider: 'email',
+      addDefaultCallbackUrl: true
+    },
+    sessionRefresh: {
+      enablePeriodically: true,
+      enableOnWindowFocus: true,
+    }
+  },*/
 
   site: { 
     url: process.env.NUXT_PUBLIC_SITE_URL, 
@@ -118,56 +123,6 @@ export default defineNuxtConfig({
       permissionsPolicy: false
     }
   },
-  
-  booster: {
-    optimizeSSR: {
-      cleanPreloads: true,
-      cleanPrefetches: true,
-      inlineStyles: true
-    },
-
-    detection: {
-      performance: true,
-      browserSupport: true,
-      battery: true
-    },
-
-    performanceMetrics: {
-      timing: {
-        fcp: 800,
-        dcl: 1200
-      }
-    },
-
-    /**
-     * IntersectionObserver rootMargin for Compoennts and Assets
-     */
-    lazyOffset: {
-      component: '0%',
-      asset: '0%'
-    }
-  },
-
-  image: {
-    screens: {
-      default: 320,
-      xxs: 480,
-      xs: 576,
-      sm: 768,
-      md: 996,
-      lg: 1200,
-      xl: 1367,
-      xxl: 1600,
-      '4k': 1921
-    },
-
-    domains: ['*'],
-
-    provider: 'directus',
-		directus: {
-			baseURL: `${process.env.DIRECTUS_URL}/assets/`,
-		},
-  },
 
   // https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/prisma-nuxt-module#configuration
   /* prisma: {
@@ -178,16 +133,6 @@ export default defineNuxtConfig({
      installStudio: false,
      autoSetupPrisma: true
    },*/
-
-  // https://nuxtseo.com/robots
-  robots: {
-    groups: [{
-      userAgent: ['*'],
-      disallow: ['/account'],
-      allow: ['/pages/*'],
-      comment: 'Allow Google AdsBot to index the login page but no-admin pages'
-    }, ]
-  },
 
   runtimeConfig: {
     // Cloudflare Turnstile
@@ -293,9 +238,6 @@ export default defineNuxtConfig({
       routes: [
         '/assets/images/*',
       ]
-    },
-    experimental: {
-      websocket: true
     },
   },
 

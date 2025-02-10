@@ -1,7 +1,7 @@
 <template>
   <div>
-    <v-toolbar v-if="userStore.isLoggedIn" :color="hellobar?.color" class="helloBar" :style="`color: ${hellobar?.colortext}`">
-      <v-toolbar-title>{{ hellobar?.description }} {{ userStore?.user?.displayName }}</v-toolbar-title>
+    <v-toolbar v-if="isAuthenticated" :color="hellobar?.color" class="helloBar" :style="`color: ${hellobar?.colortext}`">
+      <v-toolbar-title>{{ hellobar?.description }} {{ user?.email }}</v-toolbar-title>
 
       <div v-for="(menu, index) in hellobar?.menus" :key="index">
         <v-toolbar-items v-if="menu?.active === 'Active'" class="helloBar-items"><NuxtLink :style="`color: ${hellobar?.colortext}`" :to="menu?.url">{{ menu?.name }}</NuxtLink></v-toolbar-items>
@@ -13,15 +13,8 @@
 <script setup>
 const { $directus, $readItem } = useNuxtApp()
 const route = useRoute()
-import {
-    useUserStore
-  } from '~/stores/user'
 
-  const userStore = useUserStore()
-
-  const userDisplayName = computed(() => {
-    return userStore.user?.email || ''
-  })
+const { user, isAuthenticated, signOut } = useSupabaseAuth()
 
 const { data: hellobar } = await useAsyncData('hellobar', () => {
   return $directus.request($readItem('navigation', '50'))
