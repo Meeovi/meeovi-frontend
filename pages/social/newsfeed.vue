@@ -49,6 +49,15 @@
   import {
     useUserStore
   } from '~/stores/user'
+  import {
+    useNewsfeed
+  } from '~/composables/social/useNewsfeed';
+
+  const {
+    newsfeed,
+    fetchNewsfeed,
+    subscribeToRealtimeUpdates
+  } = useNewsfeed();
 
   const userStore = useUserStore()
 
@@ -97,6 +106,17 @@
       }]
     }))
   })
+
+  function autoRefresh(interval = 60000) {
+    setInterval(() => {
+      fetchNewsfeed(); // Refresh feed every minute
+    }, interval);
+  }
+
+  onMounted(() => {
+    fetchNewsfeed();
+    subscribeToRealtimeUpdates();
+  });
 
   useHead({
     title: 'Social Feed',

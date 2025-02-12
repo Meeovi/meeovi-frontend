@@ -1,44 +1,33 @@
-import { ref, computed } from 'vue'
+import { useRuntimeConfig } from '#imports';
+import MeiliSearch from 'meilisearch';
+
+const meilisearchClient = new MeiliSearch({
+  host: useRuntimeConfig().public.meilisearch.host, // Use your .env configuration
+  apiKey: useRuntimeConfig().public.meilisearch.searchApiKey,
+});
 
 export const useSearch = () => {
-  const searchQuery = ref('')
-  const searchResults = ref([])
-  const isLoading = ref(false)
-  const currentPage = ref(1)
-  const totalResults = ref(0)
-  const itemsPerPage = ref(10)
+  const searchIndex = meilisearchClient.index('your-index-name'); // Replace with your Meilisearch index
 
-  const totalPages = computed(() => Math.ceil(totalResults.value / itemsPerPage.value))
-
-  const search = async (type = 'all') => {
-    if (!searchQuery.value) return
-
-    isLoading.value = true
+  const search = async (query, options = {}) => {
     try {
-      const params = new URLSearchParams({
-        q: searchQuery.value,
-        type,
-        page: currentPage.value,
-        limit: itemsPerPage.value
-      })
-
-      const response = await $fetch(`/api/search/search?${params}`)
-      
-      searchResults.value = response.hits
-      totalResults.value = response.estimatedTotalHits
+      const response = await searchIndex.search(query, {
+        // Default search options
+        limit: options.limit || 20,
+        offset: options.offset || 0,
+        sort: options.sort || undefined, // Example: ['price:asc']
+        filter: options.filters || undefined, // Example: 'category="electronics"'
+        facets: options.facets || undefined, // Example: ['category', 'brand']
+        attributesToRetrieve: options.attributes || ['*'], // Define specific fields to retrieve
+      });
+      return response;
     } catch (error) {
-      console.error('Search failed:', error)
-    } finally {
-      isLoading.value = false
+      console.error('Meilisearch Error:', error);
+      throw new Error('Failed to fetch search results.');
     }
-  }
+  };
 
   return {
-    searchQuery,
-    searchResults,
-    isLoading,
-    currentPage,
-    totalPages,
-    search
-  }
-}
+    search,
+  };
+};
