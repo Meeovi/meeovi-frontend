@@ -8,7 +8,7 @@
       </template>
 
       <logo />
-      
+
       <search />
       <!--<SearchHeader v-model="searchInputValue" @submit="handleFormSubmit" />-->
       <v-spacer></v-spacer>
@@ -42,42 +42,46 @@
           <v-navigation-drawer class="sidebarSection" v-model="drawer" temporary>
             <sidebartop />
             <div class="drawer-content">
-            <v-list nav>
+              <v-list nav>
 
-              <!---->
-              <topmenu />
-              <v-divider></v-divider>
+                <!---->
+                <topmenu />
+                <v-divider></v-divider>
 
-              <socialmenu />
+                <socialmenu />
 
-              <departmentsmenu />
-              <v-divider></v-divider>
+                <departmentsmenu />
+                <v-divider></v-divider>
 
-              <!---->
-              <outlets />
-              <v-divider></v-divider>
+                <!---->
+                <outlets />
+                <v-divider></v-divider>
 
-              <myaccountmenu />
-              <v-divider></v-divider>
+                <myaccountmenu />
+                <v-divider></v-divider>
 
-              <bottomsidebarmenu />
-              <v-row>
-                <v-col cols="3">
-                  <v-btn variant="text" stacked title="Help" prepend-icon="fas fa-question-circle" size="x-small"
-                    href="/help/">Help Center</v-btn>
-                </v-col>
-                <v-col cols="3">
-                  <v-btn variant="text" stacked title="Notifications" prepend-icon="fas fa-bell" size="x-small"
-                    href="/account/user/notifications">Notify Center</v-btn>
-                </v-col>
-                <v-col cols="3">
-                  <useDark />
-                </v-col>
-                <v-col cols="3">
-                  <!--<logout />-->
-                </v-col>
-              </v-row>
-            </v-list>
+                <bottomsidebarmenu />
+                <v-row>
+                  <v-col cols="3">
+                    <v-btn variant="text" stacked title="Help" prepend-icon="fas fa-question-circle" size="x-small"
+                      href="/help/">Help Center</v-btn>
+                  </v-col>
+                  <v-col cols="3">
+                    <v-btn variant="text" stacked title="Notifications" prepend-icon="fas fa-bell" size="x-small"
+                      href="/account/user/notifications">Notify Center</v-btn>
+                  </v-col>
+                  <v-col cols="3">
+                    <v-btn @click="toggleDark()" variant="text">
+                      <v-icon>
+                        {{ isDark ? 'fas fa-moon' : 'fas fa-sun' }}
+                      </v-icon>
+                    </v-btn>
+                  </v-col>
+                  <v-col cols="3">
+                    <!--<logout />-->
+                  </v-col>
+                </v-row>
+              </v-list>
             </div>
           </v-navigation-drawer>
 
@@ -118,20 +122,31 @@
   import FooterNav from '~/components/FooterNav'
   import cart from '~/components/menus/topmenu/cart.vue'
   import announcements from '~/components/partials/globals/announcements.vue'
-  import useDark from '~/components/partials/globals/useDark.vue'
   import {
     ref
   } from 'vue';
   //import logout from '~/components/authentication/logout'
+  import {
+    useDark,
+    useToggle
+  } from '@vueuse/core'
+  import {
+    useTheme
+  } from 'vuetify'
 
-// Initialize user state
-const drawer = ref(null);
+  const theme = useTheme()
+  const isDark = useDark()
+  const toggleDark = useToggle(isDark)
 
-  const theme = ref('light')
+  // Sync Vuetify theme with dark mode
+  watch(isDark, (dark) => {
+    theme.global.name.value = dark ? 'dark' : 'light'
+  }, {
+    immediate: true
+  })
 
-  function onClick() {
-    theme.value = theme.value === 'light' ? 'dark' : 'light'
-  };
+  // Initialize user state
+  const drawer = ref(null);
 
   useHead({
     title: 'Meeovi',
