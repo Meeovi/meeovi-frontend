@@ -24,6 +24,7 @@
                                   <h4 class="mbr-text mbr-fonts-style display-7">
                                       <v-list
                                           style="background: transparent; color: white; left: -15px; position: relative;">
+                                          <v-list-item><OnlineStatus :show-text="false" /></v-list-item>
                                           <v-list-item
                                               title="Member Since">{{ userStore?.user?.metadata?.creationTime }}</v-list-item>
                                       </v-list>
@@ -99,7 +100,7 @@
   import {
       ref
   } from 'vue'
-  import followButton from '~/components/partials/followButton.vue'
+  import followButton from '~/components/partials/cms/followButton.vue'
   import post from '~/components/cms/related/posts.vue'
   import shorts from '~/components/cms/related/shorts.vue'
   import replies from '~/components/pages/profile/replies.vue'
@@ -107,6 +108,7 @@
   import likes from '~/components/pages/profile/likes.vue'
   import archives from '~/components/pages/profile/archives.vue'
   import settings from '~/components/pages/account/settings.vue'
+  import OnlineStatus from '~/components/partials/cms/onlineStatus.vue'
   import {
       useUserStore
   } from '~/stores/user'

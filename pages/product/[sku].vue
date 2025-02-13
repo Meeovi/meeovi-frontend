@@ -262,10 +262,10 @@
     useMutation
   } from '@vue/apollo-composable'
 
-  import share from '~/components/partials/shareDialog.vue'
-  import comments from '~/components/partials/comments.vue'
-  import addToCartBtn from '~/components/partials/addToCartBtn.vue'
-  import compareProductBtn from '~/components/partials/compareBtn.vue'
+  import share from '~/components/partials/globals/share.vue'
+  import comments from '~/components/partials/globals/comments.vue'
+  import addToCartBtn from '~/components/partials/commerce/addToCartBtn.vue'
+  import compareProductBtn from '~/components/partials/commerce/compareBtn.vue'
   import colorOptions from '~/components/commerce/product/colorOptions.vue'
   import sizeOptions from '~/components/commerce/product/sizeOptions.vue'
   import shippingOptions from '~/components/commerce/product/shippingOptions.vue'
@@ -278,7 +278,7 @@
   import {
     product
   } from '~/graphql/commerce/queries/id/product'
-  import createListBtn from '~/components/partials/createListBtn.vue';
+  import createListBtn from '~/components/partials/globals/createListBtn.vue';
   import productSpecs from '~/components/commerce/product/productSpecs.vue'
   //import productReviews from '~/components/commerce/product/productReviews.vue'
   import productCard from '~/components/commerce/product/productCard.vue'

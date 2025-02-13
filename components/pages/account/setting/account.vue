@@ -28,7 +28,7 @@
 <script setup>
   import Avatar from '~/components/authentication/avatar.vue'
 
-  const supabase = useSupabaseClient()
+  const supabase = createClient()
 
   const loading = ref(true)
   const username = ref('')

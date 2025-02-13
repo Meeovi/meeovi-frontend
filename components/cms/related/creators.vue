@@ -7,6 +7,7 @@
             <v-card-title>@{{ customers?.firstname }}</v-card-title>
 
             <v-card-text>
+                <OnlineStatus :show-text="false" />
                 <div>Member Since: {{ new Date(customers?.created_at).toLocaleDateString() }}</div>
             </v-card-text>
 
@@ -19,7 +20,8 @@
 
 <script setup>
     import { ref } from 'vue'
-    import followButton from '~/components/partials/followButton.vue'
+    import followButton from '~/components/partials/cms/followButton.vue'
+    import OnlineStatus from '~/components/partials/cms/onlineStatus.vue'
 
     const model = ref(null);
     const props = defineProps({

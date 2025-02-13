@@ -104,9 +104,9 @@
     } from 'vue'
     //import repost from '~/components/cms/social/repost.vue'
     import reactions from '~/components/cms/social/reactions.vue'
-    import comments from '~/components/partials/comments.vue'
-    import createListBtn from '~/components/partials/createListBtn.vue'
-    import share from '~/components/partials/shareDialog.vue'
+    import comments from '~/components/partials/globals/comments.vue'
+    import createListBtn from '~/components/partials/globals/createListBtn.vue'
+    import share from '~/components/partials/globals/share.vue'
     import updatepost from '~/components/crud/update/update-post.vue'
 
     const route = useRoute();

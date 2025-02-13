@@ -49,15 +49,6 @@
   import {
     useUserStore
   } from '~/stores/user'
-  import {
-    useNewsfeed
-  } from '~/composables/social/useNewsfeed';
-
-  const {
-    newsfeed,
-    fetchNewsfeed,
-    subscribeToRealtimeUpdates
-  } = useNewsfeed();
 
   const userStore = useUserStore()
 
@@ -67,10 +58,6 @@
     $readItems,
     $readItem
   } = useNuxtApp()
-
-  const userDisplayName = computed(() => {
-    return userStore.user?.name || userStore.user?.username || 'User'
-  })
 
   const {
     data: posts
@@ -88,7 +75,7 @@
     return $directus.request($readItems('posts', {
       filter: {
         username: {
-          _eq: `${userDisplayName.value}`
+          _eq: `${userStore?.user?.name}`
         }
       },
       fields: ['*', {
@@ -106,17 +93,6 @@
       }]
     }))
   })
-
-  function autoRefresh(interval = 60000) {
-    setInterval(() => {
-      fetchNewsfeed(); // Refresh feed every minute
-    }, interval);
-  }
-
-  onMounted(() => {
-    fetchNewsfeed();
-    subscribeToRealtimeUpdates();
-  });
 
   useHead({
     title: 'Social Feed',

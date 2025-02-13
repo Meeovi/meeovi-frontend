@@ -1,7 +1,7 @@
-import { useSupabaseClient } from '@supabase/supabase-js';
+import { createClient } from '@supabase/supabase-js';
 
 export function useNewsfeed() {
-  const supabase = useSupabaseClient();
+  const supabase = createClient();
   const newsfeed = ref([]);
 
   async function fetchNewsfeed() {

@@ -37,8 +37,8 @@
         computed
     } from 'vue'
     import updatebookmark from '~/components/crud/update/update-bookmark.vue'
-    import createListBtn from '~/components/partials/createListBtn.vue'
-    import comments from '~/components/partials/comments.vue'
+    import createListBtn from '~/components/partials/globals/createListBtn.vue'
+    import comments from '~/components/partials/globals/comments.vue'
 
     const route = useRoute();
 

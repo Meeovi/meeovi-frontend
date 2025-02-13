@@ -26,7 +26,7 @@
     import {
         ref
     } from 'vue'
-    import share from '~/components/partials/share.vue'
+    import share from '~/components/partials/globals/share.vue'
 
     const dialog = ref(null)
 </script>

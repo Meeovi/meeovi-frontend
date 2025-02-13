@@ -73,7 +73,7 @@
         deleteItem
     } from '@directus/sdk'; // Add this import at the top
     import updateshort from '~/components/crud/update/update-short.vue'
-    import comments from '~/components/partials/comments.vue'
+    import comments from '~/components/partials/globals/comments.vue'
 
     import {
         ref

@@ -50,6 +50,6 @@
 </template>
 
 <script setup>
-  import comments from '~/components/partials/comments.vue'
+  import comments from '~/components/partials/globals/comments.vue'
 
 </script>

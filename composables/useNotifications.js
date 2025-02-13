@@ -1,8 +1,8 @@
 import { ref, onMounted, onUnmounted } from 'vue';
-import { useSupabaseClient, useSupabaseUser } from '#imports';
+import { createClient, useSupabaseUser } from '#imports';
 
 export function useNotifications() {
-  const supabase = useSupabaseClient();
+  const supabase = createClient();
   const user = useSupabaseUser();
   const notifications = ref([]);
 

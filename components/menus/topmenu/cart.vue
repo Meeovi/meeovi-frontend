@@ -15,7 +15,7 @@
   
   <script setup>
   import { ref, computed } from 'vue'
-  import checkout from '~/components/partials/checkout.vue'
+  import checkout from '~/components/partials/commerce/checkout.vue'
   import { useCart } from '~/composables/commerce/products/useCart' // Assuming you have this composable
   
   const drawer = ref(false)

@@ -47,6 +47,7 @@
     "@types/leaflet": "^1.9.14",
     "@vue/apollo-composable": "^4.2.1",
     "@vueuse/core": "^12.5.0",
+    "@vueuse/shared": "^12.5.0",
     "algoliasearch": "^5.20.1",
     "bcryptjs": "^2.4.3",
     "cookie": "^0.6.0",

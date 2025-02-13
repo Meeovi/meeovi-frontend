@@ -45,9 +45,9 @@
         ref,
         computed
     } from 'vue'
-    import comments from '@/components/partials/comments.vue'
+    import comments from '~/components/partials/globals/comments.vue'
     import relatedstations from '@/components/cms/related/relatedstations.vue'
-    import share from '@/components/partials/shareDialog.vue'
+    import share from '~/components/partials/globals/share.vue'
 
     const route = useRoute()
 

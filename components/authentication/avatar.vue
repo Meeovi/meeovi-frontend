@@ -21,7 +21,7 @@
 
     const emit = defineEmits(['update:path', 'upload'])
 
-    const supabase = useSupabaseClient()
+    const supabase = createClient()
 
     const uploading = ref(false)
     const src = ref('')

@@ -71,9 +71,7 @@
                     href="/account/user/notifications">Notify Center</v-btn>
                 </v-col>
                 <v-col cols="3">
-                  <v-btn variant="text" stacked title="Change Background"
-                    :prepend-icon="theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon'" @click="onClick" size="x-small">Dark
-                    Mode</v-btn>
+                  <useDark />
                 </v-col>
                 <v-col cols="3">
                   <!--<logout />-->
@@ -119,7 +117,8 @@
   import LowerBar from '~/components/LowerBar.vue'
   import FooterNav from '~/components/FooterNav'
   import cart from '~/components/menus/topmenu/cart.vue'
-  import announcements from '~/components/partials/announcements.vue'
+  import announcements from '~/components/partials/globals/announcements.vue'
+  import useDark from '~/components/partials/globals/useDark.vue'
   import {
     ref
   } from 'vue';

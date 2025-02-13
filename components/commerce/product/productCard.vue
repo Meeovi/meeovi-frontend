@@ -34,9 +34,9 @@
     SfButton,
     SfIconShoppingCart
   } from '@storefront-ui/vue';
-  import Ratings from '~/components/partials/ratings.vue';
-  import createListBtn from '~/components/partials/createListBtn.vue';
-  import AddToCartBtn from '~/components/partials/addToCartBtn.vue'
+  import Ratings from '~/components/partials/commerce/ratings.vue';
+  import createListBtn from '~/components/partials/globals/createListBtn.vue';
+  import AddToCartBtn from '~/components/partials/commerce/addToCartBtn.vue'
 
   const rating = ref(null)
   const props = defineProps({

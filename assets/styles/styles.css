@@ -840,6 +840,11 @@ body {
     left: 0px;
 }
 
+.shareBtn {
+    position: relative;
+    top: -3px;
+}
+
 .feedcomments {
     background-color: #232323 !important;
 }

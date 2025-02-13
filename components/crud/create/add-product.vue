@@ -152,7 +152,7 @@
     import {
         useRuntimeConfig
     } from '#imports';
-    import editor from '~/components/partials/editor.vue'
+    import editor from '~/components/partials/globals/editor.vue'
 
     const config = useRuntimeConfig();
     const name = ref('');

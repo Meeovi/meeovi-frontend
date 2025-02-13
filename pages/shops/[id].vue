@@ -69,7 +69,7 @@
   } from 'vue'
   import showcases from '~/components/commerce/related/relatedshowcases.vue'
   import productCard from '~/components/commerce/product/productCard.vue'
-  import comments from '~/components/partials/comments.vue'
+  import comments from '~/components/partials/globals/comments.vue'
   import { useRuntimeConfig } from 'nuxt/app';
 
   const config = useRuntimeConfig();

@@ -14,17 +14,4 @@ function handleLike(postId) {
     console.log('Updated like count:', count);
   });
 }
-
-function toggleLike(postId) {
-  if (!user.value) {
-    alert('Please log in to like posts.');
-    return;
-  }
-
-  $fetch('/api/reactions/toggle', {
-    method: 'POST',
-    body: { postId, userId: user.value.id },
-  });
-}
-
 </script>

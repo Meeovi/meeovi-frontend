@@ -73,10 +73,6 @@
 
     const userStore = useUserStore()
 
-    const userDisplayName = computed(() => {
-        return userStore.user?.name || userStore.user?.username || 'User'
-    })
-
     const tab = ref(null);
     const {
         $directus,
@@ -115,7 +111,7 @@
         return $directus.request($readItems('shorts', {
             filter: {
                 creator: {
-                    _eq: `${userDisplayName.value}`
+                    _eq: `${userStore?.user?.name}`
                 }
             },
             fields: ['*', {

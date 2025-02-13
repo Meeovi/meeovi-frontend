@@ -26,7 +26,7 @@
         ref,
         computed
     } from 'vue'
-    import createListBtn from '~/components/partials/createListBtn.vue'
+    import createListBtn from '~/components/partials/globals/createListBtn.vue'
 
     const model = ref(null)
     const props = defineProps({

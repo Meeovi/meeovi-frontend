@@ -14,7 +14,7 @@
 <script setup>
 import { ref } from 'vue'
 import creators from '~/components/cms/related/creators.vue'
-import followButton from '../../partials/followButton.vue'
+import followButton from '../../partials/cms/followButton.vue'
 
 const model = ref(null)
 

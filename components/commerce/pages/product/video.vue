@@ -80,8 +80,8 @@
   import recentlyviewed from '~/components/commerce/related/recentlyviewed.vue'
   import relatedproducts from '~/components/commerce/related/relatedproducts.vue'
   //import editor from '~/components/Editors/editor.vue'
-  import comments from '~/components/partials/comments.vue'
-  import share from '~/components/partials/share.vue'
+  import comments from '~/components/partials/globals/comments.vue'
+  import share from '~/components/partials/globals/share.vue'
   import gql from 'graphql-tag'
 
 const route = useRoute();

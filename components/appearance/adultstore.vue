@@ -101,7 +101,7 @@
 </template>
 
 <script setup>
-    import AgeVerification from '~/components/partials/ageverification.vue'
+    import AgeVerification from '~/components/partials/globals/ageverification.vue'
 
     const {
         $directus,
