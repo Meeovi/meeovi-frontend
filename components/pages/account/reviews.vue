@@ -1,6 +1,6 @@
 <template>
     <div>
-        <!--<profilebar />-->
+        <!---->
         <v-toolbar color="transparent" density="compact" :title="reviewsbar?.name">
             <addReview />
         </v-toolbar>
@@ -30,7 +30,7 @@
     import {
         ref
     } from 'vue'
-    //import profilebar from '~/components/menus/profilebar.vue'
+    //
     import addReview from '~/components/crud/create/add-review.vue'
     import {
         useUserStore

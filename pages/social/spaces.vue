@@ -1,6 +1,6 @@
 <template>
     <div class="contentPage">
-        <!--<profilebar />-->
+        <!---->
         <v-card elevation="0">
             <v-toolbar :title="spacebar?.name" color="primary">
                 <v-dialog min-width="500">

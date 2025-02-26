@@ -1,6 +1,6 @@
 <template>
     <div>
-        <!--<profilebar />-->
+        <!---->
         <v-row>
             <v-col cols="12">
                 <v-toolbar title="Your Gift Cards" subtitle=""></v-toolbar>

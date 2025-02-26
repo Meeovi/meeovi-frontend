@@ -11,54 +11,68 @@
       </tr>
       <tr>
         <th>Name</th>
-        <td>{{ product?.name }}</td>
+        <td>{{ product?.title }}</td>
       </tr>
       <tr>
         <th>Category Name</th>
-        <td>{{ product?.categories?.map(cat => cat.name).join(', ') }}</td>
+        <td>{{ product?.categories?.name }}</td>
       </tr>
       <tr>
         <th>Price</th>
         <td>
-          <strong>{{ product?.price_range?.minimum_price?.regular_price?.currency }} &nbsp;</strong>
-          {{ product?.price_range?.minimum_price?.regular_price?.value }}
+          {{ product?.variants?.calculated_price?.currency_code }} {{ product?.variants?.calculated_price?.original_price }}
         </td>
       </tr>
       <tr>
-        <th>Average Rating</th>
-        <td>{{ product?.rating_summary }}</td>
+        <th>Origin Country</th>
+        <td>{{ product?.origin_country }}</td>
       </tr>
       <tr>
-        <th># of Reviews</th>
-        <td>{{ product?.review_count }}</td>
+        <th>HS Code</th>
+        <td>{{ product?.hs_code }}</td>
       </tr>
       <tr>
         <th>Sku</th>
-        <td>{{ product?.sku }}</td>
+        <td>{{ product?.variants?.sku }}</td>
       </tr>
       <tr>
-        <th>How many items are left?</th>
-        <td>{{ product?.extension_attributes?.stock_item?.qty }}</td>
+        <th>Material</th>
+        <td>{{ product?.material }}</td>
       </tr>
       <tr>
-        <th>Visibility</th>
-        <td>{{ product?.visibility }}</td>
+        <th>Status</th>
+        <td>{{ product?.status }}</td>
       </tr>
       <tr>
         <th>Weight</th>
         <td>{{ product?.weight }}</td>
       </tr>
       <tr>
-        <th>Format</th>
-        <td>{{ product?.format }}</td>
+        <th>Width</th>
+        <td>{{ product?.width }}</td>
       </tr>
       <tr>
-        <th>Product Sizes</th>
-        <td>{{ product?.size }}</td>
+        <th>Height</th>
+        <td>{{ product?.height }}</td>
       </tr>
       <tr>
-        <th>Product Colors</th>
-        <td>{{ product?.color }}</td>
+        <th>Length</th>
+        <td>{{ product?.length }}</td>
+      </tr>
+      <tr>
+        <th>Type</th>
+        <td>{{ product?.type?.value }}</td>
+      </tr>
+        <th>Collection</th>
+        <td>{{ product?.collection?.title }}</td>
+      </tr>
+      <tr>
+        <th>Keywords</th>
+        <td>{{ product?.tags?.value }}</td>
+      </tr>
+      <tr>
+        <th>Product ID</th>
+        <td>{{ product?.product_id }}</td>
       </tr>
     </tbody>
   </v-table>

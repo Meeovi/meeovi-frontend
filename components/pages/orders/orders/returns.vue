@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!--<profilebar />-->
+    <!---->
     <v-row>
       <v-col cols="12" v-for="(refunds, index) in data?.customer?.refunds?.nodes" :key="index">
         <v-card variant="text">
@@ -67,7 +67,7 @@
 </template>
 
 <script setup>
-  import profilebar from '~/components/menus/profilebar.vue'
+  
   import { ref } from 'vue'
 
   const tab = ref(null)

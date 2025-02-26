@@ -1,6 +1,6 @@
 <template>
     <div class="contentPage">
-        <!--<profilebar />-->
+        <!---->
 
         <v-card elevation="0">
             <NuxtImg loading="lazy" class="align-end text-white" height="250"

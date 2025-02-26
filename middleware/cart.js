@@ -1,6 +1,6 @@
-// middleware/cart.js
-export default defineNuxtRouteMiddleware(async () => {
-    const { initializeCart } = useCart();
-    await initializeCart();
-  });
-  
+import { useCart } from "@/composables/commerce/cart/useCart";
+
+export default defineNuxtMiddleware(async () => {
+  const { initializeCart } = useCart();
+  await initializeCart();
+});

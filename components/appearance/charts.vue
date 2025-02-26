@@ -1,6 +1,6 @@
 <template>
   <div>
-      <!--<profilebar />-->
+      <!---->
       <v-card elevation="0">
           <v-toolbar :title="chartbar?.name" color="#1F7087">
               <v-dialog min-width="500">

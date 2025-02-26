@@ -1,6 +1,6 @@
 <template>
     <div>
-        <!--<profilebar />-->
+        <!---->
         <v-row class="giftCardSection">
             <v-col cols="12">
                 <h2>Redeem a gift card</h2>
@@ -38,17 +38,8 @@
     </div>
 </template>
 
-<script>
-    import profilebar from '~/components/menus/profilebar.vue'
-
-    export default {
-        components: {
-            profilebar
-        },
-    }
-</script>
-
 <script setup>
+import gql from 'graphql-tag'
 const {
     getItemById
   } = useDirectusItems()
@@ -58,8 +49,6 @@ const {
     collection: "gift_card",
     id: route.params.id,
   });
-
-import gql from 'graphql-tag'
 
 const query = gql`
 query MyQuery {

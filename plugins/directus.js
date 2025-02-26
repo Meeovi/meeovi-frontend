@@ -1,7 +1,5 @@
 import { createDirectus, rest, readItem, readItems, createItem, deleteItem, uploadFiles, readSingleton } from '@directus/sdk';
 import "dotenv"
-import { ofetch } from 'ofetch';
-import WebSocket from 'ws';
 
 export default defineNuxtPlugin(() => {
 const config = useRuntimeConfig()

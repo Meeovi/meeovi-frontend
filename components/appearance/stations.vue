@@ -1,6 +1,6 @@
 <template>
   <div>
-      <!--<profilebar />-->
+      <!---->
       <v-card elevation="0">
           <v-toolbar :title="stationbar?.name" color="#b02564">
               <v-dialog min-width="500">

@@ -1,6 +1,6 @@
 <template>
   <div class="contentPage">
-    <!--<profilebar />-->
+    <!---->
     <v-toolbar :title="result?.products?.items[0]?.name" :style="`background: ${result?.products?.items[0]?.color}`">
       <v-dialog min-width="500">
         <template v-slot:activator="{ props: activatorProps }">

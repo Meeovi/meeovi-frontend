@@ -1,17 +1,53 @@
-// /composables/commerce/products/useLatestProducts.js
-import { useRuntimeConfig } from '#imports';
+import { useRuntimeConfig } from '#imports'
 
-export const getLatestProducts = (pageSize = 10) => {
-  const config = useRuntimeConfig();
+export const useProducts = () => {
+  const config = useRuntimeConfig()
 
-  return useFetch(`${config.public.commerceUrl}/rest/default/V1/products`, {
-    headers: {
-      'Authorization': `Bearer ${config.public.commerceApiToken}`,
-    },
-    params: {
-      'searchCriteria[sortOrders][0][field]': 'created_at',
-      'searchCriteria[sortOrders][0][direction]': 'DESC',
-      'searchCriteria[pageSize]': pageSize, // Limit the number of products
-    },
-  });
-};
+  const getLatestProducts = async () => {
+    try {
+      // Using your specific Shopware endpoint from .env
+      const response = await $fetch(`${config.public.shopware.endpoint}/product`, {
+        method: 'GET',
+        headers: {
+          'SW-Access-Key': config.public.shopware.accessToken,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          limit: 10,
+          includes: {
+            product: [
+              'id',
+              'name',
+              'description',
+              'price',
+              'cover',
+              'translated'
+            ],
+            product_media: ['media'],
+            media: ['url']
+          },
+          associations: {
+            cover: {
+              associations: {
+                media: {}
+              }
+            }
+          }
+        })
+      })
+      
+      return response
+    } catch (error) {
+      console.error('Error fetching products:', {
+        message: error.message,
+        endpoint: config.public.shopware.endpoint,
+        hasAccessToken: !!config.public.shopware.accessToken
+      })
+      throw error
+    }
+  }
+
+  return {
+    getLatestProducts
+  }
+}

@@ -2,7 +2,7 @@
   <div>
     <v-dialog v-model="dialogOpen" justify="center">
       <template v-slot:activator="{ props }">
-        <SfButton v-bind="props" variant="tertiary" size="sm" square
+        <SfButton v-bind="props" variant="tertiary" size="sm" square  v-if="!isInWishlist" @click="addToWishlist"
           class="absolute bottom-0 right-0 mr-2 mb-2 bg-white ring-1 ring-inset ring-neutral-200 !rounded-full"
           aria-label="Add to list">
           <SfIconFavorite size="sm" />
@@ -69,12 +69,13 @@
 
   // Add product_sku to props
   const props = defineProps({
-    product_sku: {
+    product_id: {
       type: String,
       required: true
     }
   })
 
+  const route = useRoute();
   const dialogOpen = ref(false);
   const tab = ref(null);
   const {
@@ -95,96 +96,6 @@
     }))
   })
 
-  const checkListProducts = async (listId) => {
-    console.log('Checking current list contents...');
-    await checkListProducts(listId);
-
-    try {
-      const products = await $directus.request($readItems('list_products', {
-        fields: ['*'],
-        filter: {
-          lists: {
-            _eq: listId
-          }
-        }
-      }));
-      console.log(`Products in list ${listId}:`, products);
-      return products;
-    } catch (error) {
-      console.error('Error checking list products:', error);
-      return null;
-    }
-  };
-
-  const saveProductToList = async (listId) => {
-    loading.value = true;
-
-    try {
-      console.log('Input values:', {
-        listId,
-        product_sku: props.product_sku
-      });
-
-      // Check if the product already exists in the list
-      const existingProducts = await $directus.request(
-        $readItems('list_products', {
-          filter: {
-            'lists.id': {
-              _eq: listId
-            },
-            product_sku: {
-              _eq: props.product_sku
-            },
-          },
-        })
-      )?.data || [];
-
-      console.log('Existing products query result:', existingProducts);
-
-      if (existingProducts.length > 0) {
-        this.$refs.alert.showAlert({
-          message: 'Product already exists in this list',
-          color: 'warning', // or error, warning, info
-          type: 'warning', // or error, warning, info
-          timeout: 3000 // optional, defaults to 3000ms
-        })
-        return;
-      }
-
-      // Prepare payload for many-to-many relationship
-      const productData = {
-        product_sku: props.product_sku,
-        quantity: 1,
-        date_created: new Date().toISOString(),
-        lists: [listId], // Pass listId directly
-      };
-
-      console.log('Attempting to save product data:', productData);
-
-      const savedProduct = await $directus.request($createItem('list_products', productData));
-      console.log('Save response:', savedProduct);
-
-      if (savedProduct) {
-        this.$refs.alert.showAlert({
-          message: 'Product added to list successfully',
-          color: 'success', // or error, warning, info
-          type: 'success', // or error, warning, info
-          timeout: 3000 // optional, defaults to 3000ms
-        })
-        dialogOpen.value = false;
-      }
-    } catch (error) {
-      console.error('Error in saveProductToList:', error);
-      this.$refs.alert.showAlert({
-        message: 'Failed to add product to list',
-        color: 'error', // or error, warning, info
-        type: 'error', // or error, warning, info
-        timeout: 3000 // optional, defaults to 3000ms
-      })
-    } finally {
-      loading.value = false;
-    }
-  };
 </script>
 
 <style scoped>

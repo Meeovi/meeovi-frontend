@@ -1,6 +1,6 @@
 <template>
     <div class="contentPage">
-        <!--<profilebar />-->
+        <!---->
         <v-card elevation="0">
             <v-toolbar :title="vibebar?.name" color="primary">
                 <v-dialog>

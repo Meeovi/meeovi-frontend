@@ -1,6 +1,6 @@
 <template>
     <div>
-        <profilebar />
+        
         <v-toolbar color="transparent" density="compact" title="My Agreements">
             <NuxtLinkddPayment />
         </v-toolbar>
@@ -37,7 +37,7 @@
 
 <script>
     import addPayment from '~/components/crud/create/commerce/add-payment.vue'
-    import profilebar from '~/components/menus/profilebar.vue'
+    
 
     export default {
         components: {

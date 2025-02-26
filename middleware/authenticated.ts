@@ -1,4 +1,5 @@
 import { useUserStore } from '~/stores/user'
+import useCart from "@/composables/commerce/cart/useCart";
 
 export default defineNuxtRouteMiddleware((to, from) => {
   const userStore = useUserStore()
@@ -14,4 +15,8 @@ export default defineNuxtRouteMiddleware((to, from) => {
     // Redirect to home page
     return navigateTo('/')
   }
+
+  const { handleLogin } = useCart();
+
+
 })

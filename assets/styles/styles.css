@@ -560,8 +560,16 @@ body {
 
 /******************** Commerce CSS ************/
 
+.cart-flyout {
+    min-width: 383px;
+    margin-top: 5px;
+    position: relative;
+}
+
 .cartPage {
-    padding: 20px;
+    padding-top: 75px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .productTitle {

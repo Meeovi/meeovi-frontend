@@ -1,6 +1,6 @@
 <template>
     <div>
-        <profilebar />
+        
         <section data-bs-version="5.1" class="features07 scalem5 cid-uhB4hw1yxB mbr-fullscreen" id="features07-9l">
             <div class="container">
                 <div class="row">
@@ -241,7 +241,7 @@
 </template>
 
 <script>
-    import profilebar from '~/components/menus/profilebar.vue'
+    
 
     export default {
         components: {

@@ -4,15 +4,28 @@
       data-sortbtn="btn-primary">
       <div class="container-fluid">
         <h2 class="mbr-section-title align-left mbr-fonts-style display-5">
-          Related Products</h2>
+          Related Products
+        </h2>
         <div class="underline align-left pb-3">
           <div class="line"></div>
         </div>
-        <v-sheet class="mx-auto">
+
+        <!-- Loading State -->
+        <div v-if="loading" class="text-center">
+          <v-progress-circular indeterminate></v-progress-circular>
+        </div>
+
+        <!-- Error State -->
+        <div v-else-if="error" class="text-center text-error">
+          {{ error.message }}
+        </div>
+
+        <!-- Products Display -->
+        <v-sheet v-else class="mx-auto">
           <v-slide-group v-model="model" class="pa-4" show-arrows>
-            <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }"
-              v-for="(products, index) in result?.products?.items" :key="index">
-              <productCard :product="products" :class="['ma-4', selectedClass]" @click="toggle" />
+            <v-slide-group-item v-for="product in getProducts" :key="product.id"
+              v-slot="{ isSelected, toggle, selectedClass }">
+              <productCard :product="product" :class="['ma-4', selectedClass]" @click="toggle" />
 
               <div class="d-flex fill-height align-center justify-center">
                 <v-scale-transition>
@@ -28,25 +41,27 @@
 </template>
 
 <script setup>
-  import productCard from '~/components/commerce/product/productCard.vue'
-  import { ref } from 'vue'
-  import {
-    useQuery
-    } from '@vue/apollo-composable'
-  import products from '~/graphql/commerce/queries/products'
+import { useProductSearchSuggest } from "@shopware/composables";
 
-  const model = ref(null);
-  const {
-    result
-    } = useQuery(products)
- /*  import {
-        getPage
-    } from '@/composables/commerce/content/getPage.js';
+const { search, searchTerm, getProducts } = useProductSearchSuggest();
 
-    // Pass the specific products name you want to fetch
-    const products = ref([]); 
+onMounted(() => {
+  // Replace that with your custom logic to fetch products
+  searchTerm.value = "";
+  search();
+});
 
-    onMounted(async () => {
-        products.value = await getPage(27);
-    }); */
+const addProductAndRefresh = async ({ id }) => {
+  await addProduct({ id });
+  refreshCart();
+};
+
+search();
 </script>
+
+<style scoped>
+  .text-error {
+    color: red;
+    padding: 1rem;
+  }
+</style>

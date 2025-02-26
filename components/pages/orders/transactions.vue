@@ -1,6 +1,6 @@
 <template>
     <div>
-        <!--<profilebar />-->
+        <!---->
         <section data-bs-version="5.1" class="firmm4_features1 features1 cid-uhBuptnWmV" id="features1-9v"
             data-sortbtn="btn-primary">
             <div class="container-fluid">
@@ -44,7 +44,7 @@
         ref,
         onMounted
     } from 'vue';
-    import profilebar from '~/components/menus/profilebar.vue'
+    
 
     import {
         getTransactions

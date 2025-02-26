@@ -1,6 +1,6 @@
 <template>
     <div>
-        <!--<profilebar />-->
+        <!---->
         <v-row>
             <v-col cols="12">
                 <v-toolbar title="Your Coupons" subtitle=""></v-toolbar>
@@ -87,7 +87,7 @@
   import {
     getCoupons
   } from '~/composables/commerce/marketing/getCoupons';
-      import profilebar from '~/components/menus/profilebar.vue'
+      
 
     const model = ref(null)
   const coupons = ref([]);

@@ -2,12 +2,12 @@ import {
   gql
 } from 'graphql-tag'
 
-export const ADD_PRODUCT_TO_CART = gql`
-  mutation AddProductToCart($cartId: String!, $cartItems: [CartItemInput!]!) {
-    addProductsToCart(
-      cartId: $cartId
-      cartItems: $cartItems
-    ) {
+export const ADD_PRODUCTS_TO_CART = gql`
+  mutation AddProductsToCart($cartId: String!, $cartItems: [CartItemInput!]!) {
+      addProductsToCart(
+        cartId: $cartId
+        cartItems: $cartItems
+      ) {
       cart {
       itemsV2 {
         items {
