@@ -33,8 +33,8 @@
     useQuery
   } from '@vue/apollo-composable'
   import createcontact from '~/components/crud/create/add-contact.vue'
-  import contacts from '~/components/pages/contacts/contacts.vue'
-  import mycontacts from '~/components/pages/contacts/mycontacts.vue'
+  import contacts from '~/components/contacts/contacts.vue'
+  import mycontacts from '~/components/contacts/mycontacts.vue'
   //import customers from '~/graphql/commerce/queries/customers'
   import {
     ref
@@ -59,7 +59,7 @@
   })
 
   definePageMeta({
-        middleware: ['authenticated'],
+        middleware: ['authentication'],
     })
 
   useHead({

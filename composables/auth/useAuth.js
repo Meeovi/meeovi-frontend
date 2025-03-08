@@ -1,38 +1,20 @@
-import { ref, onMounted } from 'vue'
-import { createClient } from '@supabase/supabase-js'
+import { useMutation } from '@vue/apollo-composable'
+import {
+  AUTH_MUTATIONS
+} from '~/graphql/commerce/mutations/customer/auth'
+import { useCookie } from '#app'
 
-export const useAuth = () => {
-  const user = ref(null)
-  const loading = ref(true)
+export function useAuth() {
+  const token = useCookie('magento_token')
 
-  const supabase = createClient(
-    process.env.SUPABASE_URL,
-    process.env.SUPABASE_KEY
-  )
-
-  onMounted(async () => {
-    // Get initial session
-    const { data: { session } } = await supabase.auth.getSession()
-    user.value = session?.user ?? null
-    loading.value = false
-
-    // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
-      user.value = session?.user ?? null
-    })
-
-    // Cleanup subscription on unmount
-    return () => subscription.unsubscribe()
+  const { mutate: logoutCustomer } = useMutation(AUTH_MUTATIONS.LOGOUT, {
+    context: { headers: { Authorization: `Bearer ${token.value}` } }
   })
 
-  const signOut = async () => {
-    const { error } = await supabase.auth.signOut()
-    if (error) throw error
+  const logout = async () => {
+    await logoutCustomer()
+    token.value = null
   }
 
-  return {
-    user,
-    loading,
-    signOut
-  }
+  return { logout }
 }

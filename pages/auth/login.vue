@@ -1,61 +1,44 @@
 <template>
   <div class="authPage">
     <section data-bs-version="5.1" class="form2 shopm5 cid-umoq9RvANO mbr-parallax-background" id="aform2-a3"
-      data-sortbtn="btn-primary" style="height: 100vh;">
+      data-sortbtn="btn-primary">
       <div class="mbr-overlay" style="opacity: 0.3; background-color: rgb(255, 255, 255);"></div>
 
       <div class="container-fluid">
         <div class="row justify-content-center">
           <div class="col content-wrap">
             <div class="mbr-section-head">
-              <img src="~/assets/images/logo512alpha-128x128.png" alt="Meeovi Logo" class="authLogo" />
+              <img src="../../assets/images/logo512alpha-128x128.png" alt="Meeovi Logo" class="authLogo" />
               <h2 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
-                <strong>Login</strong>
+                <strong>Welcome Back</strong>
               </h2>
+
+              <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
             </div>
             <div class="form-wrap">
-              <form class="row flex-center flex" @submit.prevent="handleLogin">
-                <div class="col-12 form-widget">
-                  <div class="mb-3">
-                    <v-text-input 
-                      class="inputField" 
-                      type="email" 
-                      placeholder="Email" 
-                      v-model="email"
-                      required 
-                    />
-                  </div>
-                  <div class="mb-3">
-                    <v-text-input 
-                      class="inputField" 
-                      type="password" 
-                      placeholder="Password" 
-                      v-model="password"
-                      required 
-                    />
-                  </div>
-                  <div>
-                    <v-btn 
-                      type="submit" 
-                      class="button block" 
-                      :disabled="loading"
-                    >
-                      {{ loading ? 'Loading...' : 'Sign In' }}
-                    </v-btn>
-                  </div>
-                  <div v-if="error" class="error-message mt-3">
-                    {{ error }}
-                  </div>
-                  <div class="mt-3 text-center">
-                    <p>Don't have an account? 
-                      <NuxtLink to="/auth/register">Sign Up</NuxtLink>
-                    </p>
-                  </div>
-                </div>
-              </form>
+              <div class="mbr-form" data-form-type="formoid">
+                <form width="500" @submit.prevent="handleLogin">
+                  <v-text-field type="email" v-model="email" label="Email*" required></v-text-field>
+                  <v-text-field type="password" v-model="password" label="Password*" required></v-text-field>
+
+                  <v-list lines="one" style="background: transparent;">
+                    <v-list-item>
+                      <v-list-item-title>Forgot your password?.
+                        <a href="/auth/forgot-password">Reset It Here</a></v-list-item-title>
+                    </v-list-item>
+
+                    <v-list-item>
+                      <v-list-item-title>Don't have an account?. <a href="/auth/register">Signup
+                          Here</a></v-list-item-title>
+                    </v-list-item>
+                  </v-list>
+
+                  <v-btn class="mt-2 btn btn-primary display-4" type="submit">Login</v-btn>
+                </form>
+              </div>
             </div>
             <p class="comment-text mbr-fonts-style align-center mb-0 display-7">
-              We respect your privacy, so we never will share your info.
+              We respect your privacy, so we never share your info.
             </p>
           </div>
         </div>
@@ -65,45 +48,63 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { createClient } from '@supabase/supabase-js'
-import { useRouter } from 'vue-router'
-import { useRuntimeConfig } from '#imports'
+  import {
+    ref
+  } from 'vue'
+  import {
+    useRouter,
+    useRoute
+  } from 'vue-router'
 
-const router = useRouter()
-const loading = ref(false)
-const email = ref('')
-const password = ref('')
-const error = ref(null)
+  const router = useRouter()
+  const route = useRoute()
+  const email = ref('')
+  const password = ref('')
+  const errorMessage = ref('')
 
-const config = useRuntimeConfig()
-const supabase = createClient(
-  config.public.supabase.url,
-  config.public.supabase.key
-)
+  const handleLogin = async () => {
+    try {
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email.value,
+          password: password.value,
+          website_id: 1,
+        }),
+      });
 
-const handleLogin = async () => {
-  try {
-    loading.value = true
-    error.value = null
-    
-    const { data, error: signInError } = await supabase.auth.signInWithPassword({
-      email: email.value,
-      password: password.value,
-    })
+      if (response.ok) {
+        const data = await response.json();
 
-    if (signInError) throw signInError
+        // Store the token in localStorage or cookies
+        localStorage.setItem('authToken', data.body.token);
 
-    // Successful login
-    await router.push('/') // or your dashboard route
-  } catch (e) {
-    error.value = e.message
-  } finally {
-    loading.value = false
-  }
-}
+        // Clear any previous error message
+        errorMessage.value = '';
 
-definePageMeta({
-  layout: 'auth',
-})
+        // Redirect to the previous page or home if no previous page
+        const returnUrl = route.query.returnUrl || '/';
+        console.log('Redirecting to:', returnUrl);
+        router.push(returnUrl);
+      } else {
+        const errorData = await response.json();
+        errorMessage.value = errorData.statusMessage || 'Login failed';
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+      errorMessage.value = 'An unexpected error occurred';
+    }
+  };
+
+  definePageMeta({
+    auth: false,
+    layout: 'auth',
+  });
+
+  useHead({
+    title: 'Login',
+  });
 </script>

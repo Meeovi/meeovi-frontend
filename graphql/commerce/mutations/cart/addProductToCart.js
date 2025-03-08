@@ -31,3 +31,83 @@ export const ADD_PRODUCTS_TO_CART = gql`
     }
   }
   }`
+
+export const ADD_DOWNLOADABLE_PRODUCT_TO_CART = gql`
+mutation AddDownloadableProductToCart($cartId: String!, $cartItems: [CartItemInput!]!) {
+  addProductsToCart(
+    cartId: $cartId
+    cartItems: $cartItems
+  ) {
+    cart {
+      items {
+        id
+        product {
+          name
+          sku
+        }
+        quantity
+      }
+    }
+  }
+}
+`
+
+export const ADD_VIRTUAL_PRODUCT_TO_CART = gql`
+  mutation AddVirtualProductToCart($cartId: String!, $cartItems: [CartItemInput!]!) {
+    addProductsToCart(
+      cartId: $cartId
+      cartItems: $cartItems
+    ) {
+      cart {
+        items {
+          id
+          product {
+            name
+            sku
+          }
+          quantity
+        }
+      }
+    }
+  }
+`;
+
+export const ADD_CONFIGURABLE_PRODUCT_TO_CART = gql`
+  mutation AddConfigurableProductToCart($cartId: String!, $cartItems: [CartItemInput!]!) {
+    addProductsToCart(
+      cartId: $cartId
+      cartItems: $cartItems
+    ) {
+      cart {
+        items {
+          id
+          product {
+            name
+            sku
+          }
+          quantity
+        }
+      }
+    }
+  }
+`
+
+export const ADD_BUNDLE_PRODUCT_TO_CART = gql`
+  mutation AddBundleProductToCart($cartId: String!, $cartItems: [CartItemInput!]!) {
+    addProductsToCart(
+      cartId: $cartId
+      cartItems: $cartItems
+    ) {
+      cart {
+        items {
+          id
+          product {
+            name
+            sku
+          }
+          quantity
+        }
+      }
+    }
+  }
+`

@@ -62,7 +62,7 @@
 </template>
 
 <script setup>
-    import shorts from '~/components/cms/related/shorts.vue'
+    import shorts from '~/components/related/cms/shorts.vue'
     import addlive from '~/components/crud/create/add-live.vue'
     import {
         ref
@@ -139,6 +139,6 @@
     })
 
     definePageMeta({
-        middleware: ['authenticated'],
+        middleware: ['authentication'],
     })
 </script>

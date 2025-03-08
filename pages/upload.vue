@@ -57,6 +57,6 @@
   } = useQuery(uploadPage)
 
     definePageMeta({
-        middleware: ['authenticated'],
+        middleware: ['authentication'],
     })
 </script>

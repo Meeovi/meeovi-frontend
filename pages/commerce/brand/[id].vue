@@ -47,9 +47,9 @@
     ref,
     onMounted
   } from 'vue'
-  import shorts from '~/components/cms/related/shorts.vue'
-  import productCard from '~/components/commerce/product/productCard.vue'
-  import relatedbrands from '~/components/commerce/related/relatedbrands.vue'
+  import shorts from '~/components/related/cms/shorts.vue'
+  import productCard from '~/components/product/productCard.vue'
+  import relatedbrands from '~/components/related/commerce/relatedbrands.vue'
   import {
     useRuntimeConfig
   } from 'nuxt/app';

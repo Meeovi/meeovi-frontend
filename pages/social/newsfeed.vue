@@ -45,7 +45,7 @@
   import {
     ref,
   } from 'vue';
-  import post from '~/components/cms/related/posts.vue'
+  import post from '~/components/related/cms/posts.vue'
   import {
     useUserStore
   } from '~/stores/user'
@@ -99,6 +99,6 @@
   });
 
   definePageMeta({
-    middleware: ['authenticated'],
+    middleware: ['auth'],
   })
 </script>

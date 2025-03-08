@@ -102,8 +102,8 @@
     import {
         ref
     } from 'vue'
-    //import repost from '~/components/cms/social/repost.vue'
-    import reactions from '~/components/cms/social/reactions.vue'
+    //import repost from '~/components/partials/cms/repost.vue'
+    import reactions from '~/components/partials/globals/reactions.vue'
     import comments from '~/components/partials/globals/comments.vue'
     import createListBtn from '~/components/partials/globals/createListBtn.vue'
     import share from '~/components/partials/globals/share.vue'
@@ -132,6 +132,6 @@
     })
 
     definePageMeta({
-        middleware: ['authenticated'],
+        middleware: ['authentication'],
     })
 </script>

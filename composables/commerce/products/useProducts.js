@@ -1,77 +1,53 @@
-import { ref, onMounted } from "vue";
-import { medusa } from "@/utils/medusa";
+import { useRuntimeConfig } from '#imports';
 
-export const useProducts = () => {
+export const getProducts = async () => {
   const config = useRuntimeConfig();
-  const products = ref([]);
-  const loading = ref(true);
-  const error = ref(null);
+  try {
+    const response = await $fetch(`${config.public.shopware.endpoint}/store-api/product`, {
+      method: 'POST',
+      headers: {
+        'SW-Access-Key': config.public.shopware.accessToken,
+        'sw-include-seo-urls': '1',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        includes: {
+          product: ['*'],
+          media: ['*'],
+          product_media: ['media']
+        }
+      })
+    });
 
-  const fetchProducts = async () => {
-    try {
-      const response = await medusa.store.product.list({
-        headers: {
-          "x-publishable-api-key": config.public.medusaPublishableKey, // Ensure this is set correctly
-        },
-      });
-
-      products.value = response?.products || [];
-    } catch (err) {
-      error.value = err.message;
-    } finally {
-      loading.value = false;
-    }
-  };
-
-  onMounted(fetchProducts);
-
-  return { products, loading, error };
+    return response;
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    return null;
+  }
 };
 
-export const useProduct = (id) => {
-  const product = ref([]);
-  const loading = ref(true);
-  const error = ref(null);
+export const getProductById = async (productId) => {
+  const config = useRuntimeConfig();
+  try {
+    const response = await $fetch(`${config.public.shopware.endpoint}/store-api/product/${productId}`, {
+      method: 'POST',
+      headers: {
+        'SW-Access-Key': config.public.shopware.accessToken,
+        'sw-include-seo-urls': '1',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        includes: {
+          product: ['*'],
+          media: ['*'],
+          product_media: ['media']
+        }
+      })
+    });
 
-  const fetchProduct = async () => {
-    try {
-      const response = await medusa.store.product.retrieve(id, {
-        fields: "*.*",
-        headers: {
-          "x-publishable-api-key": config.public.medusaPublishableKey, // Ensure this is set correctly
-        },
-      });
-
-      product.value = response?.product || [];
-    } catch (err) {
-      error.value = err.message;
-    } finally {
-      loading.value = false;
-    }
-  };
-
-  const fetchProductBundle = async () => {
-    try {
-      const response = await medusa.store.product.retrieve(id, {
-        fields: {
-          products: {
-            type: "Bundle"
-          }
-        },
-        headers: {
-          "x-publishable-api-key": config.public.medusaPublishableKey, // Ensure this is set correctly
-        },
-      });
-
-      events.value = response?.product_product || [];
-    } catch (err) {
-      error.value = err.message;
-    } finally {
-      loading.value = false;
-    }
-  };
-
-  onMounted(fetchProduct, fetchProductBundle);
-
-  return { product, events, loading, error };
+    return response;
+  } catch (error) {
+    console.error(`Error fetching product with ID ${productId}:`, error);
+    return null;
+  }
 };

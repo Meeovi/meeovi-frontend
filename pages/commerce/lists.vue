@@ -60,9 +60,9 @@
     import {
         useQuery
     } from '@vue/apollo-composable'
-    import bookmark from '~/components/cms/related/bookmark.vue'
+    import bookmark from '~/components/related/cms/bookmark.vue'
     import createbookmark from '~/components/crud/create/add-bookmark.vue'
-    import list from '~/components/commerce/related/lists.vue'
+    import list from '~/components/related/commerce/lists.vue'
     import listbtn from '~/components/partials/globals/listBtn.vue'
 
     const tab = ref(null);
@@ -137,6 +137,6 @@
     })
 
     definePageMeta({
-        middleware: ['authenticated'],
+        middleware: ['authentication'],
     })
 </script>

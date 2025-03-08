@@ -39,7 +39,7 @@
 
   definePageMeta({
     layout: 'nolive',
-    middleware: ['authenticated'],
+    middleware: ['auth'],
   });
 
   useHead({

@@ -101,7 +101,7 @@
     useRoute
   } from 'vue-router';
   import FilterComponent from '~/components/search/filters.vue';
-  import productCard from '~/components/commerce/product/productCard.vue';
+  import productCard from '~/components/product/productCard.vue';
   import videoSearch from '~/components/search/results/videoSearch.vue'
   import imageSearch from '~/components/search/results/imageSearch.vue'
   import musicSearch from '~/components/search/results/musicSearch.vue'

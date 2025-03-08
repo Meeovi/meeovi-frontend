@@ -32,10 +32,10 @@
 </template>
 
 <script setup>
-    import dashboard from '~/components/pages/promotions/dashboard.vue'
-    import coupons from '~/components/pages/promotions/coupons.vue'
-    import giftcards from '~/components/pages/promotions/giftcards.vue'
-    import subscriptions from '~/components/pages/promotions/subscriptions.vue'
+    import dashboard from '~/components/promotions/dashboard.vue'
+    import coupons from '~/components/promotions/coupons.vue'
+    import giftcards from '~/components/promotions/giftcards.vue'
+    import subscriptions from '~/components/promotions/subscriptions.vue'
 
     import { ref } from 'vue'
 
@@ -54,7 +54,7 @@
 
     definePageMeta({
       layout: "nolive",
-      middleware: ['authenticated'],
+      middleware: ['authentication'],
     });
 
     useHead({

@@ -64,16 +64,16 @@
 </template>
 
 <script setup>
-    import dashboard from '~/components/pages/account/dashboard.vue'
-    import orders from '~/components/pages/orders/orders/my-orders.vue'
-    import transactions from '~/components/pages/orders/transactions.vue'
-    import shipments from '~/components/pages/orders/shipments.vue'
-    import refunds from '~/components/pages/orders/orders/returns.vue'
-    import creditmemos from '~/components/pages/orders/creditmemos.vue'
-    import addresses from '~/components/pages/account/addresses.vue'
-    import downloads from '~/components/pages/account/downloads.vue'
-    import reviews from '~/components/pages/account/reviews.vue'
-    import settings from '~/components/pages/account/settings.vue'
+    import dashboard from '~/components/account/dashboard.vue'
+    import orders from '~/components/orders/orders/my-orders.vue'
+    import transactions from '~/components/orders/transactions.vue'
+    import shipments from '~/components/orders/shipments.vue'
+    import refunds from '~/components/orders/orders/returns.vue'
+    import creditmemos from '~/components/orders/creditmemos.vue'
+    import addresses from '~/components/account/addresses.vue'
+    import downloads from '~/components/account/downloads.vue'
+    import reviews from '~/components/account/reviews.vue'
+    import settings from '~/components/account/settings.vue'
     import {
         ref
     } from 'vue'
@@ -109,7 +109,7 @@
 
     definePageMeta({
         layout: 'nolive',
-        middleware: ['authenticated'],
+        middleware: ['authentication'],
     });
 
     useHead({

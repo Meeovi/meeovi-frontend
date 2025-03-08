@@ -2,11 +2,7 @@
   <div>
     <v-dialog v-model="dialogOpen" justify="center">
       <template v-slot:activator="{ props }">
-        <SfButton v-bind="props" variant="tertiary" size="sm" square  v-if="!isInWishlist" @click="addToWishlist"
-          class="absolute bottom-0 right-0 mr-2 mb-2 bg-white ring-1 ring-inset ring-neutral-200 !rounded-full"
-          aria-label="Add to list">
-          <SfIconFavorite size="sm" />
-        </SfButton>
+        <button class="btn btn-info display-7" v-bind="props"><span class="mobi-mbri mobi-mbri-plus mbr-iconfont mbr-iconfont-btn"></span>Add to List</button>
       </template>
 
       <v-card max-width="500px">
@@ -62,14 +58,14 @@
     SfButton,
     SfIconFavorite
   } from '@storefront-ui/vue'
-  import list from '~/components/commerce/related/lists.vue'
+  import list from '~/components/related/commerce/lists.vue'
   import createlist from '~/components/crud/create/add-list.vue'
 
   const loading = ref(false)
 
   // Add product_sku to props
   const props = defineProps({
-    product_id: {
+    lists: {
       type: String,
       required: true
     }
@@ -95,7 +91,6 @@
       }
     }))
   })
-
 </script>
 
 <style scoped>

@@ -44,7 +44,7 @@
     ref,
     onMounted
   } from 'vue'
-  import brand from '~/components/commerce/related/brands.vue'
+  import brand from '~/components/related/commerce/brands.vue'
 
   const tab = ref(null)
   const {

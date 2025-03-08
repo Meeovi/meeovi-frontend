@@ -73,9 +73,9 @@
   import {
     useUserStore
   } from '~/stores/user'
-  import list from '~/components/commerce/related/lists.vue'
-  import post from '~/components/cms/related/posts.vue'
-  import shorts from '~/components/cms/related/shorts.vue'
+  import list from '~/components/related/commerce/lists.vue'
+  import post from '~/components/related/cms/posts.vue'
+  import shorts from '~/components/related/cms/shorts.vue'
 
   const userStore = useUserStore()
 

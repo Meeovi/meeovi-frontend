@@ -1,45 +1,99 @@
-import { createClient } from '@supabase/supabase-js'
-import 'dotenv/config'
+import { PrismaClient } from '@prisma/client';
+import bcryptjs from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
-const config = useRuntimeConfig();
-
-// Initialize Supabase client (do this only once)
-if (!config.public.supabase.url || !config.public.supabase.key) {
-  throw new Error('Supabase credentials are not set in environment variables')
-}
-
-const supabase = createClient(
-  config.public.supabase.url,
-  config.public.supabase.key
-)
+const prisma = new PrismaClient();
 
 export default defineEventHandler(async (event) => {
+  const config = useRuntimeConfig();
+  const jwtSecret = config.public.jwtSecret;
+
+  console.log('JWT Secret:', jwtSecret); // Add this to verify the secret is loaded
+
+  if (!jwtSecret) {
+    throw new Error('JWT Secret is not defined');
+  }
+
+  const body = await readBody(event);
+  const { email, password, website_id } = body;
+
+  // Validate input
+  if (!email || !password || !website_id) {
+    return sendError(event, createError({
+      statusCode: 400,
+      statusMessage: 'Email, password, and website_id are required',
+    }));
+  }
+
   try {
-    const { access_token } = await readBody(event)
-    
-    // Verify the Supabase session
-    const { data: { user }, error } = await supabase.auth.getUser(access_token)
-    
-    if (error) throw error
-    
+    // Find the user using the unique constraint
+    const user = await prisma.mgtn_customer_entity.findUnique({
+      where: {
+        MGTN_CUSTOMER_ENTITY_EMAIL_WEBSITE_ID: {
+          email,
+          website_id,
+        },
+      },
+    });
+
+    // Check if the user exists
     if (!user) {
-      throw new Error('User not found')
+      return sendError(event, createError({
+        statusCode: 404,
+        statusMessage: 'User not found',
+      }));
     }
 
-    // Return user data
-    return {
-      uid: user.id,
-      email: user.email,
-      username: user.username,
-      avatar: user.avatar,
-      // Add any other user properties you need
+    // Check if the password hash is null
+    if (!user.password_hash) {
+      return sendError(event, createError({
+        statusCode: 400,
+        statusMessage: 'User does not have a password set.',
+      }));
     }
+
+    // Compare the password with the stored hashed password
+    const isPasswordValid = await bcryptjs.compare(password, user.password_hash);
+
+    if (!isPasswordValid) {
+      return sendError(event, createError({
+        statusCode: 401,
+        statusMessage: 'Invalid password',
+      }));
+    }
+
+    // Generate a JWT token for the session
+    const token = jwt.sign(
+      {
+        userId: user.entity_id,
+        email: user.email,
+        firstname: user.firstname,
+        lastname: user.lastname,
+        is_seller: user.is_seller,
+      },
+      jwtSecret, // Use the secret key here
+      { expiresIn: '12h' }
+    );
+
+    return {
+      statusCode: 200,
+      body: {
+        message: 'Login successful',
+        token,
+        user: {
+          id: user.entity_id,
+          email: user.email,
+          firstname: user.firstname,
+          lastname: user.lastname,
+          is_seller: user.is_seller,
+        },
+      },
+    };
   } catch (error) {
-    console.error('Error in login:', error)
-    return createError({
-      statusCode: 400,
-      statusMessage: 'Authentication failed',
-      data: { message: error.message }
-    })
+    console.error('Error during login:', error);
+    return sendError(event, createError({
+      statusCode: 500,
+      statusMessage: 'Internal Server Error',
+    }));
   }
-})
+});

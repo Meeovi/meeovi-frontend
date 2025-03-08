@@ -30,13 +30,13 @@
         ref
     } from 'vue'
     import addproduct from '~/components/crud/create/add-product.vue'
-    import productCard from '~/components/commerce/productCard.vue'
+    import productCard from '~/components/productCard.vue'
 
     const tab = ref(null);
 
     definePageMeta({
       layout: "sellers",
-      middleware: ['authenticated'],
+      middleware: ['authentication'],
     });
 
     useHead({

@@ -41,7 +41,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import store from '~/components/commerce/related/stores.vue'
+import store from '~/components/related/commerce/stores.vue'
 
 const tab = ref(null)
 const stores = ref([])

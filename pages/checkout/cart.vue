@@ -49,11 +49,11 @@
 </template>
 
 <script setup>
-    import cartItems from '~/components/appearance/checkout/cartItems.vue'
-    import orderSummary from '~/components/appearance/checkout/orderSummary.vue'
-    import billingAddress from '~/components/appearance/checkout/addressBilling.vue'
-    import shippingAddress from '~/components/appearance/checkout/addressShipping.vue'
-    import relatedProducts from '~/components/commerce/related/relatedproducts.vue'
+    import cartItems from '~/components/cart/checkout/cartItems.vue'
+    import orderSummary from '~/components/cart/checkout/orderSummary.vue'
+    import billingAddress from '~/components/cart/checkout/addressBilling.vue'
+    import shippingAddress from '~/components/cart/checkout/addressShipping.vue'
+    import relatedProducts from '~/components/related/commerce/relatedproducts.vue'
 
     const tab = ref(null);
     definePageMeta({

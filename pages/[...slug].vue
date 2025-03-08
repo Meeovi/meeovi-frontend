@@ -13,8 +13,8 @@
 </template>
 
 <script setup>
-import meeoviGlobal from '~/components/appearance/meeoviGlobal.vue'
-import pickupLocations from '~/components/appearance/pickup-locations.vue'
+import meeoviGlobal from '~/components/pages/meeoviGlobal.vue'
+import pickupLocations from '~/components/pages/pickup-locations.vue'
 
 const route = useRoute();
 const { $directus, $readItems } = useNuxtApp()

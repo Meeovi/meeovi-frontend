@@ -63,7 +63,7 @@
 </template>
 
 <script setup>
-    import space from '~/components/cms/related/spaces.vue'
+    import space from '~/components/related/cms/spaces.vue'
     import createspace from '~/components/crud/create/add-space.vue'
     import { ref } from 'vue'
     import {
@@ -142,7 +142,7 @@
     })
 
     definePageMeta({
-        middleware: ['authenticated'],
+        middleware: ['authentication'],
     })
 
     useHead({

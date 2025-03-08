@@ -67,8 +67,8 @@
   import {
     ref
   } from 'vue'
-  import showcases from '~/components/commerce/related/relatedshowcases.vue'
-  import productCard from '~/components/commerce/product/productCard.vue'
+  import showcases from '~/components/related/commerce/relatedshowcases.vue'
+  import productCard from '~/components/product/productCard.vue'
   import comments from '~/components/partials/globals/comments.vue'
   import { useRuntimeConfig } from 'nuxt/app';
 

@@ -6,7 +6,7 @@
             </template>
 
             <template v-slot:default="{ isActive }">
-                <NuxtLinkddlist />
+                <addlist />
             </template>
         </v-dialog>
     </div>

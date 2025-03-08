@@ -343,15 +343,15 @@
 </script>
 
 <script setup>
-    import member from '~/components/cms/related/member.vue'
+    import member from '~/components/related/cms/member.vue'
     import createpost from '~/components/crud/create/add-post.vue'
     import settings from '~/components/crud/update/update-space.vue'
-    import productCard from '~/components/commerce/product/productCard.vue'
-    import shorts from '~/components/cms/related/shorts.vue'
-    import posts from '~/components/cms/related/posts.vue'
-    import relatedevents from '~/components/commerce/related/relatedevents.vue'
-    import audiogroup from '~/components/appearance/audiogroup.vue'
-    import videogroup from '~/components/appearance/videogroup.vue'
+    import productCard from '~/components/product/productCard.vue'
+    import shorts from '~/components/related/cms/shorts.vue'
+    import posts from '~/components/related/cms/posts.vue'
+    import relatedevents from '~/components/related/commerce/relatedevents.vue'
+    import audiogroup from '~/components/blocks/audiogroup.vue'
+    import videogroup from '~/components/blocks/videogroup.vue'
     import {
         ref
     } from 'vue'
@@ -379,6 +379,6 @@
     })
 
     definePageMeta({
-        middleware: ['authenticated'],
+        middleware: ['authentication'],
     }) /**/
 </script>

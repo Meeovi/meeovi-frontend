@@ -26,7 +26,7 @@
   } from 'vue'
   import {
     useNotification
-  } from '~/composables/useNotifications';
+  } from '~/composables/globals/useNotifications';
 
   const {
     notifications

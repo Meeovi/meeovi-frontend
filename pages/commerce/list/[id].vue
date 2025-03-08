@@ -127,7 +127,7 @@
     readItem,
     deleteItem
   } from '@directus/sdk'
-  import productCard from '~/components/commerce/product/productCard.vue'
+  import productCard from '~/components/product/productCard.vue'
   import updatelist from '~/components/crud/update/update-list.vue'
   import {
     useQuery
@@ -190,6 +190,6 @@
   })
 
   definePageMeta({
-    middleware: ['authenticated'],
+    middleware: ['auth'],
   })
 </script>
