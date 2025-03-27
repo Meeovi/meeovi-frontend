@@ -1,0 +1,3395 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("CMS_URL")
+}
+
+model Space {
+  id              Int       @id @default(autoincrement())
+  status          String    @default("draft") @db.VarChar(255)
+  sort            Int?
+  user_created    String?   @db.Uuid
+  date_created    DateTime? @db.Timestamptz(6)
+  user_updated    String?   @db.Uuid
+  date_updated    DateTime? @db.Timestamptz(6)
+  name            String?   @db.VarChar(255)
+  description     String?
+  image           String?   @db.Uuid
+  media           String?   @db.Uuid
+  numberOfMembers String?   @db.VarChar(255)
+  groupType       String?   @db.VarChar(255)
+  creator_id      BigInt?
+  slug            String?   @db.VarChar(255)
+}
+
+model Space_directus_users {
+  id                Int     @id @default(autoincrement())
+  directus_users_id String? @db.Uuid
+}
+
+model Space_products {
+  id          Int       @id @default(autoincrement())
+  products_id BigInt?
+  products    products? @relation(fields: [products_id], references: [id])
+}
+
+model Space_shorts {
+  id        Int     @id @default(autoincrement())
+  shorts_id Int?
+  shorts    shorts? @relation(fields: [shorts_id], references: [id])
+}
+
+model address {
+  id                     Int                      @id @default(autoincrement())
+  status                 String                   @default("draft") @db.VarChar(255)
+  sort                   Int?
+  user_created           String?                  @db.Uuid
+  date_created           DateTime?                @db.Timestamptz(6)
+  user_updated           String?                  @db.Uuid
+  date_updated           DateTime?                @db.Timestamptz(6)
+  name                   String?                  @db.VarChar(255)
+  description            String?
+  type                   Json?                    @db.Json
+  address                String?
+  address2               String?                  @db.VarChar(255)
+  postalcode             String?                  @db.VarChar(255)
+  firstName              String?                  @db.VarChar(255)
+  lastName               String?                  @db.VarChar(255)
+  company                String?                  @db.VarChar(255)
+  email                  String?                  @db.VarChar(255)
+  telephone              String?                  @db.VarChar(255)
+  format                 String?                  @db.VarChar(255)
+  user                   String?                  @db.VarChar(255)
+  address_cart           address_cart[]
+  address_cities         address_cities[]
+  address_countries      address_countries[]
+  address_directus_users address_directus_users[]
+  credit_memos_address   credit_memos_address[]
+  invoices_address       invoices_address[]
+  region_address         region_address[]
+  shipment_address       shipment_address[]
+}
+
+model address_cart {
+  id         Int      @id @default(autoincrement())
+  address_id Int?
+  cart_id    Int?
+  address    address? @relation(fields: [address_id], references: [id])
+  cart       cart?    @relation(fields: [cart_id], references: [id])
+}
+
+model address_cities {
+  id         Int      @id @default(autoincrement())
+  address_id Int?
+  cities_id  Int?
+  address    address? @relation(fields: [address_id], references: [id])
+  cities     cities?  @relation(fields: [cities_id], references: [id])
+}
+
+model address_countries {
+  id           Int        @id @default(autoincrement())
+  address_id   Int?
+  countries_id Int?
+  address      address?   @relation(fields: [address_id], references: [id])
+  countries    countries? @relation(fields: [countries_id], references: [id])
+}
+
+model address_directus_users {
+  id                Int      @id @default(autoincrement())
+  address_id        Int?
+  directus_users_id String?  @db.Uuid
+  address           address? @relation(fields: [address_id], references: [id])
+}
+
+model advertising {
+  id           Int       @id @default(autoincrement())
+  status       String    @default("draft") @db.VarChar(255)
+  sort         Int?
+  date_created DateTime? @db.Timestamptz(6)
+  date_updated DateTime? @db.Timestamptz(6)
+  name         String?   @db.VarChar(255)
+  description  String?
+  link         String?   @db.VarChar(255)
+  start_date   DateTime? @db.Timestamp(6)
+  end_time     DateTime? @db.Timestamp(6)
+}
+
+model advertising_files {
+  id                Int     @id @default(autoincrement())
+  directus_files_id String? @db.Uuid
+}
+
+model advertising_products {
+  id          Int       @id @default(autoincrement())
+  products_id BigInt?
+  products    products? @relation(fields: [products_id], references: [id])
+}
+
+model agreements {
+  id                        BigInt                      @id @default(autoincrement())
+  created                   DateTime?                   @default(now())
+  content                   String?
+  name                      String?
+  excerpt                   String?
+  type                      Json?                       @db.Json
+  reference_id              BigInt?
+  status                    String?                     @db.VarChar(255)
+  updated                   DateTime?                   @db.Timestamptz(6)
+  agreements_directus_users agreements_directus_users[]
+  agreements_products       agreements_products[]
+  shops_agreements          shops_agreements[]
+}
+
+model agreements_directus_users {
+  id           Int         @id @default(autoincrement())
+  agreement_id BigInt?
+  user_id      String?     @db.Uuid
+  agreements   agreements? @relation(fields: [agreement_id], references: [id])
+}
+
+model agreements_products {
+  id            Int         @id @default(autoincrement())
+  agreements_id BigInt?
+  products_id   BigInt?
+  agreements    agreements? @relation(fields: [agreements_id], references: [id])
+  products      products?   @relation(fields: [products_id], references: [id])
+}
+
+model announcements {
+  id                                                        Int             @id @default(autoincrement())
+  status                                                    String          @default("draft") @db.VarChar(255)
+  sort                                                      Int?
+  user_created                                              String?         @db.Uuid
+  date_created                                              DateTime?       @db.Timestamptz(6)
+  user_updated                                              String?         @db.Uuid
+  date_updated                                              DateTime?       @db.Timestamptz(6)
+  name                                                      String?         @db.VarChar(255)
+  subject                                                   String?         @db.VarChar(255)
+  description                                               String?
+  image                                                     String?         @db.Uuid
+  location                                                  Json?           @db.Json
+  icon                                                      String?         @db.VarChar(255)
+  color                                                     String?         @db.VarChar(255)
+  border_color                                              String?         @db.VarChar(255)
+  directus_files                                            directus_files? @relation(fields: [image], references: [id])
+  directus_users_announcements_user_createdTodirectus_users directus_users? @relation("announcements_user_createdTodirectus_users", fields: [user_created], references: [id])
+  directus_users_announcements_user_updatedTodirectus_users directus_users? @relation("announcements_user_updatedTodirectus_users", fields: [user_updated], references: [id])
+}
+
+model applications {
+  id          Int     @id @default(autoincrement())
+  status      String  @default("draft") @db.VarChar(255)
+  name        String? @db.VarChar(255)
+  os          String? @db.VarChar(255)
+  description String?
+  url         String? @db.VarChar(255)
+  image       String? @db.Uuid
+}
+
+model articles {
+  id                   Int                    @id @default(autoincrement())
+  name                 String?
+  excerpt              String?
+  content              String?
+  created_at           DateTime?              @db.Timestamptz(6)
+  image                String?                @db.Uuid
+  type                 Json?                  @db.Json
+  isPublic             Boolean?
+  stamp                Int?
+  slug                 String?                @db.VarChar(255)
+  articles_categories  articles_categories[]
+  articles_comments    articles_comments[]
+  articles_departments articles_departments[]
+  tags_articles        tags_articles[]
+}
+
+model articles_categories {
+  id            Int         @id @default(autoincrement())
+  articles_id   Int?
+  categories_id Int?
+  articles      articles?   @relation(fields: [articles_id], references: [id])
+  categories    categories? @relation(fields: [categories_id], references: [id])
+}
+
+model articles_comments {
+  id          Int       @id @default(autoincrement())
+  articles_id Int?
+  comments_id Int?
+  articles    articles? @relation(fields: [articles_id], references: [id])
+  comments    comments? @relation(fields: [comments_id], references: [id])
+}
+
+model articles_departments {
+  id             Int          @id @default(autoincrement())
+  articles_id    Int?
+  departments_id Int?
+  articles       articles?    @relation(fields: [articles_id], references: [id])
+  departments    departments? @relation(fields: [departments_id], references: [id])
+}
+
+model attributes {
+  id                  Int                   @id @default(autoincrement())
+  default_label       String?
+  attribute_code      String?
+  isPublic            Boolean?
+  attributes_products attributes_products[]
+  products_attributes products_attributes[]
+}
+
+model attributes_products {
+  id            Int         @id @default(autoincrement())
+  attributes_id Int?
+  products_id   BigInt?
+  attributes    attributes? @relation(fields: [attributes_id], references: [id])
+  products      products?   @relation(fields: [products_id], references: [id])
+}
+
+model brands {
+  id                  BigInt                @id @default(autoincrement())
+  created_at          DateTime?             @default(now())
+  code                String?
+  name                String?
+  description         String?
+  image               String?               @db.Uuid
+  directus_files      directus_files?       @relation(fields: [image], references: [id])
+  brands_categories   brands_categories[]
+  brands_departments  brands_departments[]
+  brands_manufacturer brands_manufacturer[]
+  brands_products     brands_products[]
+  brands_shorts       brands_shorts[]
+  collections_brands  collections_brands[]
+}
+
+model brands_categories {
+  id            Int         @id @default(autoincrement())
+  brands_id     BigInt?
+  categories_id Int?
+  brands        brands?     @relation(fields: [brands_id], references: [id])
+  categories    categories? @relation(fields: [categories_id], references: [id])
+}
+
+model brands_departments {
+  id             Int          @id @default(autoincrement())
+  brands_id      BigInt?
+  departments_id Int?
+  brands         brands?      @relation(fields: [brands_id], references: [id])
+  departments    departments? @relation(fields: [departments_id], references: [id])
+}
+
+model brands_manufacturer {
+  id              Int           @id @default(autoincrement())
+  brands_id       BigInt?
+  manufacturer_id BigInt?
+  brands          brands?       @relation(fields: [brands_id], references: [id])
+  manufacturer    manufacturer? @relation(fields: [manufacturer_id], references: [id])
+}
+
+model brands_products {
+  id          Int       @id @default(autoincrement())
+  brands_id   BigInt?
+  products_id BigInt?
+  brands      brands?   @relation(fields: [brands_id], references: [id])
+  products    products? @relation(fields: [products_id], references: [id])
+}
+
+model brands_shorts {
+  id        Int     @id @default(autoincrement())
+  brands_id BigInt?
+  shorts_id Int?
+  brands    brands? @relation(fields: [brands_id], references: [id])
+  shorts    shorts? @relation(fields: [shorts_id], references: [id])
+}
+
+model buyagain {
+  id                Int                 @id @default(autoincrement())
+  date_created      DateTime?           @db.Timestamptz(6)
+  buyagain_products buyagain_products[]
+}
+
+model buyagain_products {
+  id          Int       @id @default(autoincrement())
+  buyagain_id Int?
+  products_id BigInt?
+  buyagain    buyagain? @relation(fields: [buyagain_id], references: [id])
+  products    products? @relation(fields: [products_id], references: [id])
+}
+
+model callouts {
+  id             Int             @id @default(autoincrement())
+  status         String          @default("draft") @db.VarChar(255)
+  sort           Int?
+  date_created   DateTime?       @db.Timestamptz(6)
+  date_updated   DateTime?       @db.Timestamptz(6)
+  name           String?         @db.VarChar(255)
+  type           String?         @db.VarChar(255)
+  description    String?
+  image          String?         @db.Uuid
+  menus          Json?           @db.Json
+  directus_files directus_files? @relation(fields: [image], references: [id])
+}
+
+model careers {
+  id           Int       @id @default(autoincrement())
+  status       String    @default("draft") @db.VarChar(255)
+  sort         Int?
+  date_created DateTime? @db.Timestamptz(6)
+  date_updated DateTime? @db.Timestamptz(6)
+  name         String?   @db.VarChar(255)
+  url          String?   @db.VarChar(255)
+  description  String?
+  type         String?   @db.VarChar(255)
+  image        String?   @db.Uuid
+  degree_level String?   @db.VarChar(255)
+  experience   String?   @db.VarChar(255)
+}
+
+model cart {
+  id            Int             @id @default(autoincrement())
+  date_created  DateTime?       @db.Timestamptz(6)
+  user_updated  String?         @db.Uuid
+  date_updated  DateTime?       @db.Timestamptz(6)
+  session_id    String?         @db.Uuid
+  total_price   Float?          @db.Real
+  address_cart  address_cart[]
+  cart_products cart_products[]
+}
+
+model cart_products {
+  id          Int       @id @default(autoincrement())
+  cart_id     Int?
+  products_id BigInt?
+  cart        cart?     @relation(fields: [cart_id], references: [id])
+  products    products? @relation(fields: [products_id], references: [id])
+}
+
+model categories {
+  id                         Int                          @id @default(autoincrement())
+  name                       String?
+  description                String?
+  content                    String?
+  image                      String?                      @db.Uuid
+  menus                      Json?                        @db.Json
+  uid                        String?                      @db.VarChar(255)
+  color                      String?                      @db.VarChar(255)
+  colortext                  String?                      @db.VarChar(255)
+  articles_categories        articles_categories[]
+  brands_categories          brands_categories[]
+  categories_departments     categories_departments[]
+  categories_meeovistores    categories_meeovistores[]
+  categories_shorts          categories_shorts[]
+  departments_categories     departments_categories[]
+  musicchart_categories      musicchart_categories[]
+  outlets_categories         outlets_categories[]
+  products_categories        products_categories[]
+  radios_categories          radios_categories[]
+  shops_categories           shops_categories[]
+  site_preference_categories site_preference_categories[]
+  tags_categories            tags_categories[]
+}
+
+model categories_departments {
+  id             Int          @id @default(autoincrement())
+  categories_id  Int?
+  departments_id Int?
+  categories     categories?  @relation(fields: [categories_id], references: [id])
+  departments    departments? @relation(fields: [departments_id], references: [id])
+}
+
+model categories_meeovistores {
+  id              Int           @id @default(autoincrement())
+  categories_id   Int?
+  meeovistores_id Int?
+  categories      categories?   @relation(fields: [categories_id], references: [id])
+  meeovistores    meeovistores? @relation(fields: [meeovistores_id], references: [id])
+}
+
+model categories_shorts {
+  id            Int         @id @default(autoincrement())
+  categories_id Int?
+  shorts_id     Int?
+  categories    categories? @relation(fields: [categories_id], references: [id])
+  shorts        shorts?     @relation(fields: [shorts_id], references: [id])
+}
+
+model cities {
+  id               Int                @id @default(autoincrement())
+  name             String
+  description      String?
+  postalCode       String?
+  image            String?            @db.Uuid
+  longitude        String?            @db.VarChar(255)
+  latitude         String?            @db.VarChar(255)
+  languagenames    String?
+  address_cities   address_cities[]
+  cities_countries cities_countries[]
+  cities_states    cities_states[]
+  contacts_cities  contacts_cities[]
+  states_cities    states_cities[]
+}
+
+model cities_countries {
+  id           Int     @id @default(autoincrement())
+  cities_id    Int?
+  countries_id Int?
+  cities       cities? @relation(fields: [cities_id], references: [id])
+}
+
+model cities_states {
+  id        Int     @id @default(autoincrement())
+  cities_id Int?
+  cities    cities? @relation(fields: [cities_id], references: [id])
+}
+
+model collections {
+  id                       BigInt                     @id @default(autoincrement())
+  created_at               DateTime?                  @default(now())
+  name                     String?
+  description              String?
+  image                    String?                    @db.Uuid
+  type                     Json?                      @db.Json
+  collections_brands       collections_brands[]
+  collections_products     collections_products[]
+  departments_collections  departments_collections[]
+  meeovistores_collections meeovistores_collections[]
+}
+
+model collections_brands {
+  id             Int          @id @default(autoincrement())
+  collections_id BigInt?
+  brands_id      BigInt?
+  brands         brands?      @relation(fields: [brands_id], references: [id])
+  collections    collections? @relation(fields: [collections_id], references: [id])
+}
+
+model collections_products {
+  id             Int          @id @default(autoincrement())
+  collections_id BigInt?
+  products_id    BigInt?
+  collections    collections? @relation(fields: [collections_id], references: [id])
+  products       products?    @relation(fields: [products_id], references: [id])
+}
+
+model comments {
+  id                      Int                       @id @default(autoincrement())
+  response                String?
+  media                   String?                   @db.Uuid
+  name                    String?                   @db.VarChar(255)
+  created_at              DateTime?                 @db.Timestamptz(6)
+  updated_at              DateTime?                 @db.Timestamptz(6)
+  helpful                 Boolean?
+  type                    String?                   @db.VarChar(255)
+  ratings_breakdown       String?                   @db.VarChar(255)
+  average_rating          String?                   @db.VarChar(255)
+  nickname                String?                   @db.VarChar(255)
+  summary                 String?
+  user                    String?                   @db.VarChar(255)
+  articles_comments       articles_comments[]
+  comments_directus_users comments_directus_users[]
+  comments_products       comments_products[]
+  comments_reactions      comments_reactions[]
+  comments_shorts         comments_shorts[]
+  reactions_comments      reactions_comments[]
+  report_comments         report_comments[]
+}
+
+model comments_directus_users {
+  id         Int       @id @default(autoincrement())
+  comment_id Int?
+  user_id    String?   @db.Uuid
+  comments   comments? @relation(fields: [comment_id], references: [id])
+}
+
+model comments_products {
+  id          Int       @id @default(autoincrement())
+  comments_id Int?
+  products_id BigInt?
+  comments    comments? @relation(fields: [comments_id], references: [id])
+  products    products? @relation(fields: [products_id], references: [id])
+}
+
+model comments_reactions {
+  id           Int        @id @default(autoincrement())
+  comments_id  Int?
+  reactions_id Int?
+  comments     comments?  @relation(fields: [comments_id], references: [id])
+  reactions    reactions? @relation(fields: [reactions_id], references: [id])
+}
+
+model comments_shorts {
+  id          Int       @id @default(autoincrement())
+  comments_id Int?
+  shorts_id   Int?
+  comments    comments? @relation(fields: [comments_id], references: [id])
+  shorts      shorts?   @relation(fields: [shorts_id], references: [id])
+}
+
+model connections {
+  id                         Int                          @id @default(autoincrement())
+  date_created               DateTime?                    @db.Timestamptz(6)
+  name                       String?                      @db.VarChar(255)
+  description                String?                      @db.VarChar(255)
+  connection_type            String?                      @db.VarChar(255)
+  user_a                     String?                      @db.VarChar(255)
+  recipient                  String?                      @db.VarChar(255)
+  connections_directus_users connections_directus_users[]
+}
+
+model connections_directus_users {
+  id                Int          @id @default(autoincrement())
+  connections_id    Int?
+  directus_users_id String?      @db.Uuid
+  connections       connections? @relation(fields: [connections_id], references: [id])
+}
+
+model contacts {
+  id                                                   Int                  @id @default(autoincrement())
+  status                                               String               @default("draft") @db.VarChar(255)
+  sort                                                 Int?
+  user_created                                         String?              @db.Uuid
+  date_created                                         DateTime?            @db.Timestamptz(6)
+  user_updated                                         String?              @db.Uuid
+  date_updated                                         DateTime?            @db.Timestamptz(6)
+  first_name                                           String?              @db.VarChar(255)
+  last_name                                            String?              @db.VarChar(255)
+  company                                              String?              @db.VarChar(255)
+  job_title                                            String?              @db.VarChar(255)
+  email                                                String?              @db.VarChar(255)
+  phone                                                String?              @db.VarChar(255)
+  street                                               String?              @db.VarChar(255)
+  postcode                                             String?              @db.VarChar(255)
+  address_two                                          String?              @db.VarChar(255)
+  po_box                                               String?              @db.VarChar(255)
+  label                                                String?              @db.VarChar(255)
+  birthday                                             DateTime?            @db.Timestamp(6)
+  notes                                                String?
+  image                                                String?              @db.Uuid
+  website                                              String?              @db.VarChar(255)
+  significant_date                                     String?              @db.VarChar(255)
+  related_person                                       String?              @db.VarChar(255)
+  department                                           String?              @db.VarChar(255)
+  middle_name                                          String?              @db.VarChar(255)
+  prefix                                               String?              @db.VarChar(255)
+  suffix                                               String?              @db.VarChar(255)
+  nickname                                             String?              @db.VarChar(255)
+  file_as                                              String?              @db.VarChar(255)
+  phonetic_first                                       String?              @db.VarChar(255)
+  phonetic_middle                                      String?              @db.VarChar(255)
+  phonetic_last                                        String?              @db.VarChar(255)
+  favorite                                             String?              @db.VarChar(255)
+  directus_files                                       directus_files?      @relation(fields: [image], references: [id])
+  directus_users_contacts_user_createdTodirectus_users directus_users?      @relation("contacts_user_createdTodirectus_users", fields: [user_created], references: [id])
+  directus_users_contacts_user_updatedTodirectus_users directus_users?      @relation("contacts_user_updatedTodirectus_users", fields: [user_updated], references: [id])
+  contacts_cities                                      contacts_cities[]
+  contacts_countries                                   contacts_countries[]
+  contacts_states                                      contacts_states[]
+}
+
+model contacts_cities {
+  id          Int       @id @default(autoincrement())
+  contacts_id Int?
+  cities_id   Int?
+  cities      cities?   @relation(fields: [cities_id], references: [id])
+  contacts    contacts? @relation(fields: [contacts_id], references: [id])
+}
+
+model contacts_countries {
+  id           Int        @id @default(autoincrement())
+  contacts_id  Int?
+  countries_id Int?
+  contacts     contacts?  @relation(fields: [contacts_id], references: [id])
+  countries    countries? @relation(fields: [countries_id], references: [id])
+}
+
+model contacts_states {
+  id          Int       @id @default(autoincrement())
+  contacts_id Int?
+  states_id   Int?
+  contacts    contacts? @relation(fields: [contacts_id], references: [id])
+  states      states?   @relation(fields: [states_id], references: [id])
+}
+
+model countries {
+  id                        Int                         @id
+  name                      String?                     @db.VarChar(100)
+  iso3                      String?                     @db.Char(3)
+  iso2                      String?                     @db.Char(2)
+  phonecode                 String?                     @db.VarChar(255)
+  capital                   String?                     @db.VarChar(255)
+  currency                  String?                     @db.VarChar(255)
+  currency_symbol           String?                     @db.VarChar(255)
+  tld                       String?                     @db.VarChar(255)
+  native                    String?                     @db.VarChar(255)
+  region                    String?                     @db.VarChar(255)
+  subregion                 String?                     @db.VarChar(255)
+  timezones                 String?
+  translations              String?
+  latitude                  Decimal?                    @db.Decimal(10, 8)
+  longitude                 Decimal?                    @db.Decimal(11, 8)
+  emoji                     String?                     @db.VarChar(191)
+  emojiU                    String?                     @db.VarChar(191)
+  created_at                DateTime?                   @db.Timestamp(6)
+  updated_at                DateTime?                   @db.Timestamp(6)
+  flag                      Int                         @default(1)
+  wikiDataId                String?                     @db.VarChar(255)
+  address_countries         address_countries[]
+  contacts_countries        contacts_countries[]
+  manufacturer_countries    manufacturer_countries[]
+  payments_countries        payments_countries[]
+  site_preference_countries site_preference_countries[]
+}
+
+model coupons {
+  id               BigInt             @id @default(autoincrement())
+  name             String
+  excerpt          String?
+  image            String?            @db.Uuid
+  code             String?
+  discount_percent Float?             @db.Real
+  valid_from       DateTime?          @db.Date
+  valid_until      DateTime?          @db.Date
+  max_redemptions  Int?
+  minimum_amount   Int?
+  maximum_amount   Int?
+  usageLimit       Int?
+  discount_type    String?            @db.VarChar(255)
+  amount           String?            @db.VarChar(255)
+  date_created     DateTime?          @db.Timestamptz(6)
+  times_used       Int?
+  coupons_products coupons_products[]
+}
+
+model coupons_products {
+  id          Int       @id @default(autoincrement())
+  coupons_id  BigInt?
+  products_id BigInt?
+  coupons     coupons?  @relation(fields: [coupons_id], references: [id])
+  products    products? @relation(fields: [products_id], references: [id])
+}
+
+model credit_memos {
+  id                                           Int                             @id @default(autoincrement())
+  created_at                                   DateTime?                       @db.Timestamptz(6)
+  updated_at                                   DateTime?                       @db.Timestamptz(6)
+  adjustment                                   Int?
+  adjustment_negative                          Int?
+  adjustment_positive                          Int?
+  base_adjustment                              Int?
+  base_adjustment_negative                     Int?
+  base_adjustment_positive                     Int?
+  base_currency_code                           String?
+  base_discount_amount                         Int?
+  base_grand_total                             Int?
+  base_discount_tax_compensation_amount        Int?
+  base_shipping_amount                         Int?
+  base_shipping_discount_tax_compensation_amnt Int?
+  base_shipping_incl_tax                       Int?
+  base_shipping_tax_amount                     Int?
+  base_subtotal                                Int?
+  base_subtotal_incl_tax                       Int?
+  base_tax_amount                              Int?
+  base_to_global_rate                          Int?
+  base_to_order_rate                           Int?
+  creditmemo_status                            Int?
+  discount_amount                              Int?
+  discount_description                         String?
+  email_sent                                   Int?
+  entity_id                                    Int?
+  global_currency_code                         String?
+  grand_total                                  Int?
+  discount_tax_compensation_amount             Int?
+  increment_id                                 String?
+  invoice_id                                   Int?
+  order_currency_code                          String?
+  shipping_amount                              Int?
+  shipping_discount_tax_compensation_amount    Int?
+  shipping_incl_tax                            Int?
+  shipping_tax_amount                          Int?
+  state                                        Int?
+  store_currency_code                          String?
+  store_id                                     Int?
+  store_to_base_rate                           Int?
+  store_to_order_rate                          Int?
+  subtotal                                     Int?
+  subtotal_incl_tax                            Int?
+  tax_amount                                   Int?
+  user                                         String?                         @db.Uuid
+  credit_memos_address                         credit_memos_address[]
+  credit_memos_orders                          credit_memos_orders[]
+  credit_memos_products                        credit_memos_products[]
+  credit_memos_shipping_address                credit_memos_shipping_address[]
+  credit_memos_transactions                    credit_memos_transactions[]
+}
+
+model credit_memos_address {
+  id              Int           @id @default(autoincrement())
+  credit_memos_id Int?
+  address_id      Int?
+  address         address?      @relation(fields: [address_id], references: [id])
+  credit_memos    credit_memos? @relation(fields: [credit_memos_id], references: [id])
+}
+
+model credit_memos_orders {
+  id             Int           @id @default(autoincrement())
+  credit_memo_id Int?
+  order_id       Int?
+  credit_memos   credit_memos? @relation(fields: [credit_memo_id], references: [id])
+  orders         orders?       @relation(fields: [order_id], references: [id])
+}
+
+model credit_memos_products {
+  id              Int           @id @default(autoincrement())
+  credit_memos_id Int?
+  products_id     BigInt?
+  credit_memos    credit_memos? @relation(fields: [credit_memos_id], references: [id])
+  products        products?     @relation(fields: [products_id], references: [id])
+}
+
+model credit_memos_shipping_address {
+  id                  Int               @id @default(autoincrement())
+  credit_memos_id     Int?
+  shipping_address_id Int?
+  credit_memos        credit_memos?     @relation(fields: [credit_memos_id], references: [id])
+  shipping_address    shipping_address? @relation(fields: [shipping_address_id], references: [id])
+}
+
+model credit_memos_transactions {
+  id             Int           @id @default(autoincrement())
+  credit_memo_id Int?
+  transaction_id BigInt?
+  credit_memos   credit_memos? @relation(fields: [credit_memo_id], references: [id])
+  transactions   transactions? @relation(fields: [transaction_id], references: [id])
+}
+
+model currencies_countries {
+  id           Int  @id @default(autoincrement())
+  countries_id Int?
+}
+
+model currency {
+  id                   Int                    @id @default(autoincrement())
+  sort                 Int?
+  date_created         DateTime?              @db.Timestamptz(6)
+  date_updated         DateTime?              @db.Timestamptz(6)
+  name                 String?                @db.VarChar(255)
+  code                 String?                @db.VarChar(255)
+  symbol               String?                @db.VarChar(255)
+  currency_departments currency_departments[]
+  products_currency    products_currency[]
+}
+
+model currency_departments {
+  id             Int          @id @default(autoincrement())
+  currency_id    Int?
+  departments_id Int?
+  currency       currency?    @relation(fields: [currency_id], references: [id])
+  departments    departments? @relation(fields: [departments_id], references: [id])
+}
+
+model departments {
+  id                          Int                           @id @default(autoincrement())
+  name                        String
+  description                 String?
+  content                     String?
+  color                       String?                       @db.VarChar(255)
+  image                       String?                       @db.Uuid
+  colortext                   String?                       @db.VarChar(255)
+  slug                        String?                       @db.VarChar(255)
+  menus                       Json?                         @db.Json
+  active                      String?                       @db.VarChar(255)
+  callouts                    Json?                         @db.Json
+  uid                         String?                       @db.VarChar(255)
+  articles_departments        articles_departments[]
+  brands_departments          brands_departments[]
+  categories_departments      categories_departments[]
+  currency_departments        currency_departments[]
+  departments_categories      departments_categories[]
+  departments_collections     departments_collections[]
+  departments_shorts          departments_shorts[]
+  departments_shorts_1        departments_shorts_1[]
+  integrations_departments    integrations_departments[]
+  musicchart_departments      musicchart_departments[]
+  products_departments        products_departments[]
+  radios_departments          radios_departments[]
+  shops_departments           shops_departments[]
+  shorts_departments          shorts_departments[]
+  site_preference_departments site_preference_departments[]
+  spaces_departments          spaces_departments[]
+  tags_departments            tags_departments[]
+  translations_departments    translations_departments[]
+}
+
+model departments_categories {
+  id             Int          @id @default(autoincrement())
+  departments_id Int?
+  categories_id  Int?
+  categories     categories?  @relation(fields: [categories_id], references: [id])
+  departments    departments? @relation(fields: [departments_id], references: [id])
+}
+
+model departments_collections {
+  id             Int          @id @default(autoincrement())
+  departments_id Int?
+  collections_id BigInt?
+  collections    collections? @relation(fields: [collections_id], references: [id])
+  departments    departments? @relation(fields: [departments_id], references: [id])
+}
+
+model departments_shorts {
+  id             Int          @id @default(autoincrement())
+  departments_id Int?
+  shorts_id      Int?
+  departments    departments? @relation(fields: [departments_id], references: [id])
+  shorts         shorts?      @relation(fields: [shorts_id], references: [id])
+}
+
+model departments_shorts_1 {
+  id             Int          @id @default(autoincrement())
+  departments_id Int?
+  shorts_id      Int?
+  departments    departments? @relation(fields: [departments_id], references: [id])
+  shorts         shorts?      @relation(fields: [shorts_id], references: [id])
+}
+
+model digiboard {
+  id         Int      @id @default(autoincrement())
+  name       String
+  board      String?
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  image      String?  @db.Uuid
+}
+
+model digiboard_directus_users {
+  id                Int     @id @default(autoincrement())
+  directus_users_id String? @db.Uuid
+}
+
+model directus_access {
+  id                String            @id @db.Uuid
+  role              String?           @db.Uuid
+  user              String?           @db.Uuid
+  policy            String            @db.Uuid
+  sort              Int?
+  directus_policies directus_policies @relation(fields: [policy], references: [id])
+  directus_roles    directus_roles?   @relation(fields: [role], references: [id])
+  directus_users    directus_users?   @relation(fields: [user], references: [id])
+}
+
+model directus_activity {
+  id                 Int                  @id @default(autoincrement())
+  action             String               @db.VarChar(45)
+  user               String?              @db.Uuid
+  timestamp          DateTime             @default(now()) @db.Timestamptz(6)
+  ip                 String?              @db.VarChar(50)
+  user_agent         String?
+  collection         String               @db.VarChar(64)
+  item               String               @db.VarChar(255)
+  origin             String?              @db.VarChar(255)
+  directus_revisions directus_revisions[]
+}
+
+model directus_collections {
+  collection                 String                 @id @db.VarChar(64)
+  icon                       String?                @db.VarChar(64)
+  note                       String?
+  display_template           String?                @db.VarChar(255)
+  hidden                     Boolean                @default(false)
+  singleton                  Boolean                @default(false)
+  translations               Json?                  @db.Json
+  archive_field              String?                @db.VarChar(64)
+  archive_app_filter         Boolean                @default(true)
+  archive_value              String?                @db.VarChar(255)
+  unarchive_value            String?                @db.VarChar(255)
+  sort_field                 String?                @db.VarChar(64)
+  accountability             String?                @default("all") @db.VarChar(255)
+  color                      String?                @db.VarChar(255)
+  item_duplication_fields    Json?                  @db.Json
+  sort                       Int?
+  group                      String?                @db.VarChar(64)
+  collapse                   String                 @default("open") @db.VarChar(255)
+  preview_url                String?                @db.VarChar(255)
+  versioning                 Boolean                @default(false)
+  directus_collections       directus_collections?  @relation("directus_collectionsTodirectus_collections_group", fields: [group], references: [collection])
+  other_directus_collections directus_collections[] @relation("directus_collectionsTodirectus_collections_group")
+  directus_shares            directus_shares[]
+  directus_versions          directus_versions[]
+}
+
+model directus_comments {
+  id                                                            String          @id @db.Uuid
+  collection                                                    String          @db.VarChar(64)
+  item                                                          String          @db.VarChar(255)
+  comment                                                       String
+  date_created                                                  DateTime?       @default(now()) @db.Timestamptz(6)
+  date_updated                                                  DateTime?       @default(now()) @db.Timestamptz(6)
+  user_created                                                  String?         @db.Uuid
+  user_updated                                                  String?         @db.Uuid
+  directus_users_directus_comments_user_createdTodirectus_users directus_users? @relation("directus_comments_user_createdTodirectus_users", fields: [user_created], references: [id])
+  directus_users_directus_comments_user_updatedTodirectus_users directus_users? @relation("directus_comments_user_updatedTodirectus_users", fields: [user_updated], references: [id])
+}
+
+model directus_dashboards {
+  id              String            @id @db.Uuid
+  name            String            @db.VarChar(255)
+  icon            String            @default("dashboard") @db.VarChar(64)
+  note            String?
+  date_created    DateTime?         @default(now()) @db.Timestamptz(6)
+  user_created    String?           @db.Uuid
+  color           String?           @db.VarChar(255)
+  directus_users  directus_users?   @relation(fields: [user_created], references: [id])
+  directus_panels directus_panels[]
+}
+
+model directus_extensions {
+  enabled Boolean @default(true)
+  id      String  @id @db.Uuid
+  folder  String  @db.VarChar(255)
+  source  String  @db.VarChar(255)
+  bundle  String? @db.Uuid
+}
+
+model directus_fields {
+  id                 Int      @id @default(autoincrement())
+  collection         String   @db.VarChar(64)
+  field              String   @db.VarChar(64)
+  special            String?  @db.VarChar(64)
+  interface          String?  @db.VarChar(64)
+  options            Json?    @db.Json
+  display            String?  @db.VarChar(64)
+  display_options    Json?    @db.Json
+  readonly           Boolean  @default(false)
+  hidden             Boolean  @default(false)
+  sort               Int?
+  width              String?  @default("full") @db.VarChar(30)
+  translations       Json?    @db.Json
+  note               String?
+  conditions         Json?    @db.Json
+  required           Boolean? @default(false)
+  group              String?  @db.VarChar(64)
+  validation         Json?    @db.Json
+  validation_message String?
+}
+
+model directus_files {
+  id                                                                    String               @id @db.Uuid
+  storage                                                               String               @db.VarChar(255)
+  filename_disk                                                         String?              @db.VarChar(255)
+  filename_download                                                     String               @db.VarChar(255)
+  title                                                                 String?              @db.VarChar(255)
+  type                                                                  String?              @db.VarChar(255)
+  folder                                                                String?              @db.Uuid
+  uploaded_by                                                           String?              @db.Uuid
+  created_on                                                            DateTime             @default(now()) @db.Timestamptz(6)
+  modified_by                                                           String?              @db.Uuid
+  modified_on                                                           DateTime             @default(now()) @db.Timestamptz(6)
+  charset                                                               String?              @db.VarChar(50)
+  filesize                                                              BigInt?
+  width                                                                 Int?
+  height                                                                Int?
+  duration                                                              Int?
+  embed                                                                 String?              @db.VarChar(200)
+  description                                                           String?
+  location                                                              String?
+  tags                                                                  String?
+  metadata                                                              Json?                @db.Json
+  focal_point_x                                                         Int?
+  focal_point_y                                                         Int?
+  tus_id                                                                String?              @db.VarChar(64)
+  tus_data                                                              Json?                @db.Json
+  uploaded_on                                                           DateTime?            @db.Timestamptz(6)
+  directus_folders                                                      directus_folders?    @relation(fields: [folder], references: [id])
+  directus_users_directus_files_modified_byTodirectus_users             directus_users?      @relation("directus_files_modified_byTodirectus_users", fields: [modified_by], references: [id])
+  directus_users_directus_files_uploaded_byTodirectus_users             directus_users?      @relation("directus_files_uploaded_byTodirectus_users", fields: [uploaded_by], references: [id])
+  announcements                                                         announcements[]
+  brands                                                                brands[]
+  callouts                                                              callouts[]
+  contacts                                                              contacts[]
+  directus_settings_directus_filesTodirectus_settings_project_logo      directus_settings[]  @relation("directus_filesTodirectus_settings_project_logo")
+  directus_settings_directus_filesTodirectus_settings_public_background directus_settings[]  @relation("directus_filesTodirectus_settings_public_background")
+  directus_settings_directus_filesTodirectus_settings_public_favicon    directus_settings[]  @relation("directus_filesTodirectus_settings_public_favicon")
+  directus_settings_directus_filesTodirectus_settings_public_foreground directus_settings[]  @relation("directus_filesTodirectus_settings_public_foreground")
+  globals                                                               globals[]
+  integrations_files                                                    integrations_files[]
+  outlets                                                               outlets[]
+  page_blocks_files                                                     page_blocks_files[]
+  posts_directus_filesToposts_audio                                     posts[]              @relation("directus_filesToposts_audio")
+  posts_directus_filesToposts_image                                     posts[]              @relation("directus_filesToposts_image")
+  radios_directus_filesToradios_file                                    radios[]             @relation("directus_filesToradios_file")
+  radios_directus_filesToradios_image                                   radios[]             @relation("directus_filesToradios_image")
+  ratings                                                               ratings[]
+  shorts                                                                shorts[]
+  shorts_files                                                          shorts_files[]
+  site_preference                                                       site_preference[]
+  spaces                                                                spaces[]
+  spaces_files                                                          spaces_files[]
+  trailers                                                              trailers[]
+  videos_directus_filesTovideos_media                                   videos[]             @relation("directus_filesTovideos_media")
+  videos_directus_filesTovideos_thumbnail                               videos[]             @relation("directus_filesTovideos_thumbnail")
+}
+
+model directus_flows {
+  id                  String                @id @db.Uuid
+  name                String                @db.VarChar(255)
+  icon                String?               @db.VarChar(64)
+  color               String?               @db.VarChar(255)
+  description         String?
+  status              String                @default("active") @db.VarChar(255)
+  trigger             String?               @db.VarChar(255)
+  accountability      String?               @default("all") @db.VarChar(255)
+  options             Json?                 @db.Json
+  operation           String?               @unique @db.Uuid
+  date_created        DateTime?             @default(now()) @db.Timestamptz(6)
+  user_created        String?               @db.Uuid
+  directus_users      directus_users?       @relation(fields: [user_created], references: [id])
+  directus_operations directus_operations[]
+  directus_webhooks   directus_webhooks[]
+}
+
+model directus_folders {
+  id                     String              @id @db.Uuid
+  name                   String              @db.VarChar(255)
+  parent                 String?             @db.Uuid
+  directus_folders       directus_folders?   @relation("directus_foldersTodirectus_folders_parent", fields: [parent], references: [id])
+  directus_files         directus_files[]
+  other_directus_folders directus_folders[]  @relation("directus_foldersTodirectus_folders_parent")
+  directus_settings      directus_settings[]
+}
+
+model directus_migrations {
+  version   String    @id @db.VarChar(255)
+  name      String    @db.VarChar(255)
+  timestamp DateTime? @default(now()) @db.Timestamptz(6)
+}
+
+model directus_notifications {
+  id                                                              Int             @id @default(autoincrement())
+  timestamp                                                       DateTime?       @default(now()) @db.Timestamptz(6)
+  status                                                          String?         @default("inbox") @db.VarChar(255)
+  recipient                                                       String          @db.Uuid
+  sender                                                          String?         @db.Uuid
+  subject                                                         String          @db.VarChar(255)
+  message                                                         String?
+  collection                                                      String?         @db.VarChar(64)
+  item                                                            String?         @db.VarChar(255)
+  directus_users_directus_notifications_recipientTodirectus_users directus_users  @relation("directus_notifications_recipientTodirectus_users", fields: [recipient], references: [id])
+  directus_users_directus_notifications_senderTodirectus_users    directus_users? @relation("directus_notifications_senderTodirectus_users", fields: [sender], references: [id])
+}
+
+model directus_operations {
+  id                                                                         String               @id @db.Uuid
+  name                                                                       String?              @db.VarChar(255)
+  key                                                                        String               @db.VarChar(255)
+  type                                                                       String               @db.VarChar(255)
+  position_x                                                                 Int
+  position_y                                                                 Int
+  options                                                                    Json?                @db.Json
+  resolve                                                                    String?              @unique @db.Uuid
+  reject                                                                     String?              @unique @db.Uuid
+  flow                                                                       String               @db.Uuid
+  date_created                                                               DateTime?            @default(now()) @db.Timestamptz(6)
+  user_created                                                               String?              @db.Uuid
+  directus_flows                                                             directus_flows       @relation(fields: [flow], references: [id])
+  directus_operations_directus_operationsTodirectus_operations_reject        directus_operations? @relation("directus_operationsTodirectus_operations_reject", fields: [reject], references: [id])
+  directus_operations_directus_operationsTodirectus_operations_resolve       directus_operations? @relation("directus_operationsTodirectus_operations_resolve", fields: [resolve], references: [id])
+  directus_users                                                             directus_users?      @relation(fields: [user_created], references: [id])
+  other_directus_operations_directus_operationsTodirectus_operations_reject  directus_operations? @relation("directus_operationsTodirectus_operations_reject")
+  other_directus_operations_directus_operationsTodirectus_operations_resolve directus_operations? @relation("directus_operationsTodirectus_operations_resolve")
+}
+
+model directus_panels {
+  id                  String              @id @db.Uuid
+  dashboard           String              @db.Uuid
+  name                String?             @db.VarChar(255)
+  icon                String?             @db.VarChar(64)
+  color               String?             @db.VarChar(10)
+  show_header         Boolean             @default(false)
+  note                String?
+  type                String              @db.VarChar(255)
+  position_x          Int
+  position_y          Int
+  width               Int
+  height              Int
+  options             Json?               @db.Json
+  date_created        DateTime?           @default(now()) @db.Timestamptz(6)
+  user_created        String?             @db.Uuid
+  directus_dashboards directus_dashboards @relation(fields: [dashboard], references: [id])
+  directus_users      directus_users?     @relation(fields: [user_created], references: [id])
+}
+
+model directus_permissions {
+  id                Int               @id @default(autoincrement())
+  collection        String            @db.VarChar(64)
+  action            String            @db.VarChar(10)
+  permissions       Json?             @db.Json
+  validation        Json?             @db.Json
+  presets           Json?             @db.Json
+  fields            String?
+  policy            String            @db.Uuid
+  directus_policies directus_policies @relation(fields: [policy], references: [id])
+}
+
+model directus_policies {
+  id                   String                 @id @db.Uuid
+  name                 String                 @db.VarChar(100)
+  icon                 String                 @default("badge") @db.VarChar(64)
+  description          String?
+  ip_access            String?
+  enforce_tfa          Boolean                @default(false)
+  admin_access         Boolean                @default(false)
+  app_access           Boolean                @default(false)
+  directus_access      directus_access[]
+  directus_permissions directus_permissions[]
+}
+
+model directus_presets {
+  id               Int             @id @default(autoincrement())
+  bookmark         String?         @db.VarChar(255)
+  user             String?         @db.Uuid
+  role             String?         @db.Uuid
+  collection       String?         @db.VarChar(64)
+  search           String?         @db.VarChar(100)
+  layout           String?         @default("tabular") @db.VarChar(100)
+  layout_query     Json?           @db.Json
+  layout_options   Json?           @db.Json
+  refresh_interval Int?
+  filter           Json?           @db.Json
+  icon             String?         @default("bookmark") @db.VarChar(64)
+  color            String?         @db.VarChar(255)
+  directus_roles   directus_roles? @relation(fields: [role], references: [id])
+  directus_users   directus_users? @relation(fields: [user], references: [id])
+}
+
+model directus_relations {
+  id                      Int     @id @default(autoincrement())
+  many_collection         String  @db.VarChar(64)
+  many_field              String  @db.VarChar(64)
+  one_collection          String? @db.VarChar(64)
+  one_field               String? @db.VarChar(64)
+  one_collection_field    String? @db.VarChar(64)
+  one_allowed_collections String?
+  junction_field          String? @db.VarChar(64)
+  sort_field              String? @db.VarChar(64)
+  one_deselect_action     String  @default("nullify") @db.VarChar(255)
+}
+
+model directus_revisions {
+  id                       Int                  @id @default(autoincrement())
+  activity                 Int
+  collection               String               @db.VarChar(64)
+  item                     String               @db.VarChar(255)
+  data                     Json?                @db.Json
+  delta                    Json?                @db.Json
+  parent                   Int?
+  version                  String?              @db.Uuid
+  directus_activity        directus_activity    @relation(fields: [activity], references: [id])
+  directus_revisions       directus_revisions?  @relation("directus_revisionsTodirectus_revisions_parent", fields: [parent], references: [id])
+  directus_versions        directus_versions?   @relation(fields: [version], references: [id])
+  other_directus_revisions directus_revisions[] @relation("directus_revisionsTodirectus_revisions_parent")
+}
+
+model directus_roles {
+  id                   String              @id @db.Uuid
+  name                 String              @db.VarChar(100)
+  icon                 String              @default("supervised_user_circle") @db.VarChar(64)
+  description          String?
+  parent               String?             @db.Uuid
+  directus_roles       directus_roles?     @relation("directus_rolesTodirectus_roles_parent", fields: [parent], references: [id])
+  directus_access      directus_access[]
+  directus_presets     directus_presets[]
+  other_directus_roles directus_roles[]    @relation("directus_rolesTodirectus_roles_parent")
+  directus_settings    directus_settings[]
+  directus_shares      directus_shares[]
+  directus_users       directus_users[]
+}
+
+model directus_sessions {
+  token           String           @id @db.VarChar(64)
+  user            String?          @db.Uuid
+  expires         DateTime         @db.Timestamptz(6)
+  ip              String?          @db.VarChar(255)
+  user_agent      String?
+  share           String?          @db.Uuid
+  origin          String?          @db.VarChar(255)
+  next_token      String?          @db.VarChar(64)
+  directus_shares directus_shares? @relation(fields: [share], references: [id])
+  directus_users  directus_users?  @relation(fields: [user], references: [id])
+}
+
+model directus_settings {
+  id                                                                 Int               @id @default(autoincrement())
+  project_name                                                       String            @default("Directus") @db.VarChar(100)
+  project_url                                                        String?           @db.VarChar(255)
+  project_color                                                      String            @default("#6644FF") @db.VarChar(255)
+  project_logo                                                       String?           @db.Uuid
+  public_foreground                                                  String?           @db.Uuid
+  public_background                                                  String?           @db.Uuid
+  public_note                                                        String?
+  auth_login_attempts                                                Int?              @default(25)
+  auth_password_policy                                               String?           @db.VarChar(100)
+  storage_asset_transform                                            String?           @default("all") @db.VarChar(7)
+  storage_asset_presets                                              Json?             @db.Json
+  custom_css                                                         String?
+  storage_default_folder                                             String?           @db.Uuid
+  basemaps                                                           Json?             @db.Json
+  mapbox_key                                                         String?           @db.VarChar(255)
+  module_bar                                                         Json?             @db.Json
+  project_descriptor                                                 String?           @db.VarChar(100)
+  default_language                                                   String            @default("en-US") @db.VarChar(255)
+  custom_aspect_ratios                                               Json?             @db.Json
+  public_favicon                                                     String?           @db.Uuid
+  default_appearance                                                 String            @default("auto") @db.VarChar(255)
+  default_theme_light                                                String?           @db.VarChar(255)
+  theme_light_overrides                                              Json?             @db.Json
+  default_theme_dark                                                 String?           @db.VarChar(255)
+  theme_dark_overrides                                               Json?             @db.Json
+  report_error_url                                                   String?           @db.VarChar(255)
+  report_bug_url                                                     String?           @db.VarChar(255)
+  report_feature_url                                                 String?           @db.VarChar(255)
+  public_registration                                                Boolean           @default(false)
+  public_registration_verify_email                                   Boolean           @default(true)
+  public_registration_role                                           String?           @db.Uuid
+  public_registration_email_filter                                   Json?             @db.Json
+  directus_files_directus_filesTodirectus_settings_project_logo      directus_files?   @relation("directus_filesTodirectus_settings_project_logo", fields: [project_logo], references: [id])
+  directus_files_directus_filesTodirectus_settings_public_background directus_files?   @relation("directus_filesTodirectus_settings_public_background", fields: [public_background], references: [id])
+  directus_files_directus_filesTodirectus_settings_public_favicon    directus_files?   @relation("directus_filesTodirectus_settings_public_favicon", fields: [public_favicon], references: [id])
+  directus_files_directus_filesTodirectus_settings_public_foreground directus_files?   @relation("directus_filesTodirectus_settings_public_foreground", fields: [public_foreground], references: [id])
+  directus_roles                                                     directus_roles?   @relation(fields: [public_registration_role], references: [id])
+  directus_folders                                                   directus_folders? @relation(fields: [storage_default_folder], references: [id])
+}
+
+model directus_shares {
+  id                   String               @id @db.Uuid
+  name                 String?              @db.VarChar(255)
+  collection           String               @db.VarChar(64)
+  item                 String               @db.VarChar(255)
+  role                 String?              @db.Uuid
+  password             String?              @db.VarChar(255)
+  user_created         String?              @db.Uuid
+  date_created         DateTime?            @default(now()) @db.Timestamptz(6)
+  date_start           DateTime?            @db.Timestamptz(6)
+  date_end             DateTime?            @db.Timestamptz(6)
+  times_used           Int?                 @default(0)
+  max_uses             Int?
+  directus_collections directus_collections @relation(fields: [collection], references: [collection])
+  directus_roles       directus_roles?      @relation(fields: [role], references: [id])
+  directus_users       directus_users?      @relation(fields: [user_created], references: [id])
+  directus_sessions    directus_sessions[]
+}
+
+model directus_translations {
+  id       String @id @db.Uuid
+  language String @db.VarChar(255)
+  key      String @db.VarChar(255)
+  value    String
+}
+
+model directus_users {
+  id                                                                      String                   @id @db.Uuid
+  first_name                                                              String?                  @db.VarChar(50)
+  last_name                                                               String?                  @db.VarChar(50)
+  email                                                                   String?                  @unique @db.VarChar(128)
+  password                                                                String?                  @db.VarChar(255)
+  location                                                                String?                  @db.VarChar(255)
+  title                                                                   String?                  @db.VarChar(50)
+  description                                                             String?
+  tags                                                                    Json?                    @db.Json
+  avatar                                                                  String?                  @db.Uuid
+  language                                                                String?                  @db.VarChar(255)
+  tfa_secret                                                              String?                  @db.VarChar(255)
+  status                                                                  String                   @default("active") @db.VarChar(16)
+  role                                                                    String?                  @db.Uuid
+  token                                                                   String?                  @unique @db.VarChar(255)
+  last_access                                                             DateTime?                @db.Timestamptz(6)
+  last_page                                                               String?                  @db.VarChar(255)
+  provider                                                                String                   @default("default") @db.VarChar(128)
+  external_identifier                                                     String?                  @unique @db.VarChar(255)
+  auth_data                                                               Json?                    @db.Json
+  email_notifications                                                     Boolean?                 @default(true)
+  appearance                                                              String?                  @db.VarChar(255)
+  theme_dark                                                              String?                  @db.VarChar(255)
+  theme_light                                                             String?                  @db.VarChar(255)
+  theme_light_overrides                                                   Json?                    @db.Json
+  theme_dark_overrides                                                    Json?                    @db.Json
+  newsletter                                                              Boolean?                 @default(true)
+  directus_roles                                                          directus_roles?          @relation(fields: [role], references: [id])
+  announcements_announcements_user_createdTodirectus_users                announcements[]          @relation("announcements_user_createdTodirectus_users")
+  announcements_announcements_user_updatedTodirectus_users                announcements[]          @relation("announcements_user_updatedTodirectus_users")
+  contacts_contacts_user_createdTodirectus_users                          contacts[]               @relation("contacts_user_createdTodirectus_users")
+  contacts_contacts_user_updatedTodirectus_users                          contacts[]               @relation("contacts_user_updatedTodirectus_users")
+  directus_access                                                         directus_access[]
+  directus_comments_directus_comments_user_createdTodirectus_users        directus_comments[]      @relation("directus_comments_user_createdTodirectus_users")
+  directus_comments_directus_comments_user_updatedTodirectus_users        directus_comments[]      @relation("directus_comments_user_updatedTodirectus_users")
+  directus_dashboards                                                     directus_dashboards[]
+  directus_files_directus_files_modified_byTodirectus_users               directus_files[]         @relation("directus_files_modified_byTodirectus_users")
+  directus_files_directus_files_uploaded_byTodirectus_users               directus_files[]         @relation("directus_files_uploaded_byTodirectus_users")
+  directus_flows                                                          directus_flows[]
+  directus_notifications_directus_notifications_recipientTodirectus_users directus_notifications[] @relation("directus_notifications_recipientTodirectus_users")
+  directus_notifications_directus_notifications_senderTodirectus_users    directus_notifications[] @relation("directus_notifications_senderTodirectus_users")
+  directus_operations                                                     directus_operations[]
+  directus_panels                                                         directus_panels[]
+  directus_presets                                                        directus_presets[]
+  directus_sessions                                                       directus_sessions[]
+  directus_shares                                                         directus_shares[]
+  directus_versions_directus_usersTodirectus_versions_user_created        directus_versions[]      @relation("directus_usersTodirectus_versions_user_created")
+  directus_versions_directus_usersTodirectus_versions_user_updated        directus_versions[]      @relation("directus_usersTodirectus_versions_user_updated")
+  faqs_directus_users                                                     faqs_directus_users[]
+  integrations_directus_usersTointegrations_user_created                  integrations[]           @relation("directus_usersTointegrations_user_created")
+  integrations_directus_usersTointegrations_user_updated                  integrations[]           @relation("directus_usersTointegrations_user_updated")
+  page_blocks_directus_usersTopage_blocks_user_created                    page_blocks[]            @relation("directus_usersTopage_blocks_user_created")
+  page_blocks_directus_usersTopage_blocks_user_updated                    page_blocks[]            @relation("directus_usersTopage_blocks_user_updated")
+  radios_directus_usersToradios_user_created                              radios[]                 @relation("directus_usersToradios_user_created")
+  radios_directus_usersToradios_user_updated                              radios[]                 @relation("directus_usersToradios_user_updated")
+  redirects_directus_usersToredirects_user_created                        redirects[]              @relation("directus_usersToredirects_user_created")
+  redirects_directus_usersToredirects_user_updated                        redirects[]              @relation("directus_usersToredirects_user_updated")
+  spaces_directus_usersTospaces_user_created                              spaces[]                 @relation("directus_usersTospaces_user_created")
+  spaces_directus_usersTospaces_user_updated                              spaces[]                 @relation("directus_usersTospaces_user_updated")
+  videos_directus_usersTovideos_user                                      videos[]                 @relation("directus_usersTovideos_user")
+  videos_directus_usersTovideos_user_created                              videos[]                 @relation("directus_usersTovideos_user_created")
+  videos_directus_usersTovideos_user_updated                              videos[]                 @relation("directus_usersTovideos_user_updated")
+}
+
+model directus_versions {
+  id                                                            String               @id @db.Uuid
+  key                                                           String               @db.VarChar(64)
+  name                                                          String?              @db.VarChar(255)
+  collection                                                    String               @db.VarChar(64)
+  item                                                          String               @db.VarChar(255)
+  hash                                                          String?              @db.VarChar(255)
+  date_created                                                  DateTime?            @default(now()) @db.Timestamptz(6)
+  date_updated                                                  DateTime?            @default(now()) @db.Timestamptz(6)
+  user_created                                                  String?              @db.Uuid
+  user_updated                                                  String?              @db.Uuid
+  delta                                                         Json?                @db.Json
+  directus_collections                                          directus_collections @relation(fields: [collection], references: [collection])
+  directus_users_directus_usersTodirectus_versions_user_created directus_users?      @relation("directus_usersTodirectus_versions_user_created", fields: [user_created], references: [id])
+  directus_users_directus_usersTodirectus_versions_user_updated directus_users?      @relation("directus_usersTodirectus_versions_user_updated", fields: [user_updated], references: [id])
+  directus_revisions                                            directus_revisions[]
+}
+
+model directus_webhooks {
+  id                            Int             @id @default(autoincrement())
+  name                          String          @db.VarChar(255)
+  method                        String          @default("POST") @db.VarChar(10)
+  url                           String          @db.VarChar(255)
+  status                        String          @default("active") @db.VarChar(10)
+  data                          Boolean         @default(true)
+  actions                       String          @db.VarChar(100)
+  collections                   String          @db.VarChar(255)
+  headers                       Json?           @db.Json
+  was_active_before_deprecation Boolean         @default(false)
+  migrated_flow                 String?         @db.Uuid
+  directus_flows                directus_flows? @relation(fields: [migrated_flow], references: [id])
+}
+
+model faqs {
+  id                  Int                   @id @default(autoincrement())
+  status              String                @default("draft") @db.VarChar(255)
+  sort                Int?
+  user_created        String?               @db.Uuid
+  user_updated        String?               @db.Uuid
+  question            String?               @db.VarChar(255)
+  answer              String?
+  creator             String?               @db.VarChar(255)
+  faqs_directus_users faqs_directus_users[]
+  faqs_files          faqs_files[]
+  faqs_products       faqs_products[]
+  report_faqs         report_faqs[]
+}
+
+model faqs_directus_users {
+  id                Int             @id @default(autoincrement())
+  faqs_id           Int?
+  directus_users_id String?         @db.Uuid
+  directus_users    directus_users? @relation(fields: [directus_users_id], references: [id])
+  faqs              faqs?           @relation(fields: [faqs_id], references: [id])
+}
+
+model faqs_files {
+  id                Int     @id @default(autoincrement())
+  faqs_id           Int?
+  directus_files_id String? @db.Uuid
+  faqs              faqs?   @relation(fields: [faqs_id], references: [id])
+}
+
+model faqs_products {
+  id          Int       @id @default(autoincrement())
+  faqs_id     Int?
+  products_id BigInt?
+  faqs        faqs?     @relation(fields: [faqs_id], references: [id])
+  products    products? @relation(fields: [products_id], references: [id])
+}
+
+model feedback {
+  id                Int                 @id @default(autoincrement())
+  date_created      DateTime?           @db.Timestamptz(6)
+  url               String?             @db.VarChar(255)
+  rating            Int?
+  title             String?             @db.VarChar(255)
+  comments          String?
+  feedback_products feedback_products[]
+  shorts_feedback   shorts_feedback[]
+}
+
+model feedback_comments {
+  id          Int  @id @default(autoincrement())
+  feedback_id Int?
+  comments_id Int?
+}
+
+model feedback_products {
+  id          Int       @id @default(autoincrement())
+  feedback_id Int?
+  products_id BigInt?
+  feedback    feedback? @relation(fields: [feedback_id], references: [id])
+  products    products? @relation(fields: [products_id], references: [id])
+}
+
+model feeds {
+  id          BigInt        @id @default(autoincrement())
+  updated_at  DateTime?     @db.Timestamptz(6)
+  user        String?       @db.Uuid
+  shop        Int?
+  shops       shops?        @relation(fields: [shop], references: [id])
+  feeds_posts feeds_posts[]
+}
+
+model feeds_posts {
+  id      Int     @id @default(autoincrement())
+  feed_id BigInt?
+  post_id Int?
+  feeds   feeds?  @relation(fields: [feed_id], references: [id])
+  posts   posts?  @relation(fields: [post_id], references: [id])
+}
+
+model followers {
+  id           Int     @id @default(autoincrement())
+  following_id String? @db.Uuid
+  follower_id  String? @db.Uuid
+}
+
+model globals {
+  id                Int             @id @default(autoincrement())
+  address_country   String?         @db.VarChar(255)
+  address_locality  String?         @db.VarChar(255)
+  title             String?         @db.VarChar(255)
+  address_region    String?         @db.VarChar(255)
+  build_hook_url    String?         @db.VarChar(255)
+  description       String?         @db.VarChar(255)
+  email             String?         @db.VarChar(255)
+  og_image          String?         @db.Uuid
+  phone             String?         @db.VarChar(255)
+  postal_code       String?         @db.VarChar(255)
+  street_address    String?         @db.VarChar(255)
+  tagline           String?         @db.VarChar(255)
+  url               String?         @db.VarChar(255)
+  contact           String?         @db.VarChar(255)
+  deployment        String?         @db.VarChar(255)
+  seo               String?         @db.VarChar(255)
+  social            String?         @db.VarChar(255)
+  notice_deployment String?         @db.VarChar(255)
+  directus_files    directus_files? @relation(fields: [og_image], references: [id])
+}
+
+model integrations {
+  id                                                       Int                        @id @default(autoincrement())
+  status                                                   String                     @default("draft") @db.VarChar(255)
+  sort                                                     Int?
+  user_created                                             String?                    @db.Uuid
+  date_created                                             DateTime?                  @db.Timestamptz(6)
+  user_updated                                             String?                    @db.Uuid
+  date_updated                                             DateTime?                  @db.Timestamptz(6)
+  name                                                     String?                    @db.VarChar(255)
+  url                                                      String?                    @db.VarChar(255)
+  commands                                                 String?                    @db.VarChar(255)
+  description                                              String?
+  version                                                  String?                    @db.VarChar(255)
+  developer                                                String?                    @db.VarChar(255)
+  is_cost                                                  String?                    @db.VarChar(255)
+  system_requirements                                      Json?                      @db.Json
+  publisher_info                                           String?
+  warnings                                                 String?
+  disclaimers                                              String?
+  terms                                                    String?
+  permissions                                              String?
+  type                                                     String?                    @db.VarChar(255)
+  ratings                                                  String?                    @db.VarChar(255)
+  platform                                                 Json?                      @db.Json
+  price                                                    Float?                     @db.Real
+  directus_users_directus_usersTointegrations_user_created directus_users?            @relation("directus_usersTointegrations_user_created", fields: [user_created], references: [id])
+  directus_users_directus_usersTointegrations_user_updated directus_users?            @relation("directus_usersTointegrations_user_updated", fields: [user_updated], references: [id])
+  integrations_departments                                 integrations_departments[]
+  integrations_files                                       integrations_files[]
+  integrations_ratings                                     integrations_ratings[]
+  integrations_report                                      integrations_report[]
+}
+
+model integrations_departments {
+  id              Int           @id @default(autoincrement())
+  integrations_id Int?
+  departments_id  Int?
+  departments     departments?  @relation(fields: [departments_id], references: [id])
+  integrations    integrations? @relation(fields: [integrations_id], references: [id])
+}
+
+model integrations_files {
+  id                Int             @id @default(autoincrement())
+  integrations_id   Int?
+  directus_files_id String?         @db.Uuid
+  directus_files    directus_files? @relation(fields: [directus_files_id], references: [id])
+  integrations      integrations?   @relation(fields: [integrations_id], references: [id])
+}
+
+model integrations_ratings {
+  id              Int           @id @default(autoincrement())
+  integrations_id Int?
+  ratings_id      Int?
+  integrations    integrations? @relation(fields: [integrations_id], references: [id])
+  ratings         ratings?      @relation(fields: [ratings_id], references: [id])
+}
+
+model integrations_report {
+  id              Int           @id @default(autoincrement())
+  integrations_id Int?
+  report_id       Int?
+  integrations    integrations? @relation(fields: [integrations_id], references: [id])
+  report          report?       @relation(fields: [report_id], references: [id])
+}
+
+model invoices {
+  id                                           BigInt                      @id @default(autoincrement())
+  created_at                                   DateTime?                   @db.Timestamptz(6)
+  updated_at                                   DateTime?                   @db.Timestamptz(6)
+  base_currency_code                           String?
+  base_discount_amount                         Int?
+  base_grand_total                             Int?
+  base_discount_tax_compensation_amount        Int?
+  base_shipping_amount                         Int?
+  base_shipping_discount_tax_compensation_amnt Int?
+  base_shipping_incl_tax                       Int?
+  base_shipping_tax_amount                     Int?
+  base_subtotal                                Int?
+  base_subtotal_incl_tax                       Int?
+  base_tax_amount                              Int?
+  base_total_refunded                          Int?
+  base_to_global_rate                          Int?
+  base_to_order_rate                           Int?
+  can_void_flag                                Int?
+  discount_amount                              Int?
+  discount_description                         String?
+  email_sent                                   Int?
+  entity_id                                    Int?
+  global_currency_code                         String?
+  grand_total                                  Int?
+  discount_tax_compensation_amount             Int?
+  increment_id                                 String?
+  is_used_for_refund                           Int?
+  order_currency_code                          String?
+  shipping_amount                              Int?
+  shipping_discount_tax_compensation_amount    Int?
+  shipping_incl_tax                            Int?
+  shipping_tax_amount                          Int?
+  state                                        Int?
+  store_currency_code                          String?
+  store_id                                     Int?
+  store_to_base_rate                           Int?
+  store_to_order_rate                          Int?
+  subtotal                                     Int?
+  subtotal_incl_tax                            Int?
+  tax_amount                                   Int?
+  total_qty                                    Int?
+  user                                         String?                     @db.Uuid
+  plan                                         String?                     @db.VarChar(255)
+  service_period                               String?                     @db.VarChar(255)
+  payment_period                               String?                     @db.VarChar(255)
+  invoices_address                             invoices_address[]
+  invoices_orders                              invoices_orders[]
+  invoices_shipping_address                    invoices_shipping_address[]
+}
+
+model invoices_address {
+  id         Int       @id @default(autoincrement())
+  invoice_id BigInt?
+  address_id Int?
+  address    address?  @relation(fields: [address_id], references: [id])
+  invoices   invoices? @relation(fields: [invoice_id], references: [id])
+}
+
+model invoices_orders {
+  id         Int       @id @default(autoincrement())
+  invoice_id BigInt?
+  order_id   Int?
+  invoices   invoices? @relation(fields: [invoice_id], references: [id])
+  orders     orders?   @relation(fields: [order_id], references: [id])
+}
+
+model invoices_shipping_address {
+  id                  Int               @id @default(autoincrement())
+  invoice_id          BigInt?
+  shipping_address_id Int?
+  invoices            invoices?         @relation(fields: [invoice_id], references: [id])
+  shipping_address    shipping_address? @relation(fields: [shipping_address_id], references: [id])
+}
+
+model invoices_transactions {
+  id             Int     @id @default(autoincrement())
+  invoice_id     BigInt?
+  transaction_id BigInt?
+}
+
+model list_products {
+  id                  Int                   @id @default(autoincrement())
+  date_created        DateTime?             @db.Timestamptz(6)
+  product_sku         String?               @db.VarChar(255)
+  quantity            Int?
+  list_products_lists list_products_lists[]
+}
+
+model list_products_lists {
+  id               Int            @id @default(autoincrement())
+  list_products_id Int?
+  lists_id         Int?
+  list_products    list_products? @relation(fields: [list_products_id], references: [id])
+  lists            lists?         @relation(fields: [lists_id], references: [id])
+}
+
+model lists {
+  id                   Int                    @id @default(autoincrement())
+  sort                 Int?
+  user_created         String?                @db.Uuid
+  date_created         DateTime?              @db.Timestamptz(6)
+  user_updated         String?                @db.Uuid
+  date_updated         DateTime?              @db.Timestamptz(6)
+  name                 String?                @db.VarChar(255)
+  description          String?
+  image                String?                @db.Uuid
+  type                 String?                @db.VarChar(255)
+  status               String?                @db.VarChar(255)
+  favorite             String?                @db.VarChar(255)
+  product_sku          Json?                  @db.Json
+  list_products_lists  list_products_lists[]
+  lists_directus_users lists_directus_users[]
+  lists_products       lists_products[]
+  reactions_lists      reactions_lists[]
+}
+
+model lists_directus_users {
+  id      Int     @id @default(autoincrement())
+  list_id Int?
+  user_id String? @db.Uuid
+  lists   lists?  @relation(fields: [list_id], references: [id])
+}
+
+model lists_products {
+  id          Int       @id @default(autoincrement())
+  lists_id    Int?
+  products_id BigInt?
+  lists       lists?    @relation(fields: [lists_id], references: [id])
+  products    products? @relation(fields: [products_id], references: [id])
+}
+
+model manufacturer {
+  id                     BigInt                   @id @default(autoincrement())
+  created_at             DateTime?                @default(now())
+  code                   String?
+  name                   String?
+  description            String?
+  isPublic               Boolean?
+  image                  String?                  @db.Uuid
+  brands_manufacturer    brands_manufacturer[]
+  manufacturer_countries manufacturer_countries[]
+  products_manufacturer  products_manufacturer[]
+  videos_manufacturer    videos_manufacturer[]
+}
+
+model manufacturer_countries {
+  id              Int           @id @default(autoincrement())
+  manufacturer_id BigInt?
+  countries_id    Int?
+  countries       countries?    @relation(fields: [countries_id], references: [id])
+  manufacturer    manufacturer? @relation(fields: [manufacturer_id], references: [id])
+}
+
+model meeovistores {
+  id                        Int                         @id @default(autoincrement())
+  sort                      Int?
+  user_created              String?                     @db.Uuid
+  date_created              DateTime?                   @db.Timestamptz(6)
+  user_updated              String?                     @db.Uuid
+  date_updated              DateTime?                   @db.Timestamptz(6)
+  name                      String?                     @db.VarChar(255)
+  content                   String?
+  image                     String?                     @db.Uuid
+  color                     String?                     @db.VarChar(255)
+  colortext                 String?                     @db.VarChar(255)
+  slug                      String?                     @db.VarChar(255)
+  categories_meeovistores   categories_meeovistores[]
+  meeovistores_collections  meeovistores_collections[]
+  meeovistores_products     meeovistores_products[]
+  meeovistores_websites     meeovistores_websites[]
+  translations_meeovistores translations_meeovistores[]
+}
+
+model meeovistores_collections {
+  id              Int           @id @default(autoincrement())
+  meeovistores_id Int?
+  collections_id  BigInt?
+  collections     collections?  @relation(fields: [collections_id], references: [id])
+  meeovistores    meeovistores? @relation(fields: [meeovistores_id], references: [id])
+}
+
+model meeovistores_products {
+  id              Int           @id @default(autoincrement())
+  meeovistores_id Int?
+  products_id     BigInt?
+  meeovistores    meeovistores? @relation(fields: [meeovistores_id], references: [id])
+  products        products?     @relation(fields: [products_id], references: [id])
+}
+
+model meeovistores_websites {
+  id              Int           @id @default(autoincrement())
+  meeovistores_id Int?
+  websites_id     BigInt?
+  meeovistores    meeovistores? @relation(fields: [meeovistores_id], references: [id])
+  websites        websites?     @relation(fields: [websites_id], references: [id])
+}
+
+model messages {
+  id           Int       @id @default(autoincrement())
+  sort         Int?
+  user_created String?   @db.Uuid
+  date_created DateTime? @db.Timestamptz(6)
+  user_updated String?   @db.Uuid
+  date_updated DateTime? @db.Timestamptz(6)
+  title        String?   @db.VarChar(255)
+  content      String?
+}
+
+model messages_directus_users {
+  id                Int     @id @default(autoincrement())
+  directus_users_id String? @db.Uuid
+}
+
+model musicchart {
+  id                     Int                      @id @default(autoincrement())
+  status                 String                   @default("draft") @db.VarChar(255)
+  sort                   Int?
+  user_created           String?                  @db.Uuid
+  date_created           DateTime?                @db.Timestamptz(6)
+  user_updated           String?                  @db.Uuid
+  date_updated           DateTime?                @db.Timestamptz(6)
+  name                   String?                  @db.VarChar(255)
+  description            String?
+  image                  String?                  @db.Uuid
+  this_week              String?                  @db.VarChar(255)
+  last_week              String?                  @db.VarChar(255)
+  peak_position          String?                  @db.VarChar(255)
+  weeks_on_chart         String?                  @db.VarChar(255)
+  award                  String?                  @db.VarChar(255)
+  color                  String?                  @db.VarChar(255)
+  type                   String?                  @db.VarChar(255)
+  creator                String?                  @db.VarChar(255)
+  previous_position      String?                  @db.VarChar(255)
+  first_appearance       String?                  @db.VarChar(255)
+  current_sales          String?                  @db.VarChar(255)
+  previous_sales         String?                  @db.VarChar(255)
+  trend                  String?                  @db.VarChar(255)
+  seller                 String?                  @db.VarChar(255)
+  musicchart_categories  musicchart_categories[]
+  musicchart_departments musicchart_departments[]
+  musicchart_products    musicchart_products[]
+  radios_musicchart      radios_musicchart[]
+}
+
+model musicchart_categories {
+  id            Int         @id @default(autoincrement())
+  musicchart_id Int?
+  categories_id Int?
+  categories    categories? @relation(fields: [categories_id], references: [id])
+  musicchart    musicchart? @relation(fields: [musicchart_id], references: [id])
+}
+
+model musicchart_departments {
+  id             Int          @id @default(autoincrement())
+  musicchart_id  Int?
+  departments_id Int?
+  departments    departments? @relation(fields: [departments_id], references: [id])
+  musicchart     musicchart?  @relation(fields: [musicchart_id], references: [id])
+}
+
+model musicchart_products {
+  id            Int         @id @default(autoincrement())
+  musicchart_id Int?
+  products_id   BigInt?
+  musicchart    musicchart? @relation(fields: [musicchart_id], references: [id])
+  products      products?   @relation(fields: [products_id], references: [id])
+}
+
+model navigation {
+  id                  Int                   @id @default(autoincrement())
+  type                String?               @db.VarChar(255)
+  name                String?               @db.VarChar(255)
+  url                 String?               @db.VarChar(255)
+  image               String?               @db.Uuid
+  submenus            Json?                 @db.Json
+  menus               Json?                 @db.Json
+  description         String?
+  color               String?               @db.VarChar(255)
+  colortext           String?               @db.VarChar(255)
+  navigation_pages    navigation_pages[]
+  navigation_websites navigation_websites[]
+}
+
+model navigation_pages {
+  id            Int         @id @default(autoincrement())
+  navigation_id Int?
+  pages_id      Int?
+  navigation    navigation? @relation(fields: [navigation_id], references: [id])
+  pages         pages?      @relation(fields: [pages_id], references: [id])
+}
+
+model navigation_websites {
+  id            Int         @id @default(autoincrement())
+  navigation_id Int?
+  websites_id   BigInt?
+  navigation    navigation? @relation(fields: [navigation_id], references: [id])
+  websites      websites?   @relation(fields: [websites_id], references: [id])
+}
+
+model newsletters {
+  id         Int       @id @default(autoincrement())
+  email      String
+  created_at DateTime? @default(now())
+  first_name String?   @db.VarChar(255)
+  last_name  String?   @db.VarChar(255)
+  status     String?   @db.VarChar(255)
+}
+
+model notifications {
+  id           Int       @id @default(autoincrement())
+  date_created DateTime? @db.Timestamptz(6)
+  date_updated DateTime? @db.Timestamptz(6)
+  content      String?
+  is_read      Boolean?
+  image        String?   @db.Uuid
+}
+
+model orders {
+  id                                           Int                   @id @default(autoincrement())
+  status                                       String                @default("draft") @db.VarChar(255)
+  date_created                                 DateTime?             @db.Timestamptz(6)
+  date_updated                                 DateTime?             @db.Timestamptz(6)
+  type                                         String?               @db.VarChar(255)
+  adjustment_negative                          Int?
+  adjustment_positive                          Int?
+  applied_rule_ids                             String?
+  base_adjustment_negative                     Int?
+  base_adjustment_positive                     Int?
+  base_currency_code                           String?
+  base_discount_amount                         Int?
+  base_discount_canceled                       Int?
+  base_discount_invoiced                       Int?
+  base_discount_refunded                       Int?
+  base_grand_total                             Int?
+  base_discount_tax_compensation_amount        Int?
+  base_discount_tax_compensation_invoiced      Int?
+  base_discount_tax_compensation_refunded      Int?
+  base_shipping_amount                         Int?
+  base_shipping_canceled                       Int?
+  base_shipping_discount_amount                Int?
+  base_shipping_discount_tax_compensation_amnt Int?
+  base_shipping_incl_tax                       Int?
+  base_shipping_invoiced                       Int?
+  base_shipping_refunded                       Int?
+  base_shipping_tax_amount                     Int?
+  base_shipping_tax_refunded                   Int?
+  base_subtotal                                Int?
+  base_subtotal_canceled                       Int?
+  base_subtotal_incl_tax                       Int?
+  base_subtotal_invoiced                       Int?
+  base_subtotal_refunded                       Int?
+  base_tax_amount                              Int?
+  base_tax_canceled                            Int?
+  base_tax_invoiced                            Int?
+  base_tax_refunded                            Int?
+  base_total_canceled                          Int?
+  base_total_due                               Int?
+  base_total_invoiced                          Int?
+  base_total_invoiced_cost                     Int?
+  base_total_offline_refunded                  Int?
+  base_total_online_refunded                   Int?
+  base_total_paid                              Int?
+  base_total_qty_ordered                       Int?
+  base_total_refunded                          Int?
+  base_to_global_rate                          Int?
+  base_to_order_rate                           Int?
+  billing_address_id                           Int?
+  can_ship_partially                           Int?
+  can_ship_partially_item                      Int?
+  coupon_code                                  String?
+  customer_dob                                 String?
+  customer_email                               String?
+  customer_firstname                           String?
+  customer_gender                              Int?
+  customer_group_id                            Int?
+  customer_id                                  Int?
+  customer_is_guest                            Int?
+  customer_lastname                            String?
+  customer_middlename                          String?
+  customer_note                                String?
+  customer_note_notify                         Int?
+  customer_prefix                              String?
+  customer_suffix                              String?
+  customer_taxvat                              String?
+  discount_amount                              Int?
+  discount_canceled                            Int?
+  discount_description                         String?
+  discount_invoiced                            Int?
+  discount_refunded                            Int?
+  edit_increment                               Int?
+  email_sent                                   Int?
+  entity_id                                    Int?
+  ext_customer_id                              String?
+  ext_order_id                                 String?
+  forced_shipment_with_invoice                 Int?
+  global_currency_code                         String?
+  grand_total                                  Int?
+  discount_tax_compensation_amount             Int?
+  discount_tax_compensation_invoiced           Int?
+  discount_tax_compensation_refunded           Int?
+  hold_before_state                            String?
+  hold_before_status                           String?
+  increment_id                                 String?
+  is_virtual                                   Int?
+  order_currency_code                          String?
+  original_increment_id                        String?
+  payment_authorization_amount                 Int?
+  payment_auth_expiration                      Int?
+  protect_code                                 String?
+  quote_address_id                             Int?
+  quote_id                                     Int?
+  relation_child_id                            String?
+  relation_child_real_id                       String?
+  relation_parent_id                           String?
+  relation_parent_real_id                      String?
+  remote_ip                                    String?
+  shipping_amount                              Int?
+  shipping_canceled                            Int?
+  shipping_description                         String?
+  shipping_discount_amount                     Int?
+  shipping_discount_tax_compensation_amount    Int?
+  shipping_incl_tax                            Int?
+  shipping_invoiced                            Int?
+  shipping_refunded                            Int?
+  shipping_tax_amount                          Int?
+  shipping_tax_refunded                        Int?
+  state                                        String?
+  store_currency_code                          String?
+  store_id                                     Int?
+  store_name                                   String?
+  store_to_base_rate                           Int?
+  store_to_order_rate                          Int?
+  subtotal                                     Int?
+  subtotal_canceled                            Int?
+  subtotal_incl_tax                            Int?
+  subtotal_invoiced                            Int?
+  subtotal_refunded                            Int?
+  tax_amount                                   Int?
+  tax_canceled                                 Int?
+  tax_invoiced                                 Int?
+  tax_refunded                                 Int?
+  total_canceled                               Int?
+  total_due                                    Int?
+  total_invoiced                               Int?
+  total_item_count                             Int?
+  total_offline_refunded                       Int?
+  total_online_refunded                        Int?
+  total_paid                                   Int?
+  total_qty_ordered                            Int?
+  total_refunded                               Int?
+  weight                                       Int?
+  x_forwarded_for                              String?
+  credit_memos_orders                          credit_memos_orders[]
+  invoices_orders                              invoices_orders[]
+  orders_products                              orders_products[]
+  payments_orders                              payments_orders[]
+  returns_orders                               returns_orders[]
+  shipment                                     shipment[]
+  transactions                                 transactions[]
+}
+
+model orders_products {
+  id          Int       @id @default(autoincrement())
+  orders_id   Int?
+  products_id BigInt?
+  orders      orders?   @relation(fields: [orders_id], references: [id])
+  products    products? @relation(fields: [products_id], references: [id])
+}
+
+model outlets {
+  id                 Int                  @id @default(autoincrement())
+  status             String               @default("draft") @db.VarChar(255)
+  sort               Int?
+  date_created       DateTime?            @db.Timestamptz(6)
+  date_updated       DateTime?            @db.Timestamptz(6)
+  name               String?              @db.VarChar(255)
+  color              String?              @db.VarChar(255)
+  colortext          String?              @db.VarChar(255)
+  description        String?
+  image              String?              @db.Uuid
+  callouts           Json?                @db.Json
+  uid                String?              @db.VarChar(255)
+  directus_files     directus_files?      @relation(fields: [image], references: [id])
+  outlets_categories outlets_categories[]
+  outlets_products   outlets_products[]
+  outlets_shorts     outlets_shorts[]
+}
+
+model outlets_categories {
+  id            Int         @id @default(autoincrement())
+  outlets_id    Int?
+  categories_id Int?
+  categories    categories? @relation(fields: [categories_id], references: [id])
+  outlets       outlets?    @relation(fields: [outlets_id], references: [id])
+}
+
+model outlets_products {
+  id          Int       @id @default(autoincrement())
+  outlets_id  Int?
+  products_id BigInt?
+  outlets     outlets?  @relation(fields: [outlets_id], references: [id])
+  products    products? @relation(fields: [products_id], references: [id])
+}
+
+model outlets_shorts {
+  id         Int      @id @default(autoincrement())
+  outlets_id Int?
+  shorts_id  Int?
+  outlets    outlets? @relation(fields: [outlets_id], references: [id])
+  shorts     shorts?  @relation(fields: [shorts_id], references: [id])
+}
+
+model page_blocks {
+  id                                                      Int                 @id @default(autoincrement())
+  status                                                  String              @default("draft") @db.VarChar(255)
+  sort                                                    Int?
+  user_created                                            String?             @db.Uuid
+  date_created                                            DateTime?           @db.Timestamptz(6)
+  user_updated                                            String?             @db.Uuid
+  date_updated                                            DateTime?           @db.Timestamptz(6)
+  name                                                    String?             @db.VarChar(255)
+  description                                             String?
+  content                                                 Json?               @db.Json
+  menus                                                   Json?               @db.Json
+  directus_users_directus_usersTopage_blocks_user_created directus_users?     @relation("directus_usersTopage_blocks_user_created", fields: [user_created], references: [id])
+  directus_users_directus_usersTopage_blocks_user_updated directus_users?     @relation("directus_usersTopage_blocks_user_updated", fields: [user_updated], references: [id])
+  page_blocks_files                                       page_blocks_files[]
+}
+
+model page_blocks_files {
+  id                Int             @id @default(autoincrement())
+  page_blocks_id    Int?
+  directus_files_id String?         @db.Uuid
+  directus_files    directus_files? @relation(fields: [directus_files_id], references: [id])
+  page_blocks       page_blocks?    @relation(fields: [page_blocks_id], references: [id])
+}
+
+model pages {
+  id               Int                @id @default(autoincrement())
+  status           String             @default("draft") @db.VarChar(255)
+  sort             Int?
+  date_created     DateTime?          @db.Timestamptz(6)
+  date_updated     DateTime?          @db.Timestamptz(6)
+  name             String?            @db.VarChar(255)
+  content          String?
+  list             Json?              @db.Json
+  type             String?            @db.VarChar(255)
+  link             String?            @db.VarChar(255)
+  image            String?            @db.Uuid
+  slug             String?            @db.VarChar(255)
+  repeaterTextBox  Json?              @db.Json
+  description      Json?              @db.Json
+  navigation_pages navigation_pages[]
+}
+
+model payments {
+  id                 Int                  @id @default(autoincrement())
+  status             String               @default("draft") @db.VarChar(255)
+  payment_method     String?
+  amount             Float?               @db.Real
+  description        String?
+  name               String?              @db.VarChar(255)
+  last_4             Int?
+  default            Json?                @db.Json
+  payments_countries payments_countries[]
+  payments_orders    payments_orders[]
+}
+
+model payments_countries {
+  id         Int        @id @default(autoincrement())
+  payment_id Int?
+  country_id Int?
+  countries  countries? @relation(fields: [country_id], references: [id])
+  payments   payments?  @relation(fields: [payment_id], references: [id])
+}
+
+model payments_orders {
+  id          Int       @id @default(autoincrement())
+  payments_id Int?
+  orders_id   Int?
+  orders      orders?   @relation(fields: [orders_id], references: [id])
+  payments    payments? @relation(fields: [payments_id], references: [id])
+}
+
+model pickup_locations {
+  id                       Int                        @id @default(autoincrement())
+  status                   String                     @default("draft") @db.VarChar(255)
+  sort                     Int?
+  date_created             DateTime?                  @db.Timestamptz(6)
+  date_updated             DateTime?                  @db.Timestamptz(6)
+  name                     String?                    @db.VarChar(255)
+  phone                    BigInt?
+  address                  String?                    @db.VarChar(255)
+  postcode                 String?                    @db.VarChar(255)
+  pickup_location_code     String?                    @db.VarChar(255)
+  contact_name             String?                    @db.VarChar(255)
+  email                    String?                    @db.VarChar(255)
+  fax                      String?                    @db.VarChar(255)
+  latitude                 String?                    @db.VarChar(255)
+  longitude                String?                    @db.VarChar(255)
+  slug                     String?                    @db.VarChar(255)
+  pickup_locations_city    pickup_locations_city[]
+  pickup_locations_country pickup_locations_country[]
+  pickup_locations_state   pickup_locations_state[]
+}
+
+model pickup_locations_city {
+  id                  Int               @id @default(autoincrement())
+  pickup_locations_id Int?
+  item                String?           @db.VarChar(255)
+  collection          String?           @db.VarChar(255)
+  pickup_locations    pickup_locations? @relation(fields: [pickup_locations_id], references: [id])
+}
+
+model pickup_locations_country {
+  id                  Int               @id @default(autoincrement())
+  pickup_locations_id Int?
+  item                String?           @db.VarChar(255)
+  collection          String?           @db.VarChar(255)
+  pickup_locations    pickup_locations? @relation(fields: [pickup_locations_id], references: [id])
+}
+
+model pickup_locations_state {
+  id                  Int               @id @default(autoincrement())
+  pickup_locations_id Int?
+  item                String?           @db.VarChar(255)
+  collection          String?           @db.VarChar(255)
+  pickup_locations    pickup_locations? @relation(fields: [pickup_locations_id], references: [id])
+}
+
+model posts {
+  id                                         Int               @id @default(autoincrement())
+  user_created                               String?           @db.Uuid
+  date_created                               DateTime?         @db.Timestamptz(6)
+  content                                    String?
+  file                                       String?           @db.Uuid
+  username                                   String?           @db.VarChar(255)
+  user_avatar                                String?           @db.VarChar(255)
+  image                                      String?           @db.Uuid
+  title                                      String?           @db.VarChar(255)
+  type                                       String?           @db.VarChar(255)
+  status                                     String?           @db.VarChar(255)
+  audio                                      String?           @db.Uuid
+  directus_files_directus_filesToposts_audio directus_files?   @relation("directus_filesToposts_audio", fields: [audio], references: [id])
+  directus_files_directus_filesToposts_image directus_files?   @relation("directus_filesToposts_image", fields: [image], references: [id])
+  feeds_posts                                feeds_posts[]
+  reactions_posts                            reactions_posts[]
+  spaces_posts                               spaces_posts[]
+}
+
+model product_types {
+  id                     Int                      @id @default(autoincrement())
+  name                   String?                  @db.VarChar(255)
+  isShippable            Boolean?
+  product_types_products product_types_products[]
+}
+
+model product_types_products {
+  id               Int            @id @default(autoincrement())
+  product_types_id Int?
+  products_id      BigInt?
+  product_types    product_types? @relation(fields: [product_types_id], references: [id])
+  products         products?      @relation(fields: [products_id], references: [id])
+}
+
+model products {
+  id                                                                BigInt                      @id @default(autoincrement())
+  sku                                                               BigInt?
+  name                                                              String?
+  tax_class                                                         String?
+  stock_status                                                      String?
+  weight                                                            String?
+  created_at                                                        DateTime?                   @default(now())
+  height                                                            String?
+  content                                                           String?
+  part_number                                                       String?
+  format                                                            Json?                       @db.Json
+  file                                                              String?                     @db.Uuid
+  image                                                             String?                     @db.Uuid
+  type                                                              String?                     @db.VarChar(255)
+  visibility                                                        Boolean?
+  price                                                             Decimal?                    @db.Decimal(10, 2)
+  size                                                              Json?                       @db.Json
+  like                                                              Boolean?
+  stock                                                             Int?
+  color                                                             Json?                       @db.Json
+  rating                                                            Int?
+  remaining_downloads                                               BigInt?
+  salable_quantity                                                  BigInt?
+  updated_at                                                        DateTime?                   @db.Timestamptz(6)
+  isFeatured                                                        Boolean?
+  gift_message_available                                            Boolean?
+  special_to_date                                                   DateTime?                   @db.Timestamp(6)
+  special_price                                                     Decimal?                    @db.Decimal(10, 5)
+  Space_products                                                    Space_products[]
+  advertising_products                                              advertising_products[]
+  agreements_products                                               agreements_products[]
+  attributes_products                                               attributes_products[]
+  brands_products                                                   brands_products[]
+  buyagain_products                                                 buyagain_products[]
+  cart_products                                                     cart_products[]
+  collections_products                                              collections_products[]
+  comments_products                                                 comments_products[]
+  coupons_products                                                  coupons_products[]
+  credit_memos_products                                             credit_memos_products[]
+  faqs_products                                                     faqs_products[]
+  feedback_products                                                 feedback_products[]
+  lists_products                                                    lists_products[]
+  meeovistores_products                                             meeovistores_products[]
+  musicchart_products                                               musicchart_products[]
+  orders_products                                                   orders_products[]
+  outlets_products                                                  outlets_products[]
+  product_types_products                                            product_types_products[]
+  products_attributes                                               products_attributes[]
+  products_categories                                               products_categories[]
+  products_countries                                                products_countries[]
+  products_currency                                                 products_currency[]
+  products_departments                                              products_departments[]
+  products_directus_users                                           products_directus_users[]
+  products_manufacturer                                             products_manufacturer[]
+  products_product_designer                                         products_product_designer[]
+  products_products_productsToproducts_products_products_id         products_products[]         @relation("productsToproducts_products_products_id")
+  products_products_productsToproducts_products_related_products_id products_products[]         @relation("productsToproducts_products_related_products_id")
+  products_spaces                                                   products_spaces[]
+  products_websites                                                 products_websites[]
+  ratings_products                                                  ratings_products[]
+  reactions_products                                                reactions_products[]
+  report_products                                                   report_products[]
+  returns_products                                                  returns_products[]
+  reviews_products                                                  reviews_products[]
+  shipment_products                                                 shipment_products[]
+  shops_products                                                    shops_products[]
+  shorts_products                                                   shorts_products[]
+  site_preference_products                                          site_preference_products[]
+  subscriptions_products                                            subscriptions_products[]
+  tags_products                                                     tags_products[]
+  trailers_products                                                 trailers_products[]
+  translations_products                                             translations_products[]
+  videos_products                                                   videos_products[]
+}
+
+model products_attributes {
+  id            Int         @id @default(autoincrement())
+  products_id   BigInt?
+  attributes_id Int?
+  attributes    attributes? @relation(fields: [attributes_id], references: [id])
+  products      products?   @relation(fields: [products_id], references: [id])
+}
+
+model products_categories {
+  id            Int         @id @default(autoincrement())
+  products_id   BigInt?
+  categories_id Int?
+  categories    categories? @relation(fields: [categories_id], references: [id])
+  products      products?   @relation(fields: [products_id], references: [id])
+}
+
+model products_countries {
+  id           Int       @id @default(autoincrement())
+  products_id  BigInt?
+  countries_id Int?
+  products     products? @relation(fields: [products_id], references: [id])
+}
+
+model products_currency {
+  id          Int       @id @default(autoincrement())
+  products_id BigInt?
+  currency_id Int?
+  currency    currency? @relation(fields: [currency_id], references: [id])
+  products    products? @relation(fields: [products_id], references: [id])
+}
+
+model products_departments {
+  id             Int          @id @default(autoincrement())
+  products_id    BigInt?
+  departments_id Int?
+  departments    departments? @relation(fields: [departments_id], references: [id])
+  products       products?    @relation(fields: [products_id], references: [id])
+}
+
+model products_directus_users {
+  id         Int       @id @default(autoincrement())
+  product_id BigInt?
+  user_id    String?   @db.Uuid
+  products   products? @relation(fields: [product_id], references: [id])
+}
+
+model products_manufacturer {
+  id              Int           @id @default(autoincrement())
+  products_id     BigInt?
+  manufacturer_id BigInt?
+  manufacturer    manufacturer? @relation(fields: [manufacturer_id], references: [id])
+  products        products?     @relation(fields: [products_id], references: [id])
+}
+
+model products_product_designer {
+  id          Int       @id @default(autoincrement())
+  products_id BigInt?
+  item        String?   @db.VarChar(255)
+  collection  String?   @db.VarChar(255)
+  products    products? @relation(fields: [products_id], references: [id])
+}
+
+model products_products {
+  id                                                       Int       @id @default(autoincrement())
+  products_id                                              BigInt?
+  related_products_id                                      BigInt?
+  products_productsToproducts_products_products_id         products? @relation("productsToproducts_products_products_id", fields: [products_id], references: [id])
+  products_productsToproducts_products_related_products_id products? @relation("productsToproducts_products_related_products_id", fields: [related_products_id], references: [id])
+}
+
+model products_spaces {
+  id          Int       @id @default(autoincrement())
+  products_id BigInt?
+  spaces_id   Int?
+  products    products? @relation(fields: [products_id], references: [id])
+  spaces      spaces?   @relation(fields: [spaces_id], references: [id])
+}
+
+model products_websites {
+  id          Int       @id @default(autoincrement())
+  products_id BigInt?
+  websites_id BigInt?
+  products    products? @relation(fields: [products_id], references: [id])
+  websites    websites? @relation(fields: [websites_id], references: [id])
+}
+
+model radios {
+  id                                                 Int                  @id @default(autoincrement())
+  status                                             String               @default("draft") @db.VarChar(255)
+  sort                                               Int?
+  user_created                                       String?              @db.Uuid
+  date_created                                       DateTime?            @db.Timestamptz(6)
+  user_updated                                       String?              @db.Uuid
+  date_updated                                       DateTime?            @db.Timestamptz(6)
+  name                                               String?              @db.VarChar(255)
+  format                                             String?              @db.VarChar(255)
+  satellite                                          String?              @db.VarChar(255)
+  internet                                           String?              @db.VarChar(255)
+  description                                        String?
+  image                                              String?              @db.Uuid
+  file                                               String?              @db.Uuid
+  creator                                            String?              @db.VarChar(255)
+  type                                               String?              @db.VarChar(255)
+  directus_files_directus_filesToradios_file         directus_files?      @relation("directus_filesToradios_file", fields: [file], references: [id])
+  directus_files_directus_filesToradios_image        directus_files?      @relation("directus_filesToradios_image", fields: [image], references: [id])
+  directus_users_directus_usersToradios_user_created directus_users?      @relation("directus_usersToradios_user_created", fields: [user_created], references: [id])
+  directus_users_directus_usersToradios_user_updated directus_users?      @relation("directus_usersToradios_user_updated", fields: [user_updated], references: [id])
+  radios_categories                                  radios_categories[]
+  radios_departments                                 radios_departments[]
+  radios_musicchart                                  radios_musicchart[]
+}
+
+model radios_categories {
+  id            Int         @id @default(autoincrement())
+  radios_id     Int?
+  categories_id Int?
+  categories    categories? @relation(fields: [categories_id], references: [id])
+  radios        radios?     @relation(fields: [radios_id], references: [id])
+}
+
+model radios_departments {
+  id             Int          @id @default(autoincrement())
+  radios_id      Int?
+  departments_id Int?
+  departments    departments? @relation(fields: [departments_id], references: [id])
+  radios         radios?      @relation(fields: [radios_id], references: [id])
+}
+
+model radios_musicchart {
+  id            Int         @id @default(autoincrement())
+  radios_id     Int?
+  musicchart_id Int?
+  musicchart    musicchart? @relation(fields: [musicchart_id], references: [id])
+  radios        radios?     @relation(fields: [radios_id], references: [id])
+}
+
+model ratings {
+  id                   Int                    @id @default(autoincrement())
+  name                 String?                @db.VarChar(255)
+  description          String?
+  image                String?                @db.Uuid
+  directus_files       directus_files?        @relation(fields: [image], references: [id])
+  integrations_ratings integrations_ratings[]
+  ratings_products     ratings_products[]
+  streams_ratings      streams_ratings[]
+  videos               videos[]
+}
+
+model ratings_products {
+  id          Int       @id @default(autoincrement())
+  ratings_id  Int?
+  products_id BigInt?
+  products    products? @relation(fields: [products_id], references: [id])
+  ratings     ratings?  @relation(fields: [ratings_id], references: [id])
+}
+
+model reactions {
+  id                       Int                        @id @default(autoincrement())
+  date_created             DateTime?                  @db.Timestamptz(6)
+  date_updated             DateTime?                  @db.Timestamptz(6)
+  content_id               String?                    @db.VarChar(255)
+  content_type             String?                    @db.VarChar(255)
+  user                     String?                    @db.VarChar(255)
+  comments_reactions       comments_reactions[]
+  reactions_comments       reactions_comments[]
+  reactions_directus_users reactions_directus_users[]
+  reactions_lists          reactions_lists[]
+  reactions_posts          reactions_posts[]
+  reactions_products       reactions_products[]
+  reactions_shorts         reactions_shorts[]
+}
+
+model reactions_comments {
+  id           Int        @id @default(autoincrement())
+  reactions_id Int?
+  comments_id  Int?
+  comments     comments?  @relation(fields: [comments_id], references: [id])
+  reactions    reactions? @relation(fields: [reactions_id], references: [id])
+}
+
+model reactions_directus_users {
+  id          Int        @id @default(autoincrement())
+  reaction_id Int?
+  user_id     String?    @db.Uuid
+  reactions   reactions? @relation(fields: [reaction_id], references: [id])
+}
+
+model reactions_lists {
+  id           Int        @id @default(autoincrement())
+  reactions_id Int?
+  lists_id     Int?
+  lists        lists?     @relation(fields: [lists_id], references: [id])
+  reactions    reactions? @relation(fields: [reactions_id], references: [id])
+}
+
+model reactions_posts {
+  id           Int        @id @default(autoincrement())
+  reactions_id Int?
+  posts_id     Int?
+  posts        posts?     @relation(fields: [posts_id], references: [id])
+  reactions    reactions? @relation(fields: [reactions_id], references: [id])
+}
+
+model reactions_products {
+  id           Int        @id @default(autoincrement())
+  reactions_id Int?
+  products_id  BigInt?
+  products     products?  @relation(fields: [products_id], references: [id])
+  reactions    reactions? @relation(fields: [reactions_id], references: [id])
+}
+
+model reactions_shorts {
+  id           Int        @id @default(autoincrement())
+  reactions_id Int?
+  shorts_id    Int?
+  reactions    reactions? @relation(fields: [reactions_id], references: [id])
+  shorts       shorts?    @relation(fields: [shorts_id], references: [id])
+}
+
+model redirects {
+  id                                                    Int             @id @default(autoincrement())
+  user_created                                          String?         @db.Uuid
+  date_created                                          DateTime?       @db.Timestamptz(6)
+  user_updated                                          String?         @db.Uuid
+  date_updated                                          DateTime?       @db.Timestamptz(6)
+  response_code                                         Int?
+  url_new                                               String?         @db.VarChar(255)
+  url_old                                               String?         @db.VarChar(255)
+  notice_redirects                                      String?         @db.VarChar(255)
+  directus_users_directus_usersToredirects_user_created directus_users? @relation("directus_usersToredirects_user_created", fields: [user_created], references: [id])
+  directus_users_directus_usersToredirects_user_updated directus_users? @relation("directus_usersToredirects_user_updated", fields: [user_updated], references: [id])
+}
+
+model region {
+  id                      Int                       @id @default(autoincrement())
+  created_at              DateTime?                 @db.Timestamptz(6)
+  region_code             String?
+  region                  String?
+  region_id               Int?
+  region_address          region_address[]
+  region_shipping_address region_shipping_address[]
+}
+
+model region_address {
+  id         Int      @id @default(autoincrement())
+  region_id  Int?
+  address_id Int?
+  address    address? @relation(fields: [address_id], references: [id])
+  region     region?  @relation(fields: [region_id], references: [id])
+}
+
+model region_shipping_address {
+  id                  Int               @id @default(autoincrement())
+  region_id           Int?
+  shipping_address_id Int?
+  region              region?           @relation(fields: [region_id], references: [id])
+  shipping_address    shipping_address? @relation(fields: [shipping_address_id], references: [id])
+}
+
+model report {
+  id                    Int                     @id @default(autoincrement())
+  sort                  Int?
+  user_created          String?                 @db.Uuid
+  date_created          DateTime?               @db.Timestamptz(6)
+  user_updated          String?                 @db.Uuid
+  date_updated          DateTime?               @db.Timestamptz(6)
+  title                 String?                 @db.VarChar(255)
+  content               String?
+  integrations_report   integrations_report[]
+  report_comments       report_comments[]
+  report_directus_users report_directus_users[]
+  report_faqs           report_faqs[]
+  report_products       report_products[]
+}
+
+model report_comments {
+  id          Int       @id @default(autoincrement())
+  report_id   Int?
+  comments_id Int?
+  comments    comments? @relation(fields: [comments_id], references: [id])
+  report      report?   @relation(fields: [report_id], references: [id])
+}
+
+model report_directus_users {
+  id                Int     @id @default(autoincrement())
+  report_id         Int?
+  directus_users_id String? @db.Uuid
+  report            report? @relation(fields: [report_id], references: [id])
+}
+
+model report_faqs {
+  id        Int     @id @default(autoincrement())
+  report_id Int?
+  faqs_id   Int?
+  faqs      faqs?   @relation(fields: [faqs_id], references: [id])
+  report    report? @relation(fields: [report_id], references: [id])
+}
+
+model report_products {
+  id          Int       @id @default(autoincrement())
+  report_id   Int?
+  products_id BigInt?
+  products    products? @relation(fields: [products_id], references: [id])
+  report      report?   @relation(fields: [report_id], references: [id])
+}
+
+model returns {
+  id               Int                @id @default(autoincrement())
+  status           String             @default("draft") @db.VarChar(255)
+  date_created     DateTime?          @db.Timestamptz(6)
+  date_updated     DateTime?          @db.Timestamptz(6)
+  return_number    String?            @db.Uuid
+  reason           String?
+  returns_orders   returns_orders[]
+  returns_products returns_products[]
+}
+
+model returns_orders {
+  id         Int      @id @default(autoincrement())
+  returns_id Int?
+  orders_id  Int?
+  orders     orders?  @relation(fields: [orders_id], references: [id])
+  returns    returns? @relation(fields: [returns_id], references: [id])
+}
+
+model returns_products {
+  id          Int       @id @default(autoincrement())
+  returns_id  Int?
+  products_id BigInt?
+  products    products? @relation(fields: [products_id], references: [id])
+  returns     returns?  @relation(fields: [returns_id], references: [id])
+}
+
+model reviews_products {
+  id          Int       @id @default(autoincrement())
+  products_id BigInt?
+  products    products? @relation(fields: [products_id], references: [id])
+}
+
+model rewards {
+  id         Int       @id @default(autoincrement())
+  name       String
+  slug       String?
+  level      String?
+  created_at DateTime? @default(now())
+  coupons    String?
+  expiration String?
+  categories String?
+  articles   String?
+  products   String?
+  customers  String?
+  users      String?
+}
+
+model seasons {
+  id               Int                @id @default(autoincrement())
+  status           String             @default("draft") @db.VarChar(255)
+  sort             Int?
+  date_created     DateTime?          @db.Timestamptz(6)
+  date_updated     DateTime?          @db.Timestamptz(6)
+  description      String?
+  release_date     DateTime?          @db.Timestamp(6)
+  number           Int?
+  name             Int?
+  videos           videos?            @relation(fields: [name], references: [id])
+  seasons_trailers seasons_trailers[]
+}
+
+model seasons_trailers {
+  id         Int       @id @default(autoincrement())
+  season_id  Int?
+  trailer_id Int?
+  name       Int?
+  seasons    seasons?  @relation(fields: [season_id], references: [id])
+  trailers   trailers? @relation(fields: [trailer_id], references: [id])
+}
+
+model shipment {
+  id                Int                 @id @default(autoincrement())
+  created_at        DateTime?           @db.Timestamptz(6)
+  updated_at        DateTime?           @db.Timestamptz(6)
+  email_sent        Int?
+  user              String?             @db.Uuid
+  order             Int?
+  shipment_status   String?             @db.VarChar(255)
+  shipping_label    String?             @db.VarChar(255)
+  store_id          Int?
+  total_qty         Int?
+  total_weight      Int?
+  orders            orders?             @relation(fields: [order], references: [id])
+  shipment_address  shipment_address[]
+  shipment_comments shipment_comments[]
+  shipment_products shipment_products[]
+  shipment_tracking shipment_tracking[]
+}
+
+model shipment_address {
+  id          Int       @id @default(autoincrement())
+  shipment_id Int?
+  address_id  Int?
+  address     address?  @relation(fields: [address_id], references: [id])
+  shipment    shipment? @relation(fields: [shipment_id], references: [id])
+}
+
+model shipment_comments {
+  id                   Int       @id @default(autoincrement())
+  status               String    @default("draft") @db.VarChar(255)
+  created_at           DateTime? @db.Timestamptz(6)
+  parent_id            Int?
+  comment              String?
+  entity_id            Int?
+  is_customer_notified String?   @db.VarChar(255)
+  shipment             shipment? @relation(fields: [parent_id], references: [id])
+}
+
+model shipment_products {
+  id          Int       @id @default(autoincrement())
+  shipment_id Int?
+  products_id BigInt?
+  products    products? @relation(fields: [products_id], references: [id])
+  shipment    shipment? @relation(fields: [shipment_id], references: [id])
+}
+
+model shipment_tracking {
+  id           Int       @id @default(autoincrement())
+  created_at   DateTime? @db.Timestamptz(6)
+  updated_at   DateTime? @db.Timestamptz(6)
+  entity_id    Int?
+  weight       Int?
+  qty          Int?
+  description  String?
+  track_number Int?
+  title        String?   @db.VarChar(255)
+  carrier_code String?   @db.VarChar(255)
+  parent_id    Int?
+  shipment     shipment? @relation(fields: [parent_id], references: [id])
+}
+
+model shipping_address {
+  id                            Int                             @id @default(autoincrement())
+  created_at                    DateTime?                       @db.Timestamptz(6)
+  date_updated                  DateTime?                       @db.Timestamptz(6)
+  customer_id                   Int?
+  region_id                     Int?
+  country_id                    String?
+  street                        String?
+  company                       String?
+  telephone                     String?
+  fax                           String?
+  postcode                      String?
+  city                          String?
+  firstname                     String?
+  lastname                      String?
+  middlename                    String?
+  prefix                        String?
+  suffix                        String?
+  vat_id                        String?
+  default_shipping              Boolean?
+  default_billing               Boolean?
+  credit_memos_shipping_address credit_memos_shipping_address[]
+  invoices_shipping_address     invoices_shipping_address[]
+  region_shipping_address       region_shipping_address[]
+}
+
+model shops {
+  id                   Int                    @id @default(autoincrement())
+  status               String                 @default("draft") @db.VarChar(255)
+  sort                 Int?
+  user_created         String?                @db.Uuid
+  date_created         DateTime?              @db.Timestamptz(6)
+  user_updated         String?                @db.Uuid
+  date_updated         DateTime?              @db.Timestamptz(6)
+  name                 String?                @db.VarChar(255)
+  content              String?
+  website              String?                @db.VarChar(255)
+  type                 Json?                  @db.Json
+  address              String?
+  slug                 String?                @db.VarChar(255)
+  rating               Int?
+  image                String?                @db.Uuid
+  feeds                feeds[]
+  shops_agreements     shops_agreements[]
+  shops_categories     shops_categories[]
+  shops_departments    shops_departments[]
+  shops_directus_users shops_directus_users[]
+  shops_files          shops_files[]
+  shops_products       shops_products[]
+  shops_showcases      shops_showcases[]
+}
+
+model shops_agreements {
+  id            Int         @id @default(autoincrement())
+  shops_id      Int?
+  agreements_id BigInt?
+  agreements    agreements? @relation(fields: [agreements_id], references: [id])
+  shops         shops?      @relation(fields: [shops_id], references: [id])
+}
+
+model shops_categories {
+  id            Int         @id @default(autoincrement())
+  shops_id      Int?
+  categories_id Int?
+  categories    categories? @relation(fields: [categories_id], references: [id])
+  shops         shops?      @relation(fields: [shops_id], references: [id])
+}
+
+model shops_departments {
+  id             Int          @id @default(autoincrement())
+  shops_id       Int?
+  departments_id Int?
+  departments    departments? @relation(fields: [departments_id], references: [id])
+  shops          shops?       @relation(fields: [shops_id], references: [id])
+}
+
+model shops_directus_users {
+  id                Int     @id @default(autoincrement())
+  shops_id          Int?
+  directus_users_id String? @db.Uuid
+  shops             shops?  @relation(fields: [shops_id], references: [id])
+}
+
+model shops_files {
+  id                Int     @id @default(autoincrement())
+  shops_id          Int?
+  directus_files_id String? @db.Uuid
+  shops             shops?  @relation(fields: [shops_id], references: [id])
+}
+
+model shops_products {
+  id          Int       @id @default(autoincrement())
+  shops_id    Int?
+  products_id BigInt?
+  products    products? @relation(fields: [products_id], references: [id])
+  shops       shops?    @relation(fields: [shops_id], references: [id])
+}
+
+model shops_showcases {
+  id           Int        @id @default(autoincrement())
+  shops_id     Int?
+  showcases_id Int?
+  shops        shops?     @relation(fields: [shops_id], references: [id])
+  showcases    showcases? @relation(fields: [showcases_id], references: [id])
+}
+
+model shorts {
+  id                    Int                     @id @default(autoincrement())
+  status                String                  @default("draft") @db.VarChar(255)
+  sort                  Int?
+  user_created          String?                 @db.Uuid
+  date_created          DateTime?               @db.Timestamptz(6)
+  user_updated          String?                 @db.Uuid
+  date_updated          DateTime?               @db.Timestamptz(6)
+  name                  String?                 @db.VarChar(255)
+  description           String?
+  video_url             String?                 @db.VarChar(255)
+  duration              String?                 @db.VarChar(255)
+  host                  String?                 @db.VarChar(255)
+  thumbnail             String?                 @db.Uuid
+  dateTime              DateTime?               @db.Timestamp(6)
+  type                  String?                 @db.VarChar(255)
+  age_requirement       String?                 @db.VarChar(255)
+  creator               String?                 @db.VarChar(255)
+  video                 String?                 @db.Uuid
+  directus_files        directus_files?         @relation(fields: [video], references: [id])
+  Space_shorts          Space_shorts[]
+  brands_shorts         brands_shorts[]
+  categories_shorts     categories_shorts[]
+  comments_shorts       comments_shorts[]
+  departments_shorts    departments_shorts[]
+  departments_shorts_1  departments_shorts_1[]
+  outlets_shorts        outlets_shorts[]
+  reactions_shorts      reactions_shorts[]
+  shorts_departments    shorts_departments[]
+  shorts_directus_users shorts_directus_users[]
+  shorts_feedback       shorts_feedback[]
+  shorts_files          shorts_files[]
+  shorts_products       shorts_products[]
+  shorts_spaces         shorts_spaces[]
+  tags_shorts           tags_shorts[]
+}
+
+model shorts_departments {
+  id             Int          @id @default(autoincrement())
+  shorts_id      Int?
+  departments_id Int?
+  departments    departments? @relation(fields: [departments_id], references: [id])
+  shorts         shorts?      @relation(fields: [shorts_id], references: [id])
+}
+
+model shorts_directus_users {
+  id                Int     @id @default(autoincrement())
+  shorts_id         Int?
+  directus_users_id String? @db.Uuid
+  shorts            shorts? @relation(fields: [shorts_id], references: [id])
+}
+
+model shorts_feedback {
+  id          Int       @id @default(autoincrement())
+  shorts_id   Int?
+  feedback_id Int?
+  feedback    feedback? @relation(fields: [feedback_id], references: [id])
+  shorts      shorts?   @relation(fields: [shorts_id], references: [id])
+}
+
+model shorts_files {
+  id                Int             @id @default(autoincrement())
+  shorts_id         Int?
+  directus_files_id String?         @db.Uuid
+  directus_files    directus_files? @relation(fields: [directus_files_id], references: [id])
+  shorts            shorts?         @relation(fields: [shorts_id], references: [id])
+}
+
+model shorts_products {
+  id          Int       @id @default(autoincrement())
+  shorts_id   Int?
+  products_id BigInt?
+  products    products? @relation(fields: [products_id], references: [id])
+  shorts      shorts?   @relation(fields: [shorts_id], references: [id])
+}
+
+model shorts_spaces {
+  id        Int     @id @default(autoincrement())
+  shorts_id Int?
+  spaces_id Int?
+  shorts    shorts? @relation(fields: [shorts_id], references: [id])
+  spaces    spaces? @relation(fields: [spaces_id], references: [id])
+}
+
+model showcases {
+  id              Int               @id @default(autoincrement())
+  status          String?           @default("published") @db.VarChar(255)
+  sort            Int?
+  user_created    String?           @db.Uuid
+  date_created    DateTime?         @db.Timestamptz(6)
+  user_updated    String?           @db.Uuid
+  date_updated    DateTime?         @db.Timestamptz(6)
+  owner           String?           @db.VarChar(255)
+  name            String?           @db.VarChar(255)
+  description     String?
+  color           String?           @db.VarChar(255)
+  colortext       String?           @db.VarChar(255)
+  image           String?           @db.Uuid
+  products        String?           @db.VarChar(255)
+  thumbnail       String?           @db.Uuid
+  rating          String?           @db.VarChar(255)
+  slug            String?           @db.VarChar(255)
+  shops_showcases shops_showcases[]
+}
+
+model site_preference {
+  id                          Int                           @id @default(autoincrement())
+  status                      String                        @default("draft") @db.VarChar(255)
+  date_created                DateTime?                     @db.Timestamptz(6)
+  date_updated                DateTime?                     @db.Timestamptz(6)
+  name                        String?                       @db.VarChar(255)
+  url                         String?                       @db.VarChar(255)
+  icon                        String?                       @db.VarChar(255)
+  active                      String?                       @db.VarChar(255)
+  description                 String?
+  image                       String?                       @db.Uuid
+  directus_files              directus_files?               @relation(fields: [image], references: [id])
+  site_preference_categories  site_preference_categories[]
+  site_preference_countries   site_preference_countries[]
+  site_preference_departments site_preference_departments[]
+  site_preference_products    site_preference_products[]
+}
+
+model site_preference_categories {
+  id                 Int              @id @default(autoincrement())
+  site_preference_id Int?
+  categories_id      Int?
+  categories         categories?      @relation(fields: [categories_id], references: [id])
+  site_preference    site_preference? @relation(fields: [site_preference_id], references: [id])
+}
+
+model site_preference_countries {
+  id                 Int              @id @default(autoincrement())
+  site_preference_id Int?
+  countries_id       Int?
+  countries          countries?       @relation(fields: [countries_id], references: [id])
+  site_preference    site_preference? @relation(fields: [site_preference_id], references: [id])
+}
+
+model site_preference_departments {
+  id                 Int              @id @default(autoincrement())
+  site_preference_id Int?
+  departments_id     Int?
+  departments        departments?     @relation(fields: [departments_id], references: [id])
+  site_preference    site_preference? @relation(fields: [site_preference_id], references: [id])
+}
+
+model site_preference_products {
+  id                 Int              @id @default(autoincrement())
+  site_preference_id Int?
+  products_id        BigInt?
+  products           products?        @relation(fields: [products_id], references: [id])
+  site_preference    site_preference? @relation(fields: [site_preference_id], references: [id])
+}
+
+model siteoverview {
+  id               Int       @id @default(autoincrement())
+  date_updated     DateTime? @db.Timestamptz(6)
+  site_name        String?   @db.VarChar(255)
+  site_description String?
+  logo             String?   @db.Uuid
+  url              String?   @db.VarChar(255)
+}
+
+model space_admins {
+  id                          Int                           @id @default(autoincrement())
+  sort                        Int?
+  date_created                DateTime?                     @db.Timestamptz(6)
+  date_updated                DateTime?                     @db.Timestamptz(6)
+  space_admins_Space          space_admins_Space[]
+  space_admins_directus_users space_admins_directus_users[]
+}
+
+model space_admins_Space {
+  id              Int           @id @default(autoincrement())
+  space_admins_id Int?
+  space_admins    space_admins? @relation(fields: [space_admins_id], references: [id])
+}
+
+model space_admins_directus_users {
+  id                Int           @id @default(autoincrement())
+  space_admins_id   Int?
+  directus_users_id String?       @db.Uuid
+  space_admins      space_admins? @relation(fields: [space_admins_id], references: [id])
+}
+
+model space_mods {
+  id                        Int                         @id @default(autoincrement())
+  sort                      Int?
+  date_created              DateTime?                   @db.Timestamptz(6)
+  date_updated              DateTime?                   @db.Timestamptz(6)
+  space_mods_Space          space_mods_Space[]
+  space_mods_directus_users space_mods_directus_users[]
+}
+
+model space_mods_Space {
+  id            Int         @id @default(autoincrement())
+  space_mods_id Int?
+  space_mods    space_mods? @relation(fields: [space_mods_id], references: [id])
+}
+
+model space_mods_directus_users {
+  id                Int         @id @default(autoincrement())
+  space_mods_id     Int?
+  directus_users_id String?     @db.Uuid
+  space_mods        space_mods? @relation(fields: [space_mods_id], references: [id])
+}
+
+model spaces {
+  id                                                 Int                  @id @default(autoincrement())
+  status                                             String               @default("draft") @db.VarChar(255)
+  sort                                               Int?
+  user_created                                       String?              @db.Uuid
+  date_created                                       DateTime?            @db.Timestamptz(6)
+  user_updated                                       String?              @db.Uuid
+  date_updated                                       DateTime?            @db.Timestamptz(6)
+  name                                               String?              @db.VarChar(255)
+  numberOfMembers                                    Int?
+  creator                                            String?              @db.VarChar(255)
+  creator_avatar                                     String?              @db.VarChar(255)
+  description                                        String?
+  image                                              String?              @db.Uuid
+  type                                               String?              @db.VarChar(255)
+  members                                            String?              @db.VarChar(255)
+  products                                           String?              @db.VarChar(255)
+  events                                             String?              @db.VarChar(255)
+  group_rules                                        Json?                @db.Json
+  directus_files                                     directus_files?      @relation(fields: [image], references: [id])
+  directus_users_directus_usersTospaces_user_created directus_users?      @relation("directus_usersTospaces_user_created", fields: [user_created], references: [id])
+  directus_users_directus_usersTospaces_user_updated directus_users?      @relation("directus_usersTospaces_user_updated", fields: [user_updated], references: [id])
+  products_spaces                                    products_spaces[]
+  shorts_spaces                                      shorts_spaces[]
+  spaces_departments                                 spaces_departments[]
+  spaces_files                                       spaces_files[]
+  spaces_posts                                       spaces_posts[]
+}
+
+model spaces_departments {
+  id             Int          @id @default(autoincrement())
+  spaces_id      Int?
+  departments_id Int?
+  departments    departments? @relation(fields: [departments_id], references: [id])
+  spaces         spaces?      @relation(fields: [spaces_id], references: [id])
+}
+
+model spaces_files {
+  id                Int             @id @default(autoincrement())
+  spaces_id         Int?
+  directus_files_id String?         @db.Uuid
+  directus_files    directus_files? @relation(fields: [directus_files_id], references: [id])
+  spaces            spaces?         @relation(fields: [spaces_id], references: [id])
+}
+
+model spaces_meta {
+  id                Int                 @id @default(autoincrement())
+  group_id          BigInt?
+  meta_key          String?
+  meta_value        String?
+  spaces_meta_Space spaces_meta_Space[]
+}
+
+model spaces_meta_Space {
+  id             Int          @id @default(autoincrement())
+  spaces_meta_id Int?
+  spaces_meta    spaces_meta? @relation(fields: [spaces_meta_id], references: [id])
+}
+
+model spaces_posts {
+  id        Int     @id @default(autoincrement())
+  spaces_id Int?
+  posts_id  Int?
+  posts     posts?  @relation(fields: [posts_id], references: [id])
+  spaces    spaces? @relation(fields: [spaces_id], references: [id])
+}
+
+model states {
+  id              Int               @id @default(autoincrement())
+  name            String?           @db.VarChar(255)
+  country_code    String?           @db.VarChar(255)
+  fips_code       String?           @db.VarChar(255)
+  iso2            String?           @db.VarChar(255)
+  latitude        Decimal?          @db.Decimal(10, 5)
+  longitude       Decimal?          @db.Decimal(10, 5)
+  flag            Int?
+  wikiDataId      String?           @db.VarChar(255)
+  country_id      String?           @db.VarChar(255)
+  created_at      DateTime?         @db.Timestamptz(6)
+  updated_at      DateTime?         @db.Timestamptz(6)
+  contacts_states contacts_states[]
+  states_cities   states_cities[]
+}
+
+model states_cities {
+  id        Int     @id @default(autoincrement())
+  states_id Int?
+  cities_id Int?
+  cities    cities? @relation(fields: [cities_id], references: [id])
+  states    states? @relation(fields: [states_id], references: [id])
+}
+
+model states_countries {
+  id           Int  @id @default(autoincrement())
+  countries_id Int?
+}
+
+model streams {
+  id              Int               @id @default(autoincrement())
+  stream_id       Int?
+  stream_date     DateTime?         @db.Timestamptz(6)
+  stream_duration String?           @db.VarChar(255)
+  stream_time     String?           @db.VarChar(255)
+  videos          videos?           @relation(fields: [stream_id], references: [id])
+  streams_ratings streams_ratings[]
+}
+
+model streams_ratings {
+  id         Int      @id @default(autoincrement())
+  streams_id Int?
+  ratings_id Int?
+  ratings    ratings? @relation(fields: [ratings_id], references: [id])
+  streams    streams? @relation(fields: [streams_id], references: [id])
+}
+
+model subscriptions {
+  id                           Int                            @id @default(autoincrement())
+  status                       String                         @default("draft") @db.VarChar(255)
+  date_created                 DateTime?                      @db.Timestamptz(6)
+  date_updated                 DateTime?                      @db.Timestamptz(6)
+  subscription_number          String?                        @db.Uuid
+  start_date                   DateTime?                      @db.Date
+  end_date                     DateTime?                      @db.Date
+  subscriptions_directus_users subscriptions_directus_users[]
+  subscriptions_products       subscriptions_products[]
+}
+
+model subscriptions_directus_users {
+  id                Int            @id @default(autoincrement())
+  subscriptions_id  Int?
+  directus_users_id String?        @db.Uuid
+  subscriptions     subscriptions? @relation(fields: [subscriptions_id], references: [id])
+}
+
+model subscriptions_products {
+  id               Int            @id @default(autoincrement())
+  subscriptions_id Int?
+  products_id      BigInt?
+  products         products?      @relation(fields: [products_id], references: [id])
+  subscriptions    subscriptions? @relation(fields: [subscriptions_id], references: [id])
+}
+
+model tags {
+  id               Int                @id @default(autoincrement())
+  status           String             @default("draft") @db.VarChar(255)
+  sort             Int?
+  date_created     DateTime?          @db.Timestamptz(6)
+  name             String?            @db.VarChar(255)
+  description      String?
+  image            String?            @db.Uuid
+  tags_articles    tags_articles[]
+  tags_categories  tags_categories[]
+  tags_departments tags_departments[]
+  tags_products    tags_products[]
+  tags_shorts      tags_shorts[]
+}
+
+model tags_articles {
+  id          Int       @id @default(autoincrement())
+  tags_id     Int?
+  articles_id Int?
+  articles    articles? @relation(fields: [articles_id], references: [id])
+  tags        tags?     @relation(fields: [tags_id], references: [id])
+}
+
+model tags_categories {
+  id            Int         @id @default(autoincrement())
+  tags_id       Int?
+  categories_id Int?
+  categories    categories? @relation(fields: [categories_id], references: [id])
+  tags          tags?       @relation(fields: [tags_id], references: [id])
+}
+
+model tags_departments {
+  id             Int          @id @default(autoincrement())
+  tags_id        Int?
+  departments_id Int?
+  departments    departments? @relation(fields: [departments_id], references: [id])
+  tags           tags?        @relation(fields: [tags_id], references: [id])
+}
+
+model tags_products {
+  id          Int       @id @default(autoincrement())
+  tags_id     Int?
+  products_id BigInt?
+  products    products? @relation(fields: [products_id], references: [id])
+  tags        tags?     @relation(fields: [tags_id], references: [id])
+}
+
+model tags_shorts {
+  id        Int     @id @default(autoincrement())
+  tags_id   Int?
+  shorts_id Int?
+  shorts    shorts? @relation(fields: [shorts_id], references: [id])
+  tags      tags?   @relation(fields: [tags_id], references: [id])
+}
+
+model trailers {
+  id                Int                 @id @default(autoincrement())
+  name              String?             @db.VarChar(255)
+  description       String?
+  media             String?             @db.Uuid
+  directus_files    directus_files?     @relation(fields: [media], references: [id])
+  seasons_trailers  seasons_trailers[]
+  trailers_products trailers_products[]
+}
+
+model trailers_products {
+  id          Int       @id @default(autoincrement())
+  trailers_id Int?
+  products_id BigInt?
+  products    products? @relation(fields: [products_id], references: [id])
+  trailers    trailers? @relation(fields: [trailers_id], references: [id])
+}
+
+model transactions {
+  id                        BigInt                      @id @default(autoincrement())
+  status                    String?                     @default("open") @db.VarChar(255)
+  date_created              DateTime?                   @db.Timestamptz(6)
+  date_updated              DateTime?                   @db.Timestamptz(6)
+  order                     Int?
+  payment_method            String?                     @db.VarChar(255)
+  transactions_parent_id    String?                     @db.VarChar(255)
+  orders                    orders?                     @relation(fields: [order], references: [id])
+  credit_memos_transactions credit_memos_transactions[]
+}
+
+model translations {
+  id                        Int                         @id @default(autoincrement())
+  status                    String                      @default("draft") @db.VarChar(255)
+  sort                      Int?
+  date_created              DateTime?                   @db.Timestamptz(6)
+  date_updated              DateTime?                   @db.Timestamptz(6)
+  name                      String?                     @db.VarChar(255)
+  url                       String?                     @db.VarChar(255)
+  image                     String?                     @db.Uuid
+  code                      String?                     @db.VarChar(255)
+  translations_departments  translations_departments[]
+  translations_meeovistores translations_meeovistores[]
+  translations_products     translations_products[]
+  translations_websites     translations_websites[]
+}
+
+model translations_departments {
+  id              Int           @id @default(autoincrement())
+  translations_id Int?
+  departments_id  Int?
+  departments     departments?  @relation(fields: [departments_id], references: [id])
+  translations    translations? @relation(fields: [translations_id], references: [id])
+}
+
+model translations_meeovistores {
+  id              Int           @id @default(autoincrement())
+  translations_id Int?
+  meeovistores_id Int?
+  meeovistores    meeovistores? @relation(fields: [meeovistores_id], references: [id])
+  translations    translations? @relation(fields: [translations_id], references: [id])
+}
+
+model translations_products {
+  id              Int           @id @default(autoincrement())
+  translations_id Int?
+  products_id     BigInt?
+  products        products?     @relation(fields: [products_id], references: [id])
+  translations    translations? @relation(fields: [translations_id], references: [id])
+}
+
+model translations_websites {
+  id              Int           @id @default(autoincrement())
+  translations_id Int?
+  websites_id     BigInt?
+  translations    translations? @relation(fields: [translations_id], references: [id])
+  websites        websites?     @relation(fields: [websites_id], references: [id])
+}
+
+model user_content_interaction {
+  id               Int       @id @default(autoincrement())
+  date_created     DateTime? @db.Timestamptz(6)
+  interaction_type String?   @db.VarChar(255)
+}
+
+model videos {
+  id                                                 Int                   @id @default(autoincrement())
+  status                                             String                @default("draft") @db.VarChar(255)
+  sort                                               Int?
+  user_created                                       String?               @db.Uuid
+  date_created                                       DateTime?             @db.Timestamptz(6)
+  user_updated                                       String?               @db.Uuid
+  date_updated                                       DateTime?             @db.Timestamptz(6)
+  type                                               String?               @db.VarChar(255)
+  description                                        String?
+  ratings                                            Int?
+  name                                               String?               @db.VarChar(255)
+  media                                              String?               @db.Uuid
+  thumbnail                                          String?               @db.Uuid
+  video_url                                          String?               @db.VarChar(255)
+  user                                               String?               @db.Uuid
+  directus_files_directus_filesTovideos_media        directus_files?       @relation("directus_filesTovideos_media", fields: [media], references: [id])
+  ratings_ratingsTovideos                            ratings?              @relation(fields: [ratings], references: [id])
+  directus_files_directus_filesTovideos_thumbnail    directus_files?       @relation("directus_filesTovideos_thumbnail", fields: [thumbnail], references: [id])
+  directus_users_directus_usersTovideos_user         directus_users?       @relation("directus_usersTovideos_user", fields: [user], references: [id])
+  directus_users_directus_usersTovideos_user_created directus_users?       @relation("directus_usersTovideos_user_created", fields: [user_created], references: [id])
+  directus_users_directus_usersTovideos_user_updated directus_users?       @relation("directus_usersTovideos_user_updated", fields: [user_updated], references: [id])
+  seasons                                            seasons[]
+  streams                                            streams[]
+  videos_manufacturer                                videos_manufacturer[]
+  videos_products                                    videos_products[]
+}
+
+model videos_manufacturer {
+  id              Int           @id @default(autoincrement())
+  videos_id       Int?
+  manufacturer_id BigInt?
+  manufacturer    manufacturer? @relation(fields: [manufacturer_id], references: [id])
+  videos          videos?       @relation(fields: [videos_id], references: [id])
+}
+
+model videos_products {
+  id          Int       @id @default(autoincrement())
+  videos_id   Int?
+  products_id BigInt?
+  products    products? @relation(fields: [products_id], references: [id])
+  videos      videos?   @relation(fields: [videos_id], references: [id])
+}
+
+model websites {
+  id                    BigInt                  @id @default(autoincrement())
+  created_at            DateTime?               @default(now())
+  name                  String?
+  url                   String?
+  image                 String?                 @db.Uuid
+  type                  String?                 @db.VarChar(255)
+  slug                  String?                 @db.VarChar(255)
+  icon                  String?                 @db.VarChar(255)
+  status                String?                 @db.VarChar(255)
+  note                  String?
+  username              String?                 @db.VarChar(255)
+  meeovistores_websites meeovistores_websites[]
+  navigation_websites   navigation_websites[]
+  products_websites     products_websites[]
+  translations_websites translations_websites[]
+}

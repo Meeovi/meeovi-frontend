@@ -1,0 +1,9 @@
+mutation createPayflowProToken($input: PayflowProTokenInput!){
+    createPayflowProToken(input: $input){
+        response_message
+        result
+        result_code
+        secure_token
+        secure_token_id
+    }
+}

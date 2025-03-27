@@ -1,0 +1,34 @@
+query blogAuthor($id: String){
+    blogAuthor(id: $id){
+        author_id
+        author_url
+        content
+        creation_time
+        custom_layout
+        custom_layout_update_xml
+        custom_theme
+        custom_theme_from
+        custom_theme_to
+        facebook_page_url
+        featured_image
+        filtered_content
+        identifier
+        instagram_page_url
+        is_active
+        layout_update_xml
+        linkedin_page_url
+        meta_description
+        meta_title
+        name
+        page_layout
+        redirect_code
+        relative_url
+        role
+        short_content
+        short_filtered_content
+        title
+        twitter_page_url
+        type
+        url
+    }
+}

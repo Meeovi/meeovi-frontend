@@ -1,0 +1,33 @@
+mutation createCustomerAddress($attributeCodes: [ID!], $input: CustomerAddressInput!){
+    createCustomerAddress(input: $input){
+        city
+        company
+        country_code
+        custom_attributesV2(attributeCodes: $attributeCodes){
+            code
+        }
+        default_billing
+        default_shipping
+        extension_attributes{
+            attribute_code
+            value
+        }
+        fax
+        firstname
+        id
+        lastname
+        middlename
+        postcode
+        prefix
+        region{
+            region
+            region_code
+            region_id
+        }
+        region_id
+        street
+        suffix
+        telephone
+        vat_id
+    }
+}

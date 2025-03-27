@@ -1,0 +1,11 @@
+query customerDownloadableProducts{
+    customerDownloadableProducts{
+        items{
+            date
+            download_url
+            order_increment_id
+            remaining_downloads
+            status
+        }
+    }
+}

@@ -1,0 +1,1 @@
+export const content = ['components/**/*.{vue,js}', 'pages/**/*.vue'];

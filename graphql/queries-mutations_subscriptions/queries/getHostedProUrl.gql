@@ -1,0 +1,5 @@
+query getHostedProUrl($input: HostedProUrlInput!){
+    getHostedProUrl(input: $input){
+        secure_form_url
+    }
+}

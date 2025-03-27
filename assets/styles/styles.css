@@ -1,0 +1,1240 @@
+/********************** Main CSS *************/
+html {
+    font-family: 'Inter', sans-serif !important;
+}
+
+a,
+a:hover {
+    color: rgb(var(--v-theme-info));
+}
+
+body {
+    margin: 0;
+    overflow-x: unset !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+.v-selection-control__input input {
+    width: 40% !important;
+}
+
+#topnav {
+    width: 100% !important;
+    color: white;
+    background-color: rgb(var(--v-theme-info)) !important;
+}
+
+#topnav a {
+    color: white !important;
+}
+
+.logotext {
+    display: inline-block;
+    position: relative;
+    top: 5px;
+}
+
+.searchField {
+    position: relative;
+    top: 0px;
+    left: 15%;
+    width: 650px;
+}
+
+.mainSearch {
+    width: 650px !important;
+    min-height: 55px;
+    display: inline-block !important;
+    border-radius: 25px !important;
+    background-color: white;
+}
+
+.ais-SearchBox-input {
+    min-height: 0 !important;
+    border-radius: 55px !important;
+}
+
+.ais-InstantSearch svg {
+    display: none !important;
+}
+
+.mainSearch span {
+    height: 50px !important;
+}
+
+.searchDropdown {
+    position: relative;
+    z-index: 99999;
+}
+
+.myaccounttopmenu {
+    left: 5px;
+    position: relative;
+}
+
+.ecoAvatar {
+    padding-left: 20%;
+}
+
+.ecoAvatar .v-icon {
+    font-size: 80px;
+}
+
+.ecoTitle {
+    text-align: center;
+}
+
+.announcementBar {
+    position: relative;
+    top: 68px;
+}
+
+.announcementBar .v-alert {
+    width: 100%;
+}
+
+.ais-Hits {
+    width: 100%;
+    position: absolute;
+}
+
+.ais-SearchBox-form {
+    border-radius: 55px !important;
+    height: 50px;
+}
+
+.ais-SearchBox-submit {
+    position: relative;
+    top: 18px !important;
+}
+
+.ais-SearchBox-submit svg {
+    position: relative;
+    top: 15px !important;
+}
+
+.searchbox {
+    width: 650px;
+    background-color: white !important;
+    border-radius: 5px !important;
+    display: inline-block !important;
+}
+
+.searchbutton {
+    background-color: orange !important;
+    color: black !important;
+}
+
+#searchResults {
+    min-height: 100vh !important;
+    position: relative;
+    top: 50px;
+    margin-bottom: 100% !important;
+}
+
+.lowernav {
+    top: 60px;
+    position: relative;
+    background-color: rgb(var(--v-theme-info)) !important;
+}
+
+.livebar {
+    width: 100%;
+    position: relative;
+    padding-top: 10px;
+    top: 52px;
+    display: inline-flex;
+}
+
+.livebar>.v-avatar {
+    border: 2px solid rgb(var(--v-theme-info)) !important;
+}
+
+.shopping-cart {
+    color: white;
+}
+
+.lowernav a {
+    color: white;
+}
+
+.logobrand {
+    text-decoration: none;
+}
+
+.pa-2 {
+    bottom: 0px !important;
+    position: fixed !important;
+    width: 100%
+}
+
+.v-divider {
+    border: black;
+}
+
+.section-content,
+.section-name,
+.pricing1 {
+    background-color: transparent !important;
+}
+
+.accountDropdown {
+    min-width: 200px;
+}
+
+.accountDropdown h6 {
+    padding-left: 15px;
+    padding-top: 10px;
+}
+
+.rightnav {
+    padding-top: 35px;
+    position: relative;
+}
+
+.rightnav li {
+    display: inline-block;
+}
+
+.menuh5 {
+    padding-top: 10px;
+}
+
+.videoPage video {
+    width: 100%;
+}
+
+.rightvideoviews {
+    position: relative;
+    float: right;
+    right: 5px;
+}
+
+.ecosystemMenuIcon {
+    padding-right: 0px;
+    right: -5px;
+    position: relative;
+}
+
+.cid-txNnCwzel4 .underline .line {
+    width: 5rem !important;
+    height: 3px !important;
+    background: linear-gradient(90deg, #6592e6, #ff6666) !important;
+    display: inline-block !important;
+  }
+
+.prodImage {
+    max-width: 100%;
+    max-height: 350px;
+    height: 350px;
+}
+
+.spaceImage {
+    width: 300px;
+    max-width: 100%;
+    max-height: 350px;
+    height: 350px;
+}
+
+#features19-48, #features19-48 .cid-twaIYCrSLG {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+.v-selection-control__input > .v-icon{
+    border: 1px solid black !important;
+}
+
+/******************* Authentication CSS ********/
+
+.loginForm,
+.registerForm,
+.resetForm,
+.forgotPasswordForm,
+.resetPasswordSuccessPage {
+    width: 70%;
+    padding-top: 10%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.loginForm h1,
+.registerForm h1,
+.resetForm h1,
+.forgotPasswordForm h1 {
+    text-align: center;
+    font-size: 25px;
+}
+
+.loginForm img,
+.registerForm img,
+.resetForm img,
+.forgotPasswordForm img {
+    width: 100px;
+    display: inline-block;
+}
+
+.authImage {
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+}
+
+.authSellerBar {
+    position: relative;
+    bottom: 0px;
+    text-align: center;
+}
+
+.authPage {
+    /*background-image: url(../images/jumbotron.jpg);*/
+    background-size: 100%;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+}
+
+.authLogo {
+    width: 120px;
+    position: relative;
+    left: 40%;
+}
+
+.authForm {
+    position: relative;
+    width: 50%;
+    margin-top: 5%;
+    left: 25%;
+    background-color: white;
+}
+
+.authForm h1 {
+    width: 100%;
+    text-align: center;
+}
+
+.gBtn {
+    margin-left: 30%;
+}
+
+/******************* Main Section CSS *********/
+
+#mainSection {
+    top: 0px !important;
+    bottom: 50px !important;
+    position: relative !important;
+    left: 0px;
+    max-width: 100% !important;
+    min-height: 100% !important;
+    padding-bottom: 150px;
+}
+
+.v-main {
+    flex: none !important;
+    --v-layout-top: 0px !important;
+}
+
+.homeSection,
+.contentPage,
+.contentPage404 {
+    padding: 10px !important;
+    margin-bottom: 1% !important;
+    top: 60px !important;
+    position: relative;
+    min-height: 100vh
+}
+
+.accountPage {
+    position: relative;
+    min-height: 100vh;
+    margin-top: 60px;
+}
+
+.contentPage h2 {
+    width: 100% !important;
+    text-align: center;
+}
+
+.contentPage404 {
+    font-size: 30px;
+}
+
+.departmentPage {
+    padding-top: 50px;
+}
+
+.departmentBanner {
+    height: 400px;
+}
+
+.homeSection a {
+    text-decoration: none;
+}
+
+.homeTitle,
+.homeDescription {
+    padding: 5px;
+}
+
+.homeRows {
+    color: white;
+}
+
+.homeRight {
+    padding: 15px;
+}
+
+.dialog-bottom-transition-enter-active,
+.dialog-bottom-transition-leave-active {
+    transition: transform .2s ease-in-out;
+}
+
+.contentDashboard {
+    padding: 10px;
+}
+
+.relatedMenu {
+    padding: 50px;
+}
+
+.categorySheet {
+    background-color: transparent !important;
+}
+
+.categoryPage h4 {
+    color: white;
+    padding-top: 30px;
+    padding-left: 5%;
+}
+
+.sliderProducts {
+    min-width: 100%;
+}
+
+.sliderProducts h4,
+.sliderCreators h4 {
+    padding-top: 30px;
+    padding-left: 30px;
+}
+
+.features19 {
+    padding-top: 240px !important;
+    padding-bottom: 220px !important;
+}
+
+.features19 h2 {
+    position: relative;
+    text-align: left !important;
+    width: 100% !important;
+    left: 0px !important;
+}
+
+.examplecolor {
+    background-color: pale;
+}
+
+.feedButton {
+    z-index: 9999999 !important;
+    float: right;
+    right: 20px;
+    bottom: 20px;
+    position: fixed;
+}
+
+.feedDialog {
+    padding: 10px !important;
+}
+
+.feedFollowBtn {
+    top: 12px;
+    position: relative;
+}
+
+.rightAddBtn {
+    position: relative;
+    margin-top: 20px;
+}
+
+.features19 .v-col {
+    display: inline-block !important
+}
+
+.v-layout {
+    display: block !important;
+}
+
+.accountForm {
+    padding: 30px;
+}
+
+.accountFormH2 {
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.departmentRow {
+    padding-top: 1%;
+}
+
+.departmentRow h2,
+.sliderProducts h4 {
+    text-align: left;
+    padding: 15px;
+    font-size: 20px;
+}
+
+.cid-twaHyROL0Y {
+    min-height: 0vh !important;
+}
+
+.logoutPage {
+    width: 100%;
+}
+
+.logoutPage p {
+    text-align: center;
+}
+
+#firebaseui-auth-container {
+    margin-top: 10px;
+}
+
+.articlePageListBtn {
+    display: inline-block;
+    position: relative;
+    left: -20px;
+    top: 43px;
+}
+
+.radioStation {
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    border-radius: 0px !important;
+}
+
+.departmentMenu {
+    min-width: 80vw;
+}
+
+.globalPage {
+    position: relative;
+    margin-top: 5%;
+}
+
+.globalPage h5 {
+    font-weight: bold;
+}
+
+.helloBar {
+    width: 100%;
+    top: 45px;
+}
+
+.helloBar-items {
+    padding-right: 10px;
+}
+
+.indexHeaderSlider {
+    position: relative;
+    top: 45px;
+}
+
+.lowerBar {
+    top: 63px;
+}
+
+/******************** Meeovi Time CSS ************/
+
+.homeSection {
+    padding: 25px !important;
+    width: 100%;
+    float: right;
+    position: absolute;
+    right: 5px;
+    font-size: 50px;
+}
+
+
+#ww_be4a6c6ecdcf1 {
+    width: 100% !important;
+    height: 50% !important;
+}
+
+/******************** Commerce CSS ************/
+
+.cart-flyout {
+    min-width: 383px;
+    margin-top: 5px;
+    position: relative;
+}
+
+.cartPage {
+    padding-top: 75px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.productTitle {
+    position: relative;
+    right: 155px;
+}
+
+.features13 .display-2 {
+    padding-top: 15%;
+}
+
+[data-content-type='products'] .product-item,
+.pagebuilder-products .product-item {
+    display: inline-block;
+    max-width: 100%;
+    min-width: 50px;
+    padding: 20px;
+    text-align: left;
+    vertical-align: top;
+    width: 200px;
+}
+
+.pagebuilder-mobile-only {
+    display: none;
+}
+
+@media screen and (max-width: 500px) {
+    .pagebuilder-mobile-only {
+        display: block;
+    }
+
+    .pagebuilder-desktop-only {
+        display: none;
+    }
+}
+
+.productCard {
+    margin: 5px;
+}
+
+.skuclass {
+    font-size: 15px;
+}
+
+.productCardPrice {
+    display: flex;
+}
+
+.orderRow {
+    padding-left: 10px;
+}
+
+.orderToolbar {
+    background: transparent !important;
+}
+
+.accountRow {
+    padding-top: 5px;
+}
+
+.giftcardfield,
+.giftcardbtn {
+    display: inline-block;
+}
+
+.giftCardSection {
+    width: 100%;
+    padding-top: 20px;
+    padding-left: 20%;
+    padding-right: 20%;
+    padding-bottom: 20%;
+}
+
+.giftCardSection h2 {
+    left: 0px;
+    text-align: left;
+    font-size: 25px;
+}
+
+.cid-uhBuptnWmV {
+    padding-top: 0px !important;
+}
+
+.cartBadge {
+    top: -25px;
+}
+
+.brandLogo {
+    width: 250px;
+}
+
+/**************** Product Page *******************/
+
+.sizelist {
+    width: 50%;
+}
+
+.sizelist p {
+    padding-left: 18px;
+}
+
+.productPage {
+    padding: 5%;
+}
+
+.productPage>.v-rating {
+    padding-left: 15px;
+}
+
+.rating-values {
+    width: 25px;
+}
+
+.commentfield p,
+.videocommentfield p {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 20px;
+    font-size: 20px;
+}
+
+.videocommentlist {
+    padding-left: 15px;
+}
+
+.productprice {
+    padding-left: 18px;
+    font-size: 25px;
+}
+
+.productseller {
+    padding-left: 18px;
+}
+
+.productstock {
+    display: inline-block;
+    padding-left: 15px;
+    font-size: 20px;
+    color: rgb(var(--v-theme-info)) !important;
+}
+
+.productdescription {
+    font-size: 18px;
+}
+
+.productpage .v-btn {
+    background-color: rgb(var(--v-theme-info)) !important;
+}
+
+.productcardrating {
+    padding-left: 10px;
+}
+
+#videocommentbtn {
+    float: right;
+    margin-right: 5px;
+    background-color: rgb(var(--v-theme-info)) !important;
+    color: white;
+}
+
+.videotags {
+    padding: 10px;
+    padding-left: 25px;
+}
+
+.chartnumber {
+    background-color: black;
+    color: white;
+    text-align: center;
+    border-bottom: 1px solid white;
+}
+
+.charttable thead {
+    background-color: rgb(var(--v-theme-info)) !important;
+}
+
+.charttable th {
+    color: white !important;
+}
+
+.productVCard {
+    min-height: 62px;
+}
+
+.customerDashboard {
+    margin-top: 60px;
+}
+
+.productPageListBtn {
+    display: inline-block;
+    position: relative;
+    left: 30px;
+    top: 7px;
+}
+
+.archiveh5 {
+    padding: 10px;
+}
+
+/******************* Upload Center ************/
+
+.uploadHeader,
+.uploadDescription {
+    position: relative;
+    top: 20px;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+}
+
+.uploadHeader {
+    font-size: 25px;
+}
+
+/******************** Sidebar CSS *************/
+
+#sidebarNav {
+    height: 100vh !important;
+    left: 0px;
+    float: left;
+    position: relative;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.v-navigation-drawer--active {
+    height: 94vh !important;
+    width: auto !important;
+    top: 60px !important;
+}
+
+.sidebarSection {
+    height: 95%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/********************* Social CSS **************/
+
+.newsfeed-channel {
+    padding: 10px;
+}
+
+.centralfeed {
+    padding-top: 15px;
+    padding-bottom: 5%;
+    padding-left: 15%;
+}
+
+.postCard {
+    position: relative;
+    left: 8%;
+    width: 800px;
+}
+
+.postCard img {
+    max-height: 350px;
+}
+
+.socialReactionButton {
+    padding-left: 15px;
+}
+
+.socialShareButton {
+    padding-left: 20px;
+}
+
+.socialListButton {
+    left: 55px;
+    float: left;
+    position: relative;
+    top: 23px;
+}
+
+.socialSettingsButton {
+    left: 0px;
+}
+
+.shareBtn {
+    position: relative;
+    top: -3px;
+}
+
+.feedcomments {
+    background-color: #232323 !important;
+}
+
+.livefeed {
+    padding-top: 10px;
+}
+
+.avatarBorder {
+    border-right: 5px green solid;
+    border-bottom: 5px blue solid;
+    border-left: 5px orange solid;
+    border-top: 5px red solid;
+    position: relative;
+    border-radius: 50%;
+}
+
+.postbtn {
+    background-color: rgb(var(--v-theme-info)) !important;
+    color: white !important;
+}
+
+.liveVideo,
+.createVideo {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.spaceDescr {
+    text-align: center !important;
+    color: white !important;
+}
+
+.cid-tZRUOapGTD button {
+    position: relative;
+    left: 10px;
+}
+
+.reactionButton {
+    margin-bottom: 5px;
+}
+
+.followBtn {
+    position: relative;
+}
+
+.people3 .content-container {
+    width: 60%;
+    left: 23%;
+}
+
+.eatsPage {
+    padding-top: 15px;
+    position: relative;
+}
+
+/****************** Seller Dashboard **************/
+
+.sellerDashboard {
+    position: relative;
+    min-height: 100vh;
+    margin-top: 64px;
+}
+
+/****************** Social Profile ****************/
+
+.cid-u1nMLE9Ke9 {
+    background-image: url(/_nuxt/assets/images/mbr-9-1920x1280.jpg);
+    max-height: 500px !important;
+    min-height: 200px !important;
+}
+
+.cid-u1nMLE9Ke9 .content-container {
+    position: relative;
+    top: 48px;
+}
+
+.profilePage {
+    padding: 10px;
+}
+
+.profileBanner {
+    z-index: 999 !important;
+}
+
+.profileInfo {
+    position: relative;
+    float: left;
+    left: 3%;
+    top: 18px;
+}
+
+.profileInfo li {
+    display: block;
+    padding-right: 10px;
+}
+
+.profileUsername {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.profileActions {
+    position: relative;
+    float: right;
+    right: 15px;
+    top: 18px;
+}
+
+.profileActions li {
+    display: inline-block;
+    padding: 10px;
+}
+
+.profileActions .v-btn {
+    background-color: rgb(var(--v-theme-info)) !important;
+    color: white;
+}
+
+.profilePage h4 {
+    width: 100%;
+    text-align: center;
+}
+
+.people5,
+.people1,
+.features10,
+.features12,
+.teams1,
+.features19,
+.flip-card,
+.features13,
+.pricing2,
+.plan,
+.content2,
+.mbr-gallery,
+.mbr-section,
+.shop2,
+.cid-txYTqgVHsB,
+.cid-tApxFdIkda,
+.features6,
+.content2,
+.cid-u1nHNN1e0D,
+.features02,
+.features02 .content-wrapper,
+.cid-tApxFdIkda .mbr-text .cid-txYTqgVHsB blockquote {
+    background-color: transparent !important;
+}
+
+#dateTime {
+    color: rgb(var(--v-theme-info));
+}
+
+.userProfileAvatar {
+    border-radius: 135px;
+}
+
+/*************** Comments *****************/
+
+.reviewBox {
+    margin-bottom: 10px;
+}
+
+/*************** Chat CSS *****************/
+
+.chatWindow {
+    height: 100% !important;
+}
+
+.chatSidebar {
+    border-right: #222222;
+    height: 100%;
+}
+
+.messageWindow {
+    min-height: 100vh;
+}
+
+.chatAvatar {
+    padding-left: 10px;
+}
+
+.chatMessage {
+    bottom: 0px;
+    position: relative;
+}
+
+/*************** Search *****************/
+
+#search {
+    max-width: 40%;
+    min-width: 20%;
+}
+
+.searchSection {
+    margin-top: 70px;
+}
+
+.resultsPage .v-navigation-drawer--active {
+    position: relative;
+    margin-top: 5px;
+    min-width: 356px;
+}
+
+.searchfilters {
+    padding-left: 10px !important;
+}
+
+.searchResults p {
+    top: 7px;
+    position: relative;
+}
+
+.resultsPage {
+    min-height: 100%;
+    height: 100%;
+    margin-top: 60px;
+}
+
+.resultsPage .v-layout {
+    min-height: 2050px !important;
+}
+
+.resultsPage .v-navigation-drawer__scrim {
+    min-height: 100%
+}
+
+.filters .v-btn {
+    width: 100%;
+    margin: 10px;
+}
+
+.searchResults .v-btn:hover {
+    color: orange;
+}
+
+.searchResults .v-btn:active {
+    color: orange;
+}
+
+.searchFilters {
+    padding-top: 10px;
+}
+
+.searchfilter p {
+    font-weight: bold;
+}
+
+.ais-Hits-list {
+    margin-top: 0;
+    margin-bottom: 1em;
+}
+
+.ais-InstantSearch {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-gap: 1em;
+}
+
+.ais-Hits-item img {
+    margin-right: 1em;
+}
+
+.hit-name {
+    margin-bottom: 0.5em;
+}
+
+.hit-description {
+    color: #888;
+    font-size: 0.8em;
+    margin-bottom: 0.5em;
+}
+
+.resultsPage .v-window__container {
+    height: 100% !important;
+    min-height: 100% !important;
+    position: absolute !important;
+}
+
+/***************** Newsletter Footer ********************/
+
+#mc_embed_signup {
+    background: #fff;
+    font: 14px Helvetica, Arial, sans-serif;
+    width: 600px;
+}
+
+#mc-embedded-subscribe-form input[type=checkbox] {
+    display: inline;
+    width: auto;
+    margin-right: 10px;
+}
+
+#mergeRow-gdpr {
+    margin-top: 20px;
+}
+
+#mergeRow-gdpr fieldset label {
+    font-weight: normal;
+}
+
+#mc-embedded-subscribe-form .mc_fieldset {
+    border: none;
+    min-height: 0px;
+    padding-bottom: 0px;
+}
+
+/***************** Footer ********************/
+.topfooter {
+    background-color: #232323;
+}
+
+.footertotopbtn {
+    width: 100% !important;
+    background-color: rgb(var(--v-theme-info)) !important;
+    color: white !important;
+}
+
+footer {
+    background-color: rgb(var(--v-theme-info)) !important;
+    color: white !important;
+}
+
+.footer3 h2 {
+    color: white !important;
+}
+
+footer a {
+    color: white !important;
+}
+
+footer a:hover {
+    color: white !important;
+}
+
+.copyrightFooter {
+    background-color: #222222;
+    color: white;
+}
+
+.translatebar {
+    float: left;
+    left: 5px;
+    position: relative;
+}
+
+.copyrightText {
+    float: right;
+    right: 5px;
+    top: 20px;
+    position: relative;
+    font-size: 18px;
+}
+
+.footer7 {
+    background-color: #232323 !important;
+}
+
+.cid-tZRUOapGTD form {
+    width: 100%;
+}
+
+.cid-tZRUOapGTD input {
+    width: 85%;
+    background: white !important;
+}
+
+.cid-tZRUOapGTD h2 {
+    display: none !important;
+}
+
+.cid-tZRUOapGTD button {
+    background-color: rgb(var(--v-theme-info));
+    color: white;
+    padding: 12px;
+    border-radius: 0px 20px 20px 0px;
+    left: -18px;
+    position: relative;
+}

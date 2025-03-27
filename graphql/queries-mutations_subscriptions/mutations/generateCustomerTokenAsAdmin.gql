@@ -1,0 +1,5 @@
+mutation generateCustomerTokenAsAdmin($input: GenerateCustomerTokenAsAdminInput!){
+    generateCustomerTokenAsAdmin(input: $input){
+        customer_token
+    }
+}

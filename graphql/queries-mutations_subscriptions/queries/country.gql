@@ -1,0 +1,14 @@
+query country($id: String){
+    country(id: $id){
+        available_regions{
+            code
+            id
+            name
+        }
+        full_name_english
+        full_name_locale
+        id
+        three_letter_abbreviation
+        two_letter_abbreviation
+    }
+}

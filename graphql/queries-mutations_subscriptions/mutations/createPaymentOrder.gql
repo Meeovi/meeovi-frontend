@@ -1,0 +1,9 @@
+mutation createPaymentOrder($input: CreatePaymentOrderInput!){
+    createPaymentOrder(input: $input){
+        amount
+        currency_code
+        id
+        mp_order_id
+        status
+    }
+}

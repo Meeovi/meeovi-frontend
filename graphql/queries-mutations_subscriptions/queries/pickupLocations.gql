@@ -1,0 +1,27 @@
+query pickupLocations($area: AreaInput, $filters: PickupLocationFilterInput, $sort: PickupLocationSortInput, $pageSize: Int, $currentPage: Int, $productsInfo: [ProductInfoInput]){
+    pickupLocations(area: $area, filters: $filters, sort: $sort, pageSize: $pageSize, currentPage: $currentPage, productsInfo: $productsInfo){
+        items{
+            city
+            contact_name
+            country_id
+            description
+            email
+            fax
+            latitude
+            longitude
+            name
+            phone
+            pickup_location_code
+            postcode
+            region
+            region_id
+            street
+        }
+        page_info{
+            current_page
+            page_size
+            total_pages
+        }
+        total_count
+    }
+}

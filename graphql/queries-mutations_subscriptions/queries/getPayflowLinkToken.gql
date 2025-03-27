@@ -1,0 +1,8 @@
+query getPayflowLinkToken($input: PayflowLinkTokenInput!){
+    getPayflowLinkToken(input: $input){
+        mode
+        paypal_url
+        secure_token
+        secure_token_id
+    }
+}

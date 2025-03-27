@@ -1,0 +1,24 @@
+query blogTag($id: String){
+    blogTag(id: $id){
+        content
+        custom_layout
+        custom_layout_update_xml
+        custom_theme
+        custom_theme_from
+        custom_theme_to
+        identifier
+        is_active
+        layout_update_xml
+        meta_description
+        meta_keywords
+        meta_robots
+        meta_title
+        page_layout
+        redirect_code
+        relative_url
+        tag_id
+        tag_url
+        title
+        type
+    }
+}

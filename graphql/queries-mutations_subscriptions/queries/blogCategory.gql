@@ -1,0 +1,41 @@
+query blogCategory($id: String){
+    blogCategory(id: $id){
+        breadcrumbs{
+            category_level
+            category_name
+            category_uid
+            category_url_key
+            category_url_path
+        }
+        canonical_url
+        category_id
+        category_level
+        category_url
+        category_url_path
+        content
+        content_heading
+        custom_layout
+        custom_layout_update_xml
+        custom_theme
+        custom_theme_from
+        custom_theme_to
+        display_mode
+        identifier
+        include_in_menu
+        is_active
+        layout_update_xml
+        meta_description
+        meta_keywords
+        meta_title
+        page_layout
+        parent_category_id
+        path
+        position
+        posts_count
+        posts_sort_by
+        redirect_code
+        relative_url
+        title
+        type
+    }
+}

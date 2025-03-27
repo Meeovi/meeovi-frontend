@@ -1,0 +1,57 @@
+mutation updateProductsInWishlist($currentPage: Int, $pageSize: Int, $wishlistId: ID!, $wishlistItems: [WishlistItemUpdateInput!]!){
+    updateProductsInWishlist(wishlistId: $wishlistId, wishlistItems: $wishlistItems){
+        user_errors{
+            code
+            message
+        }
+        wishlist{
+            id
+            items_count
+            items_v2(currentPage: $currentPage, pageSize: $pageSize){
+                items{
+                    added_at
+                    customizable_options{
+                        customizable_option_uid
+                        is_required
+                        label
+                        sort_order
+                        type
+                    }
+                    description
+                    id
+                    product{
+                        canonical_url
+                        country_of_manufacture
+                        gift_message_available
+                        meta_description
+                        meta_keyword
+                        meta_title
+                        name
+                        new_from_date
+                        new_to_date
+                        only_x_left_in_stock
+                        options_container
+                        rating_summary
+                        review_count
+                        sku
+                        special_price
+                        special_to_date
+                        stock_status
+                        swatch_image
+                        uid
+                        url_key
+                        url_suffix
+                    }
+                    quantity
+                }
+                page_info{
+                    current_page
+                    page_size
+                    total_pages
+                }
+            }
+            sharing_code
+            updated_at
+        }
+    }
+}

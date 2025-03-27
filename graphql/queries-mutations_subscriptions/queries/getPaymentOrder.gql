@@ -1,0 +1,18 @@
+query getPaymentOrder($cartId: String!, $id: String!){
+    getPaymentOrder(cartId: $cartId, id: $id){
+        id
+        mp_order_id
+        payment_source_details{
+            card{
+                bin_details{
+                    bin
+                }
+                card_expiry_month
+                card_expiry_year
+                last_digits
+                name
+            }
+        }
+        status
+    }
+}

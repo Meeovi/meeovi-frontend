@@ -1,0 +1,101 @@
+# Information here will appear across M-template
+
+# Database URL
+
+DATABASE_URL='mysql://example:example@example.com:3306/example'
+
+# Database Credentials
+
+DB_HOST='example.com'
+DB_USER='example'
+DB_PASSWORD='example'
+DB_NAME='example'
+
+# Directus Credentials
+
+DIRECTUS_URL='http://example:8011'
+DIRECTUS_GRAPHQL='http://example:8011/graphql'
+NUXTUS_DIRECTUS_STATIC_TOKEN=''
+NUXTUS_DIRECTUS_AUTH=true
+NUXTUS_DIRECTUS_ADMIN_EMAIL=
+NUXTUS_DIRECTUS_ADMIN_PASSWORD=
+
+# eCommerce Credentials = Magento
+
+MAGE_STORE_URL='https://example.com'
+MAGE_MAGENTO_GRAPHQL_URL='https://example.com/graphql'
+GQL_KEY='' #Consumer Key
+GQL_SECRET='' #Consumer Secret
+WEBSITE_TOKEN='' #Access Token
+WEBSITE_SECRET='' #Access Token Secret
+
+# Wordpress Credentials
+
+API_URL_GRAPHQL='https://example.com/graphql'
+API_URL="https://example.com"
+WORDPRESS_TOKEN=''
+WP_API_USERNAME=
+WP_API_PASSWORD=
+WOOCOMMERCE_CONSUMER_KEY=""
+WOOCOMMERCE_CONSUMER_SECRET=""
+
+#VDURE_URL='http://example:3000/shop-api'
+
+# Google Analytics
+
+NUXT_PUBLIC_GTAG_ID=''
+
+# Graphql
+
+GRAPHQL_HOST="http://example:8089/v1/graphql"
+GRAPHQL_TOKEN=""
+
+# Stripe Credentials
+
+STRIPE_SECRET_KEY=
+STRIPE_PUBLISHABLE_KEY=
+STRIPE_WEBHOOK_SECRET=
+
+# Logto Authentication
+
+NUXT_LOGTO_ENDPOINT=https://example.logto.app/
+NUXT_LOGTO_APP_ID=
+NUXT_LOGTO_APP_SECRET=
+NUXT_LOGTO_COOKIE_ENCRYPTION_KEY= 
+
+# Turnstile Credentials
+
+NUXT_PUBLIC_TURNSTILE_SITE_KEY=''
+NUXT_TURNSTILE_SECRET_KEY=''
+
+# Elasticsearch
+
+ELASTICSEARCH_URL="http://example:9200"
+ELASTICSEARCH_APP_SEARCH_ENGINE_NAME=""
+ELASTICSEARCH_APP_SEARCH_KEY=""
+ELASTICSEARCH_INDEX_NAME="example-elasticsearch"
+
+# Algolia
+
+ALGOLIA_API_KEY=""
+ALGOLIA_APPLICATION_ID=""
+
+# Mailchimp
+
+MAILCHIMP_API_KEY=""
+MAILCHIMP_CLIENT_ID=""
+MAILCHIMP_CLIENT_SECRET=""
+MAILCHIMP_SERVER_PREFIX=""
+MAILCHIMP_AUDIENCE_ID=""
+
+# Cloudinary
+
+CLOUDINARY_URL=cloudinary://
+CLOUDINARY_PRESET=""
+CLOUDINARY_CLOUD_NAME=""
+CLOUDINARY_API_KEY=""
+CLOUDINARY_API_SECRET=""
+
+# Budibase
+
+BUDIBASE_EMBED="http://example:10000/embed/"

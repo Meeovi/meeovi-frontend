@@ -1,0 +1,23 @@
+query attributesList($entityType: AttributeEntityTypeEnum!, $filters: AttributeFilterInput){
+    attributesList(entityType: $entityType, filters: $filters){
+        errors{
+            message
+            type
+        }
+        items{
+            code
+            default_value
+            entity_type
+            frontend_class
+            frontend_input
+            is_required
+            is_unique
+            label
+            options{
+                is_default
+                label
+                value
+            }
+        }
+    }
+}

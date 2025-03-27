@@ -1,0 +1,10 @@
+query customerPaymentTokens{
+    customerPaymentTokens{
+        items{
+            details
+            payment_method_code
+            public_hash
+            type
+        }
+    }
+}

@@ -1,0 +1,126 @@
+<template>
+    <v-row justify="center">
+        <v-dialog v-model="dialog" :scrim="false" transition="dialog-bottom-transition">
+            <template v-slot:activator="{ props }">
+                <v-btn v-bind="props" class="rightAddBtn">
+                    <v-icon start icon="fas fa-plus"></v-icon>Add Attribute Term
+                </v-btn>
+            </template>
+            <v-card>
+                <form>
+                    <v-toolbar dark color="primary">
+                        <v-btn icon dark @click="dialog = false">
+                            <v-icon icon="fas fa-circle-xmark"></v-icon>
+                        </v-btn>
+                        <v-card-title>
+                            <span class="text-h6">Create new Attribute Term</span>
+                        </v-card-title>
+                    </v-toolbar>
+                    <v-card-text>
+                        <v-container>
+                            <v-row>
+                                <v-col cols="12">
+                                    <v-text-field v-model="name" id="attributeName" label="Attribute Name*" required></v-text-field>
+                                </v-col>
+                                <v-col cols="6">
+                                    <v-text-field v-model="slug" id="attributeSlug" label="Attribute Slug*" required></v-text-field>
+                                </v-col>
+                                <v-col cols="6">
+                                    <v-text-field v-model="type" label="Attribute Type" id="attributeType"></v-text-field>
+                                </v-col>
+                                <v-col cols="12">
+                                    <v-textarea v-model="description" label="Description" id="attributeDescription">
+                                    </v-textarea>
+                                </v-col>
+                            </v-row>
+                        </v-container>
+                        <small>*indicates required field</small>
+                    </v-card-text>
+                    <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn color="blue-darken-1" variant="text" @click="dialog = false">
+                            Close
+                        </v-btn>
+                        <v-btn color="blue-darken-1" variant="text" @click="dialog = false" @submit.prevent="createAttributeTerm">
+                            Save
+                        </v-btn>
+                    </v-card-actions>
+                </form>
+            </v-card>
+        </v-dialog>
+    </v-row>
+</template>
+
+<script>
+    export default {
+        data() {
+            return {
+                dialog: false,
+                notifications: false,
+                sound: true,
+                widgets: false,
+            }
+        },
+    }
+</script>
+
+<script setup>
+    import {
+        ref
+    } from 'vue'
+    import { useRuntimeConfig } from '#imports';
+
+    const config = useRuntimeConfig();
+    const name = ref('');
+    const slug = ref('');
+    const type = ref('');
+    const description = ref('');
+    const errorMessage = ref('');
+    const successMessage = ref('');
+
+    const createAttribute = async () => {
+        try {
+            const response = await $fetch(`${config.public.wordpressUrl}/wp-json/dokan/v1/products/attributes/${attribute.id}/terms`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${config.public.wordpressToken}`
+                },
+                body: JSON.stringify({
+                    name: name.value,
+                    slug: slug.value,
+                    type: type.value,
+                    description: description.value,
+                    description: description.value,
+                    status: 'publish',
+                })
+            })
+
+            console.log(response);
+
+            if (response.id) {
+                successMessage.value = 'Attribute Term created successfully!'
+                errorMessage.value = ''
+            } else {
+                throw new Error('Failed to create attribute term')
+            }
+        } catch (error) {
+            console.error('Error creating attribute term:', error);
+            if (error.response) {
+                console.error('Error response:', error.response);
+                if (error.response.status === 403) {
+                    errorMessage.value = 'You do not have permission to create a attribute term.'
+                } else {
+                    errorMessage.value = `Error: ${error.response.status} ${error.response.statusText}`
+                }
+            } else {
+                errorMessage.value = error.message
+            }
+            successMessage.value = ''
+        }
+    }
+
+    useHead({
+        title: 'Create Attribute Term',
+    })
+</script>
