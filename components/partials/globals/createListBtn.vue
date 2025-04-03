@@ -2,7 +2,10 @@
   <div>
     <v-dialog v-model="dialogOpen" justify="center">
       <template v-slot:activator="{ props }">
-        <button class="btn btn-info display-7" v-bind="props"><span class="mobi-mbri mobi-mbri-plus mbr-iconfont mbr-iconfont-btn"></span>Add to List</button>
+        <SfButton size="m" variant="tertiary" v-bind="props">
+          <SfIconFavorite size="m" />
+          Add to list
+        </SfButton>
       </template>
 
       <v-card max-width="500px">

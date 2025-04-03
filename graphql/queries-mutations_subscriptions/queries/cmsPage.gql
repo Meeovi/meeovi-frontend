@@ -7,7 +7,6 @@ query cmsPage($id: Int, $identifier: String){
         meta_keywords
         meta_title
         page_layout
-        redirect_code
         relative_url
         title
         type

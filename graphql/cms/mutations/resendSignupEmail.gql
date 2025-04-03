@@ -1,0 +1,6 @@
+mutation resendSignupEmail($input: ResendSignupEmailInput!){
+    resendSignupEmail(input: $input){
+        clientMutationId
+        sent
+    }
+}

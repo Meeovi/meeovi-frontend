@@ -1,0 +1,10 @@
+mutation deleteAttachmentCover($input: DeleteAttachmentCoverInput!){
+    deleteAttachmentCover(input: $input){
+        attachment{
+            full
+            thumb
+        }
+        clientMutationId
+        deleted
+    }
+}

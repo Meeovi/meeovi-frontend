@@ -70,10 +70,6 @@
       $readItem
   } = useNuxtApp()
 
-  const userDisplayName = computed(() => {
-      return userStore.user?.name || userStore.user?.username || 'User'
-  })
-
   const {
       data: charts
   } = await useAsyncData('charts', () => {
@@ -100,7 +96,7 @@
       return $directus.request($readItems('musicchart', {
           filter: {
               creator: {
-                  _eq: `${userDisplayName.value}`
+                  _eq: `${userStore?.email?.value}`
               }
           }
       }))

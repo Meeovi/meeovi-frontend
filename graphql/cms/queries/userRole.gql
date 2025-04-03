@@ -1,0 +1,9 @@
+query userRole($id: ID!){
+    userRole(id: $id){
+        capabilities
+        displayName
+        id
+        isRestricted
+        name
+    }
+}

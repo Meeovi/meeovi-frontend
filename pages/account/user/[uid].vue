@@ -2,35 +2,62 @@
     <div>
         <!--<LowerBar /> -->
         <div v-if="user" class="accountPage">
-            <section data-bs-version="5.1" class="people3 cid-u1nMLE9Ke9 mbr-fullscreen mbr-parallax-background"
-                id="apeople3-6r">
-
-                <div class="mbr-overlay" style="opacity: 0; background-color: rgb(255, 255, 255);">
-                </div>
+            <section data-bs-version="5.1" class="people5 cid-uHg5WZJiwK" id="people5-au">
                 <div class="container-fluid">
-                    <div class="row justify-content-center">
-                        <div class="col-md-12 col-lg-12">
-                            <div class="content-container" v-if="user.isLoggedIn">
-                                <div class="img-wrap">
-                                    <div class="item-img">
-                                        <NuxtImg class="userProfileAvatar" loading="lazy" :src="`${user?.picture}`"
-                                            :alt="user?.username" />
+                    <div class="row justify-content-between" v-if="user.isLoggedIn">
+                        <div class="col-12 col-lg-6">
+                            <div class="right-side">
+                                <h5 class="mbr-section-title mbr-fonts-style display-2">
+                                    <strong>About the host</strong>
+                                </h5>
+                                <p class="mbr-text mbr-fonts-style display-4">Lorem ipsum dolor sit amet,
+                                    consectetur adipiscing elit. Dignissim arcu cursus tincidunt et odio enim aliquam.
+                                    Gravida augue
+                                    arcu duis turpis nisl. Sed tellus quis nisl, est ridiculus. Gravida faucibus in ut
+                                    hendrerit.
+                                    Eget sed sit.
+                                    <br>
+                                    <br>Egestas pretium aenean pharetra magna ac placerat vestibulum. Nulla pharetra
+                                    diam sit amet
+                                    nisl suscipit adipiscing bibendum.
+                                </p>
+                                <div class="button-align">
+                                    <div class="mbr-section-btn">
+                                        <a class="btn btn-primary display-4" href="">Subscribe</a>
+
+                                        <a class="btn btn-secondary display-4" href="">About the host</a>
                                     </div>
                                 </div>
-                                <div class="text-wrap align-left">
-                                    <h4 class="mbr-text-name mbr-fonts-style display-5">
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="left-side">
+                                <div class="shadow">
+                                    <NuxtImg class="userProfileAvatar align" loading="lazy" :src="`${user?.picture}`"
+                                        :alt="user?.username" />
+                                    <h5 class="card-title mbr-fonts-style display-2">
                                         <strong>@{{ user?.username }}</strong>
-                                    </h4>
-                                    <h4 class="mbr-text mbr-fonts-style display-7">
-                                        <v-list
-                                            style="background: transparent; color: white; left: -15px; position: relative;">
-                                            <v-list-item>
-                                                <OnlineStatus :show-text="false" />
-                                            </v-list-item>
-                                            <v-list-item title="Member Since">{{ user?.created_at }}</v-list-item>
-                                        </v-list>
-                                    </h4>
-
+                                    </h5>
+                                    <OnlineStatus class="card-subtitle mbr-fonts-style display-4" :show-text="false" />
+                                    <h5 class="card-text mbr-fonts-style display-4">Member Since: {{ user?.created_at }}
+                                    </h5>
+                                    <div class="mbr-social-likes">
+                                        <span class="btn btn-social socicon-bg-youtube youtube mx-2">
+                                            <span class="mbr-iconfont socicon-youtube socicon"></span>
+                                        </span>
+                                        <span class="btn btn-social socicon-bg-facebook facebook mx-2">
+                                            <span class="mbr-iconfont socicon-facebook socicon"></span>
+                                        </span>
+                                        <span class="btn btn-social twitter socicon-bg-twitter mx-2">
+                                            <span class="mbr-iconfont socicon-twitter socicon"></span>
+                                        </span>
+                                        <span class="btn btn-social pinterest socicon-bg-pinterest mx-2">
+                                            <span class="mbr-iconfont socicon-pinterest socicon"></span>
+                                        </span>
+                                        <span class="btn btn-social mailru socicon-bg-mail mx-2">
+                                            <span class="mbr-iconfont mobi-mbri-letter mobi-mbri"></span>
+                                        </span>
+                                    </div>
                                     <!-- Conditionally render the follow button -->
                                     <followButton v-if="user.id !== loggedInUserId" :entityId="user.id"
                                         entityType="user" />

@@ -1,0 +1,13 @@
+query plugin($id: ID!){
+    plugin(id: $id){
+        author
+        authorUri
+        description
+        id
+        isRestricted
+        name
+        path
+        pluginUri
+        version
+    }
+}

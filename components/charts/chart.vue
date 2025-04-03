@@ -73,7 +73,7 @@
   import {
     useQuery
   } from '@vue/apollo-composable'
-    import relatedchart from '~/components/product/relatedcharts.vue'
+    import relatedchart from '~/components/charts/relatedcharts.vue'
     import relatedproducts from '~/components/product/relatedproducts.vue'
     import recentlyviewed from '~/components/product/recentlyviewed.vue'
     import products from '~/graphql/commerce/queries/products'

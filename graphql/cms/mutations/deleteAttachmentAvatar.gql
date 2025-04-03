@@ -1,0 +1,10 @@
+mutation deleteAttachmentAvatar($input: DeleteAttachmentAvatarInput!){
+    deleteAttachmentAvatar(input: $input){
+        attachment{
+            full
+            thumb
+        }
+        clientMutationId
+        deleted
+    }
+}

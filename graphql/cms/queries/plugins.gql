@@ -1,0 +1,35 @@
+query plugins($first: Int, $last: Int, $after: String, $before: String, $where: RootQueryToPluginConnectionWhereArgs){
+    plugins(first: $first, last: $last, after: $after, before: $before, where: $where){
+        edges{
+            cursor
+            node{
+                author
+                authorUri
+                description
+                id
+                isRestricted
+                name
+                path
+                pluginUri
+                version
+            }
+        }
+        nodes{
+            author
+            authorUri
+            description
+            id
+            isRestricted
+            name
+            path
+            pluginUri
+            version
+        }
+        pageInfo{
+            endCursor
+            hasNextPage
+            hasPreviousPage
+            startCursor
+        }
+    }
+}

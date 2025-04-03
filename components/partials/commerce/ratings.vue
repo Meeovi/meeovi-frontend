@@ -1,5 +1,5 @@
 <template>
-    <SfRating size="xs" :half-increment="true" :value="(rating.rating_summary || FALLBACK_RATING)/RATING_CONVERSION_FACTOR" :max="MAX_AVERAGE_RATING" />
+    <SfRating size="m" :half-increment="true" :value="(rating.rating_summary || FALLBACK_RATING)/RATING_CONVERSION_FACTOR" :max="MAX_AVERAGE_RATING" />
 </template>
 
 <script setup>

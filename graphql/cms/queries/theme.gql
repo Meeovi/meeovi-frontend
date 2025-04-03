@@ -1,0 +1,15 @@
+query theme($id: ID!){
+    theme(id: $id){
+        author
+        authorUri
+        description
+        id
+        isRestricted
+        name
+        screenshot
+        slug
+        tags
+        themeUri
+        version
+    }
+}

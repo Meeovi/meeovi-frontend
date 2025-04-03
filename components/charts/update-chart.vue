@@ -99,7 +99,6 @@
         useRouter
     } from 'vue-router'
 
-    const userStore = useUserStore()
     // Make sure your props are properly defined
     // Update props to include space_id
     const props = defineProps({
@@ -113,9 +112,7 @@
     const deleteDialog = ref(false);
     const deleteLoading = ref(false);
 
-    const userDisplayName = computed(() => {
-        return userStore.user?.name || userStore.user?.username || 'User'
-    })
+    const { user } = useSupabaseAuth()
 
     const route = useRoute();
     const router = useRouter();
@@ -130,7 +127,7 @@
         image: null,
         media: null,
         audio: null,
-        username: userDisplayName,
+        username: user?.email,
         space_id: props.space_id, // Initialize with the space_id from props
     });
 

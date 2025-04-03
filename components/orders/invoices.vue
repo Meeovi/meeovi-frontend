@@ -1,38 +1,43 @@
 <template>
     <div>
-        <!---->
-        <section data-bs-version="5.1" class="firmm4_features1 features1 cid-uhBuptnWmV" id="features1-9v"
-            data-sortbtn="btn-primary">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12 title_block">
-                        <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
-                            <strong>Invoices</strong></h3>
-                    </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="card col-12 col-lg-3 col-md-6 col-sm-6" v-for="(invoice, index) in invoices"
-                        :key="index">
-                        <div class="card_wrapper">
-                            <div class="card-box">
-                                <div class="icon_block">
-                                    <div class="iconfont-wrapper">
-                                        <span class="mbr-iconfont mobi-mbri-cart-full mobi-mbri"></span>
-                                    </div>
-                                </div>
-                                <p class="card-text mbr-fonts-style display-4">Invoice: {{ invoice?.entity_id }}</p>
-                                <p class="card-text mbr-fonts-style display-4">Invoice Date: {{ new Date(invoice?.created_at).toLocaleDateString() }}</p>
-                                <p class="card-text mbr-fonts-style display-4">Order #: {{ invoice?.order_id }}</p>
-                                <p class="card-text mbr-fonts-style display-4">Order Date: {{ invoice?.updated_at }}
-                                </p>
-                                <p class="card-text mbr-fonts-style display-4">Bill to Name:
-                                    {{ new Date(invoice?.date_created).toLocaleDateString() }}</p>
-                                <p class="card-text mbr-fonts-style display-4">Status: {{ invoice?.state }}</p>
-                                <p class="card-text mbr-fonts-style display-4">Grand Total (Base): {{ invoice?.base_grand_total }}</p>
-                                <p class="card-text mbr-fonts-style display-4">Grand Total (Purchased): {{ invoice?.grand_total }}</p>
-                                <p class="btn_link mbr-fonts-style display-4"><NuxtLink :to="`/account/user/invoice/${invoice?.id}`"
-                                        class="text-secondary">View<span
-                                            class="mobi-mbri mobi-mbri-right mbr-iconfont"></span></NuxtLink></p>
+        <section data-bs-version="5.1" class="pricing-tables2 agencym4_pricing2 cid-uHg0pXn9VJ" id="pricing-tables2-ao">
+            <div class="container">
+                <div class="media-container-row">
+                    <div class="plan col-12 col-lg-3 col-md-6 col-sm-6 mx-3 my-2 justify-content-center"
+                        v-for="(invoice, index) in invoices" :key="index">
+                        <div class="plan-header text-center pb-4">
+                            <h3 class="plan-title mbr-white mbr-fonts-style pb-3 pt-3 mb-5 px-3 display-7">
+                                Invoices
+                            </h3>
+                            <div class="plan-price px-3">
+                                <span class="price-value mbr-fonts-style display-5"> $ </span>
+                                <span class="price-figure mbr-fonts-style display-2"> {{ invoice?.grand_total }} </span>
+                            </div>
+                        </div>
+                        <div class="plan-body pt-4">
+                            <div class="plan-list pb-4 align-center">
+                                <ul class="list-group list-group-flush mbr-fonts-style display-7">
+                                    <li class="list-group-item>Invoice: {{ invoice?.entity_id }}</p>
+                                    <li class="list-group-item>Invoice Date:
+                                        {{ new Date(invoice?.created_at).toLocaleDateString() }}</li>
+                                    <li class="list-group-item">Order #: {{ invoice?.order_id }}</li>
+                                    <li class="list-group-item">Order Date: {{ invoice?.updated_at }}
+                                    </li>
+                                    <li class="list-group-item">Bill to Name:
+                                        {{ new Date(invoice?.date_created).toLocaleDateString() }}</li>
+                                    <li class="list-group-item">Status: {{ invoice?.state }}</li>
+                                    <li class="list-group-item">Grand Total (Base):
+                                        {{ invoice?.base_grand_total }}</li>
+                                    <li class="list-group-item">Grand Total (Purchased):
+                                        {{ invoice?.grand_total }}</li>
+                                    <p class="btn_link mbr-fonts-style display-4">
+                                        <NuxtLink :to="`/account/user/invoice/${invoice?.id}`" class="text-secondary">
+                                            View<span class="mobi-mbri mobi-mbri-right mbr-iconfont"></span></NuxtLink>
+                                    </p>
+                                </ul>
+                            </div>
+                            <div class="mbr-section-btn align-center pb-4">
+                                <a href="#" class="btn btn-primary btn-bgr display-4">BUY NOW</a>
                             </div>
                         </div>
                     </div>
@@ -47,7 +52,7 @@
         ref,
         onMounted
     } from 'vue';
-    
+
     import {
         getInvoices
     } from '~/composables/commerce/sales/getInvoices';

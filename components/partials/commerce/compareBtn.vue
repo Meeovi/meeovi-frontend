@@ -1,56 +1,52 @@
 <template>
-  <button class="btn btn-info display-7" @click="handleCompare" :disabled="isInCompare">
-    <span class="mobi-mbri mobi-mbri-left-right mbr-iconfont mbr-iconfont-btn"></span>
-    Add to Compare
-  </button>
+  <SfButton size="sm" variant="tertiary" @click="handleCompare" :disabled="isInCompare">
+    <template #prefix>
+      <SfIconCompareArrows size="sm" />
+    </template>
+    {{ buttonText }}
+  </SfButton>
 </template>
 
 <script setup lang="ts">
   import {
-    SfButton,
-    SfIconCompareArrows
-  } from '@storefront-ui/vue';
-  import {
     computed
-  } from 'vue'
+  } from 'vue';
   import {
     useCompareStore
-  } from '~/stores/compare'
+  } from '~/stores/compare'; // Corrected store import
   import type {
-    ProductData
-  } from '~/types/product'
+    Product
+  } from '~/types/product'; // Import the correct Product type
 
-  // Define proper props with type
+  // Define props
   const props = defineProps < {
-    product: ProductData;
-  } > ()
+    product: Product;
+  } > ();
 
-  const compareStore = useCompareStore()
+  const compareStore = useCompareStore();
 
-  // Add computed property to check if product is already in compare
+  // Check if the product is already in compare list
   const isInCompare = computed(() => {
-    return compareStore.items.some(item => item.sku === props.product.sku)
-  })
+    return compareStore.getComparedProducts.some(product => product.sku === props.product?.sku);
+  });
 
-  // Add computed property for button text
-  const buttonText = computed(() => {
-    return isInCompare.value ? 'In Compare List' : 'Add to Compare'
-  })
+  // Dynamically update button text
+  const buttonText = computed(() => (isInCompare.value ? 'In Compare List' : 'Add to Compare'));
 
-  // Improve handle compare function
+  // Handle Add/Remove from Compare list
   const handleCompare = () => {
     try {
       if (!props.product) {
-        throw new Error('Product data is required')
+        throw new Error('Product data is required');
       }
 
       if (isInCompare.value) {
-        compareStore.removeFromCompare(props.product.sku)
+        compareStore.removeComparedProduct(props.product?.sku);
       } else {
-        compareStore.addToCompare(props.product)
+        compareStore.addComparedProductSku(props.product?.sku);
       }
     } catch (error) {
-      console.error('Error handling compare:', error)
+      console.error('Error handling compare:', error);
     }
-  }
+  };
 </script>

@@ -1,0 +1,9 @@
+mutation uploadAttachmentCover($input: UploadAttachmentCoverInput!){
+    uploadAttachmentCover(input: $input){
+        attachment{
+            full
+            thumb
+        }
+        clientMutationId
+    }
+}

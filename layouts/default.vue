@@ -1,5 +1,6 @@
 <template>
   <v-app :theme="theme">
+    <NuxtPwaManifest />
     <v-app-bar id="topnav">
       <template v-slot:prepend>
         <v-btn variant="flat" color="transparent" @click="drawer = !drawer">
@@ -96,6 +97,7 @@
             </v-row>
             <div>
               <slot />
+              <pwaDialog />
             </div>
           </main>
         </v-layout>
@@ -128,6 +130,8 @@
   import FooterNav from '~/components/menus/FooterNav.vue'
   import cart from '~/components/menus/topmenu/cart.vue'
   import announcements from '~/components/partials/globals/announcements.vue'
+  import pwaDialog from '~/components/ui/pwaDialog.vue'
+
   import {
     ref
   } from 'vue';
@@ -139,7 +143,7 @@
   import {
     useTheme
   } from 'vuetify'
-  
+
   const theme = useTheme()
   const isDark = useDark()
   const toggleDark = useToggle(isDark)

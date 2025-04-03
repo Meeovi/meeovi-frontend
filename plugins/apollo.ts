@@ -15,6 +15,10 @@ export default defineNuxtPlugin((nuxtApp) => {
     uri: config.public.directus.url, // Replace with your secondary endpoint
   })
 
+  const thirdHttpLink = createHttpLink({
+    uri: config.public.wpGraphql, // Replace with your third endpoint
+  })
+
   const primaryAuthLink = setContext((_, { headers }) => {
     return {
       headers: {
@@ -33,8 +37,18 @@ export default defineNuxtPlugin((nuxtApp) => {
     }
   })
 
+  const thirdAuthLink = setContext((_, { headers }) => {
+    return {
+      headers: {
+        ...headers,
+        'authorization': `Bearer ${config.public.wordpressToken}`, // Replace with your third auth token
+      }
+    }
+  })
+
   const primaryLink = primaryAuthLink.concat(primaryHttpLink)
   const secondaryLink = secondaryAuthLink.concat(secondaryHttpLink)
+  const thirdLink = thirdAuthLink.concat(thirdHttpLink)
 
   const splitLink = split(
     (operation) => {
@@ -42,7 +56,14 @@ export default defineNuxtPlugin((nuxtApp) => {
       return context.clientName === 'secondary'
     },
     secondaryLink,
-    primaryLink
+    split(
+      (operation) => {
+        const context = operation.getContext()
+        return context.clientName === 'third'
+      },
+      thirdLink,
+      primaryLink // This becomes the default link for when neither condition is met
+    )
   )
 
   const apolloClient = new ApolloClient({

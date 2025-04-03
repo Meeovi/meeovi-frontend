@@ -63,7 +63,6 @@
     useUserStore
   } from '~/stores/user'
 
-  const userStore = useUserStore()
     // Make sure your props are properly defined
     // Update props to include spaces_id
     const props = defineProps({
@@ -73,9 +72,7 @@
         }
     });
 
-    const userDisplayName = computed(() => {
-    return userStore.user?.name || userStore.user?.username || 'User'
-  })
+    const { user, isAuthenticated } = useSupabaseAuth()
 
     const route = useRoute();
 
@@ -91,7 +88,7 @@
         color: '',
         coverFile: null,
         avatarFile: null,
-        creator: userDisplayName,
+        creator: user?.email,
     })
 
     const dialog = ref(false);

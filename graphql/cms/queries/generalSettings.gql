@@ -1,0 +1,13 @@
+query generalSettings{
+    generalSettings{
+        dateFormat
+        description
+        email
+        language
+        startOfWeek
+        timeFormat
+        timezone
+        title
+        url
+    }
+}

@@ -1,0 +1,39 @@
+query themes($first: Int, $last: Int, $after: String, $before: String){
+    themes(first: $first, last: $last, after: $after, before: $before){
+        edges{
+            cursor
+            node{
+                author
+                authorUri
+                description
+                id
+                isRestricted
+                name
+                screenshot
+                slug
+                tags
+                themeUri
+                version
+            }
+        }
+        nodes{
+            author
+            authorUri
+            description
+            id
+            isRestricted
+            name
+            screenshot
+            slug
+            tags
+            themeUri
+            version
+        }
+        pageInfo{
+            endCursor
+            hasNextPage
+            hasPreviousPage
+            startCursor
+        }
+    }
+}

@@ -1,6 +1,12 @@
 <template>
   <div>
-    <button class="btn btn-info display-7" @click="handleAddToCart" :disabled="loading || hasItem(productVariantId)"><span class="mobi-mbri mobi-mbri-shopping-cart mbr-iconfont mbr-iconfont-btn"></span>{{ loading ? "Adding..." : hasItem(productVariantId) ? "In Cart" : "Add to Cart" }}</button>
+    <SfButton size="lg" class="w-full xs:ml-4" @click="handleAddToCart"
+      :disabled="loading || hasItem(productVariantId)">
+      <template #prefix>
+        <SfIconShoppingCart size="sm" />
+      </template>
+      {{ loading ? "Adding..." : hasItem(productVariantId) ? "In Cart" : "Add to Cart" }}
+    </SfButton>
   </div>
 </template>
 

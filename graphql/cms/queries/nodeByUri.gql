@@ -1,0 +1,11 @@
+query nodeByUri($uri: String!){
+    nodeByUri(uri: $uri){
+        id
+        isComment
+        isContentNode
+        isFrontPage
+        isPostsPage
+        isTermNode
+        uri
+    }
+}

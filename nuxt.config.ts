@@ -1,3 +1,4 @@
+import graphql from '@rollup/plugin-graphql'
 import {
   defineNuxtConfig
 } from "nuxt/config"
@@ -183,11 +184,25 @@ export default defineNuxtConfig({
       commerceGraphql: process.env.MAGE_MAGENTO_GRAPHQL_URL,
       commerceApiToken: process.env.WEBSITE_TOKEN,
 
+      // Wordpress
+      wordpressUrl: process.env.API_URL,
+      wpGraphql: process.env.API_URL_GRAPHQL,
+      wordpressToken: process.env.WORDPRESS_TOKEN,
+      wpApiUsername: process.env.WP_API_USERNAME,
+      wpApiPassword: process.env.WP_API_PASSWORD,
+
       // Budibase
       budibaseEmbed: process.env.BUDIBASE_EMBED || '',
 
       // Google Tag Manager
       gtagId: process.env.NUXT_PUBLIC_GTAG_ID,
+
+      // Rocket Chat
+      rocketChatUrl: process.env.NUXT_ROCKET_CHAT_URL,
+      rockatChatHost: process.env.NUXT_ROCKET_CHAT_HOST,
+      rocketChatUser: process.env.NUXT_ROCKET_CHAT_USER,
+      rocketChatPass: process.env.NUXT_ROCKET_CHAT_PASS,
+      rocketChatToken: process.env.NUXT_ROCKET_CHAT_TOKEN,
 
       // Comments
       commentsUrl: process.env.NUXT_COMMENT_ID,
@@ -222,6 +237,8 @@ export default defineNuxtConfig({
         transformAssetUrls,
       },
     },
+    logLevel: 'info',
+    plugins: [graphql()]
   },
 
   nitro: {

@@ -19,7 +19,7 @@
             </button>
           </template>
         </SfInput>
-        <SfButton type="submit" class="rounded-l-none">Search</SfButton>
+        <SfButton type="submit" class="rounded-l-none searchBtn">Search</SfButton>
       </div>
       <div v-if="isOpen" ref="floatingRef" :style="style" class="left-0 right-0">
         <div v-if="isLoadingSnippets"
