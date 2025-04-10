@@ -20,15 +20,12 @@
               </template>
               <v-list class="departmentMenu">
                 <v-row>
-                  <div>
-                    <v-col cols="3" v-for="categories in department?.categories?.categories_id" :key="categories">
-                      <v-list-item>
-                        <NuxtLink :to="`/departments/${department?.id}`">
-                          {{ department.name }}
-                        </NuxtLink>
-                      </v-list-item>
-                    </v-col>
-                  </div>
+                  <v-col cols="3" v-for="categories in department?.categories" :key="categories?.categories_id?.id">
+                    <v-list-item>
+                      <NuxtLink :to="`/departments/categories/${categories?.categories_id?.id}`">
+                        {{ categories?.categories_id?.name }}</NuxtLink>
+                    </v-list-item>
+                  </v-col>
                 </v-row>
               </v-list>
             </v-menu>
