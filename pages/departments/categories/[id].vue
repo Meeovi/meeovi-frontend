@@ -30,8 +30,8 @@
                 <v-row>
                   <v-col cols="3" v-for="categories in category?.categories" :key="categories?.categories_id?.id">
                     <v-list-item>
-                      <NuxtLink :to="`/departments/categories/${categories?.categories_id?.id}`">
-                        {{ categories?.categories_id?.name }}</NuxtLink>
+                      <NuxtLink :to="`/departments/categories/${categories?.categories_id?.id}`" />
+                        {{ categories?.categories_id?.name }}
                     </v-list-item>
                   </v-col>
                 </v-row>
