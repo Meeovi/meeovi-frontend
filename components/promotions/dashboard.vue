@@ -1,7 +1,6 @@
 <template>
     <div>
-        <div class="contentPage" v-for="cmspage in result?.pages?.nodes" :key="cmspage">
-            <div v-html="cmspage.content"></div>
+        <div class="contentPage" :key="cmspage">
             <productCard />
         </div>
         <!---->
@@ -13,17 +12,12 @@
         useQuery
     } from '@vue/apollo-composable'
   import productCard from '~/components/product/productCard.vue'
-  import {deals} from '~/graphql/commerce/queries/deals'
 
     useHead({
         title: 'Promotions Dashboard',
     })
 
 const model = ref(null);
-
-const {
-  result
-} = useQuery(deals);
 
 definePageMeta({
     middleware: ['auth'],

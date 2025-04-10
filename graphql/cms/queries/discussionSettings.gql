@@ -1,6 +1,0 @@
-query discussionSettings{
-    discussionSettings{
-        defaultCommentStatus
-        defaultPingStatus
-    }
-}

@@ -8,7 +8,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   const config = useRuntimeConfig()
 
   const primaryHttpLink = createHttpLink({
-    uri: config.public.commerceGraphql,
+    uri: config.public.commerceUrl,
   })
 
   const secondaryHttpLink = createHttpLink({
@@ -16,7 +16,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   })
 
   const thirdHttpLink = createHttpLink({
-    uri: config.public.wpGraphql, // Replace with your third endpoint
+    //uri: config.public.wpGraphql, // Replace with your third endpoint
   })
 
   const primaryAuthLink = setContext((_, { headers }) => {

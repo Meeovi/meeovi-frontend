@@ -1,0 +1,57 @@
+query facet($options: FacetValueListOptions, $id: ID!){
+    facet(id: $id){
+        id
+        createdAt
+        updatedAt
+        languageCode
+        name
+        code
+        values{
+            id
+            createdAt
+            updatedAt
+            languageCode
+            facet{
+                id
+                createdAt
+                updatedAt
+                languageCode
+                name
+                code
+                valueList(options: $options){
+                    items{
+                        id
+                        createdAt
+                        updatedAt
+                        languageCode
+                        facetId
+                        name
+                        code
+                        customFields
+                    }
+                    totalItems
+                }
+                translations{
+                    id
+                    createdAt
+                    updatedAt
+                    languageCode
+                    name
+                }
+                customFields
+            }
+            facetId
+            name
+            code
+            translations{
+                id
+                createdAt
+                updatedAt
+                languageCode
+                name
+            }
+            customFields
+        }
+        customFields
+    }
+}

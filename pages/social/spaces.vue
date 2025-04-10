@@ -95,6 +95,7 @@
         data: audiospaces
     } = await useAsyncData('audiospaces', () => {
         return $directus.request($readItems('spaces', {
+            fields: ['*', { '*': ['*'] }],
             filter: {
                 type: {
                     _eq: "Audio"
@@ -107,6 +108,7 @@
         data: videospaces
     } = await useAsyncData('videospaces', () => {
         return $directus.request($readItems('spaces', {
+            fields: ['*', { '*': ['*'] }],
             filter: {
                 type: {
                     _eq: "Video"
@@ -119,6 +121,7 @@
         data: myspaces
     } = await useAsyncData('myspaces', () => {
         return $directus.request($readItems('spaces', {
+            fields: ['*', { '*': ['*'] }],
             filter: {
                 creator: {
                     _eq: `${userDisplayName.value}`

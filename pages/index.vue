@@ -51,15 +51,6 @@
     //import relatedcreators from '~/components/related/relatedcreators.vue'
     //import yardsale from '~/components/pages/homepage/yardsale.vue'
     import blogcallout from '~/components/pages/homepage/blogcallout.vue'
-    import { useQuery } from '@vue/apollo-composable'
-    import { computed } from 'vue'
-    import homeSlider from '~/graphql/commerce/queries/blocks/homepage-slider'
-
-    const { result, loading, error } = useQuery(homeSlider)
-
-    const pageContent = computed(() => {
-    return result.cmsBlocks?.items?.content ?? null
-    })
 
     useHead({
         title: 'Meeovi',

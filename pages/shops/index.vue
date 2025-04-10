@@ -18,6 +18,7 @@
                     <store :store="stores" />
                   </div>
                 </div>
+              </div>
             </section>
           </v-tabs-window-item>
 
@@ -29,6 +30,7 @@
                     <store :store="stores" />
                   </div>
                 </div>
+              </div>
             </section>
           </v-tabs-window-item>
 
@@ -40,6 +42,7 @@
                     <store :store="stores" />
                   </div>
                 </div>
+              </div>
             </section>
           </v-tabs-window-item>
         </v-tabs-window>

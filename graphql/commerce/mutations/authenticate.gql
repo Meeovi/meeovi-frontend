@@ -1,0 +1,24 @@
+mutation authenticate($input: AuthenticationInput!, $rememberMe: Boolean){
+    authenticate(input: $input, rememberMe: $rememberMe){
+        __typename
+        ... on CurrentUser {
+            id
+            identifier
+            channels{
+                id
+                token
+                code
+                permissions
+            }
+        }
+        ... on InvalidCredentialsError {
+            errorCode
+            message
+            authenticationError
+        }
+        ... on NotVerifiedError {
+            errorCode
+            message
+        }
+    }
+}

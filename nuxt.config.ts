@@ -179,17 +179,12 @@ export default defineNuxtConfig({
         },
       },
 
-      // Magento 
-      commerceUrl: process.env.MAGE_STORE_URL,
-      commerceGraphql: process.env.MAGE_MAGENTO_GRAPHQL_URL,
-      commerceApiToken: process.env.WEBSITE_TOKEN,
+      // Shopware
+      shopwareApi: process.env.SHOPWARE_API,
 
-      // Wordpress
-      wordpressUrl: process.env.API_URL,
-      wpGraphql: process.env.API_URL_GRAPHQL,
-      wordpressToken: process.env.WORDPRESS_TOKEN,
-      wpApiUsername: process.env.WP_API_USERNAME,
-      wpApiPassword: process.env.WP_API_PASSWORD,
+      // Vendure
+      commerceUrl: process.env.VENDURE_URL,
+      commerceApiToken: process.env.VENDURE_API_TOKEN,
 
       // Budibase
       budibaseEmbed: process.env.BUDIBASE_EMBED || '',
@@ -212,6 +207,11 @@ export default defineNuxtConfig({
     },
     StripeSecretKey: process.env.STRIPE_SECRET_KEY,
     StripeWebhookSecret: process.env.STRIPE_WEBHOOK_SECRET,
+
+    // Mailchimp
+    mailchimpApiKey: process.env.MAILCHIMP_API_KEY,
+    mailchimpServerPrefix: process.env.MAILCHIMP_SERVER_PREFIX,
+    mailchimpAudienceId: process.env.MAILCHIMP_AUDIENCE_ID,
   },
 
   build: {

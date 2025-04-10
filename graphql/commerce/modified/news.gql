@@ -1,0 +1,12 @@
+query collections{
+    collections(options: {filter: {name: {eq: "News"}}}){
+        items{
+            id
+            name
+            children {
+              name
+              slug
+            }
+           }
+    }
+}

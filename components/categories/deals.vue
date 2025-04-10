@@ -13,7 +13,7 @@
                         <v-tabs-window v-model="tab">
                             <v-tabs-window-item :value="dealbar?.menus[0]?.value">
                                 <v-row>
-                                    <v-col cols="3" v-for="products in result?.products?.items" :key="products">
+                                    <v-col cols="3" v-for="products in products" :key="products">
                                         <productCard :product="products" />
                                     </v-col>
                                 </v-row>
@@ -21,7 +21,7 @@
 
                             <v-tabs-window-item :value="dealbar?.menus[1]?.value">
                                 <v-row>
-                                    <v-col cols="3" v-for="products in dollar?.products?.items" :key="products">
+                                    <v-col cols="3" v-for="products in dollarland" :key="products">
                                         <productCard :product="products" />
                                     </v-col>
                                 </v-row>
@@ -42,8 +42,8 @@
     useQuery
     } from '@vue/apollo-composable'
     import productCard from '~/components/product/productCard.vue'
-    import { deals } from '~/graphql/commerce/queries/deals'
-    import dollarland from '~/graphql/commerce/queries/dollarland'
+    //import { deals } from '~/graphql/commerce/modified/productDeals.gql?raw'
+    //import dollarland from '~/graphql/commerce/queries/productDeals.gql?raw'
 
     const {
         $directus,
@@ -51,12 +51,30 @@
     } = useNuxtApp()
 
     const {
-    result
-    } = useQuery(deals)
+        data: products
+    } = await useAsyncData('products', () => {
+        return $directus.request($readItems('products', {
+            fields: ['*', { '*': ['*'] }],
+            filter: {
+                price: {
+                    _between: [0, 20]
+                }
+            }
+        }))
+    })
 
     const {
-    result: dollar
-    } = useQuery(dollarland)
+        data: dollarland
+    } = await useAsyncData('products', () => {
+        return $directus.request($readItems('products', {
+            fields: ['*', { '*': ['*'] }],
+            filter: {
+                price: {
+                    _between: [0, 2]
+                }
+            }
+        }))
+    })
 
     const {
         data: dealbar

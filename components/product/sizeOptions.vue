@@ -5,7 +5,7 @@
         </v-col>
 
         <v-col cols="12">
-            <v-select v-model="selectedSize" :items="sizes?.custom_attributesV2?.items[0]?.code" label="Select Size" :item-value="sizes?.custom_attributesV2?.items[0]?.code" :item-title="sizes?.custom_attributesV2?.items[0]?.value" single-line variant="solo"></v-select>
+            <v-select v-model="selectedSize" :items="sizes?.name" label="Select Size" :item-value="sizes?.name" :item-title="sizes?.name" single-line variant="solo"></v-select>
         </v-col>
     </v-row>
 </template>

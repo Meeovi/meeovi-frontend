@@ -82,7 +82,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useMutation } from '@vue/apollo-composable';
-import { UPDATE_CUSTOMER } from '~/graphql/commerce/mutations/customer/updateCustomer';
+import { UPDATE_CUSTOMER } from '~/graphql/commerce/mutations/updateCustomer.gql?raw';
 
 const firstname = ref('');
 const middlename = ref('');

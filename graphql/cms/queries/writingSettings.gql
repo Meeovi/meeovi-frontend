@@ -1,7 +1,0 @@
-query writingSettings{
-    writingSettings{
-        defaultCategory
-        defaultPostFormat
-        useSmilies
-    }
-}

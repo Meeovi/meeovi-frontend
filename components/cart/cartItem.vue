@@ -1,100 +1,120 @@
 <template>
-    <div class="flex border-b-[1px] border-neutral-200 hover:shadow-lg min-w-[320px] max-w-[640px] p-4">
-        <div class="relative overflow-hidden rounded-md w-[100px] sm:w-[176px]">
-            <SfLink href="#">
-                <NuxtImg class="w-full h-auto border rounded-md border-neutral-200" :src="product?.image?.url"
-                    :alt="product?.name" width="176" height="176" />
-            </SfLink>
-            <div
-                class="absolute top-0 left-0 text-white bg-secondary-600 py-1 pl-1.5 pr-2 typography-text-xs font-medium">
-                <SfIconSell size="xs" class="mr-1" />
-                {{ product?.sale }}
-            </div>
-        </div>
-        <div class="flex flex-col pl-4 min-w-[180px] flex-1">
-            <SfLink href="#" variant="secondary" class="no-underline typography-text-sm sm:typography-text-lg">
-                {{ product?.name }}
-            </SfLink>
-            <div class="my-2 sm:mb-0">
-                <ul class="font-normal leading-5 typography-text-xs sm:typography-text-sm text-neutral-700">
-                    <li>
-                        <span class="mr-1">Size:</span>
-                        <span class="font-medium">{{ product?.size }}</span>
-                    </li>
-                    <li>
-                        <span class="mr-1">Color:</span>
-                        <span class="font-medium">{{ product?.color }}</span>
-                    </li>
-                </ul>
-            </div>
-            <div class="items-center sm:mt-auto sm:flex">
-                <span
-                    class="font-bold sm:ml-auto sm:order-1 typography-text-sm sm:typography-text-lg">{{ product?.price?.regularPrice?.amount?.currency }}
-                    {{ product?.price?.regularPrice?.amount?.value }}
-                </span>
-                <div class="flex items-center justify-between mt-4 sm:mt-0">
-                    <div class="flex border border-neutral-300 rounded-md">
-                        <SfButton variant="tertiary" :disabled="count <= min" square class="rounded-r-none"
-                            :aria-controls="inputId" aria-label="Decrease value" @click="dec()">
-                            <SfIconRemove />
-                        </SfButton>
-                        <input :id="inputId" v-model="quantity" type="number"
-                            class="appearance-none mx-2 w-8 text-center bg-transparent font-medium [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-inner-spin-button]:display-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-outer-spin-button]:display-none [&::-webkit-outer-spin-button]:m-0 [-moz-appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none disabled:placeholder-disabled-900 focus-visible:outline focus-visible:outline-offset focus-visible:rounded-sm"
-                            :min="min" :max="max" @input="handleOnChange" />
-                        <SfButton variant="tertiary" :disabled="count >= max" square class="rounded-l-none"
-                            :aria-controls="inputId" aria-label="Increase value" @click="inc()">
-                            <SfIconAdd />
-                        </SfButton>
+    <section class="shop2 marketm4_shop2 cid-uHg6RhKlpj" id="shop2-av">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-xl-6 col-lg-7 col-md-12 content__block">
+                    <h2 class="mbr-section-title mbr-bold mbr-fonts-style display-5">
+                        Shopping Cart
+                    </h2>
+                    <div class="block__products">
+                        <div class="d-sm-flex align-items-center product__item">
+                            <div class="image__item flex-shrink-0">
+                                <NuxtImg :src="product?.productVariant?.featuredAsset?.preview"
+                                    :alt="product?.productVariant?.name" title="" />
+                            </div>
+                            <div class="item__text">
+                                <div class="d-flex justify-content-between align-items-baseline item__title">
+                                    <p class="name__item mbr-medium mbr-fonts-style display-4">
+                                        {{ product?.productVariant?.name }}
+                                    </p>
+                                    <p class="item__price mbr-fonts-style display-4">
+                                        €{{ (product.unitPriceWithTax / 100).toFixed(2) }}
+                                    </p>
+                                </div>
+                                <div class="item__buttons">
+                                    <div class="mbr-section-btn">
+                                        <div class="flex border border-neutral-300 rounded-md">
+                                            <SfButton variant="tertiary" :disabled="count <= min" square
+                                                class="rounded-r-none p-3" :aria-controls="inputId"
+                                                aria-label="Decrease value" @click="dec">
+                                                <SfIconRemove />
+                                            </SfButton>
+                                            <input :id="inputId" v-model="count" type="number"
+                                                class="grow appearance-none mx-2 w-8 text-center bg-transparent font-medium"
+                                                :min="min" :max="max" @input="handleOnChange" />
+                                            <SfButton variant="tertiary" :disabled="count >= max" square
+                                                class="rounded-l-none p-3" :aria-controls="inputId"
+                                                aria-label="Increase value" @click="inc">
+                                                <SfIconAdd />
+                                            </SfButton>
+                                        </div>
+                                        <p class="self-center mt-1 mb-4 text-xs text-neutral-500 xs:mb-0">
+                                            <strong class="text-neutral-900">{{ max }}</strong> in stock
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <button aria-label="Remove" type="button"
-                        class="text-neutral-500 typography-text-xs font-light ml-auto flex items-center px-3 py-1.5"
-                        @click="removeItem" :disabled="loading">
-                        <SfIconDelete />
-                        <span class="hidden ml-1.5 sm:block"> Remove </span>
-                    </button>
-
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
-import { SfLink, SfButton, SfIconSell, SfIconAdd, SfIconRemove, SfIconDelete, useId } from '@storefront-ui/vue';
-import { clamp } from '@storefront-ui/shared';
-import { useCounter } from '@vueuse/core';
-import { useMutation } from '@vue/apollo-composable';
-import { REMOVE_ITEM } from '~/graphql/commerce/mutations/cart/cart.js';
+    import {
+        ref
+    } from 'vue';
+    import {
+        SfButton,
+        SfIconAdd,
+        SfIconRemove,
+        useId
+    } from '@storefront-ui/vue';
+    import {
+        clamp
+    } from '@storefront-ui/shared';
+    import {
+        useCounter
+    } from '@vueuse/core';
+    import {
+        useMutation
+    } from '@vue/apollo-composable';
+    import {
+        removeAllOrderLines
+    } from '~/graphql/commerce/mutations/removeAllOrderLines.gql';
 
-const props = defineProps({
-    product: {
-        type: Object,
-        required: true,
-    },
-});
+    const props = defineProps({
+        product: {
+            type: Object,
+            required: true, // expects one `line` from activeOrder.lines
+        },
+    });
 
-const min = ref(1);
-const max = ref(10);
-const inputId = useId();
-const { count, inc, dec, set } = useCounter(1, { min: min.value, max: max.value });
+    const min = ref(1);
+    const max = ref(10); // Ideally pulled from inventory if exposed
+    const inputId = useId();
+    const {
+        count,
+        inc,
+        dec,
+        set
+    } = useCounter(props.product.quantity, {
+        min: min.value,
+        max: max.value,
+    });
 
-const { mutate: removeItemFromCart, loading } = useMutation(REMOVE_ITEM);
+    const {
+        mutate: removeItemFromCart,
+        loading
+    } = useMutation(removeAllOrderLines);
 
-function handleOnChange(event: Event) {
-    const currentValue = (event.target as HTMLInputElement)?.value;
-    const nextValue = parseFloat(currentValue);
-    set(clamp(nextValue, min.value, max.value));
-}
-
-async function removeItem() {
-    try {
-        const response = await removeItemFromCart({ input: { cart_item_id: props.product.uid } });
-        console.log('Item removed:', response);
-        // Optionally emit an event to update the cart UI
-        // emit('itemRemoved', props.product.uid);
-    } catch (error) {
-        console.error('Error removing item:', error);
+    function handleOnChange(event: Event) {
+        const currentValue = (event.target as HTMLInputElement)?.value;
+        const nextValue = parseFloat(currentValue);
+        set(clamp(nextValue, min.value, max.value));
     }
-}
+
+    async function removeItem() {
+        try {
+            const response = await removeItemFromCart({
+                id: props.product.id, // This is the orderLine ID
+            });
+            console.log('Item removed:', response);
+            // Emit event to update cart externally if needed
+        } catch (error) {
+            console.error('Error removing item:', error);
+        }
+    }
 </script>

@@ -8,7 +8,7 @@
             <v-container>
                 <v-row>
                     <v-col cols="auto">
-                        <v-btn density="compact" :style="`background-color: ${colors?.custom_attributesV2?.items[0]?.value}`" :title="colors?.custom_attributesV2?.items[0]?.code"
+                        <v-btn density="compact" :style="`background-color: ${colors?.name}`" :title="colors?.name"
                             @click="selectColor(colors)">
                         </v-btn>
                     </v-col>

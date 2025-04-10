@@ -1,0 +1,20 @@
+mutation updateCustomerEmailAddress($token: String!){
+    updateCustomerEmailAddress(token: $token){
+        __typename
+        ... on Success {
+            success
+        }
+        ... on IdentifierChangeTokenInvalidError {
+            errorCode
+            message
+        }
+        ... on IdentifierChangeTokenExpiredError {
+            errorCode
+            message
+        }
+        ... on NativeAuthStrategyError {
+            errorCode
+            message
+        }
+    }
+}

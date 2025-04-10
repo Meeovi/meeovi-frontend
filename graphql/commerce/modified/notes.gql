@@ -1,0 +1,12 @@
+query collections{
+    collections(options: {filter: {name: {eq: "Notes"}}}){
+        items{
+            id
+            name
+            children {
+              name
+              slug
+            }
+           }
+    }
+}

@@ -8,59 +8,46 @@
         <div class="underline align-left pb-3">
           <div class="line"></div>
         </div>
-    <v-sheet class="mx-auto">
-      <v-slide-group v-model="model" class="pa-4" selected-class="bg-success" show-arrows>
-        <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }"
-          v-for="(products, index) in result?.products?.items" :key="index">
-          <productCard :product="products" :class="['ma-4', selectedClass]" @click="toggle" />
+        <v-sheet class="mx-auto">
+          <v-slide-group v-model="model" class="pa-4" selected-class="bg-success" show-arrows>
+            <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }"
+              v-for="(products, index) in deals" :key="index">
+              <productCard :product="products" :class="['ma-4', selectedClass]" @click="toggle" />
 
-          <div class="d-flex fill-height align-center justify-center">
-            <v-scale-transition>
-              <v-icon v-if="isSelected" color="white" icon="mdi-close-circle-outline" size="48"></v-icon>
-            </v-scale-transition>
-          </div>
-        </v-slide-group-item>
-      </v-slide-group>
-    </v-sheet>
-    </div>
+              <div class="d-flex fill-height align-center justify-center">
+                <v-scale-transition>
+                  <v-icon v-if="isSelected" color="white" icon="mdi-close-circle-outline" size="48"></v-icon>
+                </v-scale-transition>
+              </div>
+            </v-slide-group-item>
+          </v-slide-group>
+        </v-sheet>
+      </div>
     </section>
   </div>
 </template>
 
 <script setup>
   import productCard from '~/components/product/productCard.vue'
-  import {
-    ref
-  } from 'vue'
-  import {
-    useQuery
-  } from '@vue/apollo-composable'
-  import {
-    deals
-  } from '~/graphql/commerce/queries/deals'
 
-  const model = ref(null);
   const {
-    result
-  } = useQuery(deals)
+    $directus,
+    $readItems
+  } = useNuxtApp()
 
-  /*  import {
-         getDeals
-     } from '@/composables/commerce/products/deals.js';
-
-     // Pass the specific products name you want to fetch
-     const products = ref([]); 
-
-     onMounted(async () => {
-         products.value = await getDeals();
-     });
-
-  import productCard from '~/components/product/productCard.vue'
-   //import { deals } from '~/graphql/commerce/queries/deals'
-
-
-
-   const {
-     data
-   } = useAsyncQuery(deals); */
+  const {
+    data: deals
+  } = await useAsyncData('deals', () => {
+    return $directus.request($readItems('products', {
+      fields: ['*', {
+        '*': ['*']
+      }],
+      limit: 10,
+      filter: {
+        price: {
+          _lte: "20.00"
+        }
+      }
+    }))
+  })
 </script>

@@ -11,8 +11,8 @@
         <v-sheet class="mx-auto">
           <v-slide-group v-model="model" class="pa-4" show-arrows>
             <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }"
-              v-for="(products, index) in result?.products?.items" :key="index">
-              <productCard :product="products" :class="['ma-4', selectedClass]" @click="toggle" />
+              v-for="(products, index) in latest" :key="index">
+              <productCard v-for="(products, index) in products?.items" :key="index" :product="products" :class="['ma-4', selectedClass]" @click="toggle" />
 
               <div class="d-flex fill-height align-center justify-center">
                 <v-scale-transition>
@@ -30,16 +30,32 @@
 <script setup>
   import productCard from '~/components/product/productCard.vue'
   import {
-    ref
-  } from 'vue'
-  import {
     useQuery
   } from '@vue/apollo-composable'
-  import latestproducts from '~/graphql/commerce/queries/latestproducts'
+  import gql from 'graphql-tag'
+  import products from '~/graphql/commerce/modified/latestProducts.gql?raw'
+
+  const LATEST_PRODUCTS = gql`${products}`
+
+  // Add error handling and timeout configuration
+  const {
+    result: latest
+  } = useQuery(
+    LATEST_PRODUCTS,
+    {
+      // Add configuration options
+      fetchPolicy: 'cache-and-network',
+      errorPolicy: 'all',
+      // Add timeout
+      context: {
+        fetchOptions: {
+          timeout: 30000, // 30 second timeout
+        },
+      },
+      // Add retry logic
+      retryCount: 2,
+    }
+  )
 
   const model = ref(null);
-
-  const {
-    result
-  } = useQuery(latestproducts)
 </script>

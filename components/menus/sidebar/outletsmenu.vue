@@ -1,14 +1,12 @@
 <template>
   <div>
     <v-expansion-panels variant="accordion">
-      <v-expansion-panel :title="blocksOutlet?.content?.[0]?.name" expand-icon="fas fa-plus" collapse-icon="fas fa-minus" elevation="0">
+      <v-expansion-panel title="Outlets" expand-icon="fas fa-plus" collapse-icon="fas fa-minus" elevation="0">
         <v-expansion-panel-text>
-          <div v-for="child in result?.categories?.items" :key="child.uid">
-            <v-list v-for="child in child?.children" :key="child.uid" class="ml-4">
-              <v-list-item :title="child.name" :value="child.name" :href="`${blocksOutlet?.content?.[0]?.url}${child?.uid}`">
-              </v-list-item>
-            </v-list>
-          </div>
+          <v-list v-for="child in outlets" :key="child.id" class="ml-4">
+            <v-list-item :title="child.name" :value="child.name" :href="`/outlets/${child.id}`">
+            </v-list-item>
+          </v-list>
         </v-expansion-panel-text>
       </v-expansion-panel>
     </v-expansion-panels>
@@ -18,27 +16,26 @@
 <script setup>
   import {
     ref,
-    onMounted
   } from 'vue';
-  import {
-    useQuery
-  } from '@vue/apollo-composable'
-  import outlets from '~/graphql/commerce/queries/outlets.js'
+  const {
+    $directus,
+    $readItems
+  } = useNuxtApp()
+
+  const tab = ref(null);
 
   const {
-    result
-  } = useQuery(outlets)
-
-  const {
-        $directus,
-        $readItem
-    } = useNuxtApp()
-
-    const {
-        data: blocksOutlet
-    } = await useAsyncData('blocksOutlet', () => {
-        return $directus.request($readItem('page_blocks', '6', {
-            fields: ['*', 'media.*.*'],
-        }))
-    })
+    data: outlets
+  } = await useAsyncData('outlets', () => {
+    return $directus.request($readItems('outlets', {
+      filter: {
+        status: {
+          _eq: 'active'
+        }
+      },
+      fields: ['*', {
+        '*': ['*']
+      }]
+    }))
+  })
 </script>

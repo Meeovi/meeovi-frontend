@@ -1,0 +1,21 @@
+mutation requestUpdateCustomerEmailAddress($password: String!, $newEmailAddress: String!){
+    requestUpdateCustomerEmailAddress(password: $password, newEmailAddress: $newEmailAddress){
+        __typename
+        ... on Success {
+            success
+        }
+        ... on InvalidCredentialsError {
+            errorCode
+            message
+            authenticationError
+        }
+        ... on EmailAddressConflictError {
+            errorCode
+            message
+        }
+        ... on NativeAuthStrategyError {
+            errorCode
+            message
+        }
+    }
+}

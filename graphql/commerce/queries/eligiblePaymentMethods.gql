@@ -1,0 +1,11 @@
+query eligiblePaymentMethods{
+    eligiblePaymentMethods{
+        id
+        code
+        name
+        description
+        isEligible
+        eligibilityMessage
+        customFields
+    }
+}

@@ -11,7 +11,7 @@
         <v-sheet class="mx-auto">
           <v-slide-group v-model="model" class="pa-4" show-arrows>
             <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }"
-              v-for="(products, index) in result?.products?.items" :key="index">
+              v-for="(products, index) in featured" :key="index">
               <productCard :product="products" :class="['ma-4', selectedClass]" @click="toggle" />
 
               <div class="d-flex fill-height align-center justify-center">
@@ -29,32 +29,29 @@
 
 <script setup>
   import productCard from '~/components/product/productCard.vue'
-  import { ref } from 'vue'
-  import {
-    useQuery
-    } from '@vue/apollo-composable'
-  import featuredproducts from '~/graphql/commerce/queries/featuredproducts'
 
   const {
-    result
-    } = useQuery(featuredproducts)
-  const model = ref(null);
-/*  import {
-        getFeaturedProducts
-    } from '@/composables/commerce/products/getFeaturedProducts.js';
-
-    // Pass the specific products name you want to fetch
-    const products = ref([]); 
-
-    onMounted(async () => {
-        products.value = await getFeaturedProducts();
-    });
-  import productCard from '~/components/product/productCard.vue'
-  //import featuredproducts from '~/graphql/commerce/queries/featuredproducts'
-
-  
+    $directus,
+    $readItems
+  } = useNuxtApp()
 
   const {
-    data
-  } = useAsyncQuery(featuredproducts);*/
+    data: featured
+  } = await useAsyncData('featured', () => {
+    return $directus.request($readItems('products', {
+      fields: ['*', {
+        '*': ['*']
+      }],
+      limit: 10,
+      filter: {
+        collections: {
+          collections_id: {
+            name: {
+              _eq: "Featured"
+            }
+          }
+        }
+      }
+    }))
+  })
 </script>

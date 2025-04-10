@@ -1,0 +1,12 @@
+mutation refreshCustomerVerification($emailAddress: String!){
+    refreshCustomerVerification(emailAddress: $emailAddress){
+        __typename
+        ... on Success {
+            success
+        }
+        ... on NativeAuthStrategyError {
+            errorCode
+            message
+        }
+    }
+}

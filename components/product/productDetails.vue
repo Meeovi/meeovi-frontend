@@ -6,22 +6,22 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 col-md-6">
-                    <div v-if="productDetails?.items?.__typename === 'VirtualProduct'">
-                        <videoProduct :category="productDetails?.items?.format" />
+                    <div v-if="productDetails?.variants?.facetValues?.name === 'Video'">
+                        <videoProduct :category="productDetails?.id" />
                     </div>
-                    <div v-else-if="productDetails?.items?.__typename === 'DownloadableProduct'">
-                        <videoProduct :category="productDetails?.items?.format" />
+                    <div v-else-if="productDetails?.variants?.facet?.faceValues?.name === 'Digital Product'">
+                        <videoProduct :category="productDetails?.id" />
                     </div>
                     <div v-else>
                         <v-carousel>
-                            <v-carousel-item :src="productDetails?.items?.image" cover></v-carousel-item>
+                            <v-carousel-item :src="productDetails?.featuredAsset?.preview" cover></v-carousel-item>
                         </v-carousel>
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
                     <div class="right">
                         <div class="row align-items-stretch justify-content-center">
-                            <div class="col col-6" v-if="productDetails?.stock_status === 'IN_STOCK'">
+                            <div class="col col-6" v-if="productDetails?.variants?.stockLevel">
                                 <p class="mbr-fonts-style display-4">Available</p>
                             </div>
 
@@ -33,29 +33,29 @@
 
                         <div class="price-line">
                             <p class="desc2 mbr-fonts-style display-5" v-if="productDetails?.special_price">
-                                <strong class="block font-bold typography-headline-3">{{ productDetails?.price_range?.minimum_price?.regular_price?.currency }}
+                                <strong class="block font-bold typography-headline-3">{{ productDetails?.variants?.currencyCode }}
                                     {{ productDetails?.special_price }}</strong>
                             </p>
 
                             <p class="plus1 mbr-fonts-style display-5">
-                                {{ productDetails?.price_range?.minimum_price?.regular_price?.currency }} {{ productDetails?.price_range?.minimum_price?.regular_price?.value }}
+                                {{ productDetails?.variants?.currencyCode }} {{ productDetails?.variants?.price }}
                             </p>
                         </div>
                         
-                        <p class="productRatings">
+                        <!--<p class="productRatings">
                             <ratings :rating="productDetails?.rating_summary" />
                             <SfLink href="#" variant="secondary" class="ratingReviews ml-2 text-xs text-neutral-500">
                                 {{productDetails?.review_count}} reviews </SfLink>
                             <br />
-                        </p>
+                        </p>-->
 
                         <div class="row align-items-stretch justify-content-center">
-                            <div class="col col-6" v-if="productDetails?.custom_attributesV2?.items?.code === 'Color'">
-                                <colorOptions :colors="productDetails?.custom_attributesV2?.items?.value" />
+                            <div class="col col-6" v-if="productDetails?.variants?.facetValues?.name === 'Color'">
+                                <colorOptions :colors="productDetails?.id" />
                             </div>
 
-                            <div class="col col-6" v-if="productDetails?.custom_attributesV2?.items?.code === 'Size'">
-                                <sizeOptions :sizes="productDetails?.custom_attributesV2?.items?.value" />
+                            <div class="col col-6" v-if="productDetails?.variants?.facetValues?.name === 'Size'">
+                                <sizeOptions :sizes="productDetails?.id" />
                             </div>
                         </div>
 
@@ -78,29 +78,29 @@
                                         </SfButton>
                                     </div>
                                     <p class="self-center mt-1 mb-4 text-xs text-neutral-500 xs:mb-0">
-                                        <strong class="text-neutral-900">{{ productDetails?.only_x_left_in_stock }}</strong>
+                                        <strong class="text-neutral-900">{{ productDetails?.variants?.stockLevel }}</strong>
                                         in stock
                                     </p>
                                 </div>
 
                                 <div class="col col-6">
-                                    <addToCartBtn :productVariantId="productDetails.sku" />
+                                    <addToCartBtn :productVariantId="productDetails.id" />
                                 </div>
                             </div>
                         </div>
 
                         <div class="mbr-section-btn row align-items-stretch justify-content-center">
                             <div class="col col-6">
-                                <createListBtn :lists="productDetails?.sku" />
+                                <createListBtn :lists="productDetails?.id" />
                             </div>
 
-                            <div class="col col-6">
+                            <!--<div class="col col-6">
                                 <compareProductBtn :product="productDetails?.compare" />
-                            </div>
+                            </div>-->
                         </div>
                         <div class="price-line1">
                             <p class="desc mbr-fonts-style display-7"><strong>
-                                    Tags:</strong>&nbsp;</p>
+                                    Tags: {{ productDetails?.variants?.facetetValues?.name.join(',') }}</strong>&nbsp;</p>
                             <p class="plus mbr-fonts-style display-4"></p>
                         </div>
                     </div>

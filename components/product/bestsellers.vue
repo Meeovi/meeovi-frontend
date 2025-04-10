@@ -11,7 +11,7 @@
         <v-sheet class="mx-auto">
           <v-slide-group v-model="model" class="pa-4" show-arrows>
             <v-slide-group-item v-slot="{ isSelected, toggle, selectedClass }"
-              v-for="(products, index) in bestsellers?.products?.items" :key="index">
+              v-for="(products, index) in bestsellers" :key="index">
               <productCard :product="products" :class="['ma-4', selectedClass]" @click="toggle" />
 
               <div class="d-flex fill-height align-center justify-center">
@@ -29,26 +29,29 @@
 
 <script setup>
   import productCard from '~/components/product/productCard.vue'
-  import { ref } from 'vue'
-/*  import {
-    useQuery
-    } from '@vue/apollo-composable'
-  import bestsellers from '~/graphql/commerce/queries/bestsellers'
 
   const {
-    result
-    } = useQuery(bestsellers)
-     */
+    $directus,
+    $readItems
+  } = useNuxtApp()
 
-const model = ref(null);
-async function fetchBestsellers() {
-  const response = await fetch('/api/commerce/catalog/products/bestsellers/bestsellers')
-  if (!response.ok) {
-    throw new Error('Failed to fetch bestsellers')
-  }
-  return response.json()
-}
-
-// Use this function in your component
-const bestsellers = await fetchBestsellers()
+  const {
+    data: bestsellers
+  } = await useAsyncData('bestsellers', () => {
+    return $directus.request($readItems('products', {
+      fields: ['*', {
+        '*': ['*']
+      }],
+      limit: 10,
+      filter: {
+        collections: {
+          collections_id: {
+            name: {
+              _eq: "Best Sellers"
+            }
+          }
+        }
+      }
+    }))
+  })
 </script>

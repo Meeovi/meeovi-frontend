@@ -1,8 +1,0 @@
-query readingSettings{
-    readingSettings{
-        pageForPosts
-        pageOnFront
-        postsPerPage
-        showOnFront
-    }
-}

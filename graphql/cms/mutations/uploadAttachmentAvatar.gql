@@ -1,9 +1,0 @@
-mutation uploadAttachmentAvatar($input: UploadAttachmentAvatarInput!){
-    uploadAttachmentAvatar(input: $input){
-        attachment{
-            full
-            thumb
-        }
-        clientMutationId
-    }
-}

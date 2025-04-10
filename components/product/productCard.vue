@@ -5,7 +5,7 @@
         <a :href="`/product/${product?.sku}`" class="display-4">
           <div class="card-wrapper ">
             <div class="card-img">
-              <NuxtImg :src="`${product?.image?.url}`" :alt="product?.name" class="prodImage" />
+              <NuxtImg :src="`${product?.featuredAsset?.preview}`" :alt="product?.name" class="prodImage" />
             </div>
             <div class="card-box">
               <p class="mbr-text mbr-fonts-style align-center mbr-white display-5">
@@ -13,8 +13,8 @@
               </p>
               <div class="prices align-center">
                 <span
-                  class="newPrice mbr-fonts-style mbr-bold display-5">{{ product?.price_range?.minimum_price?.regular_price?.currency }}
-                  {{ product?.price_range?.minimum_price?.regular_price?.value }}</span>
+                  class="newPrice mbr-fonts-style mbr-bold display-5">{{ product?.variants?.currencyCode }}
+                  {{ product?.variants?.price }}</span>
               </div>
             </div>
           </div>

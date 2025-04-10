@@ -1,0 +1,12 @@
+query collections{
+    collections(options: {filter: {name: {eq: "Outlets"}, id: {eq: "41"}}}){
+        items{
+            id
+            name
+            children {
+              name
+              slug
+            }
+           }
+    }
+}

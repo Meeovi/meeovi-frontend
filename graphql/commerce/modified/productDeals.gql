@@ -1,0 +1,30 @@
+query GetCollectionProducts($slug: String!) {
+  search(
+    input: {
+      collectionSlug: $slug,
+      groupByProduct: true,
+      inStock: true,
+      sort: {price: DESC},
+      take: 10 }
+  ) {
+    totalItems
+    items {
+      productName
+      slug
+      productAsset {
+        id
+        preview
+      }
+      priceWithTax {
+        ... on SinglePrice {
+          value
+        }
+        ... on PriceRange {
+          min
+          max
+        }
+      }
+      currencyCode
+    }
+  }
+}
