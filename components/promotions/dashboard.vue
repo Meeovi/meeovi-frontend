@@ -20,6 +20,6 @@
 const model = ref(null);
 
 definePageMeta({
-    middleware: ['auth'],
+    middleware: ['authenticated'],
   })
 </script>

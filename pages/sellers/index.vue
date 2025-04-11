@@ -17,6 +17,6 @@ const url = config.public.budibaseEmbed;
 
 definePageMeta({
     layout: "nolive",
-    middleware: ['auth'],
+    middleware: ['authenticated'],
   })
 </script>

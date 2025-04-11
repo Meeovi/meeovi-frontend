@@ -1,6 +1,6 @@
 <template>
     <div class="contentPage">
-        <v-toolbar :style="`background-color: ${result?.chart?.color}`" :title="result?.chart?.name"></v-toolbar>
+        <v-toolbar :style="`background-color: ${chart?.color}`" :title="chart?.name"></v-toolbar>
         <v-table class="charttable">
             <thead>
                 <tr>
@@ -24,38 +24,38 @@
                     <th class="text-left">
                         Buy
                     </th>
-                    <th class="text-left">Share</th>
+                    <th class="text-left"><share /></th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(products, index) in result?.chart?.products?.items" :key="index">
+                <tr v-for="(products, index) in chart?.products?.products_id" :key="index">
                     <td class="chartnumber">
-                        <h1>{{ result?.chart?.thisWeek }}</h1>
+                        <h1>{{ chart?.thisWeek }}</h1>
                     </td>
                     <td>
-                        <v-avatar :image="products?.image?.sourceUrl" rounded="0" size="130"></v-avatar>
+                        <v-avatar :image="products?.image?.filename_disk" rounded="0" size="130"></v-avatar>
                     </td>
                     <td>
                         <v-list>
                             <v-list-item>
                                 <v-list-item-title>{{ products?.name }}</v-list-item-title>
-                                <div v-for="product in products?.productTypes?.items" :key="product">
+                                <div v-for="product in products?.product_types?.product_types_id" :key="product">
                                   <v-list-item-subtitle>{{ product?.name }}</v-list-item-subtitle>  
                                 </div>
                             </v-list-item>
                         </v-list>
                     </td>
                     <td>
-                        <v-avatar icon="fas fa-star" :style="`color: ${result?.chart?.award}`"></v-avatar>
+                        <v-avatar icon="fas fa-star" :style="`color: ${chart?.award}`"></v-avatar>
                     </td>
                     <td>
-                        <h5>{{ result?.chart?.lastWeek }}</h5>
+                        <h5>{{ chart?.last_week }}</h5>
                     </td>
                     <td>
-                        <h5>{{ result?.chart?.peakPosition }}</h5>
+                        <h5>{{ chart?.peak_position }}</h5>
                     </td>
                     <td>
-                        <h5>{{ result?.chart?.weeksOnChart }}</h5>
+                        <h5>{{ chart?.weeks_on_chart }}</h5>
                     </td>
                     <td>
                         <v-btn href="" icon="fas fa-shopping-cart"></v-btn>
@@ -70,21 +70,13 @@
 </template>
 
 <script setup>
-  import {
-    useQuery
-  } from '@vue/apollo-composable'
+    import share from '~/components/partials/globals/share.vue'
     import relatedchart from '~/components/charts/relatedcharts.vue'
     import relatedproducts from '~/components/product/relatedproducts.vue'
     import recentlyviewed from '~/components/product/recentlyviewed.vue'
-    import products from '~/graphql/commerce/queries/products'
 
-    const {
-        result
-    } = useQuery(products, {
-        id: route.params.id // Pass variables inside the 'variables' object
-    });
 
-  useHead({
-    title: result?.chart?.name,
-  })
+useHead({
+    title: computed(() => chart?.value?.name || 'Chart Page')
+  });
 </script>

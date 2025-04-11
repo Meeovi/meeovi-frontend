@@ -8,22 +8,22 @@
             <v-col cols="12">
                 <v-card>
                     <v-tabs v-model="tab" bg-color="orange">
-                        <v-tab value="one">Create A Product</v-tab>
-                        <v-tab value="two">Create A List</v-tab>
-                        <v-tab value="three">Bookmark A Video</v-tab>
+                        <v-tab v-for="(menu, index) in uploadbar?.menus" :key="index">
+                            <NuxtLink :to="menu?.url">{{ menu?.name }}</NuxtLink>
+                        </v-tab>
                     </v-tabs>
 
                     <v-card-text>
                         <v-window v-model="tab">
-                            <v-window-item value="one">
+                            <v-window-item :value="uploadbar?.menus[1]?.value">
                                 <createproduct />
                             </v-window-item>
 
-                            <v-window-item value="two">
+                            <v-window-item :value="uploadbar?.menus[2]?.value">
                                 <createlist />
                             </v-window-item>
 
-                            <v-window-item value="three">
+                            <v-window-item :value="uploadbar?.menus[3]?.value">
                                 <bookmarkvideo />
                             </v-window-item>
                         </v-window>
@@ -35,28 +35,22 @@
 </template>
 
 <script setup>
-    import {
-        ref
-    } from 'vue'
-    import {
-    useQuery
-  } from '@vue/apollo-composable'
     import createproduct from '~/components/products/add-product.vue'
     import createlist from '~/components/lists/add-list.vue'
     import bookmarkvideo from '~/components/products/add-bookmarkvideo.vue'
-    import { uploadPage } from '~/graphql/commerce/queries/pages/upload'
-
-    useHead({
-        title: 'Upload Center',
-    })
-
-    const tab = ref(null)
 
     const {
-    result
-  } = useQuery(uploadPage)
+        $directus,
+        $readItem
+    } = useNuxtApp()
+
+    const {
+        data: uploadbar
+    } = await useAsyncData('uploadbar', () => {
+        return $directus.request($readItem('navigation', '56'))
+    })
 
     definePageMeta({
-        middleware: ['auth'],
+        middleware: ['authenticated'],
     })
 </script>

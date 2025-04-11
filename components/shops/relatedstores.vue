@@ -1,10 +1,12 @@
 <template>
     <v-sheet class="mx-auto sliderProducts row align-items-stretch items-row justify-content-center" elevation="0">
         <v-toolbar title="Stores on Meeovi" color="transparent">
-            <div><NuxtLink to="/shops/">All Stores</NuxtLink></div>
+            <div>
+                <NuxtLink to="/shops/">All Stores</NuxtLink>
+            </div>
         </v-toolbar>
         <v-slide-group v-model="model" class="pa-4" selected-class="bg-primary" show-arrows>
-            <v-slide-group-item v-for="store in stores" :key="store" v-slot="{ toggle, selectedClass }">
+            <v-slide-group-item v-for="store in shops" :key="store" v-slot="{ toggle, selectedClass }">
                 <store :store="store" />
             </v-slide-group-item>
         </v-slide-group>
@@ -29,20 +31,22 @@
     import store from '~/components/product/stores.vue'
 
     const model = ref(null)
-    const stores = ref([])
+    const {
+        $directus,
+        $readItems,
+    } = useNuxtApp()
 
-    const fetchStores = async () => {
-        try {
-            // Use Nuxt's $fetch to call our API
-            const response = await $fetch('/api/commerce/catalog/marketplace/stores')
-            stores.value = response
-        } catch (error) {
-            console.error('Error fetching stores:', error)
-            // Handle error (e.g., show an error message to the user)
-        }
-    }
+    const {
+        user
+    } = useSupabaseAuth()
 
-    onMounted(() => {
-        fetchStores()
+    const {
+        data: shops
+    } = await useAsyncData('shops', () => {
+        return $directus.request($readItems('shops', {
+            fields: ['*', {
+                '*': ['*']
+            }]
+        }))
     })
 </script>

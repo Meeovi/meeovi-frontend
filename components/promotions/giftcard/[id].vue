@@ -124,6 +124,6 @@ query NewQuery ($id: ID!) {
     })  
 
     definePageMeta({
-    middleware: ['auth'],
+    middleware: ['authenticated'],
   })
 </script>

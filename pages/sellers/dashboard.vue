@@ -37,7 +37,7 @@ import topproducts from '~/components/vendor/sales/topproducts.vue'
 
     definePageMeta({
         layout: "sellers",
-        middleware: ['auth'],
+        middleware: ['authenticated'],
     });
 
     useHead({

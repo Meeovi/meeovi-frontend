@@ -54,6 +54,7 @@
     $readItems,
     $readItem
   } = useNuxtApp()
+  const { user } = useSupabaseAuth()
 
   const {
     data: posts
@@ -76,7 +77,7 @@
     return $directus.request($readItems('posts', {
       filter: {
         username: {
-          _eq: `${userStore?.user?.name}`
+          _eq: `${user?.id}`
         }
       },
       fields: ['*', {
@@ -110,6 +111,6 @@
   });
 
   definePageMeta({
-    middleware: ['auth'],
+    middleware: ['authenticated'],
   })
 </script>

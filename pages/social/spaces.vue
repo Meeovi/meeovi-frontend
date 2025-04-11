@@ -79,10 +79,6 @@
         $readItem
     } = useNuxtApp()
 
-    const userDisplayName = computed(() => {
-        return userStore.user?.name || userStore.user?.username || 'User'
-    })
-
     const {
         data: spaces
     } = await useAsyncData('spaces', () => {
@@ -124,7 +120,7 @@
             fields: ['*', { '*': ['*'] }],
             filter: {
                 creator: {
-                    _eq: `${userDisplayName.value}`
+                    _eq: `${user?.id}`
                 }
             }
         }))
@@ -145,7 +141,7 @@
     })
 
     definePageMeta({
-        middleware: ['auth'],
+        middleware: ['authenticated'],
     })
 
     useHead({

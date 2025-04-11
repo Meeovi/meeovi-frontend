@@ -179,6 +179,8 @@
 
     const route = useRoute();
 
+    const { user } = useSupabaseAuth()
+
     const id = route.params.id;
 
     const contactData = ref({
@@ -213,7 +215,7 @@
         image: '',
         coverFile: null,
         avatarFile: null,
-        username: userDisplayName,
+        username: user?.name,
         spaces: [{
             spaces_id: {
                 id: id

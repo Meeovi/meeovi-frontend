@@ -3,7 +3,8 @@
         <v-tabs v-model="tab" :bg-color="lowerbar?.color" :color="lowerbar?.colortext" align-tabs="center">
             <div v-for="(menu, index) in lowerbar?.menus" :key="index">
                 <v-tab :value="menu?.value">
-                    <NuxtLink :style="`color: ${lowerbar?.colortext} !important`" :to="menu?.url">{{ menu?.name }}</NuxtLink>
+                    <v-btn variant="text" :style="`color: ${lowerbar?.colortext} !important`"
+                        :href="menu?.url">{{ menu?.name }}</v-btn>
                 </v-tab>
             </div>
         </v-tabs>

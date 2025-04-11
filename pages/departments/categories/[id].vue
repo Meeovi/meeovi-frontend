@@ -16,7 +16,7 @@
     </div>
 
     <v-card variant="text" v-else>
-      <v-toolbar :style="`background-color: ${category?.color}; color: ${category?.colortext}`" :title="category?.name">
+      <v-toolbar :style="`background-color: ${category?.color}; color: ${category?.colortext}`" :title="`Meeovi ${category?.departments[0]?.departments_id?.name} - ${category?.name}`">
         <v-slide-group show-arrows>
           <v-slide-group-item v-slot="{ isSelected, toggle }">
             <v-menu>
@@ -30,8 +30,8 @@
                 <v-row>
                   <v-col cols="3" v-for="categories in category?.categories" :key="categories?.categories_id?.id">
                     <v-list-item>
-                      <NuxtLink :to="`/departments/categories/${categories?.categories_id?.id}`" />
-                        {{ categories?.categories_id?.name }}
+                      <NuxtLink :to="`/departments/categories/${categories?.categories_id?.id}`">
+                        {{ categories?.categories_id?.name }}</NuxtLink>
                     </v-list-item>
                   </v-col>
                 </v-row>
@@ -46,19 +46,13 @@
           </v-slide-group-item>
         </v-slide-group>
       </v-toolbar>
-
-      <!--Category Banner Slider-->
-      <div>
-        <NuxtImg class="departmentBanner" loading="lazy"
-          :src="`${$directus?.url}assets/${category?.image?.filename_disk}`" :alt="category?.name" cover />
-      </div>
     </v-card>
 
     <v-row>
       <!--List of products in the category-->
       <v-col cols="3" v-for="category in category?.products" :key="category.id">
-        <div v-for="products in category?.products_id" :key="products.slug">
-          <productCard :product="products" />
+        <div v-for="products in category" :key="products?.products_id.id">
+          <productCard :product="products?.products_id?.id" />
         </div>
       </v-col>
     </v-row>
@@ -96,6 +90,7 @@
     return $directus.request($readItem('categories', route.params.id, {
       fields: ['*',
         'categories.categories_id.*',
+        'departments.departments_id.*',
         'products.products_id.*',
         'products.products_id.image.*',
         'menus.*',

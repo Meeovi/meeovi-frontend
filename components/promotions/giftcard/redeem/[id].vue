@@ -68,6 +68,6 @@ query MyQuery {
     })
 
     definePageMeta({
-	  middleware: ['auth'],
+	  middleware: ['authenticated'],
 	})
 </script>

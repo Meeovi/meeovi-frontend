@@ -109,7 +109,7 @@
   })
 
   definePageMeta({
-      middleware: ['auth'],
+      middleware: ['authenticated'],
   })
 
   useHead({

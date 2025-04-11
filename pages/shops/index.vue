@@ -14,8 +14,8 @@
             <section data-bs-version="5.1" class="clients1 cid-uHg1k6KLf8" id="clients1-ap">
               <div class="container">
                 <div class="row justify-content-center">
-                  <div class="card col-12 col-md-6 col-lg-4"" v-for=" (stores, index) in stores" :key="index">
-                    <store :store="stores" />
+                  <div class="card col-12 col-md-6 col-lg-4"" v-for=" (shops, index) in shops" :key="index">
+                    <store :store="shops" />
                   </div>
                 </div>
               </div>
@@ -26,8 +26,8 @@
             <section data-bs-version="5.1" class="clients1 cid-uHg1k6KLf8" id="clients1-ap">
               <div class="container">
                 <div class="row justify-content-center">
-                  <div class="card col-12 col-md-6 col-lg-4"" v-for=" (stores, index) in stores" :key="index">
-                    <store :store="stores" />
+                  <div class="card col-12 col-md-6 col-lg-4"" v-for=" (shops, index) in shops" :key="index">
+                    <store :store="shops" />
                   </div>
                 </div>
               </div>
@@ -38,8 +38,8 @@
             <section data-bs-version="5.1" class="clients1 cid-uHg1k6KLf8" id="clients1-ap">
               <div class="container">
                 <div class="row justify-content-center">
-                  <div class="card col-12 col-md-6 col-lg-4"" v-for=" (stores, index) in stores" :key="index">
-                    <store :store="stores" />
+                  <div class="card col-12 col-md-6 col-lg-4"" v-for=" (shops, index) in shops" :key="index">
+                    <store :store="shops" />
                   </div>
                 </div>
               </div>
@@ -52,30 +52,26 @@
 </template>
 
 <script setup>
-  import {
-    ref,
-    onMounted
-  } from 'vue'
   import store from '~/components/shops/stores.vue'
-
   const tab = ref(null)
-  const stores = ref([])
+  const {
+    $directus,
+    $readItems,
+  } = useNuxtApp()
 
-  const fetchStores = async () => {
-    try {
-      const response = await $fetch('/api/commerce/marketplace/stores')
-      stores.value = Array.isArray(response) ? response : []
-    } catch (error) {
-      console.error('Error fetching stores:', error)
-      stores.value = []
-    }
-  }
+  const { user } = useSupabaseAuth()
 
-  onMounted(() => {
-    fetchStores()
+  const {
+    data: shops
+  } = await useAsyncData('shops', () => {
+    return $directus.request($readItems('shops', {
+      fields: ['*', {
+        '*': ['*']
+      }]
+    }))
   })
 
   useHead({
-    title: 'Shops',
+    title: 'Shops on Meeovi',
   })
 </script>

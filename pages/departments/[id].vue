@@ -1,6 +1,6 @@
 <template>
   <div class="departmentPage">
-    <div v-if="department?.id === 'Deals'">
+    <div v-if="department?.name === 'Deals'">
       <v-toolbar :style="`background-color: ${department?.color}; color: ${department?.colortext}`"
         :title="department?.name"></v-toolbar>
       <deals :category="department?.id" />
@@ -22,8 +22,8 @@
                 <v-row>
                   <v-col cols="3" v-for="categories in department?.categories" :key="categories?.categories_id?.id">
                     <v-list-item>
-                      <NuxtLink :to="`/departments/categories/${categories?.categories_id?.id}`" />
-                        {{ categories?.categories_id?.name }}
+                      <NuxtLink :to="`/departments/categories/${categories?.categories_id?.id}`">
+                        {{ categories?.categories_id?.name }}</NuxtLink>
                     </v-list-item>
                   </v-col>
                 </v-row>
@@ -41,29 +41,29 @@
 
       <!--Department Banner Slider-->
       <div>
-        <div v-if="department?.slug === 'Travel'">
-          <travel :category="department?.slug" />
+        <div v-if="department?.name === 'Travel'">
+          <travel :category="department?.name" />
         </div>
-        <div v-else-if="department?.slug === 'Appstore'">
-          <appstore :category="department?.slug" />
+        <div v-else-if="department?.name === 'Appstore'">
+          <appstore :category="department?.name" />
         </div>
-        <div v-else-if="department?.slug === 'Adult'">
-          <adultstore :category="department?.slug" />
+        <div v-else-if="department?.name === 'Adult'">
+          <adultstore :category="department?.name" />
         </div>
-        <div v-else-if="department?.slug === 'Health'">
-          <health :category="department?.slug" />
+        <div v-else-if="department?.name === 'Health'">
+          <health :category="department?.name" />
         </div>
-        <div v-else-if="department?.slug === 'Real Estate'">
-          <realestate :category="department?.slug" />
+        <div v-else-if="department?.name === 'Real Estate'">
+          <realestate :category="department?.name" />
         </div>
-        <div v-else-if="department?.slug === 'Pantry'">
-          <pantry :category="department?.slug" />
+        <div v-else-if="department?.name === 'Pantry'">
+          <pantry :category="department?.name" />
         </div>
-        <div v-else-if="department?.slug === 'Weather'">
-          <weather :category="department?.slug" />
+        <div v-else-if="department?.name === 'Weather'">
+          <weather :category="department?.name" />
         </div>
-        <div v-else-if="department?.slug === 'Time'">
-          <timeComponent :category="department?.slug" />
+        <div v-else-if="department?.name === 'Time'">
+          <timeComponent :category="department?.name" />
         </div>
 
         <div v-else>
@@ -128,7 +128,7 @@
 
       <!--List of products in the department-->
       <v-col cols="3" v-for="department in department?.products" :key="department.id">
-        <div v-for="products in department?.products_id" :key="products.slug">
+        <div v-for="products in department?.products_id" :key="products?.id">
           <productCard :product="products" />
         </div>
       </v-col>

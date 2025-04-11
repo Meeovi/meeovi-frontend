@@ -34,7 +34,7 @@
 
     definePageMeta({
       layout: "sellers",
-      middleware: ['auth'],
+      middleware: ['authenticated'],
     });
 
     useHead({
