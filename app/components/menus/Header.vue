@@ -73,6 +73,11 @@
         theme = null
     }
 
+    const setThemeName = (value) => {
+        if (!theme?.global?.name) return
+        theme.global.name.value = value
+    }
+
     // Local storage key
     const STORAGE_KEY = 'elite-theme'
 
@@ -86,18 +91,16 @@
         const stored = localStorage.getItem(STORAGE_KEY)
 
         if (stored) {
-            // Use saved preference
-            theme.change(stored)
+            setThemeName(stored)
         } else {
-            // No preference — follow system
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-            theme.change(prefersDark ? 'dark' : 'light')
+            setThemeName(prefersDark ? 'dark' : 'light')
         }
     })
 
     const toggleDark = () => {
         if (!theme?.global?.name) return
-        theme.change(isDark.value ? 'light' : 'dark')
+        setThemeName(isDark.value ? 'light' : 'dark')
     }
 
     // Save preference whenever theme name changes

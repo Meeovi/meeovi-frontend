@@ -1,43 +1,60 @@
 {
-   "name": "starter-template",
-   "type": "module",
-   "version": "0.0.5",
-   "description": "Official M Framework starter template.",
-   "author": "M Framework Labs (https://framework.meeovi.com)",
-   "homepage": "https://framework.meeovi.com",
-   "repository": {
-      "type": "git",
-      "url": "git+https://github.com/Meeovi/Meeovi-Starter-Template"
-   },
-   "bugs": {
-      "url": "https://github.com/Meeovi/Meeovi-Starter-Template/issues"
-   },
-   "license": "MIT",
-   "private": true,
-   "scripts": {
-      "starter-commit": "git add . && git commit -m \"ready for update\"",
-      "starter-update": "git pull \"https://github.com/Meeovi/Meeovi-Starter-Template\"",
-      "dev": "nuxt dev --host 0.0.0.0",
-      "dev-sw": "SW=true nuxi dev",
-      "build": "nuxt build",
-      "build-sw": "SW=true nuxi build",
-      "smoke:auth": "bash ./scripts/auth-smoke.sh",
-      "ts-node": "ts-node -r tsconfig-paths/register --compiler-options '{\"module\":\"CommonJS\"}'",
-      "generate": "nuxt generate",
-      "preview": "nuxt preview",
-      "postinstall": "nuxt prepare"
-   },
-   "dependencies": {
-      "@mframework/adapter-directus": "file:../../../packages/adapters/adapter-directus",
-      "@mframework/adapter-opensearch": "file:../../../packages/adapters/adapter-opensearch",
-      "@mframework/api-client": "file:../../../backups/api-client",
-      "alternate-auth": "file:../../../packages/modules/alternate-auth",
-      "@mframework/layer-shared": "file:../../layers/shared",
-      "nuxt": "^4.4.2",
-      "playwright-core": "^1.59.1",
-      "typescript": "^5.9.3"
-   },
-   "devDependencies": {
-      "nuxt-layers-utils": "^0.3.1"
-   }
+  "name": "meeovi-frontend",
+  "type": "module",
+  "version": "0.0.5",
+  "description": "Decentralized Social Shopping Networking, connecting people, products, and brands in a social commerce ecosystem.",
+  "author": "The Meeovi Company",
+  "homepage": "https://www.meeovi.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Meeovi/meeovi-frontend"
+  },
+  "bugs": {
+    "url": "https://github.com/Meeovi/meeovi-frontend/issues"
+  },
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "meeovi-commit": "git add . && git commit -m \"ready for update\"",
+    "meeovi-update": "git pull \"https://github.com/Meeovi/meeovi-frontend\"",
+    "prisma:generate": "prisma generate --schema=./prisma/schema.prisma",
+    "predev": "npm run prisma:generate",
+    "prebuild": "npm run prisma:generate",
+    "dev": "nuxt dev --host 0.0.0.0 --port 3002",
+    "dev-sw": "SW=true nuxi dev",
+    "build": "nuxt build",
+    "build-sw": "SW=true nuxi build",
+    "smoke:auth": "bash ./scripts/auth-smoke.sh",
+    "typecheck": "npx nuxi typecheck",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "npm run prisma:generate && nuxt prepare"
+  },
+  "dependencies": {
+    "@pinia/nuxt": "^0.11.2",
+    "@mframework/adapter-directus": "file:../../../packages/adapters/adapter-directus",
+    "@mframework/adapter-magento": "file:../../../packages/adapters/adapter-magento",
+    "@mframework/adapter-opensearch": "file:../../../packages/adapters/adapter-opensearch",
+    "@mframework/alternate-auth": "file:../../../packages/modules/alternate-auth",
+    "@prisma/adapter-pg": "^7.8.0",
+    "@prisma/client": "^7.8.0",
+    "@sentry/nuxt": "^10",
+    "alternate-sdk": "file:../../../packages/modules/alternate-sdk",
+    "nuxt": "^4.4.6",
+    "pinia": "^3.0.3",
+    "playwright-core": "^1.59.1",
+    "typescript": "^6.0.3",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.7.0",
+    "nuxt-layers-utils": "^0.3.1",
+    "prisma": "^7.8.0"
+  },
+  "resolutions": {
+    "@vercel/nft": "^0.27.4"
+  },
+  "overrides": {
+    "vue": "latest"
+  }
 }

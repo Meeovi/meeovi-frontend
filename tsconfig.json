@@ -1,10 +1,22 @@
 {
   "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
-    "verbatimModuleSyntax": false
-  },
-  "exclude": [
-    "../../../layers/**/app/**/__tests__/**/*",
-    "../../../layers/**/server/**/__tests__/**/*"
-  ]
+    "ignoreDeprecations": "6.0",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"],
+      "~/*": ["./*"],
+      "#app": [".nuxt/dist/app"],
+      "#app/*": [".nuxt/dist/app/*"],
+      "#imports": [".nuxt/imports"],
+      "#auth": ["../../../layers/auth"],
+      "#auth/*": ["../../../layers/auth/*"],
+      "#social": ["../../../layers/social"],
+      "#social/*": ["../../../layers/social/*"],
+      "#commerce": ["../../../layers/commerce"],
+      "#commerce/*": ["../../../layers/commerce/*"],
+      "#shared": ["../../../layers/shared"],
+      "#shared/*": ["../../../layers/shared/*"]
+    }
+  }
 }

@@ -515,8 +515,8 @@ nav .mbr-section-btn {
 }
 .bg-gradient {
   background-size: 200% 200%;
-  animation: gradient-animation 5s infinite mframework;
-  -webkit-animation: gradient-animation 5s infinite mframework;
+  animation: gradient-animation 5s infinite alternate;
+  -webkit-animation: gradient-animation 5s infinite alternate;
 }
 
 .menu .navbar-brand {
@@ -951,4 +951,11 @@ blockquote {
     width: 300% !important;
     left: -100% !important;
   }
+}.engine {
+	position: absolute;
+	text-indent: -2400px;
+	text-align: center;
+	padding: 0;
+	top: 0;
+	left: -2400px;
 }

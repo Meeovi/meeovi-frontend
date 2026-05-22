@@ -7,7 +7,7 @@ A production-ready, backend-agnostic starter template with built-in authenticati
 - Authentication via GraphQL mutations (`login`, `signup`, `logout`) and session query (`me`)
 - Authorization helpers for role-based route protection (`admin` middleware + `useAuthorization`)
 - Search composable and UI connected to GraphQL `search` query
-- Unified GraphQL gateway endpoint through `@mframework/api` + `@mframework/api-client`
+- Unified GraphQL gateway endpoint through `@mframework/api` + `alternate-gateway`
 - Nuxt SEO is a collection of modules that handle all of the technical aspects in growing sites traffic organically.
 
 ## Key Paths

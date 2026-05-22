@@ -26,3 +26,6 @@ logs
 /app/generated/prisma
 
 /app/generated/prisma
+
+# Sentry Config File
+.env.sentry-build-plugin

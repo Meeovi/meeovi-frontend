@@ -1,60 +1,41 @@
 <template>
     <div>
-        <NuxtLink class="logobrand sf-header__logo-link" href="/">
-            <div v-if="blocksSiteoverview?.media?.directus_files_id">
-                <v-btn class="sf-header__logo-img" :avatar="{ src: logoAssetSrc }" size="xl" color="neutral" variant="text">
-                    {{ blocksSiteoverview?.name || 'Starter Template' }}
-                </v-btn>
-            </div>
+        <v-app-bar-title v-if="hasAsset(blocksSiteoverview?.media?.[0]?.file || blocksSiteoverview?.media?.[0])">
+            <NuxtLink class="logobrand" href="/">
+                <v-icon start color="orange">
+                    <img :src="getAssetUrl(blocksSiteoverview?.media?.[0]?.file || blocksSiteoverview?.media?.[0])"
+                        :alt="blocksSiteoverview?.name" />
+                </v-icon>
+                <p class="logotext">{{ blocksSiteoverview?.name }}<!--Meeovi--></p>
+            </NuxtLink>
+        </v-app-bar-title>
 
-            <div v-else start>
-                <v-btn class="sf-header__logo-img" :avatar="{ src: '/images/logo.png' }" size="md" color="neutral" variant="text">
-                    {{ blocksSiteoverview?.name || 'Starter Template' }}
-                </v-btn>
-            </div>
-        </NuxtLink>
+        <v-app-bar-title v-else>
+            <NuxtLink class="logobrand" href="/">
+                <v-icon start color="orange">
+                    <img src="/images/logo512alpha.png" :alt="blocksSiteoverview?.name" />
+                </v-icon>
+                <p class="logotext">{{ blocksSiteoverview?.name }}<!--Meeovi--></p>
+            </NuxtLink>
+        </v-app-bar-title>
     </div>
 </template>
 
 <script setup>
     import {
-        computed
+        ref
     } from 'vue'
 
     const gateway = useGateway()
     const content = gateway.content
+    const getAssetUrl = (file) => content.getAssetUrl(file)
+    const hasAsset = (file) => Boolean(getAssetUrl(file))
 
     const {
         data: blocksSiteoverview
     } = await useAsyncData('blocksSiteoverview', () => {
-        if (!content || typeof content.readItem !== 'function') {
-            return {
-                name: 'Starter Template',
-                media: [],
-            }
-        }
-
-        return content.readItem('page_blocks', '19', {
+        return content.readItem('page_blocks', '5', {
             fields: ['*', 'media.*.*'],
-        }).catch(() => ({
-            name: 'Starter Template',
-            media: [],
-        }))
-    }, {
-        server: false,
-        default: () => ({
-            name: 'Starter Template',
-            media: [],
-        }),
-    })
-
-    const logoAssetSrc = computed(() => {
-        const file = blocksSiteoverview.value?.media?.[0]?.directus_files_id
-
-        if (!file || !content || typeof content.getAssetUrl !== 'function') {
-            return '/images/logo.png'
-        }
-
-        return content.getAssetUrl(file)
+        })
     })
 </script>

@@ -20,21 +20,15 @@
 
   const {
     data: topmenu
-  } = await useAsyncData('topmenu', () => {
-    if (!content || typeof content.readItems !== 'function') {
-      return []
-    }
-
-    return content.readItems('about_departments', {
-        fields: ['*', 'image.*', 'pages.pages_id.*'],
-        deep: {
-          pages: {
-            _sort: ['pages_id.name'] // Sort pages alphabetically by their name
-          }
-        }
-      }).catch(() => [])
-  }, {
-    server: false,
-    default: () => [],
+  } = await useAsyncData('topmenu', async () => {
+    const items = await content.readItems('about_departments', {
+      fields: ['*', 'image.*', 'pages.pages_id.*'],
+      deep: {
+        pages: {
+          _sort: ['pages_id.name'],
+        },
+      },
+    })
+    return Array.isArray(items) ? items : Array.isArray(items?.data) ? items.data : []
   })
 </script>

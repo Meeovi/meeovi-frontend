@@ -1,29 +1,30 @@
 <template>
-  <section class="panel error-panel">
-    <p class="eyebrow">Request failed</p>
-    <h1 class="page-title">{{ title }}</h1>
-    <p class="page-copy">{{ message }}</p>
-    <div class="results-toolbar">
-      <NuxtLink to="/" class="button-secondary">Back home</NuxtLink>
-      <NuxtLink to="/results" class="button">Open search demo</NuxtLink>
-    </div>
-  </section>
+  <v-app>
+    <v-main>
+      <v-container class="fill-height d-flex flex-column align-center justify-center">
+        <v-card class="pa-6 text-center" elevation="4" max-width="500">
+          <v-card-title class="text-h5 text-error mb-4">
+            Oops, something went wrong
+          </v-card-title>
+
+          <v-alert type="error" variant="tonal" class="mb-4">
+            {{ error.message }}
+          </v-alert>
+
+          <v-btn color="primary" href="/">
+            Go back home
+          </v-btn>
+        </v-card>
+      </v-container>
+    </v-main>
+  </v-app>
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
-  error?: {
-    statusCode?: number
-    statusMessage?: string
-    message?: string
+defineProps({
+  error: {
+    type: Object,
+    required: true
   }
-}>()
-
-const title = computed(() => {
-  const code = props.error?.statusCode
-  const text = props.error?.statusMessage || 'Something went wrong'
-  return code ? `${code} ${text}` : text
 })
-
-const message = computed(() => props.error?.message || 'The demo app could not complete that request.')
 </script>
