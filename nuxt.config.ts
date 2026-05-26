@@ -13,6 +13,7 @@ export default defineNuxtConfig({
   extends: layers.extends(),
   alias: layers.alias('#'),
 
+  ssr: true,
   typescript: {
     typeCheck: false
   },
@@ -66,7 +67,7 @@ export default defineNuxtConfig({
   ],
 
   modules: [
-      '@pinia/nuxt',
+    '@pinia/nuxt',
     '@sentry/nuxt/module',
     '@mframework/adapter-directus',
     '@mframework/alternate-auth',

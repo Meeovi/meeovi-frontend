@@ -6,7 +6,7 @@
     <v-navigation-drawer v-model="drawer" location="right" temporary class="cart-flyout">
       <v-card-title class="d-flex justify-space-between align-center">
         <span>Account</span>
-        <v-btn icon="fas:fa fa-x" @click="drawer = false">
+        <v-btn icon="fas fa-x" @click="drawer = false">
         </v-btn>
       </v-card-title>
 
@@ -55,13 +55,13 @@
               </v-col>
 
               <v-col cols="12">
-                <v-list-item prepend-icon="fas:fa fa-upload" title="Upload Center" href="/upload"></v-list-item>
+                <v-list-item prepend-icon="fas fa-upload" title="Upload Center" href="/upload"></v-list-item>
               </v-col>
               <logoutButton />
             </v-row>
 
             <v-row v-else>
-              <v-list-item prepend-icon="fas:fa fa-sign-in-alt">
+              <v-list-item prepend-icon="fas fa-sign-in-alt">
                 <v-list-item-title>
                   <NuxtLink to="/login">Login</NuxtLink>
                 </v-list-item-title>

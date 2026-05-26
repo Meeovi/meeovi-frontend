@@ -47,7 +47,7 @@ body {
 
 .searchField {
     position: relative;
-    top: 0px;
+    top: 10px;
     left: 15%;
     width: 650px;
 }
@@ -171,6 +171,8 @@ body {
 
 .logobrand {
     text-decoration: none;
+    position: relative;
+    top: -3px;
 }
 
 .v-divider {
@@ -190,6 +192,11 @@ body {
 .accountDropdown h6 {
     padding-left: 15px;
     padding-top: 10px;
+}
+
+.rightTopNav {
+    padding-right: 15px;
+    position: relative;
 }
 
 .rightnav {
@@ -837,7 +844,7 @@ body {
 .v-navigation-drawer--active {
     height: 94vh !important;
     width: auto !important;
-    top: 60px !important;
+    top: 0px !important;
 }
 
 .sidebarSection {
@@ -912,6 +919,7 @@ body {
 .postbtn {
     background-color: rgb(var(--v-theme-info)) !important;
     color: white !important;
+    border-radius: 36px;
 }
 
 .liveVideo,

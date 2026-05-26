@@ -1,10 +1,10 @@
 <template>
   <v-responsive>
-    <v-app :theme="theme.change.value">
+    <v-app :theme="themeName">
       <v-app-bar id="topnav">
         <template v-slot:prepend>
           <v-btn variant="flat" color="transparent" @click="drawer = !drawer">
-            <v-icon start icon="fas:fa fa-bars"></v-icon> Menu
+            <v-icon start icon="fas fa-bars"></v-icon> Menu
           </v-btn>
         </template>
 
@@ -44,37 +44,42 @@
               <sidebartop />
               <div class="drawer-content">
                 <v-list nav>
-
-                  <!---->
-                  <topmenu />
                   <v-divider></v-divider>
-
-                  <socialmenu />
 
                   <departmentsmenu />
+
                   <v-divider></v-divider>
 
-                  <!---->
                   <outlets />
+                  
+                  <v-divider></v-divider>
+                  
+                  <socialmenu />
+
+                  <v-divider></v-divider>
+                  
+                  <topmenu />
+                  
                   <v-divider></v-divider>
 
+                  <!--
                   <myaccountmenu />
                   <v-divider></v-divider>
 
-                  <bottomsidebarmenu />
+                  <bottomsidebarmenu />-->
                   <v-row>
                     <v-col cols="3">
-                      <v-btn variant="text" stacked title="Help" prepend-icon="fas:fa fa-question-circle" size="x-small"
+                      <v-btn variant="text" stacked title="Help" prepend-icon="fas fa-question-circle" size="x-small"
                         href="/help/">Help Center</v-btn>
                     </v-col>
                     <v-col cols="3">
-                      <v-btn variant="text" stacked title="Notifications" prepend-icon="fas:fa fa-bell" size="x-small"
+                      <v-btn variant="text" stacked title="Notifications" prepend-icon="fas fa-bell" size="x-small"
                         href="/account/user/notifications">Notify Center</v-btn>
                     </v-col>
                     <v-col cols="3">
                       <v-btn @click="toggleDark()" variant="text">
                         <v-icon>
-                          {{ isDark ? 'fas:fa fa-moon' : 'fas:fa fa-sun' }}
+                          {{ isDark ? 'fas fa-moon' : 'fas fa-sun' }}
                         </v-icon>
                       </v-btn>
                     </v-col>
@@ -90,7 +95,12 @@
             <main id="mainSection">
               <!--<announcements />-->
               <LowerBar />
-              <div>
+              <v-row>
+                <v-col>
+                  <!--<live />-->
+                </v-col>
+              </v-row>
+              <div class="contentPage">
                 <slot />
               </div>
             </main>
@@ -124,23 +134,27 @@
   import FooterNav from '../components/menus/FooterNav.vue'
   import cart from '#commerce/app/components/menus/cart.vue'
   import BottomFooter from '#social/app/components/menus/BottomFooter.vue'
+  //import live from '#social/app/components/menus/livebar/live.vue'
 
   import {
-    ref
+    ref,
+    computed,
+    onMounted,
+    watch
   } from 'vue';
-  //import logout from '../components/authentication/logout'
-  import {
-    useDark,
-    useToggle
-  } from '@vueuse/core'
+  //import logout from '~/components/authentication/logout'
   import {
     useTheme
   } from 'vuetify'
 
   const drawer = ref(null);
-  const isDark = useDark();
 
   const theme = useTheme()
+  const themeName = computed(() => theme.global.name.value)
+  const isDark = computed(() => theme.global.current.value.dark)
+  const setTheme = (name) => {
+    theme.change(name)
+  }
 
   // Local storage key
   const STORAGE_KEY = 'elite-theme'
@@ -149,37 +163,28 @@
   onMounted(() => {
     const stored = localStorage.getItem(STORAGE_KEY)
 
-    if (stored) {
+    if (stored === 'light' || stored === 'dark') {
       // Use saved preference
-      theme.change.value = stored
+      setTheme(stored)
     } else {
       // No preference — follow system
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-      theme.change.value = prefersDark ? 'dark' : 'light'
+      setTheme(prefersDark ? 'dark' : 'light')
     }
   })
 
   // Toggle between themes
   const toggleDark = () => {
-    theme.change.value =
-      theme.global.current.value.dark ? 'light' : 'dark'
+    setTheme(theme.global.current.value.dark ? 'light' : 'dark')
   }
 
   // Save preference whenever theme changes
   watch(
-    () => theme.change.value,
+    () => theme.global.name.value,
     (val) => {
       localStorage.setItem(STORAGE_KEY, val)
     }
   )
-
-  useHead({
-    title: 'Meeovi',
-    htmlAttrs: {
-      // uncomment this line to simulate dark mode
-      // class: 'dark',
-    },
-  });
 
 useHead({
   htmlAttrs: { lang: 'en' },

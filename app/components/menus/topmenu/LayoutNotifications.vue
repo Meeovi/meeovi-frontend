@@ -9,7 +9,7 @@
     <v-navigation-drawer v-model="drawer" location="right" temporary class="cart-flyout">
       <v-card-title class="d-flex justify-space-between align-center">
         <span>Notifications</span>
-        <v-btn icon="fas:fa fa-x" @click="drawer = false">
+        <v-btn icon="fas fa-x" @click="drawer = false">
         </v-btn>
       </v-card-title>
 
@@ -37,7 +37,7 @@
                 <v-list-item-title>No new notifications</v-list-item-title>
               </v-list-item>
               <v-divider></v-divider>
-              <v-list-item title="All Notifications" value="All Notifications" append-icon="fas:fa fa-bell"
+              <v-list-item title="All Notifications" value="All Notifications" append-icon="fas fa-bell"
                 href="/notifications">
               </v-list-item>
             </v-list>
@@ -69,12 +69,12 @@
 
   const getNotificationIcon = (type) => {
     const icons = {
-      order: 'fas:fa fa-shopping-cart',
-      account: 'fas:fa fa-user',
-      social: 'fas:fa fa-users',
-      system: 'fas:fa fa-bell'
+      order: 'fas fa-shopping-cart',
+      account: 'fas fa-user',
+      social: 'fas fa-users',
+      system: 'fas fa-bell'
     }
-    return icons[type] || 'fas:fa fa-bell'
+    return icons[type] || 'fas fa-bell'
   }
 
   const getNotificationColor = (type) => {

@@ -7,7 +7,7 @@
                     <div class="text-center">
                         <v-dialog v-model="createdialog" transition="dialog-bottom-transition">
                             <template v-slot:activator="{ props }">
-                                <v-avatar icon="fas:fa fa-plus"
+                                <v-avatar icon="fas fa-plus"
                                     style="background: rgb(var(--v-theme-info))!important; color: white;" size="60"
                                     v-bind="props"></v-avatar>
                             </template>

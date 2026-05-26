@@ -3,7 +3,7 @@
         <div class="text-center">
             <v-dialog v-model="dialog" width="auto">
                 <template v-slot:activator="{ props }">
-                    <v-btn v-bind="props" variant="text" icon="fas:fa fa-search"></v-btn>
+                    <v-btn v-bind="props" variant="text" icon="fas fa-search"></v-btn>
                 </template>
 
                 <template v-slot:default="{ isActive }">

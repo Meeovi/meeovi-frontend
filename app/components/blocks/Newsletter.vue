@@ -17,7 +17,7 @@
                                 <v-card class="mx-auto" elevation="0" color="transparent" max-width="600">
                                     <v-card-text>
                                         <v-text-field 
-                                            append-inner-icon="fas:fa fa-envelope" 
+                                            append-inner-icon="fas fa-envelope" 
                                             v-model="email" 
                                             type="email"
                                             density="compact" 

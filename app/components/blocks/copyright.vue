@@ -28,15 +28,17 @@
 
     const {
         data: blocksCopyright
-    } = await useAsyncData('blocksCopyright', () => {
-        return content.readItem('page_blocks', '5', {
+    } = await useAsyncData('blocksCopyright', async () => {
+        const result = await content.readItem('page_blocks', '5', {
             fields: ['*', 'media.*.*'],
         })
+        return result || {}
     })
 
     const {
         data: copyright
-    } = await useAsyncData('copyright', () => {
-        return content.readItem('navigation', '10')
+    } = await useAsyncData('copyright', async () => {
+        const result = await content.readItem('navigation', '10')
+        return result || {}
     })
 </script>

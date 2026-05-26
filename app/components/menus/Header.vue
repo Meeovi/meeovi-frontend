@@ -1,40 +1,39 @@
 <template>
     <div>
-        <v-app-bar id="topnav" density="compact">
+        <v-app-bar id="topnav">
             <template v-slot:prepend>
-                <v-btn variant="flat" @click="$emit('toggleDrawer')">
+                <v-btn variant="flat" color="transparent" @click="$emit('toggleDrawer')">
                     <v-icon start icon="fas fa-bars"></v-icon> Menu
                 </v-btn>
             </template>
 
             <logo />
-            <v-spacer></v-spacer>
-
-            <mobilesearch />
 
             <ClientOnly>
                 <Search />
             </ClientOnly>
-
+            <!--<SearchHeader v-model="searchInputValue" @submit="handleFormSubmit" />-->
             <v-spacer></v-spacer>
 
-            <div class="d-flex align-center flex-column flex-sm-row fill-height">
-                <v-col cols="3">
-                    <v-btn @click="toggleDark()" variant="text">
-                        <v-icon>
-                            {{ isDark ? 'fas fa-moon' : 'fas fa-sun' }}
-                        </v-icon>
-                    </v-btn>
-                </v-col>
-                <!--<v-col>
+            <div class="d-flex align-center flex-column flex-sm-row fill-height rightTopNav">
+                <v-col class="notificationsHeader">
                     <LayoutNotifications />
-                </v-col>-->
+                </v-col>
 
-                <v-col>
+                <v-col class="ecosystemMenuIcon">
                     <ecosystemmenu />
                 </v-col>
-                <v-col>
+
+                <v-col id="minSearch">
+                    <mobilesearch />
+                </v-col>
+
+                <v-col class="myaccounttopmenu">
                     <accountMenu />
+                </v-col>
+
+                <v-col class="shoppingCart">
+                    <cart />
                 </v-col>
             </div>
         </v-app-bar>
@@ -51,11 +50,13 @@
         useTheme
     } from 'vuetify'
     import logo from '../blocks/logo.vue'
-    import ecosystemmenu from './ecosystemmenu.vue'
+    import LayoutNotifications from './topmenu/LayoutNotifications.vue'
+    import ecosystemmenu from './topmenu/ecosystemmenu.vue'
     import Search from '../search/search.vue'
+    import cart from '#commerce/app/components/menus/cart.vue'
     //import LayoutNotifications from './Notifications.vue'
-    import mobilesearch from './mobilesearch.vue'
-    import accountMenu from './accountMenu.vue'
+    import mobilesearch from './topmenu/mobilesearch.vue'
+    import accountMenu from './topmenu/myaccounttopmenu.vue'
 
     defineProps({
         drawer: {
@@ -66,48 +67,42 @@
 
     defineEmits(['toggleDrawer'])
 
-    let theme = null
-    try {
-        theme = useTheme()
-    } catch {
-        theme = null
+  const drawer = ref(null);
+
+  const theme = useTheme()
+  const themeName = computed(() => theme.global.name.value)
+  const isDark = computed(() => theme.global.current.value.dark)
+  const setTheme = (name) => {
+    theme.change(name)
+  }
+
+  // Local storage key
+  const STORAGE_KEY = 'elite-theme'
+
+  // Determine initial mode
+  onMounted(() => {
+    const stored = localStorage.getItem(STORAGE_KEY)
+
+    if (stored === 'light' || stored === 'dark') {
+      // Use saved preference
+      setTheme(stored)
+    } else {
+      // No preference — follow system
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+      setTheme(prefersDark ? 'dark' : 'light')
     }
+  })
 
-    const setThemeName = (value) => {
-        if (!theme?.global?.name) return
-        theme.global.name.value = value
+  // Toggle between themes
+  const toggleDark = () => {
+    setTheme(theme.global.current.value.dark ? 'light' : 'dark')
+  }
+
+  // Save preference whenever theme changes
+  watch(
+    () => theme.global.name.value,
+    (val) => {
+      localStorage.setItem(STORAGE_KEY, val)
     }
-
-    // Local storage key
-    const STORAGE_KEY = 'elite-theme'
-
-    // isDark reflects the current theme name
-    const isDark = computed(() => theme?.global?.name?.value === 'dark')
-
-    // Determine initial mode
-    onMounted(() => {
-        if (!theme?.global?.name) return
-
-        const stored = localStorage.getItem(STORAGE_KEY)
-
-        if (stored) {
-            setThemeName(stored)
-        } else {
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-            setThemeName(prefersDark ? 'dark' : 'light')
-        }
-    })
-
-    const toggleDark = () => {
-        if (!theme?.global?.name) return
-        setThemeName(isDark.value ? 'light' : 'dark')
-    }
-
-    // Save preference whenever theme name changes
-    watch(
-        () => theme?.global?.name?.value,
-        (val) => {
-            if (val) localStorage.setItem(STORAGE_KEY, val)
-        }
-    )
+  )
 </script>

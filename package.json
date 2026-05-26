@@ -31,11 +31,11 @@
     "postinstall": "npm run prisma:generate && nuxt prepare"
   },
   "dependencies": {
-    "@pinia/nuxt": "^0.11.2",
     "@mframework/adapter-directus": "file:../../../packages/adapters/adapter-directus",
     "@mframework/adapter-magento": "file:../../../packages/adapters/adapter-magento",
     "@mframework/adapter-opensearch": "file:../../../packages/adapters/adapter-opensearch",
     "@mframework/alternate-auth": "file:../../../packages/modules/alternate-auth",
+    "@pinia/nuxt": "^0.11.2",
     "@prisma/adapter-pg": "^7.8.0",
     "@prisma/client": "^7.8.0",
     "@sentry/nuxt": "^10",

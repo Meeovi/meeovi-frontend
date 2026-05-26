@@ -2,7 +2,7 @@
   <div>
     <v-expansion-panels variant="accordion">
       <v-expansion-panel v-for="menuItem in topmenu" :key="menuItem.id" :title="menuItem?.name"
-        expand-icon="fas:fa fa-caret-down" collapse-icon="fas:fa fa-caret-up" elevation="0">
+        expand-icon="fas fa-caret-down" collapse-icon="fas fa-caret-up" elevation="0">
         <v-expansion-panel-text>
           <v-list class="ml-4">
             <v-list-item v-for="pageItem in menuItem.pages" :key="pageItem?.pages_id?.id"

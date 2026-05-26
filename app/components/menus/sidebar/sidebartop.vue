@@ -10,15 +10,22 @@
   </div>
 </template>
 
-<script setup>
-const auth = useAuth()
+<script setup lang="ts">
+import { computed, onMounted } from 'vue'
+// Use auto-imported composables or root import from alternate-auth
+let session: any
+try {
+  session = useSession()
+} catch {
+  // fallback if not auto-imported
+  const nuxtApp = useNuxtApp()
+  session = nuxtApp.$auth?.useSession?.() || null
+}
+const user = computed(() => session?.value?.user)
 
-const { data: session } = await useAsyncData('session', async () => {
-  try {
-    return (await auth.fetchSession()) ?? null
-  } catch (err) {
-    console.error('[fetchSession] failed', err)
-    return null
+onMounted(async () => {
+  if (session && !session.value) {
+    await session.fetch?.()
   }
 })
 </script>
