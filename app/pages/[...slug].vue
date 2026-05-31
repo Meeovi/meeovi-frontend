@@ -5,28 +5,36 @@
 </template>
 
 <script setup>
+import { useGateway } from '../composables/useGateway'
+import { useRoute, useRouter } from 'vue-router'
+import { ref, watch } from 'vue'
 
-    const route = useRoute();
-    const {
-        $directus,
-        $readItems
-    } = useNuxtApp()
+const route = useRoute()
+const gateway = useGateway()
+const content = gateway.content
 
-    const {
-        data: page
-    } = await useAsyncData('page', () => {
-        return $directus.request($readItems('pages', {
-            filter: {
-                slug: {
-                    _eq: `${route.params.slug}`
-                }
-            },
-            fields: ['*'],
-            limit: 1
-        })).then(response => response?.[0]) // Get first item from response
-    })
-     
-    useHead({
-        title: page?.value?.name || 'Page',
-    })
+const page = ref(null)
+
+async function fetchPage() {
+  const result = await content.readItems('pages', {
+    filter: {
+      slug: {
+        _eq: `${route.params.slug}`
+      }
+    },
+    fields: ['*'],
+    limit: 1
+  })
+  page.value = Array.isArray(result) ? result[0] : null
+}
+
+await fetchPage()
+
+watch(() => route.params.slug, async () => {
+  await fetchPage()
+})
+
+useHead({
+  title: () => page.value?.name || 'Page',
+})
 </script>

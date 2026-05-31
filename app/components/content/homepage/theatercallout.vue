@@ -15,7 +15,7 @@
                 </h6>
                 <p class="mbr-text mbr-fonts-style mb-4 display-4" v-dompurify-html="departmentTheater?.description"></p>
                 <div class="mbr-section-btn mt-3"><a class="btn btn-warning display-4"
-                    :href="`/departments/${departmentTheater?.slug}`">Start Watching</a></div>
+                    :href="toDepartmentPath(departmentTheater?.slug)">Start Watching</a></div>
               </div>
             </div>
           <div class="col-12 col-lg-6 md-pb">
@@ -41,10 +41,13 @@
 </template>
 
 <script setup>
+  import { useRoutePath } from '#shared/app/composables/routing/useRoutePath'
   import productCard from '#commerce/app/components/catalog/product/productCard.vue'
   
   const gateway = useGateway()
   const content = gateway.content
+  const { joinRoutePath } = useRoutePath()
+  const toDepartmentPath = (slug) => joinRoutePath('/departments', slug)
   const getAssetUrl = (file) => content.getAssetUrl(file)
 
   const model = ref(null)

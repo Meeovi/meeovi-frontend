@@ -73,7 +73,7 @@
   const themeName = computed(() => theme.global.name.value)
   const isDark = computed(() => theme.global.current.value.dark)
   const setTheme = (name) => {
-    theme.change(name)
+        theme.change(name)
   }
 
   // Local storage key

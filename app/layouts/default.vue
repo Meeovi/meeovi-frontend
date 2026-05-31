@@ -7,7 +7,8 @@
           <Header :drawer="drawer" @toggle-drawer="drawer = !drawer" />
         </ClientOnly>
         <OfflineAlert />
-
+        <LowerBar />
+        
         <v-main>
           <div class="page-wrapper">
               <v-navigation-drawer v-model="drawer" temporary>
@@ -18,7 +19,7 @@
               <div id="sidebarNav"></div>
               <div id="mainSection">
                 <!--<announcements />-->
-                <LowerBar />
+                
                 <v-row>
                   <v-col>
                     <live />
@@ -30,7 +31,6 @@
               </div>
           </div>
           <!--<aboveFooter />-->
-          <BottomFooter />
           <FooterNav />
           <!---->
         </v-main>
@@ -46,19 +46,12 @@
   import logo from '../components/blocks/logo.vue'
   import search from '../components/search/search.vue'
   import ecosystemmenu from '../components/menus/topmenu/ecosystemmenu.vue'
-  import topmenu from '../components/menus/sidebar/topmenu.vue'
-  import socialmenu from '../components/menus/sidebar/socialmenu.vue'
-  import departmentsmenu from '#commerce/app/components/menus/departmentsmenu.vue'
-  import outlets from '#commerce/app/components/menus/outletsmenu.vue'
   import myaccountmenu from '../components/menus/sidebar/myaccountmenu.vue'
   import LayoutNotifications from '../components/menus/topmenu/LayoutNotifications.vue'
   import mobilesearch from '../components/menus/topmenu/mobilesearch.vue'
   import myaccounttopmenu from '../components/menus/topmenu/myaccounttopmenu.vue'
-  import bottomsidebarmenu from '../components/menus/sidebar/bottomsidebarmenu.vue'
-  import LowerBar from '#social/app/components/menus/lowerbar.vue'
+  import LowerBar from '../components/menus/LowerBar.vue'
   import FooterNav from '../components/menus/FooterNav.vue'
-  import cart from '#commerce/app/components/menus/cart.vue'
-  import BottomFooter from '#social/app/components/menus/BottomFooter.vue'
   import live from '#social/app/components/menus/livebar/live.vue'
   import OfflineAlert from '#shared/app/components/alerts/OfflineAlert.vue'
 

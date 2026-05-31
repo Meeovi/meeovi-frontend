@@ -30,7 +30,7 @@
                 </h6>
                 <p class="mbr-text mbr-fonts-style mb-4 display-4" v-dompurify-html="departmentMusic?.description"></p>
                 <div class="mbr-section-btn mt-3"><a class="btn btn-primary display-4"
-                    :href="`/departments/${departmentMusic?.slug}`">
+                  :href="toDepartmentPath(departmentMusic?.slug)">
                     Listen to the Music
                   </a></div>
               </div>
@@ -43,11 +43,14 @@
 </template>
 
 <script setup>
+  import { useRoutePath } from '#shared/app/composables/routing/useRoutePath'
   import ProductCard from '#commerce/app/components/catalog/product/productCard.vue'
   
   const model = ref(null)
   const gateway = useGateway()
   const content = gateway.content
+  const { joinRoutePath } = useRoutePath()
+  const toDepartmentPath = (slug) => joinRoutePath('/departments', slug)
   const getAssetUrl = (file) => content.getAssetUrl(file)
 
   const {

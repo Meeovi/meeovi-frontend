@@ -18,7 +18,7 @@
                                 </h5>
 
                                 <div class="mbr-section-btn item-footer">
-                                    <NuxtLink :to="`/departments/${departmentYardsale?.id}`"
+                                    <NuxtLink :to="toDepartmentPath(departmentYardsale?.id)"
                                         class="btn btn-black-outline item-btn display-7" target="_blank">
                                         <span
                                             class="mobi-mbri mobi-mbri-arrow-next mbr-iconfont mbr-iconfont-btn"></span>
@@ -70,8 +70,12 @@
 </template>
 
 <script setup>
+    import { useRoutePath } from '#shared/app/composables/routing/useRoutePath'
+
     const gateway = useGateway()
     const content = gateway.content
+    const { joinRoutePath } = useRoutePath()
+    const toDepartmentPath = (slug) => joinRoutePath('/departments', slug)
     const getAssetUrl = (file) => content.getAssetUrl(file)
 
     const {

@@ -18,7 +18,7 @@
                             <h5 class="main-text mbr-fonts-style mb-0 display-7" v-dompurify-html="outletPixanomy?.description || ''">
                             </h5>
                             <div class="mbr-section-btn item-footer">
-                                <NuxtLink :to="`/departments/${outletPixanomy?.slug || ''}`"
+                                <NuxtLink :to="toDepartmentPath(outletPixanomy?.slug || '')"
                                     class="btn btn-danger item-btn display-7" target="_blank">
                                     <span class="mobi-mbri mobi-mbri-arrow-next mbr-iconfont mbr-iconfont-btn"></span>
                                     Shop Now
@@ -52,11 +52,14 @@
 </template>
 
 <script setup>
+    import { useRoutePath } from '#shared/app/composables/routing/useRoutePath'
     import ProductCard from '#commerce/app/components/catalog/product/productCard.vue'
 
     const model = ref(null)
     const gateway = useGateway()
     const content = gateway.content
+    const { joinRoutePath } = useRoutePath()
+    const toDepartmentPath = (slug) => joinRoutePath('/departments', slug)
 
     const {
         data: outletPixanomy

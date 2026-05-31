@@ -2,14 +2,20 @@
   <div class="drawer-content">
     <sidebartop />
     <v-list nav>
+      <trendingMenu />
+
       <v-divider></v-divider>
       <departmentsmenu />
+
       <v-divider></v-divider>
       <outlets />
+
       <v-divider></v-divider>
       <socialmenu />
+
       <v-divider></v-divider>
-      <topmenu />
+      <bottomsidebarmenu />
+
       <v-divider></v-divider>
       <v-row>
         <v-col cols="3">
@@ -48,13 +54,14 @@
     useTheme
   } from 'vuetify'
   import sidebartop from './sidebartop.vue'
+  import trendingMenu from './trendingMenu.vue'
   import departmentsmenu from '#commerce/app/components/menus/departmentsmenu.vue'
   import outlets from '#commerce/app/components/menus/outletsmenu.vue'
-  import socialmenu from './socialmenu.vue'
-  import topmenu from './topmenu.vue'
+  import socialmenu from '#social/app/components/menus/socialmenu.vue'
   import accountMenu from './myaccountmenu.vue'
   import logout from '#auth/app/components/blocks/logoutButton.vue'
   import UserAvatar from '#social/app/components/user/UserAvatar.vue'
+  import bottomsidebarmenu from './bottomsidebarMenu.vue'
 
   const auth = useAuth()
   const user = auth.user
@@ -91,6 +98,7 @@
 
   // Add theme toggling support for sidebar
   const isDark = computed(() => theme?.global?.name?.value === 'dark')
+
   function toggleDark() {
     if (!theme) return
     theme.global.name.value = theme.global.name.value === 'dark' ? 'light' : 'dark'

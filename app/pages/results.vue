@@ -1,5 +1,5 @@
 <template>
-    <section class="results-page page">
+    <section :class="['results-page', 'page', { 'dark-mode': isDark }]">
         <v-container fluid class="results-page__container">
             <v-card class="results-shell" elevation="0">
                 <v-toolbar class="results-header" color="blue" density="comfortable" flat>
@@ -50,10 +50,16 @@
                             </div>
                         </div>
 
-                        <v-alert v-if="error" type="error" variant="tonal" class="mb-4">
-                            <strong>Search failed</strong>
-                            <div>{{ error.message }}</div>
-                        </v-alert>
+                                                <v-alert v-if="error" type="error" variant="tonal" class="mb-4">
+                                                        <strong>Sorry, something went wrong with your search.</strong>
+                                                        <div>
+                                                            Please try again later or adjust your search terms.
+                                                            <template v-if="isDev && error && error.message">
+                                                                <br />
+                                                                <small style="opacity:0.7;">{{ error.message }}</small>
+                                                            </template>
+                                                        </div>
+                                                </v-alert>
 
                         <v-alert v-else-if="pending" type="info" variant="tonal" class="mb-4">
                             <strong>Searching</strong>
@@ -115,6 +121,14 @@
 </template>
 
 <script setup lang="ts">
+        import './results.css'
+        // --- Dark mode support ---
+        import { useColorMode } from '@vueuse/core'
+        const colorMode = useColorMode ? useColorMode() : ref('light')
+        const isDark = computed(() => colorMode.value === 'dark')
+
+        // Show technical error details only in dev
+        const isDev = process.env.NODE_ENV === 'development' || import.meta.env.MODE === 'development'
     import filters from '../components/search/filters/filters.vue'
 
     type SearchResponse = {

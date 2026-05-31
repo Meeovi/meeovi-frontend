@@ -42,7 +42,7 @@ body {
 .logotext {
     display: inline-block;
     position: relative;
-    top: 5px;
+    top: 3px;
 }
 
 .searchField {
@@ -172,7 +172,7 @@ body {
 .logobrand {
     text-decoration: none;
     position: relative;
-    top: -3px;
+    top: 5px;
 }
 
 .v-divider {
@@ -350,7 +350,6 @@ body {
 /******************* Main Section CSS *********/
 
 #mainSection {
-    top: 0px !important;
     bottom: 50px !important;
     position: relative !important;
     left: 0px;
@@ -537,6 +536,7 @@ body {
 
 .departmentMenu {
     min-width: 80vw;
+    max-height: 50vh;
 }
 
 .globalPage {
@@ -564,6 +564,7 @@ body {
 
 .lowerBar {
     top: 63px;
+    z-index: 9999;
 }
 
 .features20 h2, .features20 .underline {
@@ -707,6 +708,11 @@ body {
     padding-right: 15px;
 }
 
+.deptCatBtn {
+    position: relative;
+    top: 5px;
+}
+
 /**************** Product Page *******************/
 
 .sizelist {
@@ -844,7 +850,7 @@ body {
 .v-navigation-drawer--active {
     height: 94vh !important;
     width: auto !important;
-    top: 0px !important;
+    top: 64px !important;
 }
 
 .sidebarSection {

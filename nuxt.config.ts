@@ -121,6 +121,7 @@ export default defineNuxtConfig({
         url: process.env.DIRECTUS_URL,
         nuxtBaseUrl: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000',
         devtools: true,
+        token: process.env.NUXTUS_DIRECTUS_STATIC_TOKEN,
         auth: {
           email: process.env.NUXTUS_DIRECTUS_ADMIN_EMAIL,
           password: process.env.NUXTUS_DIRECTUS_ADMIN_PASSWORD,
@@ -251,7 +252,9 @@ export default defineNuxtConfig({
 
   vite: {
     resolve: {
-      alias: {},
+      alias: {
+        '@mframework/ui-forms/': new URL('../../../../packages/modules/ui-forms/src/', import.meta.url).pathname,
+      },
     },
   },
 
