@@ -24,17 +24,27 @@
 </template>
 
 <script setup>
-  const gateway = useGateway()
-  const content = gateway.content
-  const getAssetUrl = (file) => content.getAssetUrl(file)
+  import { useDirectusUrl } from '#imports'
+
+  const directusUrl = useDirectusUrl()
+  const getAssetUrl = (file) => {
+    const fileId = file?.id || file?.directus_files_id?.id || file?.filename_disk || file
+    if (!fileId || !directusUrl) return ''
+    return `${directusUrl.replace(/\/$/, '')}/assets/${fileId}`
+  }
+
+    const {
+        $directus,
+        $readItem
+    } = useNuxtApp()
 
     const {
         data: blocksBlog
     } = await useAsyncData('blocksBlog', async () => {
         try {
-        return await content.readItem('page_blocks', '3', {
+        return await $directus.request($readItem('page_blocks', '3', {
                 fields: ['*', 'media.*.*'],
-        })
+        }))
         } catch {
             return null
         }

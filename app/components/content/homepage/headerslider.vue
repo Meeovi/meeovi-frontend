@@ -17,18 +17,28 @@
 
 <script setup>
     import intro from './intro.vue'
-    const gateway = useGateway()
-    const content = gateway.content
-    const getAssetUrl = (file) => content.getAssetUrl(file)
+    import { useDirectusUrl } from '#imports'
+
+    const directusUrl = useDirectusUrl()
+    const getAssetUrl = (file) => {
+        const fileId = file?.id || file?.directus_files_id?.id || file?.filename_disk || file
+        if (!fileId || !directusUrl) return ''
+        return `${directusUrl.replace(/\/$/, '')}/assets/${fileId}`
+    }
     const hasAsset = (file) => Boolean(getAssetUrl(file))
+
+    const {
+        $directus,
+        $readItem
+    } = useNuxtApp()
 
     const {
         data: blocksSlider
     } = await useAsyncData('blocksSlider', async () => {
         try {
-            return await content.readItem('page_blocks', '1', {
+            return await $directus.request($readItem('page_blocks', '1', {
                 fields: ['*', 'media.*.*'],
-            })
+            }))
         } catch {
             return null
         }

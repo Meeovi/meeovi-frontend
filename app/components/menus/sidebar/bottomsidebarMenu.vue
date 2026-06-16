@@ -8,11 +8,13 @@
 </template>
 
 <script setup>
-const gateway = useGateway()
-const content = gateway.content
+const {
+    $directus,
+    $readItem
+} = useNuxtApp()
 
 const { data: topmenu } = await useAsyncData('topmenu-sidebar-navigation', async () => {
-  const item = await content.readItem('navigation', '87')
+  const item = await $directus.request($readItem('navigation', '87'))
   return item || { name: '', menus: [] }
 })
 </script>

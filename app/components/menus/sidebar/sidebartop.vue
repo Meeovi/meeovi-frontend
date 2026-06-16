@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div v-if="session">
-      <v-toolbar :title="`Welcome, ${session.user?.name || session.user?.email}`" color="info"></v-toolbar>
+    <div v-if="loggedIn">
+      <v-toolbar :title="`${barTop?.description} ${user?.name || user?.email}`" color="info"></v-toolbar>
     </div>
 
     <div v-else style="padding-top: 10px;">
@@ -11,21 +11,24 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
-// Use auto-imported composables or root import from alternate-auth
-let session: any
-try {
-  session = useSession()
-} catch {
-  // fallback if not auto-imported
-  const nuxtApp = useNuxtApp()
-  session = nuxtApp.$auth?.useSession?.() || null
-}
-const user = computed(() => session?.value?.user)
+  import {
+    computed,
+    onMounted
+  } from 'vue'
+  const auth = useAuth()
+  await auth.fetchSession()
 
-onMounted(async () => {
-  if (session && !session.value) {
-    await session.fetch?.()
-  }
-})
+  const loggedIn = computed(() => Boolean(auth.loggedIn.value))
+  const user = computed(() => auth.user.value ?? null)
+
+  const {
+    $directus,
+    $readItem
+  } = useNuxtApp()
+
+  const {
+    data: barTop
+  } = await useAsyncData('barTop', () => {
+    return $directus.request($readItem('navigation', '50'))
+  })
 </script>

@@ -17,7 +17,7 @@
                 </v-toolbar>
                 <v-row style="padding: 10px;">
                     <v-col cols="3" v-for="menu in activeMenus" :key="menu?.id">
-                        <NuxtLink :to="menu?.slug">
+                        <NuxtLink :to="toPath(menu?.slug)">
                             <v-card class="mx-auto" max-width="300">
                                 <div class="ecoAvatar">
                                     <v-avatar :icon="`fas fa-${menu?.icon}`" size="180"></v-avatar>
@@ -33,22 +33,28 @@
 </template>
 
 <script setup>
+    import { useRoutePath } from '#shared/app/composables/routing/useRoutePath'
     import {
-        ref
+        ref,
+        computed,
     } from 'vue'
-    const gateway = useGateway()
-    const content = gateway.content
-    const route = useRoute()
+    const { normalizeRoutePath } = useRoutePath()
+
+    const toPath = (slug) => normalizeRoutePath(slug)
+
+    const {
+        $directus,
+        $readItem
+    } = useNuxtApp()
 
     const {
         data: eco
     } = await useAsyncData('eco', () => {
-        return content.readItem('navigation', '12')
+        return $directus.request($readItem('navigation', '12'))
     })
 
     const dialog = ref(false);
 
-    // Add this computed property to filter active menus
 const activeMenus = computed(() => {
     return eco.value?.menus?.filter(menu => menu.active === 'Active') || []
 })

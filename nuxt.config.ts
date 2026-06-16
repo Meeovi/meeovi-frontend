@@ -12,6 +12,12 @@ const layers = useLayers(__dirname, {
 export default defineNuxtConfig({
   extends: layers.extends(),
   alias: layers.alias('#'),
+  routeRules: {
+    '/auth/login': { redirect: '/login' },
+    '/auth/register': { redirect: '/register' },
+    '/auth/reset-password': { redirect: '/reset-password' },
+    '/auth/callback': { redirect: '/callback' },
+  },
 
   ssr: true,
   typescript: {
@@ -61,9 +67,11 @@ export default defineNuxtConfig({
     'assets/bootstrap/css/bootstrap-reboot.min.css',
     'assets/theme/css/style.css',
     'assets/mobirise/css/mbr-additional.css',
+    'assets/styles/social.css',
     'assets/styles/mobile.css',
     'assets/styles/styles.css',
     'assets/styles/search.css',
+    'assets/styles/auth.css',
   ],
 
   modules: [
@@ -130,11 +138,11 @@ export default defineNuxtConfig({
           enableGlobalAuthMiddleware: false, // Enable auth middleware on every page
           userFields: ['*'], // Select user fields
           redirect: {
-            login: '/auth/login', // Path to redirect when login is required
+            login: '/login', // Path to redirect when login is required
             logout: '/', // Path to redirect after logout
             home: '/', // Path to redirect after successful login
-            resetPassword: '/auth/reset-password', // Path to redirect for password reset
-            callback: '/auth/callback', // Path to redirect after login with provider
+            resetPassword: '/reset-password', // Path to redirect for password reset
+            callback: '/callback', // Path to redirect after login with provider
           },
         }
       },
@@ -205,7 +213,8 @@ export default defineNuxtConfig({
   build: {
     transpile: [
       '@mframework/adapter-magento',
-      //'@mframework/adapter-prisma'
+      //'@mframework/adapter-prisma',
+      '@vue/email'
     ]
   },
 

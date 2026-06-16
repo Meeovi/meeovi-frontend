@@ -6,7 +6,8 @@
         <v-expansion-panel-text>
           <v-list class="ml-4">
             <v-list-item v-for="pageItem in menuItem.pages" :key="pageItem?.pages_id?.id"
-              :title="pageItem?.pages_id?.name" :value="pageItem?.pages_id?.name" :href="toPath(pageItem?.pages_id?.slug)" />
+              :title="pageItem?.pages_id?.name" :value="pageItem?.pages_id?.name"
+              :href="toPath(pageItem?.pages_id?.slug)" />
           </v-list>
         </v-expansion-panel-text>
       </v-expansion-panel>
@@ -15,24 +16,25 @@
 </template>
 
 <script setup>
-  import { useRoutePath } from '#shared/app/composables/routing/useRoutePath'
-  const gateway = useGateway()
-  const content = gateway.content
-  const { normalizeRoutePath } = useRoutePath()
+  import {
+    useRoutePath
+  } from '#shared/app/composables/routing/useRoutePath'
+
+  const {
+    $directus,
+    $readItem
+  } = useNuxtApp()
+  const {
+    normalizeRoutePath
+  } = useRoutePath()
 
   const toPath = (slug) => normalizeRoutePath(slug)
 
   const {
     data: topmenu
   } = await useAsyncData('topmenu-about-departments', async () => {
-    const items = await content.readItems('about_departments', {
+    return $directus.request($readItem('about_departments', {
       fields: ['*', 'image.*', 'pages.pages_id.*'],
-      deep: {
-        pages: {
-          _sort: ['pages_id.name'],
-        },
-      },
-    })
-    return Array.isArray(items) ? items : Array.isArray(items?.data) ? items.data : []
+    }))
   })
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <headerslider />
-    <hellobar />
+    
     <div>
       <ataglance />
       <exclusives />
@@ -24,7 +24,6 @@
 
 <script setup>
   import headerslider from '../components/content/homepage/headerslider.vue'
-  import hellobar from '#auth/app/components/menus/hellobar.vue'
   import ataglance from '../components/content/homepage/ataglance.vue'
   import exclusives from '#commerce/app/components/catalog/product/exclusives.vue'
   import bookcallout from '../components/content/homepage/bookcallout.vue'

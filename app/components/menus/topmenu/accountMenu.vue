@@ -55,9 +55,6 @@
     } from 'vue'
     import UserAvatar from '#social/app/components/user/UserAvatar.vue'
 
-    const gateway = useGateway()
-    const content = gateway.content
-
     const auth = useAuth()
     const session = auth.session
     const user = auth.user
@@ -74,20 +71,18 @@
     const userAvatar = computed(() => user.value?.image || user.value?.avatar || '')
 
     const {
-        data: navAccount
-    } = useAsyncData('navAccount', () => {
-        if (!content || typeof content.readItem !== 'function') {
-            return {
-                menus: [],
-            }
-        }
+        $directus,
+        $readItem
+    } = useNuxtApp()
 
-        return content.readItem('navigation', '2').catch(() => ({
-            menus: [],
+    const {
+        data: navAccount
+    } = await useAsyncData('navAccount', () => {
+        return $directus.request($readItem('navigation', '2', {
+            fields: ['*', {
+                '*': ['*'],
+            }],
         }))
-    }, {
-        server: false,
-        default: () => ({ menus: [] }),
     })
 
     async function handleLogout() {

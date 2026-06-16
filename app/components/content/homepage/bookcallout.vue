@@ -47,26 +47,35 @@
   import {
     ref
   } from 'vue'
+  import { useDirectusUrl } from '#imports'
 
   const model = ref(null)
-  const gateway = useGateway()
-  const content = gateway.content
+  const directusUrl = useDirectusUrl()
   const { joinRoutePath } = useRoutePath()
   const toDepartmentPath = (slug) => joinRoutePath('/departments', slug)
-  const getAssetUrl = (file) => content.getAssetUrl(file)
+  const getAssetUrl = (file) => {
+    const fileId = file?.id || file?.directus_files_id?.id || file?.filename_disk || file
+    if (!fileId || !directusUrl) return ''
+    return `${directusUrl.replace(/\/$/, '')}/assets/${fileId}`
+  }
+
+  const {
+    $directus,
+    $readItem
+  } = useNuxtApp()
 
   const {
     data: departmentBook
   } = await useAsyncData('departmentBook', async () => {
     try {
-      return await content.readItem('departments', '29', {
+      return await $directus.request($readItem('departments', '29', {
         fields: [
           '*',
           'products.products_id.*',
           'products.products_id.image.*',
           'image.*'
         ],
-      })
+      }))
     } catch {
       return null
     }

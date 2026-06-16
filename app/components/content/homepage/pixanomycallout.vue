@@ -56,23 +56,26 @@
     import ProductCard from '#commerce/app/components/catalog/product/productCard.vue'
 
     const model = ref(null)
-    const gateway = useGateway()
-    const content = gateway.content
     const { joinRoutePath } = useRoutePath()
     const toDepartmentPath = (slug) => joinRoutePath('/departments', slug)
+
+    const {
+        $directus,
+        $readItem
+    } = useNuxtApp()
 
     const {
         data: outletPixanomy
     } = await useAsyncData('outletPixanomy', async () => {
         try {
-            return await content.readItem('departments', '89', {
+            return await $directus.request($readItem('departments', '89', {
                 fields: [
                     '*',
                     'products.products_id.*',
                     'products.products_id.image.*',
                     'image.*'
                 ],
-            })
+            }))
         } catch {
             return null
         }

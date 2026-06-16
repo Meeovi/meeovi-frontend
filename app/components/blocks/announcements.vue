@@ -20,28 +20,27 @@
 </template>
 
 <script setup>
-    import {
-        ref
-    } from 'vue'
 
     const alert = ref(true);
     const model = ref(null);
 
-    const gateway = useGateway()
-    const content = gateway.content
+    const {
+        $directus,
+        $readItems
+    } = useNuxtApp()
 
     const {
         data: announcements
     } = await useAsyncData('announcements', () => {
-        return content.readItems('articles', {
+        return $directus.request($readItems('articles', {
             fields: ['*', {
                 '*': ['*']
             }],
             filter: {
                 type: {
-                    _eq: "Announcements"
+                    _eq: 'Announcements'
                 }
             }
-        })
+        }))
     })
 </script>

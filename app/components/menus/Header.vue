@@ -29,7 +29,7 @@
                 </v-col>
 
                 <v-col class="myaccounttopmenu">
-                    <accountMenu />
+                    <myaccounttopmenu />
                 </v-col>
 
                 <v-col class="shoppingCart">
@@ -56,7 +56,7 @@
     import cart from '#commerce/app/components/menus/cart.vue'
     //import LayoutNotifications from './Notifications.vue'
     import mobilesearch from './topmenu/mobilesearch.vue'
-    import accountMenu from './topmenu/myaccounttopmenu.vue'
+    import myaccounttopmenu from './topmenu/myaccounttopmenu.vue'
 
     defineProps({
         drawer: {

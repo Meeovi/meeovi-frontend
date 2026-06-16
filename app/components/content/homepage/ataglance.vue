@@ -10,11 +10,11 @@
                     <div class="item features-image сol-12 col-md-6 col-lg-4">
                         <div class="item-wrapper">
                             <div class="item-img" v-if="hasAsset(blocks?.media?.[0]?.file || blocks?.media?.[0])">
-                                <img loading="lazy" :src="getAssetUrl(blocks?.media?.[0]?.file || blocks?.media?.[0])" :alt="blocks?.name" />
+                                <NuxtImg provider="cloudinary" loading="lazy" :src="getAssetUrl(blocks?.media?.[0]?.file || blocks?.media?.[0])" :alt="blocks?.name" />
                             </div>
 
                             <div class="item-img" v-else>
-                                <img loading="lazy" src="/images/display-1.png" :alt="blocks?.name" />
+                                <NuxtImg provider="cloudinary" loading="lazy" src="/images/display-1.png" :alt="blocks?.name" />
                             </div>                            
                             <div class="item-content">
                                 <h5 class="item-title mbr-fonts-style display-5">
@@ -36,11 +36,11 @@
                     <div class="item features-image сol-12 col-md-6 col-lg-4">
                         <div class="item-wrapper">
                             <div class="item-img" v-if="hasAsset(blocks?.media?.[1]?.file || blocks?.media?.[1])">
-                                <img loading="lazy" :src="getAssetUrl(blocks?.media?.[1]?.file || blocks?.media?.[1])" :alt="blocks?.name" />
+                                <NuxtImg provider="cloudinary" loading="lazy" :src="getAssetUrl(blocks?.media?.[1]?.file || blocks?.media?.[1])" :alt="blocks?.name" />
                             </div>
 
                             <div class="item-img" v-else>
-                                <img loading="lazy" src="/images/display-2.png" :alt="blocks?.name" />
+                                <NuxtImg provider="cloudinary" loading="lazy" src="/images/display-2.png" :alt="blocks?.name" />
                             </div> 
                             <div class="item-content">
                                 <h5 class="item-title mbr-fonts-style display-5">
@@ -62,11 +62,11 @@
                     <div class="item features-image сol-12 col-md-6 col-lg-4">
                         <div class="item-wrapper">
                             <div class="item-img" v-if="hasAsset(blocks?.media?.[2]?.file || blocks?.media?.[2])">
-                                <img loading="lazy" :src="getAssetUrl(blocks?.media?.[2]?.file || blocks?.media?.[2])" :alt="blocks?.name" />
+                                <NuxtImg provider="cloudinary" loading="lazy" :src="getAssetUrl(blocks?.media?.[2]?.file || blocks?.media?.[2])" :alt="blocks?.name" />
                             </div>
 
                             <div class="item-img" v-else>
-                                <img loading="lazy" src="/images/display-3.png" :alt="blocks?.name" />
+                                <NuxtImg provider="cloudinary" loading="lazy" src="/images/display-3.png" :alt="blocks?.name" />
                             </div>
                             <div class="item-content">
                                 <h5 class="item-title mbr-fonts-style display-5">
@@ -90,19 +90,29 @@
 </template>
 
 <script setup>
-    const gateway = useGateway()
-    const content = gateway.content
-    const getAssetUrl = (file) => content.getAssetUrl(file)
+    import { useDirectusUrl } from '#imports'
+
+    const directusUrl = useDirectusUrl()
+    const getAssetUrl = (file) => {
+        const fileId = file?.id || file?.directus_files_id?.id || file?.filename_disk || file
+        if (!fileId || !directusUrl) return ''
+        return `${directusUrl.replace(/\/$/, '')}/assets/${fileId}`
+    }
     const hasAsset = (file) => Boolean(getAssetUrl(file))
+
+    const {
+        $directus,
+        $readItem
+    } = useNuxtApp()
 
     const {
         data: blocks,
         error
     } = await useAsyncData('blocks', async () => {
         try {
-            return await content.readItem('page_blocks', '2', {
+            return await $directus.request($readItem('page_blocks', '2', {
                 fields: ['*', 'media.file.*', 'content.*'],
-            })
+            }))
         } catch {
             return null
         }

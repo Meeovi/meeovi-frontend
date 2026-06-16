@@ -10,26 +10,32 @@
         <v-row class="align-left justify-content-center mbr-white">
           <v-col cols="4" class="md-pb">
             <h2 class="mbr-section-title pb-2 mbr-fonts-style display-7">
-              <strong>{{ about?.name }}</strong></h2>
+              <strong>{{ about?.name }}</strong>
+            </h2>
             <div v-for="child in about?.menus" :key="child.id">
-              <h3 class="mbr-section-subtitle mbr-fonts-style mbr-lighter display-4"><NuxtLink
-              :href="toPath(child?.slug)">{{ child?.name }}</NuxtLink></h3>
+              <h3 class="mbr-section-subtitle mbr-fonts-style mbr-lighter display-4">
+                <NuxtLink :href="toPath(child?.slug)">{{ child?.name }}</NuxtLink>
+              </h3>
             </div>
           </v-col>
           <v-col cols="4" class="md-pb">
             <h2 class="mbr-section-title pb-2 mbr-fonts-style display-7">
-              <strong>{{ legal?.name }}</strong></h2>
+              <strong>{{ legal?.name }}</strong>
+            </h2>
             <div v-for="child in legal?.menus" :key="child.id">
-              <h3 class="mbr-section-subtitle mbr-fonts-style mbr-lighter display-4"><NuxtLink
-              :href="toPath(child?.slug)">{{ child?.name }}</NuxtLink></h3>
+              <h3 class="mbr-section-subtitle mbr-fonts-style mbr-lighter display-4">
+                <NuxtLink :href="toPath(child?.slug)">{{ child?.name }}</NuxtLink>
+              </h3>
             </div>
           </v-col>
           <v-col cols="4" class="md-pb">
             <h2 class="mbr-section-title pb-2 mbr-fonts-style display-7">
-              <strong>{{ company?.name }}</strong></h2>
+              <strong>{{ company?.name }}</strong>
+            </h2>
             <div v-for="child in company?.menus" :key="child.id">
-              <h3 class="mbr-section-subtitle mbr-fonts-style mbr-lighter display-4"><NuxtLink
-              :href="toPath(child?.slug)">{{ child?.name }}</NuxtLink></h3>
+              <h3 class="mbr-section-subtitle mbr-fonts-style mbr-lighter display-4">
+                <NuxtLink :href="toPath(child?.slug)">{{ child?.name }}</NuxtLink>
+              </h3>
             </div>
           </v-col>
         </v-row>
@@ -41,36 +47,38 @@
 </template>
 
 <script setup>
-  import { useRoutePath } from '#shared/app/composables/routing/useRoutePath'
   import {
-    ref
-  } from 'vue'
+    useRoutePath
+  } from '#shared/app/composables/routing/useRoutePath'
   import Newsletter from '~/components/blocks/Newsletter.vue'
   import copyright from '~/components/blocks/copyright.vue'
   import BottomFooter from '#social/app/components/menus/BottomFooter.vue'
 
-  const gateway = useGateway()
-  const content = gateway.content
-  const { normalizeRoutePath } = useRoutePath()
+  const {
+    $directus,
+    $readItem
+  } = useNuxtApp()
+  const {
+    normalizeRoutePath
+  } = useRoutePath()
 
   const toPath = (slug) => normalizeRoutePath(slug)
 
   const {
     data: about
   } = await useAsyncData('about', () => {
-    return content.readItem('navigation', '7',)
+    return $directus.request($readItem('navigation', '7', ))
   })
 
   const {
     data: legal
   } = await useAsyncData('legal', () => {
-    return content.readItem('navigation', '8')
+    return $directus.request($readItem('navigation', '8', ))
   })
 
   const {
     data: company
   } = await useAsyncData('company', () => {
-    return content.readItem('navigation', '9')
+    return $directus.request($readItem('navigation', '9', ))
   })
-
 </script>

@@ -21,25 +21,29 @@
 
 <script setup>
     import { useRoutePath } from '#shared/app/composables/routing/useRoutePath'
-    const gateway = useGateway()
-    const content = gateway.content
+
     const { normalizeRoutePath } = useRoutePath()
 
     const toPath = (slug) => normalizeRoutePath(slug)
 
     const {
+        $directus,
+        $readItem
+    } = useNuxtApp()
+
+    const {
         data: blocksCopyright
     } = await useAsyncData('blocksCopyright', async () => {
-        const result = await content.readItem('page_blocks', '5', {
+        const result = await $directus.request($readItem('page_blocks', '5', {
             fields: ['*', 'media.*.*'],
-        })
+        }))
         return result || {}
     })
 
     const {
         data: copyright
     } = await useAsyncData('copyright', async () => {
-        const result = await content.readItem('navigation', '10')
+        const result = await $directus.request($readItem('navigation', '10'))
         return result || {}
     })
 </script>

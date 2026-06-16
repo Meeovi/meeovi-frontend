@@ -24,21 +24,23 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
   import {
     ref
   } from 'vue'
   import productCard from '#commerce/app/catalog/product/productCard.vue'
 
   const model = ref(null)
-  const gateway = useGateway()
-  const content = gateway.content
+  const {
+    $directus,
+    $readItems
+  } = useNuxtApp()
 
   const {
     data: spotlightProducts
   } = await useAsyncData('spotlightProducts', async () => {
     try {
-      return await content.readItems('products', {
+      return await $directus.request($readItems('products', {
         fields: ['*',
           'products.products_id.*',
           'products.products_id.image.*',
@@ -56,7 +58,7 @@
             }
           }
         }
-      })
+      }))
     } catch {
       return null
     }

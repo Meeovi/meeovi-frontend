@@ -3,11 +3,6 @@ html {
     font-family: 'Inter', sans-serif !important;
 }
 
-a,
-a:hover {
-    color: rgb(var(--v-theme-info));
-}
-
 .v-theme--dark .auto-text {
   color: white;
 }
@@ -42,7 +37,7 @@ body {
 .logotext {
     display: inline-block;
     position: relative;
-    top: 3px;
+    top: 1px;
 }
 
 .searchField {
@@ -271,6 +266,20 @@ body {
     padding-left: 0px;
 }
 
+/******************* Pages CSS **********/
+
+.pagebar {
+    width: 100%;
+    position: relative;
+    background-color: #232f3e; 
+    color: white;
+}
+
+.pagebarTabs {
+    position: relative;
+    top: 20px;
+    height: 40px;
+}
 /******************* Authentication CSS ********/
 
 .loginForm,
@@ -361,11 +370,16 @@ body {
 .homeSection,
 .contentPage,
 .contentPage404 {
-    padding: 5px !important;
+    padding-left: 0px !important;
+    padding-right: 0px;
     margin-bottom: 1% !important;
     top: 45px !important;
     position: relative;
     min-height: 100vh
+}
+
+.contentSection {
+    padding: 10px;
 }
 
 .accountPage {
@@ -564,7 +578,7 @@ body {
 
 .lowerBar {
     top: 63px;
-    z-index: 9999;
+    z-index: 999;
 }
 
 .features20 h2, .features20 .underline {
@@ -596,7 +610,7 @@ body {
 
 .cart-flyout {
     min-width: 383px;
-    margin-top: 5px;
+    margin-top: 1px;
     position: relative;
 }
 
@@ -1410,4 +1424,12 @@ footer a:hover {
     border-radius: 0px 20px 20px 0px;
     left: -18px;
     position: relative;
+}
+
+/***************** Misc ********************/
+
+.wx-filemanager {
+    height: 100vh !important;
+    width: 100% !important;
+    min-height: 100vh !important;
 }

@@ -20,9 +20,9 @@
               <div id="mainSection">
                 <!--<announcements />-->
                 
-                <v-container class="contentPage">
+                <div class="contentPage">
                   <slot />
-                </v-container>
+                </div>
               </div>
           </div>
           <!--<aboveFooter />-->
@@ -35,17 +35,9 @@
 </template>
 
 <script setup lang="ts">
-  //import SearchHeader from '../components/search/SearchHeader.vue'
   import Header from '../components/menus/Header.vue'
   import sidebarnav from '../components/menus/sidebar/sidebarnav.vue'
-  import logo from '../components/blocks/logo.vue'
-  import search from '../components/search/search.vue'
-  import ecosystemmenu from '../components/menus/topmenu/ecosystemmenu.vue'
-  import myaccountmenu from '../components/menus/sidebar/myaccountmenu.vue'
-  import LayoutNotifications from '../components/menus/topmenu/LayoutNotifications.vue'
-  import mobilesearch from '../components/menus/topmenu/mobilesearch.vue'
-  import myaccounttopmenu from '../components/menus/topmenu/myaccounttopmenu.vue'
-  import LowerBar from '../components/menus/lowerbar.vue'
+  import LowerBar from '../components/menus/LowerBar.vue'
   import FooterNav from '../components/menus/FooterNav.vue'
   import OfflineAlert from '#shared/app/components/alerts/OfflineAlert.vue'
 

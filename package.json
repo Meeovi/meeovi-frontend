@@ -18,9 +18,7 @@
     "meeovi-commit": "git add . && git commit -m \"ready for update\"",
     "meeovi-update": "git pull \"https://github.com/Meeovi/meeovi-frontend\"",
     "prisma:generate": "prisma generate --schema=./prisma/schema.prisma",
-    "predev": "npm run prisma:generate",
-    "prebuild": "npm run prisma:generate",
-    "dev": "nuxt dev --host 0.0.0.0 --port 3002",
+    "dev": "nuxt dev --host 0.0.0.0 --port 3002 && npx novu@latest dev",
     "dev-sw": "SW=true nuxi dev",
     "build": "nuxt build",
     "build-sw": "SW=true nuxi build",
@@ -39,12 +37,14 @@
     "@prisma/adapter-pg": "^7.8.0",
     "@prisma/client": "^7.8.0",
     "@sentry/nuxt": "^10",
+    "@vue-email/nuxt": "^0.8.19",
     "alternate-sdk": "file:../../../packages/modules/alternate-sdk",
-    "nuxt": "^4.4.6",
+    "nuxt": "^4.4.8",
     "pinia": "^3.0.3",
     "playwright-core": "^1.59.1",
     "typescript": "^6.0.3",
-    "zod": "^3.24.0"
+    "zod": "^3.24.0",
+    "zod-to-json-schema": "^3.25.2"
   },
   "devDependencies": {
     "@types/node": "^25.7.0",

@@ -14,11 +14,19 @@
 </template>
 
 <script setup>
-const gateway = useGateway()
-const content = gateway.content
 const route = useRoute()
+const {
+    $directus,
+    $readItem
+} = useNuxtApp()
 
-const { data: navAccount } = await useAsyncData('navAccount', () => {
-  return content.readItem('navigation', '2')
-})
+    const {
+        data: navAccount
+    } = await useAsyncData('navAccount', () => {
+        return $directus.request($readItem('navigation', '2', {
+            fields: ['*', {
+                '*': ['*'],
+            }],
+        }))
+    })
 </script>

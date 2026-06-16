@@ -1,0 +1,37 @@
+/**************** Lists Page ****************/
+
+.listsToolbarTitle {
+    position: relative;
+    top: 3px;
+}
+
+.listsToolbarTooltip {
+    position: relative;
+    top: 10px;
+}
+
+.createListsToolbarItems {
+    bottom: 10px;
+    position: relative;
+    height: 100%;
+}
+
+/*************** Post CSS *************/
+
+.feedMenu .v-list-item-title {
+    position: relative;
+    padding: 5px;
+    left: 0px;
+}
+
+.feedPost .v-card-text {
+    position: relative;
+    height: 38%;
+    border: 1px solid #e0e0e0;
+}
+
+.feedPost .v-card-actions {
+    border-top: 1px solid #e0e0e0;
+    position: relative;
+    bottom: 0px;
+}

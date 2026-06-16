@@ -43,26 +43,35 @@
 <script setup>
   import { useRoutePath } from '#shared/app/composables/routing/useRoutePath'
   import productCard from '#commerce/app/components/catalog/product/productCard.vue'
-  
-  const gateway = useGateway()
-  const content = gateway.content
+  import { useDirectusUrl } from '#imports'
+    
+  const directusUrl = useDirectusUrl()
   const { joinRoutePath } = useRoutePath()
   const toDepartmentPath = (slug) => joinRoutePath('/departments', slug)
-  const getAssetUrl = (file) => content.getAssetUrl(file)
+  const getAssetUrl = (file) => {
+    const fileId = file?.id || file?.directus_files_id?.id || file?.filename_disk || file
+    if (!fileId || !directusUrl) return ''
+    return `${directusUrl.replace(/\/$/, '')}/assets/${fileId}`
+  }
 
   const model = ref(null)
+  const {
+    $directus,
+    $readItem
+  } = useNuxtApp()
+
   const {
     data: departmentTheater
   } = await useAsyncData('departmentTheater', async () => {
     try {
-      return await content.readItem('departments', '30', {
+      return await $directus.request($readItem('departments', '30', {
         fields: [
           '*',
           'products.products_id.*',
           'products.products_id.image.*',
           'image.*'
         ],
-      })
+      }))
     } catch {
       return null
     }
