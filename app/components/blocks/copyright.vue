@@ -26,24 +26,21 @@
 
     const toPath = (slug) => normalizeRoutePath(slug)
 
-    const {
-        $directus,
-        $readItem
-    } = useNuxtApp()
+    const { $sdk } = useNuxtApp()
 
     const {
         data: blocksCopyright
     } = await useAsyncData('blocksCopyright', async () => {
-        const result = await $directus.request($readItem('page_blocks', '5', {
+        const result = await $sdk.content.getItem('page_blocks', '5', {
             fields: ['*', 'media.*.*'],
-        }))
+        })
         return result || {}
     })
 
     const {
         data: copyright
     } = await useAsyncData('copyright', async () => {
-        const result = await $directus.request($readItem('navigation', '10'))
+        const result = await $sdk.content.getItem('navigation', '10')
         return result || {}
     })
 </script>

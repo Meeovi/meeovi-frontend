@@ -22,26 +22,14 @@
 </template>
 
 <script setup>
-    import { useDirectusUrl } from '#imports'
+const { $sdk } = useNuxtApp()
 
-    const directusUrl = useDirectusUrl()
-    const getAssetUrl = (file) => {
-        const fileId = file?.id || file?.directus_files_id?.id || file?.filename_disk || file
-        if (!fileId || !directusUrl) return ''
-        return `${directusUrl.replace(/\/$/, '')}/assets/${fileId}`
-    }
-    const hasAsset = (file) => Boolean(getAssetUrl(file))
+const getAssetUrl = (file) => $sdk.content.getAssetUrl(file)
+const hasAsset = (file) => Boolean(getAssetUrl(file))
 
-    const {
-        $directus,
-        $readItem
-    } = useNuxtApp()
-
-    const {
-        data: blocksSiteoverview
-    } = await useAsyncData('blocksSiteoverview', () => {
-        return $directus.request($readItem('page_blocks', '5', {
-            fields: ['*', 'media.*.*'],
-        }))
+const { data: blocksSiteoverview } = await useAsyncData('blocksSiteoverview', () => {
+    return $sdk.content.getItem('page_blocks', '5', {
+        fields: ['*', 'media.*.*'],
     })
+})
 </script>

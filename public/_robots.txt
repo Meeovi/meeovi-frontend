@@ -1,3 +1,5 @@
 user-agent: *
 Allow: /pages/*
 Disallow: /pages/account/*
+User-agent: *
+Allow: /

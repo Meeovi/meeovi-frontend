@@ -42,15 +42,12 @@
 
     const toPath = (slug) => normalizeRoutePath(slug)
 
-    const {
-        $directus,
-        $readItem
-    } = useNuxtApp()
+    const { $sdk } = useNuxtApp()
 
     const {
         data: eco
     } = await useAsyncData('eco', () => {
-        return $directus.request($readItem('navigation', '12'))
+        return $sdk.content.getItem('navigation', '12')
     })
 
     const dialog = ref(false);

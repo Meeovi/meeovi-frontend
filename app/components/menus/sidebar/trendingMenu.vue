@@ -9,11 +9,11 @@
 
 <script setup>
 
-    const { $directus, $readItem } = useNuxtApp()
+    const { $sdk } = useNuxtApp()
 
     const {
         data: trendingMenu
     } = await useAsyncData('trendingMenu', () => {
-        return $directus.request($readItem('navigation', '5'))
+        return $sdk.content.getItem('navigation', '5')
     })
 </script>

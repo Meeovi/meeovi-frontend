@@ -71,34 +71,24 @@
 
 <script setup>
     import { useRoutePath } from '#shared/app/composables/routing/useRoutePath'
-    import { useDirectusUrl } from '#imports'
-
-    const directusUrl = useDirectusUrl()
     const { joinRoutePath } = useRoutePath()
     const toDepartmentPath = (slug) => joinRoutePath('/departments', slug)
-    const getAssetUrl = (file) => {
-        const fileId = file?.id || file?.directus_files_id?.id || file?.filename_disk || file
-        if (!fileId || !directusUrl) return ''
-        return `${directusUrl.replace(/\/$/, '')}/assets/${fileId}`
-    }
+    const { $sdk } = useNuxtApp()
 
-    const {
-        $directus,
-        $readItem
-    } = useNuxtApp()
+    const getAssetUrl = (file) => $sdk.content.getAssetUrl(file)
 
     const {
         data: departmentYardsale
     } = await useAsyncData('departmentYardsale', async () => {
         try {
-            return await $directus.request($readItem('departments', '31', {
+            return await $sdk.content.getItem('departments', '31', {
                 fields: ['*',
                     'products.products_id.*',
                     'products.products_id.image.*',
                     'image.*'
                 ],
                 limit: 2
-            }))
+            })
         } catch {
             return null
         }

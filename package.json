@@ -17,8 +17,7 @@
   "scripts": {
     "meeovi-commit": "git add . && git commit -m \"ready for update\"",
     "meeovi-update": "git pull \"https://github.com/Meeovi/meeovi-frontend\"",
-    "prisma:generate": "prisma generate --schema=./prisma/schema.prisma",
-    "dev": "nuxt dev --host 0.0.0.0 --port 3002 && npx novu@latest dev",
+    "dev": "nuxt dev --host 0.0.0.0 --port 3002",
     "dev-sw": "SW=true nuxi dev",
     "build": "nuxt build",
     "build-sw": "SW=true nuxi build",
@@ -26,33 +25,19 @@
     "typecheck": "npx nuxi typecheck",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "npm run prisma:generate && nuxt prepare"
+    "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@mframework/adapter-directus": "file:../../../packages/adapters/adapter-directus",
-    "@mframework/adapter-magento": "file:../../../packages/adapters/adapter-magento",
-    "@mframework/adapter-opensearch": "file:../../../packages/adapters/adapter-opensearch",
-    "@mframework/alternate-auth": "file:../../../packages/modules/alternate-auth",
     "@pinia/nuxt": "^0.11.2",
-    "@prisma/adapter-pg": "^7.8.0",
-    "@prisma/client": "^7.8.0",
     "@sentry/nuxt": "^10",
-    "@vue-email/nuxt": "^0.8.19",
-    "alternate-sdk": "file:../../../packages/modules/alternate-sdk",
     "nuxt": "^4.4.8",
     "pinia": "^3.0.3",
     "playwright-core": "^1.59.1",
-    "typescript": "^6.0.3",
-    "zod": "^3.24.0",
-    "zod-to-json-schema": "^3.25.2"
+    "typescript": "^6.0.3"
   },
   "devDependencies": {
     "@types/node": "^25.7.0",
-    "nuxt-layers-utils": "^0.3.1",
-    "prisma": "^7.8.0"
-  },
-  "resolutions": {
-    "@vercel/nft": "^0.27.4"
+    "nuxt-layers-utils": "^0.3.1"
   },
   "overrides": {
     "vue": "latest"

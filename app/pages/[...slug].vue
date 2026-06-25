@@ -1,6 +1,6 @@
 <template>
   <div>
-    <pagebar v-if="page?.type !== 'Page'" />
+    <Pagebar v-if="page?.type !== 'Page'" />
 
     <br>
 
@@ -26,8 +26,7 @@
 
 <script setup>
   import {
-    useRoute,
-    useRouter
+    useRoute
   } from 'vue-router'
   import {
     ref,
@@ -37,15 +36,12 @@
   import share from '#social/app/components/blocks/share.vue'
 
   const route = useRoute()
-  const {
-    $directus,
-    $readItems
-  } = useNuxtApp()
+  const { $sdk } = useNuxtApp()
 
   const page = ref(null)
 
   async function fetchPage() {
-    const result = await $directus.request($readItems('pages', {
+    const result = await $sdk.content.readItems('pages', {
       filter: {
         slug: {
           _eq: `${route.params.slug}`
@@ -53,7 +49,7 @@
       },
       fields: '*',
       limit: 1
-    }))
+    })
     page.value = Array.isArray(result) ? result[0] : null
   }
 

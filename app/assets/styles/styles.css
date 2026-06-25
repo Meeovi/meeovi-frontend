@@ -577,8 +577,9 @@ body {
 }
 
 .lowerBar {
+    position: relative;
     top: 63px;
-    z-index: 999;
+    z-index: 999 !important;
 }
 
 .features20 h2, .features20 .underline {

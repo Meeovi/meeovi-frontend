@@ -53,53 +53,50 @@
 </template>
 
 <script setup>
-  import {
-    ref
-  } from 'vue'
-  import {
-    useNotifications
-  } from '#shared/app/composables/globals/useNotifications'
+import { ref } from 'vue'
+import { useSdkNotifications } from '#shared/app/composables/notifications/useSdkNotifications'
 
-  const drawer = ref(false)
-  const {
-    notifications,
-    unreadCount,
-    markAsRead
-  } = useNotifications()
+const drawer = ref(false)
 
-  const getNotificationIcon = (type) => {
-    const icons = {
-      order: 'fas fa-shopping-cart',
-      account: 'fas fa-user',
-      social: 'fas fa-users',
-      system: 'fas fa-bell'
-    }
-    return icons[type] || 'fas fa-bell'
+const {
+  notifications,
+  unreadCount,
+  markAsRead
+} = useSdkNotifications()
+
+const getNotificationIcon = (type) => {
+  const icons = {
+    order: 'fas fa-shopping-cart',
+    account: 'fas fa-user',
+    social: 'fas fa-users',
+    system: 'fas fa-bell'
   }
+  return icons[type] || 'fas fa-bell'
+}
 
-  const getNotificationColor = (type) => {
-    const colors = {
-      order: 'primary',
-      account: 'info',
-      social: 'success',
-      system: 'warning'
-    }
-    return colors[type] || 'grey'
+const getNotificationColor = (type) => {
+  const colors = {
+    order: 'primary',
+    account: 'info',
+    social: 'success',
+    system: 'warning'
   }
+  return colors[type] || 'grey'
+}
 
-  const getNotificationLink = (notification) => {
-    if (notification.source === 'magento') {
-      switch (notification.type) {
-        case 'order':
-          return `/orders/${notification.payload?.order_id}`
-        case 'account':
-          return '/account'
-        default:
-          return '/notifications'
-      }
+const getNotificationLink = (notification) => {
+  if (notification.source === 'magento') {
+    switch (notification.type) {
+      case 'order':
+        return `/orders/${notification.payload?.order_id}`
+      case 'account':
+        return '/account'
+      default:
+        return '/notifications'
     }
-    return notification.payload?.link || '/notifications'
   }
+  return notification.payload?.link || '/notifications'
+}
 </script>
 
 <style scoped>

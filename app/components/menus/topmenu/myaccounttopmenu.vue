@@ -103,29 +103,26 @@
     }
   })
 
-  const {
-    $directus,
-    $readItem
-  } = useNuxtApp()
+  const { $sdk } = useNuxtApp()
 
   const {
     data: navSocial
   } = await useAsyncData('navSocial', () => {
-    return $directus.request($readItem('navigation', '2', {
+    return $sdk.content.getItem('navigation', '2', {
       fields: ['*', {
         menus: ['*'],
       }],
-    }))
+    })
   })
 
   const {
     data: navcomm
   } = await useAsyncData('navcomm', () => {
-    return $directus.request($readItem('navigation', '3', {
+    return $sdk.content.getItem('navigation', '3', {
       fields: ['*', {
         menus: ['*'],
       }],
-    }))
+    })
   })
 
   const socialMenus = computed(() => {

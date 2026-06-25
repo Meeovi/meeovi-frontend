@@ -38,15 +38,12 @@
     import createproduct from '#commerce/app/components/catalog/product/add-product.vue'
     import createlist from '#social/app/components/features/lists/add-list.vue'
 
-    const {
-        $directus,
-        $readItem
-    } = useNuxtApp()
+    const { $sdk } = useNuxtApp()
 
     const {
         data: uploadbar
     } = await useAsyncData('uploadbar', () => {
-        return $directus.request($readItem('navigation', '56'))
+        return $sdk.content.getItem('navigation', '56')
     })
 
     definePageMeta({

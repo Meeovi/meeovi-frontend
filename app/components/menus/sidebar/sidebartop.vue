@@ -21,14 +21,11 @@
   const loggedIn = computed(() => Boolean(auth.loggedIn.value))
   const user = computed(() => auth.user.value ?? null)
 
-  const {
-    $directus,
-    $readItem
-  } = useNuxtApp()
+  const { $sdk } = useNuxtApp()
 
   const {
     data: barTop
   } = await useAsyncData('barTop', () => {
-    return $directus.request($readItem('navigation', '50'))
+    return $sdk.content.getItem('navigation', '50')
   })
 </script>

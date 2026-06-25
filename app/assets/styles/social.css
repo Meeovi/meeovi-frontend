@@ -24,10 +24,20 @@
     left: 0px;
 }
 
+.cardWrapper {
+    margin: 10px;
+}
+
 .feedPost .v-card-text {
     position: relative;
-    height: 38%;
+    height: 190px;
+    overflow: hidden;
+    margin: 5px;
+}
+
+.feedPost .v-card-text:hover {
     border: 1px solid #e0e0e0;
+    border-radius: 15px;
 }
 
 .feedPost .v-card-actions {

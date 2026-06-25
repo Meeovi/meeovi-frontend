@@ -41,7 +41,7 @@
 <script setup>
 import { ref } from 'vue'
 
-const { $directus, $readItem, $createItem } = useNuxtApp()
+const { $sdk } = useNuxtApp()
 
 const email = ref('')
 const message = ref('')
@@ -53,11 +53,11 @@ const subscribe = async () => {
         loading.value = true
         message.value = ''
 
-        await $directus.request($createItem('newsletters', {
+        await $sdk.content.createItem('newsletters', {
             email: email.value,
             status: 'subscribed',
             date_created: new Date().toISOString()
-        }))
+        })
 
         message.value = 'Successfully subscribed to newsletter!'
         messageType.value = 'success'
@@ -71,8 +71,8 @@ const subscribe = async () => {
 }
 
 const { data: blocksNewsletter } = await useAsyncData('blocksNewsletter', () => {
-    return $directus.request($readItem('page_blocks', '4', {
+    return $sdk.content.getItem('page_blocks', '4', {
         fields: ['*', 'media.*.*'],
-    }))
+    })
 })
 </script>

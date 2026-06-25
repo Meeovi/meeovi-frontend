@@ -25,9 +25,9 @@
                     <live />
                   </v-col>
                 </v-row>
-                <v-container class="contentPage">
+                <div class="contentPage">
                   <slot />
-                </v-container>
+                </div>
               </div>
           </div>
           <!--<aboveFooter />-->
@@ -54,11 +54,6 @@
   import FooterNav from '../components/menus/FooterNav.vue'
   import live from '#social/app/components/menus/livebar/live.vue'
   import OfflineAlert from '#shared/app/components/alerts/OfflineAlert.vue'
-
-  import {
-    ref,
-    watch
-  } from 'vue'
   import {
     useTheme
   } from 'vuetify'
@@ -87,21 +82,39 @@
   )
 
   useHead({
-    htmlAttrs: {
-      lang: 'en'
-    },
+    meta: [{
+        charset: 'utf-8'
+      },
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1'
+      },
+      {
+        key: 'theme-color',
+        name: 'theme-color',
+        content: process.env.NUXT_PUBLIC_APP_THEME_COLOR || '#ffffff'
+      }
+    ],
     link: [{
       rel: 'icon',
       href: '/favicon.ico'
-    }]
+    }],
+    htmlAttrs: {
+      lang: 'en'
+    }
   })
 
+  const title = process.env.NUXT_PUBLIC_APP_NAME || 'Nuxt AI Chatbot Template'
+  const description = process.env.NUXT_PUBLIC_APP_DESCRIPTION ||
+    'A full-featured, hackable Nuxt AI chatbot template made with Nuxt UI.'
+
+
   useSeoMeta({
-    viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
-    title: 'Meeovi',
-    description: 'Meeovi is a social marketplace for customers and sellers to engage and build communities around their products and ideas.',
-    ogImage: '/images/logo.png',
-    twitterImage: '/images/logo.png',
+    title,
+    description,
+    ogTitle: title,
+    ogDescription: description,
+    ogImage: process.env.NUXT_PUBLIC_APP_OG_IMAGE || 'https://ui.nuxt.com/assets/templates/nuxt/chat-light.png',
     twitterCard: 'summary_large_image'
   })
 </script>

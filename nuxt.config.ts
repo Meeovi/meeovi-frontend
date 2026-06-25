@@ -1,17 +1,25 @@
 import {
   useLayers
 } from 'nuxt-layers-utils'
+import { resolve } from 'path'
 
 const layers = useLayers(__dirname, {
   shared: '../../../layers/shared',
   auth: '../../../layers/auth',
   commerce: '../../../layers/commerce',
-  social: '../../../layers/social'
+  social: '../../../layers/social',
+  //communication: '../../../layers/communication',
 })
 
 export default defineNuxtConfig({
   extends: layers.extends(),
-  alias: layers.alias('#'),
+  alias: {
+    ...Object.fromEntries(
+      Object.entries(layers.alias('#')).map(([key, value]) => [key, resolve(__dirname, value)])
+    ),
+    '#experience-builder': resolve(__dirname, '../../../../packages/plugins/experience-builder/runtime'),
+    '#experience-builder/': resolve(__dirname, '../../../../packages/plugins/experience-builder/runtime') + '/'
+  },
   routeRules: {
     '/auth/login': { redirect: '/login' },
     '/auth/register': { redirect: '/register' },
@@ -77,9 +85,9 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
     '@sentry/nuxt/module',
+    '@mframework/alternate-search',
     '@mframework/adapter-directus',
-    '@mframework/alternate-auth',
-    '@mframework/adapter-magento',
+    '@mframework/adapter-magento'
   ],
 
   imports: {
@@ -107,10 +115,16 @@ export default defineNuxtConfig({
     ],
   },
 
+  directus: {
+    url: process.env.DIRECTUS_URL,
+    token: process.env.NUXTUS_DIRECTUS_STATIC_TOKEN,
+    autoFetch: true,
+    devtools: true
+  },
   magento: {
     url: process.env.MAGENTO_URL,
     token: process.env.MAGENTO_ADMIN_TOKEN,
-    provider: 'rest', // or 'graphql'
+    provider: 'rest'
   },
 
   pinia: {
@@ -125,34 +139,12 @@ export default defineNuxtConfig({
         dsn: process.env.SENTRY_DSN || '',
       },
       meeoviProvider: process.env.MEEOVI_PROVIDER || 'opensearch',
-      directus: {
-        url: process.env.DIRECTUS_URL,
-        nuxtBaseUrl: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000',
-        devtools: true,
-        token: process.env.NUXTUS_DIRECTUS_STATIC_TOKEN,
-        auth: {
-          email: process.env.NUXTUS_DIRECTUS_ADMIN_EMAIL,
-          password: process.env.NUXTUS_DIRECTUS_ADMIN_PASSWORD,
-          token: process.env.NUXTUS_DIRECTUS_STATIC_TOKEN,
-          enabled: true,
-          enableGlobalAuthMiddleware: false, // Enable auth middleware on every page
-          userFields: ['*'], // Select user fields
-          redirect: {
-            login: '/login', // Path to redirect when login is required
-            logout: '/', // Path to redirect after logout
-            home: '/', // Path to redirect after successful login
-            resetPassword: '/reset-password', // Path to redirect for password reset
-            callback: '/callback', // Path to redirect after login with provider
-          },
-        }
-      },
       magento: {
         baseUrl: process.env.MAGENTO_BASE_URL || '',
         accessToken: process.env.MAGENTO_ACCESS_TOKEN || ''
       },
-      search: {
-        index: process.env.ALTERNATE_SEARCH_INDEX || process.env.NUXT_PUBLIC_SEARCH_INDEX || process.env.SEARCH_INDEX || ''
-      },
+      searchProvider: process.env.SEARCH_PROVIDER || process.env.NUXT_PUBLIC_SEARCH_PROVIDER || 'memory',
+      searchBackends: process.env.SEARCH_BACKENDS ? JSON.parse(process.env.SEARCH_BACKENDS) : [],
       payments: {
         provider: process.env.PAYMENT_PROVIDER || process.env.NUXT_PAYMENT || 'stripe'
       },
@@ -190,7 +182,6 @@ export default defineNuxtConfig({
             scope: ['email', 'identify']
           },
         ],
-        // Configure plugins
         plugins: [{
             name: 'twoFactor',
             options: {
@@ -213,8 +204,9 @@ export default defineNuxtConfig({
   build: {
     transpile: [
       '@mframework/adapter-magento',
-      //'@mframework/adapter-prisma',
-      '@vue/email'
+      '@mframework/adapter-directus',
+      '@vue/email',
+      '@mframework/alternate-search'
     ]
   },
 
@@ -280,9 +272,6 @@ export default defineNuxtConfig({
   },
 
   ogImage: {
-    // Enable zero-runtime mode to disable dynamic generation and remove signing warning
     zeroRuntime: true
-    // If you want dynamic OG images, comment out zeroRuntime and set a secret like below:
-    // secret: process.env.NUXT_OG_IMAGE_SECRET || '<your-generated-secret>'
   }
 })

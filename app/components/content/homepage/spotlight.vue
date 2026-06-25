@@ -31,16 +31,13 @@
   import productCard from '#commerce/app/catalog/product/productCard.vue'
 
   const model = ref(null)
-  const {
-    $directus,
-    $readItems
-  } = useNuxtApp()
+  const { $sdk } = useNuxtApp()
 
   const {
     data: spotlightProducts
   } = await useAsyncData('spotlightProducts', async () => {
     try {
-      return await $directus.request($readItems('products', {
+      return await $sdk.content.readItems('products', {
         fields: ['*',
           'products.products_id.*',
           'products.products_id.image.*',
@@ -58,7 +55,7 @@
             }
           }
         }
-      }))
+      })
     } catch {
       return null
     }

@@ -27,24 +27,21 @@
 
     const tab = ref(null)
 
-    const {
-        $directus,
-        $readItem
-    } = useNuxtApp()
+    const { $sdk } = useNuxtApp()
 
     const {
         data: lowerbar
     } = await useAsyncData('lowerbar', async () => {
-        return $directus.request($readItem('navigation', '51', {
+        return $sdk.content.getItem('navigation', '51', {
             fields: ['*', {
                 '*': ['*'],
             }],
-        }))
+        })
     })
 
     const {
         data: hellobar
     } = await useAsyncData('hellobar', () => {
-        return $directus.request($readItem('navigation', '50'))
+        return $sdk.content.getItem('navigation', '50')
     })
 </script>
