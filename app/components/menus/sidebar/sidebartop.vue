@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div v-if="loggedIn">
-      <v-toolbar :title="`${barTop?.description} ${user?.name || user?.email}`" color="info"></v-toolbar>
+    <div v-if="session">
+      <v-toolbar :title="barTopText + ' ' + userName" color="info"></v-toolbar>
     </div>
 
     <div v-else style="padding-top: 10px;">
@@ -10,7 +10,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
   import {
     computed,
     onMounted
@@ -21,11 +21,29 @@
   const loggedIn = computed(() => Boolean(auth.loggedIn.value))
   const user = computed(() => auth.user.value ?? null)
 
-  const { $sdk } = useNuxtApp()
+  const {
+    $directus,
+    $readItem,
+  } = useNuxtApp()
 
   const {
     data: barTop
-  } = await useAsyncData('barTop', () => {
-    return $sdk.content.getItem('navigation', '50')
+  } = await useAsyncData('barTop', async () => {
+    const resp = await $directus.request($readItem('navigation', '50'))
+    return resp?.data || resp || {}
+  })
+
+  const barTopText = computed(() => {
+    const d = barTop?.value?.description ?? barTop?.description
+    if (!d) return ''
+    if (typeof d === 'string' || typeof d === 'number') return String(d)
+    return ''
+  })
+
+  const userName = computed(() => {
+    const n = user?.value?.name ?? user?.name ?? user?.email
+    if (!n) return ''
+    if (typeof n === 'string' || typeof n === 'number') return String(n)
+    return ''
   })
 </script>

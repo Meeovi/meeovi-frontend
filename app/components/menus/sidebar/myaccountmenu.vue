@@ -15,15 +15,19 @@
 
 <script setup>
 const route = useRoute()
-const { $sdk } = useNuxtApp()
+const {
+    $directus,
+    $readItem,
+} = useNuxtApp()
 
     const {
         data: navAccount
-    } = await useAsyncData('navAccount', () => {
-        return $sdk.content.getItem('navigation', '2', {
+    } = await useAsyncData('navAccount', async () => {
+        const resp = await $directus.request($readItem('navigation', '2', {
             fields: ['*', {
                 '*': ['*'],
             }],
-        })
+        }))
+        return resp?.data || resp || { menus: [] }
     })
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <section data-bs-version="5.1" class="features15 cid-skeBHQcNjS" id="features16-6" data-sortbtn="btn-primary"
-      :style="`background-img: url(${getAssetUrl(departmentTheater?.image)})`">
+      :style="`background-img: url(${getAssetURL(departmentTheater?.image)})`">
 
       <div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(255, 255, 255);">
       </div>
@@ -45,23 +45,25 @@
   import productCard from '#commerce/app/components/catalog/product/productCard.vue'
   const { joinRoutePath } = useRoutePath()
   const toDepartmentPath = (slug) => joinRoutePath('/departments', slug)
-  const { $sdk } = useNuxtApp()
+  const { $directus, $readItem, $readItems } = useNuxtApp()
 
-  const getAssetUrl = (file) => $sdk.content.getAssetUrl(file)
+  import { getAssetURL } from '#shared/app/utils/get-asset-url'
+
   const model = ref(null)
 
   const {
     data: departmentTheater
   } = await useAsyncData('departmentTheater', async () => {
     try {
-      return await $sdk.content.getItem('departments', '30', {
+      const resp = await $directus.request($readItem('departments', '30', {
         fields: [
           '*',
           'products.products_id.*',
           'products.products_id.image.*',
           'image.*'
         ],
-      })
+      }))
+      return resp?.data || resp || {}
     } catch {
       return null
     }

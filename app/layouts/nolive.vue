@@ -54,6 +54,7 @@
   }
 
   const STORAGE_KEY = 'elite-theme'
+  const pwa = usePWA()
 
   // Theme is now initialized via plugins (server + client)
   // This watcher just ensures persistence when user toggles theme
@@ -67,6 +68,17 @@
       }
     },
   )
+
+  const {
+    $pwa
+  } = useNuxtApp()
+
+  const toast = useToast()
+
+  onMounted(() => {
+    if ($pwa.offlineReady)
+      toast.success('App ready to work offline')
+  })
 
   useHead({
     meta: [{

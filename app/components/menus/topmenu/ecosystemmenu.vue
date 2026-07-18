@@ -16,9 +16,9 @@
                     </v-card-title>
                 </v-toolbar>
                 <v-row style="padding: 10px;">
-                    <v-col cols="3" v-for="menu in activeMenus" :key="menu?.id">
+                    <v-col v-for="menu in activeMenus" :key="menu?.id">
                         <NuxtLink :to="toPath(menu?.slug)">
-                            <v-card class="mx-auto" max-width="300">
+                            <v-card class="mx-auto ecoCard" max-width="300">
                                 <div class="ecoAvatar">
                                     <v-avatar :icon="`fas fa-${menu?.icon}`" size="180"></v-avatar>
                                 </div>
@@ -42,12 +42,16 @@
 
     const toPath = (slug) => normalizeRoutePath(slug)
 
-    const { $sdk } = useNuxtApp()
+    const {
+        $directus,
+        $readItem,
+    } = useNuxtApp()
 
     const {
         data: eco
-    } = await useAsyncData('eco', () => {
-        return $sdk.content.getItem('navigation', '12')
+    } = await useAsyncData('eco', async () => {
+        const resp = await $directus.request($readItem('navigation', '12'))
+        return resp?.data || resp || {}
     })
 
     const dialog = ref(false);

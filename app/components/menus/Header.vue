@@ -29,7 +29,7 @@
                 </v-col>
 
                 <v-col class="myaccounttopmenu">
-                    <myaccounttopmenu />
+                    <ClientOnly><myaccounttopmenu /></ClientOnly>
                 </v-col>
 
                 <v-col class="shoppingCart">

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <NuxtPwaManifest />
     <NuxtLoadingIndicator />
     <v-responsive class="border rounded">
       <v-app :theme="theme?.global?.name?.value" class="auto-text">
@@ -8,27 +9,27 @@
         </ClientOnly>
         <OfflineAlert />
         <LowerBar />
-        
+
         <v-main>
           <div class="page-wrapper">
-              <v-navigation-drawer v-model="drawer" temporary>
-                  <sidebarnav />
-                <v-spacer />
-              </v-navigation-drawer>
+            <v-navigation-drawer v-model="drawer" temporary>
+              <sidebarnav />
+              <v-spacer />
+            </v-navigation-drawer>
 
-              <div id="sidebarNav"></div>
-              <div id="mainSection">
-                <!--<announcements />-->
-                
-                <v-row>
-                  <v-col>
-                    <live />
-                  </v-col>
-                </v-row>
-                <div class="contentPage">
-                  <slot />
-                </div>
+            <div id="sidebarNav"></div>
+            <div id="mainSection">
+              <!--<announcements />-->
+
+              <v-row>
+                <v-col>
+                  <live />
+                </v-col>
+              </v-row>
+              <div class="contentPage">
+                <slot />
               </div>
+            </div>
           </div>
           <!--<aboveFooter />-->
           <FooterNav />
@@ -67,6 +68,7 @@
   }
 
   const STORAGE_KEY = 'elite-theme'
+  const pwa = usePWA()
 
   // Theme is now initialized via plugins (server + client)
   // This watcher just ensures persistence when user toggles theme
@@ -80,6 +82,17 @@
       }
     },
   )
+
+  const {
+    $pwa
+  } = useNuxtApp()
+
+  const toast = useToast()
+
+  onMounted(() => {
+    if ($pwa.offlineReady)
+      toast.success('App ready to work offline')
+  })
 
   useHead({
     meta: [{

@@ -42,8 +42,8 @@ body {
 
 .searchField {
     position: relative;
-    top: 10px;
-    left: 15%;
+    top: 0px;
+    left: 25%;
     width: 650px;
 }
 
@@ -74,12 +74,12 @@ body {
 }
 
 .myaccounttopmenu {
-    left: 5px;
     position: relative;
+    display: block;
 }
 
 .ecoAvatar {
-    padding-left: 20%;
+    text-align: center;
 }
 
 .ecoAvatar .v-icon {
@@ -147,8 +147,8 @@ body {
 .livebar {
     width: 100%;
     position: relative;
-    padding-top: 10px;
-    top: 52px;
+    padding-top: 0px;
+    top: 50px;
     display: inline-flex;
 }
 
@@ -373,7 +373,7 @@ body {
     padding-left: 0px !important;
     padding-right: 0px;
     margin-bottom: 1% !important;
-    top: 45px !important;
+    top: 23px !important;
     position: relative;
     min-height: 100vh
 }
@@ -475,7 +475,7 @@ body {
     z-index: 9999999 !important;
     float: right;
     right: 20px;
-    bottom: 20px;
+    bottom: 70px;
     position: fixed;
 }
 
@@ -491,6 +491,7 @@ body {
 .rightAddBtn {
     position: relative;
     padding-top: 25px;
+    right: 5px;
 }
 
 .features19 .v-col {
@@ -578,6 +579,7 @@ body {
 
 .lowerBar {
     position: relative;
+    margin: 0 !important;
     top: 63px;
     z-index: 999 !important;
 }
@@ -588,6 +590,10 @@ body {
 
 .center-text {
     text-align: center;
+}
+
+.ecoCard {
+    width: 200px;
 }
 
 /******************** Meeovi Time CSS ************/

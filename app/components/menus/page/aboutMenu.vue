@@ -23,17 +23,20 @@
         ref
     } from 'vue'
 
-    const { $sdk } = useNuxtApp()
+    const {
+        $directus,
+        $readItem,
+    } = useNuxtApp()
 
     const {
         data: companyMenu
     } = await useAsyncData('companyMenu', async () => {
-        const item = await $sdk.content.getItem('navigation', '57', {
+        const item = await $directus.request($readItem('navigation', '57', {
             fields: ['*', {
                 '*': ['*'],
             }],
-        })
-        return item || {
+        }))
+        return item?.data || item || {
             menus: []
         }
     })

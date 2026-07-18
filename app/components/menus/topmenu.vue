@@ -20,7 +20,10 @@
     useRoutePath
   } from '#shared/app/composables/routing/useRoutePath'
 
-  const { $sdk } = useNuxtApp()
+  const {
+    $directus,
+    $readItems,
+  } = useNuxtApp()
   const {
     normalizeRoutePath
   } = useRoutePath()
@@ -30,8 +33,9 @@
   const {
     data: topmenu
   } = await useAsyncData('topmenu-about-departments', async () => {
-    return $sdk.content.readItems('about_departments', {
+    const resp = await $directus.request($readItems('about_departments', {
       fields: ['*', 'image.*', 'pages.pages_id.*'],
-    })
+    }))
+    return resp?.data || resp || []
   })
 </script>

@@ -59,20 +59,21 @@
     const { joinRoutePath } = useRoutePath()
     const toDepartmentPath = (slug) => joinRoutePath('/departments', slug)
 
-    const { $sdk } = useNuxtApp()
+    const { $directus, $readItem, $readItems } = useNuxtApp()
 
     const {
         data: outletPixanomy
     } = await useAsyncData('outletPixanomy', async () => {
         try {
-            return await $sdk.content.getItem('departments', '89', {
+            const resp = await $directus.request($readItem('departments', '89', {
                 fields: [
                     '*',
                     'products.products_id.*',
                     'products.products_id.image.*',
                     'image.*'
                 ],
-            })
+            }))
+            return resp?.data || resp || {}
         } catch {
             return null
         }

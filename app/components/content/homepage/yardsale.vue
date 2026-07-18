@@ -27,7 +27,7 @@
                                 </div>
                             </div>
                             <div class="item-img">
-                                <NuxtImg loading="lazy" :src="getAssetUrl(departmentYardsale?.image)"
+                                <NuxtImg loading="lazy" :src="getAssetURL(departmentYardsale?.image)"
                                     :alt="departmentYardsale?.name" />
                             </div>
                         </div>
@@ -73,22 +73,23 @@
     import { useRoutePath } from '#shared/app/composables/routing/useRoutePath'
     const { joinRoutePath } = useRoutePath()
     const toDepartmentPath = (slug) => joinRoutePath('/departments', slug)
-    const { $sdk } = useNuxtApp()
+    const { $directus, $readItem, $readItems } = useNuxtApp()
 
-    const getAssetUrl = (file) => $sdk.content.getAssetUrl(file)
+    import { getAssetURL } from '#shared/app/utils/get-asset-url'
 
     const {
         data: departmentYardsale
     } = await useAsyncData('departmentYardsale', async () => {
         try {
-            return await $sdk.content.getItem('departments', '31', {
+            const resp = await $directus.request($readItem('departments', '31', {
                 fields: ['*',
                     'products.products_id.*',
                     'products.products_id.image.*',
                     'image.*'
                 ],
                 limit: 2
-            })
+            }))
+            return resp?.data || resp || {}
         } catch {
             return null
         }

@@ -1,7 +1,7 @@
 <template>
   <div>
     <section data-bs-version="5.1" class="features16 cid-skeBGL5AVt" id="features17-5" data-sortbtn="btn-primary"
-      :style="`background-img: url(${getAssetUrl(departmentMusic?.image)})`">
+      :style="`background-img: url(${getAssetURL(departmentMusic?.image)})`">
 
       <div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(255, 255, 255);">
       </div>
@@ -50,22 +50,23 @@
   
   const { joinRoutePath } = useRoutePath()
   const toDepartmentPath = (slug) => joinRoutePath('/departments', slug)
-  const { $sdk } = useNuxtApp()
+  const { $directus, $readItem, $readItems } = useNuxtApp()
 
-  const getAssetUrl = (file) => $sdk.content.getAssetUrl(file)
+  import { getAssetURL } from '#shared/app/utils/get-asset-url'
 
   const {
     data: departmentMusic
   } = await useAsyncData('departmentMusic', async () => {
     try {
-      return await $sdk.content.getItem('departments', '28', {
+      const resp = await $directus.request($readItem('departments', '28', {
         fields: [
           '*',
           'products.products_id.*',
           'products.products_id.image.*',
           'image.*'
         ],
-      })
+      }))
+      return resp?.data || resp || {}
     } catch {
       return null
     }

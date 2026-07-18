@@ -2,8 +2,8 @@
     <v-menu offset="20" location="bottom left">
         <template v-slot:activator="{ props }">
             <v-btn icon size="medium" variant="text" v-bind="props">
-                <template v-if="isLoggedIn">
-                    <UserAvatar :src="userAvatar" :name="userName" :email="userEmail" :size="32" />
+                <template v-if="session">
+                    <UserAvatar :src="session.user.avatar" :name="session.user.username" :email="session.user.email" :size="32" />
                 </template>
                 <v-icon v-else icon="fas fa-user-circle"></v-icon>
             </v-btn>
@@ -11,9 +11,9 @@
 
         <v-card class="account-menu-container">
             <NuxtLink :to="`/u/${user?.id}`" class="text-decoration-none">
-                <v-list-item :title="userName" :subtitle="userEmail" class="mb-3">
+                <v-list-item :title="session.user.username" :subtitle="session.user.email" class="mb-3">
                     <template #prepend>
-                        <UserAvatar :src="userAvatar" :name="userName" :email="userEmail" :size="40" />
+                        <UserAvatar :src="session.user.avatar" :name="session.user.username" :email="session.user.email" :size="40" />
                     </template>
                 </v-list-item>
             </NuxtLink>
@@ -51,35 +51,27 @@
 <script setup>
     import {
         computed,
-        onMounted,
     } from 'vue'
     import UserAvatar from '#social/app/components/user/UserAvatar.vue'
+    import { authClient } from "#auth/lib/auth-client";
 
+    const { data: session } = await authClient.useSession(useFetch);
     const auth = useAuth()
-    const session = auth.session
-    const user = auth.user
 
-    onMounted(async () => {
-        if (!session.value) {
-            await auth.fetchSession()
-        }
-    })
-
-    const isLoggedIn = computed(() => auth.loggedIn.value)
-    const userName = computed(() => user.value?.name || 'Guest')
-    const userEmail = computed(() => user.value?.email || 'Not logged in')
-    const userAvatar = computed(() => user.value?.image || user.value?.avatar || '')
-
-    const { $sdk } = useNuxtApp()
+    const {
+        $directus,
+        $readItem,
+    } = useNuxtApp()
 
     const {
         data: navAccount
-    } = await useAsyncData('navAccount', () => {
-        return $sdk.content.getItem('navigation', '2', {
+    } = await useAsyncData('navAccount', async () => {
+        const resp = await $directus.request($readItem('navigation', '2', {
             fields: ['*', {
                 menus: ['*'],
             }],
-        })
+        }))
+        return resp?.data || resp || { menus: [] }
     })
 
     async function handleLogout() {

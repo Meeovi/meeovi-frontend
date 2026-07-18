@@ -54,7 +54,10 @@
   import copyright from '~/components/blocks/copyright.vue'
   import BottomFooter from '#social/app/components/menus/BottomFooter.vue'
 
-  const { $sdk } = useNuxtApp()
+  const {
+    $directus,
+    $readItem,
+  } = useNuxtApp()
   const {
     normalizeRoutePath
   } = useRoutePath()
@@ -64,18 +67,21 @@
   const {
     data: about
   } = await useAsyncData('about', async () => {
-    return $sdk.content.getItem('navigation', '7')
+    const resp = await $directus.request($readItem('navigation', '7'))
+    return resp?.data || resp || {}
   })
 
   const {
     data: legal
   } = await useAsyncData('legal', async () => {
-    return $sdk.content.getItem('navigation', '8')
+    const resp = await $directus.request($readItem('navigation', '8'))
+    return resp?.data || resp || {}
   })
 
   const {
     data: company
   } = await useAsyncData('company', async () => {
-    return $sdk.content.getItem('navigation', '9')
+    const resp = await $directus.request($readItem('navigation', '9'))
+    return resp?.data || resp || {}
   })
 </script>

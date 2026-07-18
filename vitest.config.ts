@@ -13,6 +13,14 @@ export default defineConfig({
       },
       {
         test: {
+          name: 'integration',
+          include: ['test/integration/*.{test,spec}.ts'],
+          environment: 'node',
+          testTimeout: 30000, // 30s timeout for HTTP requests
+        },
+      },
+      {
+        test: {
           name: 'e2e',
           include: ['test/e2e/*.{test,spec}.ts'],
           environment: 'node',

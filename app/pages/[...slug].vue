@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="contentPage">
     <Pagebar v-if="page?.type !== 'Page'" />
 
     <br>
@@ -36,12 +36,15 @@
   import share from '#social/app/components/blocks/share.vue'
 
   const route = useRoute()
-  const { $sdk } = useNuxtApp()
+  const {
+    $directus,
+    $readItems,
+  } = useNuxtApp()
 
-  const page = ref(null)
-
-  async function fetchPage() {
-    const result = await $sdk.content.readItems('pages', {
+  const {
+    data: page
+  } = await useAsyncData('page', async () => {
+    const result = await $directus.request($readItems('pages', {
       filter: {
         slug: {
           _eq: `${route.params.slug}`
@@ -49,18 +52,33 @@
       },
       fields: '*',
       limit: 1
-    })
-    page.value = Array.isArray(result) ? result[0] : null
-  }
-
-  await fetchPage()
+    }))
+    return Array.isArray(result) ? result[0] : null
+  })
 
   watch(() => route.params.slug, async () => {
-    await fetchPage()
+    await refreshNuxtData('page')
   })
 
   useHead({
     title: () => page.value?.name || 'Page',
+  })
+
+  useSeoMeta({
+    title: () => page.value?.name || 'Page',
+    description: () => page.value?.description || 'E-Commerce application built with Nuxt & Shopify',
+    ogTitle: () => page.value?.name || 'Page',
+    ogDescription: () => page.value?.description || 'E-Commerce application built with Nuxt & Shopify',
+    twitterCard: 'summary_large_image',
+  })
+
+  defineOgImageComponent('Nuxt', {
+    title: () => page.value?.name || 'Nuxt Commerce',
+    description: () => page.value?.description ||
+      'A high-performance, server-rendered E-commerce app built with Nuxt & Shopify',
+    theme: '#4ADE80',
+    headline: '',
+    colorMode: 'dark',
   })
 
   definePageMeta({

@@ -24,12 +24,15 @@
     const alert = ref(true);
     const model = ref(null);
 
-    const { $sdk } = useNuxtApp()
+    const {
+        $directus,
+        $readItems,
+    } = useNuxtApp()
 
     const {
         data: announcements
-    } = await useAsyncData('announcements', () => {
-        return $sdk.content.readItems('articles', {
+    } = await useAsyncData('announcements', async () => {
+        const resp = await $directus.request($readItems('articles', {
             fields: ['*', {
                 '*': ['*']
             }],
@@ -38,6 +41,7 @@
                     _eq: 'Announcements'
                 }
             }
-        })
+        }))
+        return resp?.data || resp || []
     })
 </script>

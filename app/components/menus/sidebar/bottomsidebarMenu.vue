@@ -8,10 +8,13 @@
 </template>
 
 <script setup>
-const { $sdk } = useNuxtApp()
+const {
+    $directus,
+    $readItem,
+} = useNuxtApp()
 
 const { data: topmenu } = await useAsyncData('topmenu-sidebar-navigation', async () => {
-  const item = await $sdk.content.getItem('navigation', '87')
-  return item || { name: '', menus: [] }
+  const item = await $directus.request($readItem('navigation', '87'))
+  return item?.data || item || { name: '', menus: [] }
 })
 </script>

@@ -3,7 +3,7 @@
         <v-app-bar-title v-if="hasAsset(blocksSiteoverview?.media?.[0]?.file || blocksSiteoverview?.media?.[0])">
             <NuxtLink class="logobrand" href="/">
                 <v-icon start color="orange">
-                    <NuxtImg provider="cloudinary" :src="getAssetUrl(blocksSiteoverview?.media?.[0]?.file || blocksSiteoverview?.media?.[0])"
+                    <NuxtImg provider="cloudinary" :src="getAssetURL(blocksSiteoverview?.media?.[0]?.file || blocksSiteoverview?.media?.[0])"
                         :alt="blocksSiteoverview?.name" />
                 </v-icon>
                 <p class="logotext">{{ blocksSiteoverview?.name }}<!--Meeovi--></p>
@@ -22,14 +22,18 @@
 </template>
 
 <script setup>
-const { $sdk } = useNuxtApp()
+const { $directus, $readItem, $readItems } = useNuxtApp()
 
-const getAssetUrl = (file) => $sdk.content.getAssetUrl(file)
-const hasAsset = (file) => Boolean(getAssetUrl(file))
+import { getAssetURL } from '#shared/app/utils/get-asset-url'
 
-const { data: blocksSiteoverview } = await useAsyncData('blocksSiteoverview', () => {
-    return $sdk.content.getItem('page_blocks', '5', {
+const hasAsset = (file) => Boolean(getAssetURL(file))
+
+const { data: blocksSiteoverview } = await useAsyncData('blocksSiteoverview', async () => {
+    const resp = await $directus.request($readItem('page_blocks', '5', {
         fields: ['*', 'media.*.*'],
-    })
+    }))
+    return resp?.data || resp || {}
 })
+
+console.log(blocksSiteoverview.value?.name)
 </script>

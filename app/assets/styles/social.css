@@ -1,19 +1,16 @@
 /**************** Lists Page ****************/
 
-.listsToolbarTitle {
-    position: relative;
-    top: 3px;
+.listToolbar {
+    background-color: #07a70e !important;
+    color: white !important;
 }
 
+.listsToolbarTitle .v-icon-btn {
+    color: black !important;
+}
 .listsToolbarTooltip {
     position: relative;
     top: 10px;
-}
-
-.createListsToolbarItems {
-    bottom: 10px;
-    position: relative;
-    height: 100%;
 }
 
 /*************** Post CSS *************/

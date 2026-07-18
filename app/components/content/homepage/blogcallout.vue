@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-for="(media, index) in blocksBlog?.media" :key="index">
-    <section data-bs-version="5.1" class="info3 cid-skeBLZoXmf" id="info3-7" :style="`background-image: url(${getAssetUrl(media?.file || media)})`">
+    <section data-bs-version="5.1" class="info3 cid-skeBLZoXmf" id="info3-7" :style="`background-image: url(${getAssetURL(media?.file || media)})`">
       <div class="mbr-overlay" style="opacity: 0.6; background-color: rgb(68, 121, 217);">
       </div>
       <div class="container">
@@ -24,17 +24,18 @@
 </template>
 
 <script setup>
-    const { $sdk } = useNuxtApp()
+    const { $directus, $readItem, $readItems } = useNuxtApp()
 
-    const getAssetUrl = (file) => $sdk.content.getAssetUrl(file)
+    import { getAssetURL } from '#shared/app/utils/get-asset-url'
 
     const {
         data: blocksBlog
     } = await useAsyncData('blocksBlog', async () => {
         try {
-        return await $sdk.content.getItem('page_blocks', '3', {
+        const resp = await $directus.request($readItem('page_blocks', '3', {
                 fields: ['*', 'media.*.*'],
-        })
+        }))
+        return resp?.data || resp || null
         } catch {
             return null
         }

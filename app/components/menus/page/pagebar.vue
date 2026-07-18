@@ -36,17 +36,20 @@
 
     const tab = ref(null)
 
-    const { $sdk } = useNuxtApp()
+    const {
+        $directus,
+        $readItem,
+    } = useNuxtApp()
 
     const {
         data: pageBar
     } = await useAsyncData('pageBar', async () => {
-        const item = await $sdk.content.getItem('navigation', '123', {
+        const item = await $directus.request($readItem('navigation', '123', {
             fields: ['*', {
                 '*': ['*'],
             }],
-        })
-        return item || {
+        }))
+        return item?.data || item || {
             menus: []
         }
     })

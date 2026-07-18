@@ -10,7 +10,7 @@
                     <div class="item features-image сol-12 col-md-6 col-lg-4">
                         <div class="item-wrapper">
                             <div class="item-img" v-if="hasAsset(blocks?.media?.[0]?.file || blocks?.media?.[0])">
-                                <NuxtImg provider="cloudinary" loading="lazy" :src="getAssetUrl(blocks?.media?.[0]?.file || blocks?.media?.[0])" :alt="blocks?.name" />
+                                <NuxtImg provider="cloudinary" loading="lazy" :src="getAssetURL(blocks?.media?.[0]?.file || blocks?.media?.[0])" :alt="blocks?.name" />
                             </div>
 
                             <div class="item-img" v-else>
@@ -36,7 +36,7 @@
                     <div class="item features-image сol-12 col-md-6 col-lg-4">
                         <div class="item-wrapper">
                             <div class="item-img" v-if="hasAsset(blocks?.media?.[1]?.file || blocks?.media?.[1])">
-                                <NuxtImg provider="cloudinary" loading="lazy" :src="getAssetUrl(blocks?.media?.[1]?.file || blocks?.media?.[1])" :alt="blocks?.name" />
+                                <NuxtImg provider="cloudinary" loading="lazy" :src="getAssetURL(blocks?.media?.[1]?.file || blocks?.media?.[1])" :alt="blocks?.name" />
                             </div>
 
                             <div class="item-img" v-else>
@@ -62,7 +62,7 @@
                     <div class="item features-image сol-12 col-md-6 col-lg-4">
                         <div class="item-wrapper">
                             <div class="item-img" v-if="hasAsset(blocks?.media?.[2]?.file || blocks?.media?.[2])">
-                                <NuxtImg provider="cloudinary" loading="lazy" :src="getAssetUrl(blocks?.media?.[2]?.file || blocks?.media?.[2])" :alt="blocks?.name" />
+                                <NuxtImg provider="cloudinary" loading="lazy" :src="getAssetURL(blocks?.media?.[2]?.file || blocks?.media?.[2])" :alt="blocks?.name" />
                             </div>
 
                             <div class="item-img" v-else>
@@ -90,19 +90,21 @@
 </template>
 
 <script setup>
-    const { $sdk } = useNuxtApp()
+    const { $directus, $readItem, $readItems } = useNuxtApp()
 
-    const getAssetUrl = (file) => $sdk.content.getAssetUrl(file)
-    const hasAsset = (file) => Boolean(getAssetUrl(file))
+    import { getAssetURL } from '#shared/app/utils/get-asset-url'
+
+    const hasAsset = (file) => Boolean(getAssetURL(file))
 
     const {
         data: blocks,
         error
     } = await useAsyncData('blocks', async () => {
         try {
-            return await $sdk.content.getItem('page_blocks', '2', {
+            const resp = await $directus.request($readItem('page_blocks', '2', {
                 fields: ['*', 'media.file.*', 'content.*'],
-            })
+            }))
+            return resp?.data || resp || null
         } catch {
             return null
         }

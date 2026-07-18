@@ -1,5 +1,5 @@
 <template>
-  <div class="accountMenu">
+  <div class="myaccounttopmenu">
     <v-btn class="relative" icon="fas fa-user-circle" variant="text" @click.stop="drawer = !drawer"
       aria-label="Account"></v-btn>
     <v-navigation-drawer v-model="drawer" location="right" temporary class="cart-flyout">
@@ -11,53 +11,38 @@
       <v-divider></v-divider>
 
       <div class="cart-items">
-        <template v-if="loggedIn">
-          <v-list>
-            <v-list-item :title="`${user?.name || user?.email}'s Account'`" color="info"></v-list-item>
+        <template v-if="session">
+          <v-list lines="one" density="comfortable">
+            <v-list-item :title="`${session.user?.name || session.user?.email}'s Account'`" color="info"></v-list-item>
 
-            <v-sheet elevation="0">
-              <v-tabs v-model="tab">
-                <v-tab value="one" color="cyan">{{ navSocial?.name || 'Social' }}</v-tab>
-                <v-tab value="two" color="orange">{{ navcomm?.name || 'Commerce' }}</v-tab>
-                <v-tab value="three" color="green" v-if="user?.isSeller">Seller Dashboard</v-tab>
-              </v-tabs>
+            <v-divider class="my-2"></v-divider>
 
-              <v-divider></v-divider>
+            <v-list-subheader>{{ navSocial?.name || 'Social' }}</v-list-subheader>
+            <template v-if="socialMenus.length">
+              <v-list-item v-for="(item, index) in socialMenus" :key="item?.id || item?.name || index"
+                :title="item?.name" :prepend-icon="item?.icon" :href="item?.url || '#'" />
+            </template>
+            <v-list-item v-else title="No social menu items found."></v-list-item>
 
-              <v-tabs-window v-model="tab">
-                <v-tabs-window-item value="one">
-                  <v-list>
-                    <v-list-item style="text-align: left;"
-                      v-for="(item, index) in socialMenus"
-                      :key="item?.id || item?.name || index"
-                      :title="item?.name"
-                      :value="item?.name"
-                      :prepend-icon="item?.icon"
-                      :href="item?.url || '#'"
-                    ></v-list-item>
-                  </v-list>
-                </v-tabs-window-item>
+            <v-divider class="my-2"></v-divider>
 
-                <v-tabs-window-item value="two">
-                  <v-list>
-                    <v-list-item style="text-align: left;"
-                      v-for="(item, index) in commerceMenus"
-                      :key="item?.id || item?.name || index"
-                      :title="item?.name"
-                      :value="item?.name"
-                      :prepend-icon="item?.icon"
-                      :href="item?.url || '#'"
-                    ></v-list-item>
-                  </v-list>
-                </v-tabs-window-item>
+            <v-list-subheader>{{ navcomm?.name || 'Commerce' }}</v-list-subheader>
+            <template v-if="commerceMenus.length">
+              <v-list-item v-for="(item, index) in commerceMenus" :key="item?.id || item?.name || index"
+                :title="item?.name" :prepend-icon="item?.icon" :href="item?.url || '#'" />
+            </template>
+            <v-list-item v-else title="No commerce menu items found."></v-list-item>
 
-                <v-tabs-window-item value="three">
-                  <v-sheet class="pa-5" color="brown">Three</v-sheet>
-                </v-tabs-window-item>
-              </v-tabs-window>
-            </v-sheet>
+            <template v-if="user?.isSeller">
+              <v-divider class="my-2"></v-divider>
+              <v-list-subheader>Seller</v-list-subheader>
+              <v-list-item prepend-icon="fas fa-store" title="Seller Dashboard" href="/seller" />
+            </template>
 
-            <v-list-item style="text-align: left;" prepend-icon="fas fa-upload" title="Upload Center" href="/upload"></v-list-item>
+            <v-divider class="my-2"></v-divider>
+
+            <v-list-item style="text-align: left;" prepend-icon="fas fa-upload" title="Upload Center"
+              href="/upload"></v-list-item>
             <v-list-item style="text-align: left;">
               <logoutButton />
             </v-list-item>
@@ -86,50 +71,54 @@
 </template>
 
 <script setup>
-  import { ref, computed, onMounted } from 'vue'
+  import {
+    ref,
+    computed,
+    onMounted
+  } from 'vue'
   import logoutButton from '#auth/app/components/blocks/logoutButton.vue'
+  import { authClient } from "#auth/lib/auth-client";
 
-  const tab = ref('one')
+  const { data: session } = await authClient.useSession(useFetch);  
   const drawer = ref(false)
   const showLogoutConfirmation = ref(false)
 
-  const auth = useAuth()
-  const user = auth.user
-  const loggedIn = computed(() => auth.loggedIn.value)
-
-  onMounted(async () => {
-    if (!auth.session.value) {
-      await auth.fetchSession()
-    }
-  })
-
-  const { $sdk } = useNuxtApp()
+  const {
+    $directus,
+    $readItem,
+  } = useNuxtApp()
 
   const {
     data: navSocial
-  } = await useAsyncData('navSocial', () => {
-    return $sdk.content.getItem('navigation', '2', {
+  } = await useAsyncData('navSocial', async () => {
+    const resp = await $directus.request($readItem('navigation', '2', {
       fields: ['*', {
         menus: ['*'],
       }],
-    })
+    }))
+    return resp?.data || resp || { menus: [] }
   })
 
   const {
     data: navcomm
-  } = await useAsyncData('navcomm', () => {
-    return $sdk.content.getItem('navigation', '3', {
+  } = await useAsyncData('navcomm', async () => {
+    const resp = await $directus.request($readItem('navigation', '3', {
       fields: ['*', {
         menus: ['*'],
       }],
-    })
+    }))
+    return resp?.data || resp || { menus: [] }
   })
 
   const socialMenus = computed(() => {
     const raw = navSocial.value?.menus
     if (Array.isArray(raw)) return raw
     if (typeof raw === 'string') {
-      try { return JSON.parse(raw) } catch { return [] }
+      try {
+        return JSON.parse(raw)
+      } catch {
+        return []
+      }
     }
     return []
   })
@@ -138,22 +127,26 @@
     const raw = navcomm.value?.menus
     if (Array.isArray(raw)) return raw
     if (typeof raw === 'string') {
-      try { return JSON.parse(raw) } catch { return [] }
+      try {
+        return JSON.parse(raw)
+      } catch {
+        return []
+      }
     }
     return []
   })
 
-const initiateLogout = () => {
-  showLogoutConfirmation.value = true
-}
-
-const confirmLogout = async () => {
-  try {
-    await auth.signOut()
-    showLogoutConfirmation.value = false
-    await navigateTo('/login')
-  } catch (error) {
-    console.error('Logout failed:', error)
+  const initiateLogout = () => {
+    showLogoutConfirmation.value = true
   }
-}
+
+  const confirmLogout = async () => {
+    try {
+      await auth.signOut()
+      showLogoutConfirmation.value = false
+      await navigateTo('/login')
+    } catch (error) {
+      console.error('Logout failed:', error)
+    }
+  }
 </script>

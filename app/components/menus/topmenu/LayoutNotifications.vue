@@ -1,46 +1,74 @@
 <template>
   <div>
-    <v-btn class="relative" icon="fas fa-bell" variant="text" @click.stop="drawer = !drawer"
-      aria-label="Notifications">
+    <!-- Badge now correctly wraps or overlays the button -->
+    <v-badge
+      v-if="unreadCount > 0"
+      :content="unreadCount"
+      color="error"
+      overlap
+      offset-x="10"
+      offset-y="10"
+    >
+      <v-btn
+        class="relative"
+        icon="fas fa-bell"
+        variant="text"
+        @click.stop="drawer = !drawer"
+        aria-label="Notifications"
+      >
+      </v-btn>
+    </v-badge>
+    <v-btn
+      v-else
+      class="relative"
+      icon="fas fa-bell"
+      variant="text"
+      @click.stop="drawer = !drawer"
+      aria-label="Notifications"
+    >
     </v-btn>
-    <v-badge v-if="unreadCount > 0" :content="unreadCount" color="error" overlap></v-badge>
     
-       <!-- Flyout Menu -->
+    <!-- Flyout Menu -->
     <v-navigation-drawer v-model="drawer" location="right" temporary class="cart-flyout">
       <v-card-title class="d-flex justify-space-between align-center">
         <span>Notifications</span>
-        <v-btn icon="fas fa-x" @click="drawer = false">
-        </v-btn>
+        <v-btn icon="fas fa-x" @click="drawer = false"></v-btn>
       </v-card-title>
 
       <v-divider></v-divider>
 
       <div class="cart-items">
         <template v-if="notifications.length > 0">
-            <v-list lines="two" class="notification-list">
-              <template v-if="notifications.length > 0">
-
-                <v-list-item v-for="notification in notifications.slice(0, 5)" :key="notification.id"
-                  :href="getNotificationLink(notification)" :class="{ 'unread': !notification.isRead }"
-                  @click="markAsRead(notification.id, notification.source)">
-                  <template v-slot:prepend>
-                    <v-icon :icon="getNotificationIcon(notification.type)"
-                      :color="getNotificationColor(notification.type)"></v-icon>
-                  </template>
-                  <v-list-item-title v-dompurify-html="notification.title"></v-list-item-title>
-                  <v-list-item-subtitle>
-                    {{ new Date(notification.date).toLocaleDateString() }}
-                  </v-list-item-subtitle>
-                </v-list-item>
+          <v-list lines="two" class="notification-list">
+            <v-list-item
+              v-for="notification in notifications.slice(0, 5)"
+              :key="notification.id"
+              :href="getNotificationLink(notification)"
+              :class="{ 'unread': !notification.read }"
+              @click="markAsRead(notification.id)"
+            >
+              <template v-slot:prepend>
+                <v-icon
+                  :icon="getNotificationIcon(notification.category)"
+                  :color="getNotificationColor(notification.category)"
+                ></v-icon>
               </template>
-              <v-list-item v-else>
-                <v-list-item-title>No new notifications</v-list-item-title>
-              </v-list-item>
-              <v-divider></v-divider>
-              <v-list-item title="All Notifications" value="All Notifications" append-icon="fas fa-bell"
-                href="/notifications">
-              </v-list-item>
-            </v-list>
+              <v-list-item-title v-dompurify-html="notification.title"></v-list-item-title>
+              <v-list-item-subtitle>
+                {{ new Date(notification.createdAt).toLocaleDateString() }}
+              </v-list-item-subtitle>
+            </v-list-item>
+
+            <v-divider></v-divider>
+            
+            <v-list-item
+              title="All Notifications"
+              value="All Notifications"
+              append-icon="fas fa-bell"
+              href="/notifications"
+            >
+            </v-list-item>
+          </v-list>
         </template>
         <template v-else>
           <v-alert type="info" class="mt-4 mx-4">
@@ -52,51 +80,50 @@
   </div>
 </template>
 
-<script setup>
-import { ref } from 'vue'
-import { useSdkNotifications } from '#shared/app/composables/notifications/useSdkNotifications'
+<script setup lang="ts">
+import { ref, onMounted } from 'vue'
+import { useUserNotifications } from '#shared/app/composables/notifications/useUserNotifications'
 
 const drawer = ref(false)
 
 const {
   notifications,
   unreadCount,
-  markAsRead
-} = useSdkNotifications()
+  markAsRead,
+} = useUserNotifications()
 
-const getNotificationIcon = (type) => {
-  const icons = {
+const getNotificationIcon = (category: string) => {
+  const icons: Record<string, string> = {
     order: 'fas fa-shopping-cart',
     account: 'fas fa-user',
     social: 'fas fa-users',
-    system: 'fas fa-bell'
+    system: 'fas fa-bell',
+    email: 'fas fa-envelope',
   }
-  return icons[type] || 'fas fa-bell'
+  return icons[category] || 'fas fa-bell'
 }
 
-const getNotificationColor = (type) => {
-  const colors = {
+const getNotificationColor = (category: string) => {
+  const colors: Record<string, string> = {
     order: 'primary',
     account: 'info',
     social: 'success',
-    system: 'warning'
+    system: 'warning',
+    email: 'secondary',
   }
-  return colors[type] || 'grey'
+  return colors[category] || 'grey'
 }
 
-const getNotificationLink = (notification) => {
-  if (notification.source === 'magento') {
-    switch (notification.type) {
-      case 'order':
-        return `/orders/${notification.payload?.order_id}`
-      case 'account':
-        return '/account'
-      default:
-        return '/notifications'
-    }
+const getNotificationLink = (notification: any) => {
+  if (notification.payload) {
+    return notification.payload.link || '/notifications'
   }
-  return notification.payload?.link || '/notifications'
+  return '/notifications'
 }
+
+onMounted(() => {
+  // Refresh notifications when drawer opens
+})
 </script>
 
 <style scoped>
