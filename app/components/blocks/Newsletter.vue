@@ -41,7 +41,7 @@
 <script setup>
 import { ref } from 'vue'
 
-const { $directus, $createItem } = useNuxtApp()
+const { $directus, $createItem, $readItem } = useNuxtApp()
 
 const email = ref('')
 const message = ref('')
