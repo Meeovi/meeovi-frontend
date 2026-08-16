@@ -3,7 +3,7 @@
         <template v-slot:activator="{ props }">
             <v-btn icon size="medium" variant="text" v-bind="props">
                 <template v-if="session">
-                    <UserAvatar :src="session.user.avatar" :name="session.user.username" :email="session.user.email" :size="32" />
+                    <v-avatar :src="session.user.avatar" :name="session.user.username" :email="session.user.email" :size="32" />
                 </template>
                 <v-icon v-else icon="fas fa-user-circle"></v-icon>
             </v-btn>
@@ -13,7 +13,7 @@
             <NuxtLink :to="`/u/${user?.id}`" class="text-decoration-none">
                 <v-list-item :title="session.user.username" :subtitle="session.user.email" class="mb-3">
                     <template #prepend>
-                        <UserAvatar :src="session.user.avatar" :name="session.user.username" :email="session.user.email" :size="40" />
+                        <v-avatar :src="session.user.avatar" :name="session.user.username" :email="session.user.email" :size="40" />
                     </template>
                 </v-list-item>
             </NuxtLink>
@@ -53,9 +53,8 @@
         computed,
     } from 'vue'
     import UserAvatar from '#social/app/components/user/UserAvatar.vue'
-    import { authClient } from "#auth/lib/auth-client";
 
-    const { data: session } = await authClient.useSession(useFetch);
+    const { data: session } = await useAuth().getSession()
     const auth = useAuth()
 
     const {

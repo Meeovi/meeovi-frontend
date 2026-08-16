@@ -2,7 +2,7 @@
     <div>
         <v-app-bar id="topnav">
             <template v-slot:prepend>
-                <v-btn variant="flat" color="transparent" @click="$emit('toggleDrawer')">
+                <v-btn class="mainMenu" variant="flat" color="transparent" @click="$emit('toggleDrawer')">
                     <v-icon start icon="fas fa-bars"></v-icon> Menu
                 </v-btn>
             </template>
@@ -24,12 +24,8 @@
                     <ecosystemmenu />
                 </v-col>
 
-                <v-col id="minSearch">
-                    <mobilesearch />
-                </v-col>
-
                 <v-col class="myaccounttopmenu">
-                    <ClientOnly><myaccounttopmenu /></ClientOnly>
+                    <myaccounttopmenu />
                 </v-col>
 
                 <v-col class="shoppingCart">
@@ -52,10 +48,10 @@
     import logo from '../blocks/logo.vue'
     import LayoutNotifications from './topmenu/LayoutNotifications.vue'
     import ecosystemmenu from './topmenu/ecosystemmenu.vue'
-    import Search from '../search/search.vue'
+    import Search from '#search/app/components/searchBar.vue'
     import cart from '#commerce/app/components/menus/cart.vue'
     //import LayoutNotifications from './Notifications.vue'
-    import mobilesearch from './topmenu/mobilesearch.vue'
+    import mobilesearch from '#search/app/components/menus/mobilesearch.vue'
     import myaccounttopmenu from './topmenu/myaccounttopmenu.vue'
 
     defineProps({

@@ -3,6 +3,10 @@ html {
     font-family: 'Inter', sans-serif !important;
 }
 
+a {
+    text-decoration: none !important;
+}
+
 .v-theme--dark .auto-text {
   color: white;
 }
@@ -75,7 +79,6 @@ body {
 
 .myaccounttopmenu {
     position: relative;
-    display: block;
 }
 
 .ecoAvatar {
@@ -373,7 +376,7 @@ body {
     padding-left: 0px !important;
     padding-right: 0px;
     margin-bottom: 1% !important;
-    top: 23px !important;
+    top: 21px !important;
     position: relative;
     min-height: 100vh
 }
@@ -398,7 +401,8 @@ body {
 }
 
 .departmentPage {
-    padding-top: 50px;
+    top: 21px !important;
+    position: relative;
 }
 
 .departmentBanner {
@@ -474,7 +478,7 @@ body {
 .feedButton {
     z-index: 9999999 !important;
     float: right;
-    right: 20px;
+    right: 0px;
     bottom: 70px;
     position: fixed;
 }
@@ -731,7 +735,7 @@ body {
 
 .deptCatBtn {
     position: relative;
-    top: 5px;
+    top: 0px;
 }
 
 /**************** Product Page *******************/
@@ -1439,4 +1443,12 @@ footer a:hover {
     height: 100vh !important;
     width: 100% !important;
     min-height: 100vh !important;
+}
+
+.langCard, .currencyCard {
+    text-align: center;
+}
+
+.cid-uHg1k6KLf8 img {
+    border-radius: 0px !important;
 }

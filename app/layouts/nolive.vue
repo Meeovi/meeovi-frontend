@@ -7,6 +7,9 @@
           <Header :drawer="drawer" @toggle-drawer="drawer = !drawer" />
         </ClientOnly>
         <OfflineAlert />
+        <v-alert v-if="pwa?.offlineReady" type="success" density="compact" class="mb-2">
+          App ready to work offline
+        </v-alert>
         <LowerBar />
         
         <v-main>
@@ -30,6 +33,8 @@
           <!---->
         </v-main>
       </v-app>
+
+      <mobileNav />
     </v-responsive>
   </div>
 </template>
@@ -68,17 +73,6 @@
       }
     },
   )
-
-  const {
-    $pwa
-  } = useNuxtApp()
-
-  const toast = useToast()
-
-  onMounted(() => {
-    if ($pwa.offlineReady)
-      toast.success('App ready to work offline')
-  })
 
   useHead({
     meta: [{

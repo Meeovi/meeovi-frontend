@@ -10,6 +10,7 @@ const layers = useLayers(__dirname, {
   auth: '../../../layers/auth',
   commerce: '../../../layers/commerce',
   social: '../../../layers/social',
+  search: '../../../layers/search',
 })
 
 export default defineNuxtConfig({
@@ -104,6 +105,11 @@ export default defineNuxtConfig({
     'adapter-magento/module'
   ],
 
+  magento: {
+    endpoint: process.env.MAGENTO_GRAPHQL_URL,
+    token: process.env.GQL_KEY,
+  },
+
   /*imports: {
     presets: [{
         from: 'alternate-sdk/auth/adapter',
@@ -144,6 +150,7 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
+      graphqlEndpoint: process.env.GRAPHQL_URL,
       // Directus
       directus: {
         url: process.env.DIRECTUS_URL,
@@ -162,10 +169,6 @@ export default defineNuxtConfig({
             callback: '/auth/callback', // Path to redirect after login with provider
           },
         }
-      },
-      magento: {
-        endpoint: process.env.MAGENTO_GRAPHQL_URL,
-        token: process.env.GQL_KEY,
       },
       sentry: {
         dsn: process.env.SENTRY_DSN || process.env.NUXT_PUBLIC_SENTRY_DSN || ''

@@ -35,53 +35,73 @@
         <v-btn icon="fas fa-x" @click="drawer = false"></v-btn>
       </v-card-title>
 
-      <v-divider></v-divider>
+       <v-divider></v-divider>
 
-      <div class="cart-items">
-        <template v-if="notifications.length > 0">
-          <v-list lines="two" class="notification-list">
-            <v-list-item
-              v-for="notification in notifications.slice(0, 5)"
-              :key="notification.id"
-              :href="getNotificationLink(notification)"
-              :class="{ 'unread': !notification.read }"
-              @click="markAsRead(notification.id)"
-            >
-              <template v-slot:prepend>
-                <v-icon
-                  :icon="getNotificationIcon(notification.category)"
-                  :color="getNotificationColor(notification.category)"
-                ></v-icon>
-              </template>
-              <v-list-item-title v-dompurify-html="notification.title"></v-list-item-title>
-              <v-list-item-subtitle>
-                {{ new Date(notification.createdAt).toLocaleDateString() }}
-              </v-list-item-subtitle>
-            </v-list-item>
+       <div class="notification-actions">
+         <v-btn
+           v-if="unreadCount > 0"
+           variant="text"
+           size="small"
+           @click="markAllAsRead"
+         >
+           Mark all as read
+         </v-btn>
+       </div>
 
-            <v-divider></v-divider>
-            
-            <v-list-item
-              title="All Notifications"
-              value="All Notifications"
-              append-icon="fas fa-bell"
-              href="/notifications"
-            >
-            </v-list-item>
-          </v-list>
-        </template>
-        <template v-else>
-          <v-alert type="info" class="mt-4 mx-4">
-            No new notifications
-          </v-alert>
-        </template>
-      </div>
+       <div class="cart-items">
+         <template v-if="notifications.length > 0">
+           <v-list lines="two" class="notification-list">
+             <v-list-item
+               v-for="notification in notifications.slice(0, 5)"
+               :key="notification.id"
+               :href="getNotificationLink(notification)"
+               :class="{ 'unread': !notification.read }"
+               @click="markAsRead(notification.id)"
+             >
+               <template v-slot:prepend>
+                 <v-icon
+                   :icon="getNotificationIcon(notification.category)"
+                   :color="getNotificationColor(notification.category)"
+                 ></v-icon>
+               </template>
+               <v-list-item-title v-dompurify-html="notification.title"></v-list-item-title>
+               <v-list-item-subtitle>
+                 {{ new Date(notification.createdAt).toLocaleDateString() }}
+               </v-list-item-subtitle>
+               <template v-slot:append>
+                 <v-btn
+                   icon="fas fa-x"
+                   size="small"
+                   variant="text"
+                   @click.stop="dismiss(notification.id)"
+                   aria-label="Dismiss notification"
+                 ></v-btn>
+               </template>
+             </v-list-item>
+
+             <v-divider></v-divider>
+
+             <v-list-item
+               title="All Notifications"
+               value="All Notifications"
+               append-icon="fas fa-bell"
+               href="/notifications"
+             >
+             </v-list-item>
+           </v-list>
+         </template>
+         <template v-else>
+           <v-alert type="info" class="mt-4 mx-4">
+             No new notifications
+           </v-alert>
+         </template>
+       </div>
     </v-navigation-drawer>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, watch } from 'vue'
 import { useUserNotifications } from '#shared/app/composables/notifications/useUserNotifications'
 
 const drawer = ref(false)
@@ -90,6 +110,9 @@ const {
   notifications,
   unreadCount,
   markAsRead,
+  markAllAsRead,
+  dismiss,
+  refresh,
 } = useUserNotifications()
 
 const getNotificationIcon = (category: string) => {
@@ -123,6 +146,11 @@ const getNotificationLink = (notification: any) => {
 
 onMounted(() => {
   // Refresh notifications when drawer opens
+  watch(drawer, (val) => {
+    if (val) {
+      refresh()
+    }
+  })
 })
 </script>
 
@@ -134,5 +162,11 @@ onMounted(() => {
 
   .unread {
     background-color: rgba(var(--v-theme-primary), 0.1);
+  }
+
+  .notification-actions {
+    padding: 8px 16px;
+    display: flex;
+    justify-content: flex-end;
   }
 </style>

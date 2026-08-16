@@ -3,11 +3,14 @@
     <NuxtPwaManifest />
     <NuxtLoadingIndicator />
     <v-responsive class="border rounded">
-      <v-app :theme="theme?.global?.name?.value" class="auto-text">
+          <v-app :theme="theme?.global?.name?.value" class="auto-text">
         <ClientOnly>
           <Header :drawer="drawer" @toggle-drawer="drawer = !drawer" />
         </ClientOnly>
         <OfflineAlert />
+        <v-alert v-if="pwa?.offlineReady" type="success" density="compact" class="mb-2">
+          App ready to work offline
+        </v-alert>
         <LowerBar />
 
         <v-main>
@@ -32,28 +35,24 @@
             </div>
           </div>
           <!--<aboveFooter />-->
+
           <FooterNav />
           <!---->
         </v-main>
       </v-app>
+      
+      <mobileNav />      
     </v-responsive>
   </div>
 </template>
 
 <script setup lang="ts">
-  //import SearchHeader from '../components/search/SearchHeader.vue'
   import Header from '../components/menus/Header.vue'
   import sidebarnav from '../components/menus/sidebar/sidebarnav.vue'
-  import logo from '../components/blocks/logo.vue'
-  import search from '../components/search/search.vue'
-  import ecosystemmenu from '../components/menus/topmenu/ecosystemmenu.vue'
-  import myaccountmenu from '../components/menus/sidebar/myaccountmenu.vue'
-  import LayoutNotifications from '../components/menus/topmenu/LayoutNotifications.vue'
-  import mobilesearch from '../components/menus/topmenu/mobilesearch.vue'
-  import myaccounttopmenu from '../components/menus/topmenu/myaccounttopmenu.vue'
   import LowerBar from '../components/menus/LowerBar.vue'
   import FooterNav from '../components/menus/FooterNav.vue'
   import live from '#social/app/components/menus/livebar/live.vue'
+  import mobileNav from '../components/menus/mobile/mobileNav.vue'
   import OfflineAlert from '#shared/app/components/alerts/OfflineAlert.vue'
   import {
     useTheme
@@ -82,17 +81,6 @@
       }
     },
   )
-
-  const {
-    $pwa
-  } = useNuxtApp()
-
-  const toast = useToast()
-
-  onMounted(() => {
-    if ($pwa.offlineReady)
-      toast.success('App ready to work offline')
-  })
 
   useHead({
     meta: [{

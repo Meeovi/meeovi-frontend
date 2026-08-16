@@ -237,6 +237,7 @@
 .results-page {
   background: linear-gradient(180deg, #f7f8fa 0%, #eef0f3 100%);
   min-height: 100vh;
+  min-width: 100vw;
 }
 
 .results-page__container {

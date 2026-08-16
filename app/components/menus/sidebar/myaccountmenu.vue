@@ -22,12 +22,7 @@ const {
 
     const {
         data: navAccount
-    } = await useAsyncData('navAccount', async () => {
-        const resp = await $directus.request($readItem('navigation', '2', {
-            fields: ['*', {
-                '*': ['*'],
-            }],
-        }))
-        return resp?.data || resp || { menus: [] }
+    } = await useAsyncData('navAccount', () => {
+        return $directus.request($readItem('navigation', '2'))
     })
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="session">
-      <v-toolbar :title="barTopText + ' ' + userName" color="info"></v-toolbar>
+      <v-toolbar :title="barTopText + ' ' + session.user.name" color="info"></v-toolbar>
     </div>
 
     <div v-else style="padding-top: 10px;">
@@ -15,11 +15,11 @@
     computed,
     onMounted
   } from 'vue'
-  const auth = useAuth()
-  await auth.fetchSession()
 
-  const loggedIn = computed(() => Boolean(auth.loggedIn.value))
-  const user = computed(() => auth.user.value ?? null)
+  const auth = useAuth()
+  const {
+    data: session
+  } = await auth.getSession()
 
   const {
     $directus,

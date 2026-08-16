@@ -1,6 +1,7 @@
 <template>
-  <div class="drawer-content">
+  <div>
     <sidebartop />
+    
     <v-list nav>
       <trendingMenu />
 
@@ -41,19 +42,15 @@
   </div>
 </template>
 
-<script setup lang="ts">
-  import {
-    useTheme
-  } from 'vuetify'
-  import sidebartop from './sidebartop.vue'
-  import trendingMenu from './trendingMenu.vue'
+<script setup>
+  import sidebartop from '../components/menus/sidebar/sidebartop.vue'
+  import trendingMenu from '../components/menus/sidebar/trendingMenu.vue'
   import departmentsmenu from '#commerce/app/components/menus/departmentsmenu.vue'
   import outlets from '#commerce/app/components/menus/outletsmenu.vue'
   import socialmenu from '#social/app/components/menus/socialmenu.vue'
-  import bottomsidebarmenu from './bottomsidebarMenu.vue'
 
   // Drawer state is now controlled by the layout
-  let theme: any = null
+  let theme = null
   try {
     theme = useTheme()
   } catch {
@@ -82,4 +79,25 @@
     if (!theme) return
     theme.global.name.value = theme.global.name.value === 'dark' ? 'light' : 'dark'
   }
+
+  useHead({
+    title: 'Meeovi - Browse',
+    meta: [{
+        name: 'description',
+        content: 'Browse Meeovi for movies, TV shows, music, books, and more. Discover new content, read reviews, and find your next favorite entertainment.'
+      },
+      {
+        name: 'keywords',
+        content: 'Meeovi, browse, movies, TV shows, music, books, entertainment, reviews, discover, content'
+      },
+      {
+        name: 'author',
+        content: 'Meeovi Team'
+      },
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1'
+      }
+    ]
+  })
 </script>

@@ -15,6 +15,6 @@ const {
 
 const { data: topmenu } = await useAsyncData('topmenu-sidebar-navigation', async () => {
   const item = await $directus.request($readItem('navigation', '87'))
-  return item?.data || item || { name: '', menus: [] }
+  return item?.data || item || { menus: [] }
 })
 </script>
