@@ -102,7 +102,13 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
     '@sentry/nuxt/module',
-    'adapter-magento/module'
+    'adapter-magento/module',
+    // Registers ContentAdapterRegistry (layers/shared's media/schema/live-
+    // update composables) against the real Directus instance already
+    // configured below via runtimeConfig.public.directus — see
+    // packages/adapters/adapter-directus/src/runtime/{plugin,server/
+    // register-content-adapter}.ts.
+    'adapter-directus/module'
   ],
 
   magento: {
