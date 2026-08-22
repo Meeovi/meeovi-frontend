@@ -32,7 +32,7 @@ export default defineEventHandler(async (event) => {
   // Append files and optional folder field to form data
   for (const file of files) {
     if (file.data) {
-      const blob = new Blob([file.data])
+      const blob = new Blob([new Uint8Array(file.data)])
       formData.append('file', blob, file.filename || file.name)
     }
     if (file.name === 'folder' && typeof file.data === 'string') {
@@ -45,7 +45,7 @@ export default defineEventHandler(async (event) => {
     const timeoutMs = 15000
     const uploaded = await Promise.race([
       directusServer.request(uploadFiles(formData)),
-      new Promise((_, reject) =>
+      new Promise<never>((_, reject) =>
         setTimeout(() => reject(new Error('Directus upload timeout')), timeoutMs),
       ),
     ])
@@ -56,7 +56,7 @@ export default defineEventHandler(async (event) => {
     if (uploaded?.id) {
       log('patching uploaded_by')
       await directusServer.request(
-        updateItem('media', uploaded.id, {
+        updateItem('directus_files', uploaded.id, {
           uploaded_by: session.user.id,
         }),
       )

@@ -1,5 +1,5 @@
 import { createError } from 'h3'
-import { directusServer, deleteItem } from '../../utils/directus-server'
+import { directusServer, readItems, deleteItem } from '../../utils/directus-server'
 import { getAuthSession } from '#auth/server/utils/sessions'
 
 export default defineEventHandler(async (event) => {
@@ -12,6 +12,8 @@ export default defineEventHandler(async (event) => {
     })
   }
 
+  const userId = session.user.id
+
   const body = await readBody(event)
   const ids = Array.isArray(body?.ids) ? body.ids : [body?.id].filter(Boolean)
 
@@ -22,10 +24,30 @@ export default defineEventHandler(async (event) => {
     })
   }
 
+  // Ownership check: directusServer authenticates with a static/admin
+  // token that bypasses Directus's own per-user permissions, so this route
+  // is the only place ownership can be enforced. Without it, any
+  // authenticated user could delete any other user's file by id.
+  const owned = await directusServer.request(
+    readItems('media' as any, {
+      fields: ['id'],
+      filter: {
+        id: { _in: ids.map(String) },
+        user: { _eq: userId },
+      },
+      limit: -1,
+    }),
+  )
+  const ownedIds = new Set((owned as any[]).map((item) => String(item.id)))
+
   const results: any[] = []
   for (const id of ids) {
+    if (!ownedIds.has(String(id))) {
+      results.push({ id, error: 'Not found' })
+      continue
+    }
     try {
-      const result = await directusServer.request(deleteItem('media', String(id)))
+      const result = await directusServer.request(deleteItem('media' as any, String(id)))
       results.push(result)
     } catch (error: any) {
       console.error(`Server media delete error for ${id}:`, error)

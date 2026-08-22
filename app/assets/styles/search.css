@@ -1,4 +1,104 @@
 /******************** Search and results page styles *************/
+.search-bar__input[data-v-ca4df944] {
+  min-width: 100%;
+  width: 100%;
+}
+
+.searchForm {
+  width: 100%;
+  paddin-left: 16px;
+  padding-right: 16px;
+}
+
+.searchField {
+    position: relative;
+    top: 0px;
+    min-width: 920px;
+    width: 100% !important;
+    padding-left: 16% !important;
+}
+
+.search-bar__actions {
+  display: flex;
+}
+
+  .search-bar__row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+    flex: 1;
+  }
+
+  .search-bar__input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    flex: 1;
+    min-width: 955px;
+  }
+
+  .search-bar__input {
+    flex: 1;
+    width: 920px;
+  }
+
+  .search-bar__index-col {
+    flex: 0 0 auto;
+    padding: 0;
+  }
+
+  .search-bar__index {
+    width: 140px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .search-bar__stats {
+    display: flex;
+    justify-content: flex-end;
+    max-width: 720px;
+    margin: 0.25rem auto 0;
+    padding: 0;
+  }
+
+  .search-bar__stats-text {
+    font-size: 0.8rem;
+    color: rgba(var(--v-theme-on-surface), 0.7);
+  }
+
+  .search-bar :deep(.ais-SearchBox-loadingIndicator) {
+    margin-left: 8px;
+  }
+
+  .search-bar :deep(.ais-SearchBox-loadingIndicator svg) {
+    width: 16px;
+    height: 16px;
+  }
+
+.mainSearch {
+    width: 650px !important;
+    min-height: 55px;
+    display: inline-block !important;
+    border-radius: 5px !important;
+    background-color: white;
+}
+
+.ais-SearchBox-input {
+    min-height: 0 !important;
+    border-radius: 5px !important;
+}
+
+.ais-InstantSearch svg {
+    display: none !important;
+}
+
+.mainSearch span {
+    height: 50px !important;
+}
 
 .results-summary {
     text-align: center;

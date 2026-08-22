@@ -45,6 +45,7 @@
   import LowerBar from '../components/menus/LowerBar.vue'
   import FooterNav from '../components/menus/FooterNav.vue'
   import OfflineAlert from '#shared/app/components/alerts/OfflineAlert.vue'
+  import mobileNav from '../components/menus/mobile/mobileNav.vue'
 
   import {
     useTheme

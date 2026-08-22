@@ -4,9 +4,6 @@
     "ignoreDeprecations": "6.0",
     "baseUrl": ".",
     "paths": {
-      "#app": [".nuxt/dist/app"],
-      "#app/*": [".nuxt/dist/app/*"],
-      "#imports": [".nuxt/imports"],
       "#auth": ["../../../layers/auth"],
       "#auth/*": ["../../../layers/auth/*"],
       "#social": ["../../../layers/social"],

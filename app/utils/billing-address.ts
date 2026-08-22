@@ -7,7 +7,7 @@ export function getPrimaryBillingAddress(organization: Organization): Organizati
 
 	if (organization.addresses.length === 1) {
 		const address = organization.addresses[0];
-		return typeof address === 'string' ? null : address;
+		return typeof address === 'string' ? null : (address ?? null);
 	}
 
 	for (const address of organization.addresses) {

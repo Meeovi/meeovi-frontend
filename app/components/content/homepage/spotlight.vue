@@ -13,7 +13,7 @@
 
               <div class="d-flex fill-height align-center justify-center">
                 <v-scale-transition>
-                  <v-icon v-if="isSelected" color="white" icon="mdi-close-circle-outline" size="48"></v-icon>
+                  <v-icon v-if="isSelected" color="white" icon="fas fa-circle-xmark" size="48"></v-icon>
                 </v-scale-transition>
               </div>
             </v-slide-group-item>
@@ -28,10 +28,10 @@
   import {
     ref
   } from 'vue'
-  import productCard from '#commerce/app/catalog/product/productCard.vue'
+  import productCard from '#commerce/app/components/catalog/product/productCard.vue'
 
   const model = ref(null)
-  const { $directus, $readItem, $readItems } = useNuxtApp()
+  const { $directus, $readItem, $readItems } = useNuxtApp() as any
 
   const {
     data: spotlightProducts

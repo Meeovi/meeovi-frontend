@@ -8,7 +8,7 @@ import {
 	deleteItem,
 	staticToken,
 } from '@directus/sdk';
-import type { Schema } from '~/types/schema';
+import type { Schema } from '../../app/types/schema';
 
 const directusUrl = process.env.DIRECTUS_URL as string;
 

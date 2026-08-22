@@ -1,7 +1,7 @@
 <template>
   <div>
     <section data-bs-version="5.1" class="features16 cid-skeBGL5AVt" id="features17-5" data-sortbtn="btn-primary"
-      :style="`background-img: url(${getAssetURL(departmentMusic?.image)})`">
+      :style="`background-image: url(${getAssetURL(departmentMusic?.image)})`">
 
       <div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(255, 255, 255);">
       </div>
@@ -16,7 +16,7 @@
                     <productCard :product="products?.products_id" :class="['ma-4', selectedClass]" @click="toggle" />
                     <div class="d-flex fill-height align-center justify-center">
                       <v-scale-transition>
-                        <v-icon v-if="isSelected" color="white" icon="mdi-close-circle-outline" size="48"></v-icon>
+                        <v-icon v-if="isSelected" color="white" icon="fas fa-circle-xmark" size="48"></v-icon>
                       </v-scale-transition>
                     </div>
                   </v-slide-group-item>

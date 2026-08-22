@@ -48,6 +48,7 @@
   import departmentsmenu from '#commerce/app/components/menus/departmentsmenu.vue'
   import outlets from '#commerce/app/components/menus/outletsmenu.vue'
   import socialmenu from '#social/app/components/menus/socialmenu.vue'
+  import bottomsidebarmenu from '../components/menus/sidebar/bottomsidebarMenu.vue'
 
   // Drawer state is now controlled by the layout
   let theme = null

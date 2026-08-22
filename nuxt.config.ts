@@ -4,13 +4,14 @@ import {
 import {
   resolve
 } from 'path'
+import { defineNuxtConfig } from 'nuxt/config'
 
 const layers = useLayers(__dirname, {
   shared: '../../../layers/shared',
   auth: '../../../layers/auth',
+  search: '../../../layers/search',
   commerce: '../../../layers/commerce',
   social: '../../../layers/social',
-  search: '../../../layers/search',
 })
 
 export default defineNuxtConfig({
@@ -102,19 +103,8 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
     '@sentry/nuxt/module',
-    'adapter-magento/module',
-    // Registers ContentAdapterRegistry (layers/shared's media/schema/live-
-    // update composables) against the real Directus instance already
-    // configured below via runtimeConfig.public.directus — see
-    // packages/adapters/adapter-directus/src/runtime/{plugin,server/
-    // register-content-adapter}.ts.
-    'adapter-directus/module'
+    'adapter-magento/module'
   ],
-
-  magento: {
-    endpoint: process.env.MAGENTO_GRAPHQL_URL,
-    token: process.env.GQL_KEY,
-  },
 
   /*imports: {
     presets: [{
@@ -156,7 +146,6 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      graphqlEndpoint: process.env.GRAPHQL_URL,
       // Directus
       directus: {
         url: process.env.DIRECTUS_URL,
@@ -175,6 +164,10 @@ export default defineNuxtConfig({
             callback: '/auth/callback', // Path to redirect after login with provider
           },
         }
+      },
+      magento: {
+        endpoint: process.env.MAGENTO_GRAPHQL_URL,
+        token: process.env.GQL_KEY,
       },
       sentry: {
         dsn: process.env.SENTRY_DSN || process.env.NUXT_PUBLIC_SENTRY_DSN || ''

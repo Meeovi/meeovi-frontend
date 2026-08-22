@@ -31,7 +31,7 @@ body {
 #topnav {
     width: 100% !important;
     color: white;
-    background-color: rgb(var(--v-theme-info)) !important;
+    background-color: #11389b !important;
 }
 
 #topnav a {
@@ -42,34 +42,6 @@ body {
     display: inline-block;
     position: relative;
     top: 1px;
-}
-
-.searchField {
-    position: relative;
-    top: 0px;
-    left: 25%;
-    width: 650px;
-}
-
-.mainSearch {
-    width: 650px !important;
-    min-height: 55px;
-    display: inline-block !important;
-    border-radius: 5px !important;
-    background-color: white;
-}
-
-.ais-SearchBox-input {
-    min-height: 0 !important;
-    border-radius: 5px !important;
-}
-
-.ais-InstantSearch svg {
-    display: none !important;
-}
-
-.mainSearch span {
-    height: 50px !important;
 }
 
 .searchDropdown {
@@ -190,6 +162,16 @@ body {
 .accountDropdown h6 {
     padding-left: 15px;
     padding-top: 10px;
+}
+
+.leftTopNav {
+    padding-left: 15px;
+    position: relative;
+}
+
+.leftTopNav .v-col {
+    padding-left: 16px;
+    padding-right: 16px;
 }
 
 .rightTopNav {

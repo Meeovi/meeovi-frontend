@@ -3,7 +3,7 @@ import * as Sentry from "@sentry/nuxt";
 Sentry.init({
   // If set up, you can use your runtime config here
   // dsn: useRuntimeConfig().public.sentry.dsn,
-  dsn: useRuntimeConfig().public.sentry.dsn,
+  dsn: (useRuntimeConfig().public as any).sentry.dsn,
 
   // We recommend adjusting this value in production, or using tracesSampler
   // for finer control

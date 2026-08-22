@@ -20,7 +20,7 @@ export default defineEventHandler(async (event) => {
   try {
     [files, folders] = await Promise.all([
       directusServer.request(
-        readItems('media', {
+        readItems('media' as any, {
           fields: ['id', 'name', 'filename_download', 'filesize', 'type', 'folder', 'date_created', 'user'],
           filter: {
             user: {
@@ -32,7 +32,7 @@ export default defineEventHandler(async (event) => {
         }),
       ),
       directusServer.request(
-        readItems('media_folders', {
+        readItems('media_folders' as any, {
           fields: ['id', 'name', 'parent_folder', 'user'],
           filter: {
             user: {

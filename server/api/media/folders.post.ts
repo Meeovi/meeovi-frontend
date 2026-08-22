@@ -24,7 +24,7 @@ export default defineEventHandler(async (event) => {
 
   try {
     const created = await directusServer.request(
-      createItem('media_folders', {
+      createItem('media_folders' as any, {
         name: name.trim(),
         user: session.user.id,
       }),

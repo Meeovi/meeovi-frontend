@@ -26,9 +26,6 @@
 
 <script setup>
   import {
-    useRoute
-  } from 'vue-router'
-  import {
     ref,
     watch
   } from 'vue'

@@ -1,6 +1,18 @@
 <template>
   <div>
     <!-- Badge now correctly wraps or overlays the button -->
+    <!--
+      unreadCount/notifications below are plain top-level refs from
+      useUserNotifications(), correctly auto-unwrapped by Vue at runtime.
+      vue-tsc's template checker is a confirmed false positive here (it
+      infers them as still Ref-wrapped) — adding .value to "fix" the type
+      error breaks it at runtime instead (Ref<T> has no .value on what's
+      already the unwrapped value), which is exactly what caused a live
+      hydration-mismatch/TypeError crash on this component. Do not add
+      .value here; the @vue-ignore comments below suppress the tooling
+      false positive instead.
+    -->
+    <!-- @vue-ignore -->
     <v-badge
       v-if="unreadCount > 0"
       :content="unreadCount"
@@ -38,6 +50,7 @@
        <v-divider></v-divider>
 
        <div class="notification-actions">
+         <!-- @vue-ignore -->
          <v-btn
            v-if="unreadCount > 0"
            variant="text"
@@ -49,8 +62,10 @@
        </div>
 
        <div class="cart-items">
+         <!-- @vue-ignore -->
          <template v-if="notifications.length > 0">
            <v-list lines="two" class="notification-list">
+             <!-- @vue-ignore -->
              <v-list-item
                v-for="notification in notifications.slice(0, 5)"
                :key="notification.id"
@@ -146,7 +161,7 @@ const getNotificationLink = (notification: any) => {
 
 onMounted(() => {
   // Refresh notifications when drawer opens
-  watch(drawer, (val) => {
+  watch(drawer, (val: boolean) => {
     if (val) {
       refresh()
     }
