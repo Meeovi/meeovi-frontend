@@ -103,7 +103,8 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
     '@sentry/nuxt/module',
-    'adapter-magento/module'
+    'adapter-magento/module',
+    resolve(__dirname, '../../../packages/plugins/meeovi-newsletter/module.ts')
   ],
 
   /*imports: {
@@ -145,29 +146,23 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
+    // Server-only — the Directus static token is injected by the
+    // /api/cms/** proxy (layers/shared) and never reaches the client.
+    directus: {
+      token: process.env.NUXTUS_DIRECTUS_STATIC_TOKEN,
+    },
     public: {
-      // Directus
+      // Directus URL only. Client code talks to Directus through the
+      // same-origin /api/cms proxy; the token is never serialized here.
       directus: {
         url: process.env.DIRECTUS_URL,
-        auth: {
-          email: process.env.NUXTUS_DIRECTUS_ADMIN_EMAIL,
-          password: process.env.NUXTUS_DIRECTUS_ADMIN_PASSWORD,
-          token: process.env.NUXTUS_DIRECTUS_STATIC_TOKEN,
-          enabled: true,
-          enableGlobalAuthMiddleware: false, // Enable auth middleware on every page
-          userFields: ['*'], // Select user fields
-          redirect: {
-            login: '/auth/login', // Path to redirect when login is required
-            logout: '/', // Path to redirect after logout
-            home: '/', // Path to redirect after successful login
-            resetPassword: '/auth/reset-password', // Path to redirect for password reset
-            callback: '/auth/callback', // Path to redirect after login with provider
-          },
-        }
       },
       magento: {
+        // endpoint is the public storefront GraphQL URL — safe to expose.
+        // GQL_KEY is NOT a valid Magento customer JWT (attaching it makes
+        // Magento reject every request) so the adapter never uses it; it is
+        // no longer serialized to the client. See adapter-magento/module.ts.
         endpoint: process.env.MAGENTO_GRAPHQL_URL,
-        token: process.env.GQL_KEY,
       },
       sentry: {
         dsn: process.env.SENTRY_DSN || process.env.NUXT_PUBLIC_SENTRY_DSN || ''
