@@ -1,7 +1,8 @@
 <template>
   <div class="myaccounttopmenu">
     <v-btn class="relative" icon="fas fa-user-circle" variant="text" @click.stop="drawer = !drawer" aria-label="Account"></v-btn>
-    <v-navigation-drawer v-model="drawer" location="right" temporary class="cart-flyout">
+    <Teleport to="body">
+    <v-navigation-drawer v-model="drawer" location="right" temporary :width="400" class="cart-flyout">
       <v-card-title class="d-flex justify-space-between align-center">
         <span>Account</span>
         <v-btn size="lg" icon="fas fa-x" @click="drawer = false"></v-btn>
@@ -70,12 +71,13 @@
       </div>
 
       <div v-else>
-        <v-card-actions class="d-flex ga-2">
+        <v-card-actions class="d-flex flex-column ga-2">
           <v-btn block color="primary" variant="flat" to="/login">Login</v-btn>
           <v-btn block color="secondary" variant="outlined" to="/register">Sign Up</v-btn>
         </v-card-actions>
       </div>
     </v-navigation-drawer>
+    </Teleport>
 
     <v-dialog v-model="showLogoutConfirmation" max-width="300">
       <v-card>

@@ -3,9 +3,14 @@ import * as Sentry from "@sentry/nuxt";
 Sentry.init({
   dsn: (useRuntimeConfig().public as any).sentry.dsn,
 
-  // We recommend adjusting this value in production, or using tracesSampler
-  // for finer control
-  tracesSampleRate: 1.0,
+  // The Sentry Nuxt SDK does not support server-side tracing on Vercel
+  // (it warns during the build), so there's nothing to sample there.
+  // Off Vercel, sample lightly in production and fully in dev.
+  tracesSampleRate: process.env.VERCEL
+    ? 0
+    : process.env.NODE_ENV === 'production'
+      ? 0.1
+      : 1.0,
 
   // Enable logs to be sent to Sentry
   enableLogs: true,

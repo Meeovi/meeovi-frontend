@@ -31,3 +31,6 @@ logs
 .env.sentry-build-plugin
 
 /generated/prisma
+
+# Vercel CLI build output
+.vercel

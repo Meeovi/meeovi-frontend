@@ -119,6 +119,23 @@ body {
     background-color: rgb(var(--v-theme-info)) !important;
 }
 
+.lowernav a {
+    color: white;
+}
+
+.accountBar {
+    position: relative;
+    top: 15px;
+}
+
+.accountBar {
+  z-index: 999;
+}
+
+.accountbar > .v-toolbar-items {
+  padding-right: 15px;
+}
+
 .livebar {
     width: 100%;
     position: relative;
@@ -135,14 +152,10 @@ body {
     color: white;
 }
 
-.lowernav a {
-    color: white;
-}
-
 .logobrand {
     text-decoration: none;
     position: relative;
-    top: 5px;
+    top: 6px;
 }
 
 .v-divider {
@@ -265,6 +278,22 @@ body {
     top: 20px;
     height: 40px;
 }
+
+.contentPage h2 {
+    width: 100% !important;
+    text-align: center;
+}
+
+.contentPage > .v-sheet {
+    padding: 10px;
+    background-color: transparent;
+}
+
+.pixPage {
+    margin-top: 20px;
+    padding: 20px;
+}
+
 /******************* Authentication CSS ********/
 
 .loginForm,
@@ -1274,10 +1303,14 @@ body {
     margin-bottom: 1em;
 }
 
+/* NOTE: was `display: grid; grid-template-columns: 1fr 4fr` — a leftover from
+   an old InstantSearch demo layout. It forced every <ais-instant-search> on
+   the site (including the standalone search box on /search) into a 2-column
+   grid, collapsing the single-child search box into the narrow 1fr track.
+   The current search + results components own their own layout via scoped
+   CSS, so this is just `display: block` now. */
 .ais-InstantSearch {
-    display: grid;
-    grid-template-columns: 1fr 4fr;
-    grid-gap: 1em;
+    display: block;
 }
 
 .ais-Hits-item img {

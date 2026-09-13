@@ -166,7 +166,12 @@ export default defineNuxtConfig({
       },
       sentry: {
         dsn: process.env.SENTRY_DSN || process.env.NUXT_PUBLIC_SENTRY_DSN || ''
-      }
+      },
+      // Read by app/layouts/default.vue and nolive.vue for the <meta
+      // name="theme-color"> tag. process.env is not populated in the
+      // browser bundle — this needs to go through runtimeConfig.public to
+      // be readable client-side too.
+      appThemeColor: process.env.NUXT_PUBLIC_APP_THEME_COLOR || '#ffffff',
     },
   },
 

@@ -1,7 +1,7 @@
 <template>
     <v-card class="lowerBar">
         <v-tabs v-model="tab" :bg-color="lowerbar?.color" :color="lowerbar?.colortext" align-tabs="center">
-            <v-tab v-if="session">{{ hellobar?.description }} {{ session.user?.name }}</v-tab>
+            <v-tab v-if="session"><NuxtLink :to="`/u/${session.user?.id}`">{{ hellobar?.description }} {{ session.user?.name }}</NuxtLink></v-tab>
             <v-spacer />
             <div v-for="(menu, index) in lowerbar?.menus" :key="menu?.id || menu?.url || menu?.name || index">
                 <v-tab v-if="menu?.active === 'Active'" :value="menu?.value || menu?.url || menu?.name || index" :href="menu?.url || '#'" :style="{ color: lowerbar?.colortext || 'white' }">

@@ -33,7 +33,7 @@
     "typecheck": "npx nuxi typecheck",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "patch-package && node ../../../scripts/patch-browser-field-cjs-deps.cjs && nuxt prepare"
+    "postinstall": "node ../../../scripts/patch-browser-field-cjs-deps.cjs && nuxt prepare"
   },
   "dependencies": {
     "@directus/sdk": "^23.0.0",

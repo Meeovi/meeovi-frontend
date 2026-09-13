@@ -93,8 +93,12 @@
       })
 
       if (response.verified) {
-        // Store verification token securely
-        sessionStorage.setItem('ageVerificationToken', response.token)
+        // Store verification token securely. verifyAge only ever runs from
+        // the form's @submit handler (a real user interaction), so this is
+        // never reached during SSR — import.meta.client guard is defensive.
+        if (import.meta.client) {
+          sessionStorage.setItem('ageVerificationToken', response.token)
+        }
         showDialog.value = false
       } else {
         router.push('/')

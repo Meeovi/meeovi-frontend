@@ -17,26 +17,7 @@
       <bottomsidebarmenu />
 
       <v-divider></v-divider>
-      <v-row>
-        <v-col cols="3">
-          <v-btn variant="text" stacked title="Help" prepend-icon="fas fa-question-circle" size="x-small"
-            href="/connect/spaces/meeovi-help/">Help Center</v-btn>
-        </v-col>
-        <v-col cols="3">
-          <v-btn variant="text" stacked title="Notifications" prepend-icon="fas fa-bell" size="x-small"
-            href="/account/user/notifications">Notify Center</v-btn>
-        </v-col>
-        <v-col cols="3">
-          <v-btn @click="toggleDark()" variant="text">
-            <v-icon>
-              {{ isDark ? 'fas fa-moon' : 'fas fa-sun' }}
-            </v-icon>
-          </v-btn>
-        </v-col>
-        <v-col cols="3">
-          <!--<logout />-->
-        </v-col>
-      </v-row>
+      <footersidebarNav />
     </v-list>
   </div>
 </template>
@@ -51,6 +32,7 @@
   import outlets from '#commerce/app/components/menus/outletsmenu.vue'
   import socialmenu from '#social/app/components/menus/socialmenu.vue'
   import bottomsidebarmenu from './bottomsidebarMenu.vue'
+  import footersidebarNav from './footersidebarNav.vue'
 
   // Drawer state is now controlled by the layout
   let theme: any = null

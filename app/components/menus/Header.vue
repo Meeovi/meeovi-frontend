@@ -15,7 +15,7 @@
 
                 <v-col cols="8">
                     <ClientOnly>
-                        <Search />
+                        <Search :placeholder="placeholder" />
                     </ClientOnly>
                 </v-col>
 
@@ -71,7 +71,7 @@
     defineEmits(['toggleDrawer'])
 
     const drawer = ref(null);
-
+    const placeholder = 'Search categories, creatives, products, and more'
     const theme = useTheme()
     const themeName = computed(() => theme.global.name.value)
     const isDark = computed(() => theme.global.current.value.dark)

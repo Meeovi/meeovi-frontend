@@ -33,9 +33,12 @@
 <script>
   export default {
       data() {
+          // process.env is not populated in the browser bundle — this was
+          // always undefined client-side. useRuntimeConfig().public.directus.url
+          // is the actual public Directus URL (see nuxt.config.ts).
           return {
               tab: null,
-              url: process.env.DIRECTUS_URL,
+              url: useRuntimeConfig().public.directus?.url,
           }
       }
   }

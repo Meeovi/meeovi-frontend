@@ -41,7 +41,8 @@
     </v-btn>
     
     <!-- Flyout Menu -->
-    <v-navigation-drawer v-model="drawer" location="right" temporary class="cart-flyout">
+    <Teleport to="body">
+    <v-navigation-drawer v-model="drawer" location="right" temporary :width="400" class="cart-flyout">
       <v-card-title class="d-flex justify-space-between align-center">
         <span>Notifications</span>
         <v-btn icon="fas fa-x" @click="drawer = false"></v-btn>
@@ -112,6 +113,7 @@
          </template>
        </div>
     </v-navigation-drawer>
+    </Teleport>
   </div>
 </template>
 

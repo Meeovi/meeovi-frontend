@@ -10,7 +10,7 @@
         <v-alert v-if="pwa?.offlineReady" type="success" density="compact" class="mb-2">
           App ready to work offline
         </v-alert>
-        <LowerBar />
+        <accountBar />
         
         <v-main>
           <div class="page-wrapper">
@@ -28,16 +28,13 @@
 
               <div id="sidebarNav"></div>
               <div id="mainSection">
-                <!--<announcements />-->
                 
                 <div class="contentPage">
                   <slot />
                 </div>
               </div>
           </div>
-          <!--<aboveFooter />-->
           <FooterNav />
-          <!---->
         </v-main>
       </v-app>
 
@@ -49,7 +46,7 @@
 <script setup lang="ts">
   import Header from '../components/menus/Header.vue'
   import sidebarnav from '../components/menus/sidebar/sidebarnav.vue'
-  import LowerBar from '../components/menus/LowerBar.vue'
+  import accountBar from '../components/menus/topmenu/accountbar.vue'
   import FooterNav from '../components/menus/FooterNav.vue'
   import OfflineAlert from '#shared/app/components/alerts/OfflineAlert.vue'
   import mobileNav from '../components/menus/mobile/mobileNav.vue'

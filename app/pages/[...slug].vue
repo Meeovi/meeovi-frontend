@@ -14,7 +14,7 @@
           Published: {{ page?.date_created ? new Date(page.date_created).toLocaleDateString() : '' }}
         </v-card-subtitle>
 
-        <v-card-text v-html="page?.content"></v-card-text>
+        <v-card-text v-dompurify-html="page?.content"></v-card-text>
 
         <v-card-actions>
           <share />

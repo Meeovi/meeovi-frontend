@@ -13,6 +13,10 @@
     top: 10px;
 }
 
+.add-to-list-flyout > .v-navigation-drawer__content {
+    z-index: 99999999 !important;
+}
+
 /*************** Post CSS *************/
 
 .feedMenu .v-list-item-title {
@@ -41,4 +45,12 @@
     border-top: 1px solid #e0e0e0;
     position: relative;
     bottom: 0px;
+}
+
+/*************** Comments CSS *************/
+
+.coral-thread-wrapper {
+    padding: 10px;
+    background: white;
+    z-index: 9999 !important;
 }

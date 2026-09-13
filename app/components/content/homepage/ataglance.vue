@@ -22,8 +22,8 @@
                                 </h5>
                                 <h6 class="item-subtitle mbr-fonts-style mt-1 display-7">
                                     <strong>{{ blocks?.content?.[0]?.subtitle }}</strong></h6>
-                                <p class="mbr-text mbr-fonts-style mt-3 display-7" v-dompurify-html="blocks?.content?.[0]?.content">
-                                </p>
+                                <div class="mbr-text mbr-fonts-style mt-3 display-7" v-dompurify-html="blocks?.content?.[0]?.content">
+                                </div>
                             </div>
                             <div class="mbr-section-btn item-footer mt-2">
                                 <NuxtLink :to="blocks?.content?.[0]?.url" class="btn item-btn btn-primary display-7"
@@ -48,8 +48,8 @@
                                 </h5>
                                 <h6 class="item-subtitle mbr-fonts-style mt-1 display-7">
                                     <strong>{{ blocks?.content?.[1]?.subtitle }}&nbsp;</strong></h6>
-                                <p class="mbr-text mbr-fonts-style mt-3 display-7" v-dompurify-html="blocks?.content?.[1]?.content">
-                                </p>
+                                <div class="mbr-text mbr-fonts-style mt-3 display-7" v-dompurify-html="blocks?.content?.[1]?.content">
+                                </div>
                             </div>
                             <div class="mbr-section-btn item-footer mt-2">
                                 <NuxtLink :to="blocks?.content?.[1]?.url" class="btn btn-primary item-btn display-7"
@@ -74,8 +74,8 @@
                                 </h5>
                                 <h6 class="item-subtitle mbr-fonts-style mt-1 display-7">
                                     <strong>{{ blocks?.content?.[2]?.subtitle }}</strong></h6>
-                                <p class="mbr-text mbr-fonts-style mt-3 display-7" v-dompurify-html="blocks?.content?.[2]?.content">
-                                </p>
+                                <div class="mbr-text mbr-fonts-style mt-3 display-7" v-dompurify-html="blocks?.content?.[2]?.content">
+                                </div>
                             </div>
                             <div class="mbr-section-btn item-footer mt-2">
                                 <NuxtLink :to="blocks?.content?.[2]?.url" class="btn btn-primary item-btn display-7"
@@ -97,8 +97,7 @@
     const hasAsset = (file) => Boolean(getAssetURL(file))
 
     const {
-        data: blocks,
-        error
+        data: blocks
     } = await useAsyncData('blocks', async () => {
         try {
             const resp = await $directus.request($readItem('page_blocks', '2', {

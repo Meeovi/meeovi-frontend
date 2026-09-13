@@ -8,7 +8,11 @@
   }
 }
 
-@media only screen and (min-width: 1471px) {
+/* Was min-width: 1471px, leaving a 1101-1470px gap (ordinary laptop/
+   desktop widths) where neither this rule nor the max-width: 1100px rule
+   below applied, so the mobile tab bar rendered on regular desktop
+   viewports. Mirrors that rule's threshold so exactly one always applies. */
+@media only screen and (min-width: 1101px) {
   #mobileNav {
     display: none;
   }

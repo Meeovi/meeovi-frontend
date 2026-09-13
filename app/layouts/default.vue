@@ -15,10 +15,23 @@
 
         <v-main>
           <div class="page-wrapper">
-            <v-navigation-drawer v-model="drawer" temporary>
-              <sidebarnav />
-              <v-spacer />
-            </v-navigation-drawer>
+            <!-- SSR renders this drawer without knowing the real viewport,
+                 so Vuetify's client-side mobile-breakpoint detection adds
+                 v-navigation-drawer--mobile after hydration; the class (and
+                 accompanying width) mismatch was severe enough that Vue
+                 mounted a second, un-hydrated copy alongside the original
+                 instead of patching it in place — two overlapping drawers,
+                 neither one closing all the way. It only opens on user
+                 interaction anyway, so there's nothing worth rendering
+                 server-side here. -->
+            <ClientOnly>
+              <Teleport to="body">
+                <v-navigation-drawer v-model="drawer" temporary>
+                  <sidebarnav />
+                  <v-spacer />
+                </v-navigation-drawer>
+              </Teleport>
+            </ClientOnly>
 
             <div id="sidebarNav"></div>
             <div id="mainSection">
@@ -93,7 +106,7 @@
       {
         key: 'theme-color',
         name: 'theme-color',
-        content: process.env.NUXT_PUBLIC_APP_THEME_COLOR || '#ffffff'
+        content: useRuntimeConfig().public.appThemeColor || '#ffffff'
       }
     ],
     link: [{
@@ -105,8 +118,13 @@
     }
   })
 
-  const title = process.env.NUXT_PUBLIC_APP_NAME || 'Nuxt AI Chatbot Template'
-  const description = process.env.NUXT_PUBLIC_APP_DESCRIPTION ||
+  // process.env is not populated in the browser bundle — these were always
+  // undefined client-side and silently fell back to the literals below.
+  // runtimeConfig.public.siteName/siteDescription are Nuxt's own public
+  // config (see layers/shared/nuxt.config.ts) and are readable everywhere.
+  const runtimeConfig = useRuntimeConfig()
+  const title = runtimeConfig.public.siteName || 'Meeovi Template'
+  const description = runtimeConfig.public.siteDescription ||
     'A full-featured, hackable Nuxt AI chatbot template made with Nuxt UI.'
 
 

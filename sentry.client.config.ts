@@ -5,9 +5,9 @@ Sentry.init({
   // dsn: useRuntimeConfig().public.sentry.dsn,
   dsn: (useRuntimeConfig().public as any).sentry.dsn,
 
-  // We recommend adjusting this value in production, or using tracesSampler
-  // for finer control
-  tracesSampleRate: 1.0,
+  // Full tracing in dev, light sampling in production so trace volume and
+  // cost stay sane on a live site.
+  tracesSampleRate: process.env.NODE_ENV === 'production' ? 0.1 : 1.0,
 
   // This sets the sample rate to be 10%. You may want this to be 100% while
   // in development and sample at a lower rate in production
