@@ -1,8 +1,7 @@
 <template>
   <div>
     <section data-bs-version="5.1" class="features11 cid-skeBBk03KK mbr-parallax-background" id="features12-3"
-      data-sortbtn="btn-primary"
-      :style="`background-image: url(${getAssetURL(departmentBook?.image)})`">
+      data-sortbtn="btn-primary" :style="`background-image: url(${getAssetURL(departmentBook?.image)})`">
 
       <div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(255, 255, 255);">
       </div>
@@ -15,8 +14,8 @@
                   <strong>{{ departmentBook?.name }}</strong>
                 </h4>
                 <p class="mbr-text mbr-fonts-style mb-4 display-7" v-dompurify-html="departmentBook?.description"></p>
-                <div class="mbr-section-btn mb-4"><a class="btn btn-secondary display-4"
-                    :href="toDepartmentPath(departmentBook?.slug)">Visit the Bookstore</a></div>
+                <div class="mbr-section-btn mb-4"><NuxtLink class="btn btn-secondary display-4"
+                    :to="toDepartmentPath(departmentBook?.slug)">Visit the Bookstore</NuxtLink></div>
               </div>
             </div>
           </div>
@@ -55,9 +54,10 @@
 
   import { getAssetURL } from '#shared/app/utils/get-asset-url'
 
+  // lazy: true — see headerslider.vue's comment on the same pattern.
   const {
     data: departmentBook
-  } = await useAsyncData('departmentBook', async () => {
+  } = useAsyncData('departmentBook', async () => {
     try {
       const resp = await $directus.request($readItem('departments', '29', {
         fields: [
@@ -71,5 +71,11 @@
     } catch {
       return null
     }
-  })
+  }, { lazy: true })
 </script>
+
+<style scoped>
+.cid-skeBBk03KK {
+    background: blue !important;
+}
+</style>

@@ -29,10 +29,10 @@
                   <strong>{{ departmentMusic?.name }}</strong>
                 </h6>
                 <p class="mbr-text mbr-fonts-style mb-4 display-4" v-dompurify-html="departmentMusic?.description"></p>
-                <div class="mbr-section-btn mt-3"><a class="btn btn-primary display-4"
-                  :href="toDepartmentPath(departmentMusic?.slug)">
+                <div class="mbr-section-btn mt-3"><NuxtLink class="btn btn-primary display-4"
+                  :to="toDepartmentPath(departmentMusic?.slug)">
                     Listen to the Music
-                  </a></div>
+                  </NuxtLink></div>
               </div>
             </div>
           </div>
@@ -54,9 +54,10 @@
 
   import { getAssetURL } from '#shared/app/utils/get-asset-url'
 
+  // lazy: true — see headerslider.vue's comment on the same pattern.
   const {
     data: departmentMusic
-  } = await useAsyncData('departmentMusic', async () => {
+  } = useAsyncData('departmentMusic', async () => {
     try {
       const resp = await $directus.request($readItem('departments', '28', {
         fields: [
@@ -70,5 +71,15 @@
     } catch {
       return null
     }
-  })
+  }, { lazy: true })
 </script>
+
+<style scoped>
+.cid-skeBGL5AVt {
+    background: indianred !important;
+}
+
+.cid-skeBGL5AVt .content-wrapper {
+    background: transparent !important;
+}
+</style>

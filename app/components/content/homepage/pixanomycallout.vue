@@ -61,9 +61,10 @@
 
     const { $directus, $readItem, $readItems } = useNuxtApp()
 
+    // lazy: true — see headerslider.vue's comment on the same pattern.
     const {
         data: outletPixanomy
-    } = await useAsyncData('outletPixanomy', async () => {
+    } = useAsyncData('outletPixanomy', async () => {
         try {
             const resp = await $directus.request($readItem('departments', '89', {
                 fields: [
@@ -77,5 +78,16 @@
         } catch {
             return null
         }
-    })
+    }, { lazy: true })
 </script>
+
+<style scoped>
+.cid-tZPDtxeZjg {
+    background-color: green !important;
+}
+
+.cid-tZPDtxeZjg .mbr-section-head {
+    background-color: transparent !important;
+    color: white !important;
+}
+</style>

@@ -14,8 +14,8 @@
                   <strong>{{ departmentTheater?.name }}</strong>
                 </h6>
                 <p class="mbr-text mbr-fonts-style mb-4 display-4" v-dompurify-html="departmentTheater?.description"></p>
-                <div class="mbr-section-btn mt-3"><a class="btn btn-warning display-4"
-                    :href="toDepartmentPath(departmentTheater?.slug)">Start Watching</a></div>
+                <div class="mbr-section-btn mt-3"><NuxtLink class="btn btn-warning display-4"
+                    :to="toDepartmentPath(departmentTheater?.slug)">Start Watching</NuxtLink></div>
               </div>
             </div>
           <div class="col-12 col-lg-6 md-pb">
@@ -51,9 +51,10 @@
 
   const model = ref(null)
 
+  // lazy: true — see headerslider.vue's comment on the same pattern.
   const {
     data: departmentTheater
-  } = await useAsyncData('departmentTheater', async () => {
+  } = useAsyncData('departmentTheater', async () => {
     try {
       const resp = await $directus.request($readItem('departments', '30', {
         fields: [
@@ -67,5 +68,19 @@
     } catch {
       return null
     }
-  })
+  }, { lazy: true })
 </script>
+
+<style scoped>
+.cid-skeBHQcNjS {
+    background: #ffe161 !important;
+}
+
+.cid-skeBHQcNjS .content-wrapper {
+    background: transparent !important;
+}
+
+.cid-skeBHQcNjS > .display-4 {
+  color: black !important;
+}
+</style>
