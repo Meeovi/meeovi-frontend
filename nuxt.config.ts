@@ -221,24 +221,35 @@ export default defineNuxtConfig({
     },
     externals: {
       // @fortawesome/fontawesome-svg-core keeps its icon registry
-      // (`library`) as module-level state, and before this change it was
-      // getting inlined into many separate SSR route chunks instead of
-      // shared — each with its own copy, so `library.add(fas, far, fab)`
-      // (layers/shared's vuetify plugin) only ever populated its own
-      // chunk's copy. Externalizing it (verified: entry.mjs now imports it
-      // once from a single traced node_modules/@fortawesome, real Node
-      // module-cache singleton) is a correct fix for that duplication on
-      // its own, but did NOT eliminate the server-log "Could not find one
-      // or more icon(s)" warning for fas/far fa-star and fas fa-heart —
-      // that still fires during SSR. The actual rendered page is fine:
-      // client-side hydration resolves and repaints every icon correctly,
-      // and the warning never reaches the browser console. Left in place
-      // as a real improvement; the remaining SSR-only warning needs
-      // further investigation, not yet root-caused.
+      // (`library`) as module-level state. Externalizing it (rather than
+      // letting Nitro inline a separate copy into every SSR route chunk)
+      // gives every chunk one real Node module-cache singleton instead of
+      // N independent copies, so library.add(fas, far, fab) — called once,
+      // in layers/shared's vuetify plugin — actually reaches everything
+      // that looks icons up afterwards.
+      //
+      // @fortawesome/vue-fontawesome is deliberately NOT in this list, even
+      // though it's the thing that actually calls findIconDefinition().
+      // It has no "exports" map in its package.json (just main/module), so
+      // when left external, Node resolves it via require() -> its CJS
+      // main (index.js) -> which itself requires('@fortawesome/
+      // fontawesome-svg-core') via the "require" condition, landing on
+      // fontawesome-svg-core's CJS build (index.js) — a SEPARATE module
+      // instance, with its own never-populated `library`, from the ESM
+      // build (index.mjs) that vuetify.ts's `import` resolves to. That
+      // silent dual-instantiation was the actual cause of "Could not find
+      // one or more icon(s)" firing on every SSR request for fas fa-heart
+      // and fas/far fa-star (confirmed by patching fontawesome-svg-core's
+      // installed findIconDefinition() directly: the patched build's
+      // diagnostic never fired even though the warning kept firing,
+      // proving the running code wasn't the file being imported by name).
+      // Bundling vue-fontawesome instead lets Rollup rewrite its internal
+      // require('@fortawesome/fontawesome-svg-core') into the same ESM
+      // import every other chunk uses for that external package, so both
+      // sides land on one instance.
       external: [
         'playwright-core',
         '@fortawesome/fontawesome-svg-core',
-        '@fortawesome/vue-fontawesome',
         '@fortawesome/free-solid-svg-icons',
         '@fortawesome/free-regular-svg-icons',
         '@fortawesome/free-brands-svg-icons',
@@ -260,7 +271,14 @@ export default defineNuxtConfig({
       // `Object.create(superCtor.prototype)` (prototype is undefined) —
       // breaking every server-rendered page. Inlining it lets Rollup do the
       // CJS interop at build time, which doesn't hit this edge case.
-      inline: ['@swc/helpers', '@algolia/events'],
+      //
+      // @fortawesome/vue-fontawesome: see the long comment on `external`
+      // above — explicitly inlined so its own require() of
+      // fontawesome-svg-core gets rewritten by Rollup to match the single
+      // external import every other chunk uses, instead of resolving to a
+      // second, never-populated module instance via Node's CJS "require"
+      // export condition.
+      inline: ['@swc/helpers', '@algolia/events', '@fortawesome/vue-fontawesome'],
     },
     prerender: {
       failOnError: false,
