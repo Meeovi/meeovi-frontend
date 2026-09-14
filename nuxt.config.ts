@@ -221,6 +221,24 @@ export default defineNuxtConfig({
     },
     externals: {
       external: ['playwright-core'],
+      // @sentry/node's auto-instrumentation (import-in-the-middle) resolves
+      // @swc/helpers/esm/*.js at runtime via the ESM loader hook, which
+      // Nitro's static file-trace can't see — it copies the package.json
+      // but not the actual helper files, crashing every request in
+      // production with ERR_MODULE_NOT_FOUND. Inlining it bundles the
+      // helpers directly into entry.mjs instead of relying on a traced
+      // node_modules/@swc/helpers at runtime.
+      // @algolia/events does `module.exports = EventEmitter` (a function).
+      // When left external, Node's real CJS->ESM interop at runtime adds a
+      // synthetic `module.exports` key alongside `default` on the namespace
+      // object; Rollup's getDefaultExportFromNamespaceIfNotNamed() helper
+      // only unwraps `default` when the namespace has exactly one key, so
+      // it returns the whole namespace instead of the constructor, and
+      // algoliasearch-helper's `inherits(ctor, superCtor)` then crashes on
+      // `Object.create(superCtor.prototype)` (prototype is undefined) —
+      // breaking every server-rendered page. Inlining it lets Rollup do the
+      // CJS interop at build time, which doesn't hit this edge case.
+      inline: ['@swc/helpers', '@algolia/events'],
     },
     prerender: {
       failOnError: false,
