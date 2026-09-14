@@ -220,7 +220,29 @@ export default defineNuxtConfig({
       },
     },
     externals: {
-      external: ['playwright-core'],
+      // @fortawesome/fontawesome-svg-core keeps its icon registry
+      // (`library`) as module-level state, and before this change it was
+      // getting inlined into many separate SSR route chunks instead of
+      // shared — each with its own copy, so `library.add(fas, far, fab)`
+      // (layers/shared's vuetify plugin) only ever populated its own
+      // chunk's copy. Externalizing it (verified: entry.mjs now imports it
+      // once from a single traced node_modules/@fortawesome, real Node
+      // module-cache singleton) is a correct fix for that duplication on
+      // its own, but did NOT eliminate the server-log "Could not find one
+      // or more icon(s)" warning for fas/far fa-star and fas fa-heart —
+      // that still fires during SSR. The actual rendered page is fine:
+      // client-side hydration resolves and repaints every icon correctly,
+      // and the warning never reaches the browser console. Left in place
+      // as a real improvement; the remaining SSR-only warning needs
+      // further investigation, not yet root-caused.
+      external: [
+        'playwright-core',
+        '@fortawesome/fontawesome-svg-core',
+        '@fortawesome/vue-fontawesome',
+        '@fortawesome/free-solid-svg-icons',
+        '@fortawesome/free-regular-svg-icons',
+        '@fortawesome/free-brands-svg-icons',
+      ],
       // @sentry/node's auto-instrumentation (import-in-the-middle) resolves
       // @swc/helpers/esm/*.js at runtime via the ESM loader hook, which
       // Nitro's static file-trace can't see — it copies the package.json
