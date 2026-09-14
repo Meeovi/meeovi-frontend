@@ -96,9 +96,10 @@
 
     const hasAsset = (file) => Boolean(getAssetURL(file))
 
+    // lazy: true — see headerslider.vue's comment on the same pattern.
     const {
         data: blocks
-    } = await useAsyncData('blocks', async () => {
+    } = useAsyncData('blocks', async () => {
         try {
             const resp = await $directus.request($readItem('page_blocks', '2', {
                 fields: ['*', 'media.file.*', 'content.*'],
@@ -107,5 +108,5 @@
         } catch {
             return null
         }
-    })
+    }, { lazy: true })
 </script>

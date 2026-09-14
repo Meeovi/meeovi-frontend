@@ -28,19 +28,21 @@
 
     const { $directus, $readItem, $readItems } = useNuxtApp()
 
+    // lazy: true — see LowerBar.vue's comment on the same pattern; this
+    // component also renders in the default layout on nearly every page.
     const {
         data: blocksCopyright
-    } = await useAsyncData('blocksCopyright', async () => {
+    } = useAsyncData('blocksCopyright', async () => {
         const result = await $directus.request($readItem('page_blocks', '5', {
             fields: ['*', 'media.*.*'],
         }))
         return result?.data || result || {}
-    })
+    }, { lazy: true })
 
     const {
         data: copyright
-    } = await useAsyncData('copyright', async () => {
+    } = useAsyncData('copyright', async () => {
         const result = await $directus.request($readItem('navigation', '10'))
         return result?.data || result || {}
-    })
+    }, { lazy: true })
 </script>

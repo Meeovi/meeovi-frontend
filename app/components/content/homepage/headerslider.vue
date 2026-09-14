@@ -23,9 +23,12 @@
 
     const hasAsset = (file) => Boolean(getAssetURL(file))
 
+    // lazy: true — don't block the whole page (and any navigateTo() landing
+    // here, e.g. the post-login redirect) on this one section's fetch; it
+    // renders its own placeholder (the `v-else` <intro/>) until data arrives.
     const {
         data: blocksSlider
-    } = await useAsyncData('blocksSlider', async () => {
+    } = useAsyncData('blocksSlider', async () => {
         try {
             const resp = await $directus.request($readItem('page_blocks', '1', {
                 fields: ['*', 'media.*.*'],
@@ -34,5 +37,5 @@
         } catch {
             return null
         }
-    })
+    }, { lazy: true })
 </script>

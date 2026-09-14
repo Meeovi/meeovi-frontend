@@ -28,9 +28,10 @@
 
     import { getAssetURL } from '#shared/app/utils/get-asset-url'
 
+    // lazy: true — see headerslider.vue's comment on the same pattern.
     const {
         data: blocksBlog
-    } = await useAsyncData('blocksBlog', async () => {
+    } = useAsyncData('blocksBlog', async () => {
         try {
         const resp = await $directus.request($readItem('page_blocks', '3', {
                 fields: ['*', 'media.*.*'],
@@ -39,5 +40,5 @@
         } catch {
             return null
         }
-    })
+    }, { lazy: true })
 </script>

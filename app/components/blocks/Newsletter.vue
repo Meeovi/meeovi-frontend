@@ -31,7 +31,9 @@
 // This wrapper only supplies the Directus-managed copy around the form.
 const { $directus, $readItem } = useNuxtApp()
 
-const { data: blocksNewsletter } = await useAsyncData('blocksNewsletter', async () => {
+// lazy: true — see LowerBar.vue's comment on the same pattern; this
+// component also renders in the default layout on nearly every page.
+const { data: blocksNewsletter } = useAsyncData('blocksNewsletter', async () => {
     try {
         const resp = await $directus.request($readItem('page_blocks', '4', {
             fields: ['*', 'media.*.*'],
@@ -40,7 +42,7 @@ const { data: blocksNewsletter } = await useAsyncData('blocksNewsletter', async 
     } catch {
         return {}
     }
-})
+}, { lazy: true })
 
 function onSubscribed(result) {
     // Hook for analytics / toasts; the component handles its own UI state.

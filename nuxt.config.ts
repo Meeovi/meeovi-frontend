@@ -288,5 +288,26 @@ export default defineNuxtConfig({
 
   ogImage: {
     zeroRuntime: true
+  },
+
+  // Nuxt's default payloadExtraction fetches a server-rendered
+  // /_payload.json for the target route on every CLIENT-SIDE navigation,
+  // instead of letting the destination page's own composables run
+  // (fetch data) directly in the browser. For a mostly-static/prerendered
+  // site that's a nice win; for this app it was the actual cause of the
+  // "redirect after login takes forever" complaint — generating that
+  // payload server-side re-runs the exact same slow Directus/commerce
+  // SSR fetches (confirmed via a live production build: the /_payload.json
+  // request alone took ~12s, matching cold SSR render time almost
+  // exactly), and it happens BEFORE the page even starts to transition,
+  // so lazy: true on the page's own useAsyncData calls (see e.g.
+  // layers/commerce/.../product/latestproducts.vue) never got a chance to
+  // help — the client was still stuck waiting on this one JSON request
+  // first. Disabling it lets client-side navigations fetch data directly
+  // via $fetch from the browser instead, so lazy: true actually works:
+  // the page shell renders immediately and each section fills in as its
+  // own request resolves.
+  experimental: {
+    payloadExtraction: false
   }
 })

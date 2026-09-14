@@ -64,24 +64,26 @@
 
   const toPath = (slug) => normalizeRoutePath(slug)
 
+  // lazy: true — see LowerBar.vue's comment on the same pattern; this
+  // component also renders in the default layout on nearly every page.
   const {
     data: about
-  } = await useAsyncData('about', async () => {
+  } = useAsyncData('about', async () => {
     const resp = await $directus.request($readItem('navigation', '7'))
     return resp?.data || resp || {}
-  })
+  }, { lazy: true })
 
   const {
     data: legal
-  } = await useAsyncData('legal', async () => {
+  } = useAsyncData('legal', async () => {
     const resp = await $directus.request($readItem('navigation', '8'))
     return resp?.data || resp || {}
-  })
+  }, { lazy: true })
 
   const {
     data: company
-  } = await useAsyncData('company', async () => {
+  } = useAsyncData('company', async () => {
     const resp = await $directus.request($readItem('navigation', '9'))
     return resp?.data || resp || {}
-  })
+  }, { lazy: true })
 </script>
